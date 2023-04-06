@@ -194,7 +194,12 @@ DEFAULT_FILE_STORAGE = "custom_storages.MediaFileStorage"
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # *** NOTE ***
-# BACKUP DATABASE COMMAND
+# *** BACKUP DATABASE COMMAND ***
 # $ pg_dump -Fc -h 127.0.0.1 -U op1 op1 -f op1.dump
-# RESTORE DATABASE COMMAND
+# *** RESTORE DATABASE COMMAND ***
+# sudo -u postgres psql
+# DROP DATABASE op1_dev1;
+# CREATE DATABASE op1_dev1;
+# GRANT ALL PRIVILEGES ON DATABASE op1_dev1 TO op1;
+# \q
 # $ pg_restore -d op1_dev1 -h 127.0.0.1 -U op1 op1.dump

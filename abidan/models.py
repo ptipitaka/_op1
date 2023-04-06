@@ -15,9 +15,11 @@ class Book(models.Model):
 
 class Word(models.Model):
     word = models.CharField(max_length=100)
+    burmese = models.CharField(max_length=100, null=True)
+    roman = models.CharField(max_length=100, null=True)
     book = models.ForeignKey(Book, on_delete=models.CASCADE)
-    page_number = models.PositiveIntegerField()
-    note = models.CharField()
+    page_number = models.CharField(max_length=50)
+    note = models.CharField(null=True)
 
     def __str__(self):
         return f"{self.word}"
