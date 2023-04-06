@@ -1,21 +1,29 @@
-<!--Navbar-->
-<nav class="navbar navbar-expand-sm navbar-light bg-light">
-    <a class="navbar-brand" href="/">Encore</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-target="#navbarText"
-        aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarText">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="">Products</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="">Blog</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="">Contact</a>
-            </li>
-        </ul>
+{% load i18n %}
+
+<div id="navbar" class="w3-bar w3-border w3-card w3-light-grey">
+  <a href="{% url "home" %}" class="w3-bar-item w3-button">{% trans "OPENPALI" %}</a>
+  <a href="{% url "abidan" %}" class="w3-bar-item w3-button">{% trans "Abidan" %}</a>
+  <a href="#" class="w3-bar-item w3-button">{% trans "Inscriber" %}</a>
+
+  <div class="w3-dropdown-click w3-right">
+    <button onclick="DDNavMenuFunction()" class="w3-button w3-black">{% trans "Member" %}</button>
+    <div id="Auth" class="w3-dropdown-content w3-bar-block w3-border" style="right:0">
+      <a href="#" class="w3-bar-item w3-button">{% trans "Sign in" %}</a>
+      <a href="#" class="w3-bar-item w3-button">{% trans "Sign out" %}</a>
     </div>
-</nav>
+  </div>
+</div>
+
+
+{% block script%}
+<script>
+function DDNavMenuFunction() {
+  var x = document.getElementById("Auth");
+  if (x.className.indexOf("w3-show") == -1) { 
+    x.className += " w3-show";
+  } else {
+    x.className = x.className.replace(" w3-show", "");
+  }
+}
+</script>
+{% endblock %}

@@ -42,10 +42,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # third party libraries
-    'bootstrap5',
     'storages',
     # internal
     'main',
+    'abidan',
 ]
 
 MIDDLEWARE = [
