@@ -10,3 +10,6 @@ class AbidanView(TemplateView):
         context = super().get_context_data(**kwargs)
         context["app_name"] = _("OPENPALI")
         return context
+    
+def import_data(request):
+    return render(request, "abidan/import-data.html")
