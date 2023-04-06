@@ -7,7 +7,7 @@ class Book(models.Model):
     code = models.SlugField(default="", db_index=True)
     title = models.CharField(max_length=50)
     info = models.CharField(max_length=150)
-    book_cover = models.ImageField(upload_to="Book cover", null=True)
+    book_cover = models.ImageField(upload_to="Abidan/Book_cover", null=True)
 
     def __str__(self):
         return f"{self.code} ({self.title})"
