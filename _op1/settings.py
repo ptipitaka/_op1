@@ -101,16 +101,6 @@ if config("IS_PRODUCTION", "False") == "True":
         }
     }
 else:
-    # Connect to a server using the ssh keys. See the sshtunnel documentation for using password authentication
-    ssh_tunnel = SSHTunnelForwarder(
-        config("DATABASE_SERVER_IP"),
-        ssh_private_key=config("PATH_TO_SSH_PRIVATE_KEY"),
-        ssh_private_key_password=config("SSH_PRIVATE_KEY_PASSWORD"),
-        ssh_username=config("SSH_USERNAME"),
-        remote_bind_address=("localhost", 5432),
-    )
-    ssh_tunnel.start()
-
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -118,9 +108,29 @@ else:
             'USER': config("DATADEV_USER"),
             'PASSWORD': config("DATADEV_PASSWORD"),
             'HOST': config("DATADEV_HOST"),
-            'PORT': ssh_tunnel.local_bind_port,
+            'PORT': '5433',
         }
     }
+    # *** Connect to a server using the ssh keys. See the sshtunnel documentation for using password authentication
+    # ssh_tunnel = SSHTunnelForwarder(
+    #     config("DATABASE_SERVER_IP"),
+    #     ssh_private_key=config("PATH_TO_SSH_PRIVATE_KEY"),
+    #     ssh_private_key_password=config("SSH_PRIVATE_KEY_PASSWORD"),
+    #     ssh_username=config("SSH_USERNAME"),
+    #     remote_bind_address=("localhost", 5432),
+    # )
+    # ssh_tunnel.start()
+
+    # DATABASES = {
+    #     'default': {
+    #         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    #         'NAME': config("DATADEV_NAME"),
+    #         'USER': config("DATADEV_USER"),
+    #         'PASSWORD': config("DATADEV_PASSWORD"),
+    #         'HOST': config("DATADEV_HOST"),
+    #         'PORT': ssh_tunnel.local_bind_port,
+    #     }
+    # }
 
 # Check database connection
 print('running on db : ' + connection.settings_dict['NAME'])
@@ -194,7 +204,7 @@ DEFAULT_FILE_STORAGE = "custom_storages.MediaFileStorage"
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # *** NOTE ***
-# *** BACKUP DATABASE COMMAND ***
+# *** BACKUP DATABASE COMMAND => SERVER : op1 op1_dev1***
 # $ pg_dump -Fc -h 127.0.0.1 -U op1 op1 -f op1.dump
 # *** RESTORE DATABASE COMMAND ***
 # sudo -u postgres psql
@@ -203,3 +213,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # GRANT ALL PRIVILEGES ON DATABASE op1_dev1 TO op1;
 # \q
 # $ pg_restore -d op1_dev1 -h 127.0.0.1 -U op1 op1.dump
+
+# *** BACKUP DATABASE COMMAND => SERVER TO LOCAL : op1 to op1
+# FROM PGADMIN BACKUP FROM SERVER => RESTORE TO LOCAL
+# 1. BACKUP DATABASE op1 (SERVER SIDE)
+# 2. FTP DOWNLOAD op1 FROM SERVER
+# 3. DROP op1 (if exists) ON LOCAL
+# 4. CREATE DATABASE op1
+# 2. RESTORE DATABASE op1.sql 

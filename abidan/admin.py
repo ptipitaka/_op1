@@ -12,6 +12,7 @@ class BookAdmin(admin.ModelAdmin):
 
 class WordAdmin(admin.ModelAdmin):
   list_display = ("word", "book", "page_number",)
+  ordering = ("word", "book", "page_number")
 
 
 admin.site.register(Book, BookAdmin)
