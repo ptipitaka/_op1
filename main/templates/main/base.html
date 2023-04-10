@@ -10,16 +10,31 @@
     <link rel="stylesheet" href="">
     <link href="{% static 'main/css/w3.css' %}" rel="stylesheet">
     <link href="{% static 'main/css/main.css' %}" rel="stylesheet">
+    <link href="{% static 'main/css/font-awesome.min.css' %}" rel="stylesheet">
+    <link href="{% static 'main/fontawesome/css/fontawesome.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'main/fontawesome/css/brands.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'main/fontawesome/css/solid.css' %}" rel="stylesheet" type="text/css">
+
     {% block extra_css %}{% endblock %}
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
     {% include "main/navbar.html" %}
     <main class="container-fluid">
+
+        <header class="w3-container w3-brown">
+            <div class="w3-panel w3-display-container">
+                <h5>{% block apptitle %}{% endblock %}</h5>
+                {% block apptitle_option %}{% endblock %}
+            </div>
+        </header>
+
         {% block body %}{% endblock %}
     </main>
 
-    {% include "main/footer.html" %}
+    <footer style="margin-top: 150px;">
+        {% include "main/footer.html" %}
+    </footer>
 
     {% block script%}
     {% endblock %}

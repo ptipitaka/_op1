@@ -1,15 +1,27 @@
-from django.shortcuts import render
-from django.views.generic.base import TemplateView
-from django.utils.translation import gettext_lazy as _
+from django_filters.views import FilterView
+from django_tables2.views import SingleTableMixin
+from django.views.generic import DetailView
 
-# Create your views here.
-class AbidanView(TemplateView):
+from abidan.models import Word, WordLookup
+from .tables import WordlistTable, WordlistFilter
+
+class AbidanView(SingleTableMixin, FilterView):
+    model = Word
     template_name = "abidan/index.html"
+    context_object_name  = "wordlist"
+    table_class = WordlistTable
+    filterset_class = WordlistFilter
 
     def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["app_name"] = _("OPENPALI")
+        context = super(AbidanView, self).get_context_data(**kwargs)
+        context["total_wl"] = '{:,}'.format(len(self.get_table().rows)) 
         return context
-    
-def import_data(request):
-    return render(request, "abidan/import-data.html")
+
+class AbidanDetialsView(DetailView):
+    template_name = "abidan/details.html"
+    model = Word
+
+    def get_context_data(self, **kwargs):
+        context = super(AbidanDetialsView, self).get_context_data(**kwargs)
+        context["word_lookup_row"] = WordLookup.objects.filter(word__exact = context["word"])
+        return context

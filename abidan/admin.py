@@ -7,7 +7,7 @@ from .models import Word
 # Register your models here.
 
 class BookAdmin(admin.ModelAdmin):
-  list_display = ("code", "title", "original_id",)
+  list_display = ("code", "title",)
   ordering = ("code",)
 
 class WordAdmin(admin.ModelAdmin):

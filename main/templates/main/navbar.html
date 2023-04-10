@@ -1,18 +1,32 @@
 {% load i18n %}
 
 <div id="navbar" class="w3-bar w3-border w3-card w3-light-grey">
-  <a href="{% url "home" %}" class="w3-bar-item w3-button">{% trans "OPENPALI" %}</a>
-  <a href="{% url "abidan" %}" class="w3-bar-item w3-button">{% trans "Abidan" %}</a>
-  <a href="#" class="w3-bar-item w3-button">{% trans "Inscriber" %}</a>
+  <a href="{% url "home" %}" class="w3-bar-item w3-button">{% trans "OPENPĀḶI" %}</a>
+  <a href="{% url "abidan" %}"
+    class="w3-bar-item w3-button {% if request.resolver_match.url_name in 'abidan, abidan_details' %} nav-active {% endif %}">
+      {% trans "Abidan" %}
+  </a>
+  <a href="#"
+    class="w3-bar-item w3-button {% if request.resolver_match.url_name in 'inscriber' %} nav-active {% endif %}">
+      {% trans "Inscriber" %}
+  </a>
 
   <div class="w3-dropdown-click w3-right">
     <button onclick="DDNavMenuFunction()" class="w3-button w3-black">{% trans "Member" %}</button>
     <div id="Auth" class="w3-dropdown-content w3-bar-block w3-border" style="right:0">
-      <a href="#" class="w3-bar-item w3-button">{% trans "Sign in" %}</a>
-      <a href="#" class="w3-bar-item w3-button">{% trans "Sign out" %}</a>
+      <a href="#"
+        class="w3-bar-item w3-button">{% trans "Sign in" %}</a>
+      <a href="#"
+        class="w3-bar-item w3-button">{% trans "Sign out" %}</a>
     </div>
   </div>
 </div>
+
+<style type="text/css">
+  a.nav-active {
+    background-color: #ccc;
+  }
+</style>
 
 
 {% block script%}

@@ -1,0 +1,70 @@
+{% extends 'main/base.html' %}
+
+{% load widget_tweaks %}
+{% load render_table from django_tables2 %}
+{% load i18n %}
+
+{% block extra_css %}
+    <style>
+        .mySlides {display:none;}
+    </style>
+{% endblock %}
+
+{% block apptitle %}
+    {% include 'abidan/include/title.html' %}</h2>
+{% endblock %}
+
+{% block apptitle_option %}
+    <a class="w3-button w3-display-right" onClick="javascript:history.go(-1);">back</a>
+{% endblock %}
+
+{% block body %}
+    <div class="w3-cell-row">
+        <div class="w3-container w3-cell" style="width: 60%">
+            <div class="w3-display-container">
+                <img class="mySlides w3-image" src="{{ word.page_ref.1 }}">
+                <img class="mySlides w3-image" src="{{ word.page_ref.2 }}">
+                <img class="mySlides w3-image" src="{{ word.page_ref.3 }}">
+                <img class="mySlides w3-image" src="{{ word.page_ref.4 }}">
+                <img class="mySlides w3-image" src="{{ word.page_ref.5 }}">
+
+                <button class="w3-button w3-black w3-opacity w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
+                <button class="w3-button w3-black w3-opacity w3-display-right" onclick="plusDivs(1)">&#10095;</button>
+            </div>
+        </div>
+
+        <div class="w3-container w3-green w3-light-grey w3-cell">
+            <h4>{{ word.word }}
+                <div><small>{{ word.burmese }}</small></div>
+            </h4>
+            <ol>
+                {% for each_match in word_lookup_row %}
+                    <li>{{ each_match.dict|default_if_none:"--" }} : {{ each_match.meaning }}</li>
+                {% endfor %}
+            </ol>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block script%}
+    <script>
+        var slideIndex = 1;
+        showDivs(slideIndex);
+
+        function plusDivs(n) {
+            showDivs(slideIndex += n);
+        }
+
+        function showDivs(n) {
+            var i;
+            var x = document.getElementsByClassName("mySlides");
+            if (n > x.length) {slideIndex = 1}
+            if (n < 1) {slideIndex = x.length}
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";  
+            }
+            x[slideIndex-1].style.display = "block";  
+        }
+    </script>
+{% endblock %}

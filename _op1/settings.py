@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 import os
 from decouple import config
 from pathlib import Path
-from sshtunnel import SSHTunnelForwarder
+# from sshtunnel import SSHTunnelForwarder
 from django.db import connection
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -43,6 +43,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # third party libraries
     'storages',
+    'debug_toolbar',
+    'django_tables2',
+    'widget_tweaks',
     # internal
     'main',
     'abidan',
@@ -56,6 +59,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
 
 ROOT_URLCONF = '_op1.urls'
@@ -71,6 +75,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.request',
             ],
         },
     },
@@ -203,8 +208,15 @@ DEFAULT_FILE_STORAGE = "custom_storages.MediaFileStorage"
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+
+INTERNAL_IPS = [
+    # ...
+    "127.0.0.1",
+    # ...
+]
+
 # *** NOTE ***
-# *** BACKUP DATABASE COMMAND => SERVER : op1 op1_dev1***
+# *** DUMP DATABASE COMMAND => SERVER : op1 op1_dev1***
 # $ pg_dump -Fc -h 127.0.0.1 -U op1 op1 -f op1.dump
 # *** RESTORE DATABASE COMMAND ***
 # sudo -u postgres psql
