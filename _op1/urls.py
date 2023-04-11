@@ -22,6 +22,7 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('__debug__/', include('debug_toolbar.urls')),
+    path("", include("django.contrib.auth.urls")),
     path('', include('main.urls')),
     path('abidan/', include('abidan.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)\

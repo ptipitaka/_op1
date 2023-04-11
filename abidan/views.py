@@ -5,6 +5,8 @@ from django.views.generic import DetailView
 from abidan.models import Word, WordLookup
 from .tables import WordlistTable, WordlistFilter
 
+from operator import itemgetter
+
 class AbidanView(SingleTableMixin, FilterView):
     model = Word
     template_name = "abidan/index.html"

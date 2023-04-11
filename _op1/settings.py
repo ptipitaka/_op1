@@ -67,7 +67,7 @@ ROOT_URLCONF = '_op1.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / "templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -208,7 +208,11 @@ DEFAULT_FILE_STORAGE = "custom_storages.MediaFileStorage"
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# auth/settings.py
+LOGIN_REDIRECT_URL = "home"
+LOGOUT_REDIRECT_URL = "home"
 
+# debug settings
 INTERNAL_IPS = [
     # ...
     "127.0.0.1",

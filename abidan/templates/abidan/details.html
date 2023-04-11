@@ -1,6 +1,5 @@
 {% extends 'main/base.html' %}
 
-{% load widget_tweaks %}
 {% load render_table from django_tables2 %}
 {% load i18n %}
 
@@ -34,12 +33,12 @@
         </div>
 
         <div class="w3-container w3-green w3-light-grey w3-cell">
-            <h4>{{ word.word }}
+            <h4>{{ word.word }} / {{ word_index}}
                 <div><small>{{ word.burmese }}</small></div>
             </h4>
             <ol>
                 {% for each_match in word_lookup_row %}
-                    <li>{{ each_match.dict|default_if_none:"--" }} : {{ each_match.meaning }}</li>
+                    <li>{{ each_match.dict }}</li>
                 {% endfor %}
             </ol>
         </div>
