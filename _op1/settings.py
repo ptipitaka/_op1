@@ -13,8 +13,6 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 import os
 from decouple import config
 from pathlib import Path
-# from sshtunnel import SSHTunnelForwarder
-from django.db import connection
 from django.contrib.messages import constants as messages
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -43,7 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # third party libraries
-    'django_rq',
+    # 'django_rq',
     'django_tables2',
     'debug_toolbar',
     'smart_selects',
@@ -91,13 +89,6 @@ WSGI_APPLICATION = '_op1.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
 if config("IS_PRODUCTION", "False") == "True":
     DATABASES = {
         'default': {
@@ -109,40 +100,20 @@ if config("IS_PRODUCTION", "False") == "True":
             'PORT': '',
         }
     }
-else:
+else: 
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': config("DATADEV_NAME"),
-            'USER': config("DATADEV_USER"),
-            'PASSWORD': config("DATADEV_PASSWORD"),
-            'HOST': config("DATADEV_HOST"),
+            'NAME': 'op1',
+            'USER': 'op1',
+            'PASSWORD': '123456',
+            'HOST': 'localhost',
             'PORT': '5433',
         }
     }
-    # *** Connect to a server using the ssh keys. See the sshtunnel documentation for using password authentication
-    # ssh_tunnel = SSHTunnelForwarder(
-    #     config("DATABASE_SERVER_IP"),
-    #     ssh_private_key=config("PATH_TO_SSH_PRIVATE_KEY"),
-    #     ssh_private_key_password=config("SSH_PRIVATE_KEY_PASSWORD"),
-    #     ssh_username=config("SSH_USERNAME"),
-    #     remote_bind_address=("localhost", 5432),
-    # )
-    # ssh_tunnel.start()
-
-    # DATABASES = {
-    #     'default': {
-    #         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-    #         'NAME': config("DATADEV_NAME"),
-    #         'USER': config("DATADEV_USER"),
-    #         'PASSWORD': config("DATADEV_PASSWORD"),
-    #         'HOST': config("DATADEV_HOST"),
-    #         'PORT': ssh_tunnel.local_bind_port,
-    #     }
-    # }
 
 # Check database connection
-print('running on db : ' + connection.settings_dict['NAME'])
+# print('running on db : ' + connection.settings_dict['NAME'])
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -240,16 +211,6 @@ MESSAGE_TAGS = {
     messages.ERROR: 'w3-pale-red',
 }
 
-
-# RQ_QUEUE
-RQ_QUEUES = {
-    'default': {
-        'HOST': 'localhost',
-        'PORT': 6379,
-        'DB': 0,
-    },
-}
-
 # *** NOTE ***
 # *** DUMP DATABASE COMMAND => SERVER : op1 op1_dev1***
 # $ pg_dump -Fc -h 127.0.0.1 -U op1 op1 -f op1.dump
@@ -266,5 +227,5 @@ RQ_QUEUES = {
 # 1. BACKUP DATABASE op1 (SERVER SIDE)
 # 2. FTP DOWNLOAD op1 FROM SERVER
 # 3. DROP op1 (if exists) ON LOCAL
-# 4. CREATE DATABASE op1
-# 2. RESTORE DATABASE op1.sql 
+# 4. CREATE DATABASE op1 =>
+# 2. RESTORE DATABASE op1.sql => sudo -u postgres pg_restore -U postgres -d op1 -1 op1.sql
