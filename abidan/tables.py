@@ -1,5 +1,4 @@
 import django_tables2 as tables
-from django_tables2.utils import A
 from django_filters import FilterSet
 from django.utils.translation import gettext_lazy as _
 

@@ -33,7 +33,7 @@
         </div>
 
         <div class="w3-container w3-green w3-light-grey w3-cell">
-            <h4>{{ word.word }} / {{ word_index}}
+            <h4>{{ word.word }}
                 <div><small>{{ word.burmese }}</small></div>
             </h4>
             <ol>
@@ -41,6 +41,10 @@
                     <li>{{ each_match.dict }}</li>
                 {% endfor %}
             </ol>
+            
+            <div class="w3-border">
+                <iframe height="680px" width="100%" src="https://tipitaka.app/misc/convert/index.html"></iframe>
+            </div>
         </div>
     </div>
 
@@ -53,7 +57,7 @@
 
         function plusDivs(n) {
             showDivs(slideIndex += n);
-        }
+        };
 
         function showDivs(n) {
             var i;
@@ -64,6 +68,6 @@
                 x[i].style.display = "none";  
             }
             x[slideIndex-1].style.display = "block";  
-        }
+        };
     </script>
 {% endblock %}

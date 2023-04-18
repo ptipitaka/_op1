@@ -1,0 +1,83 @@
+{% extends 'main/base.html' %}
+{% load widget_tweaks %}
+
+{% load i18n %}
+
+{% block apptitle %}
+    {% include 'tipitaka/include/title.html' %}</h2>
+{% endblock %}
+
+{% block body %}
+    <div class="w3-card w3-center" style="width:60%; margin:auto;">
+        {% if not selected_edition_id %}
+            <header class="w3-container w3-light-grey">
+                <h3>{% trans 'Please select Tipiṭaka edition' %}</h3>
+            </header>
+            <form method="get" {% url 'wordlist_generator' %}
+                class="w3-container w3-text-blue w3-padding"
+                style="width:60%;margin:auto;">
+                
+                {% for field in form %}
+                    <div class="w3-container">
+                        <lable>{{ field.label }}</label>
+                        {{ field|add_class:"w3-select" }}
+                    </div>
+                {% endfor %}
+
+                <div class="w3-container w3-center">
+                    <button
+                        type="submit" value="submit"
+                        class="w3-btn w3-white w3-border w3-round-xlarge w3-hover-brown w3-round-xlarge w3-margin"
+                    >
+                        {% trans "Process" %}
+                    </button>
+                </div>
+            </form>
+        {% else %}
+            <header class="w3-container w3-light-grey">
+                <h3>{{ selected_edition }}</h3>
+            </header>
+            <div class="w3-container">
+                <p>{{ selected_edition.description|linebreaks }}</p>
+                <hr/>
+            </div>
+            <form method="post" {% url 'wordlist_generator' %}>
+                {% csrf_token %}
+                
+                {% for field in form %}
+                    <div class="w3-container">
+                        {{ field|add_class:"w3-hide" }}
+                    </div>
+                {% endfor %}
+                
+                <p> {% trans 'Current Wordlist version' %}: 
+                    {{ selected_edition.version }}, {{ total_wordlist_in_current_version }} {% trans 'word(s)' %}<br>
+                    {% trans 'Create new version' %}: {{ new_version }}
+                </p>
+
+                <button
+                    type="submit" value="submit"
+                    class="w3-btn w3-white w3-border w3-round-xlarge w3-hover-brown w3-round-xlarge w3-margin"
+                    data-confirm="{% trans "Are you sure?" %}"
+                >
+                    {% trans "Submit" %}
+                </button>
+            </form>
+        {% endif %}
+    </div>
+{% endblock %}
+
+{% block script%}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+        var submitButton = document.querySelector('button[data-confirm]');
+        submitButton.addEventListener('click', function(ev) {
+            var message = submitButton.getAttribute('data-confirm');
+            if (!confirm(message)) {
+            ev.preventDefault();
+            }
+        });
+        });
+
+    </script>
+{% endblock %}

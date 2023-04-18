@@ -1,6 +1,6 @@
 from django.db import models
-from django.core import validators
 from django.utils.translation import gettext_lazy as _
+from django.core.validators import MinValueValidator
 
 # Create your models here.
 class Book(models.Model):
@@ -8,7 +8,11 @@ class Book(models.Model):
     title = models.CharField(max_length=50, verbose_name=_("title"))
     subtitle = models.CharField(max_length=150, verbose_name=_("subtitle"))
     book_cover = models.ImageField(upload_to="abidan_book_cover", null=True, verbose_name=_("book cover"))
-
+    total_pages = models.IntegerField(
+        validators=[MinValueValidator(1)],
+        null=True,
+        verbose_name=_("total pages"))
+    
     def __str__(self):
         return f"{self.code} ({self.title})"
 
@@ -25,13 +29,17 @@ class Word(models.Model):
         return f"{self.word}"
     
     def page_ref(self):
-        return {
-            "1": f"https://space.openpali.org/abidan/{self.book.code}/{self.page_number + 0}.jpg",
-            "2": f"https://space.openpali.org/abidan/{self.book.code}/{self.page_number + 1}.jpg",
-            "3": f"https://space.openpali.org/abidan/{self.book.code}/{self.page_number + 2}.jpg",
-            "4": f"https://space.openpali.org/abidan/{self.book.code}/{self.page_number + 3}.jpg",
-            "5": f"https://space.openpali.org/abidan/{self.book.code}/{self.page_number + 4}.jpg",
-        }
+        total_pages = self.book.total_pages
+        image_slide = {}
+        image_item = 0
+        url = "https://space.openpali.org/abidan"
+        url_str = "%s/%s" % (url, self.book.code)
+        while (image_item <= (total_pages - self.page_number)):
+            image_slide[str(image_item + 1)] = "%s/%s.jpg" % (url_str, self.page_number + image_item)
+            image_item += 1
+            
+        return image_slide
+    
     
 class WordLookup(models.Model):
     word = models.CharField(null=True)

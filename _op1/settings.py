@@ -15,6 +15,7 @@ from decouple import config
 from pathlib import Path
 # from sshtunnel import SSHTunnelForwarder
 from django.db import connection
+from django.contrib.messages import constants as messages
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -42,12 +43,15 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # third party libraries
-    'storages',
-    'debug_toolbar',
+    'django_rq',
     'django_tables2',
+    'debug_toolbar',
+    'smart_selects',
+    'storages',
     'widget_tweaks',
     # internal
     'main',
+    'tipitaka',
     'abidan',
 ]
 
@@ -59,7 +63,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    "debug_toolbar.middleware.DebugToolbarMiddleware",
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = '_op1.urls'
@@ -208,16 +212,43 @@ DEFAULT_FILE_STORAGE = "custom_storages.MediaFileStorage"
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# auth/settings.py
+# auth settings
+LOGIN_URL = "login"
 LOGIN_REDIRECT_URL = "home"
 LOGOUT_REDIRECT_URL = "home"
 
-# debug settings
+
+# JQUERY_URL = True
+USE_DJANGO_JQUERY = True
+
+
+# DEBUG TOOLBAR
 INTERNAL_IPS = [
     # ...
     "127.0.0.1",
+    "localhost",
     # ...
 ]
+
+
+# MESSAGE_TAGS
+MESSAGE_TAGS = {
+    messages.DEBUG: 'w3-blue-grey',
+    messages.INFO: 'w3-pale-blue',
+    messages.SUCCESS: 'w3-pale-green',
+    messages.WARNING: 'w3-pale-yellow',
+    messages.ERROR: 'w3-pale-red',
+}
+
+
+# RQ_QUEUE
+RQ_QUEUES = {
+    'default': {
+        'HOST': 'localhost',
+        'PORT': 6379,
+        'DB': 0,
+    },
+}
 
 # *** NOTE ***
 # *** DUMP DATABASE COMMAND => SERVER : op1 op1_dev1***

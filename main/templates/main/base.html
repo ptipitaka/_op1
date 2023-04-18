@@ -29,6 +29,20 @@
             </div>
         </header>
 
+        {% block message %}
+            {% if messages %}
+                <div class="w3-cell-row">
+                    {% for m in messages %}
+                        <div class="w3-panel {% if m.tags %}{{ m.tags }}{% endif %} w3-display-container w3-cell">
+                            <span onclick="this.parentElement.style.display='none'"
+                            class="w3-button w3-large w3-display-topright">&times;</span>
+                            <p>{{ m }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endblock %}
+
         {% block body %}{% endblock %}
     </main>
 

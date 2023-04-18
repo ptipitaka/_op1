@@ -1,22 +1,39 @@
 {% load i18n %}
 
 <div id="navbar" class="w3-bar w3-border w3-card w3-light-grey">
-    <a href="{% url "home" %}" class="w3-bar-item w3-button">{% trans "OPENPĀḶI" %}</a>
+    <!-- HOME -->
+    <a href="{% url "home" %}" class="w3-bar-item w3-button">
+        {% trans "OPENPĀḶI" %}
+    </a>
+    <!-- ABIDAN -->
     <a href="{% url "abidan" %}"
-        class="w3-bar-item w3-button {% if request.resolver_match.url_name in 'abidan, abidan_details' %} nav-active {% endif %}">
+        class="w3-bar-item w3-button {% if '/abidan/' in request.path %} nav-active {% endif %}">
         {% trans "Abidan" %}
     </a>
-    <a href="#"
-        class="w3-bar-item w3-button {% if request.resolver_match.url_name in 'inscriber' %} nav-active {% endif %}">
-        {% trans "Inscriber" %}
-    </a>
+    <!-- INSCRIBER -->
+    <div class="w3-dropdown-click">
+        <button onclick="DDNavMenuFunction('Inscriber')" class="w3-button {% if '/inscriber/' in request.path %} nav-active {% endif %}">
+            {% trans "Inscriber" %}
+        </button>
+        <div id="Inscriber" class="w3-dropdown-content w3-bar-block w3-border">
+            <a href="{% url "digital_archive" %}"
+                class="w3-bar-item w3-button {% if '/inscriber/digital-archive' in request.path %} nav-active {% endif %}">
+                {% trans "Digital Archive" %}
+            </a>
+            <a href="{% url "wordlist_generator" %}"
+                class="w3-bar-item w3-button {% if '/inscriber/wordlist-generator' in request.path %} nav-active {% endif %}">
+                {% trans "Wordlist Generator" %}
+            </a>
+        </div>
+    </div>
 
+    <!-- AUTHENTICATION --> 
     <div class="w3-right">
         {% if not user.is_authenticated %}
             <a href="{% url 'login' %}" class="w3-bar-item w3-button">{% trans "Login" %}</a>
         {% else %}
         <div class="w3-dropdown-click">
-            <button onclick="DDNavMenuFunction()" class="w3-button w3-dark-grey">
+            <button onclick="DDNavMenuFunction('Auth')" class="w3-button w3-dark-grey">
                 {{ user }}
             </button>
             <div id="Auth" class="w3-dropdown-content w3-bar-block w3-border" style="right:0">
@@ -30,7 +47,7 @@
 </div>
 
 <style type="text/css">
-    a.nav-active {
+    .nav-active {
         background-color: #ccc;
     }
 </style>
@@ -38,8 +55,8 @@
 
 {% block script%}
 <script>
-    function DDNavMenuFunction () {
-        var x = document.getElementById("Auth");
+    function DDNavMenuFunction (eid) {
+        var x = document.getElementById(eid);
         if (x.className.indexOf("w3-show") == -1) {
             x.className += " w3-show";
         } else {
