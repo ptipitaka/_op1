@@ -41,9 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # third party libraries
-    # 'django_rq',
     'django_tables2',
     'debug_toolbar',
+    'mptt',
     'smart_selects',
     'storages',
     'widget_tweaks',
@@ -183,6 +183,7 @@ DEFAULT_FILE_STORAGE = "custom_storages.MediaFileStorage"
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+
 # auth settings
 LOGIN_URL = "login"
 LOGIN_REDIRECT_URL = "home"
@@ -210,6 +211,7 @@ MESSAGE_TAGS = {
     messages.WARNING: 'w3-pale-yellow',
     messages.ERROR: 'w3-pale-red',
 }
+
 
 # *** NOTE ***
 # *** DUMP DATABASE COMMAND => SERVER : op1 op1_dev1***

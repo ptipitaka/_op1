@@ -1,9 +1,11 @@
 from django.db import models
+from django.db.models import Q
 from django.contrib.auth.models import User
 from django.core.validators import MinValueValidator
 from smart_selects.db_fields import ChainedForeignKey
 from django.utils.translation import gettext_lazy as _
 from django.utils import timezone
+from mptt.models import MPTTModel, TreeForeignKey
 
 # Create your models here.
 
@@ -89,7 +91,7 @@ class Page(models.Model):
         return image_slide
 
 
-class WordListVersion(models.Model):
+class WordlistVersion(models.Model):
     version = models.IntegerField(default=0, verbose_name=_("version"))
     edition = models.ForeignKey("Edition", verbose_name=_("edition"), on_delete=models.CASCADE,)
     created_by = models.ForeignKey(User,
@@ -97,6 +99,9 @@ class WordListVersion(models.Model):
                                    null=True, blank=True,
                                    on_delete=models.SET_NULL)
     created_on = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.edition.code} {self.version}"
 
     def save(self, *args, **kwargs):
         if not self.id:
@@ -110,7 +115,9 @@ class WordList(models.Model):
     word_seq = models.CharField(default="", verbose_name=_("word"), max_length=150)
     position = models.IntegerField(default=0, verbose_name=_("position"))
     line_number = models.IntegerField(default=0, verbose_name=_("line no"))
-    wordlistversion = models.ForeignKey("WordListVersion", verbose_name=_("Wordlist version"), on_delete=models.CASCADE)
+    wordlist_version = models.ForeignKey("WordlistVersion",
+                                        verbose_name=_("Wordlist version"),
+                                        on_delete=models.CASCADE)
     edition = models.ForeignKey("Edition", verbose_name=_("edition"), on_delete=models.CASCADE)
     volume = ChainedForeignKey(
         Volume,
@@ -133,3 +140,23 @@ class WordList(models.Model):
     
     def __str__(self):
         return f"{self.code} {self.word}"
+    
+
+class TableOfContent(models.Model):
+    code = models.CharField(max_length=20, unique=True, db_index=True, verbose_name=_("code"))
+    edition = models.ManyToManyField(Edition,
+                limit_choices_to=Q(version__gt=0),
+                null=True,
+                verbose_name=_("edition"),
+                related_name="edtion")
+
+
+class Structure(MPTTModel):
+    table_of_content = models.ForeignKey(TableOfContent, verbose_name=_("table of contents"), on_delete=models.CASCADE)
+    code = models.CharField(max_length=20, unique=True, db_index=True, verbose_name=_("code"))
+    parent = TreeForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='children')
+    title = models.CharField(verbose_name=_("Title"), max_length=255)
+    description = models.TextField(verbose_name=_("Description") ,max_length=255, blank=True, null=True)
+
+    class MPTTMeta:
+        order_insertion_by = ['code']

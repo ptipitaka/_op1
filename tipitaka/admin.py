@@ -1,7 +1,9 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import Script, Edition, Volume, Page, WordListVersion, WordList
+from .models import Script, Edition, Volume, Page, WordlistVersion, WordList, TableOfContent, Structure
+from mptt.admin import MPTTModelAdmin
+
 
 # Register your models here.
 class ScriptAdmin(admin.ModelAdmin):
@@ -23,21 +25,32 @@ class PageAdmin(admin.ModelAdmin):
   list_filter = ("edition", "volume",)
   ordering = ("volume", "page_number",)
 
-class WordListVersionAdmin(admin.ModelAdmin):
+class WordlistVersionAdmin(admin.ModelAdmin):
   list_display = ("version", "edition", "created_by",)
   list_filter = ("edition",)
   ordering = ("edition", "version",)
   
 class WordListAdmin(admin.ModelAdmin):
   list_display = ("code", "word", "page",)
+  list_filter = ("edition", "wordlist_version")
   ordering = ("code",)
+
+class TableOfContentAdmin(admin.ModelAdmin):
+   list_display = ("code", "edition",)
+   list_filter = ("edition",)
+   ordering = ("code",)
+
+class StructureAdmin(admin.ModelAdmin):
+   list_display = ("code", "edition",)
 
 admin.site.register(Script, ScriptAdmin)
 admin.site.register(Edition, EditiontAdmin)
 admin.site.register(Volume, VolumeAdmin)
 admin.site.register(Page, PageAdmin)
-admin.site.register(WordListVersion, WordListVersionAdmin)
+admin.site.register(WordlistVersion, WordlistVersionAdmin)
 admin.site.register(WordList, WordListAdmin)
+admin.site.register(TableOfContent, TableOfContentAdmin)
+admin.site.register(Structure, MPTTModelAdmin)
 
 def get_app_list(self, request):
     """
@@ -56,7 +69,7 @@ def get_app_list(self, request):
                 'Editions': 2,
                 'Volumes': 3,
                 'Pages': 4,
-                'WordListVersion': 5,
+                'WordlistVersion': 5,
                 'WordLists': 6
             }
             app['models'].sort(key=lambda x: ordering[x['name']])
