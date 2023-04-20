@@ -148,7 +148,10 @@ class TableOfContent(models.Model):
                 limit_choices_to=Q(version__gt=0),
                 null=True,
                 verbose_name=_("edition"),
-                related_name="edtion")
+                related_name="edition")
+    
+    def __str__(self):
+        return self.code
 
 
 class Structure(MPTTModel):
@@ -160,3 +163,6 @@ class Structure(MPTTModel):
 
     class MPTTMeta:
         order_insertion_by = ['code']
+
+    def __str__(self):
+        return f"{self.code} {self.title}"
