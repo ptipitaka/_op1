@@ -156,16 +156,16 @@ class TableOfContent(models.Model):
 
 class Structure(MPTTModel):
     table_of_content = models.ForeignKey(TableOfContent, verbose_name=_("table of contents"), on_delete=models.CASCADE)
-    code = models.CharField(max_length=20, null=True, unique=True, db_index=True, verbose_name=_("code"))
-    title = models.CharField(verbose_name=_("Title"), max_length=255)
-    description = models.TextField(verbose_name=_("Description") ,max_length=255, blank=True, null=True)
-    ro = models.CharField(verbose_name=_("Roman Script"), null=True, max_length=255)
-    si = models.CharField(verbose_name=_("Sinhala Script"), null=True, max_length=255)
-    hi = models.CharField(verbose_name=_("Hindi Script"), null=True, max_length=255)
-    lo = models.CharField(verbose_name=_("Lao Script"), null=True, max_length=255)
-    my = models.CharField(verbose_name=_("Myanmar Script"), null=True, max_length=255)
-    km = models.CharField(verbose_name=_("Khmar Script"), null=True, max_length=255)
     parent = TreeForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='children')
+    code = models.CharField(max_length=20, null=True, blank=True, verbose_name=_("code"))
+    title = models.CharField(verbose_name=_("Title"), db_index=True, max_length=255)
+    description = models.TextField(verbose_name=_("Description") ,max_length=255, blank=True, null=True)
+    ro = models.CharField(verbose_name=_("Roman Script"), null=True, db_index=True, max_length=255)
+    si = models.CharField(verbose_name=_("Sinhala Script"), null=True, db_index=True, max_length=255)
+    hi = models.CharField(verbose_name=_("Hindi Script"), null=True, db_index=True, max_length=255)
+    lo = models.CharField(verbose_name=_("Lao Script"), null=True, db_index=True, max_length=255)
+    my = models.CharField(verbose_name=_("Myanmar Script"), null=True, db_index=True, max_length=255)
+    km = models.CharField(verbose_name=_("Khmar Script"), null=True, db_index=True, max_length=255)
 
     class MPTTMeta:
         pass
