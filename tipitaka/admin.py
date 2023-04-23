@@ -3,6 +3,9 @@ from django.contrib import admin
 # Register your models here.
 from .models import Script, Edition, Volume, Page, WordlistVersion, WordList, TableOfContent, Structure
 from mptt.admin import MPTTModelAdmin
+from mptt.admin import DraggableMPTTAdmin
+from django_mptt_admin.admin import DjangoMpttAdmin
+
 
 
 # Register your models here.
@@ -36,12 +39,13 @@ class WordListAdmin(admin.ModelAdmin):
   ordering = ("code",)
 
 class TableOfContentAdmin(admin.ModelAdmin):
-   list_display = ("code", "edition",)
+   list_display = ("code",)
    list_filter = ("edition",)
    ordering = ("code",)
 
-class StructureAdmin(admin.ModelAdmin):
-   list_display = ("code", "edition",)
+class StructureAdmin(DjangoMpttAdmin):
+   pass
+   
 
 admin.site.register(Script, ScriptAdmin)
 admin.site.register(Edition, EditiontAdmin)
@@ -50,7 +54,7 @@ admin.site.register(Page, PageAdmin)
 admin.site.register(WordlistVersion, WordlistVersionAdmin)
 admin.site.register(WordList, WordListAdmin)
 admin.site.register(TableOfContent, TableOfContentAdmin)
-admin.site.register(Structure, MPTTModelAdmin)
+admin.site.register(Structure, StructureAdmin)
 
 def get_app_list(self, request):
     """

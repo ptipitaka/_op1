@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # third party libraries
-    'adminsortable2',
+    # 'adminsortable2',
+    'django_mptt_admin',
     'django_tables2',
     'debug_toolbar',
     'mptt',
@@ -105,7 +106,7 @@ else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'op1',
+            'NAME': 'op1_dev',
             'USER': 'op1',
             'PASSWORD': '123456',
             'HOST': 'localhost',

@@ -2,6 +2,7 @@ from django.db import models
 from django.db.models import Q
 from django.contrib.auth.models import User
 from django.core.validators import MinValueValidator
+from django.urls import reverse
 from smart_selects.db_fields import ChainedForeignKey
 from django.utils.translation import gettext_lazy as _
 from django.utils import timezone
@@ -146,7 +147,6 @@ class TableOfContent(models.Model):
     code = models.CharField(max_length=20, unique=True, db_index=True, verbose_name=_("code"))
     edition = models.ManyToManyField(Edition,
                 limit_choices_to=Q(version__gt=0),
-                null=True,
                 verbose_name=_("edition"),
                 related_name="edition")
     
@@ -156,13 +156,23 @@ class TableOfContent(models.Model):
 
 class Structure(MPTTModel):
     table_of_content = models.ForeignKey(TableOfContent, verbose_name=_("table of contents"), on_delete=models.CASCADE)
-    code = models.CharField(max_length=20, unique=True, db_index=True, verbose_name=_("code"))
-    parent = TreeForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='children')
+    code = models.CharField(max_length=20, null=True, unique=True, db_index=True, verbose_name=_("code"))
     title = models.CharField(verbose_name=_("Title"), max_length=255)
     description = models.TextField(verbose_name=_("Description") ,max_length=255, blank=True, null=True)
+    ro = models.CharField(verbose_name=_("Roman Script"), null=True, max_length=255)
+    si = models.CharField(verbose_name=_("Sinhala Script"), null=True, max_length=255)
+    hi = models.CharField(verbose_name=_("Hindi Script"), null=True, max_length=255)
+    lo = models.CharField(verbose_name=_("Lao Script"), null=True, max_length=255)
+    my = models.CharField(verbose_name=_("Myanmar Script"), null=True, max_length=255)
+    km = models.CharField(verbose_name=_("Khmar Script"), null=True, max_length=255)
+    parent = TreeForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='children')
 
     class MPTTMeta:
-        order_insertion_by = ['code']
+        pass
+
+    def get_absolute_url(self):
+        return reverse('structure_detail', kwargs={'pk': self.pk, })
 
     def __str__(self):
         return f"{self.code} {self.title}"
+    
