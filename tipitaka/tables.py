@@ -61,18 +61,22 @@ class StructureTable(tables.Table):
         self.data = Structure.objects.filter(pk__in=[obj.pk for obj in new_data])
      
 
-class StructureFilter(FilterSet):
-    # parent = django_filters.ModelChoiceFilter(queryset=Structure.objects.filter(level__in=[1]))
+class StructureFilter(FilterSet):    
     deep_search_field = django_filters.ModelChoiceFilter(
-        queryset=Structure.objects.filter(level__in=[1]),
+        queryset=Structure.objects.filter(level__in=[1, 2, 3]),
         method='search_children',
         label=_("Parent"),
     )
 
-
     class Meta:
         model = Structure
-        fields = ["title"]
+        fields = {"title": ["contains"],}
+
+    def __init__(self, *args, **kwargs):
+        super(StructureFilter, self).__init__(*args, **kwargs)
+        # self.deep_search_field
+        self.filters['deep_search_field'].field.label_from_instance = lambda obj: obj.breadcrumb_option
+
 
     def search_children(self, queryset, name, value):
         return queryset.filter(

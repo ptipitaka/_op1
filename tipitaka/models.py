@@ -183,6 +183,11 @@ class Structure(MPTTModel):
         ancestors = self.get_ancestors(ascending=True)
         return ' / '.join([str(ancestor) for ancestor in ancestors.reverse()][1:])
 
+    def breadcrumb_option(self):
+        ancestors = self.get_ancestors(ascending=True)
+        bc = ' / '.join([str(ancestor) for ancestor in ancestors.reverse()]) 
+        return bc + ' / ' + self.title  
+
     def get_absolute_url(self):
         return reverse('structure_detail', kwargs={'pk': self.pk, })
 
