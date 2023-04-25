@@ -4,7 +4,8 @@ from .models import Structure
 from . import views
 
 urlpatterns = [
-    path('digital-archive', views.PageView.as_view(), name='digital_archive'),
-    path('digital-archive/<int:pk>', views.PageDetialsUpdateView.as_view(), name='page_details'),
-    path('common-toc', views.CommonTocView.as_view(), name='common_toc'),
+    path('digital-archive', views.DigitalArchiveView.as_view(), name='digital_archive'),
+    path('digital-archive/<int:pk>', views.DigitalArchiveDetialsView.as_view(), name='digital_archive'),
+    path('toc', views.TocView.as_view(), name='toc'),
+    path('toc/<slug:slug>/', views.TocTreeView.as_view(), name='toc_tree'),
 ]

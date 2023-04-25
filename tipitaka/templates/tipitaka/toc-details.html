@@ -4,13 +4,14 @@
 {% load render_table from django_tables2 %}
 {% load i18n %}
 
-{% include 'abidan/include/title.html' %}
-
 {% block apptitle %}
-    {% include 'abidan/include/title.html' %}</h2>
+    {% include 'tipitaka/include/title.html' %} : {% trans 'Table of Contents' %}
 {% endblock %}
 
 {% block body %}
+
+    {% load mptt_tags %}
+
     {% if filter %}
         <form action="" method="get"
             class="w3-container w3-text-blue w3-padding"
@@ -37,3 +38,4 @@
         {% trans 'found' %} {{ total_rec }} {% trans 'record(s)' %} 
     </div>
 {% endblock%}
+

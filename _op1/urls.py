@@ -22,7 +22,6 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('__debug__/', include('debug_toolbar.urls')),
-    # path('django-rq/', include('django_rq.urls')),
     re_path(r'^chaining/', include('smart_selects.urls')),
     path('', include('django.contrib.auth.urls')),
     path('', include('main.urls')),

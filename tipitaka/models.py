@@ -6,6 +6,7 @@ from django.urls import reverse
 from smart_selects.db_fields import ChainedForeignKey
 from django.utils.translation import gettext_lazy as _
 from django.utils import timezone
+from django.utils.text import slugify
 from mptt.models import MPTTModel, TreeForeignKey
 
 # Create your models here.
@@ -88,6 +89,8 @@ class Page(models.Model):
         while (image_item <= (total_pages - self.page_number)):
             image_slide[str(image_item + 1)] = "%s/%s.jpg" % (url_str, self.page_number + image_item)
             image_item += 1
+            if image_item >= 5:
+                break
             
         return image_slide
 
@@ -149,6 +152,11 @@ class TableOfContent(models.Model):
                 limit_choices_to=Q(version__gt=0),
                 verbose_name=_("edition"),
                 related_name="edition")
+    slug = models.SlugField(default="", null=False, db_index=True, unique=True, editable=True)
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.code)
+        super().save(*args, **kwargs)
     
     def __str__(self):
         return self.code
@@ -170,9 +178,14 @@ class Structure(MPTTModel):
     class MPTTMeta:
         pass
 
+    @property
+    def breadcrumb(self):
+        ancestors = self.get_ancestors(ascending=True)
+        return ' / '.join([str(ancestor) for ancestor in ancestors][1:])
+
     def get_absolute_url(self):
         return reverse('structure_detail', kwargs={'pk': self.pk, })
 
     def __str__(self):
-        return f"{self.code} {self.title}"
+        return f"{self.title}"
     

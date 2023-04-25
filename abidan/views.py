@@ -2,7 +2,7 @@ from django_filters.views import FilterView
 from django_tables2.views import SingleTableMixin
 from django.views.generic import DetailView
 
-from abidan.models import Word, WordLookup
+from .models import Word, WordLookup
 from .tables import WordlistTable, WordlistFilter
 
 class AbidanView(SingleTableMixin, FilterView):
@@ -14,7 +14,7 @@ class AbidanView(SingleTableMixin, FilterView):
 
     def get_context_data(self, **kwargs):
         context = super(AbidanView, self).get_context_data(**kwargs)
-        context["total_wl"] = '{:,}'.format(len(self.get_table().rows)) 
+        context["total_rec"] = '{:,}'.format(len(self.get_table().rows)) 
         return context
 
 class AbidanDetialsView(DetailView):

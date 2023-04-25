@@ -20,9 +20,9 @@
                 class="w3-bar-item w3-button {% if '/inscriber/digital-archive' in request.path %} nav-active {% endif %}">
                 {% trans "Digital Archive" %}
             </a>
-            <a href="{% url "common_toc" %}"
-                class="w3-bar-item w3-button {% if '/inscriber/common-toc' in request.path %} nav-active {% endif %}">
-                {% trans "Common TOC" %}
+            <a href="{% url "toc" %}"
+                class="w3-bar-item w3-button {% if '/inscriber/toc' in request.path %} nav-active {% endif %}">
+                {% trans "Table Of Contents" %}
             </a>
         </div>
     </div>

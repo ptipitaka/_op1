@@ -42,9 +42,12 @@ class TableOfContentAdmin(admin.ModelAdmin):
    list_display = ("code",)
    list_filter = ("edition",)
    ordering = ("code",)
+   prepopulated_fields = {'slug': ('code',)}
 
 class StructureAdmin(DjangoMpttAdmin):
-   pass
+
+  def is_drag_and_drop_enabled(self):
+    return True
    
 
 admin.site.register(Script, ScriptAdmin)

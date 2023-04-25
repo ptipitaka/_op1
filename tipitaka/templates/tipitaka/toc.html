@@ -1,0 +1,19 @@
+{% extends 'main/base.html' %}
+
+{% load widget_tweaks %}
+{% load render_table from django_tables2 %}
+{% load i18n %}
+
+{% block apptitle %}
+    {% include 'tipitaka/include/title.html' %}</h2>
+{% endblock %}
+
+{% block body %}
+
+    {% render_table table %}
+
+
+    <div class="w3-container w3-center">
+        {% trans 'found' %} {{ total_rec }} {% trans 'record(s)' %} 
+    </div>
+{% endblock%}
