@@ -1,6 +1,6 @@
 import django_tables2 as tables
+import django_filters
 from django_filters import FilterSet
-from django.utils.html import format_html
 from django.utils.translation import gettext_lazy as _
 from mptt.templatetags.mptt_tags import cache_tree_children
 
@@ -57,16 +57,24 @@ class StructureTable(tables.Table):
             children = row.get_children()
             for child in children:
                 child.level = row.level + 1
-                # child.parent = row
                 new_data.append(child)
         self.data = Structure.objects.filter(pk__in=[obj.pk for obj in new_data])
      
 
 class StructureFilter(FilterSet):
+    # parent = django_filters.ModelChoiceFilter(queryset=Structure.objects.filter(level__in=[1]))
+    deep_search_field = django_filters.ModelChoiceFilter(
+        queryset=Structure.objects.filter(level__in=[1]),
+        method='search_children',
+        label=_("Parent"),
+    )
+
+
     class Meta:
         model = Structure
-        fields = {
-            "code": ["contains"],
-            "title": ["contains"],
-            }
+        fields = ["title"]
+
+    def search_children(self, queryset, name, value):
+        return queryset.filter(
+            parent__in=Structure.objects.get(pk=value.id).get_descendants(include_self=True)) 
 

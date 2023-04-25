@@ -1,7 +1,9 @@
 {% extends 'main/base.html' %}
 
 {% load widget_tweaks %}
+{% load mptt_tags %}
 {% load render_table from django_tables2 %}
+
 {% load i18n %}
 
 {% block apptitle %}
@@ -9,8 +11,6 @@
 {% endblock %}
 
 {% block body %}
-
-    {% load mptt_tags %}
 
     {% if filter %}
         <form action="" method="get"
