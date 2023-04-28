@@ -178,7 +178,6 @@ class Structure(MPTTModel):
     class MPTTMeta:
         pass
 
-    @property
     def breadcrumb(self):
         ancestors = self.get_ancestors(ascending=True)
         return ' / '.join([str(ancestor) for ancestor in ancestors.reverse()][1:])
@@ -194,3 +193,8 @@ class Structure(MPTTModel):
     def __str__(self):
         return f"{self.title}"
     
+class CommonReference(models.Model):
+    structure = models.ForeignKey("Structure", verbose_name=_("structure"), on_delete=models.CASCADE,)
+    from_position = models.CharField(verbose_name=_("From Position"), null=True,  max_length=20)
+    to_position = models.CharField(verbose_name=_("To Position"), null=True,  max_length=20)
+    description = models.CharField(verbose_name=_("Description"), null=True,  max_length=255)

@@ -1,25 +1,30 @@
 import threading
+import random
 
 from braces import views
+from django.db import transaction
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from django_filters.views import FilterView
-from django.shortcuts import render, redirect
+from utils.pali_char import *
+from django.shortcuts import render, redirect, get_object_or_404
 from django_tables2.views import SingleTableMixin
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 from django.views import View
 from django.views.generic.edit import UpdateView
-from mptt.templatetags.mptt_tags import cache_tree_children
+from django.views.generic import TemplateView
 from mptt.utils import tree_item_iterator
-from utils.pali_char import clean, extract, encode
 
 from .models import Edition, Page, WordlistVersion, WordList, TableOfContent, Structure
 from .tables import DigitalArchiveTable, TocTable, StructureTable, StructureFilter
 from .forms import QForm, EditForm, WLGForm
 
 
+# ----------------------------------------------------------------
+# TIPITAKA DIGITAL ARCHIVED
+# ----------------------------------------------------------------
 
 class DigitalArchiveView(View):
     def get(self, request):
@@ -40,7 +45,6 @@ class DigitalArchiveView(View):
     def post(self, request):
         pass
 
-
 class DigitalArchiveDetialsView(SuccessMessageMixin, UpdateView):
     template_name = "tipitaka/digital-archive-details.html"
     model = Page
@@ -53,6 +57,161 @@ class DigitalArchiveDetialsView(SuccessMessageMixin, UpdateView):
         page = int(self.request.GET.get('page')  or 1)
         return '/inscriber/digital-archive?edition=%s&volume=%s&page=%s' %(edition, volume, page)
 
+# ----------------------------------------------------------------
+# TABLE OF CONTENTS & COMMON REFERENCE
+# ----------------------------------------------------------------
+class TocView(views.LoginRequiredMixin, views.SuperuserRequiredMixin, View):
+
+    def get(self, request):
+
+        queryset = TableOfContent.objects.all().order_by('code',)
+        table = TocTable(queryset)
+        table.paginate(page=request.GET.get("page", 1), per_page=25)
+        total_rec = '{:,}'.format(table.page.paginator.count)
+
+        return render(request, "tipitaka/toc.html", {
+            'table': table,
+            'total_rec': total_rec
+        })
+    def post(self, request):
+        pass
+
+
+class StructureView(views.LoginRequiredMixin, views.SuperuserRequiredMixin, SingleTableMixin, FilterView):
+    model = Structure
+    template_name = "tipitaka/structure.html"
+    context_object_name  = "tocs"
+    table_class = StructureTable
+    filterset_class = StructureFilter
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        slug = self.kwargs.get('slug')
+        table_of_content = get_object_or_404(TableOfContent, slug=slug)
+        queryset = Structure.objects.filter(table_of_content=table_of_content)
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super(StructureView, self).get_context_data(**kwargs)
+        context["total_rec"] = '{:,}'.format(len(self.get_table().rows)) 
+        return context
+
+
+class CommonReferenceSubformView(views.LoginRequiredMixin, views.SuperuserRequiredMixin, TemplateView):
+    template_name = "tipitaka/common_reference_subform.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        structure_slug = self.kwargs.get('slug')
+        structure = get_object_or_404(Structure, slug=structure_slug)
+        common_refs = structure.commonreference_set.all()
+        context['structure'] = structure
+        context['common_refs'] = common_refs
+        context['form'] = CommonReferenceForm()
+        return context
+
+    # def post(self, request, *args, **kwargs):
+    #     structure_id = self.kwargs['id']
+    #     structure = get_object_or_404(Structure, id=structure_id)
+    #     common_refs = structure.commonreference_set.all()
+    #     form = CommonReferenceForm(request.POST)
+    #     if form.is_valid():
+    #         common_ref = form.save(commit=False)
+    #         common_ref.structure = structure
+    #         common_ref.save()
+    #         return redirect('common_reference_subform', id=structure_id)
+    #     return self.render_to_response({'structure': structure, 'common_refs': common_refs, 'form': form})
+
+
+# ----------------------------------------------------------------
+# UTILITIES
+# ----------------------------------------------------------------
+
+# Structures -----------------------------------------------------
+
+def import_structure(structure_data):
+    # Create a dictionary to map parent IDs to Sturcture instances
+    parents = {}
+    toc = TableOfContent.objects.get(pk=1)
+
+    # Iterate over the structure data and create Sturcture instances
+    for structure_data in structure_data:
+        structure = Structure(
+            code=structure_data['code'],
+            title=structure_data['title'],
+            ro=structure_data['ro'],
+            si=structure_data['si'],
+            hi=structure_data['hi'],
+            lo=structure_data['lo'],
+            my=structure_data['my'],
+            km=structure_data['km'],
+            table_of_content=toc)
+        structure.parent = parents.get(structure_data['parent_id'])
+        structure.save()
+
+        # Add the new structure instance to the parent dictionary
+        parents[structure_data['id']] = structure
+
+    # Rebuild the tree structure
+    tree_items = list(tree_item_iterator(Structure.objects.all()))
+    Structure.objects.partial_rebuild(tree_items)
+
+    return True
+
+# define a function to update the code field recursively
+@transaction.atomic
+def update_structure_code(node):
+    def create_code(title):
+        print(title)
+        payangka = get_first_payangka_roman(cv_payangka(extract(clean(title))), 9)
+        return payangka
+
+    siblings = node.get_siblings(include_self=True)
+    code_array = [n.code for n in siblings]
+
+    payangka = create_code(node.title)
+    got_new_code = False
+    if len(payangka) > 1:
+        for i in range(0, len(payangka)):
+            try:
+                new_code = payangka[0] + payangka[i + 1]
+                if new_code not in code_array:
+                    print('adding code>1', new_code)
+                    node.code = new_code
+                    got_new_code = True
+                    break
+            except:
+                if not got_new_code:
+                    for i in range(1, 50):
+                        new_code = payangka[0] + payangka[1] + str(i)
+                        if new_code not in code_array:
+                            print('adding code>1s', new_code)
+                            node.code = new_code
+                            break
+    else:
+        print(payangka)
+        new_code = payangka[0]
+        if new_code not in code_array:
+            for i in range(1, 50):
+                new_code = payangka[0] + str(i)
+                if new_code not in code_array:
+                    print('adding code=1', new_code)
+                    node.code = new_code
+                    break
+    
+    node.save()
+    print(code_array)
+
+    for child in node.get_children():
+        update_structure_code(child)
+
+# get the root node of the parent-child tree
+# root_node = Structure.objects.get(parent=None)
+
+# call the function to update the code field recursively
+# update_structure_code(root_node)
+
+# WordList -------------------------------------------------------
 
 def create_wordlist_subprocess(edition_id, created_by):
     try:
@@ -144,65 +303,4 @@ class WordlistGeneratorView(views.LoginRequiredMixin, views.SuperuserRequiredMix
             messages.success(request, _("Enqueued task for create a new version of wordlist!"))
             return redirect(self.success_url)
         return render(request, self.template_name, {'form': form})
-    
 
-class TocView(views.LoginRequiredMixin, views.SuperuserRequiredMixin, View):
-
-    def get(self, request):
-
-        queryset = TableOfContent.objects.all().order_by('code',)
-        table = TocTable(queryset)
-        table.paginate(page=request.GET.get("page", 1), per_page=25)
-        total_rec = '{:,}'.format(table.page.paginator.count)
-
-        return render(request, "tipitaka/toc.html", {
-            'table': table,
-            'total_rec': total_rec
-        })
-    def post(self, request):
-        pass
-
-
-
-class TocTreeView(views.LoginRequiredMixin, views.SuperuserRequiredMixin, SingleTableMixin, FilterView):
-    model = Structure
-    template_name = "tipitaka/toc-details.html"
-    context_object_name  = "tocs"
-    table_class = StructureTable
-    filterset_class = StructureFilter
-
-    def get_context_data(self, **kwargs):
-        context = super(TocTreeView, self).get_context_data(**kwargs)
-        context["total_rec"] = '{:,}'.format(len(self.get_table().rows)) 
-        return context
-
-
-
-def import_structure(structure_data):
-    # Create a dictionary to map parent IDs to Sturcture instances
-    parents = {}
-    toc = TableOfContent.objects.get(pk=1)
-
-    # Iterate over the structure data and create Sturcture instances
-    for structure_data in structure_data:
-        structure = Structure(
-            code=structure_data['code'],
-            title=structure_data['title'],
-            ro=structure_data['ro'],
-            si=structure_data['si'],
-            hi=structure_data['hi'],
-            lo=structure_data['lo'],
-            my=structure_data['my'],
-            km=structure_data['km'],
-            table_of_content=toc)
-        structure.parent = parents.get(structure_data['parent_id'])
-        structure.save()
-
-        # Add the new structure instance to the parent dictionary
-        parents[structure_data['id']] = structure
-
-    # Rebuild the tree structure
-    tree_items = list(tree_item_iterator(Structure.objects.all()))
-    Structure.objects.partial_rebuild(tree_items)
-
-    return True

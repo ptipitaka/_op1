@@ -1,5 +1,5 @@
 from django import forms
-from .models import Edition, Page
+from .models import Edition, Page, CommonReference
 
 # query form (digital archive page)
 class QForm(forms.ModelForm):
@@ -23,3 +23,11 @@ class WLGForm(forms.Form):
         queryset=Edition.objects.filter(digitization=True),
         required=True
         )
+
+class CommonReferenceForm(forms.ModelForm):
+    class Meta:
+        model = CommonReference
+        fields = ['description',]
+        widgets = {
+            'description': forms.TextInput(attrs={'class': 'form-control'}),
+        }

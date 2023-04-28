@@ -14,15 +14,14 @@
       - ผลลัพธ์ pali_expand เป็น list ของ string
   3. encode(pali_expand) แทน list ของ string ด้วยรหัส
       - พยัญชนะเพียงแค่เอาพินทุออก
-      - สระแปลงเป็นตัวเลข 1-8
-      - อํ แปลงเป็นเลข 9 เรียงตามความนิยม
+      - สระแปลงเป็นตัวเลข 0-7
+      - อํ แปลงเป็นเลข 8 เรียงตามความนิยม
       - ประโยชน์เพื่อการเรียงลำดับ และเพื่อประหยัดพื้นที่หน่วยความจำ
       - ผลลัพธ์ pali_code ข้อมูล type sting
   4. decode(pali_code) แปลง pali_code กลับเป็น pali_expand
   5. compress(pali_expand) แปลง pali_expand กลับเป็น pali_shrink
       - วางสระ หน้า หลัง บน ล่าง
 '''
-from abidan.models import Word
 
 space = '\u0020'      # ช่องว่าง
 vw_a = '\u0E30'       # สระ -ะ
@@ -47,13 +46,11 @@ payanchanani = [
   'ปฺ','ผฺ','พฺ','ภฺ','มฺ',
   'ยฺ','รฺ','ลฺ','วฺ','สฺ','หฺ','ฬฺ']
 aukkrani = sarani + payanchanani + ['อํ']
+two_voice = ['ยฺ','รฺ','ลฺ','วฺ','หฺ']
 
 pali_symbol = 'อ' + _r + _i + _e + _u + _uu + _ea + _o + 'กขคฆงจฉชฌญฏฐฑฒณตถทธนปผพภมยรลวสหฬ' + pintu + niccahit
 vowel = ["อ", "อา","อิ","อี","อุ","อู","เอ","โอ","อํ"]
 
-
-# นำอักขระรูปอื่นออกไป
-# ตรวจไวยากรณ์ของการวางอักขระบาลี **ยังไม่ได้ทำในเบื้องต้น
 def clean(pali_shrink):
     res = ''
     for x in pali_shrink:
@@ -98,8 +95,8 @@ def extract(pali_shrink):
             res = res[:-1] + w[0]
             i+=1
 
-        # ถ้าเป็น อ อยู่หน้า ข้างหลังเป็นพยัญชนะ จนถึงสระอีกตัว เพราะข้างหน้าไม่ลบ
-        elif w[0] == 'อ' and w[1]<="อ":
+        # ถ้าเป็น อ อยู่หน้า และ ข้างหลังเป็นพยัญชนะ หรือเป็น เ, โ
+        elif w[0] == 'อ' and (w[1]<="อ" or w[1]=="เ" or w[1]=="โ") :
             res += 'อะ'
             i+=1
         # เ หรือ โ ที่มี อ ตามหลัง, พยัญชนะสังโยค, pintu
@@ -137,7 +134,7 @@ def encode(pali_expand):
 def decode(pali_code):
     y = []
     for x in pali_code:
-        if x >= '1' and x <= '9':
+        if x >= '0' and x <= '8':
             y.append(vowel[str(x)])
         else:
             y.append(x+pintu)
@@ -178,3 +175,88 @@ def compress(pali_expand):
             y += x
 
     return y[1:]  #นำ อ ออกไป
+
+
+#  รับ (pali_expand, จำนวนอักขระนำ )
+#  แปลงเป็นพยางค์
+
+def cv_payangka(pali_expand):
+    # อํ กํ อา อพฺย กฺยกฺเย พฺยคฺเฆ ขฺยา ยาตฺรา ยา
+    exts = pali_expand
+    exts.extend(["?","?","?","?"])
+    payanks = []
+
+    i = 0
+    while i < len(exts)-4:
+        # แต่ละรอบ จบที่ 1 พยางค์
+        payank = []
+        payank.append(exts[i])
+        # สระ นิคคหิต
+        if exts[i+1] == "อํ":
+            payank.append("อํ")
+            i+=2
+        # พยัญชนะ สระ นิคคหิต
+        elif exts[i+2] == "อํ":
+            payank.extend(exts[i+1:i+3])
+            i+=3
+        # สระ
+        elif exts[i] in sarani and exts[i+1] in payanchanani and not exts[i+2] in payanchanani :
+            i+=1
+        # สระ
+        elif exts[i] in sarani and exts[i+1] in sarani:
+            i+=1
+        else:
+            # สระ สังโยค
+            if exts[i+1] in payanchanani and exts[i+2] in payanchanani:
+                payank.append(exts[i+1])
+                i+=2
+            # สังโยค พยัญชนะ สระ สังโยค
+            elif exts[i+1] in payanchanani and exts[i+2] in sarani and exts[i+3] in payanchanani and exts[i+4] in payanchanani:
+                payank.extend(exts[i+1:i+4])
+                # กล้ำ เลื่อน 3
+                if exts[i+4] in two_voice:
+                    i+=3
+                # ไม่กล้ำ เลื่อนเพื่มอีก 1
+                else:
+                    i+=4
+
+            # สังโยค พยัญชนะ สระ
+            elif exts[i+1] in payanchanani and exts[i+2] in sarani:
+                payank.extend(exts[i+1:i+3])
+                i+=3
+            # พยัญชนะ สระ สังโยค
+            elif exts[i+2] in payanchanani and exts[i+3] in payanchanani:
+                payank.extend(exts[i+1:i+3])
+                i+=3
+            # พยัญชนะ สระ
+            else:
+                payank.append(exts[i+1])
+                i += 2
+
+        payanks.append(payank)
+
+    return payanks
+
+
+#  รับ บาลีเป็นพยางค์  จำนวน คืน คำแรก ตามจำนวน
+def get_first_payangka_roman(pali_payangka, num):
+    # อํ กํ อา อพฺย กฺยกฺเย พฺยคฺเฆ ขฺยา ยาตฺรา ยา
+    roman = [
+        'a','ā','i','ī','u','ū','e','o',
+        'k','kh','g','gh','ṅ',
+        'c','ch','j','jh','ñ',
+        'ṭ','ṭh','ḍ','ḍh','ṇ',
+        't','th','d','dh','n',
+        'p','ph','b','bh','m',
+        'y','r','l','v','s','h','ḷ', 'ṃ']
+
+    result = []
+    for payangka in pali_payangka:
+        i = aukkrani.index(payangka[0])
+        result.append(roman[i])
+
+    l = len(result)
+    if num > l:
+        num = l
+
+    return result[0:num]

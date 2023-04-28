@@ -1,0 +1,41 @@
+{% extends 'main/base.html' %}
+
+{% load widget_tweaks %}
+{% load i18n %}
+
+{% block apptitle %}
+    {% include 'tipitaka/include/title.html' %} : {% trans 'Common Reference' %}
+{% endblock %}
+
+{% block body %}
+    <h1>Common References for "{{ structure.title }}"</h1>
+
+    <table>
+        <thead>
+            <tr>
+            <th>Detail</th>
+            <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for common_ref in common_refs %}
+            <tr>
+            <td>{{ common_ref.detail }}</td>
+            <td><a href="{% url 'common_reference_edit' common_ref.id %}">Edit</a> | <a href="{% url 'common_reference_delete' common_ref.id %}">Delete</a></td>
+            </tr>
+        {% empty %}
+            <tr>
+            <td colspan="2">No common references found.</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>Add New Common Reference</h2>
+    <form method="post">
+        {% csrf_token %}
+        <input type="hidden" name="structure" value="{{ structure.id }}">
+        {{ form.as_p }}
+        <button type="submit">Add</button>
+    </form>
+{% endblock %}

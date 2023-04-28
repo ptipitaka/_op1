@@ -1,6 +1,7 @@
 import django_tables2 as tables
 import django_filters
 from django_filters import FilterSet
+from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 from mptt.templatetags.mptt_tags import cache_tree_children
 
@@ -21,7 +22,7 @@ class DigitalArchiveTable(tables.Table):
 
 class TocTable(tables.Table):
     action = tables.TemplateColumn(
-        "<a href='toc/{{ record.slug }}?{{ request.GET.urlencode }}' class='w3-button'><i class='fa-solid fa-magnifying-glass'></i></a>"
+        "<a href='/inscriber/structure/{{ record.slug }}' class='w3-button'><i class='fa-solid fa-magnifying-glass'></i></a>"
         )
     
     class Meta:
@@ -37,6 +38,9 @@ class StructureTable(tables.Table):
         'style': lambda value, record: 'padding-left: %spx' % (50 + (record.level * 50)),
         } 
     })
+    action = tables.TemplateColumn(
+        "<a href='/inscriber/common-ref/{{ record.id }}' class='w3-button'><i class='fa-solid fas fa-laptop-code'></i></a>"
+    )
 
     class Meta:
         model = Structure
@@ -51,15 +55,14 @@ class StructureTable(tables.Table):
         cache_tree_children(data)
 
         # Add tree structure to table
-        new_data = []
-        for row in data:
-            new_data.append(row)
-            children = row.get_children()
-            for child in children:
-                child.level = row.level + 1
-                new_data.append(child)
-        self.data = Structure.objects.filter(pk__in=[obj.pk for obj in new_data])
-     
+        # new_data = []
+        # for row in data:
+        #     new_data.append(row)
+        #     children = row.get_children()
+        #     for child in children:
+        #         child.level = row.level + 1
+        #         new_data.append(child)
+        # self.data = Structure.objects.filter(pk__in=[obj.pk for obj in new_data])
 
 class StructureFilter(FilterSet):    
     deep_search_field = django_filters.ModelChoiceFilter(
@@ -79,6 +82,7 @@ class StructureFilter(FilterSet):
 
 
     def search_children(self, queryset, name, value):
-        return queryset.filter(
-            parent__in=Structure.objects.get(pk=value.id).get_descendants(include_self=True)) 
+        structure = Structure.objects.get(id=value.id)
+        descendants = structure.get_descendants(include_self=True)
+        return descendants
 
