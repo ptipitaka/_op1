@@ -81,7 +81,7 @@ class Migration(migrations.Migration):
                 ('edition', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='tipitaka.edition', verbose_name='edition')),
                 ('page', smart_selects.db_fields.ChainedForeignKey(auto_choose=True, chained_field='volume', chained_model_field='volume', on_delete=django.db.models.deletion.CASCADE, to='tipitaka.page', verbose_name='page')),
                 ('volume', smart_selects.db_fields.ChainedForeignKey(auto_choose=True, chained_field='edition', chained_model_field='edition', on_delete=django.db.models.deletion.CASCADE, to='tipitaka.volume', verbose_name='volume')),
-                ('wordlist_version', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='tipitaka.wordlistversion', verbose_name='Wordlist version')),
+                ('wordlist_version', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='tipitaka.wordlistversion', verbose_name='wordlist version')),
             ],
         ),
         migrations.CreateModel(

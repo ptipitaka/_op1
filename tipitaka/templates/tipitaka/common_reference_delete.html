@@ -1,0 +1,44 @@
+{% extends 'main/base.html' %}
+{% load widget_tweaks %}
+
+{% load i18n %}
+
+{% block apptitle %}
+    {% include 'tipitaka/include/title.html' %} : {% trans 'Table of Contents' %}・{% trans 'Structure' %}・{% trans 'Common Reference' %}・{% trans 'Delete' %}
+{% endblock %}
+
+{% block apptitle_option %}
+    <a class="w3-button w3-display-right" onClick="javascript:history.go(-1);">back</a>
+{% endblock %}
+
+{% block body %}
+<div class="w3-container">
+    <h4>{% trans 'Are you sure you want to delete' %}</h4>
+    <h5>{{ object.wordlist_version.edition.title }} ({{ object.wordlist_version }})</h5>
+
+    <div class="w3-cell-row">
+        <div class="w3-container w3-cell">
+            <p><b>{% trans 'From' %}:</b> {{ from_wordlist_position }}</p>
+            <p>{{ from_wordlist_position.volume }} {{ from_wordlist_position.page }}</p>
+            <p>{{ from_wordlist_position.page.sample_content }}</p>
+        </div>
+        
+        <div class="w3-container w3-cell">
+            <p><b>{% trans 'To' %}:</b> {{ to_wordlist_position }}</p>
+            <p>{{ to_wordlist_position.volume }} {{ to_wordlist_position.page }}</p>
+            <p>{{ to_wordlist_position.page.sample_content }}</p>
+        </div>
+
+    </div>
+
+    <div class="w3-row">
+        <form method="post">
+        {% csrf_token %}
+            <button type="submit" class="w3-bar-item w3-btn w3-white w3-border w3-round-xlarge w3-hover-red w3-margin">{% trans 'Confirm' %}</button>
+
+            <a href="{% url 'common_reference_subform_detail' slug=object.structure.table_of_content.slug structure_id=object.structure.id pk=object.pk %}"
+            class="w3-bar-item w3-btn w3-white w3-border w3-round-xlarge w3-hover-brown w3-margin">{% trans 'Cancel' %}</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

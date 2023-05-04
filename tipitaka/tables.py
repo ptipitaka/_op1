@@ -5,11 +5,11 @@ from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 from mptt.templatetags.mptt_tags import cache_tree_children
 
-from .models import Page, TableOfContent, Structure
+from .models import Page, TableOfContent, Structure, WordList, CommonReference
 
 class DigitalArchiveTable(tables.Table):
     action = tables.TemplateColumn(
-        "<a href='digital-archive/{{ record.id }}?{{ request.GET.urlencode }}' class='w3-button'><i class='fa-solid fa-magnifying-glass'></i></a>"
+        "<a href='/inscriber/digital-archive/{{ record.id }}?{{ request.GET.urlencode }}' class='w3-button'><i class='fa-solid fa-magnifying-glass'></i></a>"
         )
     
     class Meta:
@@ -22,14 +22,14 @@ class DigitalArchiveTable(tables.Table):
 
 class TocTable(tables.Table):
     action = tables.TemplateColumn(
-        "<a href='/inscriber/structure/{{ record.slug }}' class='w3-button'><i class='fa-solid fa-magnifying-glass'></i></a>"
+        "<a href='/inscriber/toc/{{ record.slug }}/structure/' class='w3-button'><i class='fa-solid fa-magnifying-glass'></i></a>"
         )
     
     class Meta:
         model = TableOfContent
         template_name = "django_tables2/w3css.html"
         attrs = {"class": "w3-table w3-bordered"}
-        fields = ("code", "edition",)
+        fields = ("code", "wordlist_version",)
         order_by = ("code",)
 
 
@@ -39,7 +39,7 @@ class StructureTable(tables.Table):
         } 
     })
     action = tables.TemplateColumn(
-        "<a href='/inscriber/common-ref/{{ record.id }}' class='w3-button'><i class='fa-solid fas fa-laptop-code'></i></a>"
+        "<a href='/inscriber/toc/{{ record.table_of_content.slug }}/structure/{{ record.id }}/common-reference' class='w3-button'><i class='fa-solid fas fa-laptop-code'></i></a>"
     )
 
     class Meta:
@@ -51,10 +51,10 @@ class StructureTable(tables.Table):
     def __init__(self, data, **kwargs):
         super().__init__(data, **kwargs)
         
-        # Cache the tree structure for performance
+        ## Cache the tree structure for performance ##
         cache_tree_children(data)
 
-        # Add tree structure to table
+        ## Add tree structure to table ##
         # new_data = []
         # for row in data:
         #     new_data.append(row)
@@ -85,4 +85,45 @@ class StructureFilter(FilterSet):
         structure = Structure.objects.get(id=value.id)
         descendants = structure.get_descendants(include_self=True)
         return descendants
+
+
+class WordListTable(tables.Table):
+    action = tables.TemplateColumn(
+        """
+            <div class="w3-bar">
+            <button class="w3-bar-item w3-button w3-green" onclick="copyValue('{{ record.code }}', 'T')">
+                <i class='fas fa-step-backward' style='font-size:24px'></i>
+            </button>
+            <button class="w3-bar-item w3-button w3-blue" onclick="copyValue('{{ record.code }}', 'F')">
+                <i class='fas fa-step-forward' style='font-size:24px'></i>
+            </button>
+            </div>
+        """
+    )
+    class Meta:
+        model = WordList
+        template_name = "django_tables2/w3css.html"
+        attrs = {"class": "w3-table w3-bordered"}
+        fields = ("line_number", "word", "code",)
+        order_by = ("code",)
+
+class CommonReferenceTable(tables.Table):
+    action = tables.TemplateColumn(
+        """
+        <a href='/inscriber/toc/{{ record.structure.table_of_content.slug }}/structure/{{ record.structure.id }}/common-reference/{{ record.id }}' class='w3-button'>
+            <i class='fas fa-glasses'></i>
+        </a>
+        """
+    )
+
+    wlv = tables.Column(accessor="wordlist_version", verbose_name="Wl.V")
+    start = tables.Column(accessor="from_position", verbose_name="Start")
+    end = tables.Column(accessor="to_position", verbose_name="End")
+    class Meta:
+        model = CommonReference
+        template_name = "django_tables2/w3css.html"
+        attrs = {"class": "w3-table w3-bordered"}
+        fields = ("wlv", "start", "end",)
+        order_by = ("wordlist_version",)
+
 

@@ -5,13 +5,12 @@
 {% load i18n %}
 
 {% block apptitle %}
-    {% include 'tipitaka/include/title.html' %}</h2>
+    {% include 'tipitaka/include/title.html' %} : {% trans 'Table of Contents' %}</h2>
 {% endblock %}
 
+
 {% block body %}
-
     {% render_table table %}
-
 
     <div class="w3-container w3-center">
         {% trans 'found' %} {{ total_rec }} {% trans 'record(s)' %} 

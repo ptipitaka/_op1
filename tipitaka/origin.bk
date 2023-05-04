@@ -1,0 +1,62 @@
+    def post(self, request, *args, **kwargs):
+        context = self.get_context_data(**kwargs)
+        context['WordlistFinderForm'] = WordlistFinderForm(request.POST)
+        # WordlistFinderForm_Submit
+        if 'WordlistFinderForm_Search_Submit' in request.POST:
+            if context['WordlistFinderForm'].is_valid():
+                context['page']  = Page.objects.get(id=request.POST.get('page'))
+                if request.POST.get('line_number') == '0':
+                    context['wordlist_table'] = WordListTable(
+                        WordList.objects.filter(
+                            wordlist_version=request.POST.get('wordlist_version'),
+                            page=request.POST.get('page'),
+                        ),
+                    )
+                else:
+                    context['wordlist_table'] = WordListTable(
+                        WordList.objects.filter(
+                            wordlist_version=request.POST.get('wordlist_version'),
+                            page=request.POST.get('page'),
+                            line_number=request.POST.get('line_number')
+                        ),
+                    )
+                return render(request, self.template_name, context)
+            else:
+                # code to execute if the form is not valid
+                context['error_message'] = _('Invalid input. Please correct the errors below')
+                context['WordlistFinderForm'] = WordlistFinderForm() # clear the form fields
+        elif 'WordlistFinderForm_Add_Reference' in request.POST:
+            # 1. check validation
+            if context['WordlistFinderForm'].is_valid():
+                wordlist_version = WordlistVersion.objects.get(pk = request.POST.get('wordlist_version'))
+                structure = context['structure']
+                from_position_slug = request.POST.get('from_p')
+                to_position_slug = request.POST.get('to_p')
+                # 1.1 check both fields has value
+                if from_position_slug and to_position_slug:
+                    # 1.2 check from -> to 
+                    if from_position_slug < to_position_slug:
+                        # 2. add record
+                        common_reference = CommonReference(
+                            wordlist_version=wordlist_version,
+                            structure=structure,
+                            from_position=from_position_slug,
+                            to_position=to_position_slug)
+                        common_reference.save()
+                        # reset form
+                        context['WordlistFinderForm'] = WordlistFinderForm()
+                        return redirect(request.path)
+                    else:
+                        # code to execute if the form is not valid
+                        context['error_message'] = _('Invalid input. Please correct the errors below')
+                        context['WordlistFinderForm'] = WordlistFinderForm() # clear the form fields
+                else:
+                    # code to execute if the form is not valid
+                    context['error_message'] = _('Invalid input. Please correct the errors below')
+                    context['WordlistFinderForm'] = WordlistFinderForm() # clear the form fields
+            else:
+                # code to execute if the form is not valid
+                context['error_message'] = _('Invalid input. Please correct the errors below')
+                context['WordlistFinderForm'] = WordlistFinderForm() # clear the form fields
+        
+        return render(request, self.template_name, context)

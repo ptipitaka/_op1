@@ -1,5 +1,4 @@
 import threading
-import random
 
 from braces import views
 from django.db import transaction
@@ -7,19 +6,20 @@ from django.conf import settings
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from django_filters.views import FilterView
-from utils.pali_char import *
+from django.http import JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django_tables2.views import SingleTableMixin
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 from django.views import View
-from django.views.generic.edit import UpdateView
-from django.views.generic import TemplateView
+from django.views.generic.edit import UpdateView, DeleteView
+from django.views.generic import TemplateView, DetailView
 from mptt.utils import tree_item_iterator
+from utils.pali_char import *
 
-from .models import Edition, Page, WordlistVersion, WordList, TableOfContent, Structure
-from .tables import DigitalArchiveTable, TocTable, StructureTable, StructureFilter
-from .forms import QForm, EditForm, WLGForm
+from .models import Edition, Page, WordlistVersion, WordList, TableOfContent, Structure, CommonReference
+from .tables import DigitalArchiveTable, TocTable, StructureTable, StructureFilter, WordListTable, CommonReferenceTable
+from .forms import QForm, EditForm, WLGForm, WordlistFinderForm
 
 
 # ----------------------------------------------------------------
@@ -102,26 +102,125 @@ class CommonReferenceSubformView(views.LoginRequiredMixin, views.SuperuserRequir
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        structure_slug = self.kwargs.get('slug')
-        structure = get_object_or_404(Structure, slug=structure_slug)
-        common_refs = structure.commonreference_set.all()
+        # get kwargs
+        structure_id = self.kwargs['structure_id']
+        
+        # get Structure & Common Reference related to this structure
+        structure = get_object_or_404(Structure, id=structure_id)
+        structure_tree = structure.get_children()
+
+        # context data and form
         context['structure'] = structure
-        context['common_refs'] = common_refs
-        context['form'] = CommonReferenceForm()
+        context['structure_tree'] = structure_tree
+        context['page'] = ''
+        context['no_data_in_common_ref_table'] = ''
+        context['error_message'] = ''
+
+        # table
+        context['wordlist_table'] = []
+        context['common_ref_table'] = CommonReferenceTable(structure.commonreference_set.all())
+        if len(context['common_ref_table'].rows) == 0:
+            context['no_data_in_common_ref_table'] = _('No common references found')
+        
+        # form
+        context['WordlistFinderForm'] = WordlistFinderForm(structure_id=structure_id)
+
+        # Accessing the fields
+        fields = context['WordlistFinderForm'].fields
+        context['edition_field'] = fields['edition']
+
+        # return
         return context
 
-    # def post(self, request, *args, **kwargs):
-    #     structure_id = self.kwargs['id']
-    #     structure = get_object_or_404(Structure, id=structure_id)
-    #     common_refs = structure.commonreference_set.all()
-    #     form = CommonReferenceForm(request.POST)
-    #     if form.is_valid():
-    #         common_ref = form.save(commit=False)
-    #         common_ref.structure = structure
-    #         common_ref.save()
-    #         return redirect('common_reference_subform', id=structure_id)
-    #     return self.render_to_response({'structure': structure, 'common_refs': common_refs, 'form': form})
+    def get(self, request, *args, **kwargs):
+        # Perform any necessary operations
+        context = self.get_context_data(**kwargs)
+        return render(request, self.template_name, context=context)
 
+    def post(self, request, *args, **kwargs):
+        context = self.get_context_data(**kwargs)
+        structure_id = self.kwargs['structure_id']
+        form = WordlistFinderForm(request.POST, structure_id = structure_id )
+
+        if form.is_valid():
+            if 'WordlistFinderForm_Search_Submit' in request.POST:
+                page = Page.objects.get(id=request.POST['page'])
+                wordlist_version = request.POST['wordlist_version']
+                line_number = request.POST['line_number']
+                if line_number == '0':
+                    queryset = WordList.objects.filter(
+                        wordlist_version=wordlist_version,
+                        page=page
+                    )
+                else:
+                    queryset = WordList.objects.filter(
+                        wordlist_version=wordlist_version,
+                        page=page,
+                        line_number=line_number
+                    )
+                wordlist_table = WordListTable(queryset)
+                context.update({
+                    'wordlist_table': wordlist_table,
+                    'page': page,
+                })
+
+            elif 'WordlistFinderForm_Add_Reference' in request.POST:
+                from_position_slug = request.POST.get('from_p')
+                to_position_slug = request.POST.get('to_p')
+                if from_position_slug and to_position_slug:
+                    if from_position_slug < to_position_slug:
+                        CommonReference.objects.create(
+                            wordlist_version_id=request.POST['wordlist_version'],
+                            structure_id=kwargs['structure_id'],
+                            from_position=from_position_slug,
+                            to_position=to_position_slug,
+                        )
+                        # redirect to same page to prevent duplicate form submissions
+                        return redirect(request.path)
+                # if form is not valid or input is invalid, fall through to error handling
+
+        # handle errors by re-rendering the form with error messages
+        context.update({
+            'WordlistFinderForm': form,
+            'error_message': _('Invalid input. Please correct the errors below'),
+        })
+        return self.render_to_response(context)
+
+
+class CommonReferenceSubformDetailView(views.LoginRequiredMixin, views.SuperuserRequiredMixin, DetailView):
+    model = CommonReference
+    template_name = "tipitaka/common_reference_detail.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        # context['from_wordlist_position'] = WordList.objects.get(code=self.object.from_position)
+        context['from_wordlist_position'] = self.object.from_wordlist_position
+        context['to_wordlist_position'] = self.object.to_wordlist_position
+        context['all_wordlist_in_from_position_page'] = self.object.all_wordlist_in_from_position_page
+        context['count_all_wordlist_in_from_position_page'] = self.object.count_all_wordlist_in_from_position_page
+        return context
+
+class CommonReferenceSubformDeleteView(views.LoginRequiredMixin, views.SuperuserRequiredMixin, DeleteView):
+    model = CommonReference
+    template_name = 'tipitaka/common_reference_delete.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        # context['from_wordlist_position'] = WordList.objects.get(code=self.object.from_position)
+        context['from_wordlist_position'] = self.object.from_wordlist_position
+        context['to_wordlist_position'] = self.object.to_wordlist_position
+        context['all_wordlist_in_from_position_page'] = self.object.all_wordlist_in_from_position_page
+        context['count_all_wordlist_in_from_position_page'] = self.object.count_all_wordlist_in_from_position_page
+        return context
+    
+    def get_success_url(self):
+        # Customize the success URL based on some logic
+        structure_id = self.kwargs['structure_id']
+        return reverse_lazy(
+            'common_reference_subform',
+            kwargs={'slug': self.object.structure.table_of_content.slug, 'structure_id': structure_id})
 
 # ----------------------------------------------------------------
 # UTILITIES
@@ -304,3 +403,17 @@ class WordlistGeneratorView(views.LoginRequiredMixin, views.SuperuserRequiredMix
             return redirect(self.success_url)
         return render(request, self.template_name, {'form': form})
 
+
+def get_wordlist_versions(request, structure_id):
+    structure = Structure.objects.get(id=structure_id)
+    all_related_wordlist_versions = structure.table_of_content.wordlist_version.all()
+    common_refs = CommonReference.objects.filter(structure=structure)
+    all_added_wordlist_versions = WordlistVersion.objects.filter(commonreference__in=common_refs)
+    remain_wordlist_version = all_related_wordlist_versions.exclude(pk__in=all_added_wordlist_versions.values_list('pk', flat=True))
+
+    if structure:
+        wordlist_versions = [{'pk':i.id, 'title':f"{i.edition.code} v.{i.version}"} for i in remain_wordlist_version] 
+        return JsonResponse(wordlist_versions, safe=False)
+        # wordlist_versions = remain_wordlist_version.values('pk', 'title') 
+        # return JsonResponse(list(wordlist_versions), safe=False)
+    return JsonResponse([], safe=False)

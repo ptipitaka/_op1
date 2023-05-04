@@ -40,7 +40,7 @@ class WordListAdmin(admin.ModelAdmin):
 
 class TableOfContentAdmin(admin.ModelAdmin):
    list_display = ("code",)
-   list_filter = ("edition",)
+   list_filter = ("wordlist_version",)
    ordering = ("code",)
    prepopulated_fields = {'slug': ('code',)}
 

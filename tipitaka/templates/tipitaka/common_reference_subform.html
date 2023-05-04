@@ -1,41 +1,211 @@
 {% extends 'main/base.html' %}
 
-{% load widget_tweaks %}
 {% load i18n %}
+{% load static %}
+{% load widget_tweaks %}
+{% load render_table from django_tables2 %}
+
+{% block extra_js %}
+    <script src="{% static 'js/jquery-3.6.4.min.js' %}"></script>
+{% endblock %}
 
 {% block apptitle %}
-    {% include 'tipitaka/include/title.html' %} : {% trans 'Common Reference' %}
+    {% include 'tipitaka/include/title.html' %} : {% trans 'Table of Contents' %}・{% trans 'Structure' %}・{% trans 'Common Reference' %}
+{% endblock %}
+
+{% block apptitle_option %}
+    <a class="w3-button w3-display-right" onClick="javascript:history.go(-1);">back</a>
 {% endblock %}
 
 {% block body %}
-    <h1>Common References for "{{ structure.title }}"</h1>
+<div class="w3-cell-row">
+    <div class="w3-container w3-cell" style="width:35%;">
+        <div class="w3-row">
+            <h4>{{ structure.table_of_content }} </h4>
+            <h5>{{ structure.title }}</h5>
+            {% if no_data_in_common_ref_table %}
+                <p>{{ no_data_in_common_ref_table }}</p>
+            {% else %}
+                {% render_table common_ref_table %}
+            {% endif %}
 
-    <table>
-        <thead>
-            <tr>
-            <th>Detail</th>
-            <th></th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for common_ref in common_refs %}
-            <tr>
-            <td>{{ common_ref.detail }}</td>
-            <td><a href="{% url 'common_reference_edit' common_ref.id %}">Edit</a> | <a href="{% url 'common_reference_delete' common_ref.id %}">Delete</a></td>
-            </tr>
-        {% empty %}
-            <tr>
-            <td colspan="2">No common references found.</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+        </div>
 
-    <h2>Add New Common Reference</h2>
-    <form method="post">
-        {% csrf_token %}
-        <input type="hidden" name="structure" value="{{ structure.id }}">
-        {{ form.as_p }}
-        <button type="submit">Add</button>
-    </form>
+        <div class="w3-row">
+            {% load mptt_tags %}
+            <ul class="root">
+                {% recursetree structure_tree %}
+                    <li>
+                        <a href="{% url 'common_reference_subform' slug=node.table_of_content.slug structure_id=node.id %}" style="text-decoration: none">
+                            {{ node.title }}
+                        </a>
+                    </li>
+                {% endrecursetree %}
+            </ul>
+
+        </div>
+    </div>
+
+
+    <div class="w3-container w3-cell">
+        {% if edition_field.queryset.count %}
+        <section>
+            <h4>{% trans 'Wordlist Finder Form' %}</h4>
+            
+            <form method="post">
+                {% csrf_token %}
+                {{ WordlistFinderForm.media.js }}
+                <div class="w3-row-padding">
+                    <div class="w3-col l8 m8 s12">
+                        <label>{% trans WordlistFinderForm.edition.label_tag %}</label>
+                        {{ WordlistFinderForm.edition|add_class:"w3-input" }}
+                    </div>
+                    <div class="w3-col l4 m4 s12">
+                        <label>{% trans WordlistFinderForm.wordlist_version.label_tag %}</label>
+                        {{ WordlistFinderForm.wordlist_version|add_class:"w3-input" }}
+                    </div>
+                </div>
+                <div class="w3-row-padding">
+                    <div class="w3-col l3 m3 s12">
+                        <label>{% trans WordlistFinderForm.volume.label_tag %}</label>
+                        {{ WordlistFinderForm.volume|add_class:"w3-input" }}   
+                    </div>
+                    <div class="w3-col l3 m3 s12">
+                        <label>{% trans WordlistFinderForm.page.label_tag %}</label>
+                        {{ WordlistFinderForm.page|add_class:"w3-input" }}
+                    </div>
+                    <div class="w3-col l3 m3 s12">
+                        <label>{% trans WordlistFinderForm.line_number.label_tag %}</label>
+                        {{ WordlistFinderForm.line_number|add_class:"w3-input" }}
+                    </div>
+                    <div class="w3-col l3 m3 s12 ">
+                        <div class="w3-bar">
+                            <button
+                                type="submit"
+                                name="WordlistFinderForm_Search_Submit"
+                                class="w3-btn w3-right w3-white w3-border w3-round-xlarge w3-hover-brown w3-round-xlarge w3-margin">
+                                    {% trans "Search" %}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="w3-row-padding">
+                    <div class="w3-col l3 m3 s12">
+                        <label>{% trans WordlistFinderForm.from_p.label_tag %}</label>
+                        {{ WordlistFinderForm.from_p|attr:"readonly"|add_class:"w3-input" }}   
+                    </div> 
+                    <div class="w3-col l3 m3 s12">
+                        <label>{% trans WordlistFinderForm.to_p.label_tag %}</label>
+                        {{ WordlistFinderForm.to_p|attr:"readonly"|add_class:"w3-input" }}   
+                    </div>
+                    <div class="w3-col l6 m6 s12 ">
+                        <div class="w3-bar">
+                            <button
+                                type="submit"
+                                id="add-reference-button"
+                                name="WordlistFinderForm_Add_Reference"
+                                class="w3-btn w3-right w3-white w3-border w3-round-xlarge w3-hover-brown w3-margin">
+                                    {% trans "Add New Common Reference" %}
+                            </button>
+                            <button
+                                type="button"
+                                onclick="resetValue()"
+                                name="WordlistFinderForm_Reset"
+                                class="w3-btn w3-right w3-white w3-border w3-round-xlarge w3-hover-brown w3-margin">
+                                    {% trans "Reset" %}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            {% if wordlist_table %}
+                <div class="w3-bar w3-light-grey w3-container w3-margin-top">
+                    <button class="w3-bar-item w3-button" onclick="openTabs('image_ref')">{% trans 'Image' %}</button>
+                    <button class="w3-bar-item w3-button" onclick="openTabs('wordlist')">{% trans 'Wordlist' %}</button>
+                </div>
+                
+                <div id="image_ref" class="w3-container tab">
+                    <h2>{% trans 'Image' %}</h2>
+                    <img class="mySlides w3-image" src="{{ page.image_ref }}">
+                </div>
+                <div id="wordlist" class="w3-container tab" style="display:none">
+                    
+                    <h2>{% trans 'Wordlist' %}</h2>
+                    {% render_table wordlist_table %} 
+                    
+                </div>
+            {% endif %}
+        </section>
+        {% endif %}
+    </div>
+
+</div>
 {% endblock %}
+
+
+
+{% block script%}
+    <script>
+        $(document).ready(function() {
+            // set initial button state
+            checkButtonState();
+        });
+
+        function checkButtonState() {
+            // get references to the input fields and the button
+            var fromField = $("#id_from_p");
+            var toField = $("#id_to_p");
+            var addButton = $("button[name='WordlistFinderForm_Add_Reference']");
+            // check if both fields have values
+            if (fromField.val() && toField.val()) {
+                addButton.prop("disabled", false);
+            } else {
+                addButton.prop("disabled", true);
+            }
+        }
+
+        function openTabs(tabName) {
+            var i;
+            var x = document.getElementsByClassName("tab");
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";  
+            }
+            document.getElementById(tabName).style.display = "block";  
+        };
+
+        function resetValue() {
+            var destination_from = document.getElementById("id_from_p");
+            var destination_to = document.getElementById("id_to_p");
+            destination_from.value = '';
+            destination_to.value = '';
+            $("button[name='WordlistFinderForm_Add_Reference']").prop("disabled", true);;
+        };
+
+        function copyValue(source, start) {
+            if (start=='T') {
+                var destination = document.getElementById("id_from_p");
+                destination.value = source;
+            } else {
+                var destination = document.getElementById("id_to_p");
+                destination.value = source;
+            }
+            checkButtonState();
+        };
+
+        // update wordlist version options based on selected edition
+        $(document).ready(function() {
+            $('#id_edition').change(function() {
+                var structure_id = {{ structure_id }}
+                $.getJSON('/inscriber/get_wordlist_versions/' + structure_id + '/', function(data) {
+                    var select = $('#wordlist-version-select');
+                    select.empty();
+                    $.each(data, function(key, value) {
+                        select.append($('<option></option>').attr('value', value.pk).text(value.title));
+                    });
+                });
+            });
+        });
+    </script>
+{% endblock %}
+

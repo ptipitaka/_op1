@@ -14,7 +14,7 @@
     <link href="{% static 'main/fontawesome/css/fontawesome.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'main/fontawesome/css/brands.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'main/fontawesome/css/solid.css' %}" rel="stylesheet" type="text/css">
-
+    {% block extra_js %}{% endblock %}
     {% block extra_css %}{% endblock %}
     <title>{% block title %}{% endblock %}</title>
 </head>

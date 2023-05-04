@@ -1,0 +1,61 @@
+{% extends 'main/base.html' %}
+{% load widget_tweaks %}
+
+{% load i18n %}
+
+{% block apptitle %}
+    {% include 'tipitaka/include/title.html' %} : {% trans 'Table of Contents' %}・{% trans 'Structure' %}・{% trans 'Common Reference' %}・{% trans 'Preview' %}
+{% endblock %}
+
+{% block apptitle_option %}
+    <a class="w3-button w3-display-right" onClick="javascript:history.go(-1);">back</a>
+{% endblock %}
+
+{% block body %}
+    <div class="w3-cell-row">
+        <div class="w3-container w3-cell w3-padding w3-blackground">
+            <h4>
+                {{ object.wordlist_version.edition.title }} ({{ object.wordlist_version }})
+
+                <a href="{% url 'common_reference_subform_delete' slug=object.structure.table_of_content.slug structure_id=object.structure.id pk=object.pk %}"
+                    class="w3-button w3-hover-red w3-right">
+                    <i class='far fa-trash-alt'></i>
+                </a>
+            </h4>
+            <h5>{{ object.structure.breadcrumb_option }} <small>({{ object.structure.ro }})</small></h5>
+        </div>
+    </div>
+    <div class="w3-cell-row">
+        <div class="w3-container w3-cell w3-padding" style="width:50%;">
+            <div class="w3-row">
+                <b>{% trans 'From' %}:</b> {{ from_wordlist_position }}
+            </div>
+            <div class="w3-row w3-bar">
+                {{ from_wordlist_position.volume }} 
+                <span class="w3-right">{{ from_wordlist_position.page }}</span>
+            </div>
+            <div class="w3-row w3-margin-top">
+                {{ from_wordlist_position.page.sample_content }}
+            </div>
+            <div class="w3-row w3-margin-top">
+                <img src="{{ from_wordlist_position.page.image_ref }}" alt="{{ from_wordlist_position }}" class="w3-image"/>
+            </div>
+        </div>
+        <div class="w3-container w3-cell w3-padding" style="width:50%;">
+            <div class="w3-row">
+                <b>{% trans 'To' %}</b> {{ to_wordlist_position }}
+            </div>
+            <div class="w3-row w3-bar">
+                {{ to_wordlist_position.volume }} 
+                <span class="w3-right">{{ to_wordlist_position.page }}</span>
+            </div>
+            <div class="w3-row w3-margin-top">
+                {{ to_wordlist_position.page.sample_content }}
+            </div>
+            <div class="w3-row w3-margin-top">
+                <img src="{{ to_wordlist_position.page.image_ref }}" alt="{{ to_wordlist_position }}" class="w3-image"/>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
