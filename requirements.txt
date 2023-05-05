@@ -15,6 +15,7 @@ django-filter==23.1
 django-js-asset==2.0.0
 django-mptt==0.14.0
 django-mptt-admin==2.5.0
+django-mptt-tree-editor==0.1.2
 django-rq==2.7.0
 django-smart-selects==1.6.0
 django-storages==1.13.2
