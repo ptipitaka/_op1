@@ -51,8 +51,9 @@ INSTALLED_APPS = [
     'widget_tweaks',
     # internal
     'main',
-    'tipitaka',
     'abidan',
+    'tipitaka',
+    'padanukkama'
 ]
 
 MIDDLEWARE = [

@@ -26,7 +26,26 @@
             </a>
         </div>
     </div>
-
+    <!-- PADANUKKAMA -->
+    <div class="w3-dropdown-click">
+        <button onclick="DDNavMenuFunction('Padānukkama')" class="w3-button {% if '/padanukkama/' in request.path %} nav-active {% endif %}">
+            {% trans "Padānukkama" %}
+        </button>
+        <div id="Padānukkama" class="w3-dropdown-content w3-bar-block w3-border">
+            <a href="{% url "nama_saddhamala" %}"
+                class="w3-bar-item w3-button {% if '/padanukkama/nama-saddhamala' in request.path %} nav-active {% endif %}">
+                {% trans "Nāmasaddapadamālā" %}
+            </a>
+            <a href="{% url "akhya_saddhamala" %}"
+                class="w3-bar-item w3-button {% if '/padanukkama/akhya-saddhamala' in request.path %} nav-active {% endif %}">
+                {% trans "Ākhyātasaddapadamālā" %}
+            </a>
+            <a href="{% url "padanukkama" %}"
+                class="w3-bar-item w3-button {% if '/padanukkama/padanukkama' in request.path %} nav-active {% endif %}">
+                {% trans "Padanukkama" %}
+            </a>
+        </div>
+    </div>
     <!-- AUTHENTICATION --> 
     <div class="w3-right">
         {% if not user.is_authenticated %}
