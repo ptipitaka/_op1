@@ -13,5 +13,4 @@ urlpatterns = [
           views.CommonReferenceSubformDetailView.as_view(), name='common_reference_subform_detail'),
      path('toc/<slug:slug>/structure/<int:structure_id>/common-reference/<int:pk>/delete',
           views.CommonReferenceSubformDeleteView.as_view(), name='common_reference_subform_delete'),
-     path('get_wordlist_versions/<int:structure_id>/', views.get_wordlist_versions, name='get_wordlist_versions'),
 ]

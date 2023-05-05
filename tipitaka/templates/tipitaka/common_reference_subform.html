@@ -103,9 +103,9 @@
                             <button
                                 type="submit"
                                 id="add-reference-button"
-                                name="WordlistFinderForm_Add_Reference"
+                                name="WordlistFinderForm_Add_or_Update"
                                 class="w3-btn w3-right w3-white w3-border w3-round-xlarge w3-hover-brown w3-margin">
-                                    {% trans "Add New Common Reference" %}
+                                    {% trans "Add/Update" %}
                             </button>
                             <button
                                 type="button"
@@ -156,7 +156,7 @@
             // get references to the input fields and the button
             var fromField = $("#id_from_p");
             var toField = $("#id_to_p");
-            var addButton = $("button[name='WordlistFinderForm_Add_Reference']");
+            var addButton = $("button[name='WordlistFinderForm_Add_or_Update']");
             // check if both fields have values
             if (fromField.val() && toField.val()) {
                 addButton.prop("disabled", false);
@@ -179,7 +179,7 @@
             var destination_to = document.getElementById("id_to_p");
             destination_from.value = '';
             destination_to.value = '';
-            $("button[name='WordlistFinderForm_Add_Reference']").prop("disabled", true);;
+            $("button[name='WordlistFinderForm_Add_or_Update']").prop("disabled", true);;
         };
 
         function copyValue(source, start) {
@@ -193,19 +193,6 @@
             checkButtonState();
         };
 
-        // update wordlist version options based on selected edition
-        $(document).ready(function() {
-            $('#id_edition').change(function() {
-                var structure_id = {{ structure_id }}
-                $.getJSON('/inscriber/get_wordlist_versions/' + structure_id + '/', function(data) {
-                    var select = $('#wordlist-version-select');
-                    select.empty();
-                    $.each(data, function(key, value) {
-                        select.append($('<option></option>').attr('value', value.pk).text(value.title));
-                    });
-                });
-            });
-        });
     </script>
 {% endblock %}
 

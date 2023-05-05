@@ -2,11 +2,11 @@ import threading
 
 from braces import views
 from django.db import transaction
+from django.db.models import Q
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from django_filters.views import FilterView
-from django.http import JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django_tables2.views import SingleTableMixin
 from django.urls import reverse_lazy
@@ -133,7 +133,6 @@ class CommonReferenceSubformView(views.LoginRequiredMixin, views.SuperuserRequir
         return context
 
     def get(self, request, *args, **kwargs):
-        # Perform any necessary operations
         context = self.get_context_data(**kwargs)
         return render(request, self.template_name, context=context)
 
@@ -164,20 +163,36 @@ class CommonReferenceSubformView(views.LoginRequiredMixin, views.SuperuserRequir
                     'page': page,
                 })
 
-            elif 'WordlistFinderForm_Add_Reference' in request.POST:
+            elif 'WordlistFinderForm_Add_or_Update' in request.POST:
                 from_position_slug = request.POST.get('from_p')
                 to_position_slug = request.POST.get('to_p')
                 if from_position_slug and to_position_slug:
                     if from_position_slug < to_position_slug:
-                        CommonReference.objects.create(
-                            wordlist_version_id=request.POST['wordlist_version'],
-                            structure_id=kwargs['structure_id'],
-                            from_position=from_position_slug,
-                            to_position=to_position_slug,
-                        )
+                        common_reference_exist = CommonReference.objects.filter(
+                            Q(structure=kwargs['structure_id']) & 
+                            Q(wordlist_version_id=request.POST['wordlist_version']))
+                        if common_reference_exist:
+                            # update the common reference object
+                            common_reference_exist.update(
+                                from_position=from_position_slug,
+                                to_position=to_position_slug,
+                            )
+                        else:
+                            # create a new common reference object
+                            CommonReference.objects.create(
+                                wordlist_version_id=request.POST['wordlist_version'],
+                                structure_id=kwargs['structure_id'],
+                                from_position=from_position_slug,
+                                to_position=to_position_slug,
+                            )
                         # redirect to same page to prevent duplicate form submissions
                         return redirect(request.path)
-                # if form is not valid or input is invalid, fall through to error handling
+                else:
+                  context.update({
+                    'WordlistFinderForm': form,
+                    'error_message': _('Invalid input. Please correct the errors below'),
+                  })
+                  return self.render_to_response(context)
 
         # handle errors by re-rendering the form with error messages
         context.update({
@@ -403,17 +418,3 @@ class WordlistGeneratorView(views.LoginRequiredMixin, views.SuperuserRequiredMix
             return redirect(self.success_url)
         return render(request, self.template_name, {'form': form})
 
-
-def get_wordlist_versions(request, structure_id):
-    structure = Structure.objects.get(id=structure_id)
-    all_related_wordlist_versions = structure.table_of_content.wordlist_version.all()
-    common_refs = CommonReference.objects.filter(structure=structure)
-    all_added_wordlist_versions = WordlistVersion.objects.filter(commonreference__in=common_refs)
-    remain_wordlist_version = all_related_wordlist_versions.exclude(pk__in=all_added_wordlist_versions.values_list('pk', flat=True))
-
-    if structure:
-        wordlist_versions = [{'pk':i.id, 'title':f"{i.edition.code} v.{i.version}"} for i in remain_wordlist_version] 
-        return JsonResponse(wordlist_versions, safe=False)
-        # wordlist_versions = remain_wordlist_version.values('pk', 'title') 
-        # return JsonResponse(list(wordlist_versions), safe=False)
-    return JsonResponse([], safe=False)

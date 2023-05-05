@@ -218,8 +218,8 @@ class Structure(MPTTModel):
         return f"{self.title}"
     
 class CommonReference(models.Model):
-    wordlist_version = models.ForeignKey("WordlistVersion", verbose_name=_("Wordlist Version"), on_delete=models.CASCADE)
     structure = models.ForeignKey("Structure", verbose_name=_("structure"), on_delete=models.CASCADE,)
+    wordlist_version = models.ForeignKey("WordlistVersion", verbose_name=_("Wordlist Version"), on_delete=models.CASCADE)
     from_position = models.CharField(verbose_name=_("From Position"), null=True,  max_length=20)
     to_position = models.CharField(verbose_name=_("To Position"), null=True,  max_length=20)
     description = models.CharField(verbose_name=_("Description"), null=True,  max_length=255)
