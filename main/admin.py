@@ -28,7 +28,18 @@ def get_app_list(self, request):
                 'Volumes': 3,
                 'Pages': 4,
                 'WordlistVersion': 5,
-                'WordLists': 6
+                'WordLists': 6,
+            }
+            app['models'].sort(key=lambda x: ordering[x['name']])
+ 
+        if app['app_label'] == 'Padanukkama':
+            ordering = {
+                'NamaSaddamala': 1,
+                'Linga': 2,
+                'Karanta': 3,
+                'AkhyataSaddamala': 4,
+                'Dhatu': 5,
+                'Paccaya': 6,
             }
             app['models'].sort(key=lambda x: ordering[x['name']])
 
