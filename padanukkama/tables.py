@@ -7,7 +7,7 @@ from django.utils.translation import gettext_lazy as _
 from .models import NamaSaddamala, AkhyataSaddamala
 
 class NamaSaddamalaTable(tables.Table):
-
+    title_order = tables.Column(visible=False)
     action = tables.LinkColumn(
         viewname='nama_saddamala_update',
         args=[A('pk')],
@@ -31,7 +31,7 @@ class NamaSaddamalaFilter(FilterSet):
 
 
 class AkhyataSaddamalaTable(tables.Table):
-
+    title_order = tables.Column(visible=False)
     action = tables.LinkColumn(
         viewname='akhyata_saddamala_update',
         args=[A('pk')],
@@ -44,7 +44,7 @@ class AkhyataSaddamalaTable(tables.Table):
         model = AkhyataSaddamala
         template_name = "django_tables2/w3css.html"
         attrs = {"class": "w3-table w3-bordered"}
-        fields = ("title", "dhatu", "paccaya",)
+        fields = ("title", "title_order", "dhatu", "paccaya",)
         order_by = ("title_order",)
 
 
