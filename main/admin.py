@@ -1,48 +1,41 @@
 from django.contrib import admin
 
-# Register your models here.
 def get_app_list(self, request):
-    """
-    Return a sorted list of all the installed apps that have been
-    registered in this site.
-    """
-    # Retrieve the original list
     app_dict = self._build_app_dict(request)
     app_list = sorted(app_dict.values(), key=lambda x: x['name'].lower())
 
-    # Sort the apps customably
-    ordering = {
+    app_ordering = {
         'main': 1,
         'tipitaka': 2,
         'abidan': 3,
         'padanukkama': 4
     }
-    app_list.sort(key=lambda x: ordering.get(x['app_label'], 100))
-    
-    # Sort the models customably within each app.
+    app_list.sort(key=lambda x: app_ordering.get(x['app_label'], 100))
+
     for app in app_list:
-        if app['app_label'] == 'Tipitaka':
-            ordering = {
-                'Scripts': 1,
-                'Editions': 2,
-                'Volumes': 3,
-                'Pages': 4,
-                'WordlistVersion': 5,
-                'WordLists': 6,
+        if app['app_label'] == 'tipitaka':
+            model_ordering = {
+                'scripts': 1,
+                'editions': 2,
+                'volumes': 3,
+                'pages': 4,
+                'wordlist_version': 5,
+                'wordlists': 6,
             }
-            app['models'].sort(key=lambda x: ordering[x['name']])
- 
-        if app['app_label'] == 'Padanukkama':
-            ordering = {
-                'NamaSaddamala': 1,
-                'Linga': 2,
-                'Karanta': 3,
-                'AkhyataSaddamala': 4,
-                'Dhatu': 5,
-                'Paccaya': 6,
+            app['models'].sort(key=lambda x: model_ordering.get(x['object_name'].lower(), 100))
+
+        if app['app_label'] == 'padanukkama':
+            model_ordering = {
+                'namasaddamala': 1,
+                'linga': 2,
+                'karanta': 3,
+                'akhyatasaddamala': 4,
+                'dhatu': 5,
+                'paccaya': 6,
             }
-            app['models'].sort(key=lambda x: ordering[x['name']])
+            app['models'].sort(key=lambda x: model_ordering.get(x['object_name'].lower(), 100))
 
     return app_list
 
 admin.AdminSite.get_app_list = get_app_list
+
