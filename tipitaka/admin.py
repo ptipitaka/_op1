@@ -1,9 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import Script, Edition, Volume, Page, WordlistVersion, WordList, TableOfContent, Structure
-from mptt.admin import MPTTModelAdmin
-from mptt.admin import DraggableMPTTAdmin
+from .models import Script, Edition, Volume, Page, WordlistVersion, WordList, TableOfContent, Structure, CommonReference
 from django_mptt_admin.admin import DjangoMpttAdmin
 
 
@@ -45,10 +43,14 @@ class TableOfContentAdmin(admin.ModelAdmin):
    prepopulated_fields = {'slug': ('code',)}
 
 class StructureAdmin(DjangoMpttAdmin):
-
   def is_drag_and_drop_enabled(self):
     return True
    
+class CommonReferenceAdmin(admin.ModelAdmin):
+   list_display = ("structure", "wordlist_version", "from_position", "to_position",)
+   list_filter = ("structure", "wordlist_version",)
+   ordering = ("structure",)
+
 
 admin.site.register(Script, ScriptAdmin)
 admin.site.register(Edition, EditiontAdmin)
@@ -58,29 +60,5 @@ admin.site.register(WordlistVersion, WordlistVersionAdmin)
 admin.site.register(WordList, WordListAdmin)
 admin.site.register(TableOfContent, TableOfContentAdmin)
 admin.site.register(Structure, StructureAdmin)
+admin.site.register(CommonReference, CommonReferenceAdmin)
 
-def get_app_list(self, request):
-    """
-    Return a sorted list of all the installed apps that have been
-    registered in this site.
-    """
-    # Retrieve the original list
-    app_dict = self._build_app_dict(request)
-    app_list = sorted(app_dict.values(), key=lambda x: x['name'].lower())
-
-    # Sort the models customably within each app.
-    for app in app_list:
-        if app['app_label'] == 'Tipitaka':
-            ordering = {
-                'Scripts': 1,
-                'Editions': 2,
-                'Volumes': 3,
-                'Pages': 4,
-                'WordlistVersion': 5,
-                'WordLists': 6
-            }
-            app['models'].sort(key=lambda x: ordering[x['name']])
-
-    return app_list
-
-admin.AdminSite.get_app_list = get_app_list

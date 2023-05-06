@@ -4,6 +4,8 @@ from .models import Linga
 from .models import Karanta
 from .models import NamaSaddamala
 
+from utils.pali_char import *
+
 class LingaAdmin(admin.ModelAdmin):
     list_display = ("sequence", "code", "title",)
     ordering = ("sequence",)
@@ -12,7 +14,7 @@ class KarantaAdmin(admin.ModelAdmin):
     list_display = ("sequence", "title",)
     ordering = ("sequence",)
 
-class NamaSaddamalaAdmin(admin.ModelAdmin):
+class NamaSaddamalaAdmin(admin.ModelAdmin):    
     list_display = ("title", "linga",)
     ordering = ("title_order",)
 

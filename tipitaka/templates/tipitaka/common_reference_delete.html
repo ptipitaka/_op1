@@ -8,7 +8,7 @@
 {% endblock %}
 
 {% block apptitle_option %}
-    <a class="w3-button w3-display-right" onClick="javascript:history.go(-1);">back</a>
+    <a class="w3-btn w3-round-xlarge w3-hover-amber w3-display-right" onClick="javascript:history.go(-1);">{% trans "Back" %}</a>
 {% endblock %}
 
 {% block body %}
@@ -34,7 +34,7 @@
     <div class="w3-row">
         <form method="post">
         {% csrf_token %}
-            <button type="submit" class="w3-bar-item w3-btn w3-white w3-border w3-round-xlarge w3-hover-red w3-margin">{% trans 'Confirm' %}</button>
+            <button type="submit" class="w3-bar-item w3-btn w3-white w3-border w3-round-xlarge w3-hover-red w3-margin">{% trans 'Confirm Delete' %}</button>
 
             <a href="{% url 'common_reference_subform_detail' slug=object.structure.table_of_content.slug structure_id=object.structure.id pk=object.pk %}"
             class="w3-bar-item w3-btn w3-white w3-border w3-round-xlarge w3-hover-brown w3-margin">{% trans 'Cancel' %}</a>

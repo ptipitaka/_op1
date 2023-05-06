@@ -1,0 +1,182 @@
+{% extends 'main/base.html' %}
+
+{% block extra_css %}
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 15px;
+        }
+    </style>
+{% endblock %}
+
+{% load widget_tweaks %}
+
+{% load i18n %}
+
+{% block apptitle %}
+    {% include 'padanukkama/include/title.html' %} : {% trans 'Nāmasaddapadamālā' %}
+    {% if url_name == 'nama_saddamala_create' %}・{% trans 'Create' %}
+    {% elif url_name == 'nama_saddamala_update' %}・{% trans 'Update' %}
+    {% elif url_name == 'nama_saddamala_delete' %}・<span class="w3-text-red">{% trans 'Delete' %}</span>{% endif %}
+
+{% endblock %}
+
+{% block apptitle_option %}
+    <a class="w3-btn w3-round-xlarge w3-hover-amber w3-display-right" onClick="javascript:history.go(-1);">{% trans "Back" %}</a>
+{% endblock %}
+
+{% block body %}
+    {% if url_name == 'nama_saddamala_delete' %}
+        <div class="w3-cell-row w3-container">
+            <div class="w3-container w3-cell" style="width:35%;">
+                <div class="w3-row">
+                    <h4>{% trans 'Delete Namasaddamala' %}</h4>
+                    <p>{% trans 'Are you sure you want to delete the following Namasaddamala?' %}</p>
+                    <p><strong>{% trans 'Title' %}:</strong> {{ nama_saddamala.title }}</p>
+                    <p><strong>{% trans 'Linga' %}:</strong> {{ nama_saddamala.linga }}</p>
+                    <p><strong>{% trans 'Karanta' %}:</strong> {{ nama_saddamala.karanta }}</p>
+                    <form method="post" action="{% url 'nama_saddamala_delete' nama_saddamala.pk %}">
+                        {% csrf_token %}
+                        <input type="submit" value="Confirm Delete" class="w3-btn w3-round-xlarge w3-white w3-hover-red w3-border">
+                    </form>
+                </div>
+            </div>
+            <div class="w3-container w3-cell">
+                <table class="w3-table w3-bordered w3-margin">
+                    <tr>
+                        <th>{% trans "Vibhatti" %}</th>
+                        <th>{% trans "Ekavacana" %}</th>
+                        <th>{% trans "Bahuvacana" %}</th>
+                    </tr>
+                    <tr>
+                        <td>{% trans 'Paṭhamā' %}</td>
+                        <td>{{ nama_saddamala.nom_sg }}</td>
+                        <td>{{ nama_saddamala.nom_pl }}</td>
+                    </tr>
+                    <tr>
+                        <td>{% trans 'Ālapana' %}</td>
+                        <td>{{ nama_saddamala.voc_sl }}</td>
+                        <td>{{ nama_saddamala.voc_pl }}</td>
+                    </tr>
+                    <tr>
+                        <td>{% trans 'Dutiyā' %}</td>
+                        <td>{{ nama_saddamala.acc_sg }}</td>
+                        <td>{{ nama_saddamala.acc_pl }}</td>
+                    </tr>
+                    <tr>
+                        <td>{% trans 'Tatiyā' %}</td>
+                        <td>{{ nama_saddamala.instr_sg }}</td>
+                        <td>{{ nama_saddamala.instr_pl }}</td>
+                    </tr>
+                    <tr>
+                        <td>{% trans 'Catutthī' %}</td>
+                        <td>{{ nama_saddamala.dat_sg }}</td>
+                        <td>{{ nama_saddamala.dat_pl }}</td>
+                    </tr>
+                    <tr>
+                        <td>{% trans 'Pañcamī' %}</td>
+                        <td>{{ nama_saddamala.abl_sl }}</td>
+                        <td>{{ nama_saddamala.abl_pl }}</td>
+                    </tr>
+                    <tr>
+                        <td>{% trans 'Chaṭṭhī' %}</td>
+                        <td>{{ nama_saddamala.gen_sl }}</td>
+                        <td>{{ nama_saddamala.gen_pl }}</td>
+                    </tr>
+                    <tr>
+                        <td>{% trans 'Sattamī' %}</td>
+                        <td>{{ nama_saddamala.loc_sl }}</td>
+                        <td>{{ nama_saddamala.loc_pl }}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    {% else %}
+        <form method="post">
+            {% csrf_token %}
+            <div class="w3-container w3-margin">
+                <div class="w3-cell-row" style="padding-bottom: 15px;">
+                    <div class="w3-container w3-cell">
+                        <label>{% trans form.title.label_tag %}</label>
+                        {{ form.title|add_class:"w3-input" }}
+                    </div>
+                    <div class="w3-container w3-cell">
+                        <label>{% trans form.linga.label_tag %}</label>
+                        {{ form.linga|add_class:"w3-input" }}
+                    </div>
+                    <div class="w3-container w3-cell">
+                        <label>{% trans form.karanta.label_tag %}</label>
+                        {{ form.karanta|add_class:"w3-input" }}
+                    </div>
+                </div>
+
+                <table class="w3-table w3-bordered w3-margin">
+                    <tr>
+                        <th>{% trans "Vibhatti" %}</th>
+                        <th>{% trans "Ekavacana" %}</th>
+                        <th>{% trans "Bahuvacana" %}</th>
+                    </tr>
+                    <tr>
+                        <td>{% trans 'Paṭhamā' %}</td>
+                        <td>{{ form.nom_sg|add_class:"w3-input w3-border-0" }}</td>
+                        <td>{{ form.nom_pl|add_class:"w3-input w3-border-0" }}</td>
+                    </tr>
+                    <tr>
+                        <td>{% trans 'Ālapana' %}</td>
+                        <td>{{ form.voc_sl|add_class:"w3-input w3-border-0" }}</td>
+                        <td>{{ form.voc_pl|add_class:"w3-input w3-border-0" }}</td>
+                    </tr>
+                    <tr>
+                        <td>{% trans 'Dutiyā' %}</td>
+                        <td>{{ form.acc_sg|add_class:"w3-input w3-border-0" }}</td>
+                        <td>{{ form.acc_pl|add_class:"w3-input w3-border-0" }}</td>
+                    </tr>
+                    <tr>
+                        <td>{% trans 'Tatiyā' %}</td>
+                        <td>{{ form.instr_sg|add_class:"w3-input w3-border-0" }}</td>
+                        <td>{{ form.instr_pl|add_class:"w3-input w3-border-0" }}</td>
+                    </tr>
+                    <tr>
+                        <td>{% trans 'Catutthī' %}</td>
+                        <td>{{ form.dat_sg|add_class:"w3-input w3-border-0" }}</td>
+                        <td>{{ form.dat_pl|add_class:"w3-input w3-border-0" }}</td>
+                    </tr>
+                    <tr>
+                        <td>{% trans 'Pañcamī' %}</td>
+                        <td>{{ form.abl_sl|add_class:"w3-input w3-border-0" }}</td>
+                        <td>{{ form.abl_pl|add_class:"w3-input w3-border-0" }}</td>
+                    </tr>
+                    <tr>
+                        <td>{% trans 'Chaṭṭhī' %}</td>
+                        <td>{{ form.gen_sl|add_class:"w3-input w3-border-0" }}</td>
+                        <td>{{ form.gen_pl|add_class:"w3-input w3-border-0" }}</td>
+                    </tr>
+                    <tr>
+                        <td>{% trans 'Sattamī' %}</td>
+                        <td>{{ form.loc_sl|add_class:"w3-input w3-border-0" }}</td>
+                        <td>{{ form.loc_pl|add_class:"w3-input w3-border-0" }}</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="w3-center">
+                <div class="w3-bar">
+                    {% if url_name == 'nama_saddamala_update' %}
+                        <a href="{% url 'nama_saddamala_delete' object.pk %}"
+                            class="w3-btn w3-round-xlarge w3-white w3-border w3-hover-red w3-margin-right" 
+                            style="width:150px">
+                            {% trans 'Delete' %}
+                        </a>
+                    {% endif %}
+                    <button
+                        type="submit" style="width:150px"
+                        class="w3-btn w3-white w3-border w3-round-xlarge w3-hover-brown">
+                        {% trans "Save" %}
+                    </button>
+                </div>
+            </div>
+        </form>
+    {% endif %}
+{% endblock%}
