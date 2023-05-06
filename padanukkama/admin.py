@@ -35,3 +35,5 @@ admin.site.register(NamaSaddamala, NamaSaddamalaAdmin)
 admin.site.register(Dhatu, DhatuAdmin)
 admin.site.register(Paccaya, PaccayaAdmin)
 admin.site.register(AkhyataSaddamala, AkhyataSaddamalaAdmin)
+
+
