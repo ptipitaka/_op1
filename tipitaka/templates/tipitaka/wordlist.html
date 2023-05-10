@@ -10,7 +10,7 @@
 {% block body %}
     <div class="w3-card w3-center" style="width:60%; margin:auto;">
         {% if not selected_edition_id %}
-            <header class="w3-container w3-light-grey">
+            <header class="w3-container w3-dark-grey">
                 <h3>{% trans 'Please select Tipiṭaka edition' %}</h3>
             </header>
             <form method="get" {% url 'wordlist_generator' %}
@@ -27,14 +27,14 @@
                 <div class="w3-container w3-center">
                     <button
                         type="submit" value="submit"
-                        class="w3-btn w3-white w3-border w3-round-xlarge w3-hover-brown w3-round-xlarge w3-margin"
+                        class="w3-button w3-white w3-border w3-round-xlarge w3-hover-brown w3-round-xlarge w3-margin"
                     >
                         {% trans "Process" %}
                     </button>
                 </div>
             </form>
         {% else %}
-            <header class="w3-container w3-light-grey">
+            <header class="w3-container w3-dark-grey">
                 <h3>{{ selected_edition }}</h3>
             </header>
             <div class="w3-container">
@@ -57,7 +57,7 @@
 
                 <button
                     type="submit" value="submit"
-                    class="w3-btn w3-white w3-border w3-round-xlarge w3-hover-brown w3-round-xlarge w3-margin"
+                    class="w3-button w3-white w3-border w3-round-xlarge w3-hover-brown w3-round-xlarge w3-margin"
                     data-confirm="{% trans "Are you sure?" %}"
                 >
                     {% trans "Submit" %}

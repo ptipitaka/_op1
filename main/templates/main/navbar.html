@@ -1,6 +1,6 @@
 {% load i18n %}
 
-<div id="navbar" class="w3-bar w3-border w3-card w3-light-grey">
+<div id="navbar" class="w3-bar w3-border w3-card w3-dark-grey">
     <!-- HOME -->
     <a href="{% url "home" %}" class="w3-bar-item w3-button">
         {% trans "OPENPĀḶI" %}
@@ -19,6 +19,10 @@
             <a href="{% url "digital_archive" %}"
                 class="w3-bar-item w3-button {% if '/inscriber/digital-archive' in request.path %} nav-active {% endif %}">
                 {% trans "Digital Archive" %}
+            </a>
+            <a href="{% url "wordlist_master" %}"
+                class="w3-bar-item w3-button {% if '/inscriber/wordlist' in request.path %} nav-active {% endif %}">
+                {% trans "Wordlist" %}
             </a>
             <a href="{% url "toc" %}"
                 class="w3-bar-item w3-button {% if '/inscriber/toc' in request.path %} nav-active {% endif %}">

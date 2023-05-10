@@ -14,7 +14,7 @@
 {% endblock %}
 
 {% block apptitle_option %}
-    <a class="w3-btn w3-round-xlarge w3-hover-amber w3-display-right" onClick="javascript:history.go(-1);">{% trans "Back" %}</a>
+    <a class="w3-button w3-round-xlarge w3-hover-amber w3-display-right" onClick="javascript:history.go(-1);">{% trans "Back" %}</a>
 {% endblock %}
 
 {% block body %}
@@ -27,12 +27,12 @@
                 <img class="mySlides w3-image" src="{{ word.page_ref.4 }}">
                 <img class="mySlides w3-image" src="{{ word.page_ref.5 }}">
 
-                <button class="w3-button w3-black w3-opacity w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
-                <button class="w3-button w3-black w3-opacity w3-display-right" onclick="plusDivs(1)">&#10095;</button>
+                <button class="w3-button w3-dark-grey w3-opacity w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
+                <button class="w3-button w3-dark-grey w3-opacity w3-display-right" onclick="plusDivs(1)">&#10095;</button>
             </div>
         </div>
 
-        <div class="w3-container w3-green w3-light-grey w3-cell">
+        <div class="w3-container w3-green w3-dark-grey w3-cell">
             <h4>{{ word.word }}
                 <div><small>{{ word.burmese }}</small></div>
             </h4>

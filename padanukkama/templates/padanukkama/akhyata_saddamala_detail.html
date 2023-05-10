@@ -24,7 +24,7 @@
 {% endblock %}
 
 {% block apptitle_option %}
-    <a class="w3-btn w3-round-xlarge w3-hover-amber w3-display-right" onClick="javascript:history.go(-1);">{% trans "Back" %}</a>
+    <a class="w3-button w3-round-xlarge w3-hover-amber w3-display-right" onClick="javascript:history.go(-1);">{% trans "Back" %}</a>
 {% endblock %}
 
 {% block body %}
@@ -39,7 +39,7 @@
                     <p><strong>{% trans 'Paccaya' %}:</strong> {{ akhyata_saddamala.paccaya }}</p>
                     <form method="post" action="{% url 'akhyata_saddamala_delete' akhyata_saddamala.pk %}">
                         {% csrf_token %}
-                        <input type="submit" value="Confirm Delete" class="w3-btn w3-round-xlarge w3-white w3-hover-red w3-border">
+                        <input type="submit" value="Confirm Delete" class="w3-button w3-round-xlarge w3-white w3-hover-red w3-border">
                     </form>
                 </div>
             </div>
@@ -518,14 +518,14 @@
                 <div class="w3-bar">
                     {% if url_name == 'nama_saddamala_update' %}
                         <a href="{% url 'nama_saddamala_delete' object.pk %}"
-                            class="w3-btn w3-round-xlarge w3-white w3-border w3-hover-red w3-margin-right" 
+                            class="w3-button w3-round-xlarge w3-white w3-border w3-hover-red w3-margin-right" 
                             style="width:150px">
                             {% trans 'Delete' %}
                         </a>
                     {% endif %}
                     <button
                         type="submit" style="width:150px"
-                        class="w3-btn w3-white w3-border w3-round-xlarge w3-hover-brown">
+                        class="w3-button w3-dark-grey w3-border w3-round-xlarge w3-hover-brown">
                         {% trans "Save" %}
                     </button>
                 </div>

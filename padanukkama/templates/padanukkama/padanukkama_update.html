@@ -1,0 +1,79 @@
+    {% extends 'main/base.html' %}
+
+    {% load static %}
+    
+    {% block extra_css %}
+        <link rel="stylesheet" type="text/css" href="{% static 'padanukkama/style.css' %}">
+    {% endblock %}
+
+    {% load widget_tweaks %}
+
+    {% load i18n %}
+
+    {% block apptitle %}
+        {% include 'padanukkama/include/title.html' %} : {% trans 'Nāmasaddapadamālā' %}・{% trans 'Update' %}
+    {% endblock %}
+
+    {% block apptitle_option %}
+        <a class="w3-button w3-round-xlarge w3-hover-amber w3-display-right" onClick="javascript:history.go(-1);">{% trans "Back" %}</a>
+    {% endblock %}
+
+    {% block body %}
+    <form method="post" class="w3-container w3-padding">
+        {% csrf_token %}
+        {{ form.media.js }} 
+        <div class="w3-cell-row w3-container">
+            <div class="w3-container w3-cell" style="width:50%;">
+                <p>
+                    <label>{% trans form.title.label_tag %}</label>
+                    {{ form.title|add_class:"w3-input" }}
+                </p>
+                <p>
+                    <label>{% trans form.about.label_tag %}</label>
+                    {{ form.about|add_class:"w3-input" }}
+                </p>
+                <p>
+                    <label>{% trans form.publication.label_tag %}</label>
+                    {{ form.publication|add_class:"w3-check" }}
+                </p>
+                <p>
+                    <label>{% trans form.collaborators.label_tag %}</label>
+                    {{ form.collaborators }}
+                </p>
+                <p>
+                    <label>{% trans form.target_languages.label_tag %}</label>
+                    {{ form.target_languages|add_class:"checkbox-select" }}
+                </p>
+            </div>
+            <div class="w3-container w3-cell">
+                <p>
+                    <label>{% trans form.table_of_content.label_tag %}</label>
+                    {{ form.table_of_content|add_class:"w3-input" }}
+                </p>
+                {% for field in form %}
+                    {% if field.name == 'wordlist_version' or field.name == 'structure' %}
+                        <p>
+                            <label>{% trans field.label_tag %}</label>
+                            {{ field }}
+                        </p>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="w3-container w3-padding">
+            <div class="w3-bar w3-center">
+                <a href="{% url 'nama_saddamala_delete' object.pk %}"
+                    class="w3-button w3-white w3-border w3-round-xlarge w3-hover-blue" 
+                    style="width:150px">
+                    {% trans 'Generate Pada' %}
+                </a>
+                <button
+                    type="submit" style="width:150px"
+                    class="w3-button w3-dark-grey w3-border w3-round-xlarge w3-hover-brown">
+                    {% trans "Save" %}
+                </button>
+            </div>
+        </div>
+    </form>
+    {% endblock %}
+

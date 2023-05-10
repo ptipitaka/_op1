@@ -1,6 +1,7 @@
 from django import forms
 from django.shortcuts import get_object_or_404
 from django.utils.translation import gettext_lazy as _
+from mptt.forms import TreeNodeMultipleChoiceField
 from .models import Edition, Page, WordlistVersion, WordList, Structure, CommonReference
 
 # query form (digital archive page)
@@ -14,10 +15,40 @@ class EditForm(forms.ModelForm):
     class Meta:
         model = Page
         fields = ("content",)
-
         widgets = {
             'content': forms.Textarea(attrs={'class': 'w3-input w3-border w3-round'}),
         }
+
+
+class UpdWlAndPageForm(forms.ModelForm):
+    word = forms.CharField(label=_("Word"), required=True, max_length=150)
+    content = forms.CharField(label=_("Content"), required=True, widget=forms.Textarea(attrs={'class': 'w3-input w3-border w3-round'}))
+
+    class Meta:
+        model = WordList
+        fields = ['word']
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        instance = kwargs.get('instance')
+        if instance:
+            try:
+                page = instance.page
+                self.fields['content'].initial = page.content
+            except Page.DoesNotExist:
+                pass
+
+    def save(self, commit=True):
+        instance = super().save(commit=commit)
+        if commit:
+            try:
+                page = instance.page
+                page.content = self.cleaned_data['content']
+                page.save()
+            except Page.DoesNotExist:
+                pass
+        return instance
+
 
 # wordlist generator form (wordlist generator page)
 class WLGForm(forms.Form):

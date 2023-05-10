@@ -1,0 +1,70 @@
+{% extends 'main/base.html' %}
+
+{% load static %}
+
+{% load widget_tweaks %}
+
+{% load i18n %}
+
+{% block extra_css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'tipitaka/style.css' %}">
+{% endblock %}
+
+{% block apptitle %}
+    {% include 'tipitaka/include/title.html' %}</h2>
+{% endblock %}
+
+{% block apptitle_option %}
+    <a class="w3-button w3-round-xlarge w3-hover-amber w3-display-right" onClick="javascript:history.go(-1);">{% trans "Back" %}</a>
+{% endblock %}
+
+{% block body %}
+
+    <div class="w3-cell-row">
+        <div class="w3-container w3-cell" style="width: 60%">
+
+            <div class="w3-display-container">
+                <p>{{object.edition.title }} ({{ object.wordlist_version }}) ・ 
+                    {% trans 'Vol No. #' %} {{ object.page.volume.volume_number }} ・ 
+                    {% trans 'Page No. #' %} {{ object.page.page_number }}</p>
+                <img class="w3-image" src="{{ object.page.image_ref }}"/>
+            </div>
+        </div>
+
+        <div class="w3-container w3-dark-grey w3-cell">
+            <div id="mydiv">
+                <div id="mydivheader">
+                    <div>{{ object.word }} ({{ object.word_seq }} : {{object.word_roman_script }})</div>
+                    <span class="w3-button w3-display-topright">{% trans 'Line No. #' %} {{ object.line_number }}</span>
+                </div>
+                
+                <form method="POST">
+                    {% csrf_token %}
+    
+                    <div class="w3-container w3-text-black">
+                        <label>{% trans form.word.label_tag %}</label>
+                        {{ form.word|add_class:"w3-input" }}
+                    </div>
+
+                    <div class="w3-container w3-text-black">
+                        <label>{% trans form.content.label_tag %}</label>
+                        {{ form.content|add_class:"w3-input" }}
+                    </div>
+
+                    <div class="w3-container w3-center">
+                        <button
+                            type="submit"
+                            class="w3-button w3-white w3-border w3-round-xlarge w3-hover-brown w3-round-xlarge w3-margin">
+                                {% trans "Update" %}
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock%}
+
+{% block script%}
+    <script src="{% static 'tipitaka/dragElement.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'main/base.html' %}
+
+{% load widget_tweaks %}
+
+{% load i18n %}
+
+{% block apptitle %}
+    {% include 'padanukkama/include/title.html' %} : {% trans 'Nāmasaddapadamālā' %}・{% trans 'Create' %}
+{% endblock %}
+
+{% block apptitle_option %}
+    <a class="w3-button w3-round-xlarge w3-hover-amber w3-display-right" onClick="javascript:history.go(-1);">{% trans "Back" %}</a>
+{% endblock %}
+
+{% block body %}
+    <div class="w3-cell-row w3-container">
+        <div class="w3-container w3-cell" style="width:35%;">
+            <form method="post" class="w3-container w3-padding">
+
+                {% csrf_token %}
+
+                {% for field in form %}
+                    <p>
+                        {% if field.field.widget.input_type == 'checkbox' %} 
+                            <label>{% trans field.label_tag %}</label>
+                            {{ field|add_class:"w3-check" }}
+                        {% else %}
+                            <label>{% trans field.label_tag %}</label>
+                            {{ field|add_class:"w3-input" }}
+                        
+                        {% endif %}
+                    </p>
+                {% endfor %}
+
+                <div class="w3-center">
+                    <button
+                        type="submit" style="width:150px"
+                        class="w3-button w3-dark-grey w3-border w3-round-xlarge w3-hover-brown">
+                        {% trans "Save" %}
+                    </button>
+                </div>
+
+            </form>
+        </div>
+        <div class="w3-container w3-cell">
+        </div>
+    </div>
+{% endblock %}

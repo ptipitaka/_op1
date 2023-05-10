@@ -1,6 +1,12 @@
 from django.db import models
+from django.contrib.auth.models import User
 from django.utils.translation import gettext_lazy as _
+from mptt.models import MPTTModel
+from smart_selects.db_fields import ChainedManyToManyField
 from utils.pali_char import *
+
+
+from tipitaka.models import WordlistVersion, TableOfContent, Structure
 
 # Create your models here.
 class Linga(models.Model):
@@ -179,3 +185,89 @@ class AkhyataSaddamala(models.Model):
     def save(self, *args, **kwargs):
         self.title_order = encode(extract(clean(self.title)))
         super().save(*args, **kwargs)
+
+
+class Language(models.Model):
+    name = models.CharField(max_length=100, verbose_name=_("Language"))
+
+    def __str__(self):
+        return self.name
+
+class Padanukkama(models.Model):
+    title = models.CharField(max_length=255, verbose_name=_("Title"))
+    about = models.TextField(blank=True, null=True, verbose_name=_("About"))
+    publication = models.BooleanField(default=False, verbose_name=_("Publication"))
+    collaborators = models.ManyToManyField(User, verbose_name=_("Collaborators"))
+    target_languages = models.ManyToManyField(Language, verbose_name=_("Target Languages"))
+    table_of_content = models.ForeignKey(TableOfContent, verbose_name=_("Table of Contents"), on_delete=models.CASCADE)
+    wordlist_version = models.ManyToManyField(WordlistVersion, verbose_name=_("Wordlist Version"))
+    structure = ChainedManyToManyField(
+        Structure,
+        chained_field="table_of_content",
+        chained_model_field="table_of_content",
+        verbose_name=_("Structure"),
+        blank=True
+    )
+
+    def __str__(self):
+        return self.title
+    
+class Pada(MPTTModel):
+    padanukkama = models.ForeignKey(
+        Padanukkama,
+        on_delete=models.CASCADE,
+        related_name='pada',
+        verbose_name=_("Padanukkama"))
+    pada = models.CharField(
+        max_length=150,
+        verbose_name=_("Pada"))
+    pada_seq = models.CharField(
+        max_length=150,
+        null=True,
+        verbose_name=_("Pada Sequence"))
+    pada_roman_script = models.CharField(
+        default="",
+        null=True,
+        max_length=150,
+        verbose_name=_("word in roman script"))
+    parents = models.ManyToManyField(
+        'self', blank=True,
+        symmetrical=False,
+        related_name='children',
+        verbose_name=_("Parent Words"))
+    
+    def __str__(self):
+        children_count = self.get_children().count()
+        if children_count > 0:
+            children_names = ', '.join(str(child) for child in self.get_children())
+            return f"{self.pada} ({children_names})"
+        else:
+            return f"{self.pada}"
+
+    def save(self, *args, **kwargs):
+        self.pada_order = encode(extract(clean(self.pada)))
+        super().save(*args, **kwargs)
+    
+    class MPTTMeta:
+        order_insertion_by = ['pada']
+
+# class Sadda(models.Model):
+#     title = models.CharField(verbose_name=_("Title"), db_index=True, max_length=255)
+#     meaning
+#     type[uppasak, nibatta, nama, akyata]
+#     vipatti
+#     ตัดบท
+#     ลิงค์+0
+
+# class Pada(MPTTModel):
+#     padanukkama = models.ForeignKey(Padanukkama, verbose_name=_("Padanukkama"), on_delete=models.CASCADE)
+#     parent = TreeForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='children')
+#     title = models.CharField(verbose_name=_("Title"), db_index=True, max_length=255)
+#     sadda = models.ManyToManyField(Sadda, verbose_name=_("Sadda"), related_name="sadda")
+#     type = [nama, akyata]
+#     vipatti{namasaddamala, akyatasaddamala}
+
+
+
+
+

@@ -1,8 +1,10 @@
 import django_tables2 as tables
 import django_filters
-from django_filters import FilterSet
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
+from django.utils.safestring import mark_safe
+from django_filters import FilterSet
+from django_tables2.utils import A
 from mptt.templatetags.mptt_tags import cache_tree_children
 
 from .models import Page, TableOfContent, Structure, WordList, CommonReference
@@ -18,6 +20,30 @@ class DigitalArchiveTable(tables.Table):
         attrs = {"class": "w3-table w3-bordered"}
         fields = ("page_number", "sample_content",)
         order_by = ("page_number",)
+
+
+class WordlistMasterTable(tables.Table):
+    word_seq = tables.Column(order_by=("word_seq"), visible=False)
+    action = tables.LinkColumn(
+        viewname='wordlist_page_source',
+        args=[A('pk')],
+        attrs={'class': 'w3-button'},
+        text=mark_safe('<i class="fa-solid fa-magnifying-glass"></i>'),
+        empty_values=(),
+    )
+    
+    class Meta:
+        model = WordList
+        template_name = "django_tables2/w3css.html"
+        attrs = {"class": "w3-table w3-bordered"}
+        fields = ("code", "word", "word_seq", "word_roman_script", "edition", "wordlist_version",)
+        order_by = ("code",)
+
+
+class WordlistMasterFilter(FilterSet):
+    class Meta:
+        model = WordList
+        fields = {"word": ["contains"], "wordlist_version": ["exact"]}
 
 
 class TocTable(tables.Table):

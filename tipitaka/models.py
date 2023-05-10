@@ -10,6 +10,8 @@ from django.utils.translation import gettext_lazy as _
 from smart_selects.db_fields import ChainedForeignKey
 from mptt.models import MPTTModel, TreeForeignKey
 
+from utils.pali_char import *
+
 # Create your models here.
 
 class Script(models.Model):
@@ -116,25 +118,17 @@ class WordlistVersion(models.Model):
     def __str__(self):
         return f"{self.edition.code} v.{self.version}"
 
-    def get_edtion_and_version(self):
+    def get_edition_and_version(self):
         return {self.pk: f"{self.edition.code} v.{self.version}"}
 
-    def save(self, *args, **kwargs):
-        if not self.id:
-            user_model = get_user_model()
-            user = kwargs.pop('user', None)  # Get the user from kwargs or set it to None
-            if user is None or not user.is_authenticated:
-                user = user_model.objects.get(username='root')
-            self.created_by = user
-            self.created_on = timezone.now()
-        super().save(*args, **kwargs)
 
 class WordList(models.Model):
-    code = models.SlugField(default="", verbose_name=_("code"), max_length=20)
-    word = models.CharField(default="", verbose_name=_("word"), max_length=150)
-    word_seq = models.CharField(default="", verbose_name=_("word"), max_length=150)
+    code = models.SlugField(default="", max_length=20, verbose_name=_("code"))
+    word = models.CharField(default="", max_length=150, verbose_name=_("word"))
+    word_seq = models.CharField(default="", verbose_name=_("word sequence"), max_length=150)
+    word_roman_script = models.CharField(default="", null=True, max_length=150, verbose_name=_("word in roman script"))
     position = models.IntegerField(default=0, verbose_name=_("position"))
-    line_number = models.IntegerField(default=0, verbose_name=_("line no"), null=True)
+    line_number = models.IntegerField(default=0, null=True, verbose_name=_("line no"))
     edition = models.ForeignKey(
         "Edition",
         verbose_name=_("edition"),
@@ -169,6 +163,12 @@ class WordList(models.Model):
     
     def __str__(self):
         return f"{self.code} {self.word}"
+    
+    def save(self, *args, **kwargs):
+        self.word_seq = encode(extract(clean(self.word)))
+        self.word_roman_script = cv_pali_to_roman(extract(clean(self.word)))
+        super().save(*args, **kwargs)
+
     
 
 class TableOfContent(models.Model):
@@ -253,3 +253,5 @@ class CommonReference(models.Model):
         wordlist = WordList.objects.filter(
             Q(code__startswith=self.to_position[:-4]) & Q(wordlist_version=self.wordlist_version))
         return len(wordlist)
+    
+

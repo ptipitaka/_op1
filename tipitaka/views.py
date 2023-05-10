@@ -1,4 +1,5 @@
 import threading
+import traceback
 
 from braces import views
 from django.db import transaction
@@ -18,8 +19,8 @@ from mptt.utils import tree_item_iterator
 from utils.pali_char import *
 
 from .models import Edition, Page, WordlistVersion, WordList, TableOfContent, Structure, CommonReference
-from .tables import DigitalArchiveTable, TocTable, StructureTable, StructureFilter, WordListTable, CommonReferenceTable
-from .forms import QForm, EditForm, WLGForm, WordlistFinderForm
+from .tables import DigitalArchiveTable, WordlistMasterTable, WordlistMasterFilter, TocTable, StructureTable, StructureFilter, WordListTable, CommonReferenceTable
+from .forms import QForm, EditForm, UpdWlAndPageForm, WLGForm, WordlistFinderForm
 
 
 # ----------------------------------------------------------------
@@ -37,7 +38,7 @@ class DigitalArchiveView(View):
         table.paginate(page=request.GET.get("page", 1), per_page=25)
         total_rec = '{:,}'.format(table.page.paginator.count)
 
-        return render(request, "tipitaka/digital-archive.html", {
+        return render(request, "tipitaka/digital_archive.html", {
             "form": form,
             'table': table,
             'total_rec': total_rec
@@ -46,7 +47,7 @@ class DigitalArchiveView(View):
         pass
 
 class DigitalArchiveDetialsView(SuccessMessageMixin, UpdateView):
-    template_name = "tipitaka/digital-archive-details.html"
+    template_name = "tipitaka/digital_archive_details.html"
     model = Page
     form_class = EditForm
     success_message = _('Update successfully!')
@@ -56,6 +57,29 @@ class DigitalArchiveDetialsView(SuccessMessageMixin, UpdateView):
         volume = int(self.request.GET.get('volume'))
         page = int(self.request.GET.get('page')  or 1)
         return '/inscriber/digital-archive?edition=%s&volume=%s&page=%s' %(edition, volume, page)
+
+
+class WordListView(SingleTableMixin, FilterView):
+    model = WordList
+    template_name = "tipitaka/wordlist-master.html"
+    context_object_name  = "wordlist"
+    table_class = WordlistMasterTable
+    filterset_class = WordlistMasterFilter
+
+    def get_context_data(self, **kwargs):
+        context = super(WordListView, self).get_context_data(**kwargs)
+        context["total_rec"] = '{:,}'.format(len(self.get_table().rows)) 
+        return context
+
+
+class WordListPageSourceView(views.LoginRequiredMixin, views.SuperuserRequiredMixin, UpdateView):
+    model = WordList
+    template_name = "tipitaka/wordlist-page-source.html"
+    form_class = UpdWlAndPageForm
+    success_url = reverse_lazy('wordlist_master')
+
+    def get_success_url(self):
+        return self.request.path
 
 # ----------------------------------------------------------------
 # TABLE OF CONTENTS & COMMON REFERENCE
@@ -327,24 +351,29 @@ def update_structure_code(node):
 
 # WordList -------------------------------------------------------
 
+import traceback
+
 def create_wordlist_subprocess(edition_id, created_by):
     try:
-        # step 1 add WordlistVersion
+        # Step 1: Add WordlistVersion
         edition_instance = Edition.objects.get(pk=edition_id)
         new_version_number = int(edition_instance.version) + 1
+        
         # WordlistVersion
         new_WordlistVersion_instance = WordlistVersion(
             version=new_version_number,
-            edition=edition_instance
-            )
-        new_WordlistVersion_instance.save(created_by=created_by)
-        # Edition : update new version number
-        edition_instance.version = new_version_number
-        edition_instance.save()
+            edition=edition_instance,
+            created_by=created_by
+        )
+        new_WordlistVersion_instance.save()  # Save the instance
         
-        # step 2 create WordList and add to database related to lasted version
+        # Step 2: Create WordList and add to the database related to the latest version
         all_pages = Page.objects.filter(edition=edition_id).order_by("volume", "page_number")
+        vol_no = 0
         for each_page in all_pages:
+            if vol_no != each_page.volume.volume_number:
+                vol_no = each_page.volume.volume_number
+                print(vol_no)
             position = 1
             line_number = 1
             if each_page.content:
@@ -355,27 +384,28 @@ def create_wordlist_subprocess(edition_id, created_by):
                         cleaned_word = clean(each_word)
                         if len(cleaned_word.replace(" ", "")):
                             new_wordlist_instance = WordList(
-                                code = "%s-%s-%s-%s" % (edition_instance.code,
-                                                        str(each_page.volume.volume_number).zfill(3),
-                                                        str(each_page.page_number).zfill(4),
-                                                        str(position).zfill(3)),
-                                word = cleaned_word,
-                                word_seq = encode(extract(cleaned_word)),
-                                position = position,
-                                line_number = line_number,
-                                wordlist_version = new_WordlistVersion_instance,
-                                edition = edition_instance,
-                                volume = each_page.volume,
-                                page = each_page,
+                                code="%s-%s-%s-%s" % (edition_instance.code,
+                                                      str(each_page.volume.volume_number).zfill(3),
+                                                      str(each_page.page_number).zfill(4),
+                                                      str(position).zfill(3)),
+                                word=cleaned_word,
+                                # word_seq=encode(extract(cleaned_word)),
+                                position=position,
+                                line_number=line_number,
+                                wordlist_version=new_WordlistVersion_instance,
+                                edition=edition_instance,
+                                volume=each_page.volume,
+                                page=each_page,
                             )
                             new_wordlist_instance.save()
-
                             position += 1
                     line_number += 1
-        #     print('%s: %s' % (each_page.volume.volume_number, each_page.page_number))
-        # print("DONE : create_wordlist of %s Successfully" % edition_instance.code)
-    except:
-        print("ERROR : found error from create_wordlist")
+        
+    except Exception as e:
+        print("ERROR: Found error from create_wordlist")
+        print(f"Error message: {str(e)}")
+        traceback.print_exc()
+        
 
 class WordlistGeneratorView(views.LoginRequiredMixin, views.SuperuserRequiredMixin, View):
     #optional
@@ -418,3 +448,44 @@ class WordlistGeneratorView(views.LoginRequiredMixin, views.SuperuserRequiredMix
             return redirect(self.success_url)
         return render(request, self.template_name, {'form': form})
 
+
+def Update_word_seq_in_WordList():
+    words = WordList.objects.all()
+    error_list = {}
+    for each_word in words:
+        try:
+            each_word.word_seq = encode(extract(clean(each_word.word)))
+            each_word.word_roman_script = cv_pali_to_roman(extract(clean(each_word.word)))
+            each_word.save()
+        except:
+            error_list[each_word.id] = each_word.word
+    print(error_list)
+
+def change_characters(char_from, char_to):
+    all_p = Page.objects.all()
+    for i in all_p:
+        i.content.replace(char_from, char_to)
+
+def find_characters(char, newChar):
+    all_p = Page.objects.all()
+    found = 0
+    for page in all_p:
+        try:
+            if char in page.content:
+                found += 1
+                page.content = page.content.replace(char, newChar)
+                # page.save()
+                print(found, page.edition, page.volume, page.page_number)
+        except:
+            pass
+
+def find_characters_in_WordList(char):
+    all_p = Page.objects.all()
+    found = 0
+    for page in all_p:
+        try:
+            if char in page.content:
+                found += 1
+                print(found, page.edition, page.volume, page.page_number)
+        except:
+            pass

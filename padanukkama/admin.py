@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Linga, Karanta, NamaSaddamala, Dhatu, Paccaya, AkhyataSaddamala
+from .models import Linga, Karanta, NamaSaddamala, Dhatu, Paccaya, AkhyataSaddamala, Language, Padanukkama
 
 from utils.pali_char import *
 
@@ -29,11 +29,22 @@ class AkhyataSaddamalaAdmin(admin.ModelAdmin):
     ordering = ("title_order",)
     list_filter = ("dhatu", "paccaya",)
 
+class LanguageAdmin(admin.ModelAdmin):
+    list_display = ("name",)
+    ordering = ("name",)
+
+class PadanukkamaAdmin(admin.ModelAdmin):
+    list_display = ("title",)
+    ordering = ("title",)
+
+
 admin.site.register(Linga, LingaAdmin)
 admin.site.register(Karanta, KarantaAdmin)
 admin.site.register(NamaSaddamala, NamaSaddamalaAdmin)
 admin.site.register(Dhatu, DhatuAdmin)
 admin.site.register(Paccaya, PaccayaAdmin)
 admin.site.register(AkhyataSaddamala, AkhyataSaddamalaAdmin)
+admin.site.register(Language, LanguageAdmin)
+admin.site.register(Padanukkama, PadanukkamaAdmin)
 
 

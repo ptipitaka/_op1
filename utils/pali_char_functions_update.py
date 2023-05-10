@@ -242,13 +242,13 @@ def cv_payangka(pali_expand):
 def get_first_payangka_roman(pali_payangka, num):
     # อํ กํ อา อพฺย กฺยกฺเย พฺยคฺเฆ ขฺยา ยาตฺรา ยา
     roman = [
-        'a','ā','i','ī','u','ū','e','o',
-        'k','kh','g','gh','ṅ',
-        'c','ch','j','jh','ñ',
-        'ṭ','ṭh','ḍ','ḍh','ṇ',
+        'a','aฺ','i','iฺ','u','uฺ','e','o',
+        'k','kh','g','gh','n',
+        'c','ch','j','jh','n',
+        'tฺ','tฺh','dฺ','dฺh','nฺ',
         't','th','d','dh','n',
         'p','ph','b','bh','m',
-        'y','r','l','v','s','h','ḷ', 'ṃ']
+        'y','r','l','v','s','h','l', 'mฺ']
 
     result = []
     for payangka in pali_payangka:

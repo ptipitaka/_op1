@@ -1,14 +1,14 @@
 from braces import views
 from django_filters.views import FilterView
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404
 from django_tables2.views import SingleTableMixin
 from django.urls import resolve, reverse_lazy
 from django.views.generic import CreateView, UpdateView, DeleteView
-from django.views.generic.base import TemplateView
 
-from .models import NamaSaddamala, AkhyataSaddamala
-from .tables import NamaSaddamalaTable, NamaSaddamalaFilter, AkhyataSaddamalaTable, AkhyataSaddamalaFilter
-from .forms import NamaSaddamalaForm, AkhyataSaddamalaForm
+from .models import NamaSaddamala, AkhyataSaddamala, Padanukkama
+from tipitaka.models import TableOfContent
+from .tables import NamaSaddamalaTable, NamaSaddamalaFilter, AkhyataSaddamalaTable, AkhyataSaddamalaFilter, PadanukkamaTable, PadanukkamaFilter
+from .forms import NamaSaddamalaForm, AkhyataSaddamalaForm, PadanukkamaCreateForm, PadanukkamaUpdateForm
 
 # Create your views here.
 class NamaSaddamalaView(SingleTableMixin, FilterView):
@@ -107,5 +107,45 @@ class AkhyataSaddamalaDeleteView(DeleteView, views.LoginRequiredMixin, views.Sup
         return context
 
 
-class PadanukkamaView(TemplateView):
+
+class PadanukkamaView(SingleTableMixin, FilterView):
+    model = Padanukkama
     template_name = "padanukkama/padanukkama.html"
+    context_object_name  = "padanukkama"
+    table_class =PadanukkamaTable
+    filterset_class =PadanukkamaFilter
+
+    def get_context_data(self, **kwargs):
+        context = super(PadanukkamaView, self).get_context_data(**kwargs)
+        context["total_rec"] = '{:,}'.format(len(self.get_table().rows)) 
+        return context
+    
+
+class PadanukkamaCreateView(CreateView, views.LoginRequiredMixin, views.SuperuserRequiredMixin):
+    model = Padanukkama
+    template_name = "padanukkama/padanukkama_create.html"
+    form_class = PadanukkamaCreateForm, PadanukkamaUpdateForm
+    success_url = reverse_lazy('padanukkama_update')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['url_name'] = resolve(self.request.path_info).url_name
+        return context
+    
+class PadanukkamaUpdateView(UpdateView, views.LoginRequiredMixin, views.SuperuserRequiredMixin):
+    model = Padanukkama
+    context_object_name = 'padanukkama'
+    template_name = "padanukkama/padanukkama_update.html"
+    form_class = PadanukkamaUpdateForm
+    success_url = reverse_lazy('padanukkama')
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['table_of_content'] = self.object.table_of_content
+        return kwargs
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['url_name'] = resolve(self.request.path_info).url_name
+
+        return context

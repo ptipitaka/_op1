@@ -14,7 +14,7 @@
 {% endblock %}
 
 {% block apptitle_option %}
-    <a class="w3-btn w3-round-xlarge w3-hover-amber w3-display-right" onClick="javascript:history.go(-1);">{% trans "Back" %}</a>
+    <a class="w3-button w3-round-xlarge w3-hover-amber w3-display-right" onClick="javascript:history.go(-1);">{% trans "Back" %}</a>
 {% endblock %}
 
 {% block body %}
@@ -83,7 +83,7 @@
                             <button
                                 type="submit"
                                 name="WordlistFinderForm_Search_Submit"
-                                class="w3-btn w3-right w3-white w3-border w3-round-xlarge w3-hover-brown w3-margin">
+                                class="w3-button w3-right w3-white w3-border w3-round-xlarge w3-hover-brown w3-margin">
                                     {% trans "Search" %}
                             </button>
                         </div>
@@ -104,14 +104,14 @@
                                 type="submit"
                                 id="add-reference-button"
                                 name="WordlistFinderForm_Add_or_Update"
-                                class="w3-btn w3-right w3-white w3-border w3-round-xlarge w3-hover-brown w3-margin">
+                                class="w3-button w3-right w3-white w3-border w3-round-xlarge w3-hover-brown w3-margin">
                                     {% trans "Add/Update" %}
                             </button>
                             <button
                                 type="button"
                                 onclick="resetValue()"
                                 name="WordlistFinderForm_Reset"
-                                class="w3-btn w3-right w3-white w3-border w3-round-xlarge w3-hover-brown w3-margin">
+                                class="w3-button w3-right w3-white w3-border w3-round-xlarge w3-hover-brown w3-margin">
                                     {% trans "Reset" %}
                             </button>
                         </div>
@@ -120,7 +120,7 @@
             </form>
 
             {% if wordlist_table %}
-                <div class="w3-bar w3-light-grey w3-container w3-margin-top">
+                <div class="w3-bar w3-dark-grey w3-container w3-margin-top">
                     <button class="w3-bar-item w3-button" onclick="openTabs('image_ref')">{% trans 'Image' %}</button>
                     <button class="w3-bar-item w3-button" onclick="openTabs('wordlist')">{% trans 'Wordlist' %}</button>
                 </div>

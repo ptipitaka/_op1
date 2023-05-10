@@ -5,6 +5,8 @@ from django.views.generic import DetailView
 from .models import Word, WordLookup
 from .tables import WordlistTable, WordlistFilter
 
+from utils.pali_char import *
+
 class AbidanView(SingleTableMixin, FilterView):
     model = Word
     template_name = "abidan/index.html"
@@ -25,3 +27,9 @@ class AbidanDetialsView(DetailView):
         context = super(AbidanDetialsView, self).get_context_data(**kwargs)
         context["word_lookup_row"] = WordLookup.objects.filter(word__exact = context["word"])
         return context
+    
+def Update_word_seq_in_Word():
+    words = Word.objects.all()
+    for each_word in words:
+        each_word.word_seq = encode(extract(clean(each_word.word)))
+        each_word.save()
