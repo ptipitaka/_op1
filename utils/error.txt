@@ -1,0 +1,840 @@
+>>> check_word_before_generation_wordlist(7)
+vol: 1
+vol: 2
+error =>  vol: 2 page: 107 line: 19 origin: ดีหากาเรหิ clean: ีหากาเรหิ
+vol: 3
+error =>  vol: 3 page: 112 line: 15 origin: สิพฺพเติ, clean: สิพฺพเติ
+vol: 4
+error =>  vol: 4 page: 107 line: 19 origin: วิเหเยฺยุํ; clean: วิเหเยฺยุํ
+error =>  vol: 4 page: 135 line: 17 origin: ราชภโฏฺ. clean: ราชภโฏฺ
+error =>  vol: 4 page: 137 line: 7 origin: ราชภโฏฺ. clean: ราชภโฏฺ
+error =>  vol: 4 page: 157 line: 17 origin: านารหํ. clean: านารหํ
+vol: 5
+error =>  vol: 5 page: 115 line: 5 origin: เ clean: เ
+error =>  vol: 5 page: 119 line: 1 origin: อฎฺฐารสฺ clean: อฺฐารสฺ
+vol: 6
+error =>  vol: 6 page: 143 line: 2 origin: ช่วงหลังเริ่มที่ข้อ clean: ชวงหลงเริมทีขอ
+vol: 7
+error =>  vol: 7 page: 194 line: 9 origin: สีตุเณฺเห clean: สีตุเณฺเห
+error =>  vol: 7 page: 290 line: 17 origin: เตฺวาหํ clean: เตฺวาหํ
+vol: 8
+error =>  vol: 8 page: 49 line: 17 origin: สูจิฆเรา clean: สูจิฆเรา
+error =>  vol: 8 page: 390 line: 1 origin: สมฺปาเทิ, clean: สมฺปาเทิ
+vol: 9
+vol: 10
+error =>  vol: 10 page: 84 line: 13 origin: ภโฎ clean: ภโ
+error =>  vol: 10 page: 84 line: 13 origin: สุภโฎ clean: สุภโ
+error =>  vol: 10 page: 105 line: 12 origin: ตุเยฺเหเวตํ clean: ตุเยฺเหเวตํ
+error =>  vol: 10 page: 163 line: 24 origin: เเทฺวจตฺตาฬีสํ clean: เเทฺวจตฺตาฬีสํ
+error =>  vol: 10 page: 188 line: 2 origin: เ clean: เ
+error =>  vol: 10 page: 252 line: 6 origin: เ clean: เ
+vol: 11
+error =>  vol: 11 page: 17 line: 12 origin: า clean: า
+error =>  vol: 11 page: 101 line: 9 origin: นิพฺเพเหิ clean: นิพฺเพเหิ
+error =>  vol: 11 page: 101 line: 10 origin: นิคณฺเสุ clean: นิคณฺเสุ
+error =>  vol: 11 page: 101 line: 11 origin: นิคณฺเสุ clean: นิคณฺเสุ
+error =>  vol: 11 page: 101 line: 17 origin: “นิคณฺโ clean: นิคณฺโ
+error =>  vol: 11 page: 124 line: 14 origin: สุสุกฺกทาโ clean: สุสุกฺกทาโ
+error =>  vol: 11 page: 132 line: 3 origin: อุปจิดตฺดา clean: อุปจิตฺา
+error =>  vol: 11 page: 139 line: 6 origin: จิรปฺปนฏฺเ clean: จิรปฺปนฏฺเ
+error =>  vol: 11 page: 139 line: 21 origin: จิรปฺปนฏฺเ clean: จิรปฺปนฏฺเ
+error =>  vol: 11 page: 139 line: 22 origin: าตีสุหชฺเช clean: าตีสุหชฺเช
+error =>  vol: 11 page: 178 line: 4 origin: เหเติ, clean: เหเติ
+error =>  vol: 11 page: 178 line: 5 origin: วิเหเติ, clean: วิเหเติ
+error =>  vol: 11 page: 190 line: 1 origin: นิคณฺโ clean: นิคณฺโ
+error =>  vol: 11 page: 192 line: 10 origin: านกุสลตา clean: านกุสลตา
+error =>  vol: 11 page: 197 line: 9 origin: ขเยาณํ clean: ขเยาณํ
+error =>  vol: 11 page: 203 line: 11 origin: อปรามฏฺเหิ clean: อปรามฏฺเหิ
+error =>  vol: 11 page: 255 line: 7 origin: วิญฺาณํ clean: วิญฺาณํ
+error =>  vol: 11 page: 257 line: 3 origin: ปญฺาสํปิ clean: ปญฺาสํปิ
+vol: 12
+error =>  vol: 12 page: 96 line: 14 origin: เทฺเว clean: เทฺเว
+error =>  vol: 12 page: 198 line: 7 origin: อเมฺเหหิ clean: อเมฺเหหิ
+error =>  vol: 12 page: 269 line: 7 origin: อคารนฺเตฺเวว clean: อคารนฺเตฺเวว
+error =>  vol: 12 page: 269 line: 9 origin: รูปนฺเตฺเวว clean: รูปนฺเตฺเวว
+error =>  vol: 12 page: 307 line: 11 origin: สาเฎตา clean: สาเตา
+error =>  vol: 12 page: 357 line: 15 origin: ชิวฺหาวิญฺญาณนฺเตฺเวว clean: ชิวฺหาวิญฺญาณนฺเตฺเวว
+vol: 13
+error =>  vol: 13 page: 3 line: 10 origin: มนุสฺสสาเยฺเย clean: มนุสฺสสาเยฺเย
+error =>  vol: 13 page: 23 line: 3 origin: สมนุญฺโ clean: สมนุญฺโ
+error =>  vol: 13 page: 80 line: 9 origin: านเมตํ clean: านเมตํ
+error =>  vol: 13 page: 110 line: 6 origin: ตุเมฺเหปิ clean: ตุเมฺเหปิ
+error =>  vol: 13 page: 213 line: 23 origin: ตเตฺเรกจฺเจ clean: ตเตฺเรกจฺเจ
+error =>  vol: 13 page: 256 line: 19 origin: อสโ clean: อสโ
+error =>  vol: 13 page: 257 line: 1 origin: อสโ clean: อสโ
+error =>  vol: 13 page: 268 line: 11 origin: เ clean: เ
+error =>  vol: 13 page: 354 line: 20 origin: อฎฺฎกรเณ clean: อฺกรเณ
+error =>  vol: 13 page: 442 line: 17 origin: ทเฬฺเหน clean: ทเฬฺเหน
+error =>  vol: 13 page: 480 line: 7 origin: ปุฏฺโ clean: ปุฏฺโ
+vol: 14
+error =>  vol: 14 page: 54 line: 7 origin: ปญฺญฺาเปตุนฺติ. clean: ปญฺญฺาเปตุนฺติ
+error =>  vol: 14 page: 178 line: 17 origin: อาชาเนยฺามิ, clean: อาชาเนยฺามิ
+error =>  vol: 14 page: 220 line: 15 origin: พหวฺาพาโธ clean: พหวฺาพาโธ
+error =>  vol: 14 page: 259 line: 14 origin: โสา clean: โสา
+error =>  vol: 14 page: 337 line: 12 origin: ปฏิรูโา clean: ปฏิรูโา
+error =>  vol: 14 page: 343 line: 17 origin: ปฏิเเทเสสิ, clean: ปฏิเเทเสสิ
+vol: 15
+error =>  vol: 15 page: 118 line: 2 origin: ตญฺเเวตฺถ clean: ตญฺเเวตฺถ
+vol: 16
+error =>  vol: 16 page: 36 line: 17 origin: เตฺเวว clean: เตฺเวว
+error =>  vol: 16 page: 60 line: 18 origin: เตฺเวว clean: เตฺเวว
+error =>  vol: 16 page: 61 line: 1 origin: เตฺเวว clean: เตฺเวว
+error =>  vol: 16 page: 62 line: 6 origin: เตฺเวว clean: เตฺเวว
+error =>  vol: 16 page: 62 line: 11 origin: เตฺเวว clean: เตฺเวว
+error =>  vol: 16 page: 63 line: 3 origin: เตฺเวว clean: เตฺเวว
+error =>  vol: 16 page: 72 line: 13 origin: ิโต clean: ิโต
+error =>  vol: 16 page: 73 line: 9 origin: เตฺเวว clean: เตฺเวว
+error =>  vol: 16 page: 74 line: 2 origin: เตฺเวว clean: เตฺเวว
+error =>  vol: 16 page: 77 line: 18 origin: าเณน clean: าเณน
+error =>  vol: 16 page: 77 line: 20 origin: นิพฺเพธิกปญฺโ clean: นิพฺเพธิกปญฺโ
+error =>  vol: 16 page: 81 line: 7 origin: อฺวสิสฺสนฺตี”ติ clean: อฺวสิสฺสนฺตีติ
+error =>  vol: 16 page: 92 line: 20 origin: อวิชฺชายเตฺเวว clean: อวิชฺชายเตฺเวว
+error =>  vol: 16 page: 93 line: 15 origin: เตฺเวว clean: เตฺเวว
+error =>  vol: 16 page: 149 line: 5 origin: อวิทูเรา clean: อวิทูเรา
+vol: 17
+error =>  vol: 17 page: 10 line: 2 origin: อวีตปริฬาโ. clean: อวีตปริฬาโ
+error =>  vol: 17 page: 12 line: 14 origin: ติฏฺฺฐติ clean: ติฏฺฺฐติ
+error =>  vol: 17 page: 16 line: 21 origin: รูปสฺมฺฺิํ clean: รูปสฺมฺฺิํ
+error =>  vol: 17 page: 39 line: 18 origin: รูปูปาทานกฺฺขนฺโธ clean: รูปูปาทานกฺฺขนฺโธ
+error =>  vol: 17 page: 50 line: 25 origin: สตฺตฏฺานกุสโล clean: สตฺตฏฺานกุสโล
+error =>  vol: 17 page: 52 line: 4 origin: อภิ.ฺญาย clean: อภิฺญาย
+error =>  vol: 17 page: 87 line: 20 origin: สมฺมาทิฏฺิยา clean: สมฺมาทิฏฺิยา
+error =>  vol: 17 page: 97 line: 11 origin: า clean: า
+error =>  vol: 17 page: 97 line: 21 origin: ิฐิตา clean: ิฐิตา
+error =>  vol: 17 page: 106 line: 1 origin: สนฺติฏฺิติ clean: สนฺติฏฺิติ
+error =>  vol: 17 page: 132 line: 19 origin: โกฏฺิต clean: โกฏฺิต
+error =>  vol: 17 page: 141 line: 18 origin: มหาโกฏฺิตํ clean: มหาโกฏฺิตํ
+error =>  vol: 17 page: 148 line: 16 origin: มิจฺฉาทิฏฺิ clean: มิจฺฉาทิฏฺิ
+error =>  vol: 17 page: 150 line: 21 origin: วูปกฏฺโ clean: วูปกฏฺโ
+error =>  vol: 17 page: 174 line: 17 origin: ทิฏฺิ clean: ทิฏฺิ
+error =>  vol: 17 page: 184 line: 3 origin: อสิกฏฺายิฏฺฐิตา”ติ. clean: อสิกฏฺายิฏฺฐิตาติ
+error =>  vol: 17 page: 220 line: 13 origin: ทิฏฺิคตานิ clean: ทิฏฺิคตานิ
+error =>  vol: 17 page: 234 line: 17 origin: วุฏฺาฐนกุสโล. clean: วุฏฺาฐนกุสโล
+error =>  vol: 17 page: 235 line: 9 origin: วุฏฺาฐนมูลกสปฺปายการีสุตฺตา clean: วุฏฺาฐนมูลกสปฺปายการีสุตฺตา
+error =>  vol: 17 page: 235 line: 10 origin: วุฏฺาฐนมูลกํ.) clean: วุฏฺาฐนมูลกํ
+vol: 18
+error =>  vol: 18 page: 1 line: 6 origin: ทฏฺฺฐพฺพํ. clean: ทฏฺฺฐพฺพํ
+error =>  vol: 18 page: 33 line: 5 origin: จกฺขุวิญฺเยฺยา clean: จกฺขุวิญฺเยฺยา
+error =>  vol: 18 page: 65 line: 2 origin: มโนวิญฺาณสฺส clean: มโนวิญฺาณสฺส
+error =>  vol: 18 page: 68 line: 11 origin: จกฺขุวิญฺเยฺยา clean: จกฺขุวิญฺเยฺยา
+error =>  vol: 18 page: 92 line: 14 origin: อุฏฺายาสนา clean: อุฏฺายาสนา
+error =>  vol: 18 page: 166 line: 5 origin: ปจฺจุฏฺาย clean: ปจฺจุฏฺาย
+error =>  vol: 18 page: 177 line: 14 origin: อสนฺตุฏฺโ clean: อสนฺตุฏฺโ
+error =>  vol: 18 page: 178 line: 1 origin: อสนฺตุฏฺโ clean: อสนฺตุฏฺโ
+error =>  vol: 18 page: 178 line: 19 origin: อสนฺตุฏฺโ clean: อสนฺตุฏฺโ
+error =>  vol: 18 page: 181 line: 1 origin: มโนวิญฺเยฺเยหิ clean: มโนวิญฺเยฺเยหิ
+error =>  vol: 18 page: 181 line: 2 origin: กิฏฺารกฺโข clean: กิฏฺารกฺโข
+error =>  vol: 18 page: 181 line: 2 origin: กิฏฺาโท, clean: กิฏฺาโท
+error =>  vol: 18 page: 181 line: 3 origin: กิฏฺารกฺโข clean: กิฏฺารกฺโข
+error =>  vol: 18 page: 181 line: 3 origin: กิฏฺาโท, clean: กิฏฺาโท
+error =>  vol: 18 page: 181 line: 3 origin: กิฏฺารกฺโข clean: กิฏฺารกฺโข
+error =>  vol: 18 page: 181 line: 3 origin: กิฏฺาโท clean: กิฏฺาโท
+error =>  vol: 18 page: 181 line: 3 origin: กิฏฺารกฺโข clean: กิฏฺารกฺโข
+error =>  vol: 18 page: 181 line: 3 origin: กิฏฺาโท clean: กิฏฺาโท
+error =>  vol: 18 page: 181 line: 3 origin: านพหุโล clean: านพหุโล
+error =>  vol: 18 page: 181 line: 4 origin: รญฺโ clean: รญฺโ
+error =>  vol: 18 page: 183 line: 6 origin: อนุปฏฺฐฺิตกายสติ clean: อนุปฏฺฐฺิตกายสติ
+error =>  vol: 18 page: 183 line: 10 origin: อนุปฏฺฐฺิต-กายสติ clean: อนุปฏฺฐฺิตกายสติ
+error =>  vol: 18 page: 192 line: 22 origin: สปญฺโ clean: สปญฺโ
+error =>  vol: 18 page: 196 line: 2 origin: วุฏฺิโต clean: วุฏฺิโต
+error =>  vol: 18 page: 206 line: 5 origin: ยาวตโ clean: ยาวตโ
+error =>  vol: 18 page: 209 line: 23 origin: สมนุมญฺญฺิสฺสนฺติ, clean: สมนุมญฺญฺิสฺสนฺติ
+error =>  vol: 18 page: 220 line: 13 origin: มจฺเฉรมลปริยุฏฺิเตน clean: มจฺเฉรมลปริยุฏฺิเตน
+error =>  vol: 18 page: 254 line: 5 origin: อญฺเ clean: อญฺเ
+error =>  vol: 18 page: 263 line: 16 origin: มญฺเ clean: มญฺเ
+error =>  vol: 18 page: 267 line: 3 origin: “สฺฺญญาเวทยิตนิโรธํ clean: สฺฺญญาเวทยิตนิโรธํ
+error =>  vol: 18 page: 271 line: 16 origin: นิคณฺโ clean: นิคณฺโ
+error =>  vol: 18 page: 271 line: 22 origin: สโ clean: สโ
+error =>  vol: 18 page: 287 line: 12 origin: เอวํทิฏฺฺฐิ clean: เอวํทิฏฺฺฐิ
+error =>  vol: 18 page: 290 line: 13 origin: เ clean: เ
+error =>  vol: 18 page: 307 line: 10 origin: มญฺเ clean: มญฺเ
+error =>  vol: 18 page: 308 line: 6 origin: มิจฺฉาทิฏฺิกา clean: มิจฺฉาทิฏฺิกา
+error =>  vol: 18 page: 309 line: 3 origin: มญฺเ clean: มญฺเ
+error =>  vol: 18 page: 309 line: 17 origin: มญฺเ clean: มญฺเ
+error =>  vol: 18 page: 351 line: 15 origin: ปุฏฺโ clean: ปุฏฺโ
+error =>  vol: 18 page: 351 line: 23 origin: เ clean: เ
+vol: 19
+error =>  vol: 19 page: 22 line: 3 origin: “าณทสฺสนตฺถํ clean: าณทสฺสนตฺถํ
+error =>  vol: 19 page: 64 line: 20 origin: เ clean: เ
+error =>  vol: 19 page: 91 line: 11 origin: ทุปฺปญฺโ clean: ทุปฺปญฺโ
+error =>  vol: 19 page: 103 line: 9 origin: เ clean: เ
+error =>  vol: 19 page: 134 line: 2 origin: มญฺเ clean: มญฺเ
+error =>  vol: 19 page: 139 line: 13 origin: อญฺโ clean: อญฺโ
+error =>  vol: 19 page: 143 line: 19 origin: วูปกฏฺโ clean: วูปกฏฺโ
+error =>  vol: 19 page: 145 line: 3 origin: วูปกฏฺโ clean: วูปกฏฺโ
+error =>  vol: 19 page: 155 line: 5 origin: ผุฏฺโ clean: ผุฏฺโ
+error =>  vol: 19 page: 164 line: 4 origin: วูปกฏฺโ clean: วูปกฏฺโ
+error =>  vol: 19 page: 209 line: 14 origin: เ clean: เ
+error =>  vol: 19 page: 229 line: 20 origin: โอสฺสฏเ clean: โอสฺสฏเ
+error =>  vol: 19 page: 253 line: 22 origin: เเทฺว clean: เเทฺว
+error =>  vol: 19 page: 279 line: 16 origin: เ clean: เ
+error =>  vol: 19 page: 283 line: 5 origin: อญฺโ clean: อญฺโ
+error =>  vol: 19 page: 283 line: 23 origin: อญฺโ clean: อญฺโ
+error =>  vol: 19 page: 303 line: 9 origin: อญฺโ clean: อญฺโ
+error =>  vol: 19 page: 303 line: 12 origin: รญฺโญฺ clean: รญฺโญฺ
+error =>  vol: 19 page: 303 line: 13 origin: รญฺโญฺ clean: รญฺโญฺ
+error =>  vol: 19 page: 310 line: 11 origin: ตุฏโ clean: ตุฏโ
+error =>  vol: 19 page: 346 line: 13 origin: อสนฺตุฏโ clean: อสนฺตุฏโ
+error =>  vol: 19 page: 356 line: 4 origin: สปฺปญฺโ clean: สปฺปญฺโ
+error =>  vol: 19 page: 358 line: 8 origin: ฉฏโํฐ. clean: ฉฏโํฐ
+error =>  vol: 19 page: 383 line: 2 origin: {านเมตํ clean: านเมตํ
+error =>  vol: 19 page: 395 line: 11 origin: อญฺโ clean: อญฺโ
+vol: 20
+error =>  vol: 20 page: 83 line: 19 origin: สมฺมาทิฏฺิยา clean: สมฺมาทิฏฺิยา
+error =>  vol: 20 page: 128 line: 19 origin: ปุณฺณกปเญฺเห clean: ปุณฺณกปเญฺเห
+error =>  vol: 20 page: 242 line: 8 origin: ทิฎฺฐานคติํ clean: ทิฺฐานคติํ
+error =>  vol: 20 page: 245 line: 2 origin: อภาวิตปญฺโ clean: อภาวิตปญฺโ
+error =>  vol: 20 page: 249 line: 15 origin: ตเตฺเรว clean: ตเตฺเรว
+error =>  vol: 20 page: 259 line: 1 origin: ฉนฺทราคฏฺานิเย clean: ฉนฺทราคฏฺานิเย
+vol: 21
+error =>  vol: 21 page: 10 line: 19 origin: อาสภณฺานํ clean: อาสภณฺานํ
+error =>  vol: 21 page: 12 line: 20 origin: อญฺาณํ clean: อญฺาณํ
+error =>  vol: 21 page: 13 line: 22 origin: อญฺาณํ clean: อญฺาณํ
+error =>  vol: 21 page: 29 line: 12 origin: วิญฺาตํ clean: วิญฺาตํ
+error =>  vol: 21 page: 31 line: 18 origin: สนฺตุฏฺโ clean: สนฺตุฏฺโ
+error =>  vol: 21 page: 32 line: 8 origin: สนฺตุฏฺโ clean: สนฺตุฏฺโ
+error =>  vol: 21 page: 35 line: 25 origin: ปญฺาเปสฺสามี”ติ. clean: ปญฺาเปสฺสามีติ
+error =>  vol: 21 page: 38 line: 6 origin: มิครญฺโ clean: มิครญฺโ
+error =>  vol: 21 page: 64 line: 20 origin: ปุญฺาภิสนฺทา clean: ปุญฺาภิสนฺทา
+error =>  vol: 21 page: 76 line: 4 origin: สุราเมรยมชฺชปมาทฏฺานา clean: สุราเมรยมชฺชปมาทฏฺานา
+error =>  vol: 21 page: 77 line: 3 origin: มหาปญฺโ clean: มหาปญฺโ
+error =>  vol: 21 page: 77 line: 3 origin: ปุถุปญฺโ clean: ปุถุปญฺโ
+error =>  vol: 21 page: 90 line: 4 origin: าณเมเวตฺถ clean: าณเมเวตฺถ
+error =>  vol: 21 page: 93 line: 15 origin: ทุปฺปญฺโ clean: ทุปฺปญฺโ
+error =>  vol: 21 page: 105 line: 20 origin: อธิปญฺาธมฺมวิปสฺสนาย. clean: อธิปญฺาธมฺมวิปสฺสนาย
+error =>  vol: 21 page: 107 line: 12 origin: อธิปญฺาธมฺมวิปสฺสนาย, clean: อธิปญฺาธมฺมวิปสฺสนาย
+error =>  vol: 21 page: 112 line: 8 origin: สุราเมรยมชฺชปมาทฏฺานา clean: สุราเมรยมชฺชปมาทฏฺานา
+error =>  vol: 21 page: 129 line: 18 origin: รญฺโ clean: รญฺโ
+error =>  vol: 21 page: 129 line: 19 origin: รญฺโ clean: รญฺโ
+error =>  vol: 21 page: 133 line: 8 origin: รญฺโ clean: รญฺโ
+error =>  vol: 21 page: 142 line: 7 origin: ปญฺาเยถา”ติ. clean: ปญฺาเยถาติ
+error =>  vol: 21 page: 176 line: 1 origin: ขิปฺปาภิญฺา, clean: ขิปฺปาภิญฺา
+error =>  vol: 21 page: 233 line: 18 origin: โ clean: โ
+vol: 22
+error =>  vol: 22 page: 5 line: 17 origin: เตฺเวว clean: เตฺเวว
+error =>  vol: 22 page: 321 line: 17 origin: ตุเมฺเห clean: ตุเมฺเห
+error =>  vol: 22 page: 369 line: 11 origin: พหวฺาพาโธ clean: พหวฺาพาโธ
+vol: 23
+error =>  vol: 23 page: 84 line: 11 origin: สณฺาติ. clean: สณฺาติ
+error =>  vol: 23 page: 88 line: 2 origin: าตานํ clean: าตานํ
+error =>  vol: 23 page: 90 line: 10 origin: าตานํ clean: าตานํ
+error =>  vol: 23 page: 107 line: 5 origin: เตลโธาตาย clean: เตลโธาตาย
+error =>  vol: 23 page: 107 line: 9 origin: เตลโธาตาย clean: เตลโธาตาย
+error =>  vol: 23 page: 107 line: 12 origin: เตลโธาตาย clean: เตลโธาตาย
+error =>  vol: 23 page: 143 line: 2 origin: สโ. clean: สโ
+error =>  vol: 23 page: 199 line: 17 origin: าเนหิ clean: าเนหิ
+error =>  vol: 23 page: 218 line: 2 origin: าเนสุ clean: าเนสุ
+error =>  vol: 23 page: 218 line: 2 origin: านโส clean: านโส
+error =>  vol: 23 page: 218 line: 2 origin: านโส clean: านโส
+error =>  vol: 23 page: 218 line: 2 origin: านโส clean: านโส
+error =>  vol: 23 page: 218 line: 2 origin: าเนสุ clean: าเนสุ
+error =>  vol: 23 page: 276 line: 9 origin: อกมฺมญฺโ, clean: อกมฺมญฺโ
+error =>  vol: 23 page: 276 line: 13 origin: อกมฺมญฺโ clean: อกมฺมญฺโ
+vol: 24
+error =>  vol: 24 page: 18 line: 17 origin: รญฺโ clean: รญฺโ
+error =>  vol: 24 page: 46 line: 20 origin: ปโญฺโห clean: ปโญฺโห
+error =>  vol: 24 page: 48 line: 15 origin: เอวํสญฺญีโนบี clean: เอวํสญฺญีโนี
+error =>  vol: 24 page: 138 line: 1 origin: โ clean: โ
+error =>  vol: 24 page: 175 line: 18 origin: าสิสฺสามีติ. clean: าสิสฺสามีติ
+error =>  vol: 24 page: 253 line: 12 origin: าจาย clean: าจาย
+vol: 25
+error =>  vol: 25 page: 340 line: 16 origin: สุสณฺานา clean: สุสณฺานา
+error =>  vol: 25 page: 362 line: 18 origin: อวิทูเรา clean: อวิทูเรา
+vol: 26
+error =>  vol: 26 page: 6 line: 11 origin: ิตํ clean: ิตํ
+error =>  vol: 26 page: 85 line: 3 origin: ิตา clean: ิตา
+error =>  vol: 26 page: 96 line: 17 origin: ิโต clean: ิโต
+error =>  vol: 26 page: 106 line: 9 origin: ิโต. clean: ิโต
+error =>  vol: 26 page: 123 line: 21 origin: รญฺโ clean: รญฺโ
+error =>  vol: 26 page: 168 line: 1 origin: าตีนํ clean: าตีนํ
+error =>  vol: 26 page: 232 line: 16 origin: ปุญฺเหิ clean: ปุญฺเหิ
+error =>  vol: 26 page: 258 line: 11 origin: ายสฺมา clean: ายสฺมา
+error =>  vol: 26 page: 335 line: 2 origin: สณฺาฐนวณฺณรูเปน clean: สณฺาฐนวณฺณรูเปน
+error =>  vol: 26 page: 369 line: 7 origin: อุกฺกณฺาฐามิ clean: อุกฺกณฺาฐามิ
+error =>  vol: 26 page: 491 line: 15 origin: นิฎฺฐิตา. clean: นิฺฐิตา
+vol: 27
+error =>  vol: 27 page: 75 line: 17 origin: มหาพฺรหเมฺ clean: มหาพฺรหเมฺ
+error =>  vol: 27 page: 97 line: 23 origin: า clean: า
+error =>  vol: 27 page: 193 line: 1 origin: อเหุยํ clean: อเหุยํ
+error =>  vol: 27 page: 215 line: 22 origin: กณฺาฐวสตฺตํ clean: กณฺาฐวสตฺตํ
+vol: 28
+error =>  vol: 28 page: 12 line: 6 origin: รญฺโ clean: รญฺโ
+error =>  vol: 28 page: 12 line: 20 origin: อญฺโ clean: อญฺโ
+error =>  vol: 28 page: 41 line: 16 origin: มหารฏฺโติ clean: มหารฏฺโติ
+error =>  vol: 28 page: 92 line: 1 origin: ทิชกญฺาหิ clean: ทิชกญฺาหิ
+error =>  vol: 28 page: 145 line: 12 origin: สุสญฺา clean: สุสญฺา
+error =>  vol: 28 page: 202 line: 24 origin: โกนฺติมนฺตาสุนิฏฺิตํ clean: โกนฺติมนฺตาสุนิฏฺิตํ
+error =>  vol: 28 page: 236 line: 3 origin: อุปกฺขโ clean: อุปกฺขโ
+error =>  vol: 28 page: 261 line: 14 origin: อุฏฺานกํ clean: อุฏฺานกํ
+error =>  vol: 28 page: 288 line: 2 origin: าตีนตฺถํ clean: าตีนตฺถํ
+error =>  vol: 28 page: 288 line: 11 origin: าเหวธมฺเมสุ clean: าเหวธมฺเมสุ
+error =>  vol: 28 page: 336 line: 2 origin: อญฺเหิ clean: อญฺเหิ
+error =>  vol: 28 page: 380 line: 6 origin: วุฏฺฐฺิ clean: วุฏฺฐฺิ
+vol: 29
+error =>  vol: 29 page: 54 line: 13 origin: กูฏฺาคารา clean: กูฏฺาคารา
+error =>  vol: 29 page: 184 line: 21 origin: สงฺการกูฏฺา clean: สงฺการกูฏฺา
+error =>  vol: 29 page: 186 line: 8 origin: กูฏฺาคาเร clean: กูฏฺาคาเร
+error =>  vol: 29 page: 319 line: 4 origin: สณฺาติ clean: สณฺาติ
+error =>  vol: 29 page: 380 line: 5 origin: ายติ clean: ายติ
+error =>  vol: 29 page: 391 line: 22 origin: สงฺการกูฏฺา clean: สงฺการกูฏฺา
+error =>  vol: 29 page: 397 line: 2 origin: วิคตโ clean: วิคตโ
+vol: 30
+error =>  vol: 30 page: 91 line: 19 origin: าณี clean: าณี
+error =>  vol: 30 page: 185 line: 1 origin: ปเญฺเห clean: ปเญฺเห
+error =>  vol: 30 page: 291 line: 7 origin: ามญฺญผลานิ clean: ามญฺญผลานิ
+error =>  vol: 30 page: 295 line: 11 origin: าณี clean: าณี
+vol: 31
+error =>  vol: 31 page: 8 line: 5 origin: อภิญฺเยฺยา, clean: อภิญฺเยฺยา
+error =>  vol: 31 page: 24 line: 19 origin: ปริญฺเยฺยา clean: ปริญฺเยฺยา
+error =>  vol: 31 page: 36 line: 21 origin: ิติภาคิยา.” clean: ิติภาคิยา
+error =>  vol: 31 page: 77 line: 10 origin: าณํ clean: าณํ
+error =>  vol: 31 page: 108 line: 7 origin: าณํ. clean: าณํ
+error =>  vol: 31 page: 326 line: 3 origin: กฺิํสมุทยํ, clean: กฺิํสมุทยํ
+error =>  vol: 31 page: 361 line: 19 origin: าณํ clean: าณํ
+error =>  vol: 31 page: 362 line: 23 origin: าณํ clean: าณํ
+error =>  vol: 31 page: 367 line: 17 origin: าณํ clean: าณํ
+error =>  vol: 31 page: 404 line: 10 origin: ฐานาฎฺฐานานิ clean: ฐานาฺฐานานิ
+error =>  vol: 31 page: 412 line: 2 origin: ลหํฺ clean: ลหํฺ
+error =>  vol: 31 page: 428 line: 4 origin: ิ clean: ิ
+error =>  vol: 31 page: 454 line: 9 origin: าณโชตนนฺติ. clean: าณโชตนนฺติ
+vol: 32
+error =>  vol: 32 page: 30 line: 17 origin: อชฺโฌคาโฬฺโห clean: อชฺโฌคาโฬฺโห
+error =>  vol: 32 page: 228 line: 13 origin: รโหสญฺญฺิโก clean: รโหสญฺญฺิโก
+error =>  vol: 32 page: 246 line: 9 origin: กุกฺกุโฎ clean: กุกฺกุโ
+error =>  vol: 32 page: 342 line: 13 origin: เอกนวุเติ clean: เอกนวุเติ
+error =>  vol: 32 page: 417 line: 10 origin: อรญฺญฺิกํ clean: อรญฺญฺิกํ
+error =>  vol: 32 page: 417 line: 15 origin: กมฺมวเปาเกน clean: กมฺมวเปาเกน
+error =>  vol: 32 page: 498 line: 1 origin: อาเรุฬฺห clean: อาเรุฬฺห
+vol: 33
+error =>  vol: 33 page: 12 line: 3 origin: ิโต clean: ิโต
+error =>  vol: 33 page: 85 line: 18 origin: ปเญฺเห clean: ปเญฺเห
+error =>  vol: 33 page: 257 line: 11 origin: ิโต clean: ิโต
+error =>  vol: 33 page: 324 line: 15 origin: ยถฺา clean: ยถฺา
+error =>  vol: 33 page: 353 line: 6 origin: สลฬฺา clean: สลฬฺา
+vol: 34
+error =>  vol: 34 page: 119 line: 1 origin: ฐเ clean: ฐเ
+vol: 35
+error =>  vol: 35 page: 112 line: 1 origin: เทฺเว clean: เทฺเว
+error =>  vol: 35 page: 154 line: 20 origin: “สญฺโญชนวิปฺปยุตฺตสญฺโPนิยา”ติปิ, clean: สญฺโญชนวิปฺปยุตฺตสญฺโนิยาติปิ
+error =>  vol: 35 page: 430 line: 16 origin: เอฏฺุฐิ clean: เอฏฺุฐิ
+vol: 36
+error =>  vol: 36 page: 96 line: 8 origin: อฏฺารสหิ clean: อฏฺารสหิ
+error =>  vol: 36 page: 100 line: 7 origin: ปรามฏฺเ{หิ clean: ปรามฏฺเหิ
+error =>  vol: 36 page: 117 line: 8 origin: ปญฺาวิมุตฺโต, clean: ปญฺาวิมุตฺโต
+error =>  vol: 36 page: 136 line: 15 origin: ปญฺPาย clean: ปญฺาย
+error =>  vol: 36 page: 139 line: 18 origin: สณฺ{าติ. clean: สณฺาติ
+error =>  vol: 36 page: 143 line: 16 origin: ทิฏฺ{านุคติํ clean: ทิฏฺานุคติํ
+vol: 37
+error =>  vol: 37 page: 141 line: 3 origin: ายสฺส clean: ายสฺส
+error =>  vol: 37 page: 196 line: 13 origin: าณํ clean: าณํ
+error =>  vol: 37 page: 300 line: 2 origin: ามนฺตา. clean: ามนฺตา
+error =>  vol: 37 page: 423 line: 6 origin: า clean: า
+error =>  vol: 37 page: 468 line: 6 origin: สกฺกายทิฏฺฐฺิํ clean: สกฺกายทิฏฺฐฺิํ
+vol: 38
+error =>  vol: 38 page: 18 line: 3 origin: เวทนากฺขนฺโ, clean: เวทนากฺขนฺโ
+error =>  vol: 38 page: 289 line: 4 origin: จิตฺฺตสงฺขาโร clean: จิตฺฺตสงฺขาโร
+vol: 39
+error =>  vol: 39 page: 7 line: 2 origin: ตํฺ clean: ตํฺ
+error =>  vol: 39 page: 7 line: 2 origin: ตํฺ clean: ตํฺ
+error =>  vol: 39 page: 102 line: 5 origin: นิฏฺิโต. clean: นิฏฺิโต
+error =>  vol: 39 page: 387 line: 21 origin: เทฺเว clean: เทฺเว
+error =>  vol: 39 page: 387 line: 22 origin: อญฺินฺทฺริยํ clean: อญฺินฺทฺริยํ
+error =>  vol: 39 page: 390 line: 22 origin: อญฺาตาวินฺทฺริยํ clean: อญฺาตาวินฺทฺริยํ
+error =>  vol: 39 page: 396 line: 3 origin: อญฺญฺินฺทฺริยํ clean: อญฺญฺินฺทฺริยํ
+vol: 40
+error =>  vol: 40 page: 14 line: 17 origin: ปฏฺาฐนวรํ clean: ปฏฺาฐนวรํ
+error =>  vol: 40 page: 15 line: 10 origin: ปฏฺาฐนวรํ clean: ปฏฺาฐนวรํ
+error =>  vol: 40 page: 16 line: 23 origin: ปฏฺาฐนวรํ clean: ปฏฺาฐนวรํ
+error =>  vol: 40 page: 17 line: 19 origin: ปฏฺาฐนวรํ clean: ปฏฺาฐนวรํ
+error =>  vol: 40 page: 18 line: 11 origin: จิตฺตสมุฏฺานํ clean: จิตฺตสมุฏฺานํ
+error =>  vol: 40 page: 32 line: 11 origin: จิตฺตสมุฏฺานญฺจ clean: จิตฺตสมุฏฺานญฺจ
+error =>  vol: 40 page: 58 line: 10 origin: อญฺมญฺเ clean: อญฺมญฺเ
+error =>  vol: 40 page: 58 line: 22 origin: อญฺมญฺเ clean: อญฺมญฺเ
+error =>  vol: 40 page: 62 line: 7 origin: นิฎฺฐิตํ. clean: นิฺฐิตํ
+error =>  vol: 40 page: 74 line: 19 origin: กายวิญฺาณํ. clean: กายวิญฺาณํ
+error =>  vol: 40 page: 75 line: 25 origin: จิตฺตสมุฏฺานํ clean: จิตฺตสมุฏฺานํ
+error =>  vol: 40 page: 105 line: 14 origin: สงฺสฏฺา clean: สงฺสฏฺา
+error =>  vol: 40 page: 129 line: 24 origin: วุฏฺานสฺส clean: วุฏฺานสฺส
+error =>  vol: 40 page: 130 line: 25 origin: จิตฺตสมุฏฺานานํ clean: จิตฺตสมุฏฺานานํ
+error =>  vol: 40 page: 183 line: 17 origin: นอนนฺตเรา clean: นอนนฺตเรา
+error =>  vol: 40 page: 197 line: 4 origin: นปุเราชาเต clean: นปุเราชาเต
+error =>  vol: 40 page: 203 line: 24 origin: นปุเราชาเต clean: นปุเราชาเต
+error =>  vol: 40 page: 209 line: 8 origin: นปุเราชาเต clean: นปุเราชาเต
+error =>  vol: 40 page: 217 line: 18 origin: นปุเราชาเต clean: นปุเราชาเต
+error =>  vol: 40 page: 218 line: 12 origin: นปุเราชาเต clean: นปุเราชาเต
+error =>  vol: 40 page: 220 line: 1 origin: นอนนฺตเรา clean: นอนนฺตเรา
+error =>  vol: 40 page: 224 line: 17 origin: นปุเราชาเต clean: นปุเราชาเต
+error =>  vol: 40 page: 240 line: 19 origin: นปุเราชาเต clean: นปุเราชาเต
+error =>  vol: 40 page: 257 line: 1 origin: นอนนฺตเรา clean: นอนนฺตเรา
+error =>  vol: 40 page: 258 line: 12 origin: นปุเราชาเต clean: นปุเราชาเต
+error =>  vol: 40 page: 261 line: 15 origin: (บุเรชาเต clean: ุเรชาเต
+error =>  vol: 40 page: 271 line: 20 origin: อนนฺตเรา clean: อนนฺตเรา
+error =>  vol: 40 page: 282 line: 13 origin: นปุเราชาเต clean: นปุเราชาเต
+error =>  vol: 40 page: 283 line: 17 origin: อนนฺตเรา clean: อนนฺตเรา
+error =>  vol: 40 page: 303 line: 9 origin: อนนฺตเรา clean: อนนฺตเรา
+error =>  vol: 40 page: 317 line: 19 origin: อนนฺตเรา clean: อนนฺตเรา
+error =>  vol: 40 page: 343 line: 10 origin: คนฺเ... clean: คนฺเ
+error =>  vol: 40 page: 435 line: 5 origin: นอนนฺตเรา clean: นอนนฺตเรา
+vol: 41
+vol: 42
+error =>  vol: 42 page: 6 line: 9 origin: นอญฺมญฺเ clean: นอญฺมญฺเ
+error =>  vol: 42 page: 14 line: 22 origin: จิตฺตสมุฏฺานานญฺจ clean: จิตฺตสมุฏฺานานญฺจ
+error =>  vol: 42 page: 14 line: 23 origin: จกฺขุวิญฺาณสฺส clean: จกฺขุวิญฺาณสฺส
+error =>  vol: 42 page: 17 line: 2 origin: กายวิญฺาณสฺส. clean: กายวิญฺาณสฺส
+error =>  vol: 42 page: 17 line: 25 origin: จิตฺตสมุฏฺานานญฺจ clean: จิตฺตสมุฏฺานานญฺจ
+error =>  vol: 42 page: 23 line: 11 origin: จิตฺตสมุฏฺานญฺจ clean: จิตฺตสมุฏฺานญฺจ
+error =>  vol: 42 page: 36 line: 16 origin: นิฎฺฐิตํ. clean: นิฺฐิตํ
+error =>  vol: 42 page: 63 line: 7 origin: อญฺมญฺเ clean: อญฺมญฺเ
+error =>  vol: 42 page: 123 line: 22 origin: วิญฺาณสฺส clean: วิญฺาณสฺส
+error =>  vol: 42 page: 292 line: 1 origin: เนวสญฺานาสญฺญายตนสฺส clean: เนวสญฺานาสญฺญายตนสฺส
+error =>  vol: 42 page: 344 line: 1 origin: เราโค clean: เราโค
+vol: 43
+error =>  vol: 43 page: 54 line: 9 origin: นิฎฺฐิตํ. clean: นิฺฐิตํ
+error =>  vol: 43 page: 68 line: 10 origin: ปฏฺิจฺจ clean: ปฏฺิจฺจ
+error =>  vol: 43 page: 70 line: 23 origin: โนจิตฺตสมุฏฺบานญฺจ clean: โนจิตฺตสมุฏฺานญฺจ
+error =>  vol: 43 page: 71 line: 3 origin: โนจิตฺตสมุฏฺบานญฺจ clean: โนจิตฺตสมุฏฺานญฺจ
+error =>  vol: 43 page: 71 line: 6 origin: จิตฺตสมุฏฺบานญฺจ clean: จิตฺตสมุฏฺานญฺจ
+error =>  vol: 43 page: 71 line: 6 origin: จิตฺตสมุฏฺบาโน clean: จิตฺตสมุฏฺาโน
+error =>  vol: 43 page: 72 line: 7 origin: โนจิตฺตสมุฏฺานํ clean: โนจิตฺตสมุฏฺานํ
+error =>  vol: 43 page: 72 line: 7 origin: จิตฺตสมุฏฺาโน clean: จิตฺตสมุฏฺาโน
+error =>  vol: 43 page: 72 line: 15 origin: จิตฺตสมุฏฺานญฺจ clean: จิตฺตสมุฏฺานญฺจ
+error =>  vol: 43 page: 82 line: 24 origin: า clean: า
+error =>  vol: 43 page: 131 line: 16 origin: วุฎฺฐหิตฺวา clean: วฺุฐหิตฺวา
+error =>  vol: 43 page: 170 line: 8 origin: จตฺตาริฺ clean: จตฺตาริฺ
+error =>  vol: 43 page: 179 line: 3 origin: ทิฏฺฐฺฺฺิํ clean: ทิฏฺฐฺฺฺิํ
+error =>  vol: 43 page: 241 line: 13 origin: า clean: า
+error =>  vol: 43 page: 277 line: 10 origin: ปจฺฉาชาตปจฺจเิยน clean: ปจฺฉาชาตปจฺจเิยน
+error =>  vol: 43 page: 380 line: 1 origin: สมาปตฺตฺิํ clean: สมาปตฺตฺิํ
+error =>  vol: 43 page: 394 line: 7 origin: สมาปตฺิํ clean: สมาปตฺิํ
+vol: 44
+error =>  vol: 44 page: 24 line: 4 origin: อญฺมญฺเ clean: อญฺมญฺเ
+error =>  vol: 44 page: 253 line: 22 origin: อญฺมญฺเ clean: อญฺมญฺเ
+error =>  vol: 44 page: 274 line: 9 origin: อญฺมญฺเ clean: อญฺมญฺเ
+error =>  vol: 44 page: 282 line: 19 origin: อญฺมญฺเ clean: อญฺมญฺเ
+error =>  vol: 44 page: 435 line: 5 origin: เนาวาจยคามินาปจยคามิํ clean: เนาวาจยคามินาปจยคามิํ
+error =>  vol: 44 page: 435 line: 7 origin: เนาวาจยคามินาปจยคามิํ clean: เนาวาจยคามินาปจยคามิํ
+error =>  vol: 44 page: 435 line: 15 origin: เนาวจยคามินาปจยคามิ clean: เนาวจยคามินาปจยคามิ
+error =>  vol: 44 page: 435 line: 15 origin: เนาวจยคามินาปจยคามิสฺส clean: เนาวจยคามินาปจยคามิสฺส
+error =>  vol: 44 page: 437 line: 8 origin: อฺปฺปมาโณ clean: อฺปฺปมาโณ
+vol: 45
+error =>  vol: 45 page: 7 line: 5 origin: เอกูนปญฺาส clean: เอกูนปญฺาส
+error =>  vol: 45 page: 7 line: 5 origin: เอกูนปญฺาส. clean: เอกูนปญฺาส
+error =>  vol: 45 page: 8 line: 9 origin: อญฺมญฺเ clean: อญฺมญฺเ
+error =>  vol: 45 page: 8 line: 14 origin: เอกูนปญฺาส clean: เอกูนปญฺาส
+error =>  vol: 45 page: 8 line: 14 origin: เอกูนปญฺาส. clean: เอกูนปญฺาส
+error =>  vol: 45 page: 9 line: 9 origin: เอกูนปญฺาส clean: เอกูนปญฺาส
+error =>  vol: 45 page: 9 line: 9 origin: เอกูนปญฺาส. clean: เอกูนปญฺาส
+error =>  vol: 45 page: 10 line: 14 origin: อฏฺารส, clean: อฏฺารส
+error =>  vol: 45 page: 10 line: 14 origin: อฏฺารส clean: อฏฺารส
+error =>  vol: 45 page: 10 line: 15 origin: อกฺารส, clean: อกฺารส
+error =>  vol: 45 page: 10 line: 19 origin: เอกูนปญฺาส clean: เอกูนปญฺาส
+error =>  vol: 45 page: 10 line: 19 origin: เอกูนปญฺาส. clean: เอกูนปญฺาส
+error =>  vol: 45 page: 12 line: 10 origin: อญฺมญฺเ clean: อญฺมญฺเ
+error =>  vol: 45 page: 12 line: 14 origin: ติกปฏฺานํ clean: ติกปฏฺานํ
+error =>  vol: 45 page: 13 line: 3 origin: จิตฺตสมุฏฺานญฺจ clean: จิตฺตสมุฏฺานญฺจ
+error =>  vol: 45 page: 13 line: 4 origin: จิตฺตสมุฏฺานญฺจ clean: จิตฺตสมุฏฺานญฺจ
+error =>  vol: 45 page: 14 line: 20 origin: จิตฺตสมุฏฺานํ clean: จิตฺตสมุฏฺานํ
+error =>  vol: 45 page: 15 line: 2 origin: จิตฺตสมุฏฺานํ clean: จิตฺตสมุฏฺานํ
+error =>  vol: 45 page: 15 line: 19 origin: อญฺมญฺเ clean: อญฺมญฺเ
+error =>  vol: 45 page: 18 line: 11 origin: อญฺมญฺเ clean: อญฺมญฺเ
+error =>  vol: 45 page: 18 line: 21 origin: อญฺมญฺเ clean: อญฺมญฺเ
+error =>  vol: 45 page: 20 line: 13 origin: อญฺมญฺเ clean: อญฺมญฺเ
+error =>  vol: 45 page: 21 line: 3 origin: อญฺมญฺเ clean: อญฺมญฺเ
+error =>  vol: 45 page: 21 line: 13 origin: วิญฺเยฺโย clean: วิญฺเยฺโย
+error =>  vol: 45 page: 21 line: 14 origin: วิญฺเยฺโย clean: วิญฺเยฺโย
+error =>  vol: 45 page: 21 line: 15 origin: วิญฺเยฺโย clean: วิญฺเยฺโย
+error =>  vol: 45 page: 21 line: 15 origin: วิญฺเยฺโย clean: วิญฺเยฺโย
+error =>  vol: 45 page: 21 line: 17 origin: วิญฺเยฺโย clean: วิญฺเยฺโย
+error =>  vol: 45 page: 21 line: 19 origin: วิญฺเยฺโย clean: วิญฺเยฺโย
+error =>  vol: 45 page: 28 line: 6 origin: นสญฺโ- clean: นสญฺโ
+error =>  vol: 45 page: 33 line: 7 origin: นปรามฏฺโ clean: นปรามฏฺโ
+error =>  vol: 45 page: 33 line: 13 origin: นอปรามฏฺโ clean: นอปรามฏฺโ
+error =>  vol: 45 page: 33 line: 14 origin: นอปรามฏฺโ clean: นอปรามฏฺโ
+error =>  vol: 45 page: 33 line: 15 origin: นอปรามฏฺโ clean: นอปรามฏฺโ
+error =>  vol: 45 page: 33 line: 16 origin: นอปรามฏฺโ clean: นอปรามฏฺโ
+error =>  vol: 45 page: 33 line: 17 origin: นอปรามฏฺโ clean: นอปรามฏฺโ
+error =>  vol: 45 page: 33 line: 20 origin: นอปรามฏฺโ clean: นอปรามฏฺโ
+error =>  vol: 45 page: 34 line: 1 origin: นปรามฏฺโ clean: นปรามฏฺโ
+error =>  vol: 45 page: 34 line: 3 origin: นอปรามฏฺโ clean: นอปรามฏฺโ
+error =>  vol: 45 page: 34 line: 4 origin: นปรามฏฺโ clean: นปรามฏฺโ
+error =>  vol: 45 page: 34 line: 5 origin: นอปรามฏฺโ clean: นอปรามฏฺโ
+error =>  vol: 45 page: 34 line: 6 origin: นอปรามฏฺโ clean: นอปรามฏฺโ
+error =>  vol: 45 page: 34 line: 9 origin: นอปรามฏฺโ clean: นอปรามฏฺโ
+error =>  vol: 45 page: 35 line: 1 origin: อญฺมญฺเ clean: อญฺมญฺเ
+error =>  vol: 45 page: 36 line: 2 origin: จิตฺตสมุฏฺานํ clean: จิตฺตสมุฏฺานํ
+error =>  vol: 45 page: 36 line: 6 origin: อญฺมญฺเ clean: อญฺมญฺเ
+error =>  vol: 45 page: 36 line: 8 origin: นจิตฺตสํสฏฺโ clean: นจิตฺตสํสฏฺโ
+error =>  vol: 45 page: 36 line: 11 origin: นจิตฺตสมุฏฺานํ clean: นจิตฺตสมุฏฺานํ
+error =>  vol: 45 page: 36 line: 11 origin: นจิตฺตสมุฏฺาโน clean: นจิตฺตสมุฏฺาโน
+error =>  vol: 45 page: 37 line: 4 origin: นจิตฺตสํสฏฺสมุฏฺานํ clean: นจิตฺตสํสฏฺสมุฏฺานํ
+error =>  vol: 45 page: 37 line: 4 origin: นจิตฺตสํสฏฺสมุฏฺาโน clean: นจิตฺตสํสฏฺสมุฏฺาโน
+error =>  vol: 45 page: 37 line: 7 origin: นจิตฺตสํสฏฺสมุฏฺานสหภุ clean: นจิตฺตสํสฏฺสมุฏฺานสหภุ
+error =>  vol: 45 page: 37 line: 7 origin: นจิตฺตสํสฏฺสมุฏฺานสหภู clean: นจิตฺตสํสฏฺสมุฏฺานสหภู
+error =>  vol: 45 page: 37 line: 10 origin: นจิตฺตสํสฏฺสมุฏฺานานุปริวตฺติํ clean: นจิตฺตสํสฏฺสมุฏฺานานุปริวตฺติํ
+error =>  vol: 45 page: 37 line: 10 origin: นจิตฺตสํสฏฺสมุฏฺานานุปริวตฺติ clean: นจิตฺตสํสฏฺสมุฏฺานานุปริวตฺติ
+error =>  vol: 45 page: 40 line: 1 origin: นสงฺกิลิฏฺโ clean: นสงฺกิลิฏฺโ
+error =>  vol: 45 page: 40 line: 2 origin: นอสงฺกิลิฏฺโ clean: นอสงฺกิลิฏฺโ
+error =>  vol: 45 page: 40 line: 3 origin: นสงฺกิลิฏฺโ clean: นสงฺกิลิฏฺโ
+error =>  vol: 45 page: 40 line: 4 origin: นสงฺกิลิฏฺโ clean: นสงฺกิลิฏฺโ
+error =>  vol: 45 page: 40 line: 4 origin: นอสงฺกิลิฏฺโ clean: นอสงฺกิลิฏฺโ
+error =>  vol: 45 page: 40 line: 6 origin: นสงฺกิลิฏฺโ clean: นสงฺกิลิฏฺโ
+error =>  vol: 45 page: 41 line: 6 origin: นอสงฺกิลิฏฺโ clean: นอสงฺกิลิฏฺโ
+error =>  vol: 45 page: 41 line: 8 origin: นอสงฺกิลิฏฺโ clean: นอสงฺกิลิฏฺโ
+error =>  vol: 45 page: 41 line: 11 origin: นอสงฺกิลิฏฺโ clean: นอสงฺกิลิฏฺโ
+error =>  vol: 45 page: 46 line: 3 origin: อญฺมญฺเ clean: อญฺมญฺเ
+error =>  vol: 45 page: 46 line: 10 origin: อญฺมญฺเ clean: อญฺมญฺเ
+error =>  vol: 45 page: 48 line: 12 origin: ทุกปฏฺานํ clean: ทุกปฏฺานํ
+error =>  vol: 45 page: 49 line: 2 origin: จิตฺตสมุฏฺานญฺจ clean: จิตฺตสมุฏฺานญฺจ
+error =>  vol: 45 page: 50 line: 14 origin: จิตฺตสมุฏฺานญฺจ clean: จิตฺตสมุฏฺานญฺจ
+error =>  vol: 45 page: 56 line: 16 origin: อญฺมญฺเ clean: อญฺมญฺเ
+error =>  vol: 45 page: 56 line: 19 origin: จิตฺตสมุฏฺานํ clean: จิตฺตสมุฏฺานํ
+error =>  vol: 45 page: 57 line: 15 origin: อญฺมญฺเ clean: อญฺมญฺเ
+error =>  vol: 45 page: 58 line: 21 origin: อญฺมญฺเ clean: อญฺมญฺเ
+error =>  vol: 45 page: 59 line: 3 origin: อญฺมญฺเ clean: อญฺมญฺเ
+error =>  vol: 45 page: 61 line: 8 origin: อญฺมญฺเ clean: อญฺมญฺเ
+error =>  vol: 45 page: 61 line: 15 origin: อญฺมญฺเ clean: อญฺมญฺเ
+error =>  vol: 45 page: 61 line: 18 origin: อญฺมญฺเ clean: อญฺมญฺเ
+error =>  vol: 45 page: 61 line: 20 origin: โนจิตฺตสมุฏฺานํ clean: โนจิตฺตสมุฏฺานํ
+error =>  vol: 45 page: 62 line: 3 origin: โนจิตฺตสํสฏฺสมุฏฺานํ clean: โนจิตฺตสํสฏฺสมุฏฺานํ
+error =>  vol: 45 page: 62 line: 4 origin: โนจิตฺตสํสฏฺสมุฏฺานสหภุ clean: โนจิตฺตสํสฏฺสมุฏฺานสหภุ
+error =>  vol: 45 page: 62 line: 5 origin: โนจิตฺตสํสฏฺสมุฏฺานานุ-ปริวตฺติํ clean: โนจิตฺตสํสฏฺสมุฏฺานานุปริวตฺติํ
+error =>  vol: 45 page: 64 line: 17 origin: อญฺมญฺเ clean: อญฺมญฺเ
+error =>  vol: 45 page: 67 line: 17 origin: อญฺมญฺเ clean: อญฺมญฺเ
+error =>  vol: 45 page: 67 line: 19 origin: ทุกติกปฏฺานํ clean: ทุกติกปฏฺานํ
+error =>  vol: 45 page: 75 line: 17 origin: อฏฺารส, clean: อฏฺารส
+error =>  vol: 45 page: 75 line: 18 origin: อฏฺารส. clean: อฏฺารส
+error =>  vol: 45 page: 75 line: 20 origin: นจิตฺตสมุฏฺานํ clean: นจิตฺตสมุฏฺานํ
+error =>  vol: 45 page: 76 line: 1 origin: อฏฺารส, clean: อฏฺารส
+error =>  vol: 45 page: 76 line: 2 origin: อฏฺารส. clean: อฏฺารส
+error =>  vol: 45 page: 76 line: 3 origin: นจิตฺตสํสฏฺสมุฏฺานํ clean: นจิตฺตสํสฏฺสมุฏฺานํ
+error =>  vol: 45 page: 76 line: 4 origin: นจิตฺตสํสฏฺสมุฏฺานสหภุ clean: นจิตฺตสํสฏฺสมุฏฺานสหภุ
+error =>  vol: 45 page: 76 line: 5 origin: นจิตฺตสํสฏฺสมุฏฺานา- clean: นจิตฺตสํสฏฺสมุฏฺานา
+error =>  vol: 45 page: 76 line: 6 origin: อฏฺารส, clean: อฏฺารส
+error =>  vol: 45 page: 76 line: 7 origin: อฏฺารส. clean: อฏฺารส
+error =>  vol: 45 page: 80 line: 9 origin: เอกูนปญฺาส clean: เอกูนปญฺาส
+error =>  vol: 45 page: 80 line: 9 origin: เอกูนปญฺาส. clean: เอกูนปญฺาส
+error =>  vol: 45 page: 80 line: 15 origin: อญฺมญฺเ clean: อญฺมญฺเ
+error =>  vol: 45 page: 81 line: 11 origin: เอกูนปญฺาส.) clean: เอกูนปญฺาส
+error =>  vol: 45 page: 82 line: 3 origin: อญฺมญฺเ clean: อญฺมญฺเ
+error =>  vol: 45 page: 82 line: 7 origin: เอกปญฺาส.) clean: เอกปญฺาส
+error =>  vol: 45 page: 82 line: 15 origin: เอกูนปญฺาส.) clean: เอกูนปญฺาส
+error =>  vol: 45 page: 82 line: 22 origin: เอกูนปญฺาส.) clean: เอกูนปญฺาส
+error =>  vol: 45 page: 84 line: 1 origin: อญฺมญฺเ clean: อญฺมญฺเ
+error =>  vol: 45 page: 84 line: 6 origin: อญฺมญฺเ clean: อญฺมญฺเ
+error =>  vol: 45 page: 84 line: 9 origin: อญฺมญฺเ clean: อญฺมญฺเ
+error =>  vol: 45 page: 84 line: 18 origin: อญฺมญฺเ clean: อญฺมญฺเ
+error =>  vol: 45 page: 84 line: 22 origin: อญฺมญฺเ clean: อญฺมญฺเ
+error =>  vol: 45 page: 85 line: 6 origin: อญฺมญฺเ clean: อญฺมญฺเ
+error =>  vol: 45 page: 85 line: 9 origin: อญฺมญฺเ clean: อญฺมญฺเ
+error =>  vol: 45 page: 85 line: 12 origin: อญฺมญฺเ clean: อญฺมญฺเ
+error =>  vol: 45 page: 85 line: 14 origin: อญฺมญฺเ clean: อญฺมญฺเ
+error =>  vol: 45 page: 85 line: 20 origin: อญฺมญฺเ clean: อญฺมญฺเ
+error =>  vol: 45 page: 86 line: 1 origin: อญฺมญฺเ clean: อญฺมญฺเ
+error =>  vol: 45 page: 86 line: 3 origin: อญฺมญฺเ clean: อญฺมญฺเ
+error =>  vol: 45 page: 86 line: 6 origin: อญฺมญฺเ clean: อญฺมญฺเ
+error =>  vol: 45 page: 86 line: 9 origin: อญฺมญฺเ clean: อญฺมญฺเ
+error =>  vol: 45 page: 86 line: 10 origin: นจิตฺตสมุฏฺานํ clean: นจิตฺตสมุฏฺานํ
+error =>  vol: 45 page: 86 line: 12 origin: นจิตฺตสํสฏฺสมุฏฺานํ clean: นจิตฺตสํสฏฺสมุฏฺานํ
+error =>  vol: 45 page: 86 line: 13 origin: นจิตฺตสํสฏฺสมุฏฺาน-สหภุ clean: นจิตฺตสํสฏฺสมุฏฺานสหภุ
+error =>  vol: 45 page: 86 line: 14 origin: นจิตฺตสํสฏฺสมุฏฺานานุปริวตฺติํ clean: นจิตฺตสํสฏฺสมุฏฺานานุปริวตฺติํ
+error =>  vol: 45 page: 86 line: 15 origin: อญฺมญฺเ clean: อญฺมญฺเ
+error =>  vol: 45 page: 86 line: 18 origin: อญฺมญฺเ clean: อญฺมญฺเ
+error =>  vol: 45 page: 87 line: 1 origin: อญฺมญฺเ clean: อญฺมญฺเ
+error =>  vol: 45 page: 87 line: 5 origin: อญฺมญฺเ clean: อญฺมญฺเ
+error =>  vol: 45 page: 87 line: 8 origin: อญฺมญฺเ clean: อญฺมญฺเ
+error =>  vol: 45 page: 88 line: 3 origin: อญฺมญฺเ clean: อญฺมญฺเ
+error =>  vol: 45 page: 88 line: 23 origin: ติกทุกปฏฺานํ clean: ติกทุกปฏฺานํ
+error =>  vol: 45 page: 103 line: 3 origin: เอกูนปญฺาส, clean: เอกูนปญฺาส
+error =>  vol: 45 page: 103 line: 3 origin: เอกูนปญฺาส clean: เอกูนปญฺาส
+error =>  vol: 45 page: 103 line: 4 origin: เอกูนปญฺาส. clean: เอกูนปญฺาส
+error =>  vol: 45 page: 103 line: 6 origin: เอกูนปญฺาส clean: เอกูนปญฺาส
+error =>  vol: 45 page: 103 line: 8 origin: เอกูนปญฺาส. clean: เอกูนปญฺาส
+error =>  vol: 45 page: 103 line: 14 origin: เอกูนปญฺาส clean: เอกูนปญฺาส
+error =>  vol: 45 page: 103 line: 15 origin: เอกูนปญฺาส. clean: เอกูนปญฺาส
+error =>  vol: 45 page: 103 line: 18 origin: อญฺมญฺเ clean: อญฺมญฺเ
+error =>  vol: 45 page: 105 line: 3 origin: เอกูนปญฺาส clean: เอกูนปญฺาส
+error =>  vol: 45 page: 105 line: 4 origin: เอกูนปญฺาส. clean: เอกูนปญฺาส
+error =>  vol: 45 page: 106 line: 1 origin: อญฺมญฺเ clean: อญฺมญฺเ
+error =>  vol: 45 page: 106 line: 5 origin: เอกูนปญฺาส.) clean: เอกูนปญฺาส
+error =>  vol: 45 page: 106 line: 15 origin: เอกูนปญฺาส.) clean: เอกูนปญฺาส
+error =>  vol: 45 page: 106 line: 22 origin: เอกูนปญฺาส.) clean: เอกูนปญฺาส
+error =>  vol: 45 page: 111 line: 15 origin: อญฺมญฺเ clean: อญฺมญฺเ
+error =>  vol: 45 page: 112 line: 6 origin: อญฺมญฺเ clean: อญฺมญฺเ
+error =>  vol: 45 page: 112 line: 10 origin: ติกติกปฏฺานํ clean: ติกติกปฏฺานํ
+error =>  vol: 45 page: 114 line: 5 origin: อญฺมญฺเ clean: อญฺมญฺเ
+error =>  vol: 45 page: 118 line: 8 origin: นจิตฺตสมุฏฺานํ clean: นจิตฺตสมุฏฺานํ
+error =>  vol: 45 page: 118 line: 12 origin: นจิตฺตสํสฏฺสมุฏฺานํ clean: นจิตฺตสํสฏฺสมุฏฺานํ
+error =>  vol: 45 page: 118 line: 12 origin: นจิตฺตสํสฏฺสมุฏฺานสหภุ clean: นจิตฺตสํสฏฺสมุฏฺานสหภุ
+error =>  vol: 45 page: 118 line: 13 origin: นจิตฺตสํสฏฺสมุฏฺานานุปริวตฺติํ clean: นจิตฺตสํสฏฺสมุฏฺานานุปริวตฺติํ
+error =>  vol: 45 page: 121 line: 6 origin: อญฺมญฺเ clean: อญฺมญฺเ
+error =>  vol: 45 page: 121 line: 12 origin: อญฺมญฺเ clean: อญฺมญฺเ
+error =>  vol: 45 page: 121 line: 21 origin: อญฺมญฺเ clean: อญฺมญฺเ
+error =>  vol: 45 page: 122 line: 7 origin: อญฺมญฺเ clean: อญฺมญฺเ
+error =>  vol: 45 page: 122 line: 10 origin: อญฺมญฺเ clean: อญฺมญฺเ
+error =>  vol: 45 page: 124 line: 2 origin: อญฺมญฺเ clean: อญฺมญฺเ
+error =>  vol: 45 page: 124 line: 9 origin: อญฺมญฺเ clean: อญฺมญฺเ
+error =>  vol: 45 page: 124 line: 10 origin: นจิตฺตสมุฏฺานํ clean: นจิตฺตสมุฏฺานํ
+error =>  vol: 45 page: 124 line: 13 origin: นจิตฺตสํสฏฺสมุฏฺานํ clean: นจิตฺตสํสฏฺสมุฏฺานํ
+error =>  vol: 45 page: 124 line: 14 origin: นจิตฺตสํสฏฺสมุฏฺานสหภุ clean: นจิตฺตสํสฏฺสมุฏฺานสหภุ
+error =>  vol: 45 page: 124 line: 14 origin: นจิตฺตสํสฏฺสมุฏฺานานุปริวตฺติํ clean: นจิตฺตสํสฏฺสมุฏฺานานุปริวตฺติํ
+error =>  vol: 45 page: 126 line: 5 origin: อญฺมญฺเ clean: อญฺมญฺเ
+error =>  vol: 45 page: 130 line: 9 origin: นจิตฺตสมุฏฺานํ clean: นจิตฺตสมุฏฺานํ
+error =>  vol: 45 page: 130 line: 13 origin: นจิตฺตสํสฏฺสมุฏฺานํ clean: นจิตฺตสํสฏฺสมุฏฺานํ
+error =>  vol: 45 page: 130 line: 14 origin: นจิตฺตสํสฏฺสมุฏฺานสหภุ clean: นจิตฺตสํสฏฺสมุฏฺานสหภุ
+error =>  vol: 45 page: 130 line: 14 origin: นจิตฺตสํสฏฺสมุฏฺานานุปริวตฺติํ clean: นจิตฺตสํสฏฺสมุฏฺานานุปริวตฺติํ
+error =>  vol: 45 page: 133 line: 12 origin: ทุกทุกปฏฺานํ clean: ทุกทุกปฏฺานํ
+error =>  vol: 45 page: 133 line: 13 origin: ปจฺจนียปฏฺานํ clean: ปจฺจนียปฏฺานํ
+error =>  vol: 45 page: 134 line: 2 origin: จิตฺตสมุฏฺานํ clean: จิตฺตสมุฏฺานํ
+error =>  vol: 45 page: 134 line: 3 origin: จิตฺตสมุฏฺานญฺจ clean: จิตฺตสมุฏฺานญฺจ
+error =>  vol: 45 page: 134 line: 8 origin: จิตฺตสมุฏฺานํ clean: จิตฺตสมุฏฺานํ
+error =>  vol: 45 page: 134 line: 10 origin: จิตฺตสมุฏฺานํ clean: จิตฺตสมุฏฺานํ
+error =>  vol: 45 page: 134 line: 11 origin: จิตฺตสมุฏฺานญฺจ clean: จิตฺตสมุฏฺานญฺจ
+error =>  vol: 45 page: 135 line: 4 origin: จิตฺตสมุฏฺานญฺจ clean: จิตฺตสมุฏฺานญฺจ
+error =>  vol: 45 page: 135 line: 6 origin: จิตฺตสมุฏฺานํ clean: จิตฺตสมุฏฺานํ
+error =>  vol: 45 page: 135 line: 11 origin: จิตฺตสมุฏฺานํ clean: จิตฺตสมุฏฺานํ
+error =>  vol: 45 page: 135 line: 17 origin: (จิตฺตสมุฏฺานรูปเมว clean: จิตฺตสมุฏฺานรูปเมว
+error =>  vol: 45 page: 136 line: 21 origin: อฏฺารส clean: อฏฺารส
+error =>  vol: 45 page: 137 line: 18 origin: อฏฺารส, clean: อฏฺารส
+error =>  vol: 45 page: 137 line: 19 origin: อญฺมญฺเ clean: อญฺมญฺเ
+error =>  vol: 45 page: 137 line: 20 origin: อฏฺารส, clean: อฏฺารส
+error =>  vol: 45 page: 138 line: 3 origin: จิตฺตสมุฏฺานญฺจ clean: จิตฺตสมุฏฺานญฺจ
+error =>  vol: 45 page: 138 line: 5 origin: จิตฺตสมุฏฺานญฺจ clean: จิตฺตสมุฏฺานญฺจ
+error =>  vol: 45 page: 142 line: 10 origin: อฏฺารส, clean: อฏฺารส
+error =>  vol: 45 page: 143 line: 14 origin: อฏฺารส, clean: อฏฺารส
+error =>  vol: 45 page: 143 line: 15 origin: อญฺมญฺเ clean: อญฺมญฺเ
+error =>  vol: 45 page: 143 line: 15 origin: อฏฺารส, clean: อฏฺารส
+error =>  vol: 45 page: 143 line: 17 origin: อฏฺารส, clean: อฏฺารส
+error =>  vol: 45 page: 147 line: 13 origin: อญฺมญฺเ clean: อญฺมญฺเ
+error =>  vol: 45 page: 158 line: 14 origin: อฏฺารส, clean: อฏฺารส
+error =>  vol: 45 page: 158 line: 14 origin: อญฺมญฺเ clean: อญฺมญฺเ
+error =>  vol: 45 page: 158 line: 14 origin: อฏฺารส, clean: อฏฺารส
+error =>  vol: 45 page: 158 line: 15 origin: อฏฺารส, clean: อฏฺารส
+error =>  vol: 45 page: 170 line: 6 origin: นจิตฺตสํสฏฺสมุฏฺานานุปริวตฺตี clean: นจิตฺตสํสฏฺสมุฏฺานานุปริวตฺตี
+error =>  vol: 45 page: 195 line: 15 origin: โนจิตฺตสํสฏฺสมุฏฺานสหภู clean: โนจิตฺตสํสฏฺสมุฏฺานสหภู
+error =>  vol: 45 page: 202 line: 19 origin: เทฺ clean: เทฺ
+error =>  vol: 45 page: 238 line: 21 origin: อฎฺฐ clean: อฺฐ
+error =>  vol: 45 page: 350 line: 4 origin: อนนฺตเรา clean: อนนฺตเรา
+error =>  vol: 45 page: 397 line: 2 origin: อนนฺตเรา clean: อนนฺตเรา
+
+
+
+################################################################
+ตัวอักษรสุดท้ายเป็นพินทุ ซึ่งไม่ได้
+vol: 1
+found =>  vol: 1 page: 169 line: 10 origin: สุกฺกวิสฺ
+found =>  vol: 1 page: 241 line: 9 origin: ธนกฺกีตาจกฺ
+vol: 2
+found =>  vol: 2 page: 1 line: 4 origin: อนุญฺญาตนฺ
+vol: 3
+found =>  vol: 3 page: 67 line: 9 origin: ตสฺ
+found =>  vol: 3 page: 163 line: 7 origin: ทิฏฺ
+vol: 4
+vol: 5
+found =>  vol: 5 page: 5 line: 5 origin: อหนฺ
+found =>  vol: 5 page: 119 line: 1 origin: อฏฺฐารสฺ
+vol: 6
+found =>  vol: 6 page: 37 line: 22 origin: ตีหงฺ
+found =>  vol: 6 page: 225 line: 7 origin: ปิณฺฑปาตปฏิกฺกนฺ
+vol: 7
+found =>  vol: 7 page: 132 line: 1 origin: รกฺขาวรณคุตฺ
+vol: 8
+vol: 9
+found =>  vol: 9 page: 131 line: 16 origin: เวหาสฏฺฐญฺ
+vol: 10
+found =>  vol: 10 page: 76 line: 19 origin: อุปสงฺกมิตฺ
+vol: 11
+found =>  vol: 11 page: 143 line: 14 origin: อสหานธมฺมตนฺ
+vol: 12
+found =>  vol: 12 page: 62 line: 5 origin: ปุริสปุคฺคลสฺสฺ
+found =>  vol: 12 page: 209 line: 15 origin: วฏฺฏนฺ
+found =>  vol: 12 page: 229 line: 5 origin: ปฏิวิรเมยฺ
+found =>  vol: 12 page: 234 line: 1 origin: เอวมฺ
+found =>  vol: 12 page: 262 line: 15 origin: จตุนฺนญฺ
+found =>  vol: 12 page: 413 line: 12 origin: สมาปชฺชนฺตสฺสฺ
+found =>  vol: 12 page: 457 line: 24 origin: นฺ
+vol: 13
+found =>  vol: 13 page: 43 line: 9 origin: ปฏิกฺ
+found =>  vol: 13 page: 90 line: 20 origin: ปจฺจเวกฺ
+found =>  vol: 13 page: 107 line: 8 origin: ยสสฺ
+found =>  vol: 13 page: 328 line: 17 origin: วิหเรยฺยฺ
+found =>  vol: 13 page: 328 line: 20 origin: วิหเรยฺยฺ
+vol: 14
+found =>  vol: 14 page: 37 line: 2 origin: ปนิเธกจฺ
+found =>  vol: 14 page: 77 line: 16 origin: นิสฺสรณนฺ
+found =>  vol: 14 page: 84 line: 7 origin: โสตญฺ
+found =>  vol: 14 page: 126 line: 9 origin: สมฺมาทิฏฺฐิสฺสฺ
+found =>  vol: 14 page: 146 line: 12 origin: จิตฺตนฺ
+found =>  vol: 14 page: 347 line: 20 origin: ตชฺชสฺสฺ
+found =>  vol: 14 page: 351 line: 19 origin: อริยสาวกสฺสฺ
+vol: 15
+vol: 16
+found =>  vol: 16 page: 4 line: 19 origin: ทุกฺขกฺ
+found =>  vol: 16 page: 26 line: 17 origin: ปฏิจฺจสมุปฺ
+found =>  vol: 16 page: 74 line: 6 origin: สรณงฺ
+vol: 17
+found =>  vol: 17 page: 29 line: 9 origin: วิญฺญาณญฺ
+found =>  vol: 17 page: 30 line: 17 origin: วิญฺญาณญฺ
+found =>  vol: 17 page: 83 line: 5 origin: ปฏิจฺจฺ
+found =>  vol: 17 page: 83 line: 8 origin: ปฏิจฺจฺ
+found =>  vol: 17 page: 182 line: 13 origin: ทิฏฺ
+found =>  vol: 17 page: 185 line: 2 origin: ทิฏฺ
+vol: 18
+found =>  vol: 18 page: 303 line: 16 origin: กุสลญฺ
+vol: 19
+found =>  vol: 19 page: 65 line: 13 origin: ตนฺ
+found =>  vol: 19 page: 303 line: 12 origin: รญฺโญฺ
+found =>  vol: 19 page: 303 line: 13 origin: รญฺโญฺ
+vol: 20
+found =>  vol: 20 page: 242 line: 6 origin: อิทมสสฺ
+found =>  vol: 20 page: 284 line: 10 origin: ปญฺญากฺ
+vol: 21
+found =>  vol: 21 page: 203 line: 11 origin: จสฺสฺ
+found =>  vol: 21 page: 222 line: 10 origin: ผุสฺสฺ
+vol: 22
+found =>  vol: 22 page: 114 line: 6 origin: “ยงฺ
+found =>  vol: 22 page: 133 line: 10 origin: ยงฺ
+found =>  vol: 22 page: 211 line: 17 origin: ยฺ
+found =>  vol: 22 page: 311 line: 14 origin: ปูรนฺ
+found =>  vol: 22 page: 424 line: 3 origin: ราคสฺสฺ
+vol: 23
+vol: 24
+found =>  vol: 24 page: 4 line: 7 origin: นิพฺพิทาวิราคสมฺ
+found =>  vol: 24 page: 83 line: 14 origin: สมฺปชญฺญญฺจฺ
+found =>  vol: 24 page: 83 line: 16 origin: สมฺปชญฺญญฺจฺ
+found =>  vol: 24 page: 83 line: 18 origin: สมฺปชญฺญญฺจฺ
+found =>  vol: 24 page: 94 line: 15 origin: “สติสมฺปชญฺญ”นฺติสฺสฺ
+found =>  vol: 24 page: 190 line: 17 origin: นฺ
+found =>  vol: 24 page: 204 line: 2 origin: นฺ
+vol: 25
+found =>  vol: 25 page: 195 line: 14 origin: “สสฺสตญฺ
+found =>  vol: 25 page: 195 line: 14 origin: อสสฺสตญฺ
+found =>  vol: 25 page: 196 line: 22 origin: ‘สสฺสตญฺ
+found =>  vol: 25 page: 276 line: 8 origin: สวาหินนฺ
+found =>  vol: 25 page: 399 line: 8 origin: เตนญฺ
+found =>  vol: 25 page: 453 line: 7 origin: โตเทยฺ
+found =>  vol: 25 page: 523 line: 14 origin: พหุชาครสฺสฺ
+vol: 26
+found =>  vol: 26 page: 293 line: 18 origin: คจฺเฉยฺ
+vol: 27
+found =>  vol: 27 page: 75 line: 17 origin: มหาพฺรหเมฺ
+found =>  vol: 27 page: 104 line: 15 origin: มนุเชสฺ
+found =>  vol: 27 page: 412 line: 3 origin: ภาตุจฺ
+vol: 28
+found =>  vol: 28 page: 155 line: 12 origin: สฺวชฺเชวงฺ
+vol: 29
+found =>  vol: 29 page: 49 line: 9 origin: สมฺปชญฺญญฺจฺ
+found =>  vol: 29 page: 143 line: 1 origin: วิมุตฺ
+found =>  vol: 29 page: 295 line: 20 origin: อพฺภุฏฺ
+found =>  vol: 29 page: 314 line: 3 origin: สติสมฺปชญฺญญฺจฺ
+vol: 30
+found =>  vol: 30 page: 291 line: 1 origin: ปริปุจฺ
+vol: 31
+found =>  vol: 31 page: 17 line: 19 origin: อภิญฺ
+found =>  vol: 31 page: 18 line: 11 origin: สมาธิสมฺโพชฺ
+found =>  vol: 31 page: 28 line: 14 origin: วิกฺขมฺภนปฺ
+found =>  vol: 31 page: 28 line: 16 origin: ปฏิปฺปสฺสทฺธิปฺ
+found =>  vol: 31 page: 47 line: 4 origin: อากิญฺจญฺ
+found =>  vol: 31 page: 48 line: 18 origin: อากิญฺ
+found =>  vol: 31 page: 66 line: 19 origin: อากิญฺจญฺ
+found =>  vol: 31 page: 78 line: 9 origin: ปฏิปฺปสฺ
+found =>  vol: 31 page: 83 line: 6 origin: โสตวิญฺ
+found =>  vol: 31 page: 93 line: 23 origin: ปีติสมฺโพชฺ
+found =>  vol: 31 page: 99 line: 13 origin: วิญฺญาณญฺ
+found =>  vol: 31 page: 101 line: 19 origin: วิญฺญาณญฺ
+found =>  vol: 31 page: 115 line: 2 origin: ฉนฺทสมาธิปธานสงฺ
+found =>  vol: 31 page: 117 line: 3 origin: โสมนสฺ
+found =>  vol: 31 page: 120 line: 15 origin: โสตาปตฺติผลกฺ
+found =>  vol: 31 page: 142 line: 2 origin: สมุฏฺฐานฏฺ
+found =>  vol: 31 page: 180 line: 19 origin: อธิฏฺฐานสมฺ
+found =>  vol: 31 page: 181 line: 3 origin: อากิญฺ
+found =>  vol: 31 page: 185 line: 9 origin: ปฏินิสฺ
+found =>  vol: 31 page: 212 line: 15 origin: ปฏินิสฺสคฺ
+found =>  vol: 31 page: 223 line: 12 origin: ปณีตตรสตินฺ
+found =>  vol: 31 page: 224 line: 3 origin: ปญฺจหินฺ
+found =>  vol: 31 page: 224 line: 4 origin: อากิญฺจญฺ
+found =>  vol: 31 page: 224 line: 9 origin: ปญฺจินฺ
+found =>  vol: 31 page: 224 line: 22 origin: ปญฺจหินฺ
+found =>  vol: 31 page: 244 line: 3 origin: อุเปกฺขุปฏฺ
+found =>  vol: 31 page: 244 line: 17 origin: อญฺญินฺ
+found =>  vol: 31 page: 246 line: 20 origin: อุปฏฺ
+found =>  vol: 31 page: 255 line: 16 origin: อากิญฺจญฺ
+found =>  vol: 31 page: 263 line: 15 origin: สีลพฺ
+found =>  vol: 31 page: 263 line: 19 origin: สีลพฺ
+found =>  vol: 31 page: 264 line: 8 origin: สีลพฺ
+found =>  vol: 31 page: 265 line: 2 origin: จิตฺตสมฺ
+found =>  vol: 31 page: 265 line: 3 origin: จิตฺตสมฺ
+found =>  vol: 31 page: 265 line: 4 origin: จิตฺตสมฺ
+found =>  vol: 31 page: 267 line: 16 origin: อญฺญมญฺ
+found =>  vol: 31 page: 271 line: 8 origin: สมาธินฺ
+found =>  vol: 31 page: 361 line: 8 origin: “อญฺญาโกณฺ
+found =>  vol: 31 page: 412 line: 2 origin: ลหํฺ
+vol: 32
+found =>  vol: 32 page: 129 line: 14 origin: ธมฺมจกฺกิกตฺเถรสฺ
+found =>  vol: 32 page: 468 line: 17 origin: สสิสฺสนฺ
+vol: 33
+vol: 34
+found =>  vol: 34 page: 80 line: 8 origin: อากิญฺ
+found =>  vol: 34 page: 83 line: 20 origin: อากิญฺจญฺ
+found =>  vol: 34 page: 156 line: 3 origin: อนวเสสปฺ
+found =>  vol: 34 page: 245 line: 16 origin: เวทนากฺ
+found =>  vol: 34 page: 257 line: 25 origin: ชิวฺหาวิญฺเญยฺ
+found =>  vol: 34 page: 275 line: 11 origin: เวทนากฺ
+found =>  vol: 34 page: 275 line: 13 origin: เวทนากฺ
+found =>  vol: 34 page: 289 line: 11 origin: วิญฺญาณกฺ
+found =>  vol: 34 page: 290 line: 15 origin: วิญฺญาณกฺ
+found =>  vol: 34 page: 291 line: 1 origin: วิญฺญาณกฺ
+found =>  vol: 34 page: 302 line: 18 origin: นิมิตฺตคฺ
+found =>  vol: 34 page: 310 line: 20 origin: จิตฺตุปฺ
+found =>  vol: 34 page: 311 line: 5 origin: จิตฺตุปฺ
+vol: 35
+found =>  vol: 35 page: 139 line: 12 origin: คนฺถญฺ
+found =>  vol: 35 page: 139 line: 12 origin: “คนฺถญฺ
+found =>  vol: 35 page: 139 line: 14 origin: คนฺถญฺ
+found =>  vol: 35 page: 139 line: 16 origin: “คนฺถญฺ
+found =>  vol: 35 page: 142 line: 4 origin: “อุปาทานญฺ
+found =>  vol: 35 page: 153 line: 16 origin: “อาสวญฺ
+found =>  vol: 35 page: 280 line: 1 origin: สติสมฺโพชฺ
+vol: 36
+vol: 37
+found =>  vol: 37 page: 13 line: 19 origin: วตฺตพฺ
+found =>  vol: 37 page: 272 line: 15 origin: ปฏิจฺจสมุปฺ
+vol: 38
+found =>  vol: 38 page: 294 line: 9 origin: นิโรธสมาปนฺ
+vol: 39
+found =>  vol: 39 page: 7 line: 2 origin: ตํฺ
+found =>  vol: 39 page: 7 line: 2 origin: ตํฺ
+vol: 40
+found =>  vol: 40 page: 2 line: 11 origin: เตสงฺ
+found =>  vol: 40 page: 2 line: 11 origin: เตสงฺ
+found =>  vol: 40 page: 2 line: 18 origin: เตสงฺ
+found =>  vol: 40 page: 2 line: 18 origin: เตสงฺ
+found =>  vol: 40 page: 3 line: 20 origin: เยสงฺ
+found =>  vol: 40 page: 3 line: 20 origin: เยสงฺ
+found =>  vol: 40 page: 3 line: 21 origin: เตสงฺ
+found =>  vol: 40 page: 3 line: 21 origin: เตสงฺ
+found =>  vol: 40 page: 4 line: 23 origin: เยสงฺ
+found =>  vol: 40 page: 4 line: 23 origin: เยสงฺ
+found =>  vol: 40 page: 4 line: 24 origin: เตสงฺ
+found =>  vol: 40 page: 4 line: 24 origin: เตสงฺ
+found =>  vol: 40 page: 138 line: 16 origin: ผรุสงฺ
+found =>  vol: 40 page: 140 line: 2 origin: ผรุสงฺ
+found =>  vol: 40 page: 142 line: 7 origin: ผรุสงฺ
+found =>  vol: 40 page: 287 line: 19 origin: สมฺปยุตฺ
+found =>  vol: 40 page: 295 line: 12 origin: ผรุสงฺ
+found =>  vol: 40 page: 295 line: 26 origin: ผรุสงฺ
+found =>  vol: 40 page: 296 line: 18 origin: ผรุสงฺ
+found =>  vol: 40 page: 305 line: 10 origin: สหชาตอญฺญมญฺ
+found =>  vol: 40 page: 354 line: 17 origin: อิเมสงฺ
+found =>  vol: 40 page: 427 line: 13 origin: สงฺกิลิฏฺ
+vol: 41
+found =>  vol: 41 page: 124 line: 6 origin: ปีติสหคตานญฺ
+vol: 42
+found =>  vol: 42 page: 39 line: 20 origin: โมหญฺ
+vol: 43
+found =>  vol: 43 page: 170 line: 8 origin: จตฺตาริฺ
+vol: 44
+vol: 45
+found =>  vol: 45 page: 202 line: 19 origin: เทฺ
+found =>  vol: 45 page: 379 line: 10 origin: นเหตุญฺ
+found =>  vol: 45 page: 379 line: 11 origin: นเหตุญฺ
+>>> 

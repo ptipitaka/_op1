@@ -461,12 +461,71 @@ def Update_word_seq_in_WordList():
             error_list[each_word.id] = each_word.word
     print(error_list)
 
-def change_characters(char_from, char_to):
-    all_p = Page.objects.all()
-    for i in all_p:
-        i.content.replace(char_from, char_to)
 
-def find_characters(char, newChar):
+def check_word_before_generation_wordlist(edition_id):
+    found = 0
+    try:
+        all_pages = Page.objects.filter(edition=edition_id).order_by("volume", "page_number")
+        vol_no = 0
+        for each_page in all_pages:
+            if vol_no != each_page.volume.volume_number:
+                vol_no = each_page.volume.volume_number
+                print('vol:', vol_no)
+            position = 1
+            line_number = 1
+            if each_page.content:               
+                all_lines = each_page.content.replace("\r", "").split("\n")
+                for each_line in all_lines:
+                    all_words = each_line.split(" ")
+                    for each_word in all_words:
+                        cleaned_word = clean(each_word)
+                        if len(cleaned_word.replace(" ", "")):
+                            # print(vol_no, each_page.page_number, line_number, each_word, cleaned_word)
+                            try:
+                                # print(cv_pali_to_roman(extract(cleaned_word)))
+                                cv_pali_to_roman(extract(cleaned_word))
+                            except:
+                                found += 1
+                                print('#', found, 'vol:', vol_no, 'page:', each_page.page_number, 'line:', line_number, 'origin:', each_word, 'clean:', cleaned_word)
+                            position += 1
+                    line_number += 1
+    except Exception as e:
+        print("ERROR: Found error from create_wordlist")
+        print(f"Error message: {str(e)}")
+        traceback.print_exc()
+    
+
+
+def check_pintu_in_last_char(edition_id):
+    try:
+        all_pages = Page.objects.filter(edition=edition_id).order_by("volume", "page_number")
+        vol_no = 0
+        for each_page in all_pages:
+            if vol_no != each_page.volume.volume_number:
+                vol_no = each_page.volume.volume_number
+                print('vol:', vol_no)
+            position = 1
+            line_number = 1
+            if each_page.content:
+                all_lines = each_page.content.replace("\r", "").split("\n")
+                for each_line in all_lines:
+                    all_words = each_line.split(" ")
+                    for each_word in all_words:
+                        try:
+                            if each_word[-1] == "ฺ":
+                                print('found => ','vol:', vol_no, 'page:', each_page.page_number, 'line:', line_number, 'origin:', each_word,)
+                                position += 1
+                        except:
+                            pass
+                    line_number += 1
+    except Exception as e:
+        print("ERROR: Found error from create_wordlist")
+        print(f"Error message: {str(e)}")
+        traceback.print_exc()
+    
+
+
+def find_and_replace_characters_in_page(char, newChar):
     all_p = Page.objects.all()
     found = 0
     for page in all_p:
@@ -474,17 +533,17 @@ def find_characters(char, newChar):
             if char in page.content:
                 found += 1
                 page.content = page.content.replace(char, newChar)
-                # page.save()
-                print(found, page.edition, page.volume, page.page_number)
+                page.save()
+                print('#: ', found, 'e:', page.edition, 'v:', page.volume, 'p:', page.page_number)
         except:
             pass
 
-def find_characters_in_WordList(char):
+def find_text_in_page_content(text):
     all_p = Page.objects.all()
     found = 0
     for page in all_p:
         try:
-            if char in page.content:
+            if text in page.content:
                 found += 1
                 print(found, page.edition, page.volume, page.page_number)
         except:
