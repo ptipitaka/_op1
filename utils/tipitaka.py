@@ -46,13 +46,14 @@ def find_and_replace_text_in_tipitaka_page_content(text, newtext):
 # เนื่องจากศัพท์จะลงท้ายด้วยพินทุไม่ได้ ข้อมูลที่พบเหล่านี้อาจเป็นเพราะคำที่เว้นผิด
 # ----------------------------------------------------------------
 def pintu_found_at_last_char_of_word(edition_id):
+    found = 0
     try:
         all_pages = Page.objects.filter(edition=edition_id).order_by("volume", "page_number")
         vol_no = 0
         for each_page in all_pages:
             if vol_no != each_page.volume.volume_number:
                 vol_no = each_page.volume.volume_number
-                print('vol:', vol_no)
+                print('========vol:', vol_no)
             position = 1
             line_number = 1
             if each_page.content:
@@ -62,7 +63,8 @@ def pintu_found_at_last_char_of_word(edition_id):
                     for each_word in all_words:
                         try:
                             if each_word[-1] == "ฺ":
-                                print('found => ','vol:', vol_no, 'page:', each_page.page_number, 'line:', line_number, 'origin:', each_word,)
+                                found += 1
+                                print('#: ', found, 'vol:', vol_no, 'page:', each_page.page_number, 'line:', line_number, 'origin:', each_word,)
                                 position += 1
                         except:
                             pass
@@ -84,7 +86,7 @@ def check_word_before_generation_wordlist(edition_id):
         for each_page in all_pages:
             if vol_no != each_page.volume.volume_number:
                 vol_no = each_page.volume.volume_number
-                print('vol:', vol_no)
+                print('========vol:', vol_no)
             position = 1
             line_number = 1
             if each_page.content:               
@@ -100,7 +102,7 @@ def check_word_before_generation_wordlist(edition_id):
                                 cv_pali_to_roman(extract(cleaned_word))
                             except:
                                 found += 1
-                                print('#', found, 'vol:', vol_no, 'page:', each_page.page_number, 'line:', line_number, 'origin:', each_word, 'clean:', cleaned_word)
+                                print('#', found, 'page:', each_page.page_number, 'line:', line_number, 'origin:', each_word, 'clean:', cleaned_word)
                             position += 1
                     line_number += 1
     except Exception as e:

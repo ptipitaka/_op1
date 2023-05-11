@@ -65,9 +65,10 @@ class DigitalArchiveDetialsView(SuccessMessageMixin, UpdateView):
 
     def get_success_url(self):
         edition = int(self.request.GET.get('edition'))
-        volume = int(self.request.GET.get('volume'))
-        page = int(self.request.GET.get('page')  or 1)
-        return '/inscriber/digital-archive?edition=%s&volume=%s&page=%s' %(edition, volume, page)
+        volume = self.request.GET.get('volume') or ''
+        page_number = self.request.GET.get('page_number') or ''
+        content = self.request.GET.get('content') or ''
+        return '/inscriber/digital-archive?edition=%s&volume=%s&page_number=%s&content=%s' %(edition, volume, page_number, content)
 
 
 class WordListView(SingleTableMixin, FilterView):

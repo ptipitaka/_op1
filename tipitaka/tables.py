@@ -18,7 +18,7 @@ class DigitalArchiveTable(tables.Table):
         model = Page
         template_name = "django_tables2/w3css.html"
         attrs = {"class": "w3-table w3-bordered"}
-        fields = ("page_number", "sample_content",)
+        fields = ("volume", "page_number", "sample_content",)
         order_by = ("page_number",)
 
 
