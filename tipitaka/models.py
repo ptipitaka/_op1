@@ -63,7 +63,7 @@ class Volume(models.Model):
     
 
 class Page(models.Model):
-    edition = models.ForeignKey("Edition", verbose_name=_("edition"), on_delete=models.CASCADE,)
+    edition = models.ForeignKey("Edition", on_delete=models.CASCADE, verbose_name=_("Edition"),)
     volume = ChainedForeignKey(
         Volume,
         chained_field = "edition",
@@ -71,10 +71,10 @@ class Page(models.Model):
         show_all = False,
         auto_choose = True,
         sort = True,
-        verbose_name = _("volume"),
+        verbose_name = _("Volume"),
         on_delete = models.CASCADE)
-    page_number = models.IntegerField(db_index=True, verbose_name=_("number"))
-    content = models.TextField(null=True, verbose_name=_("content"))
+    page_number = models.IntegerField(db_index=True, verbose_name=_("Page Number"))
+    content = models.TextField(null=True, verbose_name=_("Content"))
     proofread = models.BooleanField(verbose_name=_("Proof-read"), default=False)
     
     class Meta:

@@ -5,10 +5,21 @@ from mptt.forms import TreeNodeMultipleChoiceField
 from .models import Edition, Page, WordlistVersion, WordList, Structure, CommonReference
 
 # query form (digital archive page)
-class QForm(forms.ModelForm):
+class DigitalArchiveForm(forms.ModelForm):
     class Meta:
         model = Page
-        fields = ["edition", "volume",]
+        fields = ["edition", "volume", "page_number", "content"]
+        widgets = {
+            'content': forms.TextInput(attrs={'rows': 1, 'max_length': 20, 'required': False, 'default': ''})
+        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        if 'page_number' in self.fields:
+            self.fields['page_number'].required = False
+        if 'content' in self.fields:
+            self.fields['content'].required = False
+
 
 # page edit form (digital archive page)
 class EditForm(forms.ModelForm):
