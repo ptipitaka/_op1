@@ -15,6 +15,7 @@ class DigitalArchiveForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self.fields['volume'].required = False
         self.fields['page_number'].required = False
         self.fields['content'].required = False
 

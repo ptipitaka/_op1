@@ -27,16 +27,18 @@ from .forms import DigitalArchiveForm, EditForm, UpdWlAndPageForm, WLGForm, Word
 class DigitalArchiveView(View):
     def get(self, request):
         form = DigitalArchiveForm(request.GET)
+        
         edition = request.GET.get('edition')
-        volume = request.GET.get('volume')
-        page_number = request.GET.get('page_number', 0)
+        volume = request.GET.get('volume', '')
+        page_number = request.GET.get('page_number', '')
         content = request.GET.get('content', '')
 
         queryset = Page.objects.filter(
             edition=edition,
-            volume=volume
         )
 
+        if volume:
+            queryset = queryset.filter(volume=volume)
         if content:
             queryset = queryset.filter(content__contains=content)
         if page_number:
