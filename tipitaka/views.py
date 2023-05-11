@@ -27,19 +27,22 @@ from .forms import DigitalArchiveForm, EditForm, UpdWlAndPageForm, WLGForm, Word
 class DigitalArchiveView(View):
     def get(self, request):
         form = DigitalArchiveForm(request.GET)
-        edition = request.GET.get('edition', None)
-        volume = request.GET.get('volume', None)
-        page_number = request.GET.get('page_number', None)
-        content = request.GET.get('content', None)
+        edition = request.GET.get('edition')
+        volume = request.GET.get('volume')
+        page_number = request.GET.get('page_number', 0)
+        content = request.GET.get('content', '')
 
         queryset = Page.objects.filter(
             edition=edition,
-            volume=volume,
-            content__contains=content
-        ).order_by('edition', 'volume', 'page_number')
+            volume=volume
+        )
 
+        if content:
+            queryset = queryset.filter(content__contains=content)
         if page_number:
             queryset = queryset.filter(page_number=page_number)
+
+        queryset = queryset.order_by('edition', 'volume', 'page_number')
 
         table = DigitalArchiveTable(queryset)
         table.paginate(page=request.GET.get("page", 1), per_page=25)
@@ -50,8 +53,7 @@ class DigitalArchiveView(View):
             'table': table,
             'total_rec': total_rec
         })
-    def post(self, request):
-        pass
+
 
 class DigitalArchiveDetialsView(SuccessMessageMixin, UpdateView):
     template_name = "tipitaka/digital_archive_details.html"

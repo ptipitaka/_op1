@@ -10,15 +10,13 @@ class DigitalArchiveForm(forms.ModelForm):
         model = Page
         fields = ["edition", "volume", "page_number", "content"]
         widgets = {
-            'content': forms.TextInput(attrs={'rows': 1, 'max_length': 20, 'required': False, 'default': ''})
+            'content': forms.TextInput(attrs={'rows': 1, 'max_length': 200, 'required': False})
         }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        if 'page_number' in self.fields:
-            self.fields['page_number'].required = False
-        if 'content' in self.fields:
-            self.fields['content'].required = False
+        self.fields['page_number'].required = False
+        self.fields['content'].required = False
 
 
 # page edit form (digital archive page)
