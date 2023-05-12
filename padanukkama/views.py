@@ -10,7 +10,7 @@ from tipitaka.models import TableOfContent
 from .tables import NamaSaddamalaTable, NamaSaddamalaFilter, AkhyataSaddamalaTable, AkhyataSaddamalaFilter, PadanukkamaTable, PadanukkamaFilter
 from .forms import NamaSaddamalaForm, AkhyataSaddamalaForm, PadanukkamaCreateForm, PadanukkamaUpdateForm
 
-# Create your views here.
+
 class NamaSaddamalaView(SingleTableMixin, FilterView):
     model = NamaSaddamala
     template_name = "padanukkama/nama_saddamala.html"
@@ -22,7 +22,7 @@ class NamaSaddamalaView(SingleTableMixin, FilterView):
         context = super(NamaSaddamalaView, self).get_context_data(**kwargs)
         context["total_rec"] = '{:,}'.format(len(self.get_table().rows)) 
         return context
-    
+
 
 class NamaSaddamalaCreateView(CreateView, views.LoginRequiredMixin, views.SuperuserRequiredMixin):
     model = NamaSaddamala
@@ -47,6 +47,7 @@ class NamaSaddamalaUpdateView(UpdateView, views.LoginRequiredMixin, views.Superu
         context['url_name'] = resolve(self.request.path_info).url_name
         return context
 
+
 class NamaSaddamalaDeleteView(DeleteView, views.LoginRequiredMixin, views.SuperuserRequiredMixin):
     model = NamaSaddamala
     template_name = "padanukkama/nama_saddamala_detail.html"
@@ -57,7 +58,7 @@ class NamaSaddamalaDeleteView(DeleteView, views.LoginRequiredMixin, views.Superu
         context['nama_saddamala'] = self.get_object()
         context['url_name'] = resolve(self.request.path_info).url_name
         return context
-    
+
 
 class AkhyataSaddamalaView(SingleTableMixin, FilterView):
     model = AkhyataSaddamala
@@ -70,7 +71,7 @@ class AkhyataSaddamalaView(SingleTableMixin, FilterView):
         context = super(AkhyataSaddamalaView, self).get_context_data(**kwargs)
         context["total_rec"] = '{:,}'.format(len(self.get_table().rows)) 
         return context
-    
+
 
 class AkhyataSaddamalaCreateView(CreateView, views.LoginRequiredMixin, views.SuperuserRequiredMixin):
     model = AkhyataSaddamala
@@ -95,6 +96,7 @@ class AkhyataSaddamalaUpdateView(UpdateView, views.LoginRequiredMixin, views.Sup
         context['url_name'] = resolve(self.request.path_info).url_name
         return context
 
+
 class AkhyataSaddamalaDeleteView(DeleteView, views.LoginRequiredMixin, views.SuperuserRequiredMixin):
     model = AkhyataSaddamala
     template_name = "padanukkama/akhyata_saddamala_detail.html"
@@ -105,7 +107,6 @@ class AkhyataSaddamalaDeleteView(DeleteView, views.LoginRequiredMixin, views.Sup
         context['akhyata_saddamala'] = self.get_object()
         context['url_name'] = resolve(self.request.path_info).url_name
         return context
-
 
 
 class PadanukkamaView(SingleTableMixin, FilterView):
@@ -119,7 +120,7 @@ class PadanukkamaView(SingleTableMixin, FilterView):
         context = super(PadanukkamaView, self).get_context_data(**kwargs)
         context["total_rec"] = '{:,}'.format(len(self.get_table().rows)) 
         return context
-    
+
 
 class PadanukkamaCreateView(CreateView, views.LoginRequiredMixin, views.SuperuserRequiredMixin):
     model = Padanukkama
@@ -131,7 +132,8 @@ class PadanukkamaCreateView(CreateView, views.LoginRequiredMixin, views.Superuse
         context = super().get_context_data(**kwargs)
         context['url_name'] = resolve(self.request.path_info).url_name
         return context
-    
+
+
 class PadanukkamaUpdateView(UpdateView, views.LoginRequiredMixin, views.SuperuserRequiredMixin):
     model = Padanukkama
     context_object_name = 'padanukkama'

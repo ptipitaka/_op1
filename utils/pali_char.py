@@ -274,7 +274,10 @@ def cv_pali_to_roman(pali_expand):
         'y','r','l','v','s','h','ḷ','ṃ']
 
     y = ''
-    for x in pali_expand:
-        n = aukkrani.index(x)
-        y += roman[n]
+    try:
+        for x in pali_expand:
+            n = aukkrani.index(x)
+            y += roman[n]
+    except:
+        y = ''
     return y

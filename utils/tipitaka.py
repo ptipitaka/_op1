@@ -159,6 +159,9 @@ def create_wordlist(edition_id, created_by):
                     all_words = each_line.split(" ")
                     for each_word in all_words:
                         cleaned_word = clean(each_word)
+                        extract_word = extract(cleaned_word)
+                        word_seq=encode(extract_word)
+                        word_roman_script = cv_pali_to_roman(extract_word)
                         if len(cleaned_word.replace(" ", "")):
                             new_wordlist_instance = WordList(
                                 code="%s-%s-%s-%s" % (edition_instance.code,
@@ -166,7 +169,8 @@ def create_wordlist(edition_id, created_by):
                                                       str(each_page.page_number).zfill(4),
                                                       str(position).zfill(3)),
                                 word=cleaned_word,
-                                # word_seq=encode(extract(cleaned_word)),
+                                word_seq=word_seq,
+                                word_roman_script=word_roman_script,
                                 position=position,
                                 line_number=line_number,
                                 wordlist_version=new_WordlistVersion_instance,

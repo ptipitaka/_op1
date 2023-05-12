@@ -164,10 +164,10 @@ class WordList(models.Model):
     def __str__(self):
         return f"{self.code} {self.word}"
     
-    def save(self, *args, **kwargs):
-        self.word_seq = encode(extract(clean(self.word)))
-        self.word_roman_script = cv_pali_to_roman(extract(clean(self.word)))
-        super().save(*args, **kwargs)
+    # def save(self, *args, **kwargs):
+    #     self.word_seq = encode(extract(clean(self.word)))
+    #     self.word_roman_script = cv_pali_to_roman(extract(clean(self.word)))
+    #     super().save(*args, **kwargs)
 
     
 
