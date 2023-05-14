@@ -239,17 +239,9 @@ class Pada(MPTTModel):
         related_name='children',
         verbose_name=_("Parent Words")
     )
-    uuid =  models.CharField(
-        max_length=10,
-        null=True,
-        verbose_name=_("UUID"))
     
     def __str__(self):
         return f"{self.pada}"
-
-    # def save(self, *args, **kwargs):
-    #     self.pada_order = encode(extract(clean(self.pada)))
-    #     super().save(*args, **kwargs)
     
     class MPTTMeta:
         order_insertion_by = ['pada_seq']
