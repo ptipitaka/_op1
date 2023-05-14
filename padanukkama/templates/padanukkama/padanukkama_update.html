@@ -1,14 +1,10 @@
     {% extends 'main/base.html' %}
 
-    {% load static %}
+    {% load static widget_tweaks i18n %}
     
     {% block extra_css %}
         <link rel="stylesheet" type="text/css" href="{% static 'padanukkama/style.css' %}">
     {% endblock %}
-
-    {% load widget_tweaks %}
-
-    {% load i18n %}
 
     {% block apptitle %}
         {% include 'padanukkama/include/title.html' %} : {% trans 'Nāmasaddapadamālā' %}・{% trans 'Update' %}
@@ -62,10 +58,15 @@
         </div>
         <div class="w3-container w3-padding">
             <div class="w3-bar w3-center">
-                <a href="{% url 'nama_saddamala_delete' object.pk %}"
+                <a href="{% url 'padanukkama_delete' object.pk %}"
+                    class="w3-button w3-white w3-border w3-round-xlarge w3-hover-red" 
+                    style="width:150px">
+                    {% trans 'Delete' %}
+                </a>
+                <a href="{% url 'padanukkama_update_pada_sadda' object.pk %}"
                     class="w3-button w3-white w3-border w3-round-xlarge w3-hover-blue" 
                     style="width:150px">
-                    {% trans 'Generate Pada' %}
+                    {% trans 'Pada' %} - {% trans 'Sadda' %}
                 </a>
                 <button
                     type="submit" style="width:150px"

@@ -1,14 +1,22 @@
 from braces import views
+from django.contrib import messages
 from django_filters.views import FilterView
 from django.shortcuts import get_object_or_404
 from django_tables2.views import SingleTableMixin
+from django.shortcuts import redirect
 from django.urls import resolve, reverse_lazy
 from django.views.generic import CreateView, UpdateView, DeleteView
 
-from .models import NamaSaddamala, AkhyataSaddamala, Padanukkama
-from tipitaka.models import TableOfContent
-from .tables import NamaSaddamalaTable, NamaSaddamalaFilter, AkhyataSaddamalaTable, AkhyataSaddamalaFilter, PadanukkamaTable, PadanukkamaFilter
-from .forms import NamaSaddamalaForm, AkhyataSaddamalaForm, PadanukkamaCreateForm, PadanukkamaUpdateForm
+from mptt.exceptions import InvalidMove
+
+from .models import NamaSaddamala, AkhyataSaddamala, Padanukkama, Pada
+
+from .tables import NamaSaddamalaTable, \
+                    NamaSaddamalaFilter, AkhyataSaddamalaTable, \
+                    AkhyataSaddamalaFilter, PadanukkamaTable, \
+                    PadanukkamaFilter, PadaTable, PadaFilter
+from .forms import  NamaSaddamalaForm, AkhyataSaddamalaForm, \
+                    PadanukkamaCreateForm, PadanukkamaUpdateForm
 
 
 class NamaSaddamalaView(SingleTableMixin, FilterView):
@@ -125,12 +133,13 @@ class PadanukkamaView(SingleTableMixin, FilterView):
 class PadanukkamaCreateView(CreateView, views.LoginRequiredMixin, views.SuperuserRequiredMixin):
     model = Padanukkama
     template_name = "padanukkama/padanukkama_create.html"
-    form_class = PadanukkamaCreateForm, PadanukkamaUpdateForm
-    success_url = reverse_lazy('padanukkama_update')
+    form_class = PadanukkamaCreateForm
+
+    def get_success_url(self):
+        return reverse_lazy('padanukkama_update', args=(self.object.pk,))
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['url_name'] = resolve(self.request.path_info).url_name
         return context
 
 
@@ -140,7 +149,7 @@ class PadanukkamaUpdateView(UpdateView, views.LoginRequiredMixin, views.Superuse
     template_name = "padanukkama/padanukkama_update.html"
     form_class = PadanukkamaUpdateForm
     success_url = reverse_lazy('padanukkama')
-
+    
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
         kwargs['table_of_content'] = self.object.table_of_content
@@ -148,6 +157,41 @@ class PadanukkamaUpdateView(UpdateView, views.LoginRequiredMixin, views.Superuse
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['url_name'] = resolve(self.request.path_info).url_name
-
         return context
+    
+    def form_invalid(self, form):
+        messages.error(self.request, "Form is invalid. Please correct the errors.")
+        return super().form_invalid(form)
+
+
+class PadanukkamaUPdatePadaSaddaView( SingleTableMixin, FilterView, views.LoginRequiredMixin, views.SuperuserRequiredMixin):
+    model = Pada
+    template_name = "padanukkama/padanukkama_update_pada_sadda.html"
+    context_object_name = 'pada'
+    table_class = PadaTable
+    filterset_class = PadaFilter
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        padanukkama_id = self.kwargs.get('padanukkama_id')
+        padanukkama = get_object_or_404(Padanukkama, pk=padanukkama_id)
+        queryset = Pada.objects.filter(padanukkama=padanukkama)
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super(PadanukkamaUPdatePadaSaddaView, self).get_context_data(**kwargs)
+        padanukkama_id = self.kwargs['padanukkama_id']
+        context["padanukkama_id"] = padanukkama_id
+        context["total_rec"] = '{:,}'.format(len(self.get_table().rows)) 
+        return context
+
+
+def PadanukkamaCreatePadaSadda(request, padanukkama_id):
+    print(padanukkama_id)
+    return redirect(request.path)
+
+
+class PadanukkamaDeleteView(DeleteView, views.LoginRequiredMixin, views.SuperuserRequiredMixin):
+    model = Padanukkama
+    success_url = reverse_lazy('padanukkama')
+    template_name = "padanukkama/padanukkama_delete.html"

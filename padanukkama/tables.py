@@ -7,8 +7,7 @@ from django.utils.safestring import mark_safe
 from django.utils.translation import gettext_lazy as _
 from mptt.templatetags.mptt_tags import cache_tree_children
 
-from .models import NamaSaddamala, AkhyataSaddamala, Padanukkama
-from tipitaka.models import Structure
+from .models import NamaSaddamala, AkhyataSaddamala, Padanukkama, Pada
 
 class NamaSaddamalaTable(tables.Table):
     title_order = tables.Column(visible=False)
@@ -92,21 +91,27 @@ class PadanukkamaFilter(FilterSet):
             "title": ["icontains"],
             "publication": ["exact"],
         }
+        labels = {"title": _("Title"),}
 
-class StructureTable(tables.Table):
-    title = tables.Column(attrs={'td': {
+class PadaTable(tables.Table):
+    pada = tables.Column(attrs={'td': {
         'style': lambda value, record: 'padding-left: %spx' % (50 + (record.level * 50)),
         } 
     })
 
     class Meta:
-        model = Structure
+        model = Pada
         template_name = "django_tables2/w3css.html"
         attrs = {"class": "w3-table w3-bordered"}
-        fields = ('code', 'title', 'breadcrumb',)
+        fields = ('pada',)
         
     def __init__(self, data, **kwargs):
         super().__init__(data, **kwargs)
         
-        ## Cache the tree structure for performance ##
+        ## Cache the tree Pada for performance ##
         cache_tree_children(data)
+
+class PadaFilter(FilterSet):    
+    class Meta:
+        model = Pada
+        fields = {"pada": ["contains"]}

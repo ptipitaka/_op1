@@ -73,7 +73,7 @@ class DigitalArchiveDetialsView(SuccessMessageMixin, UpdateView):
 
 class WordListView(SingleTableMixin, FilterView):
     model = WordList
-    template_name = "tipitaka/wordlist-master.html"
+    template_name = "tipitaka/wordlist_master.html"
     context_object_name  = "wordlist"
     table_class = WordlistMasterTable
     filterset_class = WordlistMasterFilter
@@ -86,7 +86,7 @@ class WordListView(SingleTableMixin, FilterView):
 
 class WordListPageSourceView(views.LoginRequiredMixin, views.SuperuserRequiredMixin, UpdateView):
     model = WordList
-    template_name = "tipitaka/wordlist-page-source.html"
+    template_name = "tipitaka/wordlist_page_source.html"
     form_class = UpdWlAndPageForm
     success_url = reverse_lazy('wordlist_master')
 

@@ -14,4 +14,6 @@ urlpatterns = [
     path('padanukkama', views.PadanukkamaView.as_view(), name='padanukkama'),
     path('padanukkama/create/', views.PadanukkamaCreateView.as_view(), name='padanukkama_create'),
     path('padanukkama/<int:pk>/update/', views.PadanukkamaUpdateView.as_view(), name='padanukkama_update'),
+    path('padanukkama/<int:padanukkama_id>/update/pada-sadda', views.PadanukkamaUPdatePadaSaddaView.as_view(), name='padanukkama_update_pada_sadda'),
+    path('padanukkama/<int:pk>/delete/', views.PadanukkamaDeleteView.as_view(), name='padanukkama_delete'),
 ]

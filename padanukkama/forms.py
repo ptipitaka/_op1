@@ -1,10 +1,11 @@
 from django import forms
 from django.contrib.auth.models import User
+from django.shortcuts import get_object_or_404
 from django.utils.safestring import mark_safe
 from django.utils.translation import gettext_lazy as _
 from mptt.forms import TreeNodeMultipleChoiceField
 
-from .models import NamaSaddamala, AkhyataSaddamala, Padanukkama, Language
+from .models import NamaSaddamala, AkhyataSaddamala, Padanukkama, Pada, Language
 from tipitaka.models import WordlistVersion, TableOfContent, Structure
 
 
@@ -23,7 +24,7 @@ class AkhyataSaddamalaForm(forms.ModelForm):
 class PadanukkamaCreateForm(forms.ModelForm):
     class Meta:
         model = Padanukkama
-        exclude = ['structure']
+        exclude = ['structure', 'wordlist_version']
 
 
 class CheckboxMultipleSelect(forms.CheckboxSelectMultiple):
@@ -77,3 +78,4 @@ class PadanukkamaUpdateForm(forms.ModelForm):
     class Meta:
         model = Padanukkama
         fields = '__all__'
+

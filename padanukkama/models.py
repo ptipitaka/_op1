@@ -1,10 +1,11 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.shortcuts import get_object_or_404
 from django.utils.translation import gettext_lazy as _
-from mptt.models import MPTTModel
+
+from mptt.models import MPTTModel, TreeForeignKey
 from smart_selects.db_fields import ChainedManyToManyField
 from utils.pali_char import *
-
 
 from tipitaka.models import WordlistVersion, TableOfContent, Structure
 
@@ -230,26 +231,28 @@ class Pada(MPTTModel):
         null=True,
         max_length=150,
         verbose_name=_("word in roman script"))
-    parents = models.ManyToManyField(
-        'self', blank=True,
-        symmetrical=False,
+    parent = TreeForeignKey(
+        'self',
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
         related_name='children',
-        verbose_name=_("Parent Words"))
+        verbose_name=_("Parent Words")
+    )
+    uuid =  models.CharField(
+        max_length=10,
+        null=True,
+        verbose_name=_("UUID"))
     
     def __str__(self):
-        children_count = self.get_children().count()
-        if children_count > 0:
-            children_names = ', '.join(str(child) for child in self.get_children())
-            return f"{self.pada} ({children_names})"
-        else:
-            return f"{self.pada}"
+        return f"{self.pada}"
 
-    def save(self, *args, **kwargs):
-        self.pada_order = encode(extract(clean(self.pada)))
-        super().save(*args, **kwargs)
+    # def save(self, *args, **kwargs):
+    #     self.pada_order = encode(extract(clean(self.pada)))
+    #     super().save(*args, **kwargs)
     
     class MPTTMeta:
-        order_insertion_by = ['pada']
+        order_insertion_by = ['pada_seq']
 
 # class Sadda(models.Model):
 #     title = models.CharField(verbose_name=_("Title"), db_index=True, max_length=255)
