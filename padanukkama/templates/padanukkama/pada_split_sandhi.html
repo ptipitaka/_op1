@@ -1,0 +1,39 @@
+{% extends 'main/base.html' %}
+
+{% load static i18n widget_tweaks mptt_tags %}
+
+{% load render_table from django_tables2 %}
+
+{% block apptitle %}
+    {% include 'padanukkama/include/title.html' %} : {% trans 'Nāmasaddapadamālā' %}・{% trans 'Update - Pada ' %}
+{% endblock %}
+
+{% block apptitle_option %}
+    <a href="{% url 'padanukkama_pada' pada.padanukkama_id %}"
+        class="w3-button w3-round-xlarge w3-hover-amber w3-display-right">
+        {% trans "Back" %}
+    </a>
+{% endblock %}
+
+{% block body %}
+    {% render_table table %}
+    
+    <form action="" method="post"
+        class="w3-container w3-text-blue w3-padding"
+        style="width:60%;margin:auto;">
+        {% csrf_token %}
+        {% for field in form %}
+            <p>
+                <label>{% trans field.label_tag %}</label>
+                {{ field|add_class:"w3-input" }}
+            </p>
+        {% endfor %}
+
+        <input
+            type="submit"
+            name="filter-submit"
+            value="{% trans "Submit" %}"
+            class="w3-button w3-dark-grey w3-hover-brown w3-round-xlarge"
+        />
+    </form>  
+{% endblock %}

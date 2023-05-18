@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models import Q
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
 from django.utils.translation import gettext_lazy as _
@@ -9,25 +10,34 @@ from utils.pali_char import *
 
 from tipitaka.models import WordlistVersion, TableOfContent, Structure
 
-# Create your models here.
+class NamaType(models.Model):
+    sequence = models.IntegerField(verbose_name=_("sequence"))
+    code = models.CharField(max_length=5, verbose_name=_("code"))
+    title = models.CharField(max_length=80, verbose_name=_("title"))
+
+    def __str__(self):
+        return f"{self.title} ({self.code})"
+
 class Linga(models.Model):
     sequence = models.IntegerField(verbose_name=_("sequence"))
     code = models.CharField(max_length=5, verbose_name=_("code"))
     title = models.CharField(max_length=80, verbose_name=_("title"))
 
     def __str__(self):
-        return f"{self.title}"
+        return f"{self.title} ({self.code})"
 
 class Karanta(models.Model):
     sequence = models.IntegerField(verbose_name=_("sequence"))
+    code = models.CharField(max_length=5, verbose_name=_("code"))
     title = models.CharField(max_length=80, verbose_name=_("title"))
 
     def __str__(self):
-        return f"{self.title}"
+        return f"{self.title} ({self.code})"
 
 class NamaSaddamala(models.Model):
     title = models.CharField(max_length=80, verbose_name=_("title"))
     title_order = models.CharField(max_length=80, verbose_name=_("title order"))
+    nama_type = models.ForeignKey("NamaType", null=True, blank=True, verbose_name=_("Type"), on_delete=models.SET_NULL) 
     linga = models.ForeignKey("Linga", null=True, blank=True, verbose_name=_("Liṅga"), on_delete=models.SET_NULL) 
     karanta = models.ForeignKey("Karanta", null=True, blank=True, verbose_name=_("Kāranta"), on_delete=models.SET_NULL) 
     nom_sg = models.CharField(max_length=225, null=True, blank=True, verbose_name=_("Paṭhamā Ekavacana"))
@@ -69,6 +79,7 @@ class Paccaya(models.Model):
 
     def __str__(self):
         return f"{self.title}"
+
 
 class AkhyataSaddamala(models.Model):
     title = models.CharField(max_length=80, verbose_name=_("title"))
@@ -212,7 +223,49 @@ class Padanukkama(models.Model):
 
     def __str__(self):
         return self.title
-    
+
+
+class Sadda(models.Model):
+    SADDA_TYPE_CHOICES = [
+        ('NamaSaddamala', 'NamaSaddamala'),
+        ('AkhyataSaddamala', 'AkhyataSaddamala'),
+    ]
+    padanukkama = models.ForeignKey(
+        Padanukkama,
+        on_delete=models.CASCADE,
+        related_name='saddas',
+        verbose_name=_("Padanukkama"))
+    sadda = models.CharField(
+        max_length=150,
+        verbose_name=_("Sadda"))
+    meaning = models.TextField(
+        verbose_name=_("Meaning"))
+    construction = models.CharField(
+        max_length=150,
+        verbose_name=_("Contraction"))
+    sadda_type = models.CharField(
+        max_length=20,
+        choices=SADDA_TYPE_CHOICES,
+        verbose_name=_("Sadda Type")
+    )
+    linked_sadda = models.ForeignKey(
+        'self',
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+        related_name='linked_saddas',
+        verbose_name=_("Linked Sadda")
+    )
+
+    def get_linked_sadda_instance(self):
+        if self.sadda_type == 'NamaSaddamala':
+            return NamaSaddamala.objects.get(sadda=self)
+        elif self.sadda_type == 'AkhyataSaddamala':
+            return AkhyataSaddamala.objects.get(sadda=self)
+        else:
+            return None
+
+
 class Pada(MPTTModel):
     padanukkama = models.ForeignKey(
         Padanukkama,
@@ -243,24 +296,31 @@ class Pada(MPTTModel):
     def __str__(self):
         return f"{self.pada}"
     
+    def get_current_with_descendants(self):
+        descendants = self.get_descendants(include_self=True)
+        return Pada.objects.filter(Q(pk=self.pk) | Q(pk__in=descendants))
+    
+    def get_parent_and_siblings(self):
+        if self.parent:
+            obj = self.parent.get_descendants(include_self=False)
+            return self.parent.pada + ': ' + ' - '.join(str(sibling) for sibling in obj) 
+        return ''
+
+    def get_sandhi(self):
+        if self.get_children().exists():
+            children = self.get_children()
+            return ' - '.join(str(child) for child in children) 
+        return ''
+    
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        if self.pk is not None:  # Exclude the current node if it already exists in the database
+            queryset = queryset.filter(pk__ne=self.pk, padanukkama=self.padanukkama)
+        return queryset
+    
     class MPTTMeta:
         order_insertion_by = ['pada_seq']
 
-# class Sadda(models.Model):
-#     title = models.CharField(verbose_name=_("Title"), db_index=True, max_length=255)
-#     meaning
-#     type[uppasak, nibatta, nama, akyata]
-#     vipatti
-#     ตัดบท
-#     ลิงค์+0
-
-# class Pada(MPTTModel):
-#     padanukkama = models.ForeignKey(Padanukkama, verbose_name=_("Padanukkama"), on_delete=models.CASCADE)
-#     parent = TreeForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='children')
-#     title = models.CharField(verbose_name=_("Title"), db_index=True, max_length=255)
-#     sadda = models.ManyToManyField(Sadda, verbose_name=_("Sadda"), related_name="sadda")
-#     type = [nama, akyata]
-#     vipatti{namasaddamala, akyatasaddamala}
 
 
 

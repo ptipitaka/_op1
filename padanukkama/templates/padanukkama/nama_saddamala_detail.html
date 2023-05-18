@@ -26,6 +26,7 @@
 {% endblock %}
 
 {% block body %}
+    <!-- case delete -->
     {% if url_name == 'nama_saddamala_delete' %}
         <div class="w3-cell-row w3-container">
             <div class="w3-container w3-cell" style="width:35%;">
@@ -91,6 +92,7 @@
                 </table>
             </div>
         </div>
+    <!-- case add/update -->
     {% else %}
         <form method="post">
             {% csrf_token %}
@@ -99,6 +101,10 @@
                     <div class="w3-container w3-cell">
                         <label>{% trans form.title.label_tag %}</label>
                         {{ form.title|add_class:"w3-input" }}
+                    </div>
+                    <div class="w3-container w3-cell">
+                        <label>{% trans form.nama_type.label_tag %}</label>
+                        {{ form.nama_type|add_class:"w3-input" }}
                     </div>
                     <div class="w3-container w3-cell">
                         <label>{% trans form.linga.label_tag %}</label>

@@ -1,0 +1,71 @@
+{% extends 'main/base.html' %}
+
+{% load i18n static widget_tweaks %}
+
+{% block extra_js %}
+    <script src="{% static 'js/jquery-3.6.4.min.js' %}"></script>
+{% endblock %}
+
+{% block body %}
+    <form id="saddaForm" method="POST">
+    {% csrf_token %}
+    
+    <!-- Display the fields for Sadda -->
+    {{ form.as_p }}
+    
+    <!-- Add a hidden field to store the options for linked_sadda -->
+    <input type="hidden" id="linkedSaddaOptions" name="linked_sadda_options" value="{{ linked_sadda_options }}">
+
+    <!-- Add a div to hold the dynamic select field -->
+    <div id="linkedSaddaContainer"></div>
+    
+    <button type="submit">Create Sadda</button>
+    </form>
+{% endblock %}
+
+
+{% block script%}
+    <script>
+        $(document).ready(function() {
+            // Get the linked_sadda select field and its options
+            var linkedSaddaField = $('#id_linked_sadda');
+            var linkedSaddaOptions = JSON.parse($('#linkedSaddaOptions').val());
+            
+            // Hide the linked_sadda field initially
+            linkedSaddaField.hide();
+            
+            // Function to update the linked_sadda select field options
+            function updateLinkedSaddaOptions(saddaType) {
+                // Clear the existing options
+                linkedSaddaField.empty();
+                
+                // Check if linkedSaddaOptions[saddaType] is defined
+                if (linkedSaddaOptions[saddaType]) {
+                    // Add the new options based on the selected saddaType
+                    for (var i = 0; i < linkedSaddaOptions[saddaType].length; i++) {
+                        var option = linkedSaddaOptions[saddaType][i];
+                        linkedSaddaField.append($('<option>', {
+                            value: option.value,
+                            text: option.label
+                        }));
+                    }
+                }
+                
+                // Show the updated select field
+                linkedSaddaField.show();
+            }
+            
+            // Handle the change event of sadda_type select field
+            $('#id_sadda_type').change(function() {
+                var selectedSaddaType = $(this).val();
+                
+                // Update the linked_sadda select field options
+                updateLinkedSaddaOptions(selectedSaddaType);
+            });
+            
+            // Initialize the linked_sadda select field options based on the initial value of sadda_type
+            var initialSaddaType = $('#id_sadda_type').val();
+            updateLinkedSaddaOptions(initialSaddaType);
+        });
+    </script>
+{% endblock %}

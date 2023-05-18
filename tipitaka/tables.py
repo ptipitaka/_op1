@@ -1,6 +1,6 @@
 import django_tables2 as tables
 import django_filters
-from django.urls import reverse
+from django.utils.html import format_html
 from django.utils.translation import gettext_lazy as _
 from django.utils.safestring import mark_safe
 from django_filters import FilterSet
@@ -10,10 +10,16 @@ from mptt.templatetags.mptt_tags import cache_tree_children
 from .models import Page, TableOfContent, Structure, WordList, CommonReference
 
 class DigitalArchiveTable(tables.Table):
-    action = tables.TemplateColumn(
-        "<a href='/inscriber/digital-archive/{{ record.id }}?{{ request.GET.urlencode }}' class='w3-button'><i class='fa-solid fa-magnifying-glass'></i></a>"
-        )
+    action = tables.LinkColumn(
+        viewname='digital_archive',
+        args=[A('pk')],
+        attrs={"a": {"class": "w3-button w3-round-xlarge w3-hover-brown"}}, 
+        text=mark_safe('<i class="fa-solid fa-magnifying-glass"></i>'),
+        empty_values=(),
+    )
     
+    sample_content = tables.Column(attrs={"td": {"style": "width: 50%;"}})
+
     class Meta:
         model = Page
         template_name = "django_tables2/w3css.html"
@@ -27,7 +33,7 @@ class WordlistMasterTable(tables.Table):
     action = tables.LinkColumn(
         viewname='wordlist_page_source',
         args=[A('pk')],
-        attrs={'class': 'w3-button'},
+        attrs={"a": {"class": "w3-button w3-round-xlarge w3-hover-brown"}}, 
         text=mark_safe('<i class="fa-solid fa-magnifying-glass"></i>'),
         empty_values=(),
     )
@@ -46,11 +52,14 @@ class WordlistMasterFilter(FilterSet):
         fields = {"word": ["contains"], "wordlist_version": ["exact"]}
 
 
-class TocTable(tables.Table):
-    action = tables.TemplateColumn(
-        "<a href='/inscriber/toc/{{ record.slug }}/structure/' class='w3-button'><i class='fa-solid fa-magnifying-glass'></i></a>"
-        )
-    
+class TocTable(tables.Table):    
+    action = tables.LinkColumn(
+        viewname='structure',
+        args=[A('slug')],
+        attrs={"a": {"class": "w3-button w3-round-xlarge w3-hover-brown"}},
+        text=format_html('<i class="fa-solid fa-magnifying-glass"></i>'),
+        empty_values=(),
+    )
     class Meta:
         model = TableOfContent
         template_name = "django_tables2/w3css.html"
@@ -64,8 +73,13 @@ class StructureTable(tables.Table):
         'style': lambda value, record: 'padding-left: %spx' % (50 + (record.level * 50)),
         } 
     })
-    action = tables.TemplateColumn(
-        "<a href='/inscriber/toc/{{ record.table_of_content.slug }}/structure/{{ record.id }}/common-reference' class='w3-button'><i class='fa-solid fas fa-laptop-code'></i></a>"
+
+    action = tables.LinkColumn(
+        viewname='common_reference_subform',
+        args=[A('table_of_content.slug'), A('id')],
+        attrs={"a": {"class": "w3-button w3-round-xlarge w3-hover-brown"}},
+        text=format_html('<i class="fa-solid fas fa-laptop-code"></i>'),
+        empty_values=(),
     )
 
     class Meta:

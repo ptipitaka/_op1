@@ -5,7 +5,8 @@ from django.utils.safestring import mark_safe
 from django.utils.translation import gettext_lazy as _
 from mptt.forms import TreeNodeMultipleChoiceField
 
-from .models import NamaSaddamala, AkhyataSaddamala, Padanukkama, Pada, Language
+
+from .models import NamaSaddamala, AkhyataSaddamala, Padanukkama, Pada, Language, Sadda
 from tipitaka.models import WordlistVersion, TableOfContent, Structure
 
 
@@ -79,3 +80,14 @@ class PadanukkamaUpdateForm(forms.ModelForm):
         model = Padanukkama
         fields = '__all__'
 
+
+class AddChildPadaForm(forms.ModelForm):
+    class Meta:
+        model = Pada
+        fields = ['pada',]
+
+
+class SaddaForm(forms.ModelForm):
+    class Meta:
+        model = Sadda
+        fields = ['sadda', 'sadda_type', 'linked_sadda']
