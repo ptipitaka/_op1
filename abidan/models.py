@@ -28,6 +28,10 @@ class Word(models.Model):
     def __str__(self):
         return f"{self.word}"
     
+    def image_ref(self):
+        url = "https://space.openpali.org/abidan"
+        return "%s/%s/%s.jpg" % (url, self.book.code, self.page_number)
+
     def page_ref(self):
         total_pages = self.book.total_pages
         image_slide = {}

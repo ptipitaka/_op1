@@ -7,7 +7,7 @@ from .models import NamaType, Linga, Karanta, NamaSaddamala, \
 from utils.pali_char import *
 
 class NamaTypeAdmin(admin.ModelAdmin):
-    list_display = ("sequence", "code", "title",)
+    list_display = ("sequence", "title",)
     ordering = ("sequence",)
 
 class LingaAdmin(admin.ModelAdmin):
@@ -15,11 +15,11 @@ class LingaAdmin(admin.ModelAdmin):
     ordering = ("sequence",)
 
 class KarantaAdmin(admin.ModelAdmin):
-    list_display = ("sequence", "code", "title",)
+    list_display = ("sequence", "title",)
     ordering = ("sequence",)
 
 class NamaSaddamalaAdmin(admin.ModelAdmin):    
-    list_display = ("title", "linga",)
+    list_display = ("title", "linga", "title_order",)
     ordering = ("title_order",)
 
 class DhatuAdmin(admin.ModelAdmin):

@@ -1,0 +1,131 @@
+{% extends 'main/base.html' %}
+
+{% load static i18n widget_tweaks mptt_tags %}
+{% load render_table from django_tables2 %}
+
+{% block extra_js %}
+    <script src="{% static 'js/jquery-3.6.4.min.js' %}"></script>
+{% endblock %}
+
+{% block apptitle %}
+    {% include 'padanukkama/include/title.html' %} : {% trans 'Pada' %}・{% trans 'Vipatti' %}
+{% endblock %}
+
+{% block apptitle_option %}
+    <a href="{% url 'padanukkama_pada' pada.padanukkama_id %}"
+        class="w3-button w3-round-xlarge w3-hover-amber w3-display-right">
+        {% trans "Back" %}
+    </a>
+{% endblock %}
+
+{% block body %}
+    <div class="w3-container w3-light-grey">
+        <small>{{ padanukkama }}</small>
+        <h4>{{ pada }} {% if pada.parent %}<small>({{ pada.get_parent_and_siblings }})</small>{% endif %} </h4>
+    </div>
+
+    <div class="w3-cell-row">
+        <!-- left panel -->
+        <div class="w3-container w3-cell" style="width:50%">
+            <div class="w3-cell-row w3-margin-bottom">
+            </div>
+        </div>
+
+        <!-- right panel -->
+        <div class="w3-container w3-cell">
+            <div class="w3-card-4 w3-margin-top">
+                <header class="w3-container w3-light-grey">
+                    <h5>{% trans 'Find closest matching words in Abidan' %}</h5>
+                </header>
+
+                <div class="w3-container w3-padding">
+                    <div id="abidan-closest-matches">
+                    </div>
+                </div>
+            </div>
+ 
+            <div class="w3-card-4 w3-margin-top">
+                <header class="w3-container w3-light-grey">
+                    <h5>{% trans 'Find closest matching words in Sadda' %}</h5>
+                </header>
+
+                <div class="w3-container w3-padding">
+                    <div id="sadda-closest-matches">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block script %}
+    <script>
+        $(document).ready(function() {
+            $.ajax({
+                url: '{% url "find_abidan_closest_matches" %}',
+                type: 'POST',
+                data: {
+                    'string': '{{ pada.pada }}'
+                },
+                headers: {
+                    'X-CSRFToken': '{{ csrf_token }}'
+                },
+                beforeSend: function() {
+                    // Show the loading message before making the AJAX request
+                    $('#abidan-closest-matches').html('<i id="loading-icon" class="fa fa-spinner fa-spin"></i> {% trans 'Loading...' %}');
+                },
+                success: function(response) {
+                    var closestMatches = response.closest_matches;
+                    var matchesHtml = '';
+                    
+                    // Generate the HTML for displaying the closest matches
+                    if (closestMatches.length === 0) {
+                        matchesHtml = '<li>No matches found.</li>';
+                    } else {
+                        for (var i = 0; i < closestMatches.length; i++) {
+                            var abidanDetailsUrl = '{% url 'abidan_details' pk=0 %}'.replace('0', closestMatches[i].id);
+                            matchesHtml += '<li><a href="' + abidanDetailsUrl + '">' + closestMatches[i].word + '</a> ('+ closestMatches[i].score +'%)</li>';
+                        }
+                    }
+                    
+                    // Update the abidan-closest-matches ul with the generated HTML
+                    $('#abidan-closest-matches').html(matchesHtml);
+                }
+            });
+
+            $.ajax({
+                url: '{% url "find_sadda_closest_matches" %}',
+                type: 'POST',
+                data: {
+                    'string': '{{ pada.pada }}'
+                },
+                headers: {
+                    'X-CSRFToken': '{{ csrf_token }}'
+                },
+                beforeSend: function() {
+                    // Show the loading message before making the AJAX request
+                    $('#sadda-closest-matches').html('<i id="loading-icon" class="fa fa-spinner fa-spin"></i> {% trans 'Loading...' %}');
+                },
+                success: function(response) {
+                    var closestMatches = response.closest_matches;
+                    var matchesHtml = '';
+                    
+                    // Generate the HTML for displaying the closest matches
+                    if (closestMatches.length === 0) {
+                        matchesHtml = '<li>No matches found.</li>';
+                    } else {
+                        for (var i = 0; i < closestMatches.length; i++) {
+                            var saddaDetailsUrl = '{% url 'sadda_details' pk=0 %}'.replace('0', closestMatches[i].id);
+                            matchesHtml += '<li><a href="' + saddaDetailsUrl + '">' + closestMatches[i].word + '</a> ('+ closestMatches[i].score +'%)</li>';
+                        }
+                    }
+                    
+                    // Update the sadda-closest-matches ul with the generated HTML
+                    $('#sadda-closest-matches').html(matchesHtml);
+                }
+            });
+        });
+
+    </script>
+{% endblock %}

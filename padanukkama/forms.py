@@ -90,4 +90,4 @@ class AddChildPadaForm(forms.ModelForm):
 class SaddaForm(forms.ModelForm):
     class Meta:
         model = Sadda
-        fields = ['sadda', 'sadda_type', 'linked_sadda']
+        fields = ['sadda']

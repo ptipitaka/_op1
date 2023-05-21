@@ -1,17 +1,20 @@
 import django_filters
 import django_tables2 as tables
+
 from django import forms
 from django.urls import reverse_lazy
+from django.utils.html import format_html
 from django.utils.safestring import mark_safe
 from django.utils.translation import gettext_lazy as _
-from django_filters import FilterSet
-from django_tables2.utils import A
 
+from django_filters import FilterSet
+from django_filters.views import FilterView
+from django_tables2 import SingleTableView
+from django_tables2.utils import A
 from mptt.templatetags.mptt_tags import cache_tree_children
 
-from .models import NamaSaddamala, AkhyataSaddamala, Padanukkama, Pada
+from .models import NamaSaddamala, AkhyataSaddamala, Padanukkama, Pada, Sadda
 
-from django.utils.html import format_html
 
 # -----------------------------------------------------
 # NamaSaddamala Table & Filter
@@ -215,7 +218,7 @@ class PadaTable(tables.Table):
             # Record does not have descendants, show declension_action
             return mark_safe(
                 '<a href="{url}" class="w3-button w3-round-xlarge w3-hover-brown"><i class="fas fa-layer-group" style="color: lightgray"></i></a>'.format(
-                url=reverse_lazy('pada_split_sandhi', args=[record.padanukkama_id, record.id])
+                url=reverse_lazy('pada_declension', args=[record.padanukkama_id, record.id])
             ))
 
 
@@ -277,3 +280,21 @@ class PadaParentChildTable(tables.Table):
         ## Cache the tree Pada for performance ##
         cache_tree_children(data)
 
+# -----------------------------------------------------
+# Sadda Table & Filter
+# -----------------------------------------------------
+
+# class SaddaTable(tables.Table):
+#     sadda_seq = tables.Column(visible=False)
+#     class Meta:
+#         model = Sadda
+#         template_name = "django_tables2/w3css.html"
+#         attrs = {"class": "w3-table w3-bordered"}
+#         fields = ("sadda", "sadda_type")
+#         order_by = ("sadda_seq",)
+
+
+# class SaddaFilter(FilterSet):
+#     class Meta:
+#         model = Sadda
+#         fields = ("sadda",)

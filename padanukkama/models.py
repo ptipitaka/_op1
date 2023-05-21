@@ -12,11 +12,10 @@ from tipitaka.models import WordlistVersion, TableOfContent, Structure
 
 class NamaType(models.Model):
     sequence = models.IntegerField(verbose_name=_("sequence"))
-    code = models.CharField(max_length=5, verbose_name=_("code"))
     title = models.CharField(max_length=80, verbose_name=_("title"))
 
     def __str__(self):
-        return f"{self.title} ({self.code})"
+        return f"{self.title}"
 
 class Linga(models.Model):
     sequence = models.IntegerField(verbose_name=_("sequence"))
@@ -28,11 +27,10 @@ class Linga(models.Model):
 
 class Karanta(models.Model):
     sequence = models.IntegerField(verbose_name=_("sequence"))
-    code = models.CharField(max_length=5, verbose_name=_("code"))
     title = models.CharField(max_length=80, verbose_name=_("title"))
 
     def __str__(self):
-        return f"{self.title} ({self.code})"
+        return f"{self.title}"
 
 class NamaSaddamala(models.Model):
     title = models.CharField(max_length=80, verbose_name=_("title"))
@@ -226,10 +224,6 @@ class Padanukkama(models.Model):
 
 
 class Sadda(models.Model):
-    SADDA_TYPE_CHOICES = [
-        ('NamaSaddamala', 'NamaSaddamala'),
-        ('AkhyataSaddamala', 'AkhyataSaddamala'),
-    ]
     padanukkama = models.ForeignKey(
         Padanukkama,
         on_delete=models.CASCADE,
@@ -238,35 +232,21 @@ class Sadda(models.Model):
     sadda = models.CharField(
         max_length=150,
         verbose_name=_("Sadda"))
+    sadda_seq = models.CharField(
+        default="", max_length=150,
+        verbose_name=_("Pada sequence"))
     meaning = models.TextField(
         verbose_name=_("Meaning"))
     construction = models.CharField(
         max_length=150,
         verbose_name=_("Contraction"))
-    sadda_type = models.CharField(
-        max_length=20,
-        choices=SADDA_TYPE_CHOICES,
-        verbose_name=_("Sadda Type")
-    )
-    linked_sadda = models.ForeignKey(
-        'self',
-        on_delete=models.CASCADE,
-        null=True,
-        blank=True,
-        related_name='linked_saddas',
-        verbose_name=_("Linked Sadda")
-    )
-
-    def get_linked_sadda_instance(self):
-        if self.sadda_type == 'NamaSaddamala':
-            return NamaSaddamala.objects.get(sadda=self)
-        elif self.sadda_type == 'AkhyataSaddamala':
-            return AkhyataSaddamala.objects.get(sadda=self)
-        else:
-            return None
 
 
 class Pada(MPTTModel):
+    SADDA_TYPE_CHOICES = [
+        ('NamaSaddamala', 'NamaSaddamala'),
+        ('AkhyataSaddamala', 'AkhyataSaddamala'),
+    ]
     padanukkama = models.ForeignKey(
         Padanukkama,
         on_delete=models.CASCADE,
@@ -292,9 +272,30 @@ class Pada(MPTTModel):
         related_name='children',
         verbose_name=_("Parent Words")
     )
+    sadda_type = models.CharField(
+        max_length=20,
+        choices=SADDA_TYPE_CHOICES,
+        verbose_name=_("Sadda Type")
+    )
+    linked_sadda = models.ForeignKey(
+        'self',
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+        related_name='linked_saddas',
+        verbose_name=_("Linked Sadda")
+    )
     
     def __str__(self):
         return f"{self.pada}"
+    
+    def get_linked_sadda_instance(self):
+        if self.sadda_type == 'NamaSaddamala':
+            return NamaSaddamala.objects.get(sadda=self)
+        elif self.sadda_type == 'AkhyataSaddamala':
+            return AkhyataSaddamala.objects.get(sadda=self)
+        else:
+            return None
     
     def get_current_with_descendants(self):
         descendants = self.get_descendants(include_self=True)
