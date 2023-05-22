@@ -11,7 +11,6 @@ urlpatterns = [
     path('project/<int:padanukkama_id>/pada/<int:pk>/split-sandhi/', views.PadaSplitSandhiView.as_view(), name='pada_split_sandhi'),
     path('project/<int:padanukkama_id>/pada/<int:pk>/duplicate/', views.PadaDuplicateView.as_view(), name='pada_duplicate'),
     path('project/<int:padanukkama_id>/pada/<int:pk>/declension/', views.PadaDeclensionView.as_view(), name='pada_declension'),
-    path('project/<int:padanukkama_id>/pada/<int:pada_id>/declension/sadda/create', views.CreateSaddaView.as_view(), name='sadda_create'),
     path('project/<int:padanukkama_id>/pada/<int:pk>/delete/', views.PadaDeleteView.as_view(), name='pada_delete'),
     path('project/<int:pk>/delete/', views.PadanukkamaDeleteView.as_view(), name='padanukkama_delete'),
     path('find_abidan_closest_matches/', views.FindAbidanClosestMatchesView.as_view(), name='find_abidan_closest_matches'),

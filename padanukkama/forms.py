@@ -87,6 +87,12 @@ class AddChildPadaForm(forms.ModelForm):
         fields = ['pada',]
 
 
+class PadaForm(forms.ModelForm):
+    class Meta:
+        model = Pada
+        fields = ['pada_type']
+
+
 class SaddaForm(forms.ModelForm):
     class Meta:
         model = Sadda

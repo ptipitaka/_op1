@@ -21,7 +21,9 @@ django-smart-selects==1.6.0
 django-storages==1.13.2
 django-tables2==2.5.3
 django-widget-tweaks==1.4.12
+fuzzywuzzy==0.18.0
 jmespath==1.0.1
+Levenshtein==0.21.0
 paramiko==3.1.0
 Pillow==9.5.0
 psycopg2-binary==2.9.6
@@ -29,8 +31,10 @@ pycparser==2.21
 PyNaCl==1.5.0
 python-dateutil==2.8.2
 python-decouple==3.8
+python-Levenshtein==0.21.0
 python-resources==0.3
 pytz==2023.3
+rapidfuzz==3.0.0
 redis==4.5.4
 rq==1.13.0
 s3transfer==0.6.0

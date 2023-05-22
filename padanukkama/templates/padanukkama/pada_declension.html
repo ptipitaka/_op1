@@ -7,6 +7,15 @@
     <script src="{% static 'js/jquery-3.6.4.min.js' %}"></script>
 {% endblock %}
 
+{% block extra_css %}
+    <style>
+        .responsive {
+            width: 100%;
+            height: auto;
+        }
+    </style>
+{% endblock %}
+
 {% block apptitle %}
     {% include 'padanukkama/include/title.html' %} : {% trans 'Pada' %}・{% trans 'Vipatti' %}
 {% endblock %}
@@ -20,51 +29,75 @@
 
 {% block body %}
     <div class="w3-container w3-light-grey">
-        <small>{{ padanukkama }}</small>
-        <h4>{{ pada }} {% if pada.parent %}<small>({{ pada.get_parent_and_siblings }})</small>{% endif %} </h4>
+        <h4>{{ pada }} {% if pada.parent %}<small>({{ pada.get_parent_and_siblings }})</small>{% endif %}
+            <span class="w3-right">{{ padanukkama }}</span>
+        </h4>
     </div>
 
     <div class="w3-cell-row">
         <!-- left panel -->
-        <div class="w3-container w3-cell" style="width:50%">
+        <div class="w3-container w3-cell" style="width:40%">
             <div class="w3-cell-row w3-margin-bottom">
+                {{ form.as_p }}
             </div>
         </div>
 
         <!-- right panel -->
-        <div class="w3-container w3-cell">
-            <div class="w3-card-4 w3-margin-top">
+        <div class="w3-container">
+            <div class="w3-bar w3-light-grey">
+                <button class="w3-bar-item w3-button tablink w3-grey" onclick="openTabs(event,'Abidan')">{% trans 'Abidan' %}</button>
+                <button class="w3-bar-item w3-button tablink" onclick="openTabs(event,'Sadda')">{% trans 'Sadda' %}</button>
+                <button class="w3-bar-item w3-button tablink" onclick="openTabs(event,'Tokyo')">Tokyo</button>
+            </div>
+
+            <div id="Abidan" class="w3-border tab">
                 <header class="w3-container w3-light-grey">
                     <h5>{% trans 'Find closest matching words in Abidan' %}</h5>
                 </header>
 
                 <div class="w3-container w3-padding">
-                    <div id="abidan-closest-matches">
-                    </div>
+                    <ul id="abidan-closest-matches" class="w3-ul w3-hoverable">
+                    </ul>
                 </div>
             </div>
- 
-            <div class="w3-card-4 w3-margin-top">
+
+            <div id="Sadda" class="w3-border tab" style="display:none">
                 <header class="w3-container w3-light-grey">
                     <h5>{% trans 'Find closest matching words in Sadda' %}</h5>
                 </header>
 
                 <div class="w3-container w3-padding">
-                    <div id="sadda-closest-matches">
-                    </div>
+                    <ul id="sadda-closest-matches" class="w3-ul w3-hoverable">
+                    </ul>
                 </div>
+            </div>
+
+            <div id="Tokyo" class="w3-container w3-border tab" style="display:none">
+                <h2>Tokyo</h2>
+                <p>Tokyo is the capital of Japan.</p>
             </div>
         </div>
     </div>
-{% endblock %}
 
+    <!-- Add the image modal markup -->
+    <div id="imageModal" class="w3-modal">
+        <div class="w3-modal-content w3-animate-zoom">
+            <div class="w3-container">
+                <span class="w3-button w3-hover-red w3-xlarge w3-display-topright" onclick="closeModal()">&times;</span>
+                <img id="modalImage" class="responsive" src="" alt="Modal Image">
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
 
 {% block script %}
     <script>
         $(document).ready(function() {
+            // find_abidan_closest_matches
             $.ajax({
                 url: '{% url "find_abidan_closest_matches" %}',
-                type: 'POST',
+                type: 'GET',
                 data: {
                     'string': '{{ pada.pada }}'
                 },
@@ -78,25 +111,47 @@
                 success: function(response) {
                     var closestMatches = response.closest_matches;
                     var matchesHtml = '';
-                    
+
                     // Generate the HTML for displaying the closest matches
                     if (closestMatches.length === 0) {
                         matchesHtml = '<li>No matches found.</li>';
                     } else {
                         for (var i = 0; i < closestMatches.length; i++) {
                             var abidanDetailsUrl = '{% url 'abidan_details' pk=0 %}'.replace('0', closestMatches[i].id);
-                            matchesHtml += '<li><a href="' + abidanDetailsUrl + '">' + closestMatches[i].word + '</a> ('+ closestMatches[i].score +'%)</li>';
+
+                            // Wrap the image with a link to open the modal
+                            matchesHtml += '<div class="w3-cell-row">';
+                            matchesHtml +=      '<div class="w3-container w3-cell" style="width:15%">';
+                            matchesHtml +=          '<img src="' + closestMatches[i].image_ref + '" class="responsive" ';
+                            matchesHtml +=          'style="cursor: pointer;" ';
+                            matchesHtml +=          'onclick="openModal(\'' + closestMatches[i].image_ref + '\')"/>';
+                            matchesHtml +=      '</div>'
+
+                            matchesHtml +=      '<div class="w3-container w3-cell">';
+                            matchesHtml +=           '<p>' + closestMatches[i].dict + '<br>';
+                            matchesHtml +=           closestMatches[i].burmese;
+                            matchesHtml +=           '<a class="w3-btn" style="text-decoration:None;hover:pointer;" target="_blank" ';
+                            matchesHtml +=           'href="' + abidanDetailsUrl + '"> <i class="fas fa-link"></i></a><br>';
+                            matchesHtml +=           '<div class="w3-light-grey w3-tiny" style="width:100px;">'
+                            matchesHtml +=               '<div class="w3-container w3-green" style="width:'+ closestMatches[i].score +'%">'
+                            matchesHtml +=                  closestMatches[i].score + '%';
+                            matchesHtml +=               '</div>';
+                            matchesHtml +=           '</div>';
+                            matchesHtml +=      '</div>';
+                            matchesHtml += '</div>';
                         }
                     }
-                    
+
                     // Update the abidan-closest-matches ul with the generated HTML
                     $('#abidan-closest-matches').html(matchesHtml);
                 }
             });
 
+
+            // find_sadda_closest_matches
             $.ajax({
                 url: '{% url "find_sadda_closest_matches" %}',
-                type: 'POST',
+                type: 'GET',
                 data: {
                     'string': '{{ pada.pada }}'
                 },
@@ -110,7 +165,7 @@
                 success: function(response) {
                     var closestMatches = response.closest_matches;
                     var matchesHtml = '';
-                    
+
                     // Generate the HTML for displaying the closest matches
                     if (closestMatches.length === 0) {
                         matchesHtml = '<li>No matches found.</li>';
@@ -120,12 +175,39 @@
                             matchesHtml += '<li><a href="' + saddaDetailsUrl + '">' + closestMatches[i].word + '</a> ('+ closestMatches[i].score +'%)</li>';
                         }
                     }
-                    
+
                     // Update the sadda-closest-matches ul with the generated HTML
                     $('#sadda-closest-matches').html(matchesHtml);
                 }
             });
+
         });
 
+        // Function to open the modal and display the image
+        function openModal(imageSrc) {
+            var modalImage = document.getElementById('modalImage');
+            modalImage.src = imageSrc;
+            document.getElementById('imageModal').style.display = 'block';
+        }
+
+        // Function to close the modal
+        function closeModal() {
+            document.getElementById('imageModal').style.display = 'none';
+        }
+
+        // Function to open tabs
+        function openTabs(evt, tabName) {
+            var i, x, tablinks;
+            x = document.getElementsByClassName("tab");
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablink");
+            for (i = 0; i < x.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" w3-grey", "");
+            }
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " w3-grey";
+        }
     </script>
 {% endblock %}

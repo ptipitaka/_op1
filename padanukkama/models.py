@@ -268,34 +268,24 @@ class Pada(MPTTModel):
         'self',
         on_delete=models.CASCADE,
         null=True,
-        blank=True,
         related_name='children',
         verbose_name=_("Parent Words")
     )
-    sadda_type = models.CharField(
+    pada_type = models.CharField(
         max_length=20,
+        null=True,
         choices=SADDA_TYPE_CHOICES,
         verbose_name=_("Sadda Type")
     )
-    linked_sadda = models.ForeignKey(
-        'self',
-        on_delete=models.CASCADE,
+    sadda = models.ForeignKey(
+        "Sadda",
+        on_delete=models.SET_NULL,
         null=True,
-        blank=True,
-        related_name='linked_saddas',
-        verbose_name=_("Linked Sadda")
+        verbose_name=_("Sadda")
     )
     
     def __str__(self):
         return f"{self.pada}"
-    
-    def get_linked_sadda_instance(self):
-        if self.sadda_type == 'NamaSaddamala':
-            return NamaSaddamala.objects.get(sadda=self)
-        elif self.sadda_type == 'AkhyataSaddamala':
-            return AkhyataSaddamala.objects.get(sadda=self)
-        else:
-            return None
     
     def get_current_with_descendants(self):
         descendants = self.get_descendants(include_self=True)

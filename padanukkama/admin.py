@@ -2,7 +2,7 @@ from django.contrib import admin
 
 from .models import NamaType, Linga, Karanta, NamaSaddamala, \
     Dhatu, Paccaya, AkhyataSaddamala, \
-    Language, Padanukkama, Pada
+    Language, Padanukkama, Pada, Sadda
 
 from utils.pali_char import *
 
@@ -43,9 +43,9 @@ class PadanukkamaAdmin(admin.ModelAdmin):
     list_display = ("title",)
     ordering = ("title",)
 
-# class SaddaAdmin(admin.ModelAdmin):
-#     list_display = ("sadda",)
-#     ordering = ("sadda",)
+class SaddaAdmin(admin.ModelAdmin):
+    list_display = ("sadda",)
+    ordering = ("sadda",)
 
 class PadaAdmin(admin.ModelAdmin):
     list_display = ("pada",)
@@ -64,6 +64,6 @@ admin.site.register(AkhyataSaddamala, AkhyataSaddamalaAdmin)
 admin.site.register(Language, LanguageAdmin)
 admin.site.register(Padanukkama, PadanukkamaAdmin)
 admin.site.register(Pada, PadaAdmin)
-# admin.site.register(Sadda, SaddaAdmin)
+admin.site.register(Sadda, SaddaAdmin)
 
 

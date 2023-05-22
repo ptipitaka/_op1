@@ -1,7 +1,7 @@
 from tipitaka.models import CommonReference, WordList
 from padanukkama.models import Padanukkama, Pada
 
-def post(padanukkama_id):
+def create_pada(padanukkama_id):
     padanukkama = Padanukkama.objects.get(pk=padanukkama_id)
     # Retrieve the structures related to the padanukkama
     structures = padanukkama.structure.all()

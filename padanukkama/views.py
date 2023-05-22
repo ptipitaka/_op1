@@ -13,14 +13,13 @@ from django.urls import resolve, reverse_lazy
 from django_filters.views import FilterView
 from django_tables2.views import SingleTableMixin
 
-from fuzzywuzzy import fuzz
-from fuzzywuzzy import process
+from fuzzywuzzy import fuzz, process
 
 from mptt.exceptions import InvalidMove
 
 from .models import NamaSaddamala, AkhyataSaddamala, Padanukkama, Pada, Sadda
 
-from abidan.models import Word
+from abidan.models import Word, WordLookup
 
 from .tables import NamaSaddamalaTable, \
                     NamaSaddamalaFilter, AkhyataSaddamalaTable, \
@@ -31,7 +30,7 @@ from .tables import NamaSaddamalaTable, \
 from .forms import  NamaSaddamalaForm, AkhyataSaddamalaForm, \
                     PadanukkamaCreateForm, PadanukkamaUpdateForm, \
                     AddChildPadaForm, \
-                    SaddaForm
+                    PadaForm
 
 from utils.pali_char import *
 
@@ -353,27 +352,40 @@ class PadaDuplicateView(View):
 # PadaDeclensionView
 # -----------------------------------------------------
 class FindAbidanClosestMatchesView(View):
-    def post(self, request):
-        string = request.POST.get('string')  # Get the string from the AJAX request
+    def get(self, request):
+        string = request.GET.get('string')  # Get the string from the AJAX request
         threshold = 70  # Set your desired threshold
 
         words = Word.objects.values_list('word', flat=True)  # Retrieve only the 'word' field
         matches = process.extractBests(string, words, scorer=fuzz.ratio, score_cutoff=threshold)
-        closest_matches = [{'match': match, 'score': score} for match, score in matches]
-        match_array = [item['match'] for item in closest_matches]
+        matches_by_score = [{'match': match, 'score': score} for match, score in matches]
+        match_array = [item['match'] for item in matches_by_score]
 
-        serialized_queryset = {}
-        if closest_matches:
-            closest_matches_queryset = Word.objects.filter(word__in=match_array).values_list('id', 'word')
-            serialized_queryset = {word: {'id': id, 'word': word} for id, word in closest_matches_queryset}
+        serialized = {}
+        if matches_by_score:
+            word_queryset = Word.objects.filter(word__in=match_array).values_list('id', 'word', 'burmese')
+            serialized = {word: {'id': id, 'word': word, 'burmese': burmese} for id, word, burmese in word_queryset}
 
         merged_results = []
-        for item in closest_matches:
+        for item in matches_by_score:
             match = item['match']
-            serialized_item = serialized_queryset.get(match)
+            serialized_item = serialized.get(match)
             if serialized_item:
+                # WordLookup
+                wordlookup_queryset = WordLookup.objects.filter(word=serialized_item['word'])
+                dict_array = list(wordlookup_queryset.values_list('dict', flat=True))
+                
+                serialized_item['dict'] = ', '.join(dict_array)
                 serialized_item['score'] = item['score']
+                
+                word_id = serialized_item['id'] 
+                word_instance = Word.objects.get(id=word_id)
+                serialized_item['burmese'] = word_instance.burmese  # Retrieve the 'burmese' field from the Word instance
+                serialized_item['image_ref'] = word_instance.image_ref()  # Add the image URL link
+                
                 merged_results.append(serialized_item)
+
+
 
         data = {
             'closest_matches': merged_results,
@@ -382,10 +394,12 @@ class FindAbidanClosestMatchesView(View):
         return JsonResponse(data)
 
 
-
+# -----------------------------------------------------
+# FindSaddaClosestMatchesView
+# -----------------------------------------------------
 class FindSaddaClosestMatchesView(View):
-    def post(self, request):
-        string = request.POST.get('string')  # Get the string from the AJAX request
+    def get(self, request):
+        string = request.GET.get('string')  # Get the string from the AJAX request
         threshold = 70  # Set your desired threshold
 
         saddas = Sadda.objects.values_list('sadda', flat=True)  # Retrieve only the 'sadda' field
@@ -414,12 +428,19 @@ class FindSaddaClosestMatchesView(View):
 
 
 
-class PadaDeclensionView(SingleTableMixin, FilterView):
+# -----------------------------------------------------
+# PadaDeclensionView
+# -----------------------------------------------------
+class PadaDeclensionView(UpdateView):
     login_required = True
     superuser_required = True
 
     model = Pada
+    form_class = PadaForm
     template_name = 'padanukkama/pada_declension.html'
+
+    def get_success_url(self):
+        return self.request.get_full_path()
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -431,15 +452,17 @@ class PadaDeclensionView(SingleTableMixin, FilterView):
         context['padanukkama'] = get_object_or_404(Padanukkama, id=padanukkama_id)
         return context
 
-    def post(self, request, padanukkama_id, pk):
-        return redirect(request.get_full_path())
-
-    
+    def test_func(self):
+        # Implement the logic to check if the user meets the required conditions (e.g., superuser)
+        return self.request.user.is_superuser
 
 # -----------------------------------------------------
 # PadaDeleteView
 # -----------------------------------------------------
-class PadaDeleteView(View, views.LoginRequiredMixin, views.SuperuserRequiredMixin):
+class PadaDeleteView(View):
+    login_required = True
+    superuser_required = True
+
     def post(self, request, padanukkama_id, pk):
         pada = get_object_or_404(Pada, pk=pk)
         pada_parent_id = pada.parent_id
