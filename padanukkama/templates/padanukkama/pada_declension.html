@@ -1,7 +1,6 @@
 {% extends 'main/base.html' %}
 
 {% load static i18n widget_tweaks mptt_tags %}
-{% load render_table from django_tables2 %}
 
 {% block extra_js %}
     <script src="{% static 'js/jquery-3.6.4.min.js' %}"></script>
@@ -36,9 +35,21 @@
 
     <div class="w3-cell-row">
         <!-- left panel -->
-        <div class="w3-container w3-cell" style="width:40%">
+        <div class="w3-container w3-cell" style="width:60%">
             <div class="w3-cell-row w3-margin-bottom">
-                {{ form.as_p }}
+                <form action="" method="post"
+                    class="w3-container w3-text-blue w3-padding"
+                    style="width:60%;margin:auto;">
+                    {% csrf_token %}
+                    {% for field in form %}
+                        <p>
+                            <label>{% trans field.label_tag %}</label>
+                            {{ field|add_class:"w3-input" }}
+                        </p>
+                    {% endfor %}
+                </form>
+
+                <div id="result-container"></div>
             </div>
         </div>
 
@@ -47,12 +58,11 @@
             <div class="w3-bar w3-light-grey">
                 <button class="w3-bar-item w3-button tablink w3-grey" onclick="openTabs(event,'Abidan')">{% trans 'Abidan' %}</button>
                 <button class="w3-bar-item w3-button tablink" onclick="openTabs(event,'Sadda')">{% trans 'Sadda' %}</button>
-                <button class="w3-bar-item w3-button tablink" onclick="openTabs(event,'Tokyo')">Tokyo</button>
             </div>
 
             <div id="Abidan" class="w3-border tab">
                 <header class="w3-container w3-light-grey">
-                    <h5>{% trans 'Find closest matching words in Abidan' %}</h5>
+                    <h5>{% trans 'Closest matching words in Abidan' %}</h5>
                 </header>
 
                 <div class="w3-container w3-padding">
@@ -63,18 +73,13 @@
 
             <div id="Sadda" class="w3-border tab" style="display:none">
                 <header class="w3-container w3-light-grey">
-                    <h5>{% trans 'Find closest matching words in Sadda' %}</h5>
+                    <h5>{% trans 'Closest matching words in Sadda' %}</h5>
                 </header>
 
                 <div class="w3-container w3-padding">
                     <ul id="sadda-closest-matches" class="w3-ul w3-hoverable">
                     </ul>
                 </div>
-            </div>
-
-            <div id="Tokyo" class="w3-container w3-border tab" style="display:none">
-                <h2>Tokyo</h2>
-                <p>Tokyo is the capital of Japan.</p>
             </div>
         </div>
     </div>
@@ -92,6 +97,9 @@
 {% endblock %}
 
 {% block script %}
+    <script src="{% static 'padanukkama/modals.js' %}"></script>
+    <script src="{% static 'padanukkama/tabs.js' %}"></script>
+    
     <script>
         $(document).ready(function() {
             // find_abidan_closest_matches
@@ -100,9 +108,6 @@
                 type: 'GET',
                 data: {
                     'string': '{{ pada.pada }}'
-                },
-                headers: {
-                    'X-CSRFToken': '{{ csrf_token }}'
                 },
                 beforeSend: function() {
                     // Show the loading message before making the AJAX request
@@ -155,9 +160,6 @@
                 data: {
                     'string': '{{ pada.pada }}'
                 },
-                headers: {
-                    'X-CSRFToken': '{{ csrf_token }}'
-                },
                 beforeSend: function() {
                     // Show the loading message before making the AJAX request
                     $('#sadda-closest-matches').html('<i id="loading-icon" class="fa fa-spinner fa-spin"></i> {% trans 'Loading...' %}');
@@ -183,31 +185,89 @@
 
         });
 
-        // Function to open the modal and display the image
-        function openModal(imageSrc) {
-            var modalImage = document.getElementById('modalImage');
-            modalImage.src = imageSrc;
-            document.getElementById('imageModal').style.display = 'block';
+
+        // Crate vipatti table
+        function crate_vipatti() {
+            var selectedValue = $('#id_template_selection').val();
+            var saddaValue = $('#id_sadda').val();
+            
+            // Check if template_id and sadda are not empty
+            if (selectedValue && saddaValue) {
+                $.ajax({
+                    url: "{% url 'create_vipatti' template_id=0 sadda=1 %}".replace('1', saddaValue).replace('0', selectedValue),
+                    type: 'GET',
+                    success: function(response) {
+                        var matchesHtml = '';
+                        if(response.sadda_type == 'namasaddamala') {
+                            matchesHtml += '<table class="w3-table w3-bordered">'
+                            matchesHtml += '  <tr>'
+                            matchesHtml += '      <th>{% trans 'Vibhatti' %}</th>'
+                            matchesHtml += '      <th>{% trans 'Ekavacana' %}</th>'
+                            matchesHtml += '      <th>{% trans 'Bahuvacana' %}</th>'
+                            matchesHtml += '  </tr>'
+                            matchesHtml += '  <tr>'
+                            matchesHtml += '      <td>{% trans 'Paṭhamā' %}</td>'
+                            matchesHtml += '      <td>' + response.result.nom_sg + '</td>'
+                            matchesHtml += '      <td>' + response.result.nom_pl + '</td>'
+                            matchesHtml += '  </tr>'
+                            matchesHtml += '  <tr>'
+                            matchesHtml += '      <td>{% trans 'Ālapana' %}</td>'
+                            matchesHtml += '      <td>' + response.result.voc_sg + '</td>'
+                            matchesHtml += '      <td>' + response.result.voc_pl + '</td>'
+                            matchesHtml += '  </tr>'
+                            matchesHtml += '  <tr>'
+                            matchesHtml += '      <td>{% trans 'Dutiyā' %}</td>'
+                            matchesHtml += '      <td>' + response.result.acc_sg + '</td>'
+                            matchesHtml += '      <td>' + response.result.acc_pl + '</td>'
+                            matchesHtml += '  </tr>'
+                            matchesHtml += '  <tr>'
+                            matchesHtml += '      <td>{% trans 'Tatiyā' %}</td>'
+                            matchesHtml += '      <td>' + response.result.instr_sg + '</td>'
+                            matchesHtml += '      <td>' + response.result.instr_pl + '</td>'
+                            matchesHtml += '  </tr>'
+                            matchesHtml += '  <tr>'
+                            matchesHtml += '      <td>{% trans 'Catutthī' %}</td>'
+                            matchesHtml += '      <td>' + response.result.dat_sg + '</td>'
+                            matchesHtml += '      <td>' + response.result.dat_pl + '</td>'
+                            matchesHtml += '  </tr>'
+                            matchesHtml += '  <tr>'
+                            matchesHtml += '      <td>{% trans 'Pañcamī' %}</td>'
+                            matchesHtml += '      <td>' + response.result.abl_sg + '</td>'
+                            matchesHtml += '      <td>' + response.result.abl_pl + '</td>'
+                            matchesHtml += '  </tr>'
+                            matchesHtml += '  <tr>'
+                            matchesHtml += '      <td>{% trans 'Chaṭṭhī' %}</td>'
+                            matchesHtml += '      <td>' + response.result.gen_sg + '</td>'
+                            matchesHtml += '      <td>' + response.result.gen_pl + '</td>'
+                            matchesHtml += '  </tr>'
+                            matchesHtml += '  <tr>'
+                            matchesHtml += '      <td>{% trans 'Sattamī' %}</td>'
+                            matchesHtml += '      <td>' + response.result.loc_sg + '</td>'
+                            matchesHtml += '      <td>' + response.result.loc_pl + '</td>'
+                            matchesHtml += '  </tr>'
+                            matchesHtml += '</table>'
+                        } else if(response.sadda_type == 'akhyatasaddamala') {
+                            matchesHtml += '<table class="w3-table w3-bordered">'
+                            matchesHtml += '  <tr>'
+                            matchesHtml += '      <th>Vibhatti</th>'
+                            matchesHtml += '      <th>Dhātu</th>'
+                            matchesHtml += '      <th>Paccaya</th>'
+                            matchesHtml += '  </tr>'
+                            matchesHtml += '</table>'
+                        }
+
+                        $('#result-container').html(matchesHtml);
+                    },
+                    error: function(xhr, status, error) {
+                        // Handle error cases
+                        console.error(error);
+                    }
+                });
+            } else {
+                // Handle the case when template_id or sadda is empty
+                console.log("template_id or sadda is empty");
+            }
         }
 
-        // Function to close the modal
-        function closeModal() {
-            document.getElementById('imageModal').style.display = 'none';
-        }
-
-        // Function to open tabs
-        function openTabs(evt, tabName) {
-            var i, x, tablinks;
-            x = document.getElementsByClassName("tab");
-            for (i = 0; i < x.length; i++) {
-                x[i].style.display = "none";
-            }
-            tablinks = document.getElementsByClassName("tablink");
-            for (i = 0; i < x.length; i++) {
-                tablinks[i].className = tablinks[i].className.replace(" w3-grey", "");
-            }
-            document.getElementById(tabName).style.display = "block";
-            evt.currentTarget.className += " w3-grey";
-        }
     </script>
 {% endblock %}

@@ -17,7 +17,8 @@ from fuzzywuzzy import fuzz, process
 
 from mptt.exceptions import InvalidMove
 
-from .models import NamaSaddamala, AkhyataSaddamala, Padanukkama, Pada, Sadda
+from .models import NamaSaddamala, AkhyataSaddamala, Padanukkama, Pada, Sadda, \
+                    NamaType, Linga, Karanta, Dhatu, Paccaya
 
 from abidan.models import Word, WordLookup
 
@@ -33,6 +34,7 @@ from .forms import  NamaSaddamalaForm, AkhyataSaddamalaForm, \
                     PadaForm
 
 from utils.pali_char import *
+from utils.padanukkama import *
 
 # -----------------------------------------------------
 # NamaSaddamalaView
@@ -431,31 +433,82 @@ class FindSaddaClosestMatchesView(View):
 # -----------------------------------------------------
 # PadaDeclensionView
 # -----------------------------------------------------
-class PadaDeclensionView(UpdateView):
+class PadaDeclensionView(View):
     login_required = True
     superuser_required = True
-
-    model = Pada
-    form_class = PadaForm
     template_name = 'padanukkama/pada_declension.html'
 
-    def get_success_url(self):
-        return self.request.get_full_path()
+    def get(self, request, pk, padanukkama_id):
+        pada = get_object_or_404(Pada, id=pk)
+        padanukkama = get_object_or_404(Padanukkama, id=padanukkama_id)
+        form = PadaForm(initial={'sadda': pada.pada})
+        context = {
+            'pada_id': pk,
+            'pada': pada,
+            'padanukkama_id': padanukkama_id,
+            'padanukkama': padanukkama,
+            'form': form
+        }
+        return render(request, self.template_name, context)
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        pk = self.kwargs['pk']
-        padanukkama_id = self.kwargs['padanukkama_id']
-        context['pada_id'] = pk
-        context['pada'] = get_object_or_404(Pada, id=pk)
-        context['padanukkama_id'] = padanukkama_id
-        context['padanukkama'] = get_object_or_404(Padanukkama, id=padanukkama_id)
-        return context
+    def post(self, request, pk, padanukkama_id):
+        pada = get_object_or_404(Pada, id=pk)
+        padanukkama = get_object_or_404(Padanukkama, id=padanukkama_id)
+        form = PadaForm(request.POST)
+        if form.is_valid():
+            # Process the form data
+            # ...
+            return redirect('success-url')
+        context = {
+            'pada_id': pk,
+            'pada': pada,
+            'padanukkama_id': padanukkama_id,
+            'padanukkama': padanukkama,
+            'form': form
+        }
+        return render(request, self.template_name, context)
 
-    def test_func(self):
-        # Implement the logic to check if the user meets the required conditions (e.g., superuser)
-        return self.request.user.is_superuser
 
+# -----------------------------------------------------
+# CreateVipatti
+# -----------------------------------------------------
+class CreateVipatti(View):
+    def get(self, request, template_id, sadda):
+        if not template_id or not sadda:
+            return JsonResponse({'data': ''})
+        
+        sadda_type = template_id.split('_')[0]
+        tid = template_id.split('_')[1]
+        result = None
+        if sadda_type == 'namasaddamala':
+            result = mix_namavipatties(sadda, tid)
+            template = NamaSaddamala.objects.get(pk=tid)
+            template_data = {
+                'title': template.title,
+                'nama_type': template.nama_type.title if template.nama_type else '-',
+                'linga': template.linga.title if template.linga else '-',
+            }
+        elif sadda_type == 'akhyatasaddamala':
+            result = mix_akhayatavipatties(sadda, tid)
+            template = AkhyataSaddamala.objects.get(pk=tid)
+            template_data = {
+                'title': template.title,
+                'dhatu': template.dhatu.title if template.dhatu else '-',
+                'paccaya': template.paccaya.title if template.paccaya else '-',
+            }
+
+        # Convert template object to dictionary
+
+        data = {
+            'result': result,
+            'sadda_type': sadda_type,
+            'template_data': template_data
+        }
+
+        return JsonResponse(data)
+
+    
+    
 # -----------------------------------------------------
 # PadaDeleteView
 # -----------------------------------------------------

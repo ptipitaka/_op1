@@ -19,8 +19,8 @@ class KarantaAdmin(admin.ModelAdmin):
     ordering = ("sequence",)
 
 class NamaSaddamalaAdmin(admin.ModelAdmin):    
-    list_display = ("title", "linga", "title_order",)
-    ordering = ("title_order",)
+    list_display = ("statistic", "title_order", "title", "linga",)
+    ordering = ("-statistic", "title_order",)
 
 class DhatuAdmin(admin.ModelAdmin):
     list_display = ("sequence", "title",)
@@ -31,9 +31,9 @@ class PaccayaAdmin(admin.ModelAdmin):
     ordering = ("sequence",)
 
 class AkhyataSaddamalaAdmin(admin.ModelAdmin):    
-    list_display = ("title", "dhatu", "paccaya",)
-    ordering = ("title_order",)
+    list_display = ("statistic", "title_order", "title", "dhatu", "paccaya",)
     list_filter = ("dhatu", "paccaya",)
+    ordering = ("-statistic", "title_order",)
 
 class LanguageAdmin(admin.ModelAdmin):
     list_display = ("name",)

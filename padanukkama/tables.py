@@ -33,7 +33,7 @@ class NamaSaddamalaTable(tables.Table):
         model = NamaSaddamala
         template_name = "django_tables2/w3css.html"
         attrs = {"class": "w3-table w3-bordered"}
-        fields = ("title", "title_order", "linga", "karanta",)
+        fields = ("title", "title_order", "nama_type", "linga", "karanta",)
         order_by = ("title_order",)
 
 
@@ -81,6 +81,7 @@ class PadanukkamaTable(tables.Table):
         attrs={"a": {"class": "w3-button w3-round-xlarge w3-hover-brown"}}, 
         text=mark_safe('<i class="fa-solid fa-magnifying-glass"></i>'),
         empty_values=(),
+        orderable=False,
     )
 
     pada_list = tables.LinkColumn(
@@ -89,6 +90,7 @@ class PadanukkamaTable(tables.Table):
         attrs={"a": {"class": "w3-button w3-round-xlarge w3-hover-brown"}}, 
         text=mark_safe('<i class="far fa-list"></i>'),
         empty_values=(),
+        orderable=False,
     )
 
     about = tables.Column(attrs={'td': {'style': 'width: 40%;'}})

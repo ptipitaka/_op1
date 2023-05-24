@@ -9,25 +9,36 @@ from mptt.forms import TreeNodeMultipleChoiceField
 from .models import NamaSaddamala, AkhyataSaddamala, Padanukkama, Pada, Language, Sadda
 from tipitaka.models import WordlistVersion, TableOfContent, Structure
 
-
+# -----------------------------------------------------
+# NamaSaddamalaForm
+# -----------------------------------------------------
 class NamaSaddamalaForm(forms.ModelForm):
     class Meta:
         model = NamaSaddamala
         exclude = ['title_order']
 
 
+# -----------------------------------------------------
+# AkhyataSaddamalaForm
+# -----------------------------------------------------
 class AkhyataSaddamalaForm(forms.ModelForm):
     class Meta:
         model = AkhyataSaddamala
         exclude = ['title_order']
 
 
+# -----------------------------------------------------
+# PadanukkamaCreateForm
+# -----------------------------------------------------
 class PadanukkamaCreateForm(forms.ModelForm):
     class Meta:
         model = Padanukkama
         exclude = ['structure', 'wordlist_version']
 
 
+# -----------------------------------------------------
+# CheckboxMultipleSelect
+# -----------------------------------------------------
 class CheckboxMultipleSelect(forms.CheckboxSelectMultiple):
     def render(self, name, value, attrs=None, renderer=None):
         if value is None:
@@ -47,6 +58,9 @@ class CheckboxMultipleSelect(forms.CheckboxSelectMultiple):
         return mark_safe('\n'.join(output))
     
 
+# -----------------------------------------------------
+# PadanukkamaUpdateForm
+# -----------------------------------------------------
 class PadanukkamaUpdateForm(forms.ModelForm):
     structure = TreeNodeMultipleChoiceField(
         queryset=Structure.objects.none(),
@@ -81,18 +95,85 @@ class PadanukkamaUpdateForm(forms.ModelForm):
         fields = '__all__'
 
 
+# -----------------------------------------------------
+# AddChildPadaForm
+# -----------------------------------------------------
 class AddChildPadaForm(forms.ModelForm):
     class Meta:
         model = Pada
         fields = ['pada',]
 
 
-class PadaForm(forms.ModelForm):
-    class Meta:
-        model = Pada
-        fields = ['pada_type']
+
+# -----------------------------------------------------
+# PadaForm
+# -----------------------------------------------------
+class PadaForm(forms.Form):
+    namasaddamala = NamaSaddamala.objects.all().order_by('-statistic', 'title_order')
+    akhyatasaddamala = AkhyataSaddamala.objects.all().order_by('-statistic', 'title_order')
+
+    # Create a list to store the template data
+    template = []
+
+    # initial value
+    template.append({
+        'unique_id': '',
+        'from_table': '',
+        'id': '',
+        'title': '-----',
+        'order': ''
+    })
+
+    # Process namasaddamala objects
+    for namasaddamala_obj in namasaddamala:
+        unique_id = "namasaddamala_" + str(namasaddamala_obj.id)
+        order = str(namasaddamala_obj.statistic).zfill(5) + namasaddamala_obj.title_order
+        title = namasaddamala_obj.title
+        nama_type = namasaddamala_obj.nama_type.title if namasaddamala_obj.nama_type else '-'
+        linga = namasaddamala_obj.linga.title if namasaddamala_obj.linga else '-'
+        template.append({
+            'unique_id': unique_id,
+            'from_table': 'namasaddamala',
+            'id': namasaddamala_obj.id,
+            'title': title + ' (' + nama_type + ', ' + linga + ')',
+            'order': order
+        })
+
+    # Process akhyatasaddamala objects
+    for akhyatasaddamala_obj in akhyatasaddamala:
+        unique_id = "akhyatasaddamala_" + str(akhyatasaddamala_obj.id)
+        order = str(akhyatasaddamala_obj.statistic).zfill(5) + akhyatasaddamala_obj.title_order
+        title = akhyatasaddamala_obj.title
+        dhatu = akhyatasaddamala_obj.dhatu.title if akhyatasaddamala_obj.dhatu else '-'
+        paccaya = akhyatasaddamala_obj.paccaya.title if akhyatasaddamala_obj.paccaya else '-'
+        template.append({
+            'unique_id': unique_id,
+            'from_table': 'akhyatasaddamala',
+            'id': akhyatasaddamala_obj.id,
+            'title': title + ' (' + dhatu + ', ' + paccaya + ')',
+            'order': order
+        })
+
+    # Sort the template by order (statistic and title_order)
+    template.sort(key=lambda x: x['order'])
+
+    # Create the selection template for the ChoiceField
+    selection_template = [(entry['unique_id'], entry['title']) for entry in template]
+
+    sadda = forms.CharField(
+        max_length=100,
+        widget=forms.TextInput(attrs={'onchange': 'crate_vipatti()'})
+    )
+    template_selection = forms.ChoiceField(
+        choices=selection_template,
+        widget=forms.Select(attrs={'onchange': 'crate_vipatti()'})
+    )
 
 
+
+# -----------------------------------------------------
+# SaddaForm
+# -----------------------------------------------------
 class SaddaForm(forms.ModelForm):
     class Meta:
         model = Sadda

@@ -1,0 +1,96 @@
+{% load i18n %}
+
+<table>
+    <thead>
+        <th style="width: 25%">
+            <div>
+                <!-- title -->
+                <input
+                    type="text"
+                    id="nama-title-search"
+                    onkeyup="searchNama()"
+                    placeholder="{% trans 'Title' %}.."
+                    class="w3-input">
+            </div>
+        </th>
+        <th style="width: 25%">
+            <div>
+                <!-- nama_type -->
+                <select id="type-search" onchange="searchNama()" class="w3-select">
+                    <option value="">-- {% trans 'Type' %} --</option>
+                    {% for i in nama_type %}
+                    <option value="{{ i.title }}">{% trans i.title %}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </th>
+        <th style="width: 25%">
+            <div>
+                <!-- linga -->
+                <select id="linga-search" onchange="searchNama()" class="w3-select">
+                    <option value="">-- {% trans 'Liṅga' %} --</option>
+                    {% for i in linga %}
+                    <option value="{{ i.title }}">{% trans i.title %}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </th>
+        <th style="width: 25%">
+            <div>
+                <!-- karanta -->
+                <select id="karanta-search" onchange="searchNama()" class="w3-select">
+                    <option value="">-- {% trans 'Kāranta' %} --</option>
+                    {% for i in karanta %}
+                    <option value="{{ i.title }}">{% trans i.title %}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </th>
+    </thead>
+</table>
+
+<table id="namasaddamala-table" class="w3-table w3-bordered">
+
+    <tbody>
+        {% for i in namasaddamala%}
+        <tr>
+            <td style="width: 25%">{{ i.title|default_if_none:"--" }}</td>
+            <td style="width: 25%">{{ i.nama_type|default_if_none:"--"  }}</td>
+            <td style="width: 25%">{{ i.linga.title|default_if_none:"--"  }}</td>
+            <td style="width: 25%">{{ i.karanta|default_if_none:"--"  }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<script>
+    var input_title = document.getElementById("nama-title-search");
+    var input_type = document.getElementById("type-search");
+    var input_linga = document.getElementById("linga-search");
+    var input_karanta = document.getElementById("karanta-search");
+    var nama_table = document.getElementById("namasaddamala-table");
+
+    function searchNama() {
+        let filter_title = input_title.value.toUpperCase();
+        let filter_type = input_type.value;
+        let filter_linga = input_linga.value;
+        let filter_karanta = input_karanta.value;
+        let tr = nama_table.rows;
+        for (let i = 0; i < tr.length; i++) {
+            td = tr[i].cells;
+            td_title = td[0].innerText;
+            td_type = td[1].innerText;
+            td_linga = td[2].innerText;
+            td_karanta = td[3].innerText;
+            if  (   td_title.toUpperCase().indexOf(filter_title) > -1 &&
+                    (filter_type === '' || td_type === filter_type) &&
+                    (filter_linga === '' || td_linga === filter_linga) &&
+                    (filter_karanta === '' || td_karanta === filter_karanta)
+                ) 
+            {
+                tr[i].style.display = "";
+            } else
+                tr[i].style.display = "none";
+            }
+    }
+</script>

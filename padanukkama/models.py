@@ -10,6 +10,9 @@ from utils.pali_char import *
 
 from tipitaka.models import WordlistVersion, TableOfContent, Structure
 
+# -----------------------------------------------------
+# NamaType
+# -----------------------------------------------------
 class NamaType(models.Model):
     sequence = models.IntegerField(verbose_name=_("sequence"))
     title = models.CharField(max_length=80, verbose_name=_("title"))
@@ -17,6 +20,9 @@ class NamaType(models.Model):
     def __str__(self):
         return f"{self.title}"
 
+# -----------------------------------------------------
+# Linga
+# -----------------------------------------------------
 class Linga(models.Model):
     sequence = models.IntegerField(verbose_name=_("sequence"))
     code = models.CharField(max_length=5, verbose_name=_("code"))
@@ -25,6 +31,9 @@ class Linga(models.Model):
     def __str__(self):
         return f"{self.title} ({self.code})"
 
+# -----------------------------------------------------
+# Karanta
+# -----------------------------------------------------
 class Karanta(models.Model):
     sequence = models.IntegerField(verbose_name=_("sequence"))
     title = models.CharField(max_length=80, verbose_name=_("title"))
@@ -32,6 +41,9 @@ class Karanta(models.Model):
     def __str__(self):
         return f"{self.title}"
 
+# -----------------------------------------------------
+# NamaSaddamala
+# -----------------------------------------------------
 class NamaSaddamala(models.Model):
     title = models.CharField(max_length=80, verbose_name=_("title"))
     title_order = models.CharField(max_length=80, verbose_name=_("title order"))
@@ -40,7 +52,7 @@ class NamaSaddamala(models.Model):
     karanta = models.ForeignKey("Karanta", null=True, blank=True, verbose_name=_("Kāranta"), on_delete=models.SET_NULL) 
     nom_sg = models.CharField(max_length=225, null=True, blank=True, verbose_name=_("Paṭhamā Ekavacana"))
     nom_pl = models.CharField(max_length=225, null=True, blank=True, verbose_name=_("Paṭhamā Bahuvacana"))
-    voc_sl = models.CharField(max_length=225, null=True, blank=True, verbose_name=_("Ālapana Ekavacana"))
+    voc_sg = models.CharField(max_length=225, null=True, blank=True, verbose_name=_("Ālapana Ekavacana"))
     voc_pl = models.CharField(max_length=225, null=True, blank=True, verbose_name=_("Ālapana Bahuvacana"))
     acc_sg = models.CharField(max_length=225, null=True, blank=True, verbose_name=_("Dutiyā Ekavacana"))
     acc_pl = models.CharField(max_length=225, null=True, blank=True, verbose_name=_("Dutiyā bahuvacana"))
@@ -48,12 +60,14 @@ class NamaSaddamala(models.Model):
     instr_pl = models.CharField(max_length=225, null=True, blank=True, verbose_name=_("Tatiyā Bahuvacana"))
     dat_sg = models.CharField(max_length=225, null=True, blank=True, verbose_name=_("Catutthī Ekavacana"))
     dat_pl = models.CharField(max_length=225, null=True, blank=True, verbose_name=_("Catutthī Bahuvacana"))
-    abl_sl = models.CharField(max_length=225, null=True, blank=True, verbose_name=_("Pañcamī Ekavacana"))
+    abl_sg = models.CharField(max_length=225, null=True, blank=True, verbose_name=_("Pañcamī Ekavacana"))
     abl_pl = models.CharField(max_length=225, null=True, blank=True, verbose_name=_("Pañcamī Bahuvacana"))
-    gen_sl = models.CharField(max_length=225, null=True, blank=True, verbose_name=_("Chaṭṭhī Ekavacana"))
+    gen_sg = models.CharField(max_length=225, null=True, blank=True, verbose_name=_("Chaṭṭhī Ekavacana"))
     gen_pl = models.CharField(max_length=225, null=True, blank=True, verbose_name=_("Chaṭṭhī Bahuvacana"))
-    loc_sl = models.CharField(max_length=225, null=True, blank=True, verbose_name=_("Sattamī Ekavacana"))
+    loc_sg = models.CharField(max_length=225, null=True, blank=True, verbose_name=_("Sattamī Ekavacana"))
     loc_pl = models.CharField(max_length=225, null=True, blank=True, verbose_name=_("Sattamī Bahuvacana"))
+    # statistic
+    statistic = models.IntegerField(default=0, verbose_name=_("Statistic"))
     
     def __str__(self):
         return f"{self.title} ({self.linga})"
@@ -63,6 +77,9 @@ class NamaSaddamala(models.Model):
         super().save(*args, **kwargs)
 
 
+# -----------------------------------------------------
+# Dhatu
+# -----------------------------------------------------
 class Dhatu(models.Model):
     sequence = models.IntegerField(verbose_name=_("sequence"))
     title = models.CharField(max_length=80, verbose_name=_("title"))
@@ -71,6 +88,9 @@ class Dhatu(models.Model):
         return f"{self.title}"
 
 
+# -----------------------------------------------------
+# Paccaya
+# -----------------------------------------------------
 class Paccaya(models.Model):
     sequence = models.IntegerField(verbose_name=_("sequence"))
     title = models.CharField(max_length=80, verbose_name=_("title"))
@@ -79,6 +99,9 @@ class Paccaya(models.Model):
         return f"{self.title}"
 
 
+# -----------------------------------------------------
+# AkhyataSaddamala
+# -----------------------------------------------------
 class AkhyataSaddamala(models.Model):
     title = models.CharField(max_length=80, verbose_name=_("title"))
     title_order = models.CharField(max_length=80, verbose_name=_("title order"))
@@ -188,6 +211,8 @@ class AkhyataSaddamala(models.Model):
     kal_pu1_para_pl = models.CharField(max_length=225, null=True, blank=True, verbose_name=_("Kālātipatti Purisa 1 Parassapada Bahuvacana"))
     kal_pu1_atta_sl = models.CharField(max_length=225, null=True, blank=True, verbose_name=_("Kālātipatti Purisa 1 Attanopada Ekavacana"))
     kal_pu1_atta_pl = models.CharField(max_length=225, null=True, blank=True, verbose_name=_("Kālātipatti Purisa 1 Attanopada Bahuvacana"))
+    # statisitc
+    statistic = models.IntegerField(default=0, verbose_name=_("Statistic"))
 
     def __str__(self):
         return f"{self.title} {self.dhatu}-{self.paccaya}"
@@ -197,12 +222,18 @@ class AkhyataSaddamala(models.Model):
         super().save(*args, **kwargs)
 
 
+# -----------------------------------------------------
+# Language
+# -----------------------------------------------------
 class Language(models.Model):
     name = models.CharField(max_length=100, verbose_name=_("Language"))
 
     def __str__(self):
         return self.name
 
+# -----------------------------------------------------
+# Padanukkama
+# -----------------------------------------------------
 class Padanukkama(models.Model):
     title = models.CharField(max_length=255, verbose_name=_("Title"))
     about = models.TextField(blank=True, null=True, verbose_name=_("About"))
@@ -223,6 +254,9 @@ class Padanukkama(models.Model):
         return self.title
 
 
+# -----------------------------------------------------
+# Sadda
+# -----------------------------------------------------
 class Sadda(models.Model):
     padanukkama = models.ForeignKey(
         Padanukkama,
@@ -242,6 +276,9 @@ class Sadda(models.Model):
         verbose_name=_("Contraction"))
 
 
+# -----------------------------------------------------
+# Pada
+# -----------------------------------------------------
 class Pada(MPTTModel):
     SADDA_TYPE_CHOICES = [
         ('NamaSaddamala', 'NamaSaddamala'),
@@ -270,12 +307,6 @@ class Pada(MPTTModel):
         null=True,
         related_name='children',
         verbose_name=_("Parent Words")
-    )
-    pada_type = models.CharField(
-        max_length=20,
-        null=True,
-        choices=SADDA_TYPE_CHOICES,
-        verbose_name=_("Sadda Type")
     )
     sadda = models.ForeignKey(
         "Sadda",

@@ -13,8 +13,10 @@ urlpatterns = [
     path('project/<int:padanukkama_id>/pada/<int:pk>/declension/', views.PadaDeclensionView.as_view(), name='pada_declension'),
     path('project/<int:padanukkama_id>/pada/<int:pk>/delete/', views.PadaDeleteView.as_view(), name='pada_delete'),
     path('project/<int:pk>/delete/', views.PadanukkamaDeleteView.as_view(), name='padanukkama_delete'),
-    path('find_abidan_closest_matches/', views.FindAbidanClosestMatchesView.as_view(), name='find_abidan_closest_matches'),
-    path('find_sadda_closest_matches/', views.FindSaddaClosestMatchesView.as_view(), name='find_sadda_closest_matches'),
+    path('find-abidan-closest-matches/', views.FindAbidanClosestMatchesView.as_view(), name='find_abidan_closest_matches'),
+    path('find-sadda-closest-matches/', views.FindSaddaClosestMatchesView.as_view(), name='find_sadda_closest_matches'),
+    path('create-vipatti/<template_id>/<sadda>/', views.CreateVipatti.as_view(), name='create_vipatti'),
+    # sadda
     path('sadda/create/', views.CreateSaddaView.as_view(), name='sadda_create'),
     path('sadda/<int:pk>/details/', views.SaddaDetailView.as_view(), name='sadda_details'),
     # nama-saddamala
