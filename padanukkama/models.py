@@ -240,14 +240,15 @@ class Padanukkama(models.Model):
     publication = models.BooleanField(default=False, verbose_name=_("Publication"))
     collaborators = models.ManyToManyField(User, verbose_name=_("Collaborators"))
     target_languages = models.ManyToManyField(Language, verbose_name=_("Target Languages"))
-    table_of_content = models.ForeignKey(TableOfContent, verbose_name=_("Table of Contents"), on_delete=models.CASCADE)
+    table_of_content = models.ForeignKey(TableOfContent, verbose_name=_("Table of Contents"), null=True, on_delete=models.CASCADE)
     wordlist_version = models.ManyToManyField(WordlistVersion, verbose_name=_("Wordlist Version"))
     structure = ChainedManyToManyField(
         Structure,
         chained_field="table_of_content",
         chained_model_field="table_of_content",
         verbose_name=_("Structure"),
-        blank=True
+        blank=True,
+        null=True
     )
 
     def __str__(self):

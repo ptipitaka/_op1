@@ -162,11 +162,11 @@ class PadaForm(forms.Form):
 
     sadda = forms.CharField(
         max_length=100,
-        widget=forms.TextInput(attrs={'onchange': 'crate_vipatti()'})
+        widget=forms.TextInput(attrs={'onchange': 'create_vipatti()'})
     )
     template_selection = forms.ChoiceField(
         choices=selection_template,
-        widget=forms.Select(attrs={'onchange': 'crate_vipatti()'})
+        widget=forms.Select(attrs={'onchange': 'create_vipatti()'})
     )
 
 
