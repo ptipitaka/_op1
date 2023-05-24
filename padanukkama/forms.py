@@ -9,6 +9,7 @@ from mptt.forms import TreeNodeMultipleChoiceField
 from .models import NamaSaddamala, AkhyataSaddamala, Padanukkama, Pada, Language, Sadda
 from tipitaka.models import WordlistVersion, TableOfContent, Structure
 
+
 # -----------------------------------------------------
 # NamaSaddamalaForm
 # -----------------------------------------------------
@@ -104,13 +105,12 @@ class AddChildPadaForm(forms.ModelForm):
         fields = ['pada',]
 
 
-
 # -----------------------------------------------------
 # PadaForm
 # -----------------------------------------------------
 class PadaForm(forms.Form):
-    namasaddamala = NamaSaddamala.objects.all().order_by('-statistic', 'title_order')
-    akhyatasaddamala = AkhyataSaddamala.objects.all().order_by('-statistic', 'title_order')
+    namasaddamala = NamaSaddamala.objects.all().order_by('-popularity', 'title_order')
+    akhyatasaddamala = AkhyataSaddamala.objects.all().order_by('-popularity', 'title_order')
 
     # Create a list to store the template data
     template = []
@@ -127,7 +127,7 @@ class PadaForm(forms.Form):
     # Process namasaddamala objects
     for namasaddamala_obj in namasaddamala:
         unique_id = "namasaddamala_" + str(namasaddamala_obj.id)
-        order = str(namasaddamala_obj.statistic).zfill(5) + namasaddamala_obj.title_order
+        order = str(namasaddamala_obj.popularity).zfill(5) + namasaddamala_obj.title_order
         title = namasaddamala_obj.title
         nama_type = namasaddamala_obj.nama_type.title if namasaddamala_obj.nama_type else '-'
         linga = namasaddamala_obj.linga.title if namasaddamala_obj.linga else '-'
@@ -142,7 +142,7 @@ class PadaForm(forms.Form):
     # Process akhyatasaddamala objects
     for akhyatasaddamala_obj in akhyatasaddamala:
         unique_id = "akhyatasaddamala_" + str(akhyatasaddamala_obj.id)
-        order = str(akhyatasaddamala_obj.statistic).zfill(5) + akhyatasaddamala_obj.title_order
+        order = str(akhyatasaddamala_obj.popularity).zfill(5) + akhyatasaddamala_obj.title_order
         title = akhyatasaddamala_obj.title
         dhatu = akhyatasaddamala_obj.dhatu.title if akhyatasaddamala_obj.dhatu else '-'
         paccaya = akhyatasaddamala_obj.paccaya.title if akhyatasaddamala_obj.paccaya else '-'
@@ -154,7 +154,7 @@ class PadaForm(forms.Form):
             'order': order
         })
 
-    # Sort the template by order (statistic and title_order)
+    # Sort the template by order (popularity and title_order)
     template.sort(key=lambda x: x['order'])
 
     # Create the selection template for the ChoiceField
