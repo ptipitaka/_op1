@@ -13,6 +13,9 @@
                 type: 'GET',
                 success: function (response) {
                     var matchesHtml = '';
+                    // ------------- //
+                    // namasaddamala //
+                    // ------------- //
                     if (response.sadda_type == 'namasaddamala') {
                         matchesHtml += '<table class="w3-table w3-bordered">'
                         matchesHtml += '  <tr>'
@@ -61,6 +64,9 @@
                         matchesHtml += '      <td>' + response.result.loc_pl + '</td>'
                         matchesHtml += '  </tr>'
                         matchesHtml += '</table>'
+                    // ---------------- //
+                    // akhyatasaddamala //
+                    // ---------------- //
                     } else if (response.sadda_type == 'akhyatasaddamala') {
                         matchesHtml += '<table class="w3-table w3-bordered">'
                         matchesHtml += '  <tr>'

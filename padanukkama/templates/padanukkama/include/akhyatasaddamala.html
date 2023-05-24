@@ -7,8 +7,8 @@
                 <!-- title -->
                 <input
                     type="text"
-                    id="akyata-title-search"
-                    onkeyup="searchAkyata()"
+                    id="akhyata-title-search"
+                    onkeyup="searchAkhyata()"
                     placeholder="{% trans 'Title' %}.."
                     class="w3-input">
             </div>
@@ -16,7 +16,7 @@
         <th style="width: 25%">
             <div>
                 <!-- dhatu -->
-                <select id="dhatu-search" onchange="searchAkyata()" class="w3-select">
+                <select id="dhatu-search" onchange="searchAkhyata()" class="w3-select">
                     <option value="">-- {% trans 'Dhātu' %} --</option>
                     {% for i in dhatu %}
                     <option value="{{ i.title }}">{% trans i.title %}</option>
@@ -27,7 +27,7 @@
         <th style="width: 25%">
             <div>
                 <!-- paccaya -->
-                <select id="paccaya-search" onchange="searchAkyata()" class="w3-select">
+                <select id="paccaya-search" onchange="searchAkhyata()" class="w3-select">
                     <option value="">-- {% trans 'Paccaya' %} --</option>
                     {% for i in paccaya %}
                     <option value="{{ i.title }}">{% trans i.title %}</option>
@@ -52,22 +52,22 @@
 </table>
 
 <script>
-    var input_akyata_title = document.getElementById("akyata-title-search");
+    var input_akhyata_title = document.getElementById("akhyata-title-search");
     var input_dhatu = document.getElementById("dhatu-search");
     var input_paccaya = document.getElementById("paccaya-search");
-    var akyata_table = document.getElementById("akhyatasaddamala-table");
+    var akhyata_table = document.getElementById("akhyatasaddamala-table");
 
-    function searchAkyata() {
-        let filter_akyata_title = input_akyata_title.value.toUpperCase();
+    function searchAkhyata() {
+        let filter_akhyata_title = input_akhyata_title.value.toUpperCase();
         let filter_dhatu = input_dhatu.value;
         let filter_paccaya = input_paccaya.value;
-        let tr = akyata_table.rows;
+        let tr = akhyata_table.rows;
         for (let i = 0; i < tr.length; i++) {
             td = tr[i].cells;
             td_title = td[0].innerText;
             td_dhatu = td[1].innerText;
             td_paccaya = td[2].innerText;
-            if  (   td_title.toUpperCase().indexOf(filter_akyata_title) > -1 &&
+            if  (   td_title.toUpperCase().indexOf(filter_akhyata_title) > -1 &&
                     (filter_dhatu === '' || td_dhatu === filter_dhatu) &&
                     (filter_paccaya === '' || td_paccaya === filter_paccaya)
                 ) 

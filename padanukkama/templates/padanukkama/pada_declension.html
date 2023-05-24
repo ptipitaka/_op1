@@ -97,12 +97,104 @@
 {% endblock %}
 
 {% block script %}
+    <script>
+        // Crate vipatti table
+        function create_vipatti () {
+            var selectedValue = $('#id_template_selection').val();
+            var saddaValue = $('#id_sadda').val();
+
+            // Check if template_id and sadda are not empty
+            if (selectedValue && saddaValue) {
+                $.ajax({
+                    url: "{% url 'create_vipatti' template_id=0 sadda=1 %}".replace('1', saddaValue).replace('0', selectedValue),
+                    type: 'GET',
+                    success: function (response) {
+                        var matchesHtml = '';
+                        // ------------- //
+                        // namasaddamala //
+                        // ------------- //
+                        if (response.sadda_type == 'namasaddamala') {
+                            matchesHtml += '<table class="w3-table w3-bordered">'
+                            matchesHtml += '  <tr>'
+                            matchesHtml += '      <th>{% trans "Vibhatti" %}</th>'
+                            matchesHtml += '      <th>{% trans "Ekavacana" %}</th>'
+                            matchesHtml += '      <th>{% trans "Bahuvacana" %}</th>'
+                            matchesHtml += '  </tr>'
+                            matchesHtml += '  <tr>'
+                            matchesHtml += '      <td>{% trans "Paṭhamā" %}</td>'
+                            matchesHtml += '      <td>' + response.result.nom_sg + '</td>'
+                            matchesHtml += '      <td>' + response.result.nom_pl + '</td>'
+                            matchesHtml += '  </tr>'
+                            matchesHtml += '  <tr>'
+                            matchesHtml += '      <td>{% trans "Ālapana" %}</td>'
+                            matchesHtml += '      <td>' + response.result.voc_sg + '</td>'
+                            matchesHtml += '      <td>' + response.result.voc_pl + '</td>'
+                            matchesHtml += '  </tr>'
+                            matchesHtml += '  <tr>'
+                            matchesHtml += '      <td>{% trans "Dutiyā" %}</td>'
+                            matchesHtml += '      <td>' + response.result.acc_sg + '</td>'
+                            matchesHtml += '      <td>' + response.result.acc_pl + '</td>'
+                            matchesHtml += '  </tr>'
+                            matchesHtml += '  <tr>'
+                            matchesHtml += '      <td>{% trans "Tatiyā" %}</td>'
+                            matchesHtml += '      <td>' + response.result.instr_sg + '</td>'
+                            matchesHtml += '      <td>' + response.result.instr_pl + '</td>'
+                            matchesHtml += '  </tr>'
+                            matchesHtml += '  <tr>'
+                            matchesHtml += '      <td>{% trans "Catutthī" %}</td>'
+                            matchesHtml += '      <td>' + response.result.dat_sg + '</td>'
+                            matchesHtml += '      <td>' + response.result.dat_pl + '</td>'
+                            matchesHtml += '  </tr>'
+                            matchesHtml += '  <tr>'
+                            matchesHtml += '      <td>{% trans "Pañcamī" %}</td>'
+                            matchesHtml += '      <td>' + response.result.abl_sg + '</td>'
+                            matchesHtml += '      <td>' + response.result.abl_pl + '</td>'
+                            matchesHtml += '  </tr>'
+                            matchesHtml += '  <tr>'
+                            matchesHtml += '      <td>{% trans "Chaṭṭhī" %}</td>'
+                            matchesHtml += '      <td>' + response.result.gen_sg + '</td>'
+                            matchesHtml += '      <td>' + response.result.gen_pl + '</td>'
+                            matchesHtml += '  </tr>'
+                            matchesHtml += '  <tr>'
+                            matchesHtml += '      <td>{% trans "Sattamī" %}</td>'
+                            matchesHtml += '      <td>' + response.result.loc_sg + '</td>'
+                            matchesHtml += '      <td>' + response.result.loc_pl + '</td>'
+                            matchesHtml += '  </tr>'
+                            matchesHtml += '</table>'
+                            // ---------------- //
+                            // akhyatasaddamala //
+                            // ---------------- //
+                        } else if (response.sadda_type == 'akhyatasaddamala') {
+                            matchesHtml += '<table class="w3-table w3-bordered">'
+                            matchesHtml += '  <tr>'
+                            matchesHtml += '      <th>Vibhatti</th>'
+                            matchesHtml += '      <th>Dhātu</th>'
+                            matchesHtml += '      <th>Paccaya</th>'
+                            matchesHtml += '  </tr>'
+                            matchesHtml += '</table>'
+                        }
+
+                        $('#result-container').html(matchesHtml);
+                    },
+                    error: function (xhr, status, error) {
+                        // Handle error cases
+                        console.error(error);
+                    }
+                });
+            } else {
+                // Handle the case when template_id or sadda is empty
+                console.log("template_id or sadda is empty");
+            }
+        }
+
+    </script>
+    
     <script src="{% static 'padanukkama/modals.js' %}"></script>
     <script src="{% static 'padanukkama/tabs.js' %}"></script>
 
     {% include 'padanukkama/include/find_abidan.html' %}
     {% include 'padanukkama/include/find_sadda.html' %}
-    {% include 'padanukkama/include/create_vipatti.html' %}
-    
+
+
 
 {% endblock %}
