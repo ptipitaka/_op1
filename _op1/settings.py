@@ -92,28 +92,16 @@ WSGI_APPLICATION = '_op1.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-if config("IS_PRODUCTION", "False") == "True":
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': config("DATABASE_NAME"),
-            'USER': config("DATABASE_USER"),
-            'PASSWORD': config("DATABASE_PASSWORD"),
-            'HOST': config("DATABASE_HOST"),
-            'PORT': '',
-        }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': config("DATABASE_NAME"),
+        'USER': config("DATABASE_USER"),
+        'PASSWORD': config("DATABASE_PASSWORD"),
+        'HOST': config("DATABASE_HOST"),
+        'PORT': config("DATABASE_PORT"),
     }
-else: 
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'op1_dev',
-            'USER': 'op1',
-            'PASSWORD': '123456',
-            'HOST': 'localhost',
-            'PORT': '5433',
-        }
-    }
+}
 
 # Check database connection
 # print('running on db : ' + connection.settings_dict['NAME'])
