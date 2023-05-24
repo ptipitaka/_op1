@@ -1,3 +1,5 @@
+from django.db.models import Q
+
 from tipitaka.models import CommonReference, WordList
 from padanukkama.models import Padanukkama, Pada, NamaSaddamala, AkhyataSaddamala
 
@@ -9,34 +11,36 @@ def create_pada(padanukkama_id):
     structures = padanukkama.structure.all()
     # Retrieve all the related CommonReference instances for the structures
     common_references = CommonReference.objects.filter(structure__in=structures)
+    # Collect the from_position, to_position, and wordlist_version values from the common_references
+    positions = common_references.values_list('from_position', 'to_position')
+    wordlist_versions = common_references.values_list('wordlist_version', flat=True)
+    # Combine the conditions using OR (Q objects) for each common reference
+    conditions = Q()
+    for from_position, to_position in positions:
+        conditions |= Q(code__gte=from_position, code__lte=to_position)
 
-    for common_reference in common_references:
-        from_position = common_reference.from_position
-        to_position = common_reference.to_position
-        wordlist_version = common_reference.wordlist_version
-        
-        # Retrieve the WordList instances within the specified range and wordlist version
-        wordlists = WordList.objects.filter(
-            wordlist_version=wordlist_version,
-            code__gte=from_position,
-            code__lte=to_position
-        ).distinct('word') # TODO : have to be chaange to pada_roman_script
-        
-        # Add the retrieved WordList instances to the Pada model
-        for wordlist in wordlists:
-            is_pada_exists = Pada.objects.filter(
+    # Filter the WordList objects based on the conditions and wordlist_version
+    wordlists = WordList.objects.filter(wordlist_version__in=wordlist_versions).filter(conditions).distinct('word')
+    for wordlist in wordlists:
+        # Pada.objects.create(
+        #     padanukkama=padanukkama,
+        #     pada=wordlist.word,
+        #     pada_seq=wordlist.word_seq,
+        #     pada_roman_script=wordlist.word_roman_script,
+        # )
+        is_pada_exists = Pada.objects.filter(
+            padanukkama=padanukkama,
+            pada=wordlist.word
+        ).exists()
+
+        if not is_pada_exists:
+            Pada.objects.create(
                 padanukkama=padanukkama,
-                pada=wordlist.word # TODO : have to be chaange to pada_roman_script
-            ).exists()
+                pada=wordlist.word,
+                pada_seq=wordlist.word_seq,
+                pada_roman_script=wordlist.word_roman_script,
+            )
 
-            if not is_pada_exists:
-                Pada.objects.create(
-                    padanukkama=padanukkama,
-                    pada=wordlist.word,
-                    pada_seq=wordlist.word_seq,
-                    pada_roman_script=wordlist.word_roman_script,
-                )
-                print(wordlist)
 
 
 def mix_namavipatties(sadda, template_id):

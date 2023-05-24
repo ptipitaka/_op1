@@ -1,0 +1,34 @@
+{% load static i18n %}
+
+<script>
+    $(document).ready(function () {
+        $.ajax({
+            url: '{% url "find_sadda_closest_matches" %}',
+            type: 'GET',
+            data: {
+                'string': '{{ pada.pada }}'
+            },
+            beforeSend: function () {
+                // Show the loading message before making the AJAX request
+                $('#sadda-closest-matches').html('<i id="loading-icon" class="fa fa-spinner fa-spin"></i> {% trans "Loading..." %}');
+            },
+            success: function (response) {
+                var closestMatches = response.closest_matches;
+                var matchesHtml = '';
+
+                // Generate the HTML for displaying the closest matches
+                if (closestMatches.length === 0) {
+                    matchesHtml = '<li>No matches found.</li>';
+                } else {
+                    for (var i = 0; i < closestMatches.length; i++) {
+                        var saddaDetailsUrl = '{% url "sadda_details" pk=0 %}'.replace('0', closestMatches[i].id);
+                        matchesHtml += '<li><a href="' + saddaDetailsUrl + '">' + closestMatches[i].word + '</a> (' + closestMatches[i].score + '%)</li>';
+                    }
+                }
+
+                // Update the sadda-closest-matches ul with the generated HTML
+                $('#sadda-closest-matches').html(matchesHtml);
+            }
+        });
+    })
+</script>
