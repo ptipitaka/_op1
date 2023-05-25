@@ -13,6 +13,21 @@
                 type: 'GET',
                 success: function (response) {
                     var matchesHtml = '';
+                    var tableHead = ''
+                        tableHead += '<thead>'
+                        tableHead += '    <tr>'
+                        tableHead += '        <th rowspan="2" style="width: 100px;">{% trans "Person" %}</th>'
+                        tableHead += '        <th colspan="2" class="w3-center">{% trans "Parassapada" %}</th>'
+                        tableHead += '        <th colspan="2" class="w3-center">{% trans "Attanopada" %}</th>'
+                        tableHead += '    </tr>'
+                        tableHead += '    <tr>'
+                        tableHead += '        <th class="w3-center">{% trans "sg." %}</th>'
+                        tableHead += '        <th class="w3-center">{% trans "pl." %}</th>'
+                        tableHead += '        <th class="w3-center">{% trans "sg." %}</th>'
+                        tableHead += '        <th class="w3-center">{% trans "pl." %}</th>'
+                        tableHead += '    </tr>'
+                        tableHead += '</thead>'
+                    
                     // ------------- //
                     // namasaddamala //
                     // ------------- //
@@ -68,12 +83,33 @@
                     // akhyatasaddamala //
                     // ---------------- //
                     } else if (response.sadda_type == 'akhyatasaddamala') {
-                        matchesHtml += '<table class="w3-table w3-bordered">'
-                        matchesHtml += '  <tr>'
-                        matchesHtml += '      <th>Vibhatti</th>'
-                        matchesHtml += '      <th>Dhātu</th>'
-                        matchesHtml += '      <th>Paccaya</th>'
-                        matchesHtml += '  </tr>'
+                        // Vattamānā (present tense)
+                        matchesHtml += '<h4 class="w3-center">{% trans "Conjugation of" %} {% trans "Vattamānā" %} ({% trans "present tense" %})</h4>'
+                        matchesHtml += '<table class="w3-table w3-bordered w3-margin">'
+                        matchesHtml += tableHead
+                        matchesHtml += '    <tbody>'
+                        matchesHtml += '        <tr>'
+                        matchesHtml += '            <td>{% trans "3rd" %}</td>'
+                        matchesHtml += '            <td>' + response.result.vat_pu3_para_sl + '</td>'
+                        matchesHtml += '            <td>' + response.result.vat_pu3_para_pl + '</td>'
+                        matchesHtml += '            <td>' + response.result.vat_pu3_atta_sl + '</td>'
+                        matchesHtml += '            <td>' + response.result.vat_pu3_atta_pl + '</td>'
+                        matchesHtml += '        </tr>'
+                        matchesHtml += '        <tr>'
+                        matchesHtml += '            <td>{% trans "2nd" %}</td>'
+                        matchesHtml += '            <td>' + response.result.vat_pu2_para_sl + '</td>'
+                        matchesHtml += '            <td>' + response.result.vat_pu2_para_pl + '</td>'
+                        matchesHtml += '            <td>' + response.result.vat_pu2_atta_sl + '</td>'
+                        matchesHtml += '            <td>' + response.result.vat_pu2_atta_pl + '</td>'
+                        matchesHtml += '        </tr>'
+                        matchesHtml += '        <tr>'
+                        matchesHtml += '            <td>{% trans "1st" %}</td>'
+                        matchesHtml += '            <td>' + response.result.vat_pu1_para_sl + '</td>'
+                        matchesHtml += '            <td>' + response.result.vat_pu1_para_pl + '</td>'
+                        matchesHtml += '            <td>' + response.result.vat_pu1_atta_sl + '</td>'
+                        matchesHtml += '            <td>' + response.result.vat_pu1_atta_pl + '</td>'
+                        matchesHtml += '        </tr>'
+                        matchesHtml += '    </tbody>'
                         matchesHtml += '</table>'
                     }
 

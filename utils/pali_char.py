@@ -274,10 +274,18 @@ def cv_pali_to_roman(pali_expand):
         'y','r','l','v','s','h','ḷ','ṃ']
 
     y = ''
-    try:
-        for x in pali_expand:
-            n = aukkrani.index(x)
-            y += roman[n]
-    except:
-        y = ''
+    for x in pali_expand:
+        n = aukkrani.index(x)
+        y += roman[n]
+
     return y
+
+
+def is_validate_pali(pali_shrink):
+    try:
+        payankas = cv_payangka(extract(pali_shrink))
+        pali_expand = [item for sublist in payankas for item in (sublist if isinstance(sublist, list) else [sublist])]
+        cv_pali_to_roman(pali_expand)
+        return True
+    except:
+        return False
