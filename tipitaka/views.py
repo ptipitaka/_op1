@@ -1,30 +1,30 @@
-import threading
-
-from braces import views
 from django.db.models import Q
-from django.conf import settings
-from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.contrib.messages.views import SuccessMessageMixin
 from django_filters.views import FilterView
 from django.shortcuts import render, redirect, get_object_or_404
 from django_tables2.views import SingleTableMixin
 from django.urls import reverse_lazy
+from django.utils.decorators import method_decorator
 from django.utils.translation import gettext_lazy as _
 from django.views import View
 from django.views.generic.edit import UpdateView, DeleteView
 from django.views.generic import TemplateView, DetailView
 from utils.pali_char import *
 
-from .models import Edition, Page, WordlistVersion, WordList, TableOfContent, Structure, CommonReference
+from .models import Edition, Page, WordList, TableOfContent, Structure, CommonReference
 from .tables import DigitalArchiveTable, WordlistMasterTable, WordlistMasterFilter, TocTable, StructureTable, StructureFilter, WordListTable, CommonReferenceTable
-from .forms import DigitalArchiveForm, EditForm, UpdWlAndPageForm, WLGForm, WordlistFinderForm
+from .forms import DigitalArchiveForm, EditForm, UpdWlAndPageForm, WordlistFinderForm
 
 
-# ----------------------------------------------------------------
-# TIPITAKA DIGITAL ARCHIVED
-# ----------------------------------------------------------------
-
+# -----------------------------------------------------
+# DigitalArchiveView
+# -----------------------------------------------------
 class DigitalArchiveView(View):
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+    
     def get(self, request):
         form = DigitalArchiveForm(request.GET)
         
@@ -57,12 +57,19 @@ class DigitalArchiveView(View):
         })
 
 
+# -----------------------------------------------------
+# DigitalArchiveDetialsView
+# -----------------------------------------------------
 class DigitalArchiveDetialsView(SuccessMessageMixin, UpdateView):
     template_name = "tipitaka/digital_archive_details.html"
     model = Page
     form_class = EditForm
     success_message = _('Update successfully!')
 
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+    
     def get_success_url(self):
         edition = int(self.request.GET.get('edition'))
         volume = self.request.GET.get('volume') or ''
@@ -71,6 +78,9 @@ class DigitalArchiveDetialsView(SuccessMessageMixin, UpdateView):
         return '/inscriber/digital-archive?edition=%s&volume=%s&page_number=%s&content=%s' %(edition, volume, page_number, content)
 
 
+# -----------------------------------------------------
+# WordListView
+# -----------------------------------------------------
 class WordListView(SingleTableMixin, FilterView):
     model = WordList
     template_name = "tipitaka/wordlist_master.html"
@@ -78,28 +88,42 @@ class WordListView(SingleTableMixin, FilterView):
     table_class = WordlistMasterTable
     filterset_class = WordlistMasterFilter
 
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+
     def get_context_data(self, **kwargs):
         context = super(WordListView, self).get_context_data(**kwargs)
         context["total_rec"] = '{:,}'.format(len(self.get_table().rows)) 
         return context
 
 
-class WordListPageSourceView(views.LoginRequiredMixin, views.SuperuserRequiredMixin, UpdateView):
+# -----------------------------------------------------
+# WordListPageSourceView
+# -----------------------------------------------------
+class WordListPageSourceView(UpdateView):
     model = WordList
     template_name = "tipitaka/wordlist_page_source.html"
     form_class = UpdWlAndPageForm
     success_url = reverse_lazy('wordlist_master')
 
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+    
     def get_success_url(self):
         return self.request.path
 
-# ----------------------------------------------------------------
+
+# -----------------------------------------------------
 # TABLE OF CONTENTS & COMMON REFERENCE
-# ----------------------------------------------------------------
-class TocView(views.LoginRequiredMixin, views.SuperuserRequiredMixin, View):
-
+# -----------------------------------------------------
+class TocView(View):
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+    
     def get(self, request):
-
         queryset = TableOfContent.objects.all().order_by('code',)
         table = TocTable(queryset)
         table.paginate(page=request.GET.get("page", 1), per_page=25)
@@ -109,17 +133,25 @@ class TocView(views.LoginRequiredMixin, views.SuperuserRequiredMixin, View):
             'table': table,
             'total_rec': total_rec
         })
+    
     def post(self, request):
         pass
 
 
-class StructureView(views.LoginRequiredMixin, views.SuperuserRequiredMixin, SingleTableMixin, FilterView):
+# -----------------------------------------------------
+# StructureView
+# -----------------------------------------------------
+class StructureView(SingleTableMixin, FilterView):
     model = Structure
     template_name = "tipitaka/structure.html"
     context_object_name  = "tocs"
     table_class = StructureTable
     filterset_class = StructureFilter
 
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+    
     def get_queryset(self):
         queryset = super().get_queryset()
         slug = self.kwargs.get('slug')
@@ -133,8 +165,15 @@ class StructureView(views.LoginRequiredMixin, views.SuperuserRequiredMixin, Sing
         return context
 
 
-class CommonReferenceSubformView(views.LoginRequiredMixin, views.SuperuserRequiredMixin, TemplateView):
+# -----------------------------------------------------
+# CommonReferenceSubformView
+# -----------------------------------------------------
+class CommonReferenceSubformView(TemplateView):
     template_name = "tipitaka/common_reference_subform.html"
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -238,10 +277,17 @@ class CommonReferenceSubformView(views.LoginRequiredMixin, views.SuperuserRequir
         return self.render_to_response(context)
 
 
-class CommonReferenceSubformDetailView(views.LoginRequiredMixin, views.SuperuserRequiredMixin, DetailView):
+# -----------------------------------------------------
+# CommonReferenceSubformDetailView
+# -----------------------------------------------------
+class CommonReferenceSubformDetailView(DetailView):
     model = CommonReference
     template_name = "tipitaka/common_reference_detail.html"
 
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+    
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
@@ -252,10 +298,18 @@ class CommonReferenceSubformDetailView(views.LoginRequiredMixin, views.Superuser
         context['count_all_wordlist_in_from_position_page'] = self.object.count_all_wordlist_in_from_position_page
         return context
 
-class CommonReferenceSubformDeleteView(views.LoginRequiredMixin, views.SuperuserRequiredMixin, DeleteView):
+
+# -----------------------------------------------------
+# CommonReferenceSubformDeleteView
+# -----------------------------------------------------
+class CommonReferenceSubformDeleteView(DeleteView):
     model = CommonReference
     template_name = 'tipitaka/common_reference_delete.html'
 
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+        
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 

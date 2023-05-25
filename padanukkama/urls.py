@@ -16,9 +16,6 @@ urlpatterns = [
     path('find-abidan-closest-matches/', views.FindAbidanClosestMatchesView.as_view(), name='find_abidan_closest_matches'),
     path('find-sadda-closest-matches/', views.FindSaddaClosestMatchesView.as_view(), name='find_sadda_closest_matches'),
     path('create-vipatti/<template_id>/<sadda>/', views.CreateVipatti.as_view(), name='create_vipatti'),
-    # sadda
-    path('sadda/create/', views.CreateSaddaView.as_view(), name='sadda_create'),
-    path('sadda/<int:pk>/details/', views.SaddaDetailView.as_view(), name='sadda_details'),
     # nama-saddamala
     path('nama-saddamala/', views.NamaSaddamalaView.as_view(), name='nama_saddamala'),
     path('nama-saddamala/create/', views.NamaSaddamalaCreateView.as_view(), name='nama_saddamala_create'),
@@ -29,7 +26,4 @@ urlpatterns = [
     path('akhyata-saddamala/create/', views.AkhyataSaddamalaCreateView.as_view(), name='akhyata_saddamala_create'),
     path('akhyata-saddamala/<int:pk>/update/', views.AkhyataSaddamalaUpdateView.as_view(), name='akhyata_saddamala_update'),
     path('akhyata-saddamala/<int:pk>/delete/', views.AkhyataSaddamalaDeleteView.as_view(), name='akhyata_saddamala_delete'),
-     # sadda
-    # path('sadda-create/', views.CreateSaddaView.as_view(), name='sadda_create'),
-    # path('sadda-detail/', views.SaddaDetailView.as_view(), name='sadda_detail'),
 ]

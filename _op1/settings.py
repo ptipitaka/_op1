@@ -50,7 +50,7 @@ INSTALLED_APPS = [
     'storages',
     'widget_tweaks',
     # internal
-    'main',
+    'main.apps.MainConfig',
     'abidan',
     'tipitaka',
     'padanukkama'
@@ -176,9 +176,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 # auth settings
-LOGIN_URL = "login"
-LOGIN_REDIRECT_URL = "home"
-LOGOUT_REDIRECT_URL = "home"
+LOGIN_URL = "/login"
+LOGIN_REDIRECT_URL = "/"
+LOGOUT_REDIRECT_URL = "/login"
 
 
 # JQUERY_URL = True

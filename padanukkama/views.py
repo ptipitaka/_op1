@@ -1,10 +1,8 @@
-from braces import views
-
-import json
-
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
+from django.utils.decorators import method_decorator
 from django.utils.translation import gettext_lazy as _
 from django.views import View
 from django.views.generic import CreateView, UpdateView, DeleteView
@@ -15,10 +13,7 @@ from django_tables2.views import SingleTableMixin
 
 from fuzzywuzzy import fuzz, process
 
-from mptt.exceptions import InvalidMove
-
-from .models import NamaSaddamala, AkhyataSaddamala, Padanukkama, Pada, Sadda, \
-                    NamaType, Linga, Karanta, Dhatu, Paccaya
+from .models import NamaSaddamala, AkhyataSaddamala, Padanukkama, Pada, Sadda
 
 from abidan.models import Word, WordLookup
 
@@ -40,15 +35,16 @@ from utils.padanukkama import *
 # NamaSaddamalaView
 # -----------------------------------------------------
 class NamaSaddamalaView(SingleTableMixin, FilterView):
-    login_required = True
-    superuser_required = True
-
     model = NamaSaddamala
     template_name = "padanukkama/nama_saddamala.html"
     context_object_name  = "nama_saddamala"
     table_class = NamaSaddamalaTable
     filterset_class = NamaSaddamalaFilter
 
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+    
     def get_context_data(self, **kwargs):
         context = super(NamaSaddamalaView, self).get_context_data(**kwargs)
         context["total_rec"] = '{:,}'.format(len(self.get_table().rows)) 
@@ -59,14 +55,15 @@ class NamaSaddamalaView(SingleTableMixin, FilterView):
 # NamaSaddamalaCreateView
 # -----------------------------------------------------
 class NamaSaddamalaCreateView(CreateView):
-    login_required = True
-    superuser_required = True
-
     model = NamaSaddamala
     template_name = "padanukkama/nama_saddamala_detail.html"
     form_class = NamaSaddamalaForm
     success_url = reverse_lazy('nama_saddamala')
 
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+    
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['url_name'] = resolve(self.request.path_info).url_name
@@ -77,14 +74,15 @@ class NamaSaddamalaCreateView(CreateView):
 # NamaSaddamalaUpdateView
 # -----------------------------------------------------
 class NamaSaddamalaUpdateView(UpdateView):
-    login_required = True
-    superuser_required = True
-
     model = NamaSaddamala
     template_name = "padanukkama/nama_saddamala_detail.html"
     form_class = NamaSaddamalaForm
     success_url = reverse_lazy('nama_saddamala')
 
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+    
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['url_name'] = resolve(self.request.path_info).url_name
@@ -95,13 +93,14 @@ class NamaSaddamalaUpdateView(UpdateView):
 # NamaSaddamalaDeleteView
 # -----------------------------------------------------
 class NamaSaddamalaDeleteView(DeleteView):
-    login_required = True
-    superuser_required = True
-
     model = NamaSaddamala
     template_name = "padanukkama/nama_saddamala_detail.html"
     success_url = reverse_lazy('nama_saddamala')
 
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+    
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['nama_saddamala'] = self.get_object()
@@ -119,6 +118,10 @@ class AkhyataSaddamalaView(SingleTableMixin, FilterView):
     table_class = AkhyataSaddamalaTable
     filterset_class = AkhyataSaddamalaFilter
 
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+    
     def get_context_data(self, **kwargs):
         context = super(AkhyataSaddamalaView, self).get_context_data(**kwargs)
         context["total_rec"] = '{:,}'.format(len(self.get_table().rows)) 
@@ -129,14 +132,15 @@ class AkhyataSaddamalaView(SingleTableMixin, FilterView):
 # AkhyataSaddamalaCreateView
 # -----------------------------------------------------
 class AkhyataSaddamalaCreateView(CreateView):
-    login_required = True
-    superuser_required = True
-
     model = AkhyataSaddamala
     template_name = "padanukkama/akhyata_saddamala_detail.html"
     form_class = AkhyataSaddamalaForm
     success_url = reverse_lazy('akhyata_saddamala')
 
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+    
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['url_name'] = resolve(self.request.path_info).url_name
@@ -147,14 +151,15 @@ class AkhyataSaddamalaCreateView(CreateView):
 # AkhyataSaddamalaUpdateView
 # -----------------------------------------------------
 class AkhyataSaddamalaUpdateView(UpdateView):
-    login_required = True
-    superuser_required = True
-
     model = AkhyataSaddamala
     template_name = "padanukkama/akhyata_saddamala_detail.html"
     form_class = AkhyataSaddamalaForm
     success_url = reverse_lazy('akhyata_saddamala')
 
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+    
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['url_name'] = resolve(self.request.path_info).url_name
@@ -165,12 +170,13 @@ class AkhyataSaddamalaUpdateView(UpdateView):
 # AkhyataSaddamalaDeleteView
 # -----------------------------------------------------
 class AkhyataSaddamalaDeleteView(DeleteView):
-    login_required = True
-    superuser_required = True
-
     model = AkhyataSaddamala
     template_name = "padanukkama/akhyata_saddamala_detail.html"
     success_url = reverse_lazy('akhyata_saddamala')
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -189,6 +195,10 @@ class PadanukkamaView(SingleTableMixin, FilterView):
     table_class =PadanukkamaTable
     filterset_class =PadanukkamaFilter
 
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+    
     def get_context_data(self, **kwargs):
         context = super(PadanukkamaView, self).get_context_data(**kwargs)
         context["total_rec"] = '{:,}'.format(len(self.get_table().rows)) 
@@ -199,13 +209,14 @@ class PadanukkamaView(SingleTableMixin, FilterView):
 # PadanukkamaCreateView
 # -----------------------------------------------------
 class PadanukkamaCreateView(CreateView):
-    login_required = True
-    superuser_required = True
-
     model = Padanukkama
     template_name = "padanukkama/padanukkama_create.html"
     form_class = PadanukkamaCreateForm
 
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+    
     def get_success_url(self):
         return reverse_lazy('padanukkama_update', args=(self.object.pk,))
 
@@ -218,14 +229,15 @@ class PadanukkamaCreateView(CreateView):
 # PadanukkamaUpdateView
 # -----------------------------------------------------
 class PadanukkamaUpdateView(UpdateView):
-    login_required = True
-    superuser_required = True
-
     model = Padanukkama
     context_object_name = 'padanukkama'
     template_name = "padanukkama/padanukkama_update.html"
     form_class = PadanukkamaUpdateForm
     success_url = reverse_lazy('padanukkama')
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
     
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
@@ -245,27 +257,28 @@ class PadanukkamaUpdateView(UpdateView):
 # PadanukkamaDeleteView
 # -----------------------------------------------------
 class PadanukkamaDeleteView(DeleteView):
-    login_required = True
-    superuser_required = True
-
     model = Padanukkama
     success_url = reverse_lazy('padanukkama')
     template_name = "padanukkama/padanukkama_delete.html"
 
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
 
 # -----------------------------------------------------
 # PadanukkamaPadaView
 # -----------------------------------------------------
 class PadanukkamaPadaView(SingleTableMixin, FilterView):
-    login_required = True
-    superuser_required = True
-
     model = Pada
     template_name = "padanukkama/pada.html"
     context_object_name = 'pada'
     table_class = PadaTable
     filterset_class = PadaFilter
 
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+    
     def get_queryset(self):
         queryset = super().get_queryset()
         padanukkama_id = self.kwargs.get('padanukkama_id')
@@ -286,11 +299,12 @@ class PadanukkamaPadaView(SingleTableMixin, FilterView):
 # PadaSplitSandhiView
 # -----------------------------------------------------
 class PadaSplitSandhiView(View):
-    login_required = True
-    superuser_required = True
-
     template_name = 'padanukkama/pada_split_sandhi.html'
 
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+    
     def get(self, request, padanukkama_id, pk):
         pada = get_object_or_404(Pada, id=pk)
         padanukkama = get_object_or_404(Padanukkama, id=padanukkama_id)
@@ -321,8 +335,9 @@ class PadaSplitSandhiView(View):
 # PadaDuplicateView
 # -----------------------------------------------------
 class PadaDuplicateView(View):
-    login_required = True
-    superuser_required = True
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
 
     def get(self, request, padanukkama_id, pk):
         # Retrieve the Pada record to be duplicated
@@ -354,6 +369,10 @@ class PadaDuplicateView(View):
 # PadaDeclensionView
 # -----------------------------------------------------
 class FindAbidanClosestMatchesView(View):
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+    
     def get(self, request):
         string = request.GET.get('string')  # Get the string from the AJAX request
         threshold = 70  # Set your desired threshold
@@ -400,6 +419,10 @@ class FindAbidanClosestMatchesView(View):
 # FindSaddaClosestMatchesView
 # -----------------------------------------------------
 class FindSaddaClosestMatchesView(View):
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+    
     def get(self, request):
         string = request.GET.get('string')  # Get the string from the AJAX request
         threshold = 70  # Set your desired threshold
@@ -429,15 +452,14 @@ class FindSaddaClosestMatchesView(View):
         return JsonResponse(data)
 
 
-
 # -----------------------------------------------------
 # PadaDeclensionView
 # -----------------------------------------------------
 class PadaDeclensionView(View):
-    login_required = True
-    superuser_required = True
-    template_name = 'padanukkama/pada_declension.html'
-
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+    
     def get(self, request, pk, padanukkama_id):
         pada = get_object_or_404(Pada, id=pk)
         padanukkama = get_object_or_404(Padanukkama, id=padanukkama_id)
@@ -473,6 +495,10 @@ class PadaDeclensionView(View):
 # CreateVipatti
 # -----------------------------------------------------
 class CreateVipatti(View):
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+    
     def get(self, request, template_id, sadda):
         if not template_id or not sadda:
             return JsonResponse({'data': ''})
@@ -507,15 +533,15 @@ class CreateVipatti(View):
 
         return JsonResponse(data)
 
-    
-    
+
 # -----------------------------------------------------
 # PadaDeleteView
 # -----------------------------------------------------
 class PadaDeleteView(View):
-    login_required = True
-    superuser_required = True
-
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+    
     def post(self, request, padanukkama_id, pk):
         pada = get_object_or_404(Pada, pk=pk)
         pada_parent_id = pada.parent_id
@@ -532,57 +558,3 @@ class PadaDeleteView(View):
             # Redirect to the pada_split_sandhi view with parent_id as a positional argument
             return redirect(reverse_lazy('pada_split_sandhi', args=[padanukkama_id, pada_parent_id]))
 
-
-
-# -----------------------------------------------------
-# SaddaView
-# -----------------------------------------------------
-class CreateSaddaView(View):
-    def get(self, request, padanukkama_id, pada_id):
-        form = SaddaForm()
-        linked_sadda_options = self.get_linked_sadda_options()
-        linked_sadda_options_json = json.dumps(linked_sadda_options)  # Convert to JSON string
-        
-        padanukkama = get_object_or_404(Padanukkama, id=padanukkama_id)
-        pada = get_object_or_404(Pada, id=pada_id)
-
-        return render(
-            request,
-            'padanukkama/sadda_create.html',
-            {
-                'form': form,
-                'linked_sadda_options': linked_sadda_options_json,
-                'padanukkama': padanukkama,
-                'pada': pada
-            })
-
-    def post(self, request):
-        form = SaddaForm(request.POST)
-        if form.is_valid():
-            sadda = form.save()
-            return redirect('sadda_detail', pk=sadda.pk)
-        linked_sadda_options = self.get_linked_sadda_options()
-        linked_sadda_options_json = json.dumps(linked_sadda_options)  # Convert to JSON string
-        return render(request, 'padanukkama/sadda_create.html', {'form': form, 'linked_sadda_options': linked_sadda_options_json})
-    
-    def get_linked_sadda_options(self):
-        linked_sadda_options = {
-            'NamaSaddamala': [],
-            'AkhyataSaddamala': []
-        }
-        
-        # Retrieve the options for NamaSaddamala
-        nama_saddamala_options = NamaSaddamala.objects.all().order_by('title_order').values_list('id', 'title', 'linga__code')
-        linked_sadda_options['NamaSaddamala'] = [{'value': id, 'label': f"{title} ({linga__code})"} for id, title, linga__code in nama_saddamala_options]
-        
-        # Retrieve the options for AkhyataSaddamala
-        akhyata_saddamala_options = AkhyataSaddamala.objects.all().values_list('id', 'title')
-        linked_sadda_options['AkhyataSaddamala'] = [{'value': id, 'label': f"{title} ({linga})"} for id, title, linga in akhyata_saddamala_options]
-
-        return linked_sadda_options
-
-class SaddaDetailView(View):
-    def get(self, request, pk):
-        sadda = Sadda.objects.get(pk=pk)
-        return render(request, 'padanukkama/sadda_detail.html', {'sadda': sadda})
-    
