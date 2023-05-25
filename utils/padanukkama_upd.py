@@ -1,5 +1,3 @@
-from django.db.models import Q
-
 from tipitaka.models import CommonReference, WordList
 from padanukkama.models import Padanukkama, Pada, NamaSaddamala, AkhyataSaddamala
 from .pali_char import extract, compress, is_validate_pali
@@ -10,39 +8,38 @@ def create_pada(padanukkama_id):
     structures = padanukkama.structure.all()
     # Retrieve all the related CommonReference instances for the structures
     common_references = CommonReference.objects.filter(structure__in=structures)
-    # Collect the from_position, to_position, and wordlist_version values from the common_references
-    positions = common_references.values_list('from_position', 'to_position')
-    wordlist_versions = common_references.values_list('wordlist_version', flat=True)
-    # Combine the conditions using OR (Q objects) for each common reference
-    conditions = Q()
-    for from_position, to_position in positions:
-        conditions |= Q(code__gte=from_position, code__lte=to_position)
 
-    # Filter the WordList objects based on the conditions and wordlist_version
-    wordlists = WordList.objects.filter(wordlist_version__in=wordlist_versions).filter(conditions).distinct('word')
-    for wordlist in wordlists:
-        # Pada.objects.create(
-        #     padanukkama=padanukkama,
-        #     pada=wordlist.word,
-        #     pada_seq=wordlist.word_seq,
-        #     pada_roman_script=wordlist.word_roman_script,
-        # )
-        is_pada_exists = Pada.objects.filter(
-            padanukkama=padanukkama,
-            pada=wordlist.word
-        ).exists()
-
-        if not is_pada_exists:
-            Pada.objects.create(
+    for common_reference in common_references:
+        from_position = common_reference.from_position
+        to_position = common_reference.to_position
+        wordlist_version = common_reference.wordlist_version
+        
+        # Retrieve the WordList instances within the specified range and wordlist version
+        wordlists = WordList.objects.filter(
+            wordlist_version=wordlist_version,
+            code__gte=from_position,
+            code__lte=to_position
+        ).distinct('word') # TODO : have to be chaange to pada_roman_script
+        
+        # Add the retrieved WordList instances to the Pada model
+        for wordlist in wordlists:
+            is_pada_exists = Pada.objects.filter(
                 padanukkama=padanukkama,
-                pada=wordlist.word,
-                pada_seq=wordlist.word_seq,
-                pada_roman_script=wordlist.word_roman_script,
-            )
+                pada=wordlist.word # TODO : have to be chaange to pada_roman_script
+            ).exists()
+
+            if not is_pada_exists:
+                Pada.objects.create(
+                    padanukkama=padanukkama,
+                    pada=wordlist.word,
+                    pada_seq=wordlist.word_seq,
+                    pada_roman_script=wordlist.word_roman_script,
+                )
+                print(wordlist)
 
 
-def mix_namavipatties(satta, template_id):
-    if not is_validate_pali(satta):
+def mix_namavipatties(sadda, template_id):
+    if not is_validate_pali(sadda):
         return {'error':True}
 
     pada = NamaSaddamala.objects.get(pk=template_id)
@@ -52,13 +49,13 @@ def mix_namavipatties(satta, template_id):
 
     result = {'error':False}
     
-    satta_expand = extract(satta)
+    sadda_expand = extract(sadda)
     template_expand = extract(pada.title)
 
     for num in range(start, stop):
         wipatti_key = fields[num].name
         wipatties = getattr(pada, wipatti_key)
-        wipatti_weared = wear_namawipatti(satta_expand, template_expand, wipatties)
+        wipatti_weared = wear_namawipatti(sadda_expand, template_expand, wipatties)
         result[wipatti_key]=wipatti_weared
         
     return result
@@ -82,21 +79,21 @@ def mix_akhyatavipatties(arkayata, template_id):
 
     result = {'error':False}
     
-    satta_expand = extract(arkayata)
+    sadda_expand = extract(arkayata)
     template_expand = extract(pada.title)
 
     for num in range(start, stop):
         wipatti_key = fields[num].name
         wipatties = getattr(pada, wipatti_key)
         try:
-            wipatti_weared = wear_namawipatti(satta_expand, template_expand, wipatties)
+            wipatti_weared = wear_namawipatti(sadda_expand, template_expand, wipatties)
         except:
             return {'error':True}
         result[wipatti_key]=wipatti_weared
         
     return result
 
-def  wear_namawipatti(satta_expand, template_expand, wipatties):
+def  wear_namawipatti(sadda_expand, template_expand, wipatties):
     if not wipatties:
         return ''
     result = []
@@ -104,35 +101,34 @@ def  wear_namawipatti(satta_expand, template_expand, wipatties):
 
 
     for i in range(len(wipatties)):
-        result.append(cv_to_pattern(satta_expand, template_expand, extract(wipatties[i])))
+        result.append(cv_to_pattern(sadda_expand, template_expand, extract(wipatties[i])))
  
     return " ".join(result)
 
 
-def cv_to_pattern(satta_expand, template_expand, wipatti_expand):
+def cv_to_pattern(sadda_expand, template_expand, wipatti_expand):
     pattern = get_pattern(template_expand, wipatti_expand)
     #  ได้ pattern มาแล้ว แต่เวลาเปรียบเทียบต้องจากหลังไปหน้า
     first_time = True
     y = []
     for i in range(len(pattern)):
         if isinstance(pattern[i], int):
-            # ถ้าเป็นตัวเลขต้องเอาจากต้นทาง satta
+            # ถ้าเป็นตัวเลขต้องเอาจากต้นทาง sadda
             if first_time:
                 last_id = pattern[i] + 1
                 if last_id != 0:
-                    y +=  satta_expand[:last_id]
+                    y +=  sadda_expand[:last_id]
                 else:
-                    y +=  satta_expand[:]
+                    y +=  sadda_expand[:]
                 first_time = False
             else:
                 idn = pattern[i]
-                y.append(satta_expand[idn])
+                y.append(sadda_expand[idn])
         else:
             y.append(pattern[i])
     
     return compress(y)
     
-
 
 def get_pattern(template_expand, wipatti_expand):
     

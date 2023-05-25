@@ -489,7 +489,7 @@ class CreateVipatti(View):
                 'linga': template.linga.title if template.linga else '-',
             }
         elif sadda_type == 'akhyatasaddamala':
-            result = mix_akhayatavipatties(sadda, tid)
+            result = mix_akhyatavipatties(sadda, tid)
             template = AkhyataSaddamala.objects.get(pk=tid)
             template_data = {
                 'title': template.title,
