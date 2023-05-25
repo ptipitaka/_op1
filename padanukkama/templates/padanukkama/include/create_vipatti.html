@@ -12,6 +12,7 @@
                 url: "{% url 'create_vipatti' template_id=0 sadda=1 %}".replace('1', saddaValue).replace('0', selectedValue),
                 type: 'GET',
                 success: function (response) {
+                    console.log(response.result)
                     var matchesHtml = '';
                     var tableHead = ''
                         tableHead += '<thead>'

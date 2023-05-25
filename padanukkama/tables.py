@@ -182,7 +182,7 @@ class PadaTable(tables.Table):
         super().__init__(data, **kwargs)
         
         ## Cache the tree Pada for performance ##
-        cache_tree_children(data)
+        # cache_tree_children(data)
     
     def render_split_action(self, record):
         if record.parent:
@@ -280,7 +280,7 @@ class PadaParentChildTable(tables.Table):
         super().__init__(data, **kwargs)
         
         ## Cache the tree Pada for performance ##
-        cache_tree_children(data)
+        # cache_tree_children(data)
 
 # -----------------------------------------------------
 # Sadda Table & Filter
