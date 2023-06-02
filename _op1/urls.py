@@ -21,8 +21,8 @@ from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('__debug__/', include('debug_toolbar.urls')),
     re_path(r'^chaining/', include('smart_selects.urls')),
+    path("select2/", include("django_select2.urls")),
     path('', include('django.contrib.auth.urls')),
     path('', include('main.urls')),
     path('abidan/', include('abidan.urls')),

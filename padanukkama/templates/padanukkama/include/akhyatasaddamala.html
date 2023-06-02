@@ -1,47 +1,15 @@
 {% load i18n %}
 
-<table>
-    <thead>
-        <th style="width: 50%">
-            <div>
-                <!-- title -->
-                <input
-                    type="text"
-                    id="akhyata-title-search"
-                    onkeyup="searchAkhyata()"
-                    placeholder="{% trans 'Title' %}.."
-                    class="w3-input">
-            </div>
-        </th>
-        <th style="width: 25%">
-            <div>
-                <!-- dhatu -->
-                <select id="dhatu-search" onchange="searchAkhyata()" class="w3-select">
-                    <option value="">-- {% trans 'Dhātu' %} --</option>
-                    {% for i in dhatu %}
-                    <option value="{{ i.title }}">{% trans i.title %}</option>
-                    {% endfor %}
-                </select>
-            </div>
-        </th>
-        <th style="width: 25%">
-            <div>
-                <!-- paccaya -->
-                <select id="paccaya-search" onchange="searchAkhyata()" class="w3-select">
-                    <option value="">-- {% trans 'Paccaya' %} --</option>
-                    {% for i in paccaya %}
-                    <option value="{{ i.title }}">{% trans i.title %}</option>
-                    {% endfor %}
-                </select>
-            </div>
-        </th>
-    </thead>
-</table>
-
 <table id="akhyatasaddamala-table" class="w3-table w3-bordered">
-
+    <thead>
+        <tr>
+            <th style="width: 25%">{% trans 'Title' %}</th>
+            <th style="width: 25%">{% trans 'Dhātu' %}</th>
+            <th style="width: 25%">{% trans 'Paccaya' %}</th>
+        </tr>
+    </thead>
     <tbody>
-        {% for i in akhyatasaddamala%}
+        {% for i in akhyatasaddamala_helper %}
         <tr>
             <td style="width: 50%">{{ i.title|default_if_none:"--" }}</td>
             <td style="width: 25%">{{ i.dhatu|default_if_none:"--"  }}</td>
@@ -52,29 +20,9 @@
 </table>
 
 <script>
-    var input_akhyata_title = document.getElementById("akhyata-title-search");
-    var input_dhatu = document.getElementById("dhatu-search");
-    var input_paccaya = document.getElementById("paccaya-search");
-    var akhyata_table = document.getElementById("akhyatasaddamala-table");
-
-    function searchAkhyata() {
-        let filter_akhyata_title = input_akhyata_title.value.toUpperCase();
-        let filter_dhatu = input_dhatu.value;
-        let filter_paccaya = input_paccaya.value;
-        let tr = akhyata_table.rows;
-        for (let i = 0; i < tr.length; i++) {
-            td = tr[i].cells;
-            td_title = td[0].innerText;
-            td_dhatu = td[1].innerText;
-            td_paccaya = td[2].innerText;
-            if  (   td_title.toUpperCase().indexOf(filter_akhyata_title) > -1 &&
-                    (filter_dhatu === '' || td_dhatu === filter_dhatu) &&
-                    (filter_paccaya === '' || td_paccaya === filter_paccaya)
-                ) 
-            {
-                tr[i].style.display = "";
-            } else
-                tr[i].style.display = "none";
-            }
-    }
+    $(document).ready(function() {
+        $('#akhyatasaddamala-table').DataTable({
+            ordering: false,
+        });
+    });
 </script>

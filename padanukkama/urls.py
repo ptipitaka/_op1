@@ -15,7 +15,7 @@ urlpatterns = [
     path('project/<int:pk>/delete/', views.PadanukkamaDeleteView.as_view(), name='padanukkama_delete'),
     path('find-abidan-closest-matches/', views.FindAbidanClosestMatchesView.as_view(), name='find_abidan_closest_matches'),
     path('find-sadda-closest-matches/', views.FindSaddaClosestMatchesView.as_view(), name='find_sadda_closest_matches'),
-    path('create-vipatti/<template_id>/<sadda>/', views.CreateVipatti.as_view(), name='create_vipatti'),
+    path('create-vipatti/<padanukkama_id>/<sadda>/<sadda_type>/<template_ids>/', views.CreateVipatti.as_view(), name='create_vipatti'),
     # nama-saddamala
     path('nama-saddamala/', views.NamaSaddamalaView.as_view(), name='nama_saddamala'),
     path('nama-saddamala/create/', views.NamaSaddamalaCreateView.as_view(), name='nama_saddamala_create'),

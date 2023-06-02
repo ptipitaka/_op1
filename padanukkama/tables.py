@@ -123,15 +123,27 @@ class PadanukkamaFilter(FilterSet):
 # Pada Table & Filter
 # -----------------------------------------------------
 class PadaTable(tables.Table):
-    # column
+    class Meta:
+        model = Pada
+        template_name = "django_tables2/w3css.html"
+        attrs = {"class": "w3-table w3-bordered"}
+        fields = ('pada',)
+
+    def __init__(self, data, **kwargs):
+        super().__init__(data, **kwargs)
+        # Cache the tree Pada for performance ##
+        cache_tree_children(data)
+
+    # ------ #
+    # column #
+    # ------ #
     pada = tables.Column(attrs={'td': {
         'style': lambda value, record: 'padding-left: %spx' % (50 + (record.level * 50)),
         } 
     })
-
     sandhi = tables.Column(empty_values=(), verbose_name=_('Sandhi'))
-
     origin = tables.Column(empty_values=(), verbose_name=_('Origin'))
+    sadda = tables.Column(empty_values=(), verbose_name=_('Sadda'))
 
     def render_sandhi(self, value, record):
         pada = Pada.objects.get(pk=record.pk)
@@ -146,14 +158,19 @@ class PadaTable(tables.Table):
             descendants = pada.parent.get_descendants(include_self=False)
             return pada.parent.pada + ': ' + ' - '.join(str(descendant) for descendant in descendants) 
         return ''
+    
+    def render_sadda(self, value, record):
+        pada = Pada.objects.get(pk=record.pk)
+        if pada.sadda:
+            return pada.sadda.sadda
+        return ''
 
+    # ------------- #
     # button action
+    # ------------- #
     split_action = tables.Column(empty_values=(), orderable=False, verbose_name=_('Sandhi'))
-
     duplicate_action = tables.Column(empty_values=(), orderable=False, verbose_name=_('Dupl.'))
-
     declension_action = tables.Column(empty_values=(), orderable=False, verbose_name=_('Decl.'))
-
     delete_action = tables.TemplateColumn(
         """
         {% if not record.get_children %}
@@ -162,8 +179,8 @@ class PadaTable(tables.Table):
             <button
                 type="submit"
                 onclick="return confirm(\'{{ deleted_conf_message }}\')"
-                class="w3-button w3-round-xlarge w3-hover-red">
-                <i class="far fa-trash-alt" style="color:lightgray"></i>
+                class="w3-button w3-round-xlarge w3-border w3-hover-white">
+                <i class="far fa-trash-alt w3-text-red"></i>
             </button>
             </form>
         {% endif %}
@@ -171,29 +188,17 @@ class PadaTable(tables.Table):
         verbose_name=_('Delete'),
         orderable=False
     )
-
-    class Meta:
-        model = Pada
-        template_name = "django_tables2/w3css.html"
-        attrs = {"class": "w3-table w3-bordered"}
-        fields = ('pada',)
-        
-    def __init__(self, data, **kwargs):
-        super().__init__(data, **kwargs)
-        
-        ## Cache the tree Pada for performance ##
-        # cache_tree_children(data)
     
     def render_split_action(self, record):
-        if record.parent:
+        if record.parent or record.sadda:
             # Record has descendants, do not show split_action
             return ''
         else:
             # Record does not have descendants, show split_action
             url=reverse_lazy('pada_split_sandhi', args=[record.padanukkama_id, record.id])
             return format_html(
-                '<a href="{}" class="w3-button w3-round-xlarge w3-hover-brown">'
-                '<i class="fas fa-project-diagram" style="color: lightgray"></i></a>',
+                '<a href="{}" class="w3-button w3-round-xlarge w3-border w3-hover-white">'
+                '<i class="fas fa-project-diagram w3-text-orange"></i></a>',
                 url,
             )
 
@@ -206,8 +211,8 @@ class PadaTable(tables.Table):
             message = _('Do you want to duplicate record of ') + record.pada
             url = reverse_lazy('pada_duplicate', args=[record.padanukkama_id, record.id])
             return format_html(
-                '<a href="{}" onclick="return confirm(\'{}\')" class="w3-button w3-round-xlarge w3-hover-brown">'
-                '<i class="far fa-clone" style="color: lightgray"></i></a>',
+                '<a href="{}" onclick="return confirm(\'{}\')" class="w3-button w3-round-xlarge w3-border w3-hover-white">'
+                '<i class="far fa-clone w3-text-teal"></i></a>',
                 url,
                 message
             )
@@ -219,7 +224,7 @@ class PadaTable(tables.Table):
         else:
             # Record does not have descendants, show declension_action
             return mark_safe(
-                '<a href="{url}" class="w3-button w3-round-xlarge w3-hover-brown"><i class="fas fa-layer-group" style="color: lightgray"></i></a>'.format(
+                '<a href="{url}" class="w3-button w3-round-xlarge w3-border w3-hover-white"><i class="fas fa-layer-group w3-text-indigo"></i></a>'.format(
                 url=reverse_lazy('pada_declension', args=[record.padanukkama_id, record.id])
             ))
 
@@ -280,7 +285,7 @@ class PadaParentChildTable(tables.Table):
         super().__init__(data, **kwargs)
         
         ## Cache the tree Pada for performance ##
-        # cache_tree_children(data)
+        cache_tree_children(data)
 
 # -----------------------------------------------------
 # Sadda Table & Filter

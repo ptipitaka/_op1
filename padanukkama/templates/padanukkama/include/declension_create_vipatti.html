@@ -1,0 +1,375 @@
+{% load static i18n %}
+
+<script>
+    // Crate vipatti table
+    function create_vipatti () {
+        // Get input data
+        var id_padanukkama = '{{ padanukkama_id }}';
+        var id_sadda = $('#id_sadda').val();
+        var id_sadda_type = $('#id_sadda_type').val();
+        var id_namasaddamala = $('#id_namasaddamala').val();
+        var id_akhyatasaddamala = $('#id_akhyatasaddamala').val();
+        
+        // Get the button element by its ID
+        var submitButton = $("#submit_data");
+
+        // Function to highlight matches in the given text
+        function highlightMatch(text, padas) {
+            var highlightedText = text;
+            for (var i = 0; i < padas.length; i++) {
+                var pada = padas[i];
+                var regex = new RegExp('(^|\\s)' + escapeRegExp(pada) + '(?=\\s|$)', 'g');
+                highlightedText = highlightedText.replace(regex, '$1<strong><span class="w3-text-blue">$&</span></strong>');
+            }
+            return highlightedText;
+        }
+
+        // Function to escape special characters in a string
+        function escapeRegExp(string) {
+            return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        }
+
+        // Check if template_id and sadda are not empty
+        if (id_sadda_type && id_sadda && (id_namasaddamala || id_akhyatasaddamala)) {
+
+            var templateIds = (id_sadda_type === 'NamaSaddamala') ? id_namasaddamala : id_akhyatasaddamala;
+            var templateIdString = templateIds.join(',');
+
+            var url = "{% url 'create_vipatti' padanukkama_id=111 sadda=222 sadda_type=333 template_ids=444 %}"
+                .replace('111', id_padanukkama)
+                .replace('222', id_sadda)
+                .replace('333', id_sadda_type)
+                .replace('444', templateIdString);
+            
+            $.ajax({
+                url: url,
+                type: 'GET',
+                success: function (responses) {
+                    // ------------- //
+                    // initial value //
+                    // ------------- //
+                    var matchesHtml = '';
+
+                    for (const response of responses) {
+                        if(response.result.error) {
+                            console.error(response.result.error)
+                            submitButton.css("display", "none");
+                            matchesHtml = "{% trans 'Please verify any potentially incorrect `sadda` or possible declension error, Contact to SA to assistance.'%}"
+                        } else {
+                            submitButton.css("display", "");
+                            // ------------- //
+                            // NamaSaddamala //
+                            // ------------- //
+                            if (response.sadda_type == 'NamaSaddamala') {
+                                matchesHtml += '<div class="w3-bar w3-light-grey w3-margin-top">'
+                                matchesHtml += '    <span class="w3-bar-item w3-light-grey" style="font-weight: bold;">' + response.template_data.title
+                                matchesHtml += '    (' + response.template_data.nama_type + ', ' + response.template_data.linga + ')</span> '
+                                matchesHtml += '    <a href="'+ response.template_data.update_url +'" class="w3-bar-item w3-button w3-right" target="_blank">'
+                                matchesHtml += '         <i class="far fa-edit w3-padding-small"></i></a>'
+                                matchesHtml += '</div>'
+                                matchesHtml += '<table class="w3-table w3-bordered">'
+                                matchesHtml += '  <tr>'
+                                matchesHtml += '      <th>{% trans "Vibhatti" %}</th>'
+                                matchesHtml += '      <th>{% trans "Ekavacana" %}</th>'
+                                matchesHtml += '      <th>{% trans "Bahuvacana" %}</th>'
+                                matchesHtml += '  </tr>'
+                                matchesHtml += '  <tr>'
+                                matchesHtml += '      <td>{% trans "Paṭhamā" %}</td>'
+                                matchesHtml += '      <td>' + highlightMatch(response.result.nom_sg, response.padas) + '</td>'
+                                matchesHtml += '      <td>' + highlightMatch(response.result.nom_pl, response.padas) + '</td>'
+                                matchesHtml += '  </tr>'
+                                matchesHtml += '  <tr>'
+                                matchesHtml += '      <td>{% trans "Ālapana" %}</td>'
+                                matchesHtml += '      <td>' + highlightMatch(response.result.voc_sg, response.padas) + '</td>'
+                                matchesHtml += '      <td>' + highlightMatch(response.result.voc_pl, response.padas) + '</td>'
+                                matchesHtml += '  </tr>'
+                                matchesHtml += '  <tr>'
+                                matchesHtml += '      <td>{% trans "Dutiyā" %}</td>'
+                                matchesHtml += '      <td>' + highlightMatch(response.result.acc_sg, response.padas) + '</td>'
+                                matchesHtml += '      <td>' + highlightMatch(response.result.acc_pl, response.padas) + '</td>'
+                                matchesHtml += '  </tr>'
+                                matchesHtml += '  <tr>'
+                                matchesHtml += '      <td>{% trans "Tatiyā" %}</td>'
+                                matchesHtml += '      <td>' + highlightMatch(response.result.instr_sg, response.padas) + '</td>'
+                                matchesHtml += '      <td>' + highlightMatch(response.result.instr_pl, response.padas) + '</td>'
+                                matchesHtml += '  </tr>'
+                                matchesHtml += '  <tr>'
+                                matchesHtml += '      <td>{% trans "Catutthī" %}</td>'
+                                matchesHtml += '      <td>' + highlightMatch(response.result.dat_sg, response.padas) + '</td>'
+                                matchesHtml += '      <td>' + highlightMatch(response.result.dat_pl, response.padas) + '</td>'
+                                matchesHtml += '  </tr>'
+                                matchesHtml += '  <tr>'
+                                matchesHtml += '      <td>{% trans "Pañcamī" %}</td>'
+                                matchesHtml += '      <td>' + highlightMatch(response.result.abl_sg, response.padas) + '</td>'
+                                matchesHtml += '      <td>' + highlightMatch(response.result.abl_pl, response.padas) + '</td>'
+                                matchesHtml += '  </tr>'
+                                matchesHtml += '  <tr>'
+                                matchesHtml += '      <td>{% trans "Chaṭṭhī" %}</td>'
+                                matchesHtml += '      <td>' + highlightMatch(response.result.gen_sg, response.padas) + '</td>'
+                                matchesHtml += '      <td>' + highlightMatch(response.result.gen_pl, response.padas) + '</td>'
+                                matchesHtml += '  </tr>'
+                                matchesHtml += '  <tr>'
+                                matchesHtml += '      <td>{% trans "Sattamī" %}</td>'
+                                matchesHtml += '      <td>' + highlightMatch(response.result.loc_sg, response.padas) + '</td>'
+                                matchesHtml += '      <td>' + highlightMatch(response.result.loc_pl, response.padas) + '</td>'
+                                matchesHtml += '  </tr>'
+                                matchesHtml += '</table>'
+                            // ---------------- //
+                            // AkhyataSaddamala //
+                            // ---------------- //
+                            } else if (response.sadda_type == 'AkhyataSaddamala') {
+                                var tableHead = ''
+                                tableHead += '<thead>'
+                                tableHead += '    <tr>'
+                                tableHead += '        <th rowspan="2" style="width: 100px;">{% trans "Person" %}</th>'
+                                tableHead += '        <th colspan="2" class="w3-center">{% trans "Parassapada" %}</th>'
+                                tableHead += '        <th colspan="2" class="w3-center">{% trans "Attanopada" %}</th>'
+                                tableHead += '    </tr>'
+                                tableHead += '    <tr>'
+                                tableHead += '        <th class="w3-center">{% trans "sg." %}</th>'
+                                tableHead += '        <th class="w3-center">{% trans "pl." %}</th>'
+                                tableHead += '        <th class="w3-center">{% trans "sg." %}</th>'
+                                tableHead += '        <th class="w3-center">{% trans "pl." %}</th>'
+                                tableHead += '    </tr>'
+                                tableHead += '</thead>'
+                                // Vattamānā (present tense)
+                                matchesHtml += '<h4 class="w3-center">{% trans "Conjugation of" %} {% trans "Vattamānā" %} ({% trans "present tense" %})</h4>'
+                                matchesHtml += '<table class="w3-table w3-bordered w3-margin">'
+                                matchesHtml +=      tableHead
+                                matchesHtml += '    <tbody>'
+                                matchesHtml += '        <tr>'
+                                matchesHtml += '            <td>{% trans "3rd" %}</td>'
+                                matchesHtml += '            <td>' + response.result.vat_pu3_para_sg + '</td>'
+                                matchesHtml += '            <td>' + response.result.vat_pu3_para_pl + '</td>'
+                                matchesHtml += '            <td>' + response.result.vat_pu3_atta_sg + '</td>'
+                                matchesHtml += '            <td>' + response.result.vat_pu3_atta_pl + '</td>'
+                                matchesHtml += '        </tr>'
+                                matchesHtml += '        <tr>'
+                                matchesHtml += '            <td>{% trans "2nd" %}</td>'
+                                matchesHtml += '            <td>' + response.result.vat_pu2_para_sg + '</td>'
+                                matchesHtml += '            <td>' + response.result.vat_pu2_para_pl + '</td>'
+                                matchesHtml += '            <td>' + response.result.vat_pu2_atta_sg + '</td>'
+                                matchesHtml += '            <td>' + response.result.vat_pu2_atta_pl + '</td>'
+                                matchesHtml += '        </tr>'
+                                matchesHtml += '        <tr>'
+                                matchesHtml += '            <td>{% trans "1st" %}</td>'
+                                matchesHtml += '            <td>' + response.result.vat_pu1_para_sg + '</td>'
+                                matchesHtml += '            <td>' + response.result.vat_pu1_para_pl + '</td>'
+                                matchesHtml += '            <td>' + response.result.vat_pu1_atta_sg + '</td>'
+                                matchesHtml += '            <td>' + response.result.vat_pu1_atta_pl + '</td>'
+                                matchesHtml += '        </tr>'
+                                matchesHtml += '    </tbody>'
+                                matchesHtml += '</table>'
+                                // Pañcamī (imperative mood)
+                                matchesHtml += '<h4 class="w3-center">{% trans "Conjugation of" %} {% trans "Pañcamī" %} ({% trans 'imperative mood' %})</h4>'
+                                matchesHtml += '<table class="w3-table w3-bordered w3-margin">'
+                                matchesHtml +=      tableHead
+                                matchesHtml += '    <tbody>'
+                                matchesHtml += '        <tr>'
+                                matchesHtml += '            <td>{% trans "3rd" %}</td>'
+                                matchesHtml += '            <td>' + response.result.pan_pu3_para_sg + '</td>'
+                                matchesHtml += '            <td>' + response.result.pan_pu3_para_pl + '</td>'
+                                matchesHtml += '            <td>' + response.result.pan_pu3_atta_sg + '</td>'
+                                matchesHtml += '            <td>' + response.result.pan_pu3_atta_pl + '</td>'
+                                matchesHtml += '        </tr>'
+                                matchesHtml += '        <tr>'
+                                matchesHtml += '            <td>{% trans "2nd" %}</td>'
+                                matchesHtml += '            <td>' + response.result.pan_pu2_para_sg + '</td>'
+                                matchesHtml += '            <td>' + response.result.pan_pu2_para_pl + '</td>'
+                                matchesHtml += '            <td>' + response.result.pan_pu2_atta_sg + '</td>'
+                                matchesHtml += '            <td>' + response.result.pan_pu2_atta_pl + '</td>'
+                                matchesHtml += '        </tr>'
+                                matchesHtml += '        <tr>'
+                                matchesHtml += '            <td>{% trans "1st" %}</td>'
+                                matchesHtml += '            <td>' + response.result.pan_pu1_para_sg + '</td>'
+                                matchesHtml += '            <td>' + response.result.pan_pu1_para_pl + '</td>'
+                                matchesHtml += '            <td>' + response.result.pan_pu1_atta_sg + '</td>'
+                                matchesHtml += '            <td>' + response.result.pan_pu1_atta_pl + '</td>'
+                                matchesHtml += '        </tr>'
+                                matchesHtml += '    </tbody>'
+                                matchesHtml += '</table>'
+                                // Sattamī (Optative Mood)
+                                matchesHtml += '<h4 class="w3-center">{% trans "Conjugation of" %} {% trans "Sattamī" %} ({% trans 'Optative Mood' %})</h4>'
+                                matchesHtml += '<table class="w3-table w3-bordered w3-margin">'
+                                matchesHtml +=      tableHead
+                                matchesHtml += '    <tbody>'
+                                matchesHtml += '        <tr>'
+                                matchesHtml += '            <td>{% trans "3rd" %}</td>'
+                                matchesHtml += '            <td>' + response.result.sat_pu3_para_sg + '</td>'
+                                matchesHtml += '            <td>' + response.result.sat_pu3_para_pl + '</td>'
+                                matchesHtml += '            <td>' + response.result.sat_pu3_atta_sg + '</td>'
+                                matchesHtml += '            <td>' + response.result.sat_pu3_atta_pl + '</td>'
+                                matchesHtml += '        </tr>'
+                                matchesHtml += '        <tr>'
+                                matchesHtml += '            <td>{% trans "2nd" %}</td>'
+                                matchesHtml += '            <td>' + response.result.sat_pu2_para_sg + '</td>'
+                                matchesHtml += '            <td>' + response.result.sat_pu2_para_pl + '</td>'
+                                matchesHtml += '            <td>' + response.result.sat_pu2_atta_sg + '</td>'
+                                matchesHtml += '            <td>' + response.result.sat_pu2_atta_pl + '</td>'
+                                matchesHtml += '        </tr>'
+                                matchesHtml += '        <tr>'
+                                matchesHtml += '            <td>{% trans "1st" %}</td>'
+                                matchesHtml += '            <td>' + response.result.sat_pu1_para_sg + '</td>'
+                                matchesHtml += '            <td>' + response.result.sat_pu1_para_pl + '</td>'
+                                matchesHtml += '            <td>' + response.result.sat_pu1_atta_sg + '</td>'
+                                matchesHtml += '            <td>' + response.result.sat_pu1_atta_pl + '</td>'
+                                matchesHtml += '        </tr>'
+                                matchesHtml += '    </tbody>'
+                                matchesHtml += '</table>'
+                                // Parokkhā (Perfect Tense)
+                                matchesHtml += '<h4 class="w3-center">{% trans "Conjugation of" %} {% trans "Parokkhā" %} ({% trans 'Perfect Tense' %})</h4>'
+                                matchesHtml += '<table class="w3-table w3-bordered w3-margin">'
+                                matchesHtml +=      tableHead
+                                matchesHtml += '    <tbody>'
+                                matchesHtml += '        <tr>'
+                                matchesHtml += '            <td>{% trans "3rd" %}</td>'
+                                matchesHtml += '            <td>' + response.result.par_pu3_para_sg + '</td>'
+                                matchesHtml += '            <td>' + response.result.par_pu3_para_pl + '</td>'
+                                matchesHtml += '            <td>' + response.result.par_pu3_atta_sg + '</td>'
+                                matchesHtml += '            <td>' + response.result.par_pu3_atta_pl + '</td>'
+                                matchesHtml += '        </tr>'
+                                matchesHtml += '        <tr>'
+                                matchesHtml += '            <td>{% trans "2nd" %}</td>'
+                                matchesHtml += '            <td>' + response.result.par_pu2_para_sg + '</td>'
+                                matchesHtml += '            <td>' + response.result.par_pu2_para_pl + '</td>'
+                                matchesHtml += '            <td>' + response.result.par_pu2_atta_sg + '</td>'
+                                matchesHtml += '            <td>' + response.result.par_pu2_atta_pl + '</td>'
+                                matchesHtml += '        </tr>'
+                                matchesHtml += '        <tr>'
+                                matchesHtml += '            <td>{% trans "1st" %}</td>'
+                                matchesHtml += '            <td>' + response.result.par_pu1_para_sg + '</td>'
+                                matchesHtml += '            <td>' + response.result.par_pu1_para_pl + '</td>'
+                                matchesHtml += '            <td>' + response.result.par_pu1_atta_sg + '</td>'
+                                matchesHtml += '            <td>' + response.result.par_pu1_atta_pl + '</td>'
+                                matchesHtml += '        </tr>'
+                                matchesHtml += '    </tbody>'
+                                matchesHtml += '</table>'
+                                // Hiyyattanī (Imperfect Tense)
+                                matchesHtml += '<h4 class="w3-center">{% trans "Conjugation of" %} {% trans "Hiyyattanī" %} ({% trans 'Imperfect Tense' %})</h4>'
+                                matchesHtml += '<table class="w3-table w3-bordered w3-margin">'
+                                matchesHtml +=      tableHead
+                                matchesHtml += '    <tbody>'
+                                matchesHtml += '        <tr>'
+                                matchesHtml += '            <td>{% trans "3rd" %}</td>'
+                                matchesHtml += '            <td>' + response.result.hit_pu3_para_sg + '</td>'
+                                matchesHtml += '            <td>' + response.result.hit_pu3_para_pl + '</td>'
+                                matchesHtml += '            <td>' + response.result.hit_pu3_atta_sg + '</td>'
+                                matchesHtml += '            <td>' + response.result.hit_pu3_atta_pl + '</td>'
+                                matchesHtml += '        </tr>'
+                                matchesHtml += '        <tr>'
+                                matchesHtml += '            <td>{% trans "2nd" %}</td>'
+                                matchesHtml += '            <td>' + response.result.hit_pu2_para_sg + '</td>'
+                                matchesHtml += '            <td>' + response.result.hit_pu2_para_pl + '</td>'
+                                matchesHtml += '            <td>' + response.result.hit_pu2_atta_sg + '</td>'
+                                matchesHtml += '            <td>' + response.result.hit_pu2_atta_pl + '</td>'
+                                matchesHtml += '        </tr>'
+                                matchesHtml += '        <tr>'
+                                matchesHtml += '            <td>{% trans "1st" %}</td>'
+                                matchesHtml += '            <td>' + response.result.hit_pu1_para_sg + '</td>'
+                                matchesHtml += '            <td>' + response.result.hit_pu1_para_pl + '</td>'
+                                matchesHtml += '            <td>' + response.result.hit_pu1_atta_sg + '</td>'
+                                matchesHtml += '            <td>' + response.result.hit_pu1_atta_pl + '</td>'
+                                matchesHtml += '        </tr>'
+                                matchesHtml += '    </tbody>'
+                                matchesHtml += '</table>'
+                                // Ajjatanī (Aorist Tense)
+                                matchesHtml += '<h4 class="w3-center">{% trans "Conjugation of" %} {% trans "Ajjatanī" %} ({% trans 'Aorist Tense' %})</h4>'
+                                matchesHtml += '<table class="w3-table w3-bordered w3-margin">'
+                                matchesHtml +=      tableHead
+                                matchesHtml += '    <tbody>'
+                                matchesHtml += '        <tr>'
+                                matchesHtml += '            <td>{% trans "3rd" %}</td>'
+                                matchesHtml += '            <td>' + response.result.ajj_pu3_para_sg + '</td>'
+                                matchesHtml += '            <td>' + response.result.ajj_pu3_para_pl + '</td>'
+                                matchesHtml += '            <td>' + response.result.ajj_pu3_atta_sg + '</td>'
+                                matchesHtml += '            <td>' + response.result.ajj_pu3_atta_pl + '</td>'
+                                matchesHtml += '        </tr>'
+                                matchesHtml += '        <tr>'
+                                matchesHtml += '            <td>{% trans "2nd" %}</td>'
+                                matchesHtml += '            <td>' + response.result.ajj_pu2_para_sg + '</td>'
+                                matchesHtml += '            <td>' + response.result.ajj_pu2_para_pl + '</td>'
+                                matchesHtml += '            <td>' + response.result.ajj_pu2_atta_sg + '</td>'
+                                matchesHtml += '            <td>' + response.result.ajj_pu2_atta_pl + '</td>'
+                                matchesHtml += '        </tr>'
+                                matchesHtml += '        <tr>'
+                                matchesHtml += '            <td>{% trans "1st" %}</td>'
+                                matchesHtml += '            <td>' + response.result.ajj_pu1_para_sg + '</td>'
+                                matchesHtml += '            <td>' + response.result.ajj_pu1_para_pl + '</td>'
+                                matchesHtml += '            <td>' + response.result.ajj_pu1_atta_sg + '</td>'
+                                matchesHtml += '            <td>' + response.result.ajj_pu1_atta_pl + '</td>'
+                                matchesHtml += '        </tr>'
+                                matchesHtml += '    </tbody>'
+                                matchesHtml += '</table>'
+                                // Bhavissanti (Future Tense)
+                                matchesHtml += '<h4 class="w3-center">{% trans "Conjugation of" %} {% trans "Bhavissanti" %} ({% trans 'Future Tense' %})</h4>'
+                                matchesHtml += '<table class="w3-table w3-bordered w3-margin">'
+                                matchesHtml +=      tableHead
+                                matchesHtml += '    <tbody>'
+                                matchesHtml += '        <tr>'
+                                matchesHtml += '            <td>{% trans "3rd" %}</td>'
+                                matchesHtml += '            <td>' + response.result.bha_pu3_para_sg + '</td>'
+                                matchesHtml += '            <td>' + response.result.bha_pu3_para_pl + '</td>'
+                                matchesHtml += '            <td>' + response.result.bha_pu3_atta_sg + '</td>'
+                                matchesHtml += '            <td>' + response.result.bha_pu3_atta_pl + '</td>'
+                                matchesHtml += '        </tr>'
+                                matchesHtml += '        <tr>'
+                                matchesHtml += '            <td>{% trans "2nd" %}</td>'
+                                matchesHtml += '            <td>' + response.result.bha_pu2_para_sg + '</td>'
+                                matchesHtml += '            <td>' + response.result.bha_pu2_para_pl + '</td>'
+                                matchesHtml += '            <td>' + response.result.bha_pu2_atta_sg + '</td>'
+                                matchesHtml += '            <td>' + response.result.bha_pu2_atta_pl + '</td>'
+                                matchesHtml += '        </tr>'
+                                matchesHtml += '        <tr>'
+                                matchesHtml += '            <td>{% trans "1st" %}</td>'
+                                matchesHtml += '            <td>' + response.result.bha_pu1_para_sg + '</td>'
+                                matchesHtml += '            <td>' + response.result.bha_pu1_para_pl + '</td>'
+                                matchesHtml += '            <td>' + response.result.bha_pu1_atta_sg + '</td>'
+                                matchesHtml += '            <td>' + response.result.bha_pu1_atta_pl + '</td>'
+                                matchesHtml += '        </tr>'
+                                matchesHtml += '    </tbody>'
+                                matchesHtml += '</table>'
+                                // Kālātipatti (Conditional Mood)
+                                matchesHtml += '<h4 class="w3-center">{% trans "Conjugation of" %} {% trans "Kālātipatti" %} ({% trans 'Conditional Mood' %})</h4>'
+                                matchesHtml += '<table class="w3-table w3-bordered w3-margin">'
+                                matchesHtml +=      tableHead
+                                matchesHtml += '    <tbody>'
+                                matchesHtml += '        <tr>'
+                                matchesHtml += '            <td>{% trans "3rd" %}</td>'
+                                matchesHtml += '            <td>' + response.result.kal_pu3_para_sg + '</td>'
+                                matchesHtml += '            <td>' + response.result.kal_pu3_para_pl + '</td>'
+                                matchesHtml += '            <td>' + response.result.kal_pu3_atta_sg + '</td>'
+                                matchesHtml += '            <td>' + response.result.kal_pu3_atta_pl + '</td>'
+                                matchesHtml += '        </tr>'
+                                matchesHtml += '        <tr>'
+                                matchesHtml += '            <td>{% trans "2nd" %}</td>'
+                                matchesHtml += '            <td>' + response.result.kal_pu2_para_sg + '</td>'
+                                matchesHtml += '            <td>' + response.result.kal_pu2_para_pl + '</td>'
+                                matchesHtml += '            <td>' + response.result.kal_pu2_atta_sg + '</td>'
+                                matchesHtml += '            <td>' + response.result.kal_pu2_atta_pl + '</td>'
+                                matchesHtml += '        </tr>'
+                                matchesHtml += '        <tr>'
+                                matchesHtml += '            <td>{% trans "1st" %}</td>'
+                                matchesHtml += '            <td>' + response.result.kal_pu1_para_sg + '</td>'
+                                matchesHtml += '            <td>' + response.result.kal_pu1_para_pl + '</td>'
+                                matchesHtml += '            <td>' + response.result.kal_pu1_atta_sg + '</td>'
+                                matchesHtml += '            <td>' + response.result.kal_pu1_atta_pl + '</td>'
+                                matchesHtml += '        </tr>'
+                                matchesHtml += '    </tbody>'
+                                matchesHtml += '</table>'
+                            }
+                        }
+                    }
+
+                    $('#result-container').html(matchesHtml);
+                },
+                error: function (xhr, status, error) {
+                    // Handle error cases
+                    console.error(error);
+                }
+            })
+        } else {
+            // Handle the case when template_id or sadda is empty
+            console.log("template_id or sadda is empty");
+        }
+    }
+</script>

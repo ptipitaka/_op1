@@ -1,12 +1,14 @@
 {% load static i18n %}
 
 <script>
-    $(document).ready(function () {
+    function find_sadda_closest_matches () {
+        var id_sadda = $('#id_sadda').val();
+        var stringData = id_sadda ? id_sadda : '{{ pada.pada }}';
         $.ajax({
             url: '{% url "find_sadda_closest_matches" %}',
             type: 'GET',
             data: {
-                'string': '{{ pada.pada }}'
+                'string': stringData
             },
             beforeSend: function () {
                 // Show the loading message before making the AJAX request
@@ -21,8 +23,16 @@
                     matchesHtml = '<li>No matches found.</li>';
                 } else {
                     for (var i = 0; i < closestMatches.length; i++) {
-                        var saddaDetailsUrl = '{% url "sadda_details" pk=0 %}'.replace('0', closestMatches[i].id);
-                        matchesHtml += '<li><a href="' + saddaDetailsUrl + '">' + closestMatches[i].word + '</a> (' + closestMatches[i].score + '%)</li>';
+                        matchesHtml += '<div class="w3-cell-row">';
+                        matchesHtml += '     <div class="w3-container w3-cell w3-margin-bottom">';
+                        matchesHtml += '     <p>' + closestMatches[i].sadda + '  ' + closestMatches[i].construction +'</p>';
+                        matchesHtml += '     <div class="w3-light-grey w3-tiny" style="width:100px;">'
+                        matchesHtml += '         <div class="w3-container w3-green" style="width:' + closestMatches[i].score + '%">'
+                        matchesHtml +=               closestMatches[i].score + '%';
+                        matchesHtml += '         </div>';
+                        matchesHtml += '      </div>';
+                        matchesHtml += '     </div';
+                        matchesHtml += '</div';
                     }
                 }
 
@@ -30,5 +40,6 @@
                 $('#sadda-closest-matches').html(matchesHtml);
             }
         });
-    })
+    }
+
 </script>

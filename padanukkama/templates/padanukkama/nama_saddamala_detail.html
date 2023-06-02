@@ -103,6 +103,10 @@
                         {{ form.title|add_class:"w3-input" }}
                     </div>
                     <div class="w3-container w3-cell">
+                        <label>{% trans form.title_code.label_tag %}</label>
+                        {{ form.title_code|add_class:"w3-input" }}
+                    </div>
+                    <div class="w3-container w3-cell">
                         <label>{% trans form.nama_type.label_tag %}</label>
                         {{ form.nama_type|add_class:"w3-input" }}
                     </div>
@@ -149,17 +153,17 @@
                     </tr>
                     <tr>
                         <td>{% trans 'Pañcamī' %}</td>
-                        <td>{{ form.abl_sl|add_class:"w3-input w3-border-0" }}</td>
+                        <td>{{ form.abl_sg|add_class:"w3-input w3-border-0" }}</td>
                         <td>{{ form.abl_pl|add_class:"w3-input w3-border-0" }}</td>
                     </tr>
                     <tr>
                         <td>{% trans 'Chaṭṭhī' %}</td>
-                        <td>{{ form.gen_sl|add_class:"w3-input w3-border-0" }}</td>
+                        <td>{{ form.gen_sg|add_class:"w3-input w3-border-0" }}</td>
                         <td>{{ form.gen_pl|add_class:"w3-input w3-border-0" }}</td>
                     </tr>
                     <tr>
                         <td>{% trans 'Sattamī' %}</td>
-                        <td>{{ form.loc_sl|add_class:"w3-input w3-border-0" }}</td>
+                        <td>{{ form.loc_sg|add_class:"w3-input w3-border-0" }}</td>
                         <td>{{ form.loc_pl|add_class:"w3-input w3-border-0" }}</td>
                     </tr>
                 </table>

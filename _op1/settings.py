@@ -42,12 +42,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # third party libraries
+    'django_editorjs',
     'django_mptt_admin',
     'django_tables2',
-    'debug_toolbar',
+    'django_select2',
     'mptt',
     'smart_selects',
     'storages',
+    'taggit',
     'widget_tweaks',
     # internal
     'main.apps.MainConfig',
@@ -64,7 +66,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = '_op1.urls'
@@ -183,15 +184,6 @@ LOGOUT_REDIRECT_URL = "/login"
 
 # JQUERY_URL = True
 USE_DJANGO_JQUERY = True
-
-
-# DEBUG TOOLBAR
-INTERNAL_IPS = [
-    # ...
-    "127.0.0.1",
-    "localhost",
-    # ...
-]
 
 
 # MESSAGE_TAGS

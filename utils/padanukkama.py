@@ -46,20 +46,17 @@ def mix_namavipatties(satta, template_id):
         return {'error':True}
 
     pada = NamaSaddamala.objects.get(pk=template_id)
-    fields = pada._meta.get_fields()
-    start = 6
-    stop = len(pada._meta.fields)
-
     result = {'error':False}
-    
-    satta_expand = extract(satta)
-    template_expand = extract(pada.title)
+    sadda_expand = extract(satta)
+    template_expand = extract(pada.title_code)
 
-    for num in range(start, stop):
-        wipatti_key = fields[num].name
-        wipatties = getattr(pada, wipatti_key)
-        wipatti_weared = wear_namawipatti(satta_expand, template_expand, wipatties)
-        result[wipatti_key]=wipatti_weared
+    vipatti_fields = [
+        'nom_sg', 'nom_pl','voc_sg','voc_pl','acc_sg','acc_pl','instr_sg','instr_pl','dat_sg','dat_pl','abl_sg','abl_pl','gen_sg','gen_pl','loc_sg','loc_pl',
+    ]
+    for vipatti_key in vipatti_fields:
+        vipatti_keys = getattr(pada, vipatti_key)
+        vipatti_key_weared = wear_namavipatti(sadda_expand, template_expand, vipatti_keys)
+        result[vipatti_key]=vipatti_key_weared
         
     return result
 
@@ -82,35 +79,35 @@ def mix_akhyatavipatties(arkayata, template_id):
 
     result = {'error':False}
     
-    satta_expand = extract(arkayata)
+    sadda_expand = extract(arkayata)
     template_expand = extract(pada.title)
 
     for num in range(start, stop):
-        wipatti_key = fields[num].name
-        wipatties = getattr(pada, wipatti_key)
+        vipatti_key = fields[num].name
+        vipatti_keys = getattr(pada, vipatti_key)
         try:
-            wipatti_weared = wear_namawipatti(satta_expand, template_expand, wipatties)
+            vipatti_key_weared = wear_namavipatti(sadda_expand, template_expand, vipatti_keys)
         except:
             return {'error':True}
-        result[wipatti_key]=wipatti_weared
+        result[vipatti_key]=vipatti_key_weared
         
     return result
 
-def  wear_namawipatti(satta_expand, template_expand, wipatties):
-    if not wipatties:
+def  wear_namavipatti(sadda_expand, template_expand, vipatti_keys):
+    if not vipatti_keys:
         return ''
     result = []
-    wipatties = wipatties.split()
+    vipatti_keys = vipatti_keys.split()
 
 
-    for i in range(len(wipatties)):
-        result.append(cv_to_pattern(satta_expand, template_expand, extract(wipatties[i])))
+    for i in range(len(vipatti_keys)):
+        result.append(cv_to_pattern(sadda_expand, template_expand, extract(vipatti_keys[i])))
  
     return " ".join(result)
 
 
-def cv_to_pattern(satta_expand, template_expand, wipatti_expand):
-    pattern = get_pattern(template_expand, wipatti_expand)
+def cv_to_pattern(sadda_expand, template_expand, vipatti_key_expand):
+    pattern = get_pattern(template_expand, vipatti_key_expand)
     #  ได้ pattern มาแล้ว แต่เวลาเปรียบเทียบต้องจากหลังไปหน้า
     first_time = True
     y = []
@@ -120,13 +117,13 @@ def cv_to_pattern(satta_expand, template_expand, wipatti_expand):
             if first_time:
                 last_id = pattern[i] + 1
                 if last_id != 0:
-                    y +=  satta_expand[:last_id]
+                    y +=  sadda_expand[:last_id]
                 else:
-                    y +=  satta_expand[:]
+                    y +=  sadda_expand[:]
                 first_time = False
             else:
                 idn = pattern[i]
-                y.append(satta_expand[idn])
+                y.append(sadda_expand[idn])
         else:
             y.append(pattern[i])
     
@@ -134,9 +131,9 @@ def cv_to_pattern(satta_expand, template_expand, wipatti_expand):
     
 
 
-def get_pattern(template_expand, wipatti_expand):
+def get_pattern(template_expand, vipatti_key_expand):
     
-    pattern = list(wipatti_expand)
+    pattern = list(vipatti_key_expand)
     origin = list(template_expand)
     
     l_ori = len(origin)
