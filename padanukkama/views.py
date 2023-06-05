@@ -23,7 +23,8 @@ from .tables import NamaSaddamalaTable, \
                     NamaSaddamalaFilter, AkhyataSaddamalaTable, \
                     AkhyataSaddamalaFilter, PadanukkamaTable, \
                     PadanukkamaFilter, PadaTable, PadaFilter, \
-                    PadaParentChildTable
+                    PadaParentChildTable, \
+                    SaddaTable, SaddaFilter
 
 from .forms import  NamaSaddamalaForm, AkhyataSaddamalaForm, \
                     PadanukkamaCreateForm, PadanukkamaUpdateForm, \
@@ -298,14 +299,24 @@ class PadaSplitSandhiView(LoginRequiredMixin, View):
     
     def post(self, request, padanukkama_id, pk):
         pada = get_object_or_404(Pada, id=pk)
+        padanukkama = get_object_or_404(Padanukkama, id=padanukkama_id)
         form = AddChildPadaForm(request.POST)
+        
         if form.is_valid():
+            existing_pada = Pada.objects.filter(
+                Q(pada=form.cleaned_data['pada']),
+                Q(padanukkama=padanukkama)
+            ).first()
+            
             child_pada = form.save(commit=False)
             child_pada.parent = pada
             child_pada.padanukkama = pada.padanukkama
             child_pada.pada_seq = encode(extract(clean(pada.pada)))
             child_pada.pada_roman_script = cv_pali_to_roman(extract(clean(pada.pada)))
 
+            if existing_pada:
+                child_pada.sadda = existing_pada.sadda
+            
             child_pada.save()
             messages.success(self.request, _('The record has been added!'))
             
@@ -426,7 +437,7 @@ class FindSaddaClosestMatchesView(LoginRequiredMixin, View):
 class PadaDeclensionView(LoginRequiredMixin, View):
     template_name = 'padanukkama/pada_declension.html'
     
-    def get(self, request, pk, padanukkama_id):
+    def get(self, request, padanukkama_id, pk):
         try:
             pada = get_object_or_404(Pada, id=pk)
             padanukkama = get_object_or_404(Padanukkama, id=padanukkama_id)
@@ -465,7 +476,7 @@ class PadaDeclensionView(LoginRequiredMixin, View):
             messages.error(request, error_message)
             return render(request, self.template_name, context)
     
-    def post(self, request, pk, padanukkama_id):
+    def post(self, request, padanukkama_id, pk):
         pada = Pada.objects.get(id=pk)
         padanukkama = Padanukkama.objects.get(id=padanukkama_id)
         
@@ -476,7 +487,11 @@ class PadaDeclensionView(LoginRequiredMixin, View):
             form = SaddaForm(request.POST or None)
 
         if form.is_valid():
-            existing_sadda = Sadda.objects.filter(Q(sadda=form.cleaned_data['sadda'])).first()
+            existing_sadda = Sadda.objects.filter(
+                Q(sadda=form.cleaned_data['sadda']),
+                Q(padanukkama=padanukkama)
+            ).first()
+
             if existing_sadda:
                 form = SaddaForm(request.POST or None, instance=existing_sadda)
             
@@ -536,6 +551,56 @@ class PadaDeclensionView(LoginRequiredMixin, View):
 
     def get_akhyatasaddamala_helper(self):
         return AkhyataSaddamala.objects.all().order_by('-popularity', 'title_order')
+
+
+# -----------------------------------------------------
+# FindExistingSadda
+# -----------------------------------------------------
+class FindExistingSadda(LoginRequiredMixin, View):
+    def get(self, request, padanukkama_id, sadda):
+        existing_sadda = Sadda.objects.filter(Q(padanukkama=padanukkama_id), Q(sadda=sadda)).first()
+        if existing_sadda:
+            data = {
+                'found': True,
+                'existing_sadda_id': existing_sadda.id,
+            }
+        else:
+            data = {
+                'found': False,
+            }
+        
+        return JsonResponse(data)
+
+
+# -----------------------------------------------------
+# AddSaddaToPada
+# -----------------------------------------------------
+class AddSaddaToPada(LoginRequiredMixin, View):
+    def post(self, request, padanukkama_id, pada_id, sadda_id):
+        # Retrieve the current pada record
+        current_pada = get_object_or_404(Pada, id=pada_id)
+        current_sadda = get_object_or_404(Sadda, id=sadda_id)
+
+        # Update the pada record with the sadda ID
+        current_pada.sadda = current_sadda
+        current_pada.save()
+
+        return JsonResponse({'success': True})
+
+
+# -----------------------------------------------------
+# DecouplingPadaWithSadda
+# -----------------------------------------------------
+class DecouplingPadaWithSadda(LoginRequiredMixin, View):
+    def post(self, request, pada_id):
+        # Retrieve the current pada record
+        current_pada = get_object_or_404(Pada, id=pada_id)
+
+        # Update the pada record with the sadda ID
+        current_pada.sadda = None
+        current_pada.save()
+
+        return JsonResponse({'success': True})
 
 
 # -----------------------------------------------------
@@ -613,4 +678,20 @@ class PadaDeleteView(LoginRequiredMixin, View):
         else:
             # Redirect to the pada_split_sandhi view with parent_id as a positional argument
             return redirect(reverse_lazy('pada_split_sandhi', args=[padanukkama_id, pada_parent_id]))
+
+
+# -----------------------------------------------------
+# SaddaView
+# -----------------------------------------------------
+class SaddaView(LoginRequiredMixin, SingleTableMixin, FilterView):
+    model = Sadda
+    template_name = "padanukkama/sadda.html"
+    context_object_name  = "sadda"
+    table_class = SaddaTable
+    filterset_class = SaddaFilter
+    
+    def get_context_data(self, **kwargs):
+        context = super(SaddaView, self).get_context_data(**kwargs)
+        context["total_rec"] = '{:,}'.format(len(self.get_table().rows)) 
+        return context
 

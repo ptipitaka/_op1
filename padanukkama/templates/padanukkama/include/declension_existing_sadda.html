@@ -1,0 +1,70 @@
+{% load i18n %}
+
+<script>
+    // Find existing sadda and assign to form
+    function check_existing_sadda (padaPada) {
+        // Get input data
+        var id_padanukkama = '{{ padanukkama_id }}';
+        var pada_id = '{{ pada_id }}'
+        var id_sadda = $('#id_sadda').val();
+
+        var url = "{% url 'find_existing_sadda' padanukkama_id=111 sadda=222 %}"
+            .replace('111', id_padanukkama)
+            .replace('222', id_sadda);
+        $.ajax({
+            url: url,
+            type: 'GET',
+            success: function (response) {
+                if (response.found) {
+                    // Show confirmation popup here
+                    if (confirm('{% trans "Existing sadda found. Do you want to proceed?" %}')) {
+                        // User confirmed, perform further actions
+                        var csrftoken = $('input[name="csrfmiddlewaretoken"]').val();
+                        var re_url = "{% url 'add_sadda_to_pada' padanukkama_id=111 pada_id=222 sadda_id=333 %}"
+                            .replace('111', id_padanukkama)
+                            .replace('222', pada_id)
+                            .replace('333', response.existing_sadda_id)
+                        $.ajax({
+                            url: re_url,
+                            type: 'POST',
+                            beforeSend: function(xhr) {
+                                // Set the CSRF token in the request headers
+                                xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                            },
+                            success: function (response) {
+                                // Handle success case
+                                if (response.success) {
+                                    // Handle success case
+                                    console.log("Pada record updated successfully");
+                                    reload_url = "{% url 'pada_declension' padanukkama_id=111 pk=222 %}"
+                                        .replace('111', id_padanukkama)
+                                        .replace('222', pada_id);
+                                    // Redirect the user to a different page
+                                    window.location.href = reload_url;
+                                } else {
+                                    // Handle error case
+                                    console.log("Failed to update pada record");
+                                }
+                            },
+                            error: function (xhr, status, error) {
+                                // Handle error cases
+                                console.error(error)
+                            }
+                        });
+                    } else {
+                        // User canceled, handle accordingly
+                        $('#id_sadda').val(padaPada)
+                    }
+                } else {
+                    // Handle case when sadda is not found
+                    console.log('Sadda not found');
+                }
+            },
+            error: function (xhr, status, error) {
+                // Handle error cases
+                console.error(error)
+            }
+        })
+    }
+
+</script>

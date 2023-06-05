@@ -48,6 +48,10 @@
                 class="w3-bar-item w3-button {% if '/padanukkama/project' in request.path %} nav-active {% endif %}">
                 {% trans "Padanukkama" %}
             </a>
+            <a href="{% url "sadda" %}"
+                class="w3-bar-item w3-button {% if '/padanukkama/sadda' in request.path %} nav-active {% endif %}">
+                {% trans "Sadda" %}
+            </a>
         </div>
     </div>
     <!-- AUTHENTICATION --> 

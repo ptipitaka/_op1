@@ -1,0 +1,54 @@
+{% load i18n %}
+
+<script>
+    // Function to handle decoupling
+    function handleDecoupling(event) {
+        console.log('decoupling')
+        event.preventDefault();
+
+        var id_padanukkama = '{{ padanukkama_id }}';
+        var pada_id = {{ pada_id }}
+        var pada_pada = "{{ pada.pada }}"
+        var id_sadda = $('#id_sadda').val();
+
+        var confirmationMessage = "{% trans 'Decoupling pada %(pada)s with sadda %(sadda)s. Do you want to proceed?' %}"
+            .replace('%(pada)s', pada_pada)
+            .replace('%(sadda)s', id_sadda);
+
+        if (confirm(confirmationMessage)) {
+            // Perform further actions
+            var url = "{% url 'decoupling_pada_with_sadda' pada_id=111 %}"
+                .replace('111', pada_id);
+
+            var csrftoken = $('input[name="csrfmiddlewaretoken"]').val();
+
+            $.ajax({
+                url: url,
+                type: 'POST',
+                beforeSend: function(xhr) {
+                    // Set the CSRF token in the request headers
+                    xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                },
+                success: function (response) {
+                    // Handle success case
+                    if (response.success) {
+                        // Handle success case
+                        console.log("Pada record updated successfully");
+                        reload_url = "{% url 'pada_declension' padanukkama_id=111 pk=222 %}"
+                            .replace('111', id_padanukkama)
+                            .replace('222', pada_id);
+                        // Redirect the user to a different page
+                        window.location.href = reload_url;
+                    } else {
+                        // Handle error case
+                        console.log("Failed to update pada record");
+                    }
+                },
+                error: function (xhr, status, error) {
+                    // Handle error cases
+                    console.error(error)
+                }
+            })
+        }
+    }
+</script>

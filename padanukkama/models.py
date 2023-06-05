@@ -340,6 +340,7 @@ class Sadda(models.Model):
         max_length=150,
         null=True,
         blank=True,
+        default="",
         verbose_name=_("Construction"))
     meaning = TaggableManager(
         blank=True,
@@ -362,6 +363,7 @@ class Sadda(models.Model):
 
     def save(self, *args, **kwargs):
         self.sadda_seq = encode(extract(clean(self.sadda)))
+        self.construction = '' if self.construction == None else self.construction
         super().save(*args, **kwargs)
 
 

@@ -1,0 +1,37 @@
+{% extends 'main/base.html' %}
+
+{% load widget_tweaks i18n %}
+
+{% load render_table from django_tables2 %}
+
+{% block apptitle %}
+    {% include 'padanukkama/include/title.html' %} : {% trans 'Sadda' %}
+{% endblock %}
+
+{% block body %}
+    {% if filter %}
+        <form action="" method="get"
+            class="w3-container w3-text-blue w3-padding"
+            style="width:60%;margin:auto;">
+
+            {% for field in filter.form %}
+                <p>
+                    <label>{% trans field.label_tag %}</label>
+                    {{ field|add_class:"w3-input" }}
+                </p>
+            {% endfor %}
+
+            <button
+                type="submit"
+                class="w3-button w3-dark-grey w3-hover-brown w3-round-xlarge">
+                    {% trans "Submit" %}
+            </button>
+        </form>
+    {% endif %}
+
+    {% render_table table %}
+
+    <div class="w3-container w3-center">
+        {% trans 'found' %} {{ total_rec }} {% trans 'record(s)' %} 
+    </div>
+{% endblock%}

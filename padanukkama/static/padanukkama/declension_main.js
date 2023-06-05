@@ -9,6 +9,7 @@ function handlePreview(event) {
     event.preventDefault();
 
     // Call your desired functions here
+    check_existing_sadda();
     create_vipatti();
     find_abidan_closest_matches();
     find_sadda_closest_matches();
@@ -33,10 +34,16 @@ $(document).ready(function () {
     // Get the button element by its ID
     var previewButton = $('#preview_vipatti');
     var submitButton = $("#submit_data");
+    
+    var padaPada = $('#id_sadda').val();
 
     // manage input fields
     manageInputFields();
-    
+
+    $('#id_sadda').on('focusout', function() {
+        check_existing_sadda(padaPada)
+    });
+
     $('#id_sadda_type').change(function() {
         manageInputFields();
     });

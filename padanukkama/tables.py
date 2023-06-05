@@ -11,6 +11,7 @@ from django_filters import FilterSet
 from django_filters.views import FilterView
 from django_tables2 import SingleTableView
 from django_tables2.utils import A
+from django_tables2.columns.linkcolumn import RelatedLinkColumn
 from mptt.templatetags.mptt_tags import cache_tree_children
 
 from .models import NamaSaddamala, AkhyataSaddamala, Padanukkama, Pada, Sadda
@@ -291,17 +292,19 @@ class PadaParentChildTable(tables.Table):
 # Sadda Table & Filter
 # -----------------------------------------------------
 
-# class SaddaTable(tables.Table):
-#     sadda_seq = tables.Column(visible=False)
-#     class Meta:
-#         model = Sadda
-#         template_name = "django_tables2/w3css.html"
-#         attrs = {"class": "w3-table w3-bordered"}
-#         fields = ("sadda", "sadda_type")
-#         order_by = ("sadda_seq",)
+class SaddaTable(tables.Table):
+    sadda_seq = tables.Column(visible=False)
+    pada = RelatedLinkColumn('pada', args=[A('pada.pk')])
+
+    class Meta:
+        model = Sadda
+        template_name = "django_tables2/w3css.html"
+        attrs = {"class": "w3-table w3-bordered"}
+        fields = ("sadda", "sadda_type", "pada", "padanukkama")
+        order_by = ("sadda_seq",)
 
 
-# class SaddaFilter(FilterSet):
-#     class Meta:
-#         model = Sadda
-#         fields = ("sadda",)
+class SaddaFilter(FilterSet):
+    class Meta:
+        model = Sadda
+        fields = ("padanukkama", "sadda")

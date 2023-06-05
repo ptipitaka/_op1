@@ -68,6 +68,14 @@
                             class="w3-button w3-margin-left w3-dark-grey w3-hover-blue w3-round-xlarge">
                             {% trans "Submit" %}
                         </button>
+                        <!-- submit data -->
+                        <button
+                            id="decoupling"
+                            style="display:none"
+                            class="w3-button w3-right w3-dark-grey w3-hover-orange w3-round-xlarge"
+                            onclick="handleDecoupling(event);">
+                            {% trans "Decoupling" %}
+                        </button>
                     </div>
 
                     <div id="result-container"></div>
@@ -147,13 +155,18 @@
     <script src="{% static 'padanukkama/declension_modals.js' %}"></script>
     <script src="{% static 'padanukkama/declension_tabs.js' %}"></script>
 
+    {% include 'padanukkama/include/declension_existing_sadda.html' %}
     {% include 'padanukkama/include/declension_find_abidan.html' %}
     {% include 'padanukkama/include/declension_find_sadda.html' %}
     {% include 'padanukkama/include/declension_create_vipatti.html' %}
+    {% include 'padanukkama/include/declension_decoupling.html' %}
 
     <script>
         {% if pada.sadda %}
             $(document).ready(function () { create_vipatti(); });
+            var decouplingButton = $("#decoupling");
+
+            decouplingButton.css("display", "");
         {% endif %}
     </script>
 {% endblock %}
