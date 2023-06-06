@@ -638,7 +638,7 @@ class CreateVipatti(LoginRequiredMixin, View):
             value_list = []
             for key, value in result.items():
                 if key != 'error':
-                    value_list.extend(value.split())
+                    value_list.extend(value.split()) 
             unique_words = set(value_list)
 
             padanukkama = Padanukkama.objects.get(id=padanukkama_id)

@@ -41,22 +41,25 @@ def create_pada(padanukkama_id):
             )
 
 
-def mix_namavipatties(satta, template_id):
-    if not is_validate_pali(satta):
+def mix_namavipatties(sadda, template_id):
+    if not is_validate_pali(sadda):
         return {'error':True}
 
     pada = NamaSaddamala.objects.get(pk=template_id)
     result = {'error':False}
-    sadda_expand = extract(satta)
-    template_expand = extract(pada.title_code)
-
+    sadda_expand = extract(sadda)
+    
     vipatti_fields = [
         'nom_sg', 'nom_pl','voc_sg','voc_pl','acc_sg','acc_pl','instr_sg','instr_pl','dat_sg','dat_pl','abl_sg','abl_pl','gen_sg','gen_pl','loc_sg','loc_pl',
     ]
     for vipatti_key in vipatti_fields:
         vipatti_keys = getattr(pada, vipatti_key)
-        vipatti_key_weared = wear_namavipatti(sadda_expand, template_expand, vipatti_keys)
-        result[vipatti_key]=vipatti_key_weared
+        if sadda == pada.title_code:
+            result[vipatti_key] = vipatti_keys or ''
+        else:
+            template_expand = extract(pada.title_code)
+            vipatti_key_weared = wear_namavipatti(sadda_expand, template_expand, vipatti_keys)
+            result[vipatti_key]=vipatti_key_weared
         
     return result
 

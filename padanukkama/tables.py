@@ -294,14 +294,25 @@ class PadaParentChildTable(tables.Table):
 
 class SaddaTable(tables.Table):
     sadda_seq = tables.Column(visible=False)
-    pada = RelatedLinkColumn('pada', args=[A('pada.pk')])
+    pada = tables.Column(verbose_name=_('Related Padas'))
 
     class Meta:
         model = Sadda
         template_name = "django_tables2/w3css.html"
         attrs = {"class": "w3-table w3-bordered"}
-        fields = ("sadda", "sadda_type", "pada", "padanukkama")
+        fields = ("sadda", "sadda_type",    "padanukkama")
         order_by = ("sadda_seq",)
+
+    def render_pada(self, value, record):
+        # Query related Pada instances
+        related_padas = record.pada_set.all()
+        # Replace "field" with the actual field name of Pada
+        pada_list = [pada.field for pada in related_padas]
+        # return format_html(', '.join(pada_list)) if pada_list else "-"
+        return 'ssss'
+    
+# Add custom CSS class to the column
+SaddaTable.base_columns['pada'].attrs = {'td': {'class': 'pada-column'}}
 
 
 class SaddaFilter(FilterSet):
