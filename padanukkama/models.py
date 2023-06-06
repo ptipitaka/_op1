@@ -59,7 +59,7 @@ class Karanta(models.Model):
 class NamaSaddamala(models.Model):
     title = models.CharField(max_length=80, verbose_name=_("Title"))
     title_order = models.CharField(max_length=80, verbose_name=_("Title order"))
-    title_code = models.CharField(max_length=80, null=True, blank=True, verbose_name=_("Code"))
+    title_code = models.CharField(max_length=80, verbose_name=_("Code"))
     nama_type = models.ForeignKey("NamaType", null=True, blank=True, verbose_name=_("Type"), on_delete=models.SET_NULL) 
     linga = models.ForeignKey("Linga", null=True, blank=True, verbose_name=_("Liṅga"), on_delete=models.SET_NULL) 
     karanta = models.ForeignKey("Karanta", null=True, blank=True, verbose_name=_("Kāranta"), on_delete=models.SET_NULL) 
@@ -129,8 +129,6 @@ class AkhyataSaddamala(models.Model):
         verbose_name=_("title order"))
     title_code = models.CharField(
         max_length=80,
-        null=True,
-        blank=True,
         verbose_name=_("Code"))
     dhatu = models.ForeignKey(
         Dhatu,
