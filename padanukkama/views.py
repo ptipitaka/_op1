@@ -456,7 +456,10 @@ class PadaDeclensionView(LoginRequiredMixin, View):
                 form = SaddaForm(initial = initial_data)
             else:
                 # Initial blank form 
-                form = SaddaForm(initial={'sadda': pada.pada})
+                form = SaddaForm(initial={
+                    'sadda': pada.pada,
+                    'sadda_type': 'NamaSaddamala'
+                })
 
             context = {
                 'pada_id': pk,
@@ -501,9 +504,18 @@ class PadaDeclensionView(LoginRequiredMixin, View):
             sadda.save()
             form.save_m2m()
 
+            # Update *saddamala
+            for e in sadda.namasaddamala.all():
+                e.popularity += 1
+                e.save()
+            for e in sadda.akhyatasaddamala.all():
+                e.popularity += 1
+                e.save()
+
             # Update Pada
             pada.sadda = sadda
             pada.save()
+
 
             # Find all related Pada
             template_ids = list(sadda.namasaddamala.all()) if sadda.sadda_type == "NamaSaddamala" else list(sadda.akhyatasaddamala.all())

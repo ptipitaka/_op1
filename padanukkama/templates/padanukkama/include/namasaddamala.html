@@ -9,8 +9,10 @@
 {% endblock %}
 
 <table id="namasaddamala-table" class="w3-table w3-bordered">
+    <button id="namasaddamala-table-button">show</button>
     <thead>
         <tr>
+            <th style="width: 25%">{% trans 'ID' %}</th>
             <th style="width: 25%">{% trans 'Title' %}</th>
             <th style="width: 25%">{% trans 'Type' %}</th>
             <th style="width: 25%">{% trans 'Liṅga' %}</th>
@@ -19,7 +21,8 @@
     <tbody>
         {% for i in namasaddamala_helper %}
         <tr>
-            <td style="width: 50%">{{ i.title|default_if_none:"--" }}</td>
+            <td style="width: 5%">{{ i.id|default_if_none:"--" }}</td>
+            <td style="width: 45%">{{ i.title|default_if_none:"--" }}</td>
             <td style="width: 25%">{{ i.nama_type|default_if_none:"--"  }}</td>
             <td style="width: 25%">{{ i.linga.title|default_if_none:"--"  }}</td>
         </tr>
@@ -30,8 +33,16 @@
 <script>
 
     $(document).ready(function() {
-        $('#namasaddamala-table').DataTable({
+        var namasaddamalaTable = $('#namasaddamala-table').DataTable({
             ordering: false,
+        });
+
+        $('#namasaddamala-table tbody').on('click', 'tr', function () {
+            $(this).toggleClass('selected');
+        });
+
+        $('#namasaddamala-table-button').click(function () {
+            console.log(namasaddamalaTable.rows('.selected').data());
         });
     });
 

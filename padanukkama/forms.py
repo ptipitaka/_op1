@@ -4,7 +4,7 @@ from django.shortcuts import get_object_or_404
 from django.utils.safestring import mark_safe
 from django.utils.translation import gettext_lazy as _
 
-from django_select2.forms import ModelSelect2MultipleWidget
+from django_select2.forms import *
 from mptt.forms import TreeNodeMultipleChoiceField
 from django_editorjs import EditorJsWidget
 
@@ -174,22 +174,27 @@ class PadaForm(forms.Form):
     )
 
 
-
 # -----------------------------------------------------
 # SaddaForm
 # -----------------------------------------------------
 class SaddaForm(forms.ModelForm):
     namasaddamala = forms.ModelMultipleChoiceField(
-        queryset=NamaSaddamala.objects.all(),
+        queryset=NamaSaddamala.objects.all().order_by('-popularity', 'title_order'),
         widget=ModelSelect2MultipleWidget(
+            attrs={
+                'data-minimum-input-length': 1,
+            },
             model=NamaSaddamala,
             search_fields=['title__icontains'],
         ),
         required=False
     )
     akhyatasaddamala = forms.ModelMultipleChoiceField(
-        queryset=AkhyataSaddamala.objects.all(),
+        queryset=AkhyataSaddamala.objects.all().order_by('-popularity', 'title_order'),
         widget=ModelSelect2MultipleWidget(
+           attrs={
+                'data-minimum-input-length': 1,
+            },
             model=AkhyataSaddamala,
             search_fields=['title__icontains'],
         ),
