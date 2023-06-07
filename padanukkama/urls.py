@@ -22,6 +22,7 @@ urlpatterns = [
     path('create-vipatti/<padanukkama_id>/<sadda>/<sadda_type>/<template_ids>/', views.CreateVipatti.as_view(), name='create_vipatti'),
     # sadda
     path('sadda/', views.SaddaView.as_view(), name='sadda'),
+    path('sadda/<int:pk>/update/', views.SaddaUpdateView.as_view(), name='sadda_update'),
     # nama-saddamala
     path('nama-saddamala/', views.NamaSaddamalaView.as_view(), name='nama_saddamala'),
     path('nama-saddamala/create/', views.NamaSaddamalaCreateView.as_view(), name='nama_saddamala_create'),

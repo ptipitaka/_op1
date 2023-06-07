@@ -6,7 +6,7 @@ from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils.translation import gettext_lazy as _
 from django.views import View
-from django.views.generic import CreateView, UpdateView, DeleteView, ListView
+from django.views.generic import CreateView, UpdateView, DeleteView
 from django.urls import resolve, reverse_lazy
 
 from django_filters.views import FilterView
@@ -28,8 +28,7 @@ from .tables import NamaSaddamalaTable, \
 
 from .forms import  NamaSaddamalaForm, AkhyataSaddamalaForm, \
                     PadanukkamaCreateForm, PadanukkamaUpdateForm, \
-                    AddChildPadaForm, \
-                    SaddaForm
+                    AddChildPadaForm, SaddaForm
 
 from utils.pali_char import *
 from utils.padanukkama import *
@@ -256,9 +255,9 @@ class PadanukkamaDeleteView(LoginRequiredMixin, DeleteView):
     template_name = "padanukkama/padanukkama_delete.html"
 
 
-# -----------------------------------------------------
+# =====================================================
 # PadanukkamaPadaView
-# -----------------------------------------------------
+# =====================================================
 class PadanukkamaPadaView(LoginRequiredMixin, SingleTableMixin, FilterView):
     model = Pada
     template_name = "padanukkama/pada.html"
@@ -440,7 +439,6 @@ class PadaDeclensionView(LoginRequiredMixin, View):
         try:
             pada = get_object_or_404(Pada, id=pk)
             padanukkama = get_object_or_404(Padanukkama, id=padanukkama_id)
-            paginate_number = request.GET.get('page')
 
             if pada.sadda:
                 # Get sadda object & assign Form
@@ -466,7 +464,6 @@ class PadaDeclensionView(LoginRequiredMixin, View):
                 'pada': pada,
                 'padanukkama_id': padanukkama_id,
                 'padanukkama': padanukkama,
-                'paginate_number': paginate_number,
                 'form': form,
                 'namasaddamala_helper': self.get_namasaddamala_helper(),
                 'akhyatasaddamala_helper': self.get_akhyatasaddamala_helper(),
@@ -483,7 +480,6 @@ class PadaDeclensionView(LoginRequiredMixin, View):
     def post(self, request, padanukkama_id, pk):
         pada = Pada.objects.get(id=pk)
         padanukkama = Padanukkama.objects.get(id=padanukkama_id)
-        paginate_number = request.GET.get('page')
         
         # Check if the form is for update or create
         if pada.sadda:
@@ -545,8 +541,9 @@ class PadaDeclensionView(LoginRequiredMixin, View):
             messages.success(request, _('Record updated successfully!'))
 
             # Redirect to the desired URL with the page query parameter
-            redirect_url = reverse_lazy('padanukkama_pada', args=[padanukkama_id]) + f'?page={paginate_number}'
+            redirect_url = reverse_lazy('padanukkama_pada', args=[padanukkama_id]) + '?' + request.GET.urlencode()
             return redirect(redirect_url)
+
         else:
             # Invalid form, Message
             messages.error(request, _('Form is invalid. Please correct the errors'))
@@ -557,7 +554,6 @@ class PadaDeclensionView(LoginRequiredMixin, View):
             'pada': pada,
             'padanukkama_id': padanukkama_id,
             'padanukkama': padanukkama,
-            'paginate_number': paginate_number,
             'form': form,
             'namasaddamala_helper': self.get_namasaddamala_helper(),
             'akhyatasaddamala_helper': self.get_akhyatasaddamala_helper(),
@@ -714,3 +710,29 @@ class SaddaView(LoginRequiredMixin, SingleTableMixin, FilterView):
         context["total_rec"] = '{:,}'.format(len(self.get_table().rows)) 
         return context
 
+class SaddaUpdateView(LoginRequiredMixin, UpdateView):
+    model = Sadda
+    template_name = "padanukkama/sadda_update.html"
+    form_class = SaddaForm
+    success_url = reverse_lazy('sadda')
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+
+    def get_initial(self):
+        initial = super().get_initial()
+        # Set initial values for your form fields
+        initial['meaning'] = ", ".join(self.object.meaning.all().values_list('name', flat=True))
+        return initial
+    
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        messages.success(self.request, _("Form saved successfully."))
+        return response
+
+    def form_invalid(self, form):
+        response = super().form_invalid(form)
+        error_message = _("Form contains errors. Please correct them.")
+        messages.error(self.request, error_message)
+        return response

@@ -7,11 +7,9 @@ from django.utils.html import format_html
 from django.utils.safestring import mark_safe
 from django.utils.translation import gettext_lazy as _
 
+from django.http import QueryDict
 from django_filters import FilterSet
-from django_filters.views import FilterView
-from django_tables2 import SingleTableView
 from django_tables2.utils import A
-from django_tables2.columns.linkcolumn import RelatedLinkColumn
 from mptt.templatetags.mptt_tags import cache_tree_children
 
 from .models import NamaSaddamala, AkhyataSaddamala, Padanukkama, Pada, Sadda
@@ -226,15 +224,12 @@ class PadaTable(tables.Table):
             padanukkama_id = record.padanukkama_id
             pada_id = record.id
 
-            # Get the current page number from the request's GET parameters
-            current_page = self.page.number
-
-            # Create a QueryDict object to store the URL parameters
-            query_params = f'page={current_page}'
+            # Get all the query parameters from the request's GET parameters
+            query_params = self.request.GET
 
             # Generate the URL with the updated parameters
             url = reverse_lazy('pada_declension', args=[padanukkama_id, pada_id])
-            url_with_params = f'{url}?{query_params}'
+            url_with_params = f'{url}?{query_params.urlencode()}'
 
             return mark_safe(
                 f'<a href="{url_with_params}" class="w3-button w3-round-xlarge w3-border w3-hover-white">'
@@ -307,27 +302,37 @@ class PadaParentChildTable(tables.Table):
 class SaddaTable(tables.Table):
     sadda_seq = tables.Column(visible=False)
     pada = tables.Column(verbose_name=_('Related Padas'))
+    action = tables.Column(empty_values=(), orderable=False, verbose_name=_('Action'))
 
     class Meta:
         model = Sadda
         template_name = "django_tables2/w3css.html"
         attrs = {"class": "w3-table w3-bordered"}
-        fields = ("sadda", "sadda_type",    "padanukkama")
+        fields = ("sadda", "construction")
         order_by = ("sadda_seq",)
 
     def render_pada(self, value, record):
-        # Query related Pada instances
-        related_padas = record.pada_set.all()
-        # Replace "field" with the actual field name of Pada
-        pada_list = [pada.field for pada in related_padas]
-        # return format_html(', '.join(pada_list)) if pada_list else "-"
-        return 'ssss'
-    
-# Add custom CSS class to the column
-SaddaTable.base_columns['pada'].attrs = {'td': {'class': 'pada-column'}}
+        pada_list = record.pada.all().order_by('pada_seq')
+        unique_pada_list = list(set(pada.pada for pada in pada_list))
+        return ', '.join(unique_pada_list)
 
+    def render_action(self, record):
+        # Get all the query parameters from the request's GET parameters
+        query_params = self.request.GET
+
+        # Generate the URL with the updated parameters
+        url = reverse_lazy('sadda_update', args=[record.id])
+        url_with_params = f'{url}?{query_params.urlencode()}'
+
+        return mark_safe(
+            f'<a href="{url_with_params}" class="w3-button w3-round-xlarge w3-border w3-hover-white">'
+            f'<i class="fa-solid fa-magnifying-glass"></i></a>'
+        )
+    
 
 class SaddaFilter(FilterSet):
     class Meta:
         model = Sadda
         fields = ("padanukkama", "sadda")
+
+

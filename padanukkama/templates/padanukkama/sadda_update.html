@@ -1,0 +1,151 @@
+{% extends 'main/base.html' %}
+
+{% load static i18n widget_tweaks mptt_tags %}
+
+{% block extra_js %}
+    <script src="{% static 'js/jquery-3.6.4.min.js' %}"></script>
+{% endblock %}
+
+{% block extra_css %}
+    <style>
+        .responsive {
+            width: 100%;
+            height: auto;
+        }
+        .hidden {
+            visibility: hidden;
+            height: 10px;
+        }
+        .codex-editor__redactor {
+            padding-bottom: 10px !important;
+        }
+    </style>
+{% endblock %}
+
+{% block apptitle %}
+    {% include 'padanukkama/include/title.html' %} : {% trans 'Sadda' %}
+{% endblock %}
+
+{% block apptitle_option %}
+    <a href="{% url 'sadda' %}?{{ request.GET.urlencode }}"
+        class="w3-button w3-round-xlarge w3-hover-amber w3-display-right">
+        {% trans "Back" %}
+    </a>
+{% endblock %}
+
+{% block body %}
+    <div class="w3-container w3-light-grey">
+        <h4>{{ sadda.sadda }}
+            <span id="padanukkama" data-value="{{ sadda.padanukkama }}" class="w3-right">{{ sadda.padanukkama }}</span>
+        </h4>
+    </div>
+
+    <div class="w3-cell-row">
+        <!-- left panel -->
+        <div class="w3-container w3-cell" style="width:50%">
+            <div class="w3-cell-row w3-margin-bottom">
+                <form action="" method="post" class="w3-container w3-padding">
+                    {% csrf_token %}
+                    {{ form.media }}
+                  
+                    <div style="width:80%;margin:auto;padding-bottom: 25px;">
+                        {% for field in form %}
+                            <p id="fieldWrapper_{{ field.id_for_label }}">
+                                <label>{% trans field.label_tag %}</label>
+                                {{ field|add_class:"w3-input" }}
+                            </p>
+                        {% endfor %}
+                        <!-- submit data -->
+                        <button type="submit"
+                            id="submit_data"
+                            class="w3-button w3-margin-left w3-dark-grey w3-hover-blue w3-round-xlarge">
+                            {% trans "Submit" %}
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- right panel -->
+        <div class="w3-container">
+            <div class="w3-bar w3-light-grey">
+                <button class="w3-bar-item w3-button tablink w3-grey" onclick="openTabs(event,'Abidan')">{% trans 'Abidan' %}</button>
+             </div>
+             <!-- Abidan closest matches-->
+             <div id="Abidan" class="w3-border tab">
+                 <header class="w3-container w3-light-grey">
+                     <h5>{% trans 'Closest matching words in Abidan' %}</h5>
+                 </header>
+ 
+                 <div class="w3-container w3-padding">
+                     <ul id="abidan-closest-matches" class="w3-ul w3-hoverable">
+                     </ul>
+                 </div>
+             </div>
+        </div>
+
+    </div>
+
+    <!-- Add the image modal markup -->
+    <div id="imageModal" class="w3-modal">
+        <div class="w3-modal-content w3-animate-zoom">
+            <div class="w3-container">
+                <span
+                    class="w3-button w3-hover-red w3-xlarge w3-display-topright"
+                    onclick="closeModal()">&times;</span>
+                <img id="modalImage" class="responsive" src="" alt="Modal Image">
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'padanukkama/declension_modals.js' %}"></script>
+    <script src="{% static 'padanukkama/declension_tabs.js' %}"></script>
+
+    {% include 'padanukkama/include/declension_find_abidan.html' %}
+
+    <script>
+        function manageInputFields(event) {
+            $('#fieldWrapper_id_namasaddamala, #fieldWrapper_id_akhyatasaddamala').hide();
+
+            // detact change from input value
+            var selectedValue = $('#id_sadda_type').val();
+            if (selectedValue === 'NamaSaddamala') {
+                $('#fieldWrapper_id_namasaddamala').show();
+                $('#fieldWrapper_id_akhyatasaddamala').hide();
+            } else if (selectedValue === 'AkhyataSaddamala') {
+                $('#fieldWrapper_id_namasaddamala').hide();
+                $('#fieldWrapper_id_akhyatasaddamala').show();
+            };
+        };
+
+        $(document).ready(function () {
+            // Get the button element by its ID
+            var submitButton = $("#submit_data");
+            
+            // manage input fields
+            manageInputFields();
+
+            $('#id_sadda_type').change(function() {
+                manageInputFields();
+            });
+
+            // Attach change event listener to the inputs
+            $('#id_namasaddamala, #id_akhyatasaddamala').on('change', function() {
+                // Retrieve the updated values from the inputs
+                var namasaddamalaValues = $('#id_namasaddamala').val();
+                var akhyatasaddamalaValues = $('#id_akhyatasaddamala').val();
+
+                // Check if each array has a value
+                var isNamasaddamalaSelected = namasaddamalaValues.length > 0;
+                var isAkhyatasaddamalaSelected = akhyatasaddamalaValues.length > 0;
+            });
+
+            // find closet matches
+            find_abidan_closest_matches();
+        });
+
+    </script>
+{% endblock %}

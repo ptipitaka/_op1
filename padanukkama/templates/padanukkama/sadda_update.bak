@@ -1,8 +1,0 @@
-{% extends 'main/base.html' %}
-
-{% block body %}
-    <h1>Sadda Detail</h1>
-    <p>Sadda: {{ sadda.sadda }}</p>
-    <p>Sadda Type: {{ sadda.get_sadda_type_display }}</p>
-    <p>Linked Sadda: {{ sadda.linked_sadda }}</p>
-{% endblock %}

@@ -397,6 +397,7 @@ class Pada(MPTTModel):
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
+        related_name="pada",
         verbose_name=_("Sadda"))
     
     def __str__(self):

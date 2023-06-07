@@ -15,66 +15,66 @@
     {% endblock %}
 
     {% block body %}
-    <form method="post" class="w3-container w3-padding">
-        {% csrf_token %}
-        {{ form.media.js }} 
-        <div class="w3-cell-row w3-container">
-            <div class="w3-container w3-cell" style="width:50%;">
-                <p>
-                    <label>{% trans form.title.label_tag %}</label>
-                    {{ form.title|add_class:"w3-input" }}
-                </p>
-                <p>
-                    <label>{% trans form.about.label_tag %}</label>
-                    {{ form.about|add_class:"w3-input" }}
-                </p>
-                <p>
-                    <label>{% trans form.publication.label_tag %}</label>
-                    {{ form.publication|add_class:"w3-check" }}
-                </p>
-                <p>
-                    <label>{% trans form.collaborators.label_tag %}</label>
-                    {{ form.collaborators }}
-                </p>
-                <p>
-                    <label>{% trans form.target_languages.label_tag %}</label>
-                    {{ form.target_languages|add_class:"checkbox-select" }}
-                </p>
+        <form method="post" class="w3-container w3-padding">
+            {% csrf_token %}
+            {{ form.media.js }} 
+            <div class="w3-cell-row w3-container">
+                <div class="w3-container w3-cell" style="width:50%;">
+                    <p>
+                        <label>{% trans form.title.label_tag %}</label>
+                        {{ form.title|add_class:"w3-input" }}
+                    </p>
+                    <p>
+                        <label>{% trans form.about.label_tag %}</label>
+                        {{ form.about|add_class:"w3-input" }}
+                    </p>
+                    <p>
+                        <label>{% trans form.publication.label_tag %}</label>
+                        {{ form.publication|add_class:"w3-check" }}
+                    </p>
+                    <p>
+                        <label>{% trans form.collaborators.label_tag %}</label>
+                        {{ form.collaborators }}
+                    </p>
+                    <p>
+                        <label>{% trans form.target_languages.label_tag %}</label>
+                        {{ form.target_languages|add_class:"checkbox-select" }}
+                    </p>
+                </div>
+                <div class="w3-container w3-cell">
+                    <p>
+                        <label>{% trans form.table_of_content.label_tag %}</label>
+                        {{ form.table_of_content|add_class:"w3-input" }}
+                    </p>
+                    {% for field in form %}
+                        {% if field.name == 'wordlist_version' or field.name == 'structure' %}
+                            <p>
+                                <label>{% trans field.label_tag %}</label>
+                                {{ field }}
+                            </p>
+                        {% endif %}
+                    {% endfor %}
+                </div>
             </div>
-            <div class="w3-container w3-cell">
-                <p>
-                    <label>{% trans form.table_of_content.label_tag %}</label>
-                    {{ form.table_of_content|add_class:"w3-input" }}
-                </p>
-                {% for field in form %}
-                    {% if field.name == 'wordlist_version' or field.name == 'structure' %}
-                        <p>
-                            <label>{% trans field.label_tag %}</label>
-                            {{ field }}
-                        </p>
-                    {% endif %}
-                {% endfor %}
+            <div class="w3-container w3-padding">
+                <div class="w3-bar w3-center">
+                    <a href="{% url 'padanukkama_delete' object.pk %}"
+                        class="w3-button w3-white w3-border w3-round-xlarge w3-hover-red" 
+                        style="width:150px">
+                        {% trans 'Delete' %}
+                    </a>
+                    <a href="{% url 'padanukkama_pada' object.pk %}"
+                        class="w3-button w3-white w3-border w3-round-xlarge w3-hover-blue" 
+                        style="width:150px">
+                        {% trans 'Translation' %}
+                    </a>
+                    <button
+                        type="submit" style="width:150px"
+                        class="w3-button w3-dark-grey w3-border w3-round-xlarge w3-hover-brown">
+                        {% trans "Save" %}
+                    </button>
+                </div>
             </div>
-        </div>
-        <div class="w3-container w3-padding">
-            <div class="w3-bar w3-center">
-                <a href="{% url 'padanukkama_delete' object.pk %}"
-                    class="w3-button w3-white w3-border w3-round-xlarge w3-hover-red" 
-                    style="width:150px">
-                    {% trans 'Delete' %}
-                </a>
-                <a href="{% url 'padanukkama_pada' object.pk %}"
-                    class="w3-button w3-white w3-border w3-round-xlarge w3-hover-blue" 
-                    style="width:150px">
-                    {% trans 'Translation' %}
-                </a>
-                <button
-                    type="submit" style="width:150px"
-                    class="w3-button w3-dark-grey w3-border w3-round-xlarge w3-hover-brown">
-                    {% trans "Save" %}
-                </button>
-            </div>
-        </div>
-    </form>
+        </form>
     {% endblock %}
 
