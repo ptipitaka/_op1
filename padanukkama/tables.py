@@ -230,11 +230,11 @@ class PadaTable(tables.Table):
             current_page = self.page.number
 
             # Create a QueryDict object to store the URL parameters
-            query_params = self.request.GET.copy()
+            query_params = f'page={current_page}'
 
             # Generate the URL with the updated parameters
             url = reverse_lazy('pada_declension', args=[padanukkama_id, pada_id])
-            url_with_params = f'{url}?{query_params.urlencode()}'
+            url_with_params = f'{url}?{query_params}'
 
             return mark_safe(
                 f'<a href="{url_with_params}" class="w3-button w3-round-xlarge w3-border w3-hover-white">'
