@@ -9,7 +9,6 @@
 {% endblock %}
 
 <table id="namasaddamala-table" class="w3-table w3-bordered">
-    <button id="namasaddamala-table-button">show</button>
     <thead>
         <tr>
             <th style="width: 25%">{% trans 'ID' %}</th>
@@ -39,10 +38,6 @@
 
         $('#namasaddamala-table tbody').on('click', 'tr', function () {
             $(this).toggleClass('selected');
-        });
-
-        $('#namasaddamala-table-button').click(function () {
-            console.log(namasaddamalaTable.rows('.selected').data());
         });
     });
 

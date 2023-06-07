@@ -196,7 +196,7 @@ class PadaTable(tables.Table):
             return ''
         else:
             # Record does not have descendants, show split_action
-            url=reverse_lazy('pada_split_sandhi', args=[record.padanukkama_id, record.id])
+            url = reverse_lazy('pada_split_sandhi', args=[record.padanukkama_id, record.id])
             return format_html(
                 '<a href="{}" class="w3-button w3-round-xlarge w3-border w3-hover-white">'
                 '<i class="fas fa-project-diagram w3-text-orange"></i></a>',
@@ -223,11 +223,23 @@ class PadaTable(tables.Table):
             # Record has descendants, do not show declension_action
             return ''
         else:
-            # Record does not have descendants, show declension_action
+            padanukkama_id = record.padanukkama_id
+            pada_id = record.id
+
+            # Get the current page number from the request's GET parameters
+            current_page = self.page.number
+
+            # Create a QueryDict object to store the URL parameters
+            query_params = self.request.GET.copy()
+
+            # Generate the URL with the updated parameters
+            url = reverse_lazy('pada_declension', args=[padanukkama_id, pada_id])
+            url_with_params = f'{url}?{query_params.urlencode()}'
+
             return mark_safe(
-                '<a href="{url}" class="w3-button w3-round-xlarge w3-border w3-hover-white"><i class="fas fa-layer-group w3-text-indigo"></i></a>'.format(
-                url=reverse_lazy('pada_declension', args=[record.padanukkama_id, record.id])
-            ))
+                f'<a href="{url_with_params}" class="w3-button w3-round-xlarge w3-border w3-hover-white">'
+                f'<i class="fas fa-layer-group w3-text-indigo"></i></a>'
+            )
 
 
 class PadaFilter(FilterSet):

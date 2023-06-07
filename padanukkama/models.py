@@ -424,6 +424,24 @@ class Pada(MPTTModel):
             queryset = queryset.filter(pk__ne=self.pk, padanukkama=self.padanukkama)
         return queryset
     
+    def get_next_record_id(self):
+        next_record = Pada.objects.filter(
+            id__gt=self.id, padanukkama=self.padanukkama).order_by(
+            'pada_seq').first()
+        if next_record:
+            return next_record.id
+        else:
+            return None
+
+    def get_previous_record_id(self):
+        previous_record = Pada.objects.filter(
+            id__lt=self.id, padanukkama=self.padanukkama).order_by(
+            '-pada_seq').first()
+        if previous_record:
+            return previous_record.id
+        else:
+            return None
+    
     class MPTTMeta:
         order_insertion_by = ['pada_seq']
 

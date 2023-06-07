@@ -293,7 +293,6 @@ class PadaSplitSandhiView(LoginRequiredMixin, View):
         padanukkama = get_object_or_404(Padanukkama, id=padanukkama_id)
         form = AddChildPadaForm()
         table = PadaParentChildTable(data=pada.get_current_with_descendants())
-        message = _('Are you sure you want to delete this record?')
 
         return render(request, self.template_name, {'form': form, 'pada': pada, 'table':table, 'message':message})
     
@@ -441,6 +440,7 @@ class PadaDeclensionView(LoginRequiredMixin, View):
         try:
             pada = get_object_or_404(Pada, id=pk)
             padanukkama = get_object_or_404(Padanukkama, id=padanukkama_id)
+            paginate_number = request.GET.get('page')
 
             if pada.sadda:
                 # Get sadda object & assign Form
@@ -466,6 +466,7 @@ class PadaDeclensionView(LoginRequiredMixin, View):
                 'pada': pada,
                 'padanukkama_id': padanukkama_id,
                 'padanukkama': padanukkama,
+                'paginate_number': paginate_number,
                 'form': form,
                 'namasaddamala_helper': self.get_namasaddamala_helper(),
                 'akhyatasaddamala_helper': self.get_akhyatasaddamala_helper(),
@@ -482,6 +483,7 @@ class PadaDeclensionView(LoginRequiredMixin, View):
     def post(self, request, padanukkama_id, pk):
         pada = Pada.objects.get(id=pk)
         padanukkama = Padanukkama.objects.get(id=padanukkama_id)
+        paginate_number = request.GET.get('page')
         
         # Check if the form is for update or create
         if pada.sadda:
@@ -541,6 +543,10 @@ class PadaDeclensionView(LoginRequiredMixin, View):
 
             # Finished process
             messages.success(request, _('Record updated successfully!'))
+
+            # Redirect to the desired URL with the page query parameter
+            redirect_url = reverse_lazy('padanukkama_pada', args=[padanukkama_id]) + f'?page={paginate_number}'
+            return redirect(redirect_url)
         else:
             # Invalid form, Message
             messages.error(request, _('Form is invalid. Please correct the errors'))
@@ -551,6 +557,7 @@ class PadaDeclensionView(LoginRequiredMixin, View):
             'pada': pada,
             'padanukkama_id': padanukkama_id,
             'padanukkama': padanukkama,
+            'paginate_number': paginate_number,
             'form': form,
             'namasaddamala_helper': self.get_namasaddamala_helper(),
             'akhyatasaddamala_helper': self.get_akhyatasaddamala_helper(),
