@@ -33,19 +33,21 @@
                         matchesHtml += '            onclick="openModal(\'' + closestMatches[i].image_ref + '\')"/>';
                         matchesHtml += '     </div>'
                         matchesHtml += '     <div class="w3-container w3-cell">';
+                        matchesHtml += '         <div>'
                         if (closestMatches[i].dict == '') {
-                            matchesHtml += ' <p>' + closestMatches[i].word + '<br>';
+                            matchesHtml +=            closestMatches[i].word + '<br>';
                         } else {
-                            matchesHtml += ' <p>' + closestMatches[i].dict + '<br>';
+                            matchesHtml +=            '<a href="#" onclick="saddaConst(event, `'+ closestMatches[i].dict +'`)">' + closestMatches[i].dict + '</a><br>';
                         };
-                        matchesHtml +=       closestMatches[i].burmese
-                        matchesHtml += '     <a class="w3-btn" style="text-decoration:None;hover:pointer;" target="_blank" ';
-                        matchesHtml += '        href="' + abidanDetailsUrl + '"> <i class="fas fa-link"></i></a></p>';
-                        matchesHtml += '     <div class="w3-light-grey w3-tiny" style="width:100px;">'
-                        matchesHtml += '         <div class="w3-container w3-green" style="width:' + closestMatches[i].score + '%">'
-                        matchesHtml +=               closestMatches[i].score + '%';
+                        matchesHtml +=                closestMatches[i].burmese
+                        matchesHtml += '              <a class="w3-btn" style="text-decoration:None;hover:pointer;" target="_blank" ';
+                        matchesHtml += '                  href="' + abidanDetailsUrl + '"> <i class="fas fa-link"></i></a>';
+                        matchesHtml += '              <div class="w3-light-grey w3-tiny" style="width:100px;">'
+                        matchesHtml += '                  <div class="w3-container w3-green" style="width:' + closestMatches[i].score + '%">'
+                        matchesHtml +=                        closestMatches[i].score + '%';
+                        matchesHtml += '                  </div>';
+                        matchesHtml += '              </div>';
                         matchesHtml += '         </div>';
-                        matchesHtml += '      </div>';
                         matchesHtml += '    </div>';
                         matchesHtml += '</div>';
                     }

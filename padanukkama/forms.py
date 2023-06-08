@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
+from django.forms.widgets import CheckboxSelectMultiple
 from django.shortcuts import get_object_or_404
 from django.utils.safestring import mark_safe
 from django.utils.translation import gettext_lazy as _
@@ -179,25 +180,14 @@ class PadaForm(forms.Form):
 # -----------------------------------------------------
 class SaddaForm(forms.ModelForm):
     namasaddamala = forms.ModelMultipleChoiceField(
-        queryset=NamaSaddamala.objects.all().order_by('-popularity', 'title_order'),
-        widget=ModelSelect2MultipleWidget(
-            attrs={
-                'data-minimum-input-length': 1,
-            },
-            model=NamaSaddamala,
-            search_fields=['title__icontains'],
-        ),
+        queryset=NamaSaddamala.objects.all().order_by('-popularity', 'linga', 'title_order'),
+        widget=Select2MultipleWidget,
         required=False
     )
+
     akhyatasaddamala = forms.ModelMultipleChoiceField(
         queryset=AkhyataSaddamala.objects.all().order_by('-popularity', 'title_order'),
-        widget=ModelSelect2MultipleWidget(
-           attrs={
-                'data-minimum-input-length': 1,
-            },
-            model=AkhyataSaddamala,
-            search_fields=['title__icontains'],
-        ),
+        widget=Select2MultipleWidget,
         required=False
     )
 
@@ -210,5 +200,3 @@ class SaddaForm(forms.ModelForm):
         self.fields['meaning'].widget = forms.Textarea(attrs={'rows': 3})
         self.fields['meaning'].widget.attrs['class'] = 'meaning-field'
         self.fields['meaning'].widget.attrs['placeholder'] = _('Enter meanings (separated by commas)')
-
-

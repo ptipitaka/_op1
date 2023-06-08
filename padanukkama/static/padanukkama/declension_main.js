@@ -4,12 +4,29 @@ function clearResult () {
     $('#result-container').html('');
 };
 
+// Function get construction
+function saddaConst(event, string) {
+    event.preventDefault();
+    var extractedText;
+    var startIndex = string.indexOf('[');
+    var endIndex = string.indexOf(']');
+
+    if (startIndex !== -1 && endIndex !== -1 && endIndex > startIndex) {
+        extractedText = string.substring(startIndex + 1, endIndex);
+        extractedText = extractedText.replace(/(\S)\+/g, '$1 + ');
+    } else {
+        extractedText = null;
+    }
+
+    $("#id_construction").val(extractedText);
+}
+
+
 // Function to handle preview btn
 function handlePreview(event) {
     event.preventDefault();
 
     // Call your desired functions here
-    check_existing_sadda();
     create_vipatti();
     find_abidan_closest_matches();
     find_sadda_closest_matches();
@@ -40,7 +57,7 @@ $(document).ready(function () {
     // manage input fields
     manageInputFields();
 
-    $('#id_sadda').on('focusout', function() {
+    $('#id_sadda').on('change', function() {
         check_existing_sadda(padaPada)
     });
 
