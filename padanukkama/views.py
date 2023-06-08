@@ -293,7 +293,7 @@ class PadaSplitSandhiView(LoginRequiredMixin, View):
         form = AddChildPadaForm()
         table = PadaParentChildTable(data=pada.get_current_with_descendants())
 
-        return render(request, self.template_name, {'form': form, 'pada': pada, 'table':table, 'message':message})
+        return render(request, self.template_name, {'form': form, 'pada': pada, 'table':table})
     
     def post(self, request, padanukkama_id, pk):
         pada = get_object_or_404(Pada, id=pk)
