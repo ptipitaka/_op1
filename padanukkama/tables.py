@@ -2,13 +2,13 @@ import django_filters
 import django_tables2 as tables
 
 from django import forms
+from django.db.models import Q
 from django.urls import reverse_lazy
 from django.utils.html import format_html
 from django.utils.safestring import mark_safe
 from django.utils.translation import gettext_lazy as _
 
-from django.http import QueryDict
-from django_filters import FilterSet
+from django_filters import FilterSet, ChoiceFilter
 from django_tables2.utils import A
 from mptt.templatetags.mptt_tags import cache_tree_children
 
@@ -127,67 +127,24 @@ class PadaTable(tables.Table):
         template_name = "django_tables2/w3css.html"
         attrs = {"class": "w3-table w3-bordered"}
         fields = ('pada',)
+        per_page = 10
 
     def __init__(self, data, **kwargs):
         super().__init__(data, **kwargs)
         # Cache the tree Pada for performance ##
         cache_tree_children(data)
 
-    # ------ #
-    # column #
-    # ------ #
+    # ---------------------- #
+    # column / button action #
+    # ---------------------- #
     pada = tables.Column(attrs={'td': {
         'style': lambda value, record: 'padding-left: %spx' % (50 + (record.level * 50)),
         } 
     })
-    sandhi = tables.Column(empty_values=(), verbose_name=_('Sandhi'))
-    origin = tables.Column(empty_values=(), verbose_name=_('Origin'))
-    sadda = tables.Column(empty_values=(), verbose_name=_('Sadda'))
-
-    def render_sandhi(self, value, record):
-        pada = Pada.objects.get(pk=record.pk)
-        if pada.get_children().exists():
-            children = pada.get_children()
-            return ' - '.join(str(child) for child in children) 
-        return ''
-
-    def render_origin(self, value, record):
-        pada = Pada.objects.get(pk=record.pk)
-        if pada.parent:
-            descendants = pada.parent.get_descendants(include_self=False)
-            return pada.parent.pada + ': ' + ' - '.join(str(descendant) for descendant in descendants) 
-        return ''
-    
-    def render_sadda(self, value, record):
-        pada = Pada.objects.get(pk=record.pk)
-        if pada.sadda:
-            return pada.sadda.sadda
-        return ''
-
-    # ------------- #
-    # button action
-    # ------------- #
+ 
+    # split action btn
+    # -----------------------
     split_action = tables.Column(empty_values=(), orderable=False, verbose_name=_('Sandhi'))
-    duplicate_action = tables.Column(empty_values=(), orderable=False, verbose_name=_('Dupl.'))
-    declension_action = tables.Column(empty_values=(), orderable=False, verbose_name=_('Decl.'))
-    delete_action = tables.TemplateColumn(
-        """
-        {% if not record.get_children %}
-            <form action="{% url 'pada_delete' padanukkama_id=record.padanukkama.id pk=record.id %}" method="post">
-            {% csrf_token %}
-            <button
-                type="submit"
-                onclick="return confirm(\'{{ deleted_conf_message }}\')"
-                class="w3-button w3-round-xlarge w3-border w3-hover-white">
-                <i class="far fa-trash-alt w3-text-red"></i>
-            </button>
-            </form>
-        {% endif %}
-        """,
-        verbose_name=_('Delete'),
-        orderable=False
-    )
-    
     def render_split_action(self, record):
         if record.parent or record.sadda:
             # Record has descendants, do not show split_action
@@ -196,26 +153,34 @@ class PadaTable(tables.Table):
             # Record does not have descendants, show split_action
             url = reverse_lazy('pada_split_sandhi', args=[record.padanukkama_id, record.id])
             return format_html(
-                '<a href="{}" class="w3-button w3-round-xlarge w3-border w3-hover-white">'
+                '<a href="{}" class="w3-button w3-round-xlarge w3-hover-white">'
                 '<i class="fas fa-project-diagram w3-text-orange"></i></a>',
                 url,
             )
-
-    def render_duplicate_action(self, record):
-        if record.parent:
-            # Record has descendants, do not show duplicate_action
-            return ''
-        else:
-            # Record does not have descendants, show duplicate_action
-            message = _('Do you want to duplicate record of ') + record.pada
-            url = reverse_lazy('pada_duplicate', args=[record.padanukkama_id, record.id])
-            return format_html(
-                '<a href="{}" onclick="return confirm(\'{}\')" class="w3-button w3-round-xlarge w3-border w3-hover-white">'
-                '<i class="far fa-clone w3-text-teal"></i></a>',
-                url,
-                message
-            )
-
+        
+    # sandhi
+    # ------
+    sandhi = tables.Column(empty_values=(), verbose_name=_('Sandhi'))
+    def render_sandhi(self, value, record):
+        pada = Pada.objects.get(pk=record.pk)
+        if pada.get_children().exists():
+            children = pada.get_children()
+            return ' - '.join(str(child) for child in children) 
+        return ''
+    
+    # origin
+    # ------
+    origin = tables.Column(empty_values=(), verbose_name=_('Origin'))
+    def render_origin(self, value, record):
+        pada = Pada.objects.get(pk=record.pk)
+        if pada.parent:
+            descendants = pada.parent.get_descendants(include_self=False)
+            return pada.parent.pada + ': ' + ' - '.join(str(descendant) for descendant in descendants) 
+        return ''
+    
+    # declension action btn
+    # ---------------------
+    declension_action = tables.Column(empty_values=(), orderable=False, verbose_name=_('Decl.'))
     def render_declension_action(self, record):
         if record.get_descendants().exists():
             # Record has descendants, do not show declension_action
@@ -232,12 +197,75 @@ class PadaTable(tables.Table):
             url_with_params = f'{url}?{query_params.urlencode()}'
 
             return mark_safe(
-                f'<a href="{url_with_params}" class="w3-button w3-round-xlarge w3-border w3-hover-white">'
+                f'<a href="{url_with_params}" class="w3-button w3-round-xlarge w3-hover-white">'
                 f'<i class="fas fa-layer-group w3-text-indigo"></i></a>'
             )
 
+    # sadda
+    # -----
+    sadda = tables.Column(empty_values=(), verbose_name=_('Sadda'))
+    def render_sadda(self, value, record):
+        pada = Pada.objects.get(pk=record.pk)
+        if pada.sadda:
+            return pada.sadda.sadda
+        return ''
+    
+    # duplication action btn
+    # ----------------------
+    duplicate_action = tables.Column(empty_values=(), orderable=False, verbose_name=_('Dupl.'))
+    def render_duplicate_action(self, record):
+        if record.parent:
+            # Record has descendants, do not show duplicate_action
+            return ''
+        else:
+            # Record does not have descendants, show duplicate_action
+            message = _('Do you want to duplicate record of ') + record.pada
+            url = reverse_lazy('pada_duplicate', args=[record.padanukkama_id, record.id])
+            return format_html(
+                '<a href="{}" onclick="return confirm(\'{}\')" class="w3-button w3-round-xlarge w3-hover-white">'
+                '<i class="far fa-clone w3-text-teal"></i></a>',
+                url,
+                message
+            )
+
+    # delete action btn
+    # -----------------
+    delete_action = tables.TemplateColumn(
+        """
+        {% if not record.get_children %}
+            <form action="{% url 'pada_delete' padanukkama_id=record.padanukkama.id pk=record.id %}" method="post">
+            {% csrf_token %}
+            <button
+                type="submit"
+                onclick="return confirm(\'{{ deleted_conf_message }}\')"
+                class="w3-button w3-round-xlarge w3-hover-white">
+                <i class="far fa-trash-alt w3-text-red"></i>
+            </button>
+            </form>
+        {% endif %}
+        """,
+        verbose_name=_('Delete'),
+        orderable=False
+    )
+
 
 class PadaFilter(FilterSet):
+    NULL_CHOICES = [
+        (True, _("Only Pada without Sadda")),
+    ]
+
+    pada_with_null_sadda = ChoiceFilter(
+        label=_("Pada with Sadda"),
+        field_name="sadda",
+        choices=NULL_CHOICES,
+        method="filter_pada_with_null_sadda"
+    )
+
+    def filter_pada_with_null_sadda(self, queryset, name, value):
+        if value:
+            # Filter Pada with null Sadda
+            return queryset.filter(Q(sadda__isnull=True) & Q(children__isnull=True))
+
     class Meta:
         model = Pada
         fields = {"pada": ["startswith", "contains"],}

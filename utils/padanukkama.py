@@ -63,36 +63,49 @@ def mix_namavipatties(sadda, template_id):
         
     return result
 
-def mix_akhyatavipatties(arkayata, template_id):
-    if not is_validate_pali(arkayata):
+def mix_akhyatavipatties(akhyata, template_id):
+    if not is_validate_pali(akhyata):
         return {'error':True}
 
-    pada = AkhyataSaddamala.objects.get(pk=template_id)
-
-    if len(arkayata) <= 2:
-        return {'error':True}
-    else:
-        arkayata = arkayata[:-2]
-        pada.title = pada.title[:-2]
-        print( arkayata,' => ',pada)
-
-    fields = pada._meta.get_fields()
-    start = 5  # start = 5 
-    stop = len(pada._meta.fields) # stop = 101
-
+    pada = AkhyataSaddamala.objects.get(pk=template_id)    
     result = {'error':False}
-    
-    sadda_expand = extract(arkayata)
-    template_expand = extract(pada.title)
+    sadda_expand = extract(akhyata)
 
-    for num in range(start, stop):
-        vipatti_key = fields[num].name
+    vipatti_fields = ['vat_pu3_para_sg','vat_pu3_para_pl','vat_pu3_atta_sg','vat_pu3_atta_pl',
+                      'vat_pu2_para_sg','vat_pu2_para_pl','vat_pu2_atta_sg','vat_pu2_atta_pl',
+                      'vat_pu1_para_sg','vat_pu1_para_pl','vat_pu1_atta_sg','vat_pu1_atta_pl',
+                      'pan_pu3_para_sg','pan_pu3_para_pl','pan_pu3_atta_sg','pan_pu3_atta_pl',
+                      'pan_pu2_para_sg','pan_pu2_para_pl','pan_pu2_atta_sg','pan_pu2_atta_pl',
+                      'pan_pu1_para_sg','pan_pu1_para_pl','pan_pu1_atta_sg','pan_pu1_atta_pl',
+                      'sat_pu3_para_sg','sat_pu3_para_pl','sat_pu3_atta_sg','sat_pu3_atta_pl',
+                      'sat_pu2_para_sg','sat_pu2_para_pl','sat_pu2_atta_sg','sat_pu2_atta_pl',
+                      'sat_pu1_para_sg','sat_pu1_para_pl','sat_pu1_atta_sg','sat_pu1_atta_pl',
+                      'par_pu3_para_sg','par_pu3_para_pl','par_pu3_atta_sg','par_pu3_atta_pl',
+                      'par_pu2_para_sg','par_pu2_para_pl','par_pu2_atta_sg','par_pu2_atta_pl',
+                      'par_pu1_para_sg','par_pu1_para_pl','par_pu1_atta_sg','par_pu1_atta_pl',
+                      'hit_pu3_para_sg','hit_pu3_para_pl','hit_pu3_atta_sg','hit_pu3_atta_pl',
+                      'hit_pu2_para_sg','hit_pu2_para_pl','hit_pu2_atta_sg','hit_pu2_atta_pl',
+                      'hit_pu1_para_sg','hit_pu1_para_pl','hit_pu1_atta_sg','hit_pu1_atta_pl',
+                      'ajj_pu3_para_sg','ajj_pu3_para_pl','ajj_pu3_atta_sg','ajj_pu3_atta_pl',
+                      'ajj_pu2_para_sg','ajj_pu2_para_pl','ajj_pu2_atta_sg','ajj_pu2_atta_pl',
+                      'ajj_pu1_para_sg','ajj_pu1_para_pl','ajj_pu1_atta_sg','ajj_pu1_atta_pl',
+                      'bha_pu3_para_sg','bha_pu3_para_pl','bha_pu3_atta_sg','bha_pu3_atta_pl',
+                      'bha_pu2_para_sg','bha_pu2_para_pl','bha_pu2_atta_sg','bha_pu2_atta_pl',
+                      'bha_pu1_para_sg','bha_pu1_para_pl','bha_pu1_atta_sg','bha_pu1_atta_pl',
+                      'kal_pu3_para_sg','kal_pu3_para_pl','kal_pu3_atta_sg','kal_pu3_atta_pl',
+                      'kal_pu2_para_sg','kal_pu2_para_pl','kal_pu2_atta_sg','kal_pu2_atta_pl',
+                      'kal_pu1_para_sg','kal_pu1_para_pl','kal_pu1_atta_sg','kal_pu1_atta_pl',
+    ]
+
+
+    for vipatti_key in vipatti_fields:
         vipatti_keys = getattr(pada, vipatti_key)
-        try:
+        if akhyata == pada.title_code:
+            result[vipatti_key] = vipatti_keys or ''
+        else:
+            template_expand = extract(pada.title_code)
             vipatti_key_weared = wear_namavipatti(sadda_expand, template_expand, vipatti_keys)
-        except:
-            return {'error':True}
-        result[vipatti_key]=vipatti_key_weared
+            result[vipatti_key]=vipatti_key_weared
         
     return result
 

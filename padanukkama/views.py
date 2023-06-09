@@ -465,8 +465,6 @@ class PadaDeclensionView(LoginRequiredMixin, View):
                 'padanukkama_id': padanukkama_id,
                 'padanukkama': padanukkama,
                 'form': form,
-                'namasaddamala_helper': self.get_namasaddamala_helper(),
-                'akhyatasaddamala_helper': self.get_akhyatasaddamala_helper(),
             }
 
             return render(request, self.template_name, context)
@@ -555,17 +553,10 @@ class PadaDeclensionView(LoginRequiredMixin, View):
             'padanukkama_id': padanukkama_id,
             'padanukkama': padanukkama,
             'form': form,
-            'namasaddamala_helper': self.get_namasaddamala_helper(),
-            'akhyatasaddamala_helper': self.get_akhyatasaddamala_helper(),
         }
         
         return render(request, self.template_name, context)
-    
-    def get_namasaddamala_helper(self):
-        return NamaSaddamala.objects.all().order_by('-popularity', 'title_order')
 
-    def get_akhyatasaddamala_helper(self):
-        return AkhyataSaddamala.objects.all().order_by('-popularity', 'title_order')
 
 
 # -----------------------------------------------------

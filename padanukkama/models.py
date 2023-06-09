@@ -136,7 +136,12 @@ class AkhyataSaddamala(models.Model):
         blank=True,
         verbose_name=_("Dhātu"),
         on_delete=models.SET_NULL) 
-    paccaya = models.ForeignKey("Paccaya", null=True, blank=True, verbose_name=_("Paccaya"), on_delete=models.SET_NULL)
+    paccaya = models.ForeignKey(
+        "Paccaya",
+        null=True,
+        blank=True,
+        verbose_name=_("Paccaya"),
+        on_delete=models.SET_NULL)
     # 1 Vattamānā (Present Tense)
     vat_pu3_para_sg = models.CharField(max_length=225, null=True, blank=True, verbose_name=_("Vattamānā Purisa 3 Parassapada Ekavacana"))
     vat_pu3_para_pl = models.CharField(max_length=225, null=True, blank=True, verbose_name=_("Vattamānā Purisa 3 Parassapada Bahuvacana"))
@@ -403,6 +408,9 @@ class Pada(MPTTModel):
     def __str__(self):
         return f"{self.pada}"
     
+    def has_descendants(self):
+        return self.get_descendant_count()
+
     def get_current_with_descendants(self):
         descendants = self.get_descendants(include_self=True)
         return Pada.objects.filter(Q(pk=self.pk) | Q(pk__in=descendants))
