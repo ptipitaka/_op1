@@ -88,6 +88,8 @@
             <div class="w3-bar w3-light-grey">
                 <button class="w3-bar-item w3-button tablink w3-grey" onclick="openTabs(event,'Abidan')">{% trans 'Abidan' %}</button>
                 <button class="w3-bar-item w3-button tablink" onclick="openTabs(event,'Sadda')">{% trans 'Sadda' %}</button>
+                <button class="w3-bar-item w3-button tablink" onclick="openTabs(event,'Namasaddamala')">{% trans 'Namasaddamala' %}</button>
+                <button class="w3-bar-item w3-button tablink" onclick="openTabs(event,'Akyatasaddamala')">{% trans 'Akyatasaddamala' %}</button>
             </div>
             <!-- Abidan closest matches-->
             <div id="Abidan" class="w3-border tab">
@@ -109,6 +111,26 @@
                 <div class="w3-container w3-padding">
                     <ul id="sadda-closest-matches" class="w3-ul w3-hoverable">
                     </ul>
+                </div>
+            </div>
+            <!-- Namasaddamala -->
+            <div id="Namasaddamala" class="w3-border tab" style="display:none">
+                <header class="w3-container w3-light-grey">
+                    <h5>{% trans 'Namasaddamala helper table' %}</h5>
+                </header>
+
+                <div class="w3-container w3-padding">
+                    {% include 'padanukkama/include/namasaddamala.html' %}
+                </div>
+            </div>
+            <!-- Akyatasaddamala -->
+            <div id="Akyatasaddamala" class="w3-border tab" style="display:none">
+                <header class="w3-container w3-light-grey">
+                    <h5>{% trans 'Akyatasaddamala helper table' %}</h5>
+                </header>
+
+                <div class="w3-container w3-padding">
+                    {% include 'padanukkama/include/akhyatasaddamala.html' %}
                 </div>
             </div>
         </div>
