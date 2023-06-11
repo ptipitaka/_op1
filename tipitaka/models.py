@@ -15,8 +15,8 @@ from utils.pali_char import *
 # Create your models here.
 
 class Script(models.Model):
-    code = models.CharField(max_length=20, db_index=True, verbose_name=_("code"))
-    description = models.CharField(max_length=80, blank=True, verbose_name=_("description"))
+    code = models.CharField(max_length=20, db_index=True, verbose_name=_("Code"))
+    description = models.CharField(max_length=80, blank=True, verbose_name=_("Description"))
     flag = models.ImageField(_("Flag"), upload_to="script", blank=True)
 
     def __str__(self):
@@ -30,30 +30,30 @@ class Script(models.Model):
 
 
 class Edition(models.Model):
-    code = models.CharField(max_length=5, db_index=True, verbose_name=_("code"))
-    title = models.CharField(max_length=80, db_index=True, verbose_name=_("title"))
-    description = models.TextField(null=True, verbose_name=_("description"))
-    script = models.ForeignKey("Script", verbose_name=_("script"), on_delete=models.SET_NULL, null=True)
+    code = models.CharField(max_length=5, db_index=True, verbose_name=_("Code"))
+    title = models.CharField(max_length=80, db_index=True, verbose_name=_("Title"))
+    description = models.TextField(null=True, verbose_name=_("Description"))
+    script = models.ForeignKey("Script", verbose_name=_("Script"), on_delete=models.SET_NULL, null=True)
     digitization = models.BooleanField(default=False, verbose_name=_("Digitization"))
-    version = models.CharField(max_length=10, verbose_name=_("version"), blank=True)
+    version = models.CharField(max_length=10, verbose_name=_("Version"), blank=True)
 
     def __str__(self):
         return f"{self.title} ({self.code})"
 
 
 class Volume(models.Model):
-    edition = models.ForeignKey("Edition", verbose_name=_("edition"), on_delete=models.CASCADE)
-    volume_number = models.IntegerField(db_index=True, verbose_name=_("number"))
-    name = models.CharField(max_length=255, verbose_name=_("name"))
-    description = models.TextField(null=True, blank=True, verbose_name=_("description"))
+    edition = models.ForeignKey("Edition", verbose_name=_("Edition"), on_delete=models.CASCADE)
+    volume_number = models.IntegerField(db_index=True, verbose_name=_("Number"))
+    name = models.CharField(max_length=255, verbose_name=_("Name"))
+    description = models.TextField(null=True, blank=True, verbose_name=_("Description"))
     total_pages = models.IntegerField(
         validators=[MinValueValidator(1)],
         null=True,
-        verbose_name=_("total pages"))
+        verbose_name=_("Total pages"))
     book_cover = models.ImageField(
         upload_to = "tipitaka_book_cover", 
         null=True, blank = True,
-        verbose_name = _("book cover"))
+        verbose_name = _("Book cover"))
 
     class Meta:
         ordering = ['volume_number']
@@ -110,9 +110,9 @@ class Page(models.Model):
 
 
 class WordlistVersion(models.Model):
-    version = models.IntegerField(default=0, verbose_name=_("version"))
-    edition = models.ForeignKey("Edition", on_delete=models.CASCADE, verbose_name=_("edition"))
-    created_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, verbose_name=_('created by'))
+    version = models.IntegerField(default=0, verbose_name=_("Version"))
+    edition = models.ForeignKey("Edition", on_delete=models.CASCADE, verbose_name=_("Edition"))
+    created_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, verbose_name=_('Created by'))
     created_on = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -123,15 +123,15 @@ class WordlistVersion(models.Model):
 
 
 class WordList(models.Model):
-    code = models.SlugField(default="", max_length=20, verbose_name=_("code"))
-    word = models.CharField(default="", max_length=150, verbose_name=_("word"))
-    word_seq = models.CharField(default="", verbose_name=_("word sequence"), max_length=150)
-    word_roman_script = models.CharField(default="", null=True, max_length=150, verbose_name=_("word in roman script"))
-    position = models.IntegerField(default=0, verbose_name=_("position"))
-    line_number = models.IntegerField(default=0, null=True, verbose_name=_("line no"))
+    code = models.SlugField(default="", max_length=20, verbose_name=_("Code"))
+    word = models.CharField(default="", max_length=150, verbose_name=_("Word"))
+    word_seq = models.CharField(default="", verbose_name=_("Word sequence"), max_length=150)
+    word_roman_script = models.CharField(default="", null=True, max_length=150, verbose_name=_("Word in roman script"))
+    position = models.IntegerField(default=0, verbose_name=_("Position"))
+    line_number = models.IntegerField(default=0, null=True, verbose_name=_("Line no"))
     edition = models.ForeignKey(
         "Edition",
-        verbose_name=_("edition"),
+        verbose_name=_("Edition"),
         on_delete=models.CASCADE)
     wordlist_version = ChainedForeignKey(
         WordlistVersion,
@@ -140,7 +140,7 @@ class WordList(models.Model):
         show_all = False,
         auto_choose = True,
         sort = True,
-        verbose_name = _("wordlist version"),
+        verbose_name = _("Wordlist version"),
         on_delete = models.CASCADE)
     volume = ChainedForeignKey(
         Volume,
@@ -149,7 +149,7 @@ class WordList(models.Model):
         show_all = False,
         auto_choose = True,
         sort = True,
-        verbose_name = _("volume"),
+        verbose_name = _("Volume"),
         on_delete = models.CASCADE)
     page = ChainedForeignKey(
         Page,
@@ -158,7 +158,7 @@ class WordList(models.Model):
         show_all = False,
         auto_choose = True,
         sort = True,
-        verbose_name = _("page"),
+        verbose_name = _("Page"),
         on_delete = models.CASCADE)
     
     def __str__(self):
@@ -172,9 +172,9 @@ class WordList(models.Model):
     
 
 class TableOfContent(models.Model):
-    code = models.CharField(max_length=20, unique=True, db_index=True, verbose_name=_("code"))
+    code = models.CharField(max_length=20, unique=True, db_index=True, verbose_name=_("Code"))
     wordlist_version = models.ManyToManyField(WordlistVersion,
-                verbose_name=_("wordlist version"),
+                verbose_name=_("Wordlist version"),
                 related_name="wordlist_version")
     slug = models.SlugField(default="", null=False, db_index=True, unique=True, editable=True)
 
@@ -187,9 +187,9 @@ class TableOfContent(models.Model):
 
 
 class Structure(MPTTModel):
-    table_of_content = models.ForeignKey(TableOfContent, verbose_name=_("table of contents"), on_delete=models.CASCADE)
+    table_of_content = models.ForeignKey(TableOfContent, verbose_name=_("Table of contents"), on_delete=models.CASCADE)
     parent = TreeForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='children')
-    code = models.CharField(max_length=20, null=True, blank=True, verbose_name=_("code"))
+    code = models.CharField(max_length=20, null=True, blank=True, verbose_name=_("Code"))
     title = models.CharField(verbose_name=_("Title"), db_index=True, max_length=255)
     description = models.TextField(verbose_name=_("Description") ,max_length=255, blank=True, null=True)
     ro = models.CharField(verbose_name=_("Roman Script"), null=True, db_index=True, max_length=255)
@@ -218,7 +218,7 @@ class Structure(MPTTModel):
         return f"{self.title}"
     
 class CommonReference(models.Model):
-    structure = models.ForeignKey("Structure", verbose_name=_("structure"), on_delete=models.CASCADE,)
+    structure = models.ForeignKey("Structure", verbose_name=_("Structure"), on_delete=models.CASCADE,)
     wordlist_version = models.ForeignKey("WordlistVersion", verbose_name=_("Wordlist Version"), on_delete=models.CASCADE)
     from_position = models.CharField(verbose_name=_("From Position"), null=True,  max_length=20)
     to_position = models.CharField(verbose_name=_("To Position"), null=True,  max_length=20)
