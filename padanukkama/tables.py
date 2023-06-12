@@ -262,6 +262,16 @@ class PadaFilter(FilterSet):
         (True, _("Only Pada without Sadda")),
     ]
 
+    pada__startswith = filters.CharFilter(
+        field_name='pada',
+        lookup_expr='istartswith',
+        label=_('Pada starts with'))
+    
+    pada__contains = filters.CharFilter(
+        field_name='pada',
+        lookup_expr='icontains',
+        label=_('Pada contains'))
+
     pada_with_null_sadda = ChoiceFilter(
         label=_("Pada with Sadda"),
         field_name="sadda",
@@ -276,7 +286,7 @@ class PadaFilter(FilterSet):
 
     class Meta:
         model = Pada
-        fields = {"pada": ["startswith", "contains"],}
+        fields = {}
 
 
 # -----------------------------------------------------
