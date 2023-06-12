@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-12 05:20+0700\n"
+"POT-Creation-Date: 2023-06-12 10:58+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -884,7 +884,7 @@ msgid "Order"
 msgstr ""
 
 #: .\_venv\Lib\site-packages\django\forms\formsets.py:499
-#: .\padanukkama\tables.py:247
+#: .\padanukkama\tables.py:254
 #: .\padanukkama\templates\padanukkama\akhyata_saddamala_detail.html:21
 #: .\padanukkama\templates\padanukkama\akhyata_saddamala_detail.html:532
 #: .\padanukkama\templates\padanukkama\nama_saddamala_detail.html:21
@@ -1537,22 +1537,21 @@ msgstr "รหัส"
 #: .\padanukkama\models.py:51 .\padanukkama\models.py:60
 #: .\padanukkama\models.py:100 .\padanukkama\models.py:114
 #: .\padanukkama\models.py:126 .\padanukkama\models.py:275
-#: .\padanukkama\tables.py:118
 #: .\padanukkama\templates\padanukkama\akhyata_saddamala_detail.html:35
 #: .\padanukkama\templates\padanukkama\include\akhyatasaddamala.html:6
 #: .\padanukkama\templates\padanukkama\include\namasaddamala.html:15
 #: .\padanukkama\templates\padanukkama\nama_saddamala_detail.html:36
 #: .\tipitaka\models.py:34 .\tipitaka\models.py:193
 msgid "Title"
-msgstr ""
+msgstr "หัวเรื่อง"
 
 #: .\abidan\models.py:9
 msgid "Subtitle"
-msgstr ""
+msgstr "หัวเรื่องรอง"
 
 #: .\abidan\models.py:10 .\tipitaka\models.py:56
 msgid "Book cover"
-msgstr ""
+msgstr "ปก"
 
 #: .\abidan\models.py:14 .\tipitaka\models.py:52
 msgid "Total pages"
@@ -1586,6 +1585,20 @@ msgstr "เลขหน้า"
 msgid "Note"
 msgstr "บันทึก"
 
+#: .\abidan\tables.py:17 .\padanukkama\tables.py:29 .\padanukkama\tables.py:57
+#: .\padanukkama\tables.py:340 .\tipitaka\tables.py:19 .\tipitaka\tables.py:43
+#: .\tipitaka\tables.py:75
+msgid "Action"
+msgstr "ดำเนินการ"
+
+#: .\abidan\tables.py:32 .\tipitaka\tables.py:58
+msgid "Word starts with"
+msgstr "เริ่มต้นคำด้วย"
+
+#: .\abidan\tables.py:36 .\tipitaka\tables.py:62
+msgid "Word contains"
+msgstr "คำประกอบด้วย"
+
 #: .\abidan\templates\abidan\details.html:17
 #: .\padanukkama\templates\padanukkama\akhyata_saddamala_detail.html:25
 #: .\padanukkama\templates\padanukkama\nama_saddamala_detail.html:25
@@ -1606,7 +1619,7 @@ msgstr "กลับ"
 
 #: .\abidan\templates\abidan\include\title.html:3
 msgid "Tipiṭaka Pāḷi-Burmese Dictionary"
-msgstr "พจนานุกรมพระไตรปิฎก บาลี-พม่า"
+msgstr "อภิธานพระไตรปิฎก บาลี-พม่า"
 
 #: .\abidan\templates\abidan\index.html:26
 #: .\main\templates\registration\login.html:26
@@ -1665,12 +1678,12 @@ msgid "Powered by"
 msgstr "สนับสนุนโดย"
 
 #: .\main\templates\main\footer.html:20
-msgid "People's Tipitaka Foundation"
+msgid "People's Tipiṭaka Foundation"
 msgstr "มูลนิธิพระไตรปิฎกเพื่อประชาชน"
 
 #: .\main\templates\main\home.html:5
 msgid "The Pāḷi Platform"
-msgstr ""
+msgstr "ปาฬิแพลตฟอร์ม"
 
 #: .\main\templates\main\navbar.html:6 .\main\views.py:17
 msgid "OPENPĀḶI"
@@ -1683,12 +1696,13 @@ msgid "Abidan"
 msgstr "อภิธาน"
 
 #: .\main\templates\main\navbar.html:16
-msgid "Inscriber"
-msgstr ""
+#: .\tipitaka\templates\tipitaka\include\title.html:3
+msgid "Tipiṭaka"
+msgstr "พระไตรปิฎก"
 
 #: .\main\templates\main\navbar.html:21
 msgid "Digital Archive"
-msgstr ""
+msgstr "การอนุรักษ์ดิจิทัล"
 
 #: .\main\templates\main\navbar.html:25
 #: .\tipitaka\templates\tipitaka\common_reference_subform.html:124
@@ -1709,13 +1723,13 @@ msgstr "ปทานุกรม"
 #: .\padanukkama\templates\padanukkama\nama_saddamala.html:8
 #: .\padanukkama\templates\padanukkama\nama_saddamala_detail.html:18
 msgid "Nāmasaddapadamālā"
-msgstr "นามสทฺทมาลา"
+msgstr "นามสัททมาลา"
 
 #: .\main\templates\main\navbar.html:45
 #: .\padanukkama\templates\padanukkama\akhyata_saddamala.html:8
 #: .\padanukkama\templates\padanukkama\akhyata_saddamala_detail.html:18
 msgid "Ākhyātasaddapadamālā"
-msgstr "อขยาตสทฺทมาลา"
+msgstr "อขยาตสัททมาลา"
 
 #: .\main\templates\main\navbar.html:49 .\padanukkama\models.py:320
 #: .\padanukkama\models.py:381
@@ -1723,13 +1737,13 @@ msgid "Padanukkama"
 msgstr "ปทานุกรม"
 
 #: .\main\templates\main\navbar.html:53 .\padanukkama\models.py:323
-#: .\padanukkama\models.py:406 .\padanukkama\tables.py:206
+#: .\padanukkama\models.py:406 .\padanukkama\tables.py:213
 #: .\padanukkama\templates\padanukkama\pada_declension.html:90
 #: .\padanukkama\templates\padanukkama\padanukkama_create.html:6
 #: .\padanukkama\templates\padanukkama\sadda.html:8
 #: .\padanukkama\templates\padanukkama\sadda_update.html:26
 msgid "Sadda"
-msgstr "สทฺท"
+msgstr "ศัพท์"
 
 #: .\main\templates\main\navbar.html:61
 msgid "Login"
@@ -2255,7 +2269,7 @@ msgstr "ภาษา"
 msgid "About"
 msgstr "เกี่ยวกับ"
 
-#: .\padanukkama\models.py:281 .\padanukkama\tables.py:107
+#: .\padanukkama\models.py:281 .\padanukkama\tables.py:115
 msgid "Publication"
 msgstr "เผยแพร่"
 
@@ -2330,53 +2344,66 @@ msgstr "คำในอักษรโรมัน"
 msgid "Parent word"
 msgstr "จากคำ"
 
-#: .\padanukkama\tables.py:109
+#: .\padanukkama\tables.py:86
+#: .\padanukkama\templates\padanukkama\akhyata_saddamala_detail.html:20
+#: .\padanukkama\templates\padanukkama\nama_saddamala_detail.html:20
+#: .\padanukkama\templates\padanukkama\padanukkama_update.html:10
+#: .\tipitaka\templates\tipitaka\digital_archive_details.html:50
+#: .\tipitaka\templates\tipitaka\wordlist_page_source.html:54
+msgid "Update"
+msgstr "ปรับปรุง"
+
+#: .\padanukkama\tables.py:96
+msgid "บท"
+msgstr ""
+
+#: .\padanukkama\tables.py:113
+msgid "Title contains"
+msgstr "หัวเรื่องประกอบด้วย"
+
+#: .\padanukkama\tables.py:117
 msgid "All"
 msgstr "ทั้งหมด"
 
-#: .\padanukkama\tables.py:109
+#: .\padanukkama\tables.py:117
 msgid "True"
 msgstr "ใช่"
 
-#: .\padanukkama\tables.py:109
+#: .\padanukkama\tables.py:117
 msgid "False"
 msgstr "ไม่ใช่"
 
-#: .\padanukkama\tables.py:147 .\padanukkama\tables.py:163
+#: .\padanukkama\tables.py:154 .\padanukkama\tables.py:170
 msgid "Sandhi"
 msgstr "สนธิ"
 
-#: .\padanukkama\tables.py:173
+#: .\padanukkama\tables.py:180
 msgid "Origin"
 msgstr "ต้นฉบับ"
 
-#: .\padanukkama\tables.py:183 .\padanukkama\tables.py:282
+#: .\padanukkama\tables.py:190 .\padanukkama\tables.py:289
 msgid "Decl."
 msgstr "วิภัตติ์"
 
-#: .\padanukkama\tables.py:215
+#: .\padanukkama\tables.py:222
 msgid "Dupl."
 msgstr "สำเนา"
 
-#: .\padanukkama\tables.py:222
+#: .\padanukkama\tables.py:229
 msgid "Do you want to duplicate record of "
 msgstr "คุณต้องการสำเนารายการของ "
 
-#: .\padanukkama\tables.py:254
+#: .\padanukkama\tables.py:261
 msgid "Only Pada without Sadda"
 msgstr "แสดงเฉพาะบทที่ยังไม่ถอดวิภัตติ"
 
-#: .\padanukkama\tables.py:258
+#: .\padanukkama\tables.py:265
 msgid "Pada with Sadda"
 msgstr "แสดงบทที่แจกวิภัตติแล้ว"
 
-#: .\padanukkama\tables.py:332
+#: .\padanukkama\tables.py:339
 msgid "Related Padas"
 msgstr "บทที่เกี่ยวข้อง"
-
-#: .\padanukkama\tables.py:333
-msgid "Action"
-msgstr "ดำเนินการ"
 
 #: .\padanukkama\templates\padanukkama\akhyata_saddamala.html:13
 #: .\padanukkama\templates\padanukkama\nama_saddamala.html:12
@@ -2389,14 +2416,6 @@ msgstr "เพิ่ม"
 #: .\padanukkama\templates\padanukkama\padanukkama_create.html:6
 msgid "Create"
 msgstr "สร้าง"
-
-#: .\padanukkama\templates\padanukkama\akhyata_saddamala_detail.html:20
-#: .\padanukkama\templates\padanukkama\nama_saddamala_detail.html:20
-#: .\padanukkama\templates\padanukkama\padanukkama_update.html:10
-#: .\tipitaka\templates\tipitaka\digital_archive_details.html:50
-#: .\tipitaka\templates\tipitaka\wordlist_page_source.html:54
-msgid "Update"
-msgstr "ปรับปรุง"
 
 #: .\padanukkama\templates\padanukkama\akhyata_saddamala_detail.html:33
 msgid "Delete Ākhyātasaddamala"
@@ -2859,7 +2878,7 @@ msgstr "Site admin"
 msgid "Django administration"
 msgstr "administration"
 
-#: .\tipitaka\forms.py:35 .\tipitaka\models.py:77
+#: .\tipitaka\forms.py:35 .\tipitaka\models.py:77 .\tipitaka\tables.py:24
 msgid "Content"
 msgstr "เนื้อหา"
 
@@ -2960,7 +2979,7 @@ msgstr "อักษรพม่า"
 msgid "Khmar Script"
 msgstr "อักษรเขมร"
 
-#: .\tipitaka\tables.py:111
+#: .\tipitaka\tables.py:125
 msgid "Parent"
 msgstr "แม่"
 
@@ -3007,10 +3026,6 @@ msgstr "เลขหน้า #"
 msgid "Vol. #"
 msgstr "เล่ม #"
 
-#: .\tipitaka\templates\tipitaka\include\title.html:3
-msgid "Tipiṭaka Inscriber"
-msgstr "พระไตรปิฎก"
-
 #: .\tipitaka\templates\tipitaka\wordlist.html:13
 msgid "Please select Tipiṭaka edition"
 msgstr "โปรดเลือกฉบับพระไตรปิฎก"
@@ -3054,3 +3069,8 @@ msgstr "ไม่พบ การอ้างอิงร่วม"
 #: .\tipitaka\views.py:239 .\tipitaka\views.py:246
 msgid "Invalid input. Please correct the errors below"
 msgstr "พบข้อผิดพลาด"
+
+#, fuzzy
+#~| msgid "Tipiṭaka"
+#~ msgid "Tipiṭaka "
+#~ msgstr "พระไตรปิฎก"

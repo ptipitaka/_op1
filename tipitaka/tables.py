@@ -3,7 +3,7 @@ import django_filters
 from django.utils.html import format_html
 from django.utils.translation import gettext_lazy as _
 from django.utils.safestring import mark_safe
-from django_filters import FilterSet
+from django_filters import FilterSet, filters
 from django_tables2.utils import A
 from mptt.templatetags.mptt_tags import cache_tree_children
 
@@ -16,9 +16,13 @@ class DigitalArchiveTable(tables.Table):
         attrs={"a": {"class": "w3-button w3-round-xlarge w3-hover-brown"}}, 
         text=mark_safe('<i class="fa-solid fa-magnifying-glass"></i>'),
         empty_values=(),
+        verbose_name=_("Action")
     )
     
-    sample_content = tables.Column(attrs={"td": {"style": "width: 50%;"}})
+    sample_content = tables.Column(
+        attrs={"td": {"style": "width: 50%;"}},
+        verbose_name=_("Content")
+    )
 
     class Meta:
         model = Page
@@ -36,6 +40,7 @@ class WordlistMasterTable(tables.Table):
         attrs={"a": {"class": "w3-button w3-round-xlarge w3-hover-brown"}}, 
         text=mark_safe('<i class="fa-solid fa-magnifying-glass"></i>'),
         empty_values=(),
+        verbose_name=_("Action")
     )
     
     class Meta:
@@ -47,9 +52,17 @@ class WordlistMasterTable(tables.Table):
 
 
 class WordlistMasterFilter(FilterSet):
+    word__startswith = filters.CharFilter(
+        field_name='word',
+        lookup_expr='startswith',
+        label=_('Word starts with'))
+    word__contains = filters.CharFilter(
+        field_name='word',
+        lookup_expr='contains',
+        label=_('Word contains'))
     class Meta:
         model = WordList
-        fields = {"word": ["contains"], "wordlist_version": ["exact"]}
+        fields = {"wordlist_version": ["exact"]}
 
 
 class TocTable(tables.Table):    
@@ -59,6 +72,7 @@ class TocTable(tables.Table):
         attrs={"a": {"class": "w3-button w3-round-xlarge w3-hover-brown"}},
         text=format_html('<i class="fa-solid fa-magnifying-glass"></i>'),
         empty_values=(),
+        verbose_name=_("Action")
     )
     class Meta:
         model = TableOfContent
@@ -150,7 +164,7 @@ class WordListTable(tables.Table):
 class CommonReferenceTable(tables.Table):
     action = tables.TemplateColumn(
         """
-        <a href='/inscriber/toc/{{ record.structure.table_of_content.slug }}/structure/{{ record.structure.id }}/common-reference/{{ record.id }}' class='w3-button'>
+        <a href='/tipitaka/toc/{{ record.structure.table_of_content.slug }}/structure/{{ record.structure.id }}/common-reference/{{ record.id }}' class='w3-button'>
             <i class='fas fa-glasses'></i>
         </a>
         """

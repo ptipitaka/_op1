@@ -1,5 +1,5 @@
 import django_tables2 as tables
-from django_filters import FilterSet
+from django_filters import FilterSet, filters
 from django_tables2.utils import A
 from django.utils.safestring import mark_safe
 from django.utils.translation import gettext_lazy as _
@@ -14,6 +14,7 @@ class WordlistTable(tables.Table):
         attrs={"a": {"class": "w3-button w3-round-xlarge w3-hover-brown"}}, 
         text=mark_safe('<i class="fa-solid fa-magnifying-glass"></i>'),
         empty_values=(),
+        verbose_name=_('Action')
     )
 
     class Meta:
@@ -25,6 +26,15 @@ class WordlistTable(tables.Table):
 
 
 class WordlistFilter(FilterSet):
+    word__startswith = filters.CharFilter(
+        field_name='word',
+        lookup_expr='startswith',
+        label=_('Word starts with'))
+    word__contains = filters.CharFilter(
+        field_name='word',
+        lookup_expr='contains',
+        label=_('Word contains'))
+
     class Meta:
         model = Word
         fields = {"word": ["startswith", "contains"],}

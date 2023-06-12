@@ -12,20 +12,20 @@
     </a>
     <!-- INSCRIBER -->
     <div class="w3-dropdown-click">
-        <button onclick="DDNavMenuFunction('Inscriber')" class="w3-button {% if '/inscriber/' in request.path %} nav-active {% endif %}">
-            {% trans "Inscriber" %}
+        <button onclick="DDNavMenuFunction('Tipiṭaka')" class="w3-button {% if '/tipitaka/' in request.path %} nav-active {% endif %}">
+            {% trans "Tipiṭaka" %}
         </button>
-        <div id="Inscriber" class="w3-dropdown-content w3-bar-block w3-border">
+        <div id="Tipiṭaka" class="w3-dropdown-content w3-bar-block w3-border">
             <a href="{% url "digital_archive" %}"
-                class="w3-bar-item w3-button {% if '/inscriber/digital-archive' in request.path %} nav-active {% endif %}">
+                class="w3-bar-item w3-button {% if '/tipitaka/digital-archive' in request.path %} nav-active {% endif %}">
                 {% trans "Digital Archive" %}
             </a>
             <a href="{% url "wordlist_master" %}"
-                class="w3-bar-item w3-button {% if '/inscriber/wordlist' in request.path %} nav-active {% endif %}">
+                class="w3-bar-item w3-button {% if '/tipitaka/wordlist' in request.path %} nav-active {% endif %}">
                 {% trans "Wordlist" %}
             </a>
             <a href="{% url "toc" %}"
-                class="w3-bar-item w3-button {% if '/inscriber/toc' in request.path %} nav-active {% endif %}">
+                class="w3-bar-item w3-button {% if '/tipitaka/toc' in request.path %} nav-active {% endif %}">
                 {% trans "Table Of Contents" %}
             </a>
         </div>

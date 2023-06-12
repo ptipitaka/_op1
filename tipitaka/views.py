@@ -68,7 +68,7 @@ class DigitalArchiveDetialsView(LoginRequiredMixin, UpdateView, SuccessMessageMi
         volume = self.request.GET.get('volume') or ''
         page_number = self.request.GET.get('page_number') or ''
         content = self.request.GET.get('content') or ''
-        return '/inscriber/digital-archive?edition=%s&volume=%s&page_number=%s&content=%s' %(edition, volume, page_number, content)
+        return '/tipitaka/digital-archive?edition=%s&volume=%s&page_number=%s&content=%s' %(edition, volume, page_number, content)
 
 
 # -----------------------------------------------------

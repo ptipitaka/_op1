@@ -8,7 +8,7 @@ from django.utils.html import format_html
 from django.utils.safestring import mark_safe
 from django.utils.translation import gettext_lazy as _
 
-from django_filters import FilterSet, ChoiceFilter
+from django_filters import FilterSet, ChoiceFilter, filters
 from django_tables2.utils import A
 from mptt.templatetags.mptt_tags import cache_tree_children
 
@@ -26,6 +26,7 @@ class NamaSaddamalaTable(tables.Table):
         attrs={"a": {"class": "w3-button w3-round-xlarge w3-hover-brown"}}, 
         text=format_html('<i class="fa-solid fa-magnifying-glass"></i>'),
         empty_values=(),
+        verbose_name=_("Action")
     )
 
     class Meta:
@@ -53,6 +54,7 @@ class AkhyataSaddamalaTable(tables.Table):
         attrs={"a": {"class": "w3-button w3-round-xlarge w3-hover-brown"}}, 
         text=mark_safe('<i class="fa-solid fa-magnifying-glass"></i>'),
         empty_values=(),
+        verbose_name=_("Action")
     )
 
     class Meta:
@@ -81,6 +83,7 @@ class PadanukkamaTable(tables.Table):
         text=mark_safe('<i class="fa-solid fa-magnifying-glass"></i>'),
         empty_values=(),
         orderable=False,
+        verbose_name=_("Update")
     )
 
     pada_list = tables.LinkColumn(
@@ -90,6 +93,7 @@ class PadanukkamaTable(tables.Table):
         text=mark_safe('<i class="far fa-list"></i>'),
         empty_values=(),
         orderable=False,
+        verbose_name=_("บท")
     )
 
     about = tables.Column(attrs={'td': {'style': 'width: 40%;'}})
@@ -103,6 +107,10 @@ class PadanukkamaTable(tables.Table):
     
 
 class PadanukkamaFilter(FilterSet):
+    title__contains = filters.CharFilter(
+        field_name='title',
+        lookup_expr='icontains',
+        label=_('Title contains'))
     publication = django_filters.BooleanFilter(
         label=_("Publication"),
         widget=forms.Select(
@@ -111,11 +119,7 @@ class PadanukkamaFilter(FilterSet):
     )
     class Meta:
         model = Padanukkama
-        fields = {
-            "title": ["icontains"],
-            "publication": ["exact"],
-        }
-        labels = {"title": _("Title"),}
+        fields = {}
 
 
 # -----------------------------------------------------
