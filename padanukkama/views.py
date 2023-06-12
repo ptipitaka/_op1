@@ -291,7 +291,10 @@ class PadaSplitSandhiView(LoginRequiredMixin, View):
         pada = get_object_or_404(Pada, id=pk)
         padanukkama = get_object_or_404(Padanukkama, id=padanukkama_id)
         form = AddChildPadaForm()
-        table = PadaParentChildTable(data=pada.get_current_with_descendants())
+
+        table = PadaParentChildTable(
+            data=pada.get_current_with_descendants(),
+            request=request)
 
         return render(request, self.template_name, {'form': form, 'pada': pada, 'table':table})
     
@@ -348,8 +351,9 @@ class PadaDuplicateView(LoginRequiredMixin, View):
         except:
             messages.error(self.request, _('Error: Record duplication unsuccessful'))
 
-        # Redirect to the edit page of the duplicated Pada record
-        return redirect(reverse_lazy('padanukkama_pada', args=[padanukkama_id]))
+        # Redirect to the desired URL with the page query parameter
+        redirect_url = reverse_lazy('padanukkama_pada', args=[padanukkama_id]) + '?' + request.GET.urlencode()
+        return redirect(redirect_url)
 
 
 # -----------------------------------------------------
@@ -669,7 +673,8 @@ class CreateVipatti(LoginRequiredMixin, View):
 # PadaDeleteView
 # -----------------------------------------------------
 class PadaDeleteView(LoginRequiredMixin, View):
-    def post(self, request, padanukkama_id, pk):
+    def get(self, request, padanukkama_id, pk):
+        # Retrieve the Pada record to be delete
         pada = get_object_or_404(Pada, pk=pk)
         pada_parent_id = pada.parent_id
         try:
@@ -678,12 +683,13 @@ class PadaDeleteView(LoginRequiredMixin, View):
         except:
             messages.error(self.request, _('Error: Record deletion unsuccessful'))
         
-        if pada_parent_id is None:
-            # Redirect to the padanukkama_pada view if parent_id is None
-            return redirect('padanukkama_pada', padanukkama_id=padanukkama_id)
+        if pada_parent_id:
+            redirect_url = reverse_lazy('pada_split_sandhi', args=[padanukkama_id, pada_parent_id]) + '?' + request.GET.urlencode()
         else:
-            # Redirect to the pada_split_sandhi view with parent_id as a positional argument
-            return redirect(reverse_lazy('pada_split_sandhi', args=[padanukkama_id, pada_parent_id]))
+            redirect_url = reverse_lazy('padanukkama_pada', args=[padanukkama_id]) + '?' + request.GET.urlencode()
+
+        # Redirect to the desired URL with the page query parameter
+        return redirect(redirect_url)
 
 
 # -----------------------------------------------------

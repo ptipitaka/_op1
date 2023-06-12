@@ -9,7 +9,7 @@
 {% endblock %}
 
 {% block apptitle_option %}
-    <a href="{% url 'padanukkama_pada' pada.padanukkama_id %}"
+    <a href="{% url 'padanukkama_pada' pada.padanukkama_id %}?{{ request.GET.urlencode }}"
         class="w3-button w3-round-xlarge w3-hover-amber w3-display-right">
         {% trans "Back" %}
     </a>

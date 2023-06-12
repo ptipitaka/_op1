@@ -154,12 +154,16 @@ class PadaTable(tables.Table):
             # Record has descendants, do not show split_action
             return ''
         else:
-            # Record does not have descendants, show split_action
+            # Get all the query parameters from the request's GET parameters
+            query_params = self.request.GET
+
+            # Generate the URL with the updated parameters
             url = reverse_lazy('pada_split_sandhi', args=[record.padanukkama_id, record.id])
-            return format_html(
-                '<a href="{}" class="w3-button w3-round-xlarge w3-hover-white">'
-                '<i class="fas fa-project-diagram w3-text-orange"></i></a>',
-                url,
+            url_with_params = f'{url}?{query_params.urlencode()}'
+            
+            return mark_safe(
+                f'<a href="{url_with_params}" class="w3-button w3-round-xlarge w3-hover-white">'
+                f'<i class="fas fa-project-diagram w3-text-orange"></i></a>'
             )
         
     # sandhi
@@ -190,14 +194,11 @@ class PadaTable(tables.Table):
             # Record has descendants, do not show declension_action
             return ''
         else:
-            padanukkama_id = record.padanukkama_id
-            pada_id = record.id
-
             # Get all the query parameters from the request's GET parameters
             query_params = self.request.GET
 
             # Generate the URL with the updated parameters
-            url = reverse_lazy('pada_declension', args=[padanukkama_id, pada_id])
+            url = reverse_lazy('pada_declension', args=[record.padanukkama_id, record.id])
             url_with_params = f'{url}?{query_params.urlencode()}'
 
             return mark_safe(
@@ -222,35 +223,38 @@ class PadaTable(tables.Table):
             # Record has descendants, do not show duplicate_action
             return ''
         else:
-            # Record does not have descendants, show duplicate_action
+            # Get all the query parameters from the request's GET parameters
+            query_params = self.request.GET
+
+            # Generate the URL with the updated parameters
             message = _('Do you want to duplicate record of ') + record.pada
             url = reverse_lazy('pada_duplicate', args=[record.padanukkama_id, record.id])
-            return format_html(
-                '<a href="{}" onclick="return confirm(\'{}\')" class="w3-button w3-round-xlarge w3-hover-white">'
-                '<i class="far fa-clone w3-text-teal"></i></a>',
-                url,
-                message
+            url_with_params = f'{url}?{query_params.urlencode()}'
+            return mark_safe(
+                f'<a href="{ url_with_params }" onclick="return confirm(\'{ message }\')" class="w3-button w3-round-xlarge w3-hover-white">'
+                f'<i class="far fa-clone w3-text-teal"></i></a>'
             )
 
     # delete action btn
     # -----------------
-    delete_action = tables.TemplateColumn(
-        """
-        {% if not record.get_children %}
-            <form action="{% url 'pada_delete' padanukkama_id=record.padanukkama.id pk=record.id %}" method="post">
-            {% csrf_token %}
-            <button
-                type="submit"
-                onclick="return confirm(\'{{ deleted_conf_message }}\')"
-                class="w3-button w3-round-xlarge w3-hover-white">
-                <i class="far fa-trash-alt w3-text-red"></i>
-            </button>
-            </form>
-        {% endif %}
-        """,
-        verbose_name=_('Delete'),
-        orderable=False
-    )
+    delete_action = tables.Column(empty_values=(), orderable=False, verbose_name=_('Delete'))
+    def render_delete_action(self, record):
+        if record.get_children():
+            # Record has descendants, do not show delete_action
+            return ''
+        else:
+            # Get all the query parameters from the request's GET parameters
+            query_params = self.request.GET
+
+            # Generate the URL with the updated parameters
+            message = _('Do you want to delete record of ') + record.pada
+            url = reverse_lazy('pada_delete', args=[record.padanukkama_id, record.id])
+            url_with_params = f'{url}?{query_params.urlencode()}'
+            return mark_safe(
+                f'<a href="{ url_with_params }" onclick="return confirm(\'{ message }\')" class="w3-button w3-round-xlarge w3-hover-white">'
+                f'<i class="far fa-trash-alt w3-text-red"></i></a>'
+            )
+
 
 
 class PadaFilter(FilterSet):
@@ -284,36 +288,39 @@ class PadaParentChildTable(tables.Table):
     }})
 
     declension_action = tables.Column(empty_values=(), orderable=False, verbose_name=_('Decl.'))
-
-    delete_action = tables.TemplateColumn(
-        """
-        {% if record.parent %}
-            <form action="{% url 'pada_delete' padanukkama_id=pada.padanukkama.id pk=record.id %}" method="post">
-            {% csrf_token %}
-            <button
-                type="submit"
-                onclick="return confirm(\'{{ message }}\')"
-                class="w3-button w3-round-xlarge w3-hover-red">
-                <i class="far fa-trash-alt" style="color:lightgray"></i>
-            </button>
-            </form>
-        {% endif %}
-        """,
-        verbose_name='Delete',
-        orderable=False
-    )
-
     def render_declension_action(self, record):
         if record.get_descendants().exists():
             # Record has descendants, do not show declension_action
             return ''
         else:
-            # Record does not have descendants, show declension_action
-            return mark_safe(
-                '<a href="{url}" class="w3-button w3-round-xlarge w3-hover-brown"><i class="fas fa-layer-group" style="color: lightgray"></i></a>'.format(
-                url=reverse_lazy('pada_split_sandhi', args=[record.padanukkama_id, record.id])
-            ))
+            # Get all the query parameters from the request's GET parameters
+            query_params = self.request.GET
 
+            # Generate the URL with the updated parameters
+            url = reverse_lazy('pada_declension', args=[record.padanukkama_id, record.id])
+            url_with_params = f'{url}?{query_params.urlencode()}'
+            return mark_safe(
+                f'<a href="{ url_with_params }" class="w3-button w3-round-xlarge w3-hover-white">'
+                f'<i class="fas fa-layer-group w3-text-indigo"></i></a>'
+            )
+        
+    delete_action = tables.Column(empty_values=(), orderable=False, verbose_name=_('Delete'))
+    def render_delete_action(self, record):
+        if not record.parent:
+            # Record has descendants, do not show delete_action
+            return ''
+        else:
+            # Get all the query parameters from the request's GET parameters
+            query_params = self.request.GET
+
+            # Generate the URL with the updated parameters
+            message = _('Do you want to delete record of ') + record.pada
+            url = reverse_lazy('pada_delete', args=[record.padanukkama_id, record.id])
+            url_with_params = f'{url}?{query_params.urlencode()}'
+            return mark_safe(
+                f'<a href="{ url_with_params }" onclick="return confirm(\'{ message }\')" class="w3-button w3-round-xlarge w3-hover-white">'
+                f'<i class="far fa-trash-alt w3-text-red"></i></a>'
+            )
 
     class Meta:
         model = Pada
@@ -321,8 +328,9 @@ class PadaParentChildTable(tables.Table):
         attrs = {"class": "w3-table w3-bordered"}
         fields = ('pada',)
 
-    def __init__(self, data, **kwargs):
-        super().__init__(data, **kwargs)
+    def __init__(self, data, *args, **kwargs):
+        self.request = kwargs.pop('request', None)
+        super().__init__(data, *args, **kwargs)
         
         ## Cache the tree Pada for performance ##
         cache_tree_children(data)
