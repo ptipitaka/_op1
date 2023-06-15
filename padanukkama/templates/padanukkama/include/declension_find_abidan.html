@@ -26,7 +26,7 @@
                         var abidanDetailsUrl = '{% url "abidan_details" pk=0 %}'.replace('0', closestMatches[i].id);
 
                         // Wrap the image with a link to open the modal
-                        matchesHtml += '<div class="w3-cell-row">';
+                        matchesHtml += '<li class="w3-cell-row">';
                         matchesHtml += '    <div class="w3-container w3-cell" style="width:15%">';
                         matchesHtml += '        <img src="' + closestMatches[i].image_ref + '" class="responsive" ';
                         matchesHtml += '            style="cursor: pointer;" ';
@@ -49,7 +49,7 @@
                         matchesHtml += '              </div>';
                         matchesHtml += '         </div>';
                         matchesHtml += '    </div>';
-                        matchesHtml += '</div>';
+                        matchesHtml += '</li>';
                     }
                 }
 

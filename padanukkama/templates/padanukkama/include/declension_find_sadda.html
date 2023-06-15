@@ -2,8 +2,7 @@
 
 <script>
     function find_sadda_closest_matches () {
-        var id_sadda = $('#id_sadda').val();
-        var stringData = id_sadda ? id_sadda : '{{ pada.pada }}';
+        var stringData = $('#id_sadda').val();
         $.ajax({
             url: '{% url "find_sadda_closest_matches" %}',
             type: 'GET',
@@ -23,16 +22,16 @@
                     matchesHtml = '<li>No matches found.</li>';
                 } else {
                     for (var i = 0; i < closestMatches.length; i++) {
-                        matchesHtml += '<div class="w3-cell-row">';
-                        matchesHtml += '     <div class="w3-container w3-cell w3-margin-bottom">';
-                        matchesHtml += '     <p>' + closestMatches[i].sadda + '  ' + closestMatches[i].construction +'</p>';
-                        matchesHtml += '     <div class="w3-light-grey w3-tiny" style="width:100px;">'
-                        matchesHtml += '         <div class="w3-container w3-green" style="width:' + closestMatches[i].score + '%">'
-                        matchesHtml +=               closestMatches[i].score + '%';
-                        matchesHtml += '         </div>';
-                        matchesHtml += '      </div>';
-                        matchesHtml += '     </div';
-                        matchesHtml += '</div';
+                        matchesHtml += '<li class="w3-cell-row">';
+                        matchesHtml += '    <div class="w3-container w3-cell w3-margin-bottom">';
+                        matchesHtml += '        <p>' + closestMatches[i].sadda + '  ' + closestMatches[i].construction +'</p>';
+                        matchesHtml += '        <div class="w3-light-grey w3-tiny" style="width:100px;">'
+                        matchesHtml += '            <div class="w3-container w3-green" style="width:' + closestMatches[i].score + '%">'
+                        matchesHtml +=                  closestMatches[i].score + '%';
+                        matchesHtml += '            </div>';
+                        matchesHtml += '        </div>';
+                        matchesHtml += '    </div>';
+                        matchesHtml += '</li>';
                     }
                 }
 

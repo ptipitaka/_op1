@@ -1,24 +1,28 @@
-// Function clear result
-function clearResult () {
-    $("#submit_data").css("display", "none");
-    $('#result-container').html('');
-};
-
 // Function get construction
 function saddaConst(event, string) {
     event.preventDefault();
+    
+    var saddatext;
+    var regex = /^(\S+)\s/;
+    var match = string.match(regex);
+    saddatext = match ? match[1] : null;
+    // Update the value of sadda field
+    $("#id_sadda").val(saddatext);
+
     var extractedText;
     var startIndex = string.indexOf('[');
     var endIndex = string.indexOf(']');
 
     if (startIndex !== -1 && endIndex !== -1 && endIndex > startIndex) {
-        extractedText = string.substring(startIndex + 1, endIndex);
+        extractedText = string.substring(startIndex, endIndex + 1);
         extractedText = extractedText.replace(/(\S)\+/g, '$1 + ');
+
+        // Update the value of construction field
+        $("#id_construction").val(extractedText);
+
     } else {
         extractedText = null;
     }
-
-    $("#id_construction").val(extractedText);
 }
 
 
@@ -51,6 +55,7 @@ $(document).ready(function () {
     // Get the button element by its ID
     var previewButton = $('#preview_vipatti');
     var submitButton = $("#submit_data");
+    var vipattiTable = $('#result-container')
     
     var padaPada = $('#id_sadda').val();
 
@@ -80,20 +85,22 @@ $(document).ready(function () {
         $('#id_sadda').on('input', function() {
             var inputValue = $(this).val();
             if (inputValue.trim() !== '') {
-                previewButton.prop('disabled', false);
+                previewButton.css('display', '');
             }
             else {
-                previewButton.prop('disabled', true);
+                previewButton.css("display", "none");;
                 submitButton.css("display", "none");
+                vipattiTable.html('');
             }
         });
 
         if (isNamasaddamalaSelected || isAkhyatasaddamalaSelected ) {
-            previewButton.prop('disabled', false);
+            previewButton.css('display', '');
         }
         else {
-            previewButton.prop('disabled', true);
+            previewButton.css("display", "none");;
             submitButton.css("display", "none");
+            vipattiTable.html('');
         }
     });
 

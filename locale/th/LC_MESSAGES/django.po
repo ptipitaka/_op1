@@ -1723,13 +1723,13 @@ msgstr "ปทานุกรม"
 #: .\padanukkama\templates\padanukkama\nama_saddamala.html:8
 #: .\padanukkama\templates\padanukkama\nama_saddamala_detail.html:18
 msgid "Nāmasaddapadamālā"
-msgstr "นามสัททมาลา"
+msgstr "การจำแนกแบบแจกบทนาม"
 
 #: .\main\templates\main\navbar.html:45
 #: .\padanukkama\templates\padanukkama\akhyata_saddamala.html:8
 #: .\padanukkama\templates\padanukkama\akhyata_saddamala_detail.html:18
 msgid "Ākhyātasaddapadamālā"
-msgstr "อขยาตสัททมาลา"
+msgstr "การจำแนกแบบแจกบทอาขยาต"
 
 #: .\main\templates\main\navbar.html:49 .\padanukkama\models.py:320
 #: .\padanukkama\models.py:381
@@ -2307,11 +2307,11 @@ msgstr "ลำดับบท"
 
 #: .\padanukkama\models.py:337
 msgid "Namasaddamala"
-msgstr "นามสัททมาลา"
+msgstr "การจำแนกแบบแจกบทนาม"
 
 #: .\padanukkama\models.py:341
 msgid "Akhyatasaddamala"
-msgstr "อขยาตสัททมาลา"
+msgstr "การจำแนกแบบแจกบทอาขยาต"
 
 #: .\padanukkama\models.py:347
 msgid "Construction"

@@ -14,15 +14,16 @@ from django_tables2.views import SingleTableMixin
 
 from braces.views import LoginRequiredMixin
 from fuzzywuzzy import fuzz, process
+from urllib.parse import urlencode
 
 from .models import NamaSaddamala, AkhyataSaddamala, Padanukkama, Pada, Sadda
 
 from abidan.models import Word, WordLookup
 
-from .tables import NamaSaddamalaTable, \
-                    NamaSaddamalaFilter, AkhyataSaddamalaTable, \
-                    AkhyataSaddamalaFilter, PadanukkamaTable, \
-                    PadanukkamaFilter, PadaTable, PadaFilter, \
+from .tables import NamaSaddamalaTable, NamaSaddamalaFilter, \
+                    AkhyataSaddamalaTable, AkhyataSaddamalaFilter, \
+                    PadanukkamaTable, PadanukkamaFilter, \
+                    PadaTable, PadaFilter, \
                     PadaParentChildTable, \
                     SaddaTable, SaddaFilter
 
@@ -33,9 +34,12 @@ from .forms import  NamaSaddamalaForm, AkhyataSaddamalaForm, \
 from utils.pali_char import *
 from utils.padanukkama import *
 
-# -----------------------------------------------------
+# ====================================================
+# NamaSaddamala
+# ====================================================
+
 # NamaSaddamalaView
-# -----------------------------------------------------
+#------------------
 class NamaSaddamalaView(LoginRequiredMixin, SingleTableMixin, FilterView):
     model = NamaSaddamala
     template_name = "padanukkama/nama_saddamala.html"
@@ -49,9 +53,9 @@ class NamaSaddamalaView(LoginRequiredMixin, SingleTableMixin, FilterView):
         return context
 
 
-# -----------------------------------------------------
+
 # NamaSaddamalaCreateView
-# -----------------------------------------------------
+# -----------------------
 class NamaSaddamalaCreateView(LoginRequiredMixin, CreateView):
     model = NamaSaddamala
     template_name = "padanukkama/nama_saddamala_detail.html"
@@ -64,9 +68,9 @@ class NamaSaddamalaCreateView(LoginRequiredMixin, CreateView):
         return context
 
 
-# -----------------------------------------------------
+
 # NamaSaddamalaUpdateView
-# -----------------------------------------------------
+# -----------------------
 class NamaSaddamalaUpdateView(LoginRequiredMixin, UpdateView):
     model = NamaSaddamala
     template_name = "padanukkama/nama_saddamala_detail.html"
@@ -97,9 +101,8 @@ class NamaSaddamalaUpdateView(LoginRequiredMixin, UpdateView):
 
 
 
-# -----------------------------------------------------
 # NamaSaddamalaDeleteView
-# -----------------------------------------------------
+# -----------------------
 class NamaSaddamalaDeleteView(LoginRequiredMixin, DeleteView):
     model = NamaSaddamala
     template_name = "padanukkama/nama_saddamala_detail.html"
@@ -111,10 +114,12 @@ class NamaSaddamalaDeleteView(LoginRequiredMixin, DeleteView):
         context['url_name'] = resolve(self.request.path_info).url_name
         return context
 
+# ====================================================
+# AkhyataSaddamala
+# ====================================================
 
-# -----------------------------------------------------
 # AkhyataSaddamalaView
-# -----------------------------------------------------
+# --------------------
 class AkhyataSaddamalaView(LoginRequiredMixin, SingleTableMixin, FilterView):
     model = AkhyataSaddamala
     template_name = "padanukkama/akhyata_saddamala.html"
@@ -128,9 +133,9 @@ class AkhyataSaddamalaView(LoginRequiredMixin, SingleTableMixin, FilterView):
         return context
 
 
-# -----------------------------------------------------
+
 # AkhyataSaddamalaCreateView
-# -----------------------------------------------------
+# --------------------------
 class AkhyataSaddamalaCreateView(LoginRequiredMixin, CreateView):
     model = AkhyataSaddamala
     template_name = "padanukkama/akhyata_saddamala_detail.html"
@@ -143,9 +148,9 @@ class AkhyataSaddamalaCreateView(LoginRequiredMixin, CreateView):
         return context
 
 
-# -----------------------------------------------------
+
 # AkhyataSaddamalaUpdateView
-# -----------------------------------------------------
+# --------------------------
 class AkhyataSaddamalaUpdateView(LoginRequiredMixin, UpdateView):
     model = AkhyataSaddamala
     template_name = "padanukkama/akhyata_saddamala_detail.html"
@@ -175,9 +180,9 @@ class AkhyataSaddamalaUpdateView(LoginRequiredMixin, UpdateView):
         return response
 
 
-# -----------------------------------------------------
+
 # AkhyataSaddamalaDeleteView
-# -----------------------------------------------------
+# --------------------------
 class AkhyataSaddamalaDeleteView(LoginRequiredMixin, DeleteView):
     model = AkhyataSaddamala
     template_name = "padanukkama/akhyata_saddamala_detail.html"
@@ -190,9 +195,12 @@ class AkhyataSaddamalaDeleteView(LoginRequiredMixin, DeleteView):
         return context
 
 
-# -----------------------------------------------------
+# ====================================================
+# Padanukkama
+# ====================================================
+
 # PadanukkamaView
-# -----------------------------------------------------
+# ---------------
 class PadanukkamaView(LoginRequiredMixin, SingleTableMixin, FilterView):
     model = Padanukkama
     template_name = "padanukkama/padanukkama.html"
@@ -206,9 +214,9 @@ class PadanukkamaView(LoginRequiredMixin, SingleTableMixin, FilterView):
         return context
 
 
-# -----------------------------------------------------
+
 # PadanukkamaCreateView
-# -----------------------------------------------------
+# ---------------------
 class PadanukkamaCreateView(LoginRequiredMixin, CreateView):
     model = Padanukkama
     template_name = "padanukkama/padanukkama_create.html"
@@ -222,9 +230,9 @@ class PadanukkamaCreateView(LoginRequiredMixin, CreateView):
         return context
 
 
-# -----------------------------------------------------
+
 # PadanukkamaUpdateView
-# -----------------------------------------------------
+# ---------------------
 class PadanukkamaUpdateView(LoginRequiredMixin, UpdateView):
     model = Padanukkama
     context_object_name = 'padanukkama'
@@ -246,9 +254,9 @@ class PadanukkamaUpdateView(LoginRequiredMixin, UpdateView):
         return super().form_invalid(form)
 
 
-# -----------------------------------------------------
+
 # PadanukkamaDeleteView
-# -----------------------------------------------------
+# ---------------------
 class PadanukkamaDeleteView(LoginRequiredMixin, DeleteView):
     model = Padanukkama
     success_url = reverse_lazy('padanukkama')
@@ -281,9 +289,9 @@ class PadanukkamaPadaView(LoginRequiredMixin, SingleTableMixin, FilterView):
         return context
 
 
-# -----------------------------------------------------
+
 # PadaSplitSandhiView
-# -----------------------------------------------------
+# -------------------
 class PadaSplitSandhiView(LoginRequiredMixin, View):
     template_name = 'padanukkama/pada_split_sandhi.html'
     
@@ -325,9 +333,9 @@ class PadaSplitSandhiView(LoginRequiredMixin, View):
         return render(request, self.template_name, {'form': form, 'pada': pada})
 
 
-# -----------------------------------------------------
+
 # PadaDuplicateView
-# -----------------------------------------------------
+# -----------------
 class PadaDuplicateView(LoginRequiredMixin, View):
     def get(self, request, padanukkama_id, pk):
         # Retrieve the Pada record to be duplicated
@@ -356,9 +364,32 @@ class PadaDuplicateView(LoginRequiredMixin, View):
         return redirect(redirect_url)
 
 
-# -----------------------------------------------------
+
+# PadaDeleteView
+# --------------
+class PadaDeleteView(LoginRequiredMixin, View):
+    def get(self, request, padanukkama_id, pk):
+        # Retrieve the Pada record to be delete
+        pada = get_object_or_404(Pada, pk=pk)
+        pada_parent_id = pada.parent_id
+        try:
+            pada.delete()
+            messages.success(self.request, _('The record has been deleted!'))
+        except:
+            messages.error(self.request, _('Error: Record deletion unsuccessful'))
+        
+        if pada_parent_id:
+            redirect_url = reverse_lazy('pada_split_sandhi', args=[padanukkama_id, pada_parent_id]) + '?' + request.GET.urlencode()
+        else:
+            redirect_url = reverse_lazy('padanukkama_pada', args=[padanukkama_id]) + '?' + request.GET.urlencode()
+
+        # Redirect to the desired URL with the page query parameter
+        return redirect(redirect_url)
+
+
+
 # PadaDeclensionView
-# -----------------------------------------------------
+# ------------------
 class FindAbidanClosestMatchesView(LoginRequiredMixin, View):
     def get(self, request):
         string = request.GET.get('string')  # Get the string from the AJAX request
@@ -400,9 +431,9 @@ class FindAbidanClosestMatchesView(LoginRequiredMixin, View):
         return JsonResponse(data)
 
 
-# -----------------------------------------------------
+
 # FindSaddaClosestMatchesView
-# -----------------------------------------------------
+# ---------------------------
 class FindSaddaClosestMatchesView(LoginRequiredMixin, View):
     def get(self, request):
         string = request.GET.get('string')  # Get the string from the AJAX request
@@ -433,9 +464,9 @@ class FindSaddaClosestMatchesView(LoginRequiredMixin, View):
         return JsonResponse(data)
 
 
-# -----------------------------------------------------
+
 # PadaDeclensionView
-# -----------------------------------------------------
+# ------------------
 class PadaDeclensionView(LoginRequiredMixin, View):
     template_name = 'padanukkama/pada_declension.html'
     
@@ -447,6 +478,7 @@ class PadaDeclensionView(LoginRequiredMixin, View):
             if pada.sadda:
                 # Get sadda object & assign Form
                 initial_data = {
+                    'padanukkama': pada.padanukkama,
                     'sadda':  pada.sadda.sadda,
                     'sadda_type':  pada.sadda.sadda_type,
                     'namasaddamala': [item.pk for item in pada.sadda.namasaddamala.all()],
@@ -459,6 +491,7 @@ class PadaDeclensionView(LoginRequiredMixin, View):
             else:
                 # Initial blank form 
                 form = SaddaForm(initial={
+                    'padanukkama': pada.padanukkama,
                     'sadda': pada.pada,
                     'sadda_type': 'NamaSaddamala'
                 })
@@ -563,9 +596,8 @@ class PadaDeclensionView(LoginRequiredMixin, View):
 
 
 
-# -----------------------------------------------------
 # FindExistingSadda
-# -----------------------------------------------------
+# -----------------
 class FindExistingSadda(LoginRequiredMixin, View):
     def get(self, request, padanukkama_id, sadda):
         existing_sadda = Sadda.objects.filter(Q(padanukkama=padanukkama_id), Q(sadda=sadda)).first()
@@ -582,9 +614,9 @@ class FindExistingSadda(LoginRequiredMixin, View):
         return JsonResponse(data)
 
 
-# -----------------------------------------------------
+
 # AddSaddaToPada
-# -----------------------------------------------------
+# --------------
 class AddSaddaToPada(LoginRequiredMixin, View):
     def post(self, request, padanukkama_id, pada_id, sadda_id):
         # Retrieve the current pada record
@@ -598,9 +630,9 @@ class AddSaddaToPada(LoginRequiredMixin, View):
         return JsonResponse({'success': True})
 
 
-# -----------------------------------------------------
+
 # DecouplingPadaWithSadda
-# -----------------------------------------------------
+# -----------------------
 class DecouplingPadaWithSadda(LoginRequiredMixin, View):
     def post(self, request, pada_id):
         # Retrieve the current pada record
@@ -613,9 +645,9 @@ class DecouplingPadaWithSadda(LoginRequiredMixin, View):
         return JsonResponse({'success': True})
 
 
-# -----------------------------------------------------
+
 # CreateVipatti
-# -----------------------------------------------------
+# -------------
 class CreateVipatti(LoginRequiredMixin, View):
     def get(self, request, padanukkama_id, sadda, sadda_type, template_ids):
         if not template_ids or not sadda:
@@ -669,52 +701,70 @@ class CreateVipatti(LoginRequiredMixin, View):
         return JsonResponse(data, safe=False)
 
 
-# -----------------------------------------------------
-# PadaDeleteView
-# -----------------------------------------------------
-class PadaDeleteView(LoginRequiredMixin, View):
-    def get(self, request, padanukkama_id, pk):
-        # Retrieve the Pada record to be delete
-        pada = get_object_or_404(Pada, pk=pk)
-        pada_parent_id = pada.parent_id
-        try:
-            pada.delete()
-            messages.success(self.request, _('The record has been deleted!'))
-        except:
-            messages.error(self.request, _('Error: Record deletion unsuccessful'))
-        
-        if pada_parent_id:
-            redirect_url = reverse_lazy('pada_split_sandhi', args=[padanukkama_id, pada_parent_id]) + '?' + request.GET.urlencode()
-        else:
-            redirect_url = reverse_lazy('padanukkama_pada', args=[padanukkama_id]) + '?' + request.GET.urlencode()
-
-        # Redirect to the desired URL with the page query parameter
-        return redirect(redirect_url)
-
-
-# -----------------------------------------------------
+# =====================================================
 # SaddaView
-# -----------------------------------------------------
+# =====================================================
+
+# SaddaView
+# ---------
 class SaddaView(LoginRequiredMixin, SingleTableMixin, FilterView):
     model = Sadda
     template_name = "padanukkama/sadda.html"
-    context_object_name  = "sadda"
+    context_object_name = "sadda"
     table_class = SaddaTable
     filterset_class = SaddaFilter
-    
-    def get_context_data(self, **kwargs):
-        context = super(SaddaView, self).get_context_data(**kwargs)
-        context["total_rec"] = '{:,}'.format(len(self.get_table().rows)) 
-        return context
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        padanukkama_id = self.request.GET.get('padanukkama')
+        context['padanukkama_id'] = padanukkama_id
+        context["total_rec"] = '{:,}'.format(len(self.get_table().rows))
+        return context
+    
+    
+# SaddaCreateView
+# ---------------
+class SaddaCreateView(LoginRequiredMixin, CreateView):
+    model = Sadda
+    template_name = "padanukkama/sadda_create.html"
+    form_class = SaddaForm
+    success_url = reverse_lazy('sadda')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        padanukkama_id = self.kwargs['padanukkama_id']
+        context['padanukkama_id'] = padanukkama_id
+        return context
+    
+    def get_initial(self):
+        initial = super().get_initial()
+        padanukkama_id = self.kwargs['padanukkama_id']
+        if padanukkama_id:
+            initial['padanukkama'] = padanukkama_id
+        return initial
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        messages.success(self.request, _("Form saved successfully."))
+        return response
+
+    def form_invalid(self, form):
+        response = super().form_invalid(form)
+        error_message = _("Form contains errors. Please correct them.")
+        messages.error(self.request, error_message)
+        return response
+
+# SaddaUpdateView
+# ---------------
 class SaddaUpdateView(LoginRequiredMixin, UpdateView):
     model = Sadda
     template_name = "padanukkama/sadda_update.html"
     form_class = SaddaForm
-    success_url = reverse_lazy('sadda')
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        sadda = self.get_object()
+        context['padanukkama_id'] = sadda.padanukkama.id
         return context
 
     def get_initial(self):
@@ -733,3 +783,22 @@ class SaddaUpdateView(LoginRequiredMixin, UpdateView):
         error_message = _("Form contains errors. Please correct them.")
         messages.error(self.request, error_message)
         return response
+    
+    def get_success_url(self):
+        success_url = reverse_lazy('sadda')
+        query_params = self.request.GET.copy()  # Create a mutable copy of the request's GET parameters
+        success_url += '?' + urlencode(query_params)  # Add the query parameters to the success URL
+        return success_url
+    
+
+# FindRelatedPadaView
+# --------------------
+class FindRelatedPadaView(LoginRequiredMixin, View):
+    def get(self, request):
+        sadda_id = int(request.GET.get('string'))  # Convert the string to an integer
+        padas = list(set(Pada.objects.filter(sadda=sadda_id).values_list('pada', flat=True)))
+        data = {
+            'related_padas': padas,
+        }
+
+        return JsonResponse(data)

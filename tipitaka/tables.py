@@ -14,7 +14,7 @@ class DigitalArchiveTable(tables.Table):
         viewname='digital_archive',
         args=[A('pk')],
         attrs={"a": {"class": "w3-button w3-round-xlarge w3-hover-brown"}}, 
-        text=mark_safe('<i class="fa-solid fa-magnifying-glass"></i>'),
+        text=mark_safe('<i class="fas fa-pencil-alt"></i>'),
         empty_values=(),
         verbose_name=_("Action")
     )
@@ -38,7 +38,7 @@ class WordlistMasterTable(tables.Table):
         viewname='wordlist_page_source',
         args=[A('pk')],
         attrs={"a": {"class": "w3-button w3-round-xlarge w3-hover-brown"}}, 
-        text=mark_safe('<i class="fa-solid fa-magnifying-glass"></i>'),
+        text=mark_safe('<i class="fas fa-pencil-alt"></i>'),
         empty_values=(),
         verbose_name=_("Action")
     )
@@ -70,7 +70,7 @@ class TocTable(tables.Table):
         viewname='structure',
         args=[A('slug')],
         attrs={"a": {"class": "w3-button w3-round-xlarge w3-hover-brown"}},
-        text=format_html('<i class="fa-solid fa-magnifying-glass"></i>'),
+        text=format_html('<i class="fas fa-pencil-alt"></i>'),
         empty_values=(),
         verbose_name=_("Action")
     )

@@ -109,9 +109,9 @@ class AddChildPadaForm(forms.ModelForm):
 
 
 # -----------------------------------------------------
-# PadaForm
+# PadaForm ..cxl
 # -----------------------------------------------------
-class PadaForm(forms.Form):
+class xPadaForm(forms.Form):
     # initial variables
     namasaddamala = NamaSaddamala.objects.all().order_by('-popularity', 'title_order')
     akhyatasaddamala = AkhyataSaddamala.objects.all().order_by('-popularity', 'title_order')
@@ -193,7 +193,7 @@ class SaddaForm(forms.ModelForm):
 
     class Meta:
         model = Sadda
-        exclude = ['padanukkama', 'sadda_seq']
+        exclude = ['sadda_seq']
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

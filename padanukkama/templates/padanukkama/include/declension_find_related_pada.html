@@ -1,0 +1,35 @@
+{% load i18n %}
+
+<script>
+    function find_realated_pada () {
+        console.log('find_realated_pada')
+        var stringData = '{{ sadda.id }}';
+        $.ajax({
+            url: '{% url "find_related_pada" %}',
+            type: 'GET',
+            data: {
+                'string': stringData
+            },
+            beforeSend: function () {
+                // Show the loading message before making the AJAX request
+                $('#related-pada').html('<i id="loading-icon" class="fa fa-spinner fa-spin"></i> {% trans "Loading..." %}');
+            },
+            success: function (response) {
+                var relatedPadas = response.related_padas;
+                var matchesHtml = '';
+
+                // Generate the HTML for displaying the related padas
+                if (relatedPadas.length === 0) {
+                    matchesHtml = '<li>No matches found.</li>';
+                } else {
+                    for (var i = 0; i < relatedPadas.length; i++) {
+                        matchesHtml += '<li>' + relatedPadas[i] +'</li>';
+                    }
+                }
+
+                // Update the related-pada ul with the generated HTML
+                $('#related-pada').html(matchesHtml);
+            }
+        })
+    }
+</script>

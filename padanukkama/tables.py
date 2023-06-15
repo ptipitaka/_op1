@@ -8,7 +8,7 @@ from django.utils.html import format_html
 from django.utils.safestring import mark_safe
 from django.utils.translation import gettext_lazy as _
 
-from django_filters import FilterSet, ChoiceFilter, filters
+from django_filters import FilterSet, ChoiceFilter, filters, ModelChoiceFilter
 from django_tables2.utils import A
 from mptt.templatetags.mptt_tags import cache_tree_children
 
@@ -20,11 +20,13 @@ from .models import NamaSaddamala, AkhyataSaddamala, Padanukkama, Pada, Sadda
 # -----------------------------------------------------
 class NamaSaddamalaTable(tables.Table):
     title_order = tables.Column(visible=False)
+    popularity = tables.Column(visible=False)
+    
     action = tables.LinkColumn(
         viewname='nama_saddamala_update',
         args=[A('pk')],
         attrs={"a": {"class": "w3-button w3-round-xlarge w3-hover-brown"}}, 
-        text=format_html('<i class="fa-solid fa-magnifying-glass"></i>'),
+        text=format_html('<i class="fas fa-pencil-alt"></i>'),
         empty_values=(),
         verbose_name=_("Action")
     )
@@ -33,8 +35,8 @@ class NamaSaddamalaTable(tables.Table):
         model = NamaSaddamala
         template_name = "django_tables2/w3css.html"
         attrs = {"class": "w3-table w3-bordered"}
-        fields = ("title", "title_order", "nama_type", "linga", "karanta",)
-        order_by = ("title_order",)
+        fields = ("title", "title_order", "linga", "karanta", "nama_type", "popularity",)
+        order_by = ("-popularity", "title_order",)
 
 
 class NamaSaddamalaFilter(FilterSet):
@@ -52,7 +54,7 @@ class AkhyataSaddamalaTable(tables.Table):
         viewname='akhyata_saddamala_update',
         args=[A('pk')],
         attrs={"a": {"class": "w3-button w3-round-xlarge w3-hover-brown"}}, 
-        text=mark_safe('<i class="fa-solid fa-magnifying-glass"></i>'),
+        text=mark_safe('<i class="fas fa-pencil-alt"></i>'),
         empty_values=(),
         verbose_name=_("Action")
     )
@@ -80,7 +82,7 @@ class PadanukkamaTable(tables.Table):
         viewname='padanukkama_update',
         args=[A('pk')],
         attrs={"a": {"class": "w3-button w3-round-xlarge w3-hover-brown"}}, 
-        text=mark_safe('<i class="fa-solid fa-magnifying-glass"></i>'),
+        text=mark_safe('<i class="fas fa-pencil-alt"></i>'),
         empty_values=(),
         orderable=False,
         verbose_name=_("Update")
@@ -358,7 +360,7 @@ class SaddaTable(tables.Table):
         model = Sadda
         template_name = "django_tables2/w3css.html"
         attrs = {"class": "w3-table w3-bordered"}
-        fields = ("sadda", "construction")
+        fields = ("sadda", "construction", "pada", "padanukkama")
         order_by = ("sadda_seq",)
 
     def render_pada(self, value, record):
@@ -376,11 +378,23 @@ class SaddaTable(tables.Table):
 
         return mark_safe(
             f'<a href="{url_with_params}" class="w3-button w3-round-xlarge w3-border w3-hover-white">'
-            f'<i class="fa-solid fa-magnifying-glass"></i></a>'
+            f'<i class="fas fa-pencil-alt"></i></a>'
         )
     
 
 class SaddaFilter(FilterSet):
+    padanukkama = ModelChoiceFilter(
+        queryset=Padanukkama.objects.none(),  # Set an initial empty queryset
+        widget=forms.Select(attrs={'class': 'form-control'}),
+        label=_("Padanukkama")
+    )
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.filters['padanukkama'].field.queryset = Padanukkama.objects.filter(
+            collaborators__id=self.request.user.id
+        )
+
     class Meta:
         model = Sadda
         fields = ("padanukkama", "sadda")

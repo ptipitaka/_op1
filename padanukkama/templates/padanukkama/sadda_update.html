@@ -55,13 +55,23 @@
                                 {{ field|add_class:"w3-input" }}
                             </p>
                         {% endfor %}
+                        <!-- preview button-->
+                        <button
+                            id="preview_vipatti"
+                            class="w3-button w3-dark-grey w3-hover-brown w3-round-xlarge"
+                            onclick="handlePreview(event);">
+                            {% trans "Preview" %}
+                        </button>
                         <!-- submit data -->
                         <button type="submit"
                             id="submit_data"
+                            style="display:none"
                             class="w3-button w3-margin-left w3-dark-grey w3-hover-blue w3-round-xlarge">
                             {% trans "Submit" %}
                         </button>
                     </div>
+                    <!-- Vipatti table -->
+                    <div id="result-container"></div>
                 </form>
             </div>
         </div>
@@ -70,7 +80,9 @@
         <div class="w3-container">
             <div class="w3-bar w3-light-grey">
                 <button class="w3-bar-item w3-button tablink w3-grey" onclick="openTabs(event,'Abidan')">{% trans 'Abidan' %}</button>
-             </div>
+                <button class="w3-bar-item w3-button tablink" onclick="openTabs(event,'Sadda')">{% trans 'Sadda' %}</button>
+                <button class="w3-bar-item w3-button tablink" onclick="openTabs(event,'Pada')">{% trans 'Pada' %}</button>
+            </div>
              <!-- Abidan closest matches-->
              <div id="Abidan" class="w3-border tab">
                  <header class="w3-container w3-light-grey">
@@ -82,6 +94,28 @@
                      </ul>
                  </div>
              </div>
+            <!-- Sadda closest matches -->
+            <div id="Sadda" class="w3-border tab" style="display:none">
+                <header class="w3-container w3-light-grey">
+                    <h5>{% trans 'Closest matching words in Sadda' %}</h5>
+                </header>
+
+                <div class="w3-container w3-padding">
+                    <ul id="sadda-closest-matches" class="w3-ul w3-hoverable">
+                    </ul>
+                </div>
+            </div>
+            <!-- Pada related -->
+            <div id="Pada" class="w3-border tab" style="display:none">
+                <header class="w3-container w3-light-grey">
+                    <h5>{% trans 'Pada related to this Sadda' %}</h5>
+                </header>
+
+                <div class="w3-container w3-padding">
+                    <ul id="related-pada" class="w3-ul w3-hoverable">
+                    </ul>
+                </div>
+            </div>
         </div>
 
     </div>
@@ -101,51 +135,25 @@
 {% endblock %}
 
 {% block script %}
-    <script src="{% static 'padanukkama/declension_modals.js' %}"></script>
+    <script src="{% static 'padanukkama/declension_main.js' %}"></script>
     <script src="{% static 'padanukkama/declension_tabs.js' %}"></script>
+    <script src="{% static 'padanukkama/declension_modals.js' %}"></script>
 
     {% include 'padanukkama/include/declension_find_abidan.html' %}
+    {% include 'padanukkama/include/declension_find_sadda.html' %}
+    {% include 'padanukkama/include/declension_find_related_pada.html' %}
+    {% include 'padanukkama/include/declension_create_vipatti.html' %}
 
     <script>
-        function manageInputFields(event) {
-            $('#fieldWrapper_id_namasaddamala, #fieldWrapper_id_akhyatasaddamala').hide();
-
-            // detact change from input value
-            var selectedValue = $('#id_sadda_type').val();
-            if (selectedValue === 'NamaSaddamala') {
-                $('#fieldWrapper_id_namasaddamala').show();
-                $('#fieldWrapper_id_akhyatasaddamala').hide();
-            } else if (selectedValue === 'AkhyataSaddamala') {
-                $('#fieldWrapper_id_namasaddamala').hide();
-                $('#fieldWrapper_id_akhyatasaddamala').show();
-            };
-        };
-
         $(document).ready(function () {
-            // Get the button element by its ID
-            var submitButton = $("#submit_data");
-            
-            // manage input fields
-            manageInputFields();
+            // Add the disabled attribute to the select tag
+            $('#id_padanukkama').prop('disabled', true);
 
-            $('#id_sadda_type').change(function() {
-                manageInputFields();
-            });
+            // Create Vipatti
+            create_vipatti();
 
-            // Attach change event listener to the inputs
-            $('#id_namasaddamala, #id_akhyatasaddamala').on('change', function() {
-                // Retrieve the updated values from the inputs
-                var namasaddamalaValues = $('#id_namasaddamala').val();
-                var akhyatasaddamalaValues = $('#id_akhyatasaddamala').val();
-
-                // Check if each array has a value
-                var isNamasaddamalaSelected = namasaddamalaValues.length > 0;
-                var isAkhyatasaddamalaSelected = akhyatasaddamalaValues.length > 0;
-            });
-
-            // find closet matches
-            find_abidan_closest_matches();
+            // Related Pada
+            find_realated_pada();
         });
-
     </script>
 {% endblock %}

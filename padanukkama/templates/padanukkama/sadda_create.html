@@ -23,11 +23,11 @@
 {% endblock %}
 
 {% block apptitle %}
-    {% include 'padanukkama/include/title.html' %} : {% trans 'Pada' %}・{% trans 'Vipatti' %}
+    {% include 'padanukkama/include/title.html' %} : {% trans 'Sadda' %}
 {% endblock %}
 
 {% block apptitle_option %}
-    <a href="{% url 'padanukkama_pada' pada.padanukkama_id %}?{{ request.GET.urlencode }}"
+    <a href="{% url 'sadda' %}?{{ request.GET.urlencode }}"
         class="w3-button w3-round-xlarge w3-hover-amber w3-display-right">
         {% trans "Back" %}
     </a>
@@ -35,8 +35,8 @@
 
 {% block body %}
     <div class="w3-container w3-light-grey">
-        <h4>{{ pada }} {% if pada.parent %}<small>({{ pada.get_parent_and_siblings }})</small>{% endif %}
-            <span id="padanukkama" data-value="{{ padanukkama.id }}" class="w3-right">{{ padanukkama }}</span>
+        <h4>{{ sadda.sadda }}
+            <span id="padanukkama" data-value="{{ sadda.padanukkama }}" class="w3-right">{{ sadda.padanukkama }}</span>
         </h4>
     </div>
 
@@ -58,6 +58,7 @@
                         <!-- preview button-->
                         <button
                             id="preview_vipatti"
+                            style="display:none"
                             class="w3-button w3-dark-grey w3-hover-brown w3-round-xlarge"
                             onclick="handlePreview(event);">
                             {% trans "Preview" %}
@@ -68,14 +69,6 @@
                             style="display:none"
                             class="w3-button w3-margin-left w3-dark-grey w3-hover-blue w3-round-xlarge">
                             {% trans "Submit" %}
-                        </button>
-                        <!-- decoupling -->
-                        <button
-                            id="decoupling"
-                            style="display:none"
-                            class="w3-button w3-right w3-dark-grey w3-hover-orange w3-round-xlarge"
-                            onclick="handleDecoupling(event);">
-                            {% trans "Decoupling" %}
                         </button>
                     </div>
                     <!-- Vipatti table -->
@@ -90,17 +83,17 @@
                 <button class="w3-bar-item w3-button tablink w3-grey" onclick="openTabs(event,'Abidan')">{% trans 'Abidan' %}</button>
                 <button class="w3-bar-item w3-button tablink" onclick="openTabs(event,'Sadda')">{% trans 'Sadda' %}</button>
             </div>
-            <!-- Abidan closest matches-->
-            <div id="Abidan" class="w3-border tab">
-                <header class="w3-container w3-light-grey">
-                    <h5>{% trans 'Closest matching words in Abidan' %}</h5>
-                </header>
-
-                <div class="w3-container w3-padding">
-                    <ul id="abidan-closest-matches" class="w3-ul w3-hoverable">
-                    </ul>
-                </div>
-            </div>
+             <!-- Abidan closest matches-->
+             <div id="Abidan" class="w3-border tab">
+                 <header class="w3-container w3-light-grey">
+                     <h5>{% trans 'Closest matching words in Abidan' %}</h5>
+                 </header>
+ 
+                 <div class="w3-container w3-padding">
+                     <ul id="abidan-closest-matches" class="w3-ul w3-hoverable">
+                     </ul>
+                 </div>
+             </div>
             <!-- Sadda closest matches -->
             <div id="Sadda" class="w3-border tab" style="display:none">
                 <header class="w3-container w3-light-grey">
@@ -113,6 +106,7 @@
                 </div>
             </div>
         </div>
+
     </div>
 
     <!-- Add the image modal markup -->
@@ -131,24 +125,51 @@
 
 {% block script %}
     <script src="{% static 'padanukkama/declension_main.js' %}"></script>
-    <script src="{% static 'padanukkama/declension_modals.js' %}"></script>
     <script src="{% static 'padanukkama/declension_tabs.js' %}"></script>
+    <script src="{% static 'padanukkama/declension_modals.js' %}"></script>
 
-    {% include 'padanukkama/include/declension_existing_sadda.html' %}
     {% include 'padanukkama/include/declension_find_abidan.html' %}
     {% include 'padanukkama/include/declension_find_sadda.html' %}
     {% include 'padanukkama/include/declension_create_vipatti.html' %}
-    {% include 'padanukkama/include/declension_decoupling.html' %}
 
     <script>
         $(document).ready(function () {
-            // Add the disabled attribute to the select tag
             $('#id_padanukkama').prop('disabled', true);
-            {% if pada.sadda %}
-                create_vipatti();
-                var decouplingButton = $("#decoupling");
-                decouplingButton.css("display", "");
-            {% endif %}
         });
+
+        function check_existing_sadda () {
+            // Get input data
+            var id_padanukkama = '{{ padanukkama_id }}';
+            var id_sadda = $('#id_sadda').val();
+
+            var url = "{% url 'find_existing_sadda' padanukkama_id=111 sadda=222 %}"
+                .replace('111', id_padanukkama)
+                .replace('222', id_sadda);
+            $.ajax({
+                url: url,
+                type: 'GET',
+                success: function (response) {
+                    if (response.found) {
+                        // Show confirmation popup here
+                        if (confirm('{% trans "Existing sadda found." %}')) {
+                            // User confirmed, perform further actions
+                            console.log('confirm')
+                        } else {
+                            // User canceled, handle accordingly
+                            console.log('canceled')
+                        }
+                        $('#id_sadda').val('');
+                    } else {
+                        // Handle case when sadda is not found
+                        console.log('Sadda not found');
+                    }
+                },
+                error: function (xhr, status, error) {
+                    // Handle error cases
+                    console.error(error)
+                }
+            })
+        }
+
     </script>
 {% endblock %}

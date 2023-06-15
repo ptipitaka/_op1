@@ -9,6 +9,9 @@
         th, td {
             padding: 15px;
         }
+        input {
+            word-spacing: 10px;
+        }
     </style>
 {% endblock %}
 
@@ -525,8 +528,8 @@
             </div>
             <div class="w3-center">
                 <div class="w3-bar">
-                    {% if url_name == 'nama_saddamala_update' %}
-                        <a href="{% url 'nama_saddamala_delete' object.pk %}"
+                    {% if url_name == 'akhyata_saddamala_update' %}
+                        <a href="{% url 'akhyata_saddamala_delete' object.pk %}"
                             class="w3-button w3-round-xlarge w3-white w3-border w3-hover-red w3-margin-right" 
                             style="width:150px">
                             {% trans 'Delete' %}
