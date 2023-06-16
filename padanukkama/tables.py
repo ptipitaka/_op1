@@ -42,8 +42,12 @@ class NamaSaddamalaTable(tables.Table):
 class NamaSaddamalaFilter(FilterSet):
     class Meta:
         model = NamaSaddamala
-        fields = ("title", "nama_type", "linga", "karanta",)
-
+        fields = {
+            "title": ["icontains"],
+            "nama_type": ["exact"],
+            "linga": ["exact"],
+            "karanta": ["exact"],
+        }
 
 # -----------------------------------------------------
 # AkhyataSaddamala Table & Filter

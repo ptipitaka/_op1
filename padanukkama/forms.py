@@ -182,13 +182,15 @@ class SaddaForm(forms.ModelForm):
     namasaddamala = forms.ModelMultipleChoiceField(
         queryset=NamaSaddamala.objects.all().order_by('-popularity', 'linga', 'title_order'),
         widget=Select2MultipleWidget,
-        required=False
+        required=False,
+        label=_('NamaSaddamala')
     )
 
     akhyatasaddamala = forms.ModelMultipleChoiceField(
         queryset=AkhyataSaddamala.objects.all().order_by('-popularity', 'title_order'),
         widget=Select2MultipleWidget,
-        required=False
+        required=False,
+        label=_('AkhyataSaddamala')
     )
 
     class Meta:

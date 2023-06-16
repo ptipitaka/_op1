@@ -66,6 +66,22 @@ class NamaSaddamalaCreateView(LoginRequiredMixin, CreateView):
         context = super().get_context_data(**kwargs)
         context['url_name'] = resolve(self.request.path_info).url_name
         return context
+    
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        messages.success(self.request, _("Form saved successfully."))
+        return response
+
+    def form_invalid(self, form):
+        response = super().form_invalid(form)
+        error_message = _("Form contains errors. Please correct them.")
+        messages.error(self.request, error_message)
+        
+        # Print the detailed form errors
+        for field, errors in form.errors.items():
+            for error in errors:
+                print(f"Field '{field}': {error}")
+        return response
 
 
 
@@ -96,7 +112,6 @@ class NamaSaddamalaUpdateView(LoginRequiredMixin, UpdateView):
         for field, errors in form.errors.items():
             for error in errors:
                 print(f"Field '{field}': {error}")
-
         return response
 
 
