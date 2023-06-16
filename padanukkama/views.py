@@ -60,7 +60,6 @@ class NamaSaddamalaCreateView(LoginRequiredMixin, CreateView):
     model = NamaSaddamala
     template_name = "padanukkama/nama_saddamala_detail.html"
     form_class = NamaSaddamalaForm
-    success_url = reverse_lazy('nama_saddamala')
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -83,7 +82,11 @@ class NamaSaddamalaCreateView(LoginRequiredMixin, CreateView):
                 print(f"Field '{field}': {error}")
         return response
 
-
+    def get_success_url(self):
+        success_url = reverse_lazy('nama_saddamala')
+        query_params = self.request.GET.copy()  # Create a mutable copy of the request's GET parameters
+        success_url += '?' + urlencode(query_params)  # Add the query parameters to the success URL
+        return success_url
 
 # NamaSaddamalaUpdateView
 # -----------------------
@@ -91,7 +94,6 @@ class NamaSaddamalaUpdateView(LoginRequiredMixin, UpdateView):
     model = NamaSaddamala
     template_name = "padanukkama/nama_saddamala_detail.html"
     form_class = NamaSaddamalaForm
-    success_url = reverse_lazy('nama_saddamala')
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -114,7 +116,12 @@ class NamaSaddamalaUpdateView(LoginRequiredMixin, UpdateView):
                 print(f"Field '{field}': {error}")
         return response
 
-
+    def get_success_url(self):
+        success_url = reverse_lazy('nama_saddamala')
+        query_params = self.request.GET.copy()  # Create a mutable copy of the request's GET parameters
+        success_url += '?' + urlencode(query_params)  # Add the query parameters to the success URL
+        return success_url
+    
 
 # NamaSaddamalaDeleteView
 # -----------------------

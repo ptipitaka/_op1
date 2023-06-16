@@ -22,14 +22,19 @@ class NamaSaddamalaTable(tables.Table):
     title_order = tables.Column(visible=False)
     popularity = tables.Column(visible=False)
     
-    action = tables.LinkColumn(
-        viewname='nama_saddamala_update',
-        args=[A('pk')],
-        attrs={"a": {"class": "w3-button w3-round-xlarge w3-hover-brown"}}, 
-        text=format_html('<i class="fas fa-pencil-alt"></i>'),
+    action = tables.Column(
         empty_values=(),
-        verbose_name=_("Action")
-    )
+        orderable=False,
+        verbose_name=_('Action'))
+    
+    def render_action(self, record):
+        query_params = self.request.GET
+        url = reverse_lazy('nama_saddamala_update', args=[record.id])
+        url_with_params = f'{url}?{query_params.urlencode()}'
+        return mark_safe(
+            f'<a href="{url_with_params}" class="w3-button w3-round-xlarge w3-hover-white">'
+            f'<i class="fas fa-pencil-alt"></i></a>'
+        )
 
     class Meta:
         model = NamaSaddamala
