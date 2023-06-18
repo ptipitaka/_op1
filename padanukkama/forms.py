@@ -179,6 +179,11 @@ class xPadaForm(forms.Form):
 # SaddaForm
 # -----------------------------------------------------
 class SaddaForm(forms.ModelForm):
+    padanukkama = forms.ModelChoiceField(
+        queryset=Padanukkama.objects.all(),
+        widget=forms.TextInput(attrs={'readonly': 'readonly'}),
+        to_field_name='title')
+
     namasaddamala = forms.ModelMultipleChoiceField(
         queryset=NamaSaddamala.objects.all().order_by('-popularity', 'linga', 'title_order'),
         widget=Select2MultipleWidget,

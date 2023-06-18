@@ -88,6 +88,8 @@ class NamaSaddamalaCreateView(LoginRequiredMixin, CreateView):
         success_url += '?' + urlencode(query_params)  # Add the query parameters to the success URL
         return success_url
 
+
+
 # NamaSaddamalaUpdateView
 # -----------------------
 class NamaSaddamalaUpdateView(LoginRequiredMixin, UpdateView):
@@ -123,6 +125,7 @@ class NamaSaddamalaUpdateView(LoginRequiredMixin, UpdateView):
         return success_url
     
 
+
 # NamaSaddamalaDeleteView
 # -----------------------
 class NamaSaddamalaDeleteView(LoginRequiredMixin, DeleteView):
@@ -135,6 +138,8 @@ class NamaSaddamalaDeleteView(LoginRequiredMixin, DeleteView):
         context['nama_saddamala'] = self.get_object()
         context['url_name'] = resolve(self.request.path_info).url_name
         return context
+
+
 
 # ====================================================
 # AkhyataSaddamala
@@ -217,6 +222,7 @@ class AkhyataSaddamalaDeleteView(LoginRequiredMixin, DeleteView):
         return context
 
 
+
 # ====================================================
 # Padanukkama
 # ====================================================
@@ -234,7 +240,6 @@ class PadanukkamaView(LoginRequiredMixin, SingleTableMixin, FilterView):
         context = super(PadanukkamaView, self).get_context_data(**kwargs)
         context["total_rec"] = '{:,}'.format(len(self.get_table().rows)) 
         return context
-
 
 
 # PadanukkamaCreateView
@@ -285,6 +290,7 @@ class PadanukkamaDeleteView(LoginRequiredMixin, DeleteView):
     template_name = "padanukkama/padanukkama_delete.html"
 
 
+
 # =====================================================
 # PadanukkamaPadaView
 # =====================================================
@@ -309,7 +315,6 @@ class PadanukkamaPadaView(LoginRequiredMixin, SingleTableMixin, FilterView):
         context['deleted_conf_message'] = _('Are you sure you want to delete this record?')
         context["total_rec"] = '{:,}'.format(len(self.get_table().rows)) 
         return context
-
 
 
 # PadaSplitSandhiView
@@ -353,7 +358,6 @@ class PadaSplitSandhiView(LoginRequiredMixin, View):
             
             return redirect(request.get_full_path())
         return render(request, self.template_name, {'form': form, 'pada': pada})
-
 
 
 # PadaDuplicateView
@@ -410,8 +414,8 @@ class PadaDeleteView(LoginRequiredMixin, View):
 
 
 
-# PadaDeclensionView
-# ------------------
+# FindAbidanClosestMatchesView
+# ----------------------------
 class FindAbidanClosestMatchesView(LoginRequiredMixin, View):
     def get(self, request):
         string = request.GET.get('string')  # Get the string from the AJAX request
@@ -723,6 +727,7 @@ class CreateVipatti(LoginRequiredMixin, View):
         return JsonResponse(data, safe=False)
 
 
+
 # =====================================================
 # SaddaView
 # =====================================================
@@ -744,6 +749,7 @@ class SaddaView(LoginRequiredMixin, SingleTableMixin, FilterView):
         return context
     
     
+
 # SaddaCreateView
 # ---------------
 class SaddaCreateView(LoginRequiredMixin, CreateView):
@@ -775,6 +781,8 @@ class SaddaCreateView(LoginRequiredMixin, CreateView):
         error_message = _("Form contains errors. Please correct them.")
         messages.error(self.request, error_message)
         return response
+
+
 
 # SaddaUpdateView
 # ---------------
@@ -812,6 +820,7 @@ class SaddaUpdateView(LoginRequiredMixin, UpdateView):
         success_url += '?' + urlencode(query_params)  # Add the query parameters to the success URL
         return success_url
     
+
 
 # FindRelatedPadaView
 # --------------------

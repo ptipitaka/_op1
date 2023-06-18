@@ -12,7 +12,8 @@ from django_filters import FilterSet, ChoiceFilter, filters, ModelChoiceFilter
 from django_tables2.utils import A
 from mptt.templatetags.mptt_tags import cache_tree_children
 
-from .models import NamaSaddamala, AkhyataSaddamala, Padanukkama, Pada, Sadda
+from .models import NamaSaddamala, AkhyataSaddamala, \
+    Padanukkama, Pada, Sadda, NamaType, Karanta
 
 
 # -----------------------------------------------------
@@ -40,19 +41,35 @@ class NamaSaddamalaTable(tables.Table):
         model = NamaSaddamala
         template_name = "django_tables2/w3css.html"
         attrs = {"class": "w3-table w3-bordered"}
-        fields = ("title", "title_order", "linga", "karanta", "nama_type", "popularity",)
+        fields = ("title_order", "title", "linga", "karanta", "nama_type", "popularity",)
         order_by = ("-popularity", "title_order",)
 
 
 class NamaSaddamalaFilter(FilterSet):
+    title__contains = filters.CharFilter(
+        field_name='title',
+        lookup_expr='icontains',
+        label=_('Title contains'))
+    nama_type__exact = filters.ChoiceFilter(
+        field_name='nama_type',
+        lookup_expr='exact',
+        choices=NamaType.objects.values_list('id', 'title'),
+        label=_('Type'))
+    linga__exact = filters.ChoiceFilter(
+        field_name='linga',
+        lookup_expr='exact',
+        choices=NamaType.objects.values_list('id', 'title'),
+        label=_('Liṅga'))
+    karanta__exact = filters.ChoiceFilter(
+        field_name='karanta',
+        lookup_expr='exact',
+        choices=Karanta.objects.values_list('id', 'title'),
+        label=_('Kāranta'))
+    
     class Meta:
         model = NamaSaddamala
-        fields = {
-            "title": ["icontains"],
-            "nama_type": ["exact"],
-            "linga": ["exact"],
-            "karanta": ["exact"],
-        }
+        fields = {}
+        
 
 # -----------------------------------------------------
 # AkhyataSaddamala Table & Filter
@@ -275,7 +292,7 @@ class PadaFilter(FilterSet):
 
     pada__startswith = filters.CharFilter(
         field_name='pada',
-        lookup_expr='istartswith',
+        lookup_expr='startswith',
         label=_('Pada starts with'))
     
     pada__contains = filters.CharFilter(
@@ -289,6 +306,7 @@ class PadaFilter(FilterSet):
         choices=NULL_CHOICES,
         method="filter_pada_with_null_sadda"
     )
+    
 
     def filter_pada_with_null_sadda(self, queryset, name, value):
         if value:

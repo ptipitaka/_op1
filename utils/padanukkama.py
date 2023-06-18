@@ -21,12 +21,6 @@ def create_pada(padanukkama_id):
     # Filter the WordList objects based on the conditions and wordlist_version
     wordlists = WordList.objects.filter(wordlist_version__in=wordlist_versions).filter(conditions).distinct('word')
     for wordlist in wordlists:
-        # Pada.objects.create(
-        #     padanukkama=padanukkama,
-        #     pada=wordlist.word,
-        #     pada_seq=wordlist.word_seq,
-        #     pada_roman_script=wordlist.word_roman_script,
-        # )
         is_pada_exists = Pada.objects.filter(
             padanukkama=padanukkama,
             pada=wordlist.word
