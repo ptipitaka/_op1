@@ -13,15 +13,13 @@ function saddaConst(event, string) {
     var startIndex = string.indexOf('[');
     var endIndex = string.indexOf(']');
 
+    // Update the value of construction field
     if (startIndex !== -1 && endIndex !== -1 && endIndex > startIndex) {
         extractedText = string.substring(startIndex, endIndex + 1);
         extractedText = extractedText.replace(/(\S)\+/g, '$1 + ');
 
-        // Update the value of construction field
         $("#id_construction").val(extractedText);
 
-    } else {
-        extractedText = null;
     }
 }
 

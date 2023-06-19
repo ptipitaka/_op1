@@ -41,7 +41,7 @@ class NamaSaddamalaTable(tables.Table):
         model = NamaSaddamala
         template_name = "django_tables2/w3css.html"
         attrs = {"class": "w3-table w3-bordered"}
-        fields = ("title_order", "title", "linga", "karanta", "nama_type", "popularity",)
+        fields = ("title_order", "title", "title_code", "linga", "karanta", "nama_type", "popularity",)
         order_by = ("-popularity", "title_order",)
 
 

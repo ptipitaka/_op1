@@ -33,6 +33,7 @@ from .forms import  NamaSaddamalaForm, AkhyataSaddamalaForm, \
 
 from utils.pali_char import *
 from utils.padanukkama import *
+from utils.declension import *
 
 # ====================================================
 # NamaSaddamala
@@ -581,7 +582,7 @@ class PadaDeclensionView(LoginRequiredMixin, View):
             value_list = []
             for tid in template_ids:
                 if sadda.sadda_type == 'NamaSaddamala':
-                    result = mix_namavipatties(sadda.sadda, tid.id)
+                    result = noun_declension(sadda.sadda, tid.id)
 
                 elif sadda.sadda_type == 'AkhyataSaddamala':
                     result = mix_akhyatavipatties(sadda.sadda, tid.id)
@@ -685,7 +686,8 @@ class CreateVipatti(LoginRequiredMixin, View):
 
         for tid in template_ids:
             if sadda_type == 'NamaSaddamala':
-                result = mix_namavipatties(sadda, tid)
+                result = noun_declension(sadda, tid)
+                # result = mix_namavipatties(sadda, tid)
                 template = NamaSaddamala.objects.get(pk=tid)
                 template_data = {
                     'title': template.title,

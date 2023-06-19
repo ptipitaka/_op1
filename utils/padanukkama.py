@@ -44,7 +44,9 @@ def mix_namavipatties(sadda, template_id):
     sadda_expand = extract(sadda)
     
     vipatti_fields = [
-        'nom_sg', 'nom_pl','voc_sg','voc_pl','acc_sg','acc_pl','instr_sg','instr_pl','dat_sg','dat_pl','abl_sg','abl_pl','gen_sg','gen_pl','loc_sg','loc_pl',
+        'nom_sg', 'nom_pl','voc_sg','voc_pl','acc_sg','acc_pl',
+        'instr_sg','instr_pl','dat_sg','dat_pl','abl_sg','abl_pl',
+        'gen_sg','gen_pl','loc_sg','loc_pl',
     ]
     for vipatti_key in vipatti_fields:
         vipatti_keys = getattr(pada, vipatti_key)
