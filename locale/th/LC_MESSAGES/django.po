@@ -1772,14 +1772,10 @@ msgid "Please correct the error"
 msgstr "กรุณาแก้ไขข้อผิดพลาด"
 
 #: .\padanukkama\forms.py:186
-#, fuzzy
-#| msgid "Namasaddamala"
 msgid "NamaSaddamala"
 msgstr "การจำแนกแบบแจกบทนาม"
 
 #: .\padanukkama\forms.py:193
-#, fuzzy
-#| msgid "Akhyatasaddamala"
 msgid "AkhyataSaddamala"
 msgstr "การจำแนกแบบแจกบทอาขยาต"
 
@@ -2855,14 +2851,10 @@ msgid "Translation"
 msgstr "แปล"
 
 #: .\padanukkama\templates\padanukkama\sadda_create.html:154
-#, fuzzy
-#| msgid "Existing sadda found. Do you want to proceed?"
 msgid "Existing sadda found."
 msgstr "พบว่ามีศัพท์นี้ในฐานข้อมูล ต้องการดำเนินการต่อหรือไม่?"
 
 #: .\padanukkama\templates\padanukkama\sadda_update.html:111
-#, fuzzy
-#| msgid "Pada with Sadda"
 msgid "Pada related to this Sadda"
 msgstr "แสดงบทที่แจกวิภัตติแล้ว"
 

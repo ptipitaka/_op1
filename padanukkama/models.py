@@ -245,10 +245,53 @@ class Paccaya(models.Model):
     title = models.CharField(
         max_length=80,
         verbose_name=_("Title"))
+    title_order = models.CharField(
+        max_length=80,
+        null=True,
+        blank=True,
+        verbose_name=_("Title order"))
 
     def __str__(self):
         return f"{self.title}"
 
+    def save(self, *args, **kwargs):
+        self.title_order = encode(extract(clean(self.title)))
+        super().save(*args, **kwargs)
+
+# -----------------------------------------------------
+# Dhatu
+# -----------------------------------------------------
+class Dhatu(models.Model):
+    title = models.CharField(
+        max_length=80,
+        verbose_name=_("Title"))
+    title_order = models.CharField(
+        max_length=80,
+        null=True,
+        blank=True,
+        verbose_name=_("Title order"))
+    definition = models.CharField(
+        max_length=80,
+        verbose_name=_("Definition"))
+    meaning = models.CharField(
+        max_length=80,
+        verbose_name=_("Meaning"))
+    paccaya = models.ManyToManyField(
+        Paccaya,
+        related_name='dhatus',
+        verbose_name=_("Paccaya"))
+    popularity = models.IntegerField(
+        default=0,
+        null=True,
+        blank=True,
+        verbose_name=_("Popularity"))
+
+    def __str__(self):
+        return f"{self.title}"
+
+    def save(self, *args, **kwargs):
+        self.title_order = encode(extract(clean(self.title)))
+        super().save(*args, **kwargs)
 
 # -----------------------------------------------------
 # Sadda
@@ -279,7 +322,7 @@ class Sadda(models.Model):
     namasaddamala = models.ManyToManyField(
         NamaSaddamala,
         related_name='saddas',
-        verbose_name=_("Namasaddamala"))
+        verbose_name=_("NamaSaddamala"))
     construction = models.CharField(
         max_length=150,
         null=True,
