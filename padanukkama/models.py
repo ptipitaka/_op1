@@ -239,7 +239,7 @@ class Padanukkama(models.Model):
 
 
 # -----------------------------------------------------
-# Dhatu Category
+# Dhatugana
 # -----------------------------------------------------
 class Dhatugana(models.Model):
     sequence = models.IntegerField(
