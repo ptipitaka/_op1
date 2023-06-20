@@ -275,6 +275,7 @@ class Dhatu(models.Model):
         verbose_name=_("Title order"))
     dhatugana = models.ForeignKey(
         Dhatugana,
+        null=True,
         verbose_name=_("Dhatugana"),
         on_delete=models.CASCADE)
     definition = models.CharField(
@@ -311,8 +312,7 @@ class Paccaya(models.Model):
         verbose_name=_("Title order"))
     dhatugana = models.ManyToManyField(
         Dhatugana,
-        verbose_name=_("Dhatugana"),
-        on_delete=models.CASCADE)
+        verbose_name=_("Dhatugana"))
 
     def __str__(self):
         return f"{self.title}"
