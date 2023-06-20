@@ -239,17 +239,18 @@ class Padanukkama(models.Model):
 
 
 # -----------------------------------------------------
-# Paccaya
+# Dhatu Category
 # -----------------------------------------------------
-class Paccaya(models.Model):
+class Dhatugana(models.Model):
+    sequence = models.IntegerField(
+        verbose_name=_("Sequence"))
     title = models.CharField(
         max_length=80,
         verbose_name=_("Title"))
-    title_order = models.CharField(
+    description = models.CharField(
         max_length=80,
-        null=True,
         blank=True,
-        verbose_name=_("Title order"))
+        verbose_name=_("Description"))
 
     def __str__(self):
         return f"{self.title}"
@@ -257,6 +258,8 @@ class Paccaya(models.Model):
     def save(self, *args, **kwargs):
         self.title_order = encode(extract(clean(self.title)))
         super().save(*args, **kwargs)
+
+
 
 # -----------------------------------------------------
 # Dhatu
@@ -270,16 +273,16 @@ class Dhatu(models.Model):
         null=True,
         blank=True,
         verbose_name=_("Title order"))
+    dhatugana = models.ForeignKey(
+        Dhatugana,
+        verbose_name=_("Dhatugana"),
+        on_delete=models.CASCADE)
     definition = models.CharField(
         max_length=80,
         verbose_name=_("Definition"))
     meaning = models.CharField(
         max_length=80,
         verbose_name=_("Meaning"))
-    paccaya = models.ManyToManyField(
-        Paccaya,
-        related_name='dhatus',
-        verbose_name=_("Paccaya"))
     popularity = models.IntegerField(
         default=0,
         null=True,
@@ -292,6 +295,32 @@ class Dhatu(models.Model):
     def save(self, *args, **kwargs):
         self.title_order = encode(extract(clean(self.title)))
         super().save(*args, **kwargs)
+
+
+# -----------------------------------------------------
+# Paccaya
+# -----------------------------------------------------
+class Paccaya(models.Model):
+    title = models.CharField(
+        max_length=80,
+        verbose_name=_("Title"))
+    title_order = models.CharField(
+        max_length=80,
+        null=True,
+        blank=True,
+        verbose_name=_("Title order"))
+    dhatugana = models.ManyToManyField(
+        Dhatugana,
+        verbose_name=_("Dhatugana"),
+        on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.title}"
+
+    def save(self, *args, **kwargs):
+        self.title_order = encode(extract(clean(self.title)))
+        super().save(*args, **kwargs)
+
 
 # -----------------------------------------------------
 # Sadda
