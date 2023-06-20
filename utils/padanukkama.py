@@ -1,7 +1,7 @@
 from django.db.models import Q
 
 from tipitaka.models import CommonReference, WordList
-from padanukkama.models import Padanukkama, Pada, NamaSaddamala, AkhyataSaddamala
+from padanukkama.models import Padanukkama, Pada, NamaSaddamala
 from .pali_char import extract, compress, is_validate_pali
 
 def create_pada(padanukkama_id):

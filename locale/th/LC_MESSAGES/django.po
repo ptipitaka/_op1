@@ -2333,7 +2333,7 @@ msgstr "การจำแนกแบบแจกบทอาขยาต"
 
 #: .\padanukkama\models.py:826
 msgid "Construction"
-msgstr "ตัดบทสมาส"
+msgstr "การประกอบคำ"
 
 #: .\padanukkama\models.py:829
 msgid "Meaning"

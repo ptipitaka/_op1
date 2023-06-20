@@ -12,7 +12,7 @@ from django_filters import FilterSet, ChoiceFilter, filters, ModelChoiceFilter
 from django_tables2.utils import A
 from mptt.templatetags.mptt_tags import cache_tree_children
 
-from .models import NamaSaddamala, AkhyataSaddamala, \
+from .models import NamaSaddamala, \
     Padanukkama, Pada, Sadda, NamaType, Karanta
 
 
@@ -71,33 +71,6 @@ class NamaSaddamalaFilter(FilterSet):
         fields = {}
         
 
-# -----------------------------------------------------
-# AkhyataSaddamala Table & Filter
-# -----------------------------------------------------
-class AkhyataSaddamalaTable(tables.Table):
-    title_order = tables.Column(visible=False)
-    action = tables.LinkColumn(
-        viewname='akhyata_saddamala_update',
-        args=[A('pk')],
-        attrs={"a": {"class": "w3-button w3-round-xlarge w3-hover-brown"}}, 
-        text=mark_safe('<i class="fas fa-pencil-alt"></i>'),
-        empty_values=(),
-        verbose_name=_("Action")
-    )
-
-    class Meta:
-        model = AkhyataSaddamala
-        template_name = "django_tables2/w3css.html"
-        attrs = {"class": "w3-table w3-bordered"}
-        fields = ("title", "title_order", "dhatu", "paccaya",)
-        order_by = ("title_order",)
-
-
-class AkhyataSaddamalaFilter(FilterSet):
-    class Meta:
-        model = AkhyataSaddamala
-        fields = ("title", "dhatu", "paccaya",)
-
 
 # -----------------------------------------------------
 # Padanukkama Table & Filter
@@ -121,7 +94,7 @@ class PadanukkamaTable(tables.Table):
         text=mark_safe('<i class="far fa-list"></i>'),
         empty_values=(),
         orderable=False,
-        verbose_name=_("บท")
+        verbose_name=_("Pada")
     )
 
     about = tables.Column(attrs={'td': {'style': 'width: 40%;'}})

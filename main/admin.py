@@ -29,9 +29,6 @@ def get_app_list(self, request):
                 'namasaddamala': 1,
                 'linga': 2,
                 'karanta': 3,
-                'akhyatasaddamala': 4,
-                'dhatu': 5,
-                'paccaya': 6,
             }
             app['models'].sort(key=lambda x: model_ordering.get(x['object_name'].lower(), 100))
 

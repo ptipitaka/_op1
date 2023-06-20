@@ -36,16 +36,14 @@ function handlePreview(event) {
 
 // Function manage input fields
 function manageInputFields(event) {
-    $('#fieldWrapper_id_namasaddamala, #fieldWrapper_id_akhyatasaddamala').hide();
+    $('#fieldWrapper_id_namasaddamala').hide();
 
     // detact change from input value
     var selectedValue = $('#id_sadda_type').val();
-    if (selectedValue === 'NamaSaddamala') {
+    if (selectedValue === 'Nama') {
         $('#fieldWrapper_id_namasaddamala').show();
-        $('#fieldWrapper_id_akhyatasaddamala').hide();
-    } else if (selectedValue === 'AkhyataSaddamala') {
+    } else if (selectedValue === 'Akhyata') {
         $('#fieldWrapper_id_namasaddamala').hide();
-        $('#fieldWrapper_id_akhyatasaddamala').show();
     };
 };
 
@@ -69,15 +67,12 @@ $(document).ready(function () {
     });
 
     // Attach change event listener to the inputs
-    $('#id_namasaddamala, #id_akhyatasaddamala').on('change', function() {
+    $('#id_namasaddamala').on('change', function() {
         // Retrieve the updated values from the inputs
         var namasaddamalaValues = $('#id_namasaddamala').val();
-        var akhyatasaddamalaValues = $('#id_akhyatasaddamala').val();
 
         // Check if each array has a value
         var isNamasaddamalaSelected = namasaddamalaValues.length > 0;
-        var isAkhyatasaddamalaSelected = akhyatasaddamalaValues.length > 0;
-        
         
         // Perform your desired actions with the updated values
         $('#id_sadda').on('input', function() {
@@ -92,7 +87,7 @@ $(document).ready(function () {
             }
         });
 
-        if (isNamasaddamalaSelected || isAkhyatasaddamalaSelected ) {
+        if (isNamasaddamalaSelected ) {
             previewButton.css('display', '');
         }
         else {

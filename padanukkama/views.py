@@ -16,18 +16,17 @@ from braces.views import LoginRequiredMixin
 from fuzzywuzzy import fuzz, process
 from urllib.parse import urlencode
 
-from .models import NamaSaddamala, AkhyataSaddamala, Padanukkama, Pada, Sadda
+from .models import NamaSaddamala, Padanukkama, Pada, Sadda
 
 from abidan.models import Word, WordLookup
 
 from .tables import NamaSaddamalaTable, NamaSaddamalaFilter, \
-                    AkhyataSaddamalaTable, AkhyataSaddamalaFilter, \
                     PadanukkamaTable, PadanukkamaFilter, \
                     PadaTable, PadaFilter, \
                     PadaParentChildTable, \
                     SaddaTable, SaddaFilter
 
-from .forms import  NamaSaddamalaForm, AkhyataSaddamalaForm, \
+from .forms import  NamaSaddamalaForm, \
                     PadanukkamaCreateForm, PadanukkamaUpdateForm, \
                     AddChildPadaForm, SaddaForm
 
@@ -137,88 +136,6 @@ class NamaSaddamalaDeleteView(LoginRequiredMixin, DeleteView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['nama_saddamala'] = self.get_object()
-        context['url_name'] = resolve(self.request.path_info).url_name
-        return context
-
-
-
-# ====================================================
-# AkhyataSaddamala
-# ====================================================
-
-# AkhyataSaddamalaView
-# --------------------
-class AkhyataSaddamalaView(LoginRequiredMixin, SingleTableMixin, FilterView):
-    model = AkhyataSaddamala
-    template_name = "padanukkama/akhyata_saddamala.html"
-    context_object_name  = "akhyata_saddamala"
-    table_class = AkhyataSaddamalaTable
-    filterset_class = AkhyataSaddamalaFilter
-    
-    def get_context_data(self, **kwargs):
-        context = super(AkhyataSaddamalaView, self).get_context_data(**kwargs)
-        context["total_rec"] = '{:,}'.format(len(self.get_table().rows)) 
-        return context
-
-
-
-# AkhyataSaddamalaCreateView
-# --------------------------
-class AkhyataSaddamalaCreateView(LoginRequiredMixin, CreateView):
-    model = AkhyataSaddamala
-    template_name = "padanukkama/akhyata_saddamala_detail.html"
-    form_class = AkhyataSaddamalaForm
-    success_url = reverse_lazy('akhyata_saddamala')
-    
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['url_name'] = resolve(self.request.path_info).url_name
-        return context
-
-
-
-# AkhyataSaddamalaUpdateView
-# --------------------------
-class AkhyataSaddamalaUpdateView(LoginRequiredMixin, UpdateView):
-    model = AkhyataSaddamala
-    template_name = "padanukkama/akhyata_saddamala_detail.html"
-    form_class = AkhyataSaddamalaForm
-    success_url = reverse_lazy('akhyata_saddamala')
-    
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['url_name'] = resolve(self.request.path_info).url_name
-        return context
-
-    def form_valid(self, form):
-        response = super().form_valid(form)
-        messages.success(self.request, _("Form saved successfully."))
-        return response
-
-    def form_invalid(self, form):
-        response = super().form_invalid(form)
-        error_message = _("Form contains errors. Please correct them.")
-        messages.error(self.request, error_message)
-        
-        # Print the detailed form errors
-        for field, errors in form.errors.items():
-            for error in errors:
-                print(f"Field '{field}': {error}")
-
-        return response
-
-
-
-# AkhyataSaddamalaDeleteView
-# --------------------------
-class AkhyataSaddamalaDeleteView(LoginRequiredMixin, DeleteView):
-    model = AkhyataSaddamala
-    template_name = "padanukkama/akhyata_saddamala_detail.html"
-    success_url = reverse_lazy('akhyata_saddamala')
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['akhyata_saddamala'] = self.get_object()
         context['url_name'] = resolve(self.request.path_info).url_name
         return context
 
@@ -509,7 +426,6 @@ class PadaDeclensionView(LoginRequiredMixin, View):
                     'sadda':  pada.sadda.sadda,
                     'sadda_type':  pada.sadda.sadda_type,
                     'namasaddamala': [item.pk for item in pada.sadda.namasaddamala.all()],
-                    'akhyatasaddamala': [item.pk for item in pada.sadda.akhyatasaddamala.all()],
                     'construction':  pada.sadda.construction,
                     'meaning': ", ".join(pada.sadda.meaning.all().values_list('name', flat=True)),
                     'description': pada.sadda.description
@@ -520,7 +436,7 @@ class PadaDeclensionView(LoginRequiredMixin, View):
                 form = SaddaForm(initial={
                     'padanukkama': pada.padanukkama,
                     'sadda': pada.pada,
-                    'sadda_type': 'NamaSaddamala'
+                    'sadda_type': 'Nama'
                 })
 
             context = {
@@ -578,14 +494,11 @@ class PadaDeclensionView(LoginRequiredMixin, View):
 
 
             # Find all related Pada
-            template_ids = list(sadda.namasaddamala.all()) if sadda.sadda_type == "NamaSaddamala" else list(sadda.akhyatasaddamala.all())
+            template_ids = list(sadda.namasaddamala.all())
             value_list = []
             for tid in template_ids:
-                if sadda.sadda_type == 'NamaSaddamala':
+                if sadda.sadda_type == 'Nama':
                     result = noun_declension(sadda.sadda, tid.id)
-
-                elif sadda.sadda_type == 'AkhyataSaddamala':
-                    result = mix_akhyatavipatties(sadda.sadda, tid.id)
 
                 for key, value in result.items():
                     if key != 'error':
@@ -685,7 +598,7 @@ class CreateVipatti(LoginRequiredMixin, View):
         data = []
 
         for tid in template_ids:
-            if sadda_type == 'NamaSaddamala':
+            if sadda_type == 'Nama':
                 result = noun_declension(sadda, tid)
                 # result = mix_namavipatties(sadda, tid)
                 template = NamaSaddamala.objects.get(pk=tid)
@@ -694,15 +607,6 @@ class CreateVipatti(LoginRequiredMixin, View):
                     'nama_type': template.nama_type.title if template.nama_type else '-',
                     'linga': template.linga.title if template.linga else '-',
                     'update_url': reverse_lazy('nama_saddamala_update', args=[tid]),
-                }
-            elif sadda_type == 'AkhyataSaddamala':
-                result = mix_akhyatavipatties(sadda, tid)
-                template = AkhyataSaddamala.objects.get(pk=tid)
-                template_data = {
-                    'title': template.title,
-                    'dhatu': template.dhatu.title if template.dhatu else '-',
-                    'paccaya': template.paccaya.title if template.paccaya else '-',
-                    'update_url': reverse_lazy('akhyata_saddamala_update', args=[tid]),
                 }
 
             value_list = []
