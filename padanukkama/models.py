@@ -239,6 +239,28 @@ class Padanukkama(models.Model):
 
 
 # -----------------------------------------------------
+# Paccaya
+# -----------------------------------------------------
+class Paccaya(models.Model):
+    title = models.CharField(
+        max_length=80,
+        verbose_name=_("Title"))
+    title_order = models.CharField(
+        max_length=80,
+        null=True,
+        blank=True,
+        verbose_name=_("Title order"))
+
+    def __str__(self):
+        return f"{self.title}"
+
+    def save(self, *args, **kwargs):
+        self.title_order = encode(extract(clean(self.title)))
+        super().save(*args, **kwargs)
+
+
+
+# -----------------------------------------------------
 # Dhatugana
 # -----------------------------------------------------
 class Dhatugana(models.Model):
@@ -247,8 +269,10 @@ class Dhatugana(models.Model):
     title = models.CharField(
         max_length=80,
         verbose_name=_("Title"))
-    description = models.CharField(
-        max_length=80,
+    paccaya = models.ManyToManyField(
+        Paccaya,
+        verbose_name=_("Paccaya"))
+    description = models.TextField(
         blank=True,
         verbose_name=_("Description"))
 
@@ -275,7 +299,7 @@ class Dhatu(models.Model):
         verbose_name=_("Title order"))
     dhatugana = models.ForeignKey(
         Dhatugana,
-        null=True,
+        null=True, blank=True,
         verbose_name=_("Dhatugana"),
         on_delete=models.CASCADE)
     definition = models.CharField(
@@ -297,29 +321,6 @@ class Dhatu(models.Model):
         self.title_order = encode(extract(clean(self.title)))
         super().save(*args, **kwargs)
 
-
-# -----------------------------------------------------
-# Paccaya
-# -----------------------------------------------------
-class Paccaya(models.Model):
-    title = models.CharField(
-        max_length=80,
-        verbose_name=_("Title"))
-    title_order = models.CharField(
-        max_length=80,
-        null=True,
-        blank=True,
-        verbose_name=_("Title order"))
-    dhatugana = models.ManyToManyField(
-        Dhatugana,
-        verbose_name=_("Dhatugana"))
-
-    def __str__(self):
-        return f"{self.title}"
-
-    def save(self, *args, **kwargs):
-        self.title_order = encode(extract(clean(self.title)))
-        super().save(*args, **kwargs)
 
 
 # -----------------------------------------------------
