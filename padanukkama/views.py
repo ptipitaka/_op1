@@ -427,7 +427,6 @@ class PadaDeclensionView(LoginRequiredMixin, View):
                     'sadda_type':  pada.sadda.sadda_type,
                     'namasaddamala': [item.pk for item in pada.sadda.namasaddamala.all()],
                     'construction':  pada.sadda.construction,
-                    'meaning': ", ".join(pada.sadda.meaning.all().values_list('name', flat=True)),
                     'description': pada.sadda.description
                 }
                 form = SaddaForm(initial = initial_data)
@@ -480,11 +479,8 @@ class PadaDeclensionView(LoginRequiredMixin, View):
             sadda.save()
             form.save_m2m()
 
-            # Update *saddamala
+            # Update popularity of namasaddamala
             for e in sadda.namasaddamala.all():
-                e.popularity += 1
-                e.save()
-            for e in sadda.akhyatasaddamala.all():
                 e.popularity += 1
                 e.save()
 
@@ -494,23 +490,23 @@ class PadaDeclensionView(LoginRequiredMixin, View):
 
 
             # Find all related Pada
-            template_ids = list(sadda.namasaddamala.all())
-            value_list = []
-            for tid in template_ids:
-                if sadda.sadda_type == 'Nama':
+            if sadda.sadda_type == 'Nama':
+                template_ids = list(sadda.namasaddamala.all())
+                value_list = []
+                for tid in template_ids:
                     result = noun_declension(sadda.sadda, tid.id)
 
                 for key, value in result.items():
                     if key != 'error':
                         value_list.extend(value.split())
-            unique_words = set(value_list)
+                unique_words = set(value_list)
 
-            padas_to_update = Pada.objects.filter(padanukkama=padanukkama, pada__in=unique_words)
-            for pada in padas_to_update:
-                # Update the object based on your requirements
-                pada.sadda = sadda
-                # Save the changes
-                pada.save()
+                padas_to_update = Pada.objects.filter(padanukkama=padanukkama, pada__in=unique_words)
+                for pada in padas_to_update:
+                    # Update the object based on your requirements
+                    pada.sadda = sadda
+                    # Save the changes
+                    pada.save()
 
             # Finished process
             messages.success(request, _('Record updated successfully!'))
@@ -597,8 +593,8 @@ class CreateVipatti(LoginRequiredMixin, View):
         result = None
         data = []
 
-        for tid in template_ids:
-            if sadda_type == 'Nama':
+        if sadda_type == 'Nama':
+            for tid in template_ids:
                 result = noun_declension(sadda, tid)
                 # result = mix_namavipatties(sadda, tid)
                 template = NamaSaddamala.objects.get(pk=tid)
@@ -609,26 +605,26 @@ class CreateVipatti(LoginRequiredMixin, View):
                     'update_url': reverse_lazy('nama_saddamala_update', args=[tid]),
                 }
 
-            value_list = []
-            for key, value in result.items():
-                if key != 'error':
-                    value_list.extend(value.split()) 
-            unique_words = set(value_list)
+                value_list = []
+                for key, value in result.items():
+                    if key != 'error':
+                        value_list.extend(value.split()) 
+                unique_words = set(value_list)
 
-            padanukkama = Padanukkama.objects.get(id=padanukkama_id)
-            wordlist_version_ids = padanukkama.wordlist_version.values_list('id', flat=True)
+                padanukkama = Padanukkama.objects.get(id=padanukkama_id)
+                wordlist_version_ids = padanukkama.wordlist_version.values_list('id', flat=True)
 
-            wordlist_data = WordList.objects.filter(
-                wordlist_version__in=wordlist_version_ids,
-                word__in=unique_words
-            ).values_list('word', flat=True).distinct()
+                wordlist_data = WordList.objects.filter(
+                    wordlist_version__in=wordlist_version_ids,
+                    word__in=unique_words
+                ).values_list('word', flat=True).distinct()
 
-            data.append({
-                'result': result,
-                'sadda_type': sadda_type,
-                'template_data': template_data,
-                'padas': list(wordlist_data)
-            })
+                data.append({
+                    'result': result,
+                    'sadda_type': sadda_type,
+                    'template_data': template_data,
+                    'padas': list(wordlist_data)
+                })
 
         return JsonResponse(data, safe=False)
 
@@ -705,8 +701,9 @@ class SaddaUpdateView(LoginRequiredMixin, UpdateView):
 
     def get_initial(self):
         initial = super().get_initial()
-        # Set initial values for your form fields
-        initial['meaning'] = ", ".join(self.object.meaning.all().values_list('name', flat=True))
+        sadda = self.get_object()
+        if sadda.padanukkama:
+            initial['padanukkama'] = sadda.padanukkama
         return initial
     
     def form_valid(self, form):

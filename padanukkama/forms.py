@@ -122,8 +122,3 @@ class SaddaForm(forms.ModelForm):
         model = Sadda
         exclude = ['sadda_seq']
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['meaning'].widget = forms.Textarea(attrs={'rows': 3})
-        self.fields['meaning'].widget.attrs['class'] = 'meaning-field'
-        self.fields['meaning'].widget.attrs['placeholder'] = _('Enter meanings (separated by commas)')

@@ -328,8 +328,9 @@ class Dhatu(models.Model):
 # -----------------------------------------------------
 class Sadda(models.Model):
     SADA_TYPE_CHOICES = [
-        ('Nama', 'Nāma'),
-        ('Akhyata', 'Akhyāta'),
+        ('Nama', _('Nāma')),
+        ('Akhyata', _('Akhyāta')),
+        ('Byaya', _('Byaya')),
     ]
     padanukkama = models.ForeignKey(
         Padanukkama,
@@ -359,9 +360,6 @@ class Sadda(models.Model):
         blank=True,
         default="",
         verbose_name=_("Construction"))
-    meaning = TaggableManager(
-        blank=True,
-        verbose_name=_("Meaning"))
     description = EditorJsField(
         editorjs_config={
             "tools":{
@@ -370,7 +368,6 @@ class Sadda(models.Model):
                 "Quote":{"disabled":True},
                 "Raw":{"disabled":True},
                 "Embed":{"disabled":True},
-                "Warning ":{"disabled":True},
                 "Attaches":{"disabled":True}
             }
         },
