@@ -58,6 +58,7 @@
                         <!-- preview button-->
                         <button
                             id="preview_vipatti"
+                            style="display:none"
                             class="w3-button w3-dark-grey w3-hover-brown w3-round-xlarge"
                             onclick="handlePreview(event);">
                             {% trans "Preview" %}
@@ -66,7 +67,7 @@
                         <button type="submit"
                             id="submit_data"
                             style="display:none"
-                            class="w3-button w3-margin-left w3-dark-grey w3-hover-blue w3-round-xlarge">
+                            class="w3-button w3-dark-grey w3-hover-blue w3-round-xlarge">
                             {% trans "Submit" %}
                         </button>
                     </div>
@@ -135,10 +136,7 @@
 {% endblock %}
 
 {% block script %}
-    <script src="{% static 'padanukkama/declension_main.js' %}"></script>
-    <script src="{% static 'padanukkama/declension_tabs.js' %}"></script>
-    <script src="{% static 'padanukkama/declension_modals.js' %}"></script>
-
+    {% include 'padanukkama/include/declension_main_script.html' %}
     {% include 'padanukkama/include/declension_find_abidan.html' %}
     {% include 'padanukkama/include/declension_find_sadda.html' %}
     {% include 'padanukkama/include/declension_find_related_pada.html' %}
@@ -146,14 +144,30 @@
 
     <script>
         $(document).ready(function () {
-            // Add the disabled attribute to the select tag
-            $('#id_padanukkama').prop('disabled', true);
+            // manage input / action fields
+            manageInputFields();
+            manageActionButton();
 
             // Create Vipatti
             create_vipatti();
 
             // Related Pada
             find_realated_pada();
+
+            $('#id_sadda').change(function() {
+                check_existing_sadda(padaPada)
+            });
+
+            $('#id_sadda_type').change(function() {
+                manageInputFields();
+                manageActionButton();
+            });
+
+            // Attach change event listener to the inputs
+            $('#id_namasaddamala').change(function() {
+                manageInputFields();
+                manageActionButton();
+            });
         });
     </script>
 {% endblock %}

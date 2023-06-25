@@ -2,18 +2,20 @@ import inspect
 
 from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils.translation import gettext_lazy as _
 from django.views import View
 from django.views.generic import CreateView, UpdateView, DeleteView
 from django.urls import resolve, reverse_lazy
 
+
 from django_filters.views import FilterView
 from django_tables2.views import SingleTableMixin
 
 from braces.views import LoginRequiredMixin
 from fuzzywuzzy import fuzz, process
+from simple_history.utils import get_history_manager_for_model
 from urllib.parse import urlencode
 
 from .models import NamaSaddamala, Padanukkama, Pada, Sadda
@@ -160,6 +162,7 @@ class PadanukkamaView(LoginRequiredMixin, SingleTableMixin, FilterView):
         return context
 
 
+
 # PadanukkamaCreateView
 # ---------------------
 class PadanukkamaCreateView(LoginRequiredMixin, CreateView):
@@ -218,6 +221,23 @@ class PadanukkamaPadaView(LoginRequiredMixin, SingleTableMixin, FilterView):
     context_object_name = 'pada'
     table_class = PadaTable
     filterset_class = PadaFilter
+    paginate_by = 10
+
+    def get(self, request, *args, **kwargs):
+        # Call the parent get() method to get the initial queryset and set up the filter
+        response = super().get(request, *args, **kwargs)
+        padanukkama_id = self.kwargs.get('padanukkama_id')
+        # Access the page_number from the filter instance
+        page_number = self.filterset.page_number
+
+        # Check if a redirect is needed
+        if page_number is not None:
+            # Redirect to the page corresponding to the page_number
+            redirect_url = reverse('padanukkama_pada', args=[padanukkama_id])
+            redirect_url += f'?page={page_number}'
+            return HttpResponseRedirect(redirect_url)
+
+        return response
     
     def get_queryset(self):
         queryset = super().get_queryset()
@@ -227,12 +247,28 @@ class PadanukkamaPadaView(LoginRequiredMixin, SingleTableMixin, FilterView):
         return queryset
 
     def get_context_data(self, **kwargs):
-        context = super(PadanukkamaPadaView, self).get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)
         padanukkama_id = self.kwargs['padanukkama_id']
         context["padanukkama_id"] = padanukkama_id
         context['deleted_conf_message'] = _('Are you sure you want to delete this record?')
         context["total_rec"] = '{:,}'.format(len(self.get_table().rows)) 
+        history_manager = get_history_manager_for_model(Sadda)
+        last_sadda_updated = history_manager.filter(
+            history_user=self.request.user).latest('history_date')
+        # Get the related Pada object from the last_sadda_updated
+        sadda=Sadda.objects.filter(sadda=last_sadda_updated.sadda).first()
+        if sadda:
+            last_sadda_pada = Pada.objects.get(sadda=sadda.id)
+            context['last_sadda_pada'] = last_sadda_pada
+        else:
+            context['last_sadda_pada'] = None
+
         return context
+
+    def get_page_url(self, page_number):
+        url = self.request.get_full_path()
+        return f"{url}?page={page_number}"
+
 
 
 # PadaSplitSandhiView
@@ -276,6 +312,7 @@ class PadaSplitSandhiView(LoginRequiredMixin, View):
             
             return redirect(request.get_full_path())
         return render(request, self.template_name, {'form': form, 'pada': pada})
+
 
 
 # PadaDuplicateView
@@ -670,7 +707,7 @@ class SaddaCreateView(LoginRequiredMixin, CreateView):
         initial = super().get_initial()
         padanukkama_id = self.kwargs['padanukkama_id']
         if padanukkama_id:
-            initial['padanukkama'] = padanukkama_id
+            initial['padanukkama'] = get_object_or_404(Padanukkama, id=padanukkama_id)
         return initial
 
     def form_valid(self, form):

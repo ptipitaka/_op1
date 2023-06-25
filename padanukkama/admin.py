@@ -1,4 +1,5 @@
 from django.contrib import admin
+from simple_history.admin import SimpleHistoryAdmin
 
 from .models import NamaType, Linga, Karanta, NamaSaddamala, \
     Language, Padanukkama, Pada, Sadda, Paccaya, Dhatu, Dhatugana
@@ -29,7 +30,7 @@ class PadanukkamaAdmin(admin.ModelAdmin):
     list_display = ("title",)
     ordering = ("title",)
 
-class SaddaAdmin(admin.ModelAdmin):
+class SaddaAdmin(SimpleHistoryAdmin):
     list_display = ("sadda",)
     ordering = ("sadda",)
 

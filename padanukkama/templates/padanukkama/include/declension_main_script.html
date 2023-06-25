@@ -1,0 +1,152 @@
+{% load i18n %}
+
+<script>
+
+    // Function get construction
+    function saddaConst(event, string) {
+        event.preventDefault();
+        
+        var saddatext;
+        var regex = /^(\S+)\s/;
+        var match = string.match(regex);
+        saddatext = match ? match[1] : null;
+        // Update the value of sadda field
+        $("#id_sadda").val(saddatext);
+
+        var extractedText;
+        var startIndex = string.indexOf('[');
+        var endIndex = string.indexOf(']');
+
+        // Update the value of construction field
+        if (startIndex !== -1 && endIndex !== -1 && endIndex > startIndex) {
+            extractedText = string.substring(startIndex, endIndex + 1);
+            extractedText = extractedText.replace(/(\S)\+/g, '$1 + ');
+
+            $("#id_construction").val(extractedText);
+
+        }
+    }
+
+    // Function to handle preview btn
+    function handlePreview(event) {
+        event.preventDefault();
+
+        // Call your desired functions here
+        create_vipatti();
+        find_abidan_closest_matches();
+        find_sadda_closest_matches();
+    };
+
+    // Function manage input fields
+    function manageInputFields(event) {
+        $('#fieldWrapper_id_namasaddamala').hide();
+
+        // detact change from input value
+        var selectedValue = $('#id_sadda_type').val();
+        if (selectedValue === 'Nama') {
+            $('#fieldWrapper_id_namasaddamala').show();
+        } else {
+            $('#fieldWrapper_id_namasaddamala').hide();
+        };
+    };
+
+    // Function manage button
+    function manageActionButton(event) {
+        // Button value
+        var previewButton = $('#preview_vipatti');
+        var submitButton = $("#submit_data");
+        var vipattiTable = $('#result-container')
+
+        // Retrieve the updated values from the inputs
+        var sadda = $('#id_sadda').val();
+        var sadda_type = $('#id_sadda_type').val();
+        var namasaddamalaValues = $('#id_namasaddamala').val();
+
+        if (sadda !== '') {
+            if (sadda_type == 'Nama') {
+                // Check if each array has a value
+                var isNamasaddamalaSelected = namasaddamalaValues.length > 0;
+                // Perform your desired actions with the updated values
+                if (namasaddamalaValues !== '') {
+                    previewButton.css("display", "");
+                } else {
+                    previewButton.css("display", "none");
+                    submitButton.css("display", "none");
+                    vipattiTable.html('');
+                }
+
+                if (isNamasaddamalaSelected ) {
+                    previewButton.css("display", "");
+                } else {
+                    previewButton.css("display", "none");
+                    submitButton.css("display", "none");
+                    vipattiTable.html('');
+                }
+            } else if ((sadda_type == 'Akhyata') || (sadda_type == 'Byaya')) {
+                previewButton.css("display", "none");
+                submitButton.css("display", "");
+                vipattiTable.html('');
+            } else {
+                previewButton.css("display", "none");;
+                submitButton.css("display", "none");
+                vipattiTable.html('');
+            }
+        }
+    }
+
+    // Function open modal
+    function openModal(imageSrc) {
+        var modalImage = document.getElementById('modalImage');
+        modalImage.src = imageSrc;
+        document.getElementById('imageModal').style.display = 'block';
+    }
+
+    // Function close the modal
+    function closeModal() {
+        document.getElementById('imageModal').style.display = 'none';
+    }
+
+    // Function open tebs
+    function openTabs(evt, tabName) {
+        var i, x, tablinks;
+        x = document.getElementsByClassName("tab");
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablink");
+        for (i = 0; i < x.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" w3-grey", "");
+        }
+        document.getElementById(tabName).style.display = "block";
+        evt.currentTarget.className += " w3-grey";
+    }
+
+    $(document).ready(function () {
+        // Get the button element by its ID        
+        var padaPada = $('#id_sadda').val();
+
+        // manage input / action fields
+        manageInputFields();
+        manageActionButton();
+
+        $('#id_sadda').change(function() {
+            check_existing_sadda(padaPada)
+        });
+
+        $('#id_sadda_type').change(function() {
+            manageInputFields();
+            manageActionButton();
+        });
+
+        // Attach change event listener to the inputs
+        $('#id_namasaddamala').change(function() {
+            manageInputFields();
+            manageActionButton();
+        });
+
+        // find closet matches
+        find_abidan_closest_matches();
+        find_sadda_closest_matches();
+    });
+
+</script>

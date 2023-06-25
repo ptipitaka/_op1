@@ -9,7 +9,7 @@
 {% endblock %}
 
 {% block apptitle %}
-    {% include 'padanukkama/include/title.html' %} : {% trans 'Pada ' %}
+    {% include 'padanukkama/include/title.html' %} : {% trans 'Pada ' %} {% if last_sadda_pada %} ・ {% trans 'Last update' %} : {{ last_sadda_pada }} {% endif %}
 {% endblock %}
 
 {% block apptitle_option %}

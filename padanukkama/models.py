@@ -5,12 +5,14 @@ from django.shortcuts import get_object_or_404
 from django.utils.translation import gettext_lazy as _
 
 from django_editorjs import EditorJsField
+from django_xworkflows import models as xwf_models
 from mptt.models import MPTTModel, TreeForeignKey
+from simple_history.models import HistoricalRecords
 from smart_selects.db_fields import ChainedManyToManyField
-from taggit.managers import TaggableManager
 from utils.pali_char import *
 
 from tipitaka.models import WordlistVersion, TableOfContent, Structure
+from .workflows import SaddaTranslationWorkflow
 
 # -----------------------------------------------------
 # NamaType
@@ -326,7 +328,7 @@ class Dhatu(models.Model):
 # -----------------------------------------------------
 # Sadda
 # -----------------------------------------------------
-class Sadda(models.Model):
+class Sadda(xwf_models.WorkflowEnabled, models.Model):
     SADA_TYPE_CHOICES = [
         ('Nama', _('Nāma')),
         ('Akhyata', _('Akhyāta')),
@@ -363,17 +365,29 @@ class Sadda(models.Model):
     description = EditorJsField(
         editorjs_config={
             "tools":{
-                "Image":{"disabled":True},
+                "Attaches":{"disabled":True},
                 "Checklist":{"disabled":True},
+                "Delimiter":{"disabled":True},
+                "Embed":{"disabled":True},
+                "Header":{
+                    "config":{
+
+                        "levels":[4, 5],
+                        "defaultLevel":4,
+                    },
+                },
+                "Image":{"disabled":True},
+                "Link":{"disabled":True},
                 "Quote":{"disabled":True},
                 "Raw":{"disabled":True},
-                "Embed":{"disabled":True},
-                "Attaches":{"disabled":True}
-            }
+                "Warning": {"disabled":True},
+            },
         },
         null=True,
         blank=True,
         verbose_name=_("Description"))
+    history = HistoricalRecords()
+    state = xwf_models.StateField(SaddaTranslationWorkflow)
 
     def save(self, *args, **kwargs):
         self.sadda_seq = encode(extract(clean(self.sadda)))

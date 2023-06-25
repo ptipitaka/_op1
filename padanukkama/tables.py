@@ -3,14 +3,15 @@ import django_tables2 as tables
 
 from django import forms
 from django.db.models import Q
+from django.core.paginator import Paginator
 from django.urls import reverse_lazy
-from django.utils.html import format_html
 from django.utils.safestring import mark_safe
 from django.utils.translation import gettext_lazy as _
 
-from django_filters import FilterSet, ChoiceFilter, filters, ModelChoiceFilter
+from django_filters import FilterSet, CharFilter, ChoiceFilter, filters, ModelChoiceFilter
 from django_tables2.utils import A
 from mptt.templatetags.mptt_tags import cache_tree_children
+from simple_history.utils import get_history_manager_for_model
 
 from .models import NamaSaddamala, \
     Padanukkama, Pada, Sadda, NamaType, Karanta
@@ -139,6 +140,7 @@ class PadaTable(tables.Table):
         # Cache the tree Pada for performance ##
         cache_tree_children(data)
 
+
     # ---------------------- #
     # column / button action #
     # ---------------------- #
@@ -189,10 +191,10 @@ class PadaTable(tables.Table):
     
     # declension action btn
     # ---------------------
-    declension_action = tables.Column(empty_values=(), orderable=False, verbose_name=_('Decl.'))
-    def render_declension_action(self, record):
+    sadda_action = tables.Column(empty_values=(), orderable=False, verbose_name=_('Sadda'))
+    def render_sadda_action(self, record):
         if record.get_descendants().exists():
-            # Record has descendants, do not show declension_action
+            # Record has descendants, do not show sadda_action
             return ''
         else:
             # Get all the query parameters from the request's GET parameters
@@ -259,32 +261,60 @@ class PadaTable(tables.Table):
 
 
 class PadaFilter(FilterSet):
-    NULL_CHOICES = [
-        (True, _("Only Pada without Sadda")),
+    OPTION_CHOICES = [
+        ('SW', _("Search for Padas that start with these characters")),
+        ('CT', _("Search for Padas that contain these characters")),
+        ('IN', _("Go to the page where this Pada is located")),
+        ('LP', _("Go to the page of the latest updated Pada")),
     ]
+    PAGINATE_BY=10
+    page_number=None
 
-    pada__startswith = filters.CharFilter(
-        field_name='pada',
-        lookup_expr='startswith',
-        label=_('Pada starts with'))
-    
-    pada__contains = filters.CharFilter(
-        field_name='pada',
-        lookup_expr='icontains',
-        label=_('Pada contains'))
-
-    pada_with_null_sadda = ChoiceFilter(
-        label=_("Pada with Sadda"),
-        field_name="sadda",
-        choices=NULL_CHOICES,
-        method="filter_pada_with_null_sadda"
+    pada_filter = CharFilter(
+        label=_('Pada'),
+        method="filter_pada_with_options"
     )
-    
 
-    def filter_pada_with_null_sadda(self, queryset, name, value):
+    pada_filter_options = ChoiceFilter(
+        label=_("Please select"),
+        choices=OPTION_CHOICES,
+        method="filter_pada_with_options"
+    )
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.form.fields['pada_filter_options'].initial = 'SW'
+
+    def filter_pada_with_options(self, queryset, name, value):
         if value:
-            # Filter Pada with null Sadda
-            return queryset.filter(Q(sadda__isnull=True) & Q(children__isnull=True))
+            pada_value = self.form.cleaned_data['pada_filter']
+            if value == "SW":
+                return queryset.filter(pada__startswith=pada_value)
+            elif value == "CT":
+                return queryset.filter(pada__contains=pada_value)
+            elif value == 'IN':
+                self.page_number = self.get_page_number_containing_keyword(queryset, pada_value)
+                return queryset
+            elif value == 'LP':
+                history_manager = get_history_manager_for_model(Sadda)
+                last_sadda_updated = history_manager.filter(
+                    history_user=self.request.user).latest('history_date')
+                sadda=Sadda.objects.filter(sadda=last_sadda_updated.sadda).first()
+                if sadda:
+                    pada_value = Pada.objects.get(sadda=sadda.id)
+                    if pada_value:
+                        self.page_number = self.get_page_number_containing_keyword(queryset, pada_value.pada)
+                return queryset
+            else:
+                return queryset
+
+    def get_page_number_containing_keyword(self, queryset, pada_value):
+        paginator = Paginator(queryset, self.PAGINATE_BY)
+        for page_number in paginator.page_range:
+            page = paginator.page(page_number)
+            if any(pada_value in item.pada for item in page.object_list):
+                return page_number
+        return None
 
     class Meta:
         model = Pada
@@ -299,10 +329,10 @@ class PadaParentChildTable(tables.Table):
         'style': lambda value, record: 'padding-left: %spx' % (50 + (record.level * 50)),
     }})
 
-    declension_action = tables.Column(empty_values=(), orderable=False, verbose_name=_('Decl.'))
-    def render_declension_action(self, record):
+    sadda_action = tables.Column(empty_values=(), orderable=False, verbose_name=_('Decl.'))
+    def render_sadda_action(self, record):
         if record.get_descendants().exists():
-            # Record has descendants, do not show declension_action
+            # Record has descendants, do not show sadda_action
             return ''
         else:
             # Get all the query parameters from the request's GET parameters

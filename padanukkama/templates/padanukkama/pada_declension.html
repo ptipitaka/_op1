@@ -23,7 +23,7 @@
 {% endblock %}
 
 {% block apptitle %}
-    {% include 'padanukkama/include/title.html' %} : {% trans 'Pada' %}・{% trans 'Vipatti' %}
+    {% include 'padanukkama/include/title.html' %} : {% trans 'Pada' %}・{% trans 'Sadda' %}
 {% endblock %}
 
 {% block apptitle_option %}
@@ -42,7 +42,7 @@
 
     <div class="w3-cell-row">
         <!-- left panel -->
-        <div class="w3-container w3-cell" style="width:60%">
+        <div class="w3-container w3-cell" style="width:55%">
             <div class="w3-cell-row w3-margin-bottom">
                 <form action="" method="post" class="w3-container w3-padding">
                     {% csrf_token %}
@@ -58,6 +58,7 @@
                         <!-- preview button-->
                         <button
                             id="preview_vipatti"
+                            style="display:none"
                             class="w3-button w3-dark-grey w3-hover-brown w3-round-xlarge"
                             onclick="handlePreview(event);">
                             {% trans "Preview" %}
@@ -66,7 +67,7 @@
                         <button type="submit"
                             id="submit_data"
                             style="display:none"
-                            class="w3-button w3-margin-left w3-dark-grey w3-hover-blue w3-round-xlarge">
+                            class="w3-button w3-dark-grey w3-hover-blue w3-round-xlarge">
                             {% trans "Submit" %}
                         </button>
                         <!-- decoupling -->
@@ -130,10 +131,8 @@
 {% endblock %}
 
 {% block script %}
-    <script src="{% static 'padanukkama/declension_main.js' %}"></script>
-    <script src="{% static 'padanukkama/declension_modals.js' %}"></script>
-    <script src="{% static 'padanukkama/declension_tabs.js' %}"></script>
 
+    {% include 'padanukkama/include/declension_main_script.html' %}
     {% include 'padanukkama/include/declension_existing_sadda.html' %}
     {% include 'padanukkama/include/declension_find_abidan.html' %}
     {% include 'padanukkama/include/declension_find_sadda.html' %}
@@ -142,7 +141,6 @@
 
     <script>
         $(document).ready(function () {
-            // Add the disabled attribute to the select tag
             {% if pada.sadda %}
                 create_vipatti();
                 var decouplingButton = $("#decoupling");

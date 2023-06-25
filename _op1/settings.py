@@ -47,7 +47,9 @@ INSTALLED_APPS = [
     'django_mptt_admin',
     'django_tables2',
     'django_select2',
+    'django_xworkflows',
     'mptt',
+    'simple_history',
     'smart_selects',
     'storages',
     'taggit',
@@ -68,6 +70,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.locale.LocaleMiddleware',
+    'simple_history.middleware.HistoryRequestMiddleware',
 ]
 
 ROOT_URLCONF = '_op1.urls'
