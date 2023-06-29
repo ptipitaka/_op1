@@ -5,9 +5,10 @@ from django.db.models.functions import TruncDate
 from django.utils import timezone
 
 import datetime 
-from simple_history.models import HistoricalRecords
+import calendar
 
 from padanukkama.models import *
+from padanukkama.workflows import SaddaTranslationWorkflow
 
 register = template.Library()
 
@@ -65,39 +66,47 @@ def translation_process(padanukkama_id):
 def monthly_progress(padanukkama_id):
     # Get the current date and time
     current_date = datetime.datetime.now().date()
+    _, last_day = calendar.monthrange(current_date.year, current_date.month)
 
     # Calculate the start and end dates of the current month
     start_date = current_date.replace(day=1)
-    end_date = current_date
+    end_date = current_date.replace(day=last_day)
+
+    workflow_states = SaddaTranslationWorkflow.states
+
+    result = []
 
     # Query the newly added 'Sadda' objects
     # -------------------------------------
-    q_newly_added_sadda_summary = (
-        Sadda.history
-        .filter(
-            padanukkama=padanukkama_id,
-            history_date__range=(start_date, end_date),
-            history_type='+'
+    for wfs in workflow_states:
+        q_sadda_summary_by_wf_by_date = (
+            Sadda.history
+            .filter(
+                padanukkama=padanukkama_id,
+                history_date__range=(start_date, end_date),
+                state=wfs
+            )
+            .annotate(date=TruncDate('history_date'))
+            .values('date')
+            .annotate(new_sadda_count=Count('id'))
+            .order_by('date')
         )
-        .annotate(date=TruncDate('history_date'))
-        .values('date')
-        .annotate(new_sadda_count=Count('id'))
-        .order_by('date')
-    )
 
-    # Create a dictionary to store the date-count pairs
-    newly_added_sadda_summary = {item['date']: item['new_sadda_count'] for item in q_newly_added_sadda_summary}
+        # Create a dictionary to store the date-count pairs
+        sadda_summary_by_wf_by_date = {item['date']: item['new_sadda_count'] for item in q_sadda_summary_by_wf_by_date}
 
-    # Create a list to store the formatted results
-    result_of_newly_added_sadda_summary = []
+        # Create a list to store the formatted results
+        result_of_sadda_summary_by_wf_by_date = []
 
-    # Iterate over each date in the current month
-    date_cursor = start_date
-    while date_cursor <= end_date:
-        formatted_date = date_cursor.strftime("%Y-%m-%d")
-        new_sadda_count = newly_added_sadda_summary.get(date_cursor, 0)  # Get the count for the date or default to 0
-        formatted_item = {'date': formatted_date, 'new_sadda_count': new_sadda_count}
-        result_of_newly_added_sadda_summary.append(formatted_item)
-        date_cursor += datetime.timedelta(days=1)  # Move to the next date
+        # Iterate over each date in the current month
+        date_cursor = start_date
+        while date_cursor <= end_date:
+            formatted_date = date_cursor.strftime("%Y-%m-%d")
+            new_sadda_count = sadda_summary_by_wf_by_date.get(date_cursor, 0)  # Get the count for the date or default to 0
+            formatted_item = {'date': formatted_date, 'new_sadda_count': new_sadda_count}
+            result_of_sadda_summary_by_wf_by_date.append(formatted_item)
+            date_cursor += datetime.timedelta(days=1)  # Move to the next date
 
-    return {'newly_added_sadda_summary': result_of_newly_added_sadda_summary}
+        result.append({'wfs': wfs, 'data': result_of_sadda_summary_by_wf_by_date})
+
+    return {'result': result}

@@ -10,12 +10,9 @@
 
 <script>
     $(document).ready(function(){
-        var dates = [{% for obj in sadda_summary %}"{{ obj.date }}",{% endfor %}];
-        var data = [{% for obj in sadda_summary %}"{{ obj.new_sadda_count }}",{% endfor %}];
-
-        var colors = ['#a4c400', '#00aba9', '#3e65ff', '#6a00ff', '#f472d0', '#a20025', '#fa680', '#e3c800', '#825a2c', '#6d8764', '#647687', '#76608a', '#87794e', '#a0522d'];
-        var randomIndex = Math.floor(Math.random() * colors.length);
-        var randomColor = colors[randomIndex];
+        {% for each_result in result %}
+            var dates = [{% for obj in each_result %}"{{ obj.data.date }}",{% endfor %}];
+        {% endfor %}
 
         const ctx = document.getElementById('monthly_progress');
 
@@ -23,12 +20,14 @@
             type: 'line',
             data: {
                 labels: dates,
-                datasets: [{
-                    label: "{% trans 'The total number of words created today' %}",
-                    data: data,
-                    borderColor: randomColor,
-                    fill: false
-                }]
+                datasets: [
+                    {% for each_result in result %}
+                        {
+                            label: "{% trans each_result.wfs %}",
+                            data: [{% for obj in each_result.data %}"{{ obj.new_sadda_count }}", {% endfor %}],
+                        },
+                    {% endfor %}
+                ]
             },
             options: {
                 scales: {
