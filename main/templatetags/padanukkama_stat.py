@@ -4,6 +4,7 @@ from django.db.models import Q, Count
 from django.db.models.functions import TruncDate
 from django.utils import timezone
 
+import json
 import datetime 
 import calendar
 
@@ -11,6 +12,10 @@ from padanukkama.models import *
 from padanukkama.workflows import SaddaTranslationWorkflow
 
 register = template.Library()
+
+@register.filter
+def replace(value, arg):
+    return value.replace(arg, '')
 
 # ---------------------
 # Padanukkama dashboard
@@ -84,16 +89,16 @@ def monthly_progress(padanukkama_id):
             .filter(
                 padanukkama=padanukkama_id,
                 history_date__range=(start_date, end_date),
-                state=wfs
+                state=wfs.name
             )
             .annotate(date=TruncDate('history_date'))
             .values('date')
-            .annotate(new_sadda_count=Count('id'))
+            .annotate(sadda_count=Count('id'))
             .order_by('date')
         )
 
         # Create a dictionary to store the date-count pairs
-        sadda_summary_by_wf_by_date = {item['date']: item['new_sadda_count'] for item in q_sadda_summary_by_wf_by_date}
+        sadda_summary_by_wf_by_date = {item['date']: item['sadda_count'] for item in q_sadda_summary_by_wf_by_date}
 
         # Create a list to store the formatted results
         result_of_sadda_summary_by_wf_by_date = []
@@ -102,11 +107,11 @@ def monthly_progress(padanukkama_id):
         date_cursor = start_date
         while date_cursor <= end_date:
             formatted_date = date_cursor.strftime("%Y-%m-%d")
-            new_sadda_count = sadda_summary_by_wf_by_date.get(date_cursor, 0)  # Get the count for the date or default to 0
-            formatted_item = {'date': formatted_date, 'new_sadda_count': new_sadda_count}
+            sadda_count = sadda_summary_by_wf_by_date.get(date_cursor, 0)  # Get the count for the date or default to 0
+            formatted_item = {'date': formatted_date, 'sadda_count': sadda_count}
             result_of_sadda_summary_by_wf_by_date.append(formatted_item)
             date_cursor += datetime.timedelta(days=1)  # Move to the next date
 
-        result.append({'wfs': wfs, 'data': result_of_sadda_summary_by_wf_by_date})
+        result.append({'wfs': wfs.name, 'data': result_of_sadda_summary_by_wf_by_date})
 
-    return {'result': result}
+    return {'result': json.dumps({'result': result})}

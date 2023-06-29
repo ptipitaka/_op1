@@ -5,38 +5,86 @@
 <script src="{% static 'js/chartjs-plugin-labels.min.js' %}"></script>
 
 <div>
-    <canvas id="monthly_progress"></canvas>
+    <canvas id="monthly_progress" style="height: 400px;"></canvas>
 </div>
 
 <script>
-    $(document).ready(function(){
-        {% for each_result in result %}
-            var dates = [{% for obj in each_result %}"{{ obj.data.date }}",{% endfor %}];
-        {% endfor %}
+    // Retrieve the result data from the server-side
+    var resultData = {{ result|safe }};
 
-        const ctx = document.getElementById('monthly_progress');
+    // Extract the chart data from the result
+    var chartData = resultData.result.map(function(item) {
+        return {
+            label: item.wfs,
+            data: item.data.map(function(dataItem) {
+                return dataItem.sadda_count;
+            }),
+            backgroundColor: 'transparent',
+            borderColor: getRandomColor(),
+            borderWidth: 2
+        };
+    });
 
-        var chart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: dates,
-                datasets: [
-                    {% for each_result in result %}
-                        {
-                            label: "{% trans each_result.wfs %}",
-                            data: [{% for obj in each_result.data %}"{{ obj.new_sadda_count }}", {% endfor %}],
-                        },
-                    {% endfor %}
-                ]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
+    // Extract the labels from the result
+    var chartLabels = resultData.result[0].data.map(function(item) {
+        return item.date;
+    });
+
+    // Generate a random color
+    function getRandomColor() {
+        var letters = '0123456789ABCDEF';
+        var color = '#';
+        for (var i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    }
+
+    // Create the line chart using Chart.js
+    var ctx = document.getElementById('monthly_progress').getContext('2d');
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: chartLabels,
+            datasets: chartData
+        },
+        options: {
+            plugins: {
+                labels: {
+                    render: 'value',
+                    fontSize: 12,
+                    fontStyle: 'bold'
                 }
+            },
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                x: {
+                    display: true,
+                    title: {
+                        display: true,
+                        text: 'Date'
+                    }
+                },
+                y: {
+                    display: true,
+                    title: {
+                        display: true,
+                        text: 'Sadda'
+                    },
+                    beginAtZero: true,
+                    ticks: {
+                        min: 0,
+                        max: 500,
+                        stepSize: 10
+                    },
+                },
+            },
+            legend: {
+                display: true
             }
-        });
+        }
+    });
 
-    })
+;
 </script>
