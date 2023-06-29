@@ -299,13 +299,16 @@ class PadaFilter(FilterSet):
                 return queryset
             elif value == 'LP':
                 history_manager = get_history_manager_for_model(Sadda)
-                last_sadda_updated = history_manager.filter(
-                    history_user=self.request.user).latest('history_date')
-                sadda=Sadda.objects.filter(sadda=last_sadda_updated.sadda).first()
-                if sadda:
-                    pada_value = Pada.objects.get(sadda=sadda.id)
-                    if pada_value:
-                        self.page_number = self.get_page_number_containing_keyword(queryset, pada_value.pada)
+                try:
+                    last_sadda_updated = history_manager.filter(
+                        history_user=self.request.user).latest('history_date')
+                    sadda=Sadda.objects.filter(sadda=last_sadda_updated.sadda).first()
+                    if sadda:
+                        pada_value = Pada.objects.get(sadda=sadda.id)
+                        if pada_value:
+                            self.page_number = self.get_page_number_containing_keyword(queryset, pada_value.pada)
+                except:
+                    self.page_number = None
                 return queryset
             else:
                 return queryset
