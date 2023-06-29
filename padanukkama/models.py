@@ -1,14 +1,15 @@
 from django.db import models
 from django.db.models import Q
 from django.contrib.auth.models import User
-from django.shortcuts import get_object_or_404
-from django.utils.translation import gettext_lazy as _
 
+from django.utils import timezone
+from django.utils.translation import gettext_lazy as _
 from django_editorjs import EditorJsField
 from django_xworkflows import models as xwf_models
 from mptt.models import MPTTModel, TreeForeignKey
 from simple_history.models import HistoricalRecords
 from smart_selects.db_fields import ChainedManyToManyField
+
 from utils.pali_char import *
 
 from tipitaka.models import WordlistVersion, TableOfContent, Structure
@@ -391,8 +392,53 @@ class Sadda(xwf_models.WorkflowEnabled, models.Model):
 
     def save(self, *args, **kwargs):
         self.sadda_seq = encode(extract(clean(self.sadda)))
-        self.construction = '' if self.construction == None else self.construction
+        self.construction = '' if self.construction is None else self.construction
+
+        is_new_record = not self.pk
+        previous_state = None
+
+        if not is_new_record:
+            previous_state = self.__class__.objects.get(pk=self.pk).state
+
         super().save(*args, **kwargs)
+
+        last_history_record = self.history.last()
+        current_user_id = last_history_record.history_user_id if last_history_record else None
+        current_user = User.objects.get(pk=current_user_id)
+
+        is_state_changed = previous_state and previous_state != self.state
+
+        if is_new_record or is_state_changed:
+            SaddaStatusHistory.objects.create(sadda=self, status=self.state, created_at=timezone.now(), user=current_user)
+
+
+
+
+# -----------------------------------------------------
+# SaddaStatusHistory
+# -----------------------------------------------------
+class SaddaStatusHistory(models.Model):
+    sadda = models.ForeignKey(
+        Sadda,
+        on_delete=models.CASCADE,
+        related_name='status_histories',
+        verbose_name=_("Sadda")
+    )
+    status = models.CharField(
+        max_length=50,
+        verbose_name=_("Status")
+    )
+    created_at = models.DateTimeField(
+        auto_now_add=True,
+        verbose_name=_("Created At")
+    )
+    user = models.ForeignKey(
+        User,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        verbose_name=_("User")
+    )
 
 
 

@@ -141,6 +141,33 @@
 
     <script>
         $(document).ready(function () {
+            // Get the button element by its ID
+            var padaPada = $('#id_sadda').val();
+            $('#fieldWrapper_id_state').hide();
+
+            // manage input / action fields
+            manageInputFields();
+            manageActionButton();
+
+            $('#id_sadda').change(function() {
+                check_existing_sadda(padaPada)
+            });
+
+            $('#id_sadda_type').change(function() {
+                manageInputFields();
+                manageActionButton();
+            });
+
+            // Attach change event listener to the inputs
+            $('#id_namasaddamala').change(function() {
+                manageInputFields();
+                manageActionButton();
+            });
+
+            // find closet matches
+            find_abidan_closest_matches();
+            find_sadda_closest_matches();
+
             {% if pada.sadda %}
                 create_vipatti();
                 var decouplingButton = $("#decoupling");

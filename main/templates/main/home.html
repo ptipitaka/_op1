@@ -1,9 +1,13 @@
 {% extends 'main/base.html' %}
 {% load i18n %}
+{% load padanukkama_stat %}
 
 {% block apptitle %}
     {% trans "The Pāḷi Platform" %}
 {% endblock %}
 
 {% block body %}
+
+    {% dashboard %}
+
 {% endblock %}

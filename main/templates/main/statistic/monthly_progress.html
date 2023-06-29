@@ -1,0 +1,43 @@
+{% load static i18n %}
+
+<script src="{% static 'js/jquery-3.6.4.min.js' %}"></script>
+<script src="{% static 'js/chart.js.min.js' %}"></script>
+<script src="{% static 'js/chartjs-plugin-labels.min.js' %}"></script>
+
+<div>
+    <canvas id="monthly_progress"></canvas>
+</div>
+
+<script>
+    $(document).ready(function(){
+        var dates = [{% for obj in sadda_summary %}"{{ obj.date }}",{% endfor %}];
+        var data = [{% for obj in sadda_summary %}"{{ obj.new_sadda_count }}",{% endfor %}];
+
+        var colors = ['#a4c400', '#00aba9', '#3e65ff', '#6a00ff', '#f472d0', '#a20025', '#fa680', '#e3c800', '#825a2c', '#6d8764', '#647687', '#76608a', '#87794e', '#a0522d'];
+        var randomIndex = Math.floor(Math.random() * colors.length);
+        var randomColor = colors[randomIndex];
+
+        const ctx = document.getElementById('monthly_progress');
+
+        var chart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: dates,
+                datasets: [{
+                    label: "{% trans 'The total number of words created today' %}",
+                    data: data,
+                    borderColor: randomColor,
+                    fill: false
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+    })
+</script>

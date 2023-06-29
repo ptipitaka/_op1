@@ -1,0 +1,51 @@
+{% load static i18n %}
+
+<script src="{% static 'js/jquery-3.6.4.min.js' %}"></script>
+<script src="{% static 'js/chart.js.min.js' %}"></script>
+<script src="{% static 'js/hex-to-rgb.js' %}"></script>
+
+<div>
+    <canvas id="milestone"></canvas>
+</div>
+
+<script>
+    $(document).ready(function(){
+
+        // Example usage
+        var hexColor = '#ff0000';
+        var rgbColor = hexToRgb(hexColor);
+
+        const ctx = document.getElementById('milestone');
+
+        var xValues = ["{% trans 'Translated' %}", "{% trans 'Non Translate' %}"];
+        var yValues = [{{ translated }}, {{ nonTranslated }}];
+        var barColors = [
+            "#b91d47",
+            "#00aba9",
+        ];
+
+        new Chart(ctx, {
+            type: "pie",
+            data: {
+                labels: xValues,
+                datasets: [{
+                backgroundColor: barColors,
+                data: yValues
+                }]
+            },
+            options: {
+                plugins: {
+                    labels: {
+                        render: 'percentage',
+                        fontColor: function (data) {
+                            var rgb = hexToRgb(data.dataset.backgroundColor[data.index]);
+                            var threshold = 140;
+                            var luminance = 0.299 * rgb.r + 0.587 * rgb.g + 0.114 * rgb.b;
+                            return luminance > threshold ? 'black' : 'white';
+                        },
+                    }
+                }
+            }
+        });
+    })
+</script>

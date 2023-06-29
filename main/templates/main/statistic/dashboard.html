@@ -1,0 +1,136 @@
+{% load i18n %}
+{% load padanukkama_stat %}
+
+{% block extra_css %}
+    <style>
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 20px;
+        }
+
+        .switch input { 
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 15px;
+            width: 15px;
+            left: 4px;
+            bottom: 3px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+        input:checked + .slider {
+            background-color: #2196F3;
+        }
+
+        input:focus + .slider {
+            box-shadow: 0 0 1px #2196F3;
+        }
+
+        input:checked + .slider:before {
+            -webkit-transform: translateX(26px);
+            -ms-transform: translateX(26px);
+            transform: translateX(26px);
+        }
+
+        /* Rounded sliders */
+        .slider.round {
+            border-radius: 34px;
+        }
+
+        .slider.round:before {
+            border-radius: 50%;
+        }
+    </style>
+{% endblock %}
+
+{% for item in padanukkama %}
+    <div class="w3-container">
+        <div class="w3-card w3-padding">
+            <header class="w3-border">
+                <div class="w3-bar">
+                    <span class="w3-bar-item" style="font-weight: bold;">{{ item.title }}</span>
+                    <span class="w3-bar-item w3-right">
+                        {% trans 'Publication' %}
+                        <label class="switch">
+                            <input type="checkbox" {% if item.publication %} "checked" {% endif %} disabled>
+                            <span class="slider round"></span>
+                        </label>
+                    </span>
+                </div>
+            </header>
+
+            <div class="w3-border">
+                <div class="w3-row">
+                    <!-- left pan -->
+                    <div class="w3-threequarter w3-padding">
+                        <p>{{ item.about }}</p>
+
+                        <div class="w3-panel w3-win8-taupe w3-round-xlarge w3-padding">
+                            <div>{% trans 'All Pada' %} : {% all_padas item.id %} {% trans 'items' %}</div>
+                            <div>{% trans 'All Sadda' %} : {% all_saddas item.id %} {% trans 'items' %}</div>
+                        </div>
+
+                        <div class="w3-row">
+                            <div class="w3-half w3-container">
+                                {% trans 'Overview of operations' %}
+                                {% milestone item.id %}
+                            </div>
+                            <div class="w3-half w3-container">
+                                {% trans 'Overview of the translation process' %}
+                                 {% translation_process item.id %}
+                            </div>
+                        </div>
+
+                        <div class="w3-row">
+                            {% monthly_progress item.id %}
+                        </div>
+                        
+                      
+                    </div>
+                    <!-- right pan -->
+                    <div class="w3-padding w3-quarter w3-light-grey">
+                        <p>
+                            {% trans 'Wordlist Version' %}
+                            <ul>
+                                {% for version in item.wordlist_version.all %}
+                                    <li>{{ version }}</li>
+                                {% endfor %}
+                            </ul>
+
+                            {% trans 'Collaborators' %}
+                            <ul>
+                                {% for user in item.collaborators.all %}
+                                    <li>{{ user }}</li>
+                                {% endfor %}
+                            </ul>
+
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+

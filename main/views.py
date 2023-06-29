@@ -4,7 +4,8 @@ from django.contrib.auth.forms import PasswordChangeForm
 from django.shortcuts import render, redirect
 from django.views.generic.base import TemplateView
 from django.utils.translation import gettext_lazy as _
-from django.utils.translation import activate
+
+from padanukkama.models import Padanukkama
 
 # ---------
 # Home page
@@ -16,6 +17,8 @@ class HomeView(TemplateView):
         context = super().get_context_data(**kwargs)
         context["app_name"] = _("OPENPĀḶI")
         return context
+    
+
 
 # ---------------
 # Change password
@@ -35,6 +38,7 @@ def ChangePassword(request):
     return render(request, 'main/change_password.html', {
         'form': form
     })
+
 
 
 # ---------------

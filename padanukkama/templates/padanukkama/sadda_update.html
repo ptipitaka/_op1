@@ -55,20 +55,11 @@
                                 {{ field|add_class:"w3-input" }}
                             </p>
                         {% endfor %}
-                        <!-- preview button-->
-                        <button
-                            id="preview_vipatti"
-                            style="display:none"
-                            class="w3-button w3-dark-grey w3-hover-brown w3-round-xlarge"
-                            onclick="handlePreview(event);">
-                            {% trans "Preview" %}
-                        </button>
                         <!-- submit data -->
                         <button type="submit"
                             id="submit_data"
-                            style="display:none"
                             class="w3-button w3-dark-grey w3-hover-blue w3-round-xlarge">
-                            {% trans "Submit" %}
+                            {% trans "Save" %}
                         </button>
                     </div>
                     <!-- Vipatti table -->
@@ -144,15 +135,12 @@
 
     <script>
         $(document).ready(function () {
+
+            // Get the button element by its ID
+            var padaPada = $('#id_sadda').val();
+
             // manage input / action fields
             manageInputFields();
-            manageActionButton();
-
-            // Create Vipatti
-            create_vipatti();
-
-            // Related Pada
-            find_realated_pada();
 
             $('#id_sadda').change(function() {
                 check_existing_sadda(padaPada)
@@ -160,14 +148,18 @@
 
             $('#id_sadda_type').change(function() {
                 manageInputFields();
-                manageActionButton();
             });
 
             // Attach change event listener to the inputs
             $('#id_namasaddamala').change(function() {
                 manageInputFields();
-                manageActionButton();
             });
+
+            // find closet matches
+            find_abidan_closest_matches();
+            find_sadda_closest_matches();
+            // Related Pada
+            find_realated_pada();
         });
     </script>
 {% endblock %}

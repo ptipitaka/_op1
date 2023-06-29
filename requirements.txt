@@ -25,11 +25,13 @@ django-mptt-admin==2.5.0
 django-mptt-tree-editor==0.1.2
 django-rq==2.7.0
 django-select2==8.1.2
+django-simple-history==3.3.0
 django-smart-selects==1.6.0
 django-storages==1.13.2
 django-tables2==2.5.3
 django-taggit==4.0.0
 django-widget-tweaks==1.4.12
+django-xworkflows==1.0.0
 fonttools==4.40.0
 fuzzywuzzy==0.18.0
 idna==3.4
@@ -68,3 +70,4 @@ tzdata==2023.3
 unicodedata2==15.0.0
 urllib3==1.26.15
 wrapt==1.12.1
+xworkflows==1.1.0

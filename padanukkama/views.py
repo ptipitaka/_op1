@@ -253,14 +253,17 @@ class PadanukkamaPadaView(LoginRequiredMixin, SingleTableMixin, FilterView):
         context['deleted_conf_message'] = _('Are you sure you want to delete this record?')
         context["total_rec"] = '{:,}'.format(len(self.get_table().rows)) 
         history_manager = get_history_manager_for_model(Sadda)
-        last_sadda_updated = history_manager.filter(
-            history_user=self.request.user).latest('history_date')
-        # Get the related Pada object from the last_sadda_updated
-        sadda=Sadda.objects.filter(sadda=last_sadda_updated.sadda).first()
-        if sadda:
-            last_sadda_pada = Pada.objects.get(sadda=sadda.id)
-            context['last_sadda_pada'] = last_sadda_pada
-        else:
+        try:
+            last_sadda_updated = history_manager.filter(
+                history_user=self.request.user).latest('history_date')
+            # Get the related Pada object from the last_sadda_updated
+            sadda=Sadda.objects.filter(sadda=last_sadda_updated.sadda).first()
+            if sadda:
+                last_sadda_pada = Pada.objects.get(sadda=sadda.id)
+                context['last_sadda_pada'] = last_sadda_pada
+            else:
+                context['last_sadda_pada'] = None
+        except:
             context['last_sadda_pada'] = None
 
         return context
@@ -687,40 +690,6 @@ class SaddaView(LoginRequiredMixin, SingleTableMixin, FilterView):
         context["total_rec"] = '{:,}'.format(len(self.get_table().rows))
         return context
     
-    
-
-# SaddaCreateView
-# ---------------
-class SaddaCreateView(LoginRequiredMixin, CreateView):
-    model = Sadda
-    template_name = "padanukkama/sadda_create.html"
-    form_class = SaddaForm
-    success_url = reverse_lazy('sadda')
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        padanukkama_id = self.kwargs['padanukkama_id']
-        context['padanukkama_id'] = padanukkama_id
-        return context
-    
-    def get_initial(self):
-        initial = super().get_initial()
-        padanukkama_id = self.kwargs['padanukkama_id']
-        if padanukkama_id:
-            initial['padanukkama'] = get_object_or_404(Padanukkama, id=padanukkama_id)
-        return initial
-
-    def form_valid(self, form):
-        response = super().form_valid(form)
-        messages.success(self.request, _("Form saved successfully."))
-        return response
-
-    def form_invalid(self, form):
-        response = super().form_invalid(form)
-        error_message = _("Form contains errors. Please correct them.")
-        messages.error(self.request, error_message)
-        return response
-
 
 
 # SaddaUpdateView

@@ -3,6 +3,7 @@ import django_tables2 as tables
 
 from django import forms
 from django.db.models import Q
+from django.contrib.auth.models import User
 from django.core.paginator import Paginator
 from django.urls import reverse_lazy
 from django.utils.safestring import mark_safe
@@ -16,6 +17,7 @@ from simple_history.utils import get_history_manager_for_model
 from .models import NamaSaddamala, \
     Padanukkama, Pada, Sadda, NamaType, Karanta
 
+from .workflows import SaddaTranslationWorkflow
 
 # -----------------------------------------------------
 # NamaSaddamala Table & Filter
@@ -34,7 +36,7 @@ class NamaSaddamalaTable(tables.Table):
         url = reverse_lazy('nama_saddamala_update', args=[record.id])
         url_with_params = f'{url}?{query_params.urlencode()}'
         return mark_safe(
-            f'<a href="{url_with_params}" class="w3-button w3-round-xlarge w3-hover-white">'
+            f'<a href="{url_with_params}" class="w3-button w3-round-xlarge w3-border w3-hover-brown">'
             f'<i class="fas fa-pencil-alt"></i></a>'
         )
 
@@ -165,7 +167,7 @@ class PadaTable(tables.Table):
             url_with_params = f'{url}?{query_params.urlencode()}'
             
             return mark_safe(
-                f'<a href="{url_with_params}" class="w3-button w3-round-xlarge w3-hover-white">'
+                f'<a href="{url_with_params}" class="w3-button w3-round-xlarge w3-border w3-hover-brown">'
                 f'<i class="fas fa-project-diagram w3-text-orange"></i></a>'
             )
         
@@ -205,7 +207,7 @@ class PadaTable(tables.Table):
             url_with_params = f'{url}?{query_params.urlencode()}'
 
             return mark_safe(
-                f'<a href="{url_with_params}" class="w3-button w3-round-xlarge w3-hover-white">'
+                f'<a href="{url_with_params}" class="w3-button w3-round-xlarge w3-border w3-hover-brown">'
                 f'<i class="fas fa-layer-group w3-text-indigo"></i></a>'
             )
 
@@ -384,19 +386,27 @@ class PadaParentChildTable(tables.Table):
 class SaddaTable(tables.Table):
     sadda_seq = tables.Column(visible=False)
     pada = tables.Column(verbose_name=_('Related Padas'))
+    created_by = tables.Column(empty_values=(), orderable=False, verbose_name=_('Created by'))
     action = tables.Column(empty_values=(), orderable=False, verbose_name=_('Action'))
 
     class Meta:
         model = Sadda
         template_name = "django_tables2/w3css.html"
         attrs = {"class": "w3-table w3-bordered"}
-        fields = ("sadda", "construction", "pada", "padanukkama")
+        fields = ("sadda", "construction", "pada", "state", "created_by", "padanukkama")
         order_by = ("sadda_seq",)
+        per_page = 10
 
     def render_pada(self, value, record):
         pada_list = record.pada.all().order_by('pada_seq')
         unique_pada_list = list(set(pada.pada for pada in pada_list))
         return ', '.join(unique_pada_list)
+
+    def render_created_by(self, value, record):
+        log_activities = record.history.filter(history_type='+')
+        user_list = [f"{activity.history_user} ({activity.history_date.strftime('%d-%b-%Y')})" for activity in log_activities]
+        user_string = ', '.join(user_list)
+        return user_string
 
     def render_action(self, record):
         # Get all the query parameters from the request's GET parameters
@@ -407,26 +417,70 @@ class SaddaTable(tables.Table):
         url_with_params = f'{url}?{query_params.urlencode()}'
 
         return mark_safe(
-            f'<a href="{url_with_params}" class="w3-button w3-round-xlarge w3-border w3-hover-white">'
+            f'<a href="{url_with_params}" class="w3-button w3-round-xlarge w3-border w3-hover-brown">'
             f'<i class="fas fa-pencil-alt"></i></a>'
         )
     
+     
 
 class SaddaFilter(FilterSet):
+    PAGINATE_BY=10
+    PAGE_NUMBER=None
+
     padanukkama = ModelChoiceFilter(
         queryset=Padanukkama.objects.none(),  # Set an initial empty queryset
         widget=forms.Select(attrs={'class': 'form-control'}),
         label=_("Padanukkama")
     )
 
+    state = ChoiceFilter(
+        field_name='state',
+        choices=(),
+        label=_('State')
+    )
+
+    creator = ChoiceFilter(
+        label=_("Created By"),
+        choices=(),
+        method="filter_sadda_with_creator"
+    )
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        # padanukkama
+        # -----------
         self.filters['padanukkama'].field.queryset = Padanukkama.objects.filter(
             collaborators__id=self.request.user.id
         )
+        # state variables
+        # ---------------
+        STATUS = [
+            (state.name, _(state.name.capitalize()))
+            for state in SaddaTranslationWorkflow.states
+        ]
+        self.filters['state'].extra['choices'] = STATUS
+        # creator variable
+        # ----------------
+        current_user = self.request.user
+        # Retrieve all Padanukkama instances where the current user is a collaborator
+        participating_padas = Padanukkama.objects.filter(collaborators=current_user)
+        # Get all users from the participating Padanukkama instances
+        users = User.objects.filter(padanukkama__in=participating_padas).distinct()
+        # Convert the users queryset to a list of tuples (value, label)
+        USER_CHOICES = [(user.id, user.get_full_name()) for user in users]
+        # Assign the choices to the creator filter
+        self.filters['creator'].extra['choices'] = USER_CHOICES
+
+    def filter_sadda_with_creator(self, queryset, name, value):
+        if value:
+            # Filter the queryset by creator
+            filtered_saddas = Sadda.history.filter(history_user_id=value, history_type='+').values('id')
+            queryset = queryset.filter(id__in=filtered_saddas)
+        return queryset
+
 
     class Meta:
         model = Sadda
-        fields = ("padanukkama", "sadda")
+        fields = ("padanukkama", "sadda", "sadda_type", "state",)
 
 

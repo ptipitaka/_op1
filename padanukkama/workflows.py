@@ -4,15 +4,15 @@ from django_xworkflows import models as xwf_models
 class SaddaTranslationWorkflow(xwf_models.Workflow):
     states = (
         ('new', _('New')),
-        ('translation', _('Translation')),
-        ('review', _('Review')),
+        ('translated', _('Translated')),
+        ('reviewed', _('Review')),
         ('approved', _('Approved')),
     )
 
     transitions = (
-        ('start', 'new', 'translation'),
-        ('reviewing', 'translation', 'review'),
-        ('complete', 'review', 'approved'),
+        ('translated', 'new', 'translated'),
+        ('reviewed', 'translated', 'reviewed'),
+        ('approved', 'reviewed', 'approved'),
     )
 
     initial_state = 'new'

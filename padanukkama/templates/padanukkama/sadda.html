@@ -8,42 +8,45 @@
     <script src="{% static 'js/jquery-3.6.4.min.js' %}"></script>
 {% endblock %}
 
-{% block extra_css %}
-{% endblock %}
-
 {% block apptitle %}
     {% include 'padanukkama/include/title.html' %} : {% trans 'Sadda' %}
 {% endblock %}
 
-{% block apptitle_option %}
-    {% if padanukkama_id %}
-    <a  id="add-button"
-        href="{% url 'sadda_create' padanukkama_id=padanukkama_id %}" 
-        class="w3-button w3-round-xlarge w3-hover-yellow w3-display-right">
-        {% trans "Add" %}
-    </a>
-    {% endif %}
-{% endblock %}
-
 {% block body %}
     {% if filter %}
-        <form action="" method="get"
-            class="w3-container w3-text-blue w3-padding"
-            style="width:60%;margin:auto;">
-
-            {% for field in filter.form %}
-                <p>
-                    <label>{% trans field.label_tag %}</label>
-                    {{ field|add_class:"w3-input" }}
-                </p>
-            {% endfor %}
-
-            <button
-                type="submit"
-                class="w3-button w3-dark-grey w3-hover-brown w3-round-xlarge">
-                    {% trans "Submit" %}
-            </button>
-        </form>
+        <div class="w3-row w3-padding" style="width:80%; margin:auto">
+            <form action="" method="get">
+                <div class="w3-half w3-container">
+                    <p>
+                        <label for="{{ filter.form.padanukkama.id_for_label }}">{{ filter.form.padanukkama.label_tag }}</label>
+                        {{ filter.form.padanukkama|add_class:"w3-input" }}
+                    </p>
+                    <p>
+                        <label for="{{ filter.form.sadda_type.id_for_label }}">{{ filter.form.sadda_type.label_tag }}</label>
+                        {{ filter.form.sadda_type|add_class:"w3-input" }}
+                    </p>
+                    <p>
+                        <label for="{{ filter.form.sadda.id_for_label }}">{{ filter.form.sadda.label_tag }}</label>
+                        {{ filter.form.sadda|add_class:"w3-input" }}
+                    </p>
+                </div>
+                <div class="w3-half w3-container">
+                    <p>
+                        <label for="{{ filter.form.state.id_for_label }}">{{ filter.form.state.label_tag }}</label>
+                        {{ filter.form.state|add_class:"w3-input" }}
+                    </p>
+                    <p>
+                        <label for="{{ filter.form.creator.id_for_label }}">{{ filter.form.creator.label_tag }}</label>
+                        {{ filter.form.creator|add_class:"w3-input" }}
+                    </p>
+                    <button
+                        type="submit"
+                        class="w3-button w3-dark-grey w3-hover-brown w3-round-xlarge">
+                            {% trans "Submit" %}
+                    </button>
+                </div>
+            </form>
+        </div>
     {% endif %}
 
     {% render_table table %}

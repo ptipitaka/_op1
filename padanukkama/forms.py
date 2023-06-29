@@ -7,7 +7,6 @@ from django.utils.translation import gettext_lazy as _
 
 from django_select2.forms import *
 from mptt.forms import TreeNodeMultipleChoiceField
-from django_editorjs import EditorJsWidget
 
 from .models import NamaSaddamala, Padanukkama, Pada, Language, Sadda
 from tipitaka.models import WordlistVersion, Structure
