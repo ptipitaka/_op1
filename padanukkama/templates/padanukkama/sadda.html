@@ -8,6 +8,19 @@
     <script src="{% static 'js/jquery-3.6.4.min.js' %}"></script>
 {% endblock %}
 
+{% block extra_css %}
+    <style>
+        /* Modal Content/Box */
+        .w3-modal-content {
+            background-color: #fefefe;
+            margin: 0% auto; /* 0% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 50%; /* Could be more or less, depending on screen size */
+        }
+    </style>
+{% endblock %}
+
 {% block apptitle %}
     {% include 'padanukkama/include/title.html' %} : {% trans 'Sadda' %}
 {% endblock %}
@@ -39,10 +52,16 @@
                         <label for="{{ filter.form.creator.id_for_label }}">{{ filter.form.creator.label_tag }}</label>
                         {{ filter.form.creator|add_class:"w3-input" }}
                     </p>
+                    <!-- Submit -->
                     <button
                         type="submit"
                         class="w3-button w3-dark-grey w3-hover-brown w3-round-xlarge">
                             {% trans "Submit" %}
+                    </button>
+                    <!-- Trigger/Open the Modal -->
+                    <button onclick="openExportModal(event)"
+                        class="w3-button w3-dark-grey w3-hover-brown w3-round-xlarge w3-right">
+                        {% trans "Export" %}
                     </button>
                 </div>
             </form>
@@ -54,11 +73,40 @@
     <div class="w3-container w3-center">
         {% trans 'found' %} {{ total_rec }} {% trans 'record(s)' %} 
     </div>
+
+    <!-- The Modal -->
+    <div id="exportForm" class="w3-modal">
+        <div class="w3-modal-content">
+            <div class="w3-container">
+                <span onclick="document.getElementById('exportForm').style.display='none'"
+                    class="w3-button w3-display-topright">&times;</span>
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button
+                        type="submit"
+                        class="w3-button w3-dark-grey w3-hover-brown w3-round-xlarge">
+                            {% trans "Submit" %}
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
 {% endblock%}
 
 {% block script %}
     <script>
-        $(document).ready(function () {
+        function openExportModal(event) {
+            event.preventDefault(); // Prevent page reload
+            
+            $('#exportForm').css('display', 'block'); // Show the modal
+        }
+
+        $(document).ready(function() {
+            $('#exportForm').on('submit', function() {
+                $('#exportForm').css('display', 'none'); // Hide the modal
+            });
         });
     </script>
 {% endblock %}

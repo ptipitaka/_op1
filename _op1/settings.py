@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'django_tables2',
     'django_select2',
     'django_xworkflows',
+    'import_export',
     'mptt',
     'simple_history',
     'smart_selects',

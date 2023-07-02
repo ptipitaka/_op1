@@ -2,13 +2,12 @@ import inspect
 
 from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
-from django.http import JsonResponse, HttpResponseRedirect
+from django.http import JsonResponse, HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils.translation import gettext_lazy as _
 from django.views import View
-from django.views.generic import CreateView, UpdateView, DeleteView
+from django.views.generic import CreateView, UpdateView, DeleteView, FormView
 from django.urls import resolve, reverse_lazy
-
 
 from django_filters.views import FilterView
 from django_tables2.views import SingleTableMixin
@@ -16,6 +15,7 @@ from django_tables2.views import SingleTableMixin
 from braces.views import LoginRequiredMixin
 from fuzzywuzzy import fuzz, process
 from simple_history.utils import get_history_manager_for_model
+from tablib import Dataset
 from urllib.parse import urlencode
 
 from .models import NamaSaddamala, Padanukkama, Pada, Sadda
@@ -30,7 +30,9 @@ from .tables import NamaSaddamalaTable, NamaSaddamalaFilter, \
 
 from .forms import  NamaSaddamalaForm, \
                     PadanukkamaCreateForm, PadanukkamaUpdateForm, \
-                    AddChildPadaForm, SaddaForm
+                    AddChildPadaForm, SaddaForm, ExportSaddaForm
+
+from .admin import SaddaResource
 
 from utils.pali_char import *
 from utils.padanukkama import *
@@ -676,12 +678,13 @@ class CreateVipatti(LoginRequiredMixin, View):
 
 # SaddaView
 # ---------
-class SaddaView(LoginRequiredMixin, SingleTableMixin, FilterView):
+class SaddaView(LoginRequiredMixin, SingleTableMixin, FilterView, FormView):
     model = Sadda
     template_name = "padanukkama/sadda.html"
     context_object_name = "sadda"
     table_class = SaddaTable
     filterset_class = SaddaFilter
+    form_class = ExportSaddaForm
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -689,6 +692,38 @@ class SaddaView(LoginRequiredMixin, SingleTableMixin, FilterView):
         context['padanukkama_id'] = padanukkama_id
         context["total_rec"] = '{:,}'.format(len(self.get_table().rows))
         return context
+    
+    def get_queryset(self):
+        # Get the original queryset
+        queryset = super().get_queryset()
+        
+        # Apply the filter to the padanukkama field
+        padanukkama_id = self.request.GET.get('padanukkama')
+        if padanukkama_id:
+            queryset = queryset.filter(padanukkama_id=padanukkama_id)
+        
+        return queryset
+
+    def post(self, request, **kwargs):
+        filter_form = self.get_form(self.form_class)
+        if filter_form.is_valid():
+            queryset = self.get_queryset()
+            filterset = self.filterset_class(request.GET, queryset=queryset, request=request)
+            filtered_queryset = filterset.qs
+            dataset = SaddaResource().export(filtered_queryset)
+
+            format = request.POST.get('format')
+
+            if format == 'xls':
+                ds = dataset.xls
+            elif format == 'json':
+                ds = dataset.json
+            else:
+                ds = dataset.csv
+
+            response = HttpResponse(ds, content_type=f"{format}")
+            response['Content-Disposition'] = f"attachment; filename=sadda.{format}"
+            return response
     
 
 

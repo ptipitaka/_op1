@@ -1,5 +1,7 @@
 from django.contrib import admin
 from simple_history.admin import SimpleHistoryAdmin
+from import_export import resources
+from import_export.admin import ExportActionMixin
 
 from .models import NamaType, Linga, Karanta, NamaSaddamala, \
     Language, Padanukkama, Pada, Sadda, Paccaya, Dhatu, Dhatugana
@@ -30,7 +32,16 @@ class PadanukkamaAdmin(admin.ModelAdmin):
     list_display = ("title",)
     ordering = ("title",)
 
-class SaddaAdmin(SimpleHistoryAdmin):
+class SaddaResource(resources.ModelResource):
+    class Meta:
+        model = Sadda
+        fields = ('sadda_seq', 'sadda','sadda_type','namasaddamala','construction',)
+        export_order = ('sadda_seq',)
+        
+    def dehydrate_namasaddamala(self, sadda):
+        return ", ".join([nama.title for nama in sadda.namasaddamala.all()])
+
+class SaddaAdmin(SimpleHistoryAdmin, ExportActionMixin, admin.ModelAdmin):
     list_display = ("sadda",)
     ordering = ("sadda",)
 

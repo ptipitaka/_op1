@@ -5,7 +5,7 @@ class SaddaTranslationWorkflow(xwf_models.Workflow):
     states = (
         ('new', _('New')),
         ('translated', _('Translated')),
-        ('reviewed', _('Review')),
+        ('reviewed', _('Reviewed')),
         ('approved', _('Approved')),
     )
 

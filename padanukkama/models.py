@@ -388,7 +388,10 @@ class Sadda(xwf_models.WorkflowEnabled, models.Model):
         blank=True,
         verbose_name=_("Description"))
     history = HistoricalRecords()
-    state = xwf_models.StateField(SaddaTranslationWorkflow)
+    state = xwf_models.StateField(
+                SaddaTranslationWorkflow,
+                verbose_name=_("State")
+            )
 
     def save(self, *args, **kwargs):
         self.sadda_seq = encode(extract(clean(self.sadda)))

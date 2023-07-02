@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-01 13:51+0700\n"
+"POT-Creation-Date: 2023-07-01 21:22+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1716,12 +1716,12 @@ msgid "Nāmasaddapadamālā"
 msgstr "การจำแนกแบบแจกบทนาม"
 
 #: .\main\templates\main\navbar.html:45 .\padanukkama\models.py:342
-#: .\padanukkama\models.py:410 .\padanukkama\tables.py:436
+#: .\padanukkama\models.py:413 .\padanukkama\tables.py:436
 msgid "Padanukkama"
 msgstr "ปทานุกรม"
 
 #: .\main\templates\main\navbar.html:49 .\padanukkama\models.py:345
-#: .\padanukkama\models.py:435 .\padanukkama\tables.py:196
+#: .\padanukkama\models.py:438 .\padanukkama\tables.py:196
 #: .\padanukkama\tables.py:216
 #: .\padanukkama\templates\padanukkama\pada_declension.html:26
 #: .\padanukkama\templates\padanukkama\pada_declension.html:92
@@ -1964,7 +1964,7 @@ msgstr "อาขฺยาต"
 msgid "Byaya"
 msgstr "พฺยย"
 
-#: .\padanukkama\models.py:349 .\padanukkama\models.py:417
+#: .\padanukkama\models.py:349 .\padanukkama\models.py:420
 msgid "Pada sequence"
 msgstr "ลำดับบท"
 
@@ -1972,7 +1972,11 @@ msgstr "ลำดับบท"
 msgid "Construction"
 msgstr "การประกอบคำ"
 
-#: .\padanukkama\models.py:413 .\padanukkama\tables.py:100
+#: .\padanukkama\models.py:393 .\padanukkama\tables.py:442
+msgid "State"
+msgstr "สถานะ"
+
+#: .\padanukkama\models.py:416 .\padanukkama\tables.py:100
 #: .\padanukkama\tables.py:276
 #: .\padanukkama\templates\padanukkama\pada_declension.html:26
 #: .\padanukkama\templates\padanukkama\pada_split_sandhi.html:8
@@ -1980,11 +1984,11 @@ msgstr "การประกอบคำ"
 msgid "Pada"
 msgstr "บท"
 
-#: .\padanukkama\models.py:422 .\tipitaka\models.py:129
+#: .\padanukkama\models.py:425 .\tipitaka\models.py:129
 msgid "Word in roman script"
 msgstr "คำในอักษรโรมัน"
 
-#: .\padanukkama\models.py:428
+#: .\padanukkama\models.py:431
 msgid "Parent word"
 msgstr "จากคำ"
 
@@ -2063,10 +2067,6 @@ msgstr "บทที่เกี่ยวข้อง"
 #: .\padanukkama\tables.py:392 .\tipitaka\models.py:115
 msgid "Created by"
 msgstr "สร้างโดย"
-
-#: .\padanukkama\tables.py:442
-msgid "State"
-msgstr "สถานะ"
 
 #: .\padanukkama\tables.py:446
 msgid "Created By"
@@ -2308,7 +2308,7 @@ msgid "New"
 msgstr "ใหม่"
 
 #: .\padanukkama\workflows.py:8
-msgid "Review"
+msgid "Reviewed"
 msgstr "แสดง"
 
 #: .\padanukkama\workflows.py:9

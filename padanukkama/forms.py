@@ -121,3 +121,20 @@ class SaddaForm(forms.ModelForm):
         model = Sadda
         exclude = ['sadda_seq']
 
+
+
+# -----------------------------------------------------
+# ExportSaddaForm
+# -----------------------------------------------------
+FORMAT_CHOICES = (
+    ('xls', 'xls'),
+    ('csv', 'csv'),
+    ('json', 'json')
+)
+
+class ExportSaddaForm(forms.Form):
+    format = forms.ChoiceField(
+        choices=FORMAT_CHOICES, widget=forms.Select(attrs={'class': 'w3-select'}),
+        required=True,
+        label=_('Format')
+    )
