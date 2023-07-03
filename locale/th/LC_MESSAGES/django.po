@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-03 12:54+0700\n"
+"POT-Creation-Date: 2023-07-03 13:10+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1782,13 +1782,14 @@ msgid "Collaborators"
 msgstr "ผู้ร่วมดำเนินการ"
 
 #: .\main\templates\main\statistic\milestone.html:20
-#: .\padanukkama\workflows.py:7
-msgid "Translated"
-msgstr "แปล"
+#, fuzzy
+#| msgid "Process"
+msgid "On Process"
+msgstr "ดำเนินการ"
 
 #: .\main\templates\main\statistic\milestone.html:20
-msgid "Non Translate"
-msgstr "ยังไม่ได้แปล"
+msgid "Waiting"
+msgstr ""
 
 #: .\main\templates\registration\login.html:6
 msgid "Log In"
@@ -2316,6 +2317,10 @@ msgstr "พบข้อผิดพลาด โปรดติดต่อเ�
 msgid "New"
 msgstr "ใหม่"
 
+#: .\padanukkama\workflows.py:7
+msgid "Translated"
+msgstr "แปล"
+
 #: .\padanukkama\workflows.py:8
 msgid "Reviewed"
 msgstr "แสดง"
@@ -2519,6 +2524,9 @@ msgstr "ไม่พบ การอ้างอิงร่วม"
 #: .\tipitaka\views.py:239 .\tipitaka\views.py:246
 msgid "Invalid input. Please correct the errors below"
 msgstr "พบข้อผิดพลาด"
+
+#~ msgid "Non Translate"
+#~ msgstr "ยังไม่ได้แปล"
 
 #~ msgid "Enter meanings (separated by commas)"
 #~ msgstr "กรุณาใส่ความหมาย (คั่นด้วยเครื่องหมายจุลภาค)"
