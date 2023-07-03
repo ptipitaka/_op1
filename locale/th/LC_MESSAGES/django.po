@@ -1739,7 +1739,7 @@ msgstr "เข้าระบบ"
 
 #: .\main\templates\main\navbar.html:65
 msgid "Logout"
-msgstr ""
+msgstr "ออกระบบ"
 
 #: .\main\templates\main\statistic\dashboard.html:75
 #: .\padanukkama\models.py:217 .\padanukkama\tables.py:119
