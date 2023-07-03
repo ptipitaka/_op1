@@ -1782,14 +1782,12 @@ msgid "Collaborators"
 msgstr "ผู้ร่วมดำเนินการ"
 
 #: .\main\templates\main\statistic\milestone.html:20
-#, fuzzy
-#| msgid "Process"
 msgid "On Process"
-msgstr "ดำเนินการ"
+msgstr "กำลังดำเนินการ"
 
 #: .\main\templates\main\statistic\milestone.html:20
 msgid "Waiting"
-msgstr ""
+msgstr "รอดำเนินการ"
 
 #: .\main\templates\registration\login.html:6
 msgid "Log In"
