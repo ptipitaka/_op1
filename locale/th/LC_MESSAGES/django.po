@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-01 21:22+0700\n"
+"POT-Creation-Date: 2023-07-03 12:54+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,11 +18,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: .\_op1\settings.py:143
+#: .\_op1\settings.py:144
 msgid "English"
 msgstr ""
 
-#: .\_op1\settings.py:144
+#: .\_op1\settings.py:145
 msgid "Thai"
 msgstr ""
 
@@ -1622,7 +1622,8 @@ msgstr "อภิธานพระไตรปิฎก บาลี-พม่�
 #: .\padanukkama\templates\padanukkama\pada_declension.html:71
 #: .\padanukkama\templates\padanukkama\pada_split_sandhi.html:35
 #: .\padanukkama\templates\padanukkama\padanukkama.html:31
-#: .\padanukkama\templates\padanukkama\sadda.html:45
+#: .\padanukkama\templates\padanukkama\sadda.html:59
+#: .\padanukkama\templates\padanukkama\sadda.html:89
 #: .\tipitaka\templates\tipitaka\digital_archive.html:30
 #: .\tipitaka\templates\tipitaka\structure.html:28
 #: .\tipitaka\templates\tipitaka\wordlist.html:62
@@ -1634,7 +1635,7 @@ msgstr "ดำเนินการ"
 #: .\padanukkama\templates\padanukkama\nama_saddamala.html:39
 #: .\padanukkama\templates\padanukkama\pada.html:44
 #: .\padanukkama\templates\padanukkama\padanukkama.html:39
-#: .\padanukkama\templates\padanukkama\sadda.html:55
+#: .\padanukkama\templates\padanukkama\sadda.html:74
 #: .\tipitaka\templates\tipitaka\digital_archive.html:39
 #: .\tipitaka\templates\tipitaka\structure.html:36
 #: .\tipitaka\templates\tipitaka\toc.html:16
@@ -1646,7 +1647,7 @@ msgstr "พบ"
 #: .\padanukkama\templates\padanukkama\nama_saddamala.html:39
 #: .\padanukkama\templates\padanukkama\pada.html:44
 #: .\padanukkama\templates\padanukkama\padanukkama.html:39
-#: .\padanukkama\templates\padanukkama\sadda.html:55
+#: .\padanukkama\templates\padanukkama\sadda.html:74
 #: .\tipitaka\templates\tipitaka\digital_archive.html:39
 #: .\tipitaka\templates\tipitaka\structure.html:36
 #: .\tipitaka\templates\tipitaka\toc.html:16
@@ -1726,7 +1727,7 @@ msgstr "ปทานุกรม"
 #: .\padanukkama\templates\padanukkama\pada_declension.html:26
 #: .\padanukkama\templates\padanukkama\pada_declension.html:92
 #: .\padanukkama\templates\padanukkama\padanukkama_create.html:6
-#: .\padanukkama\templates\padanukkama\sadda.html:12
+#: .\padanukkama\templates\padanukkama\sadda.html:25
 #: .\padanukkama\templates\padanukkama\sadda_update.html:26
 #: .\padanukkama\templates\padanukkama\sadda_update.html:75
 msgid "Sadda"
@@ -1804,6 +1805,10 @@ msgstr "กรุณาแก้ไขข้อผิดพลาด"
 #: .\padanukkama\forms.py:116 .\padanukkama\models.py:359
 msgid "NamaSaddamala"
 msgstr "การจำแนกแบบแจกบทนาม"
+
+#: .\padanukkama\forms.py:139
+msgid "Format"
+msgstr ""
 
 #: .\padanukkama\models.py:23 .\padanukkama\models.py:38
 #: .\padanukkama\models.py:56 .\padanukkama\models.py:271
@@ -2249,57 +2254,61 @@ msgstr "กรุณายืนยันการลบรายการ"
 msgid "Translation"
 msgstr "แปล"
 
+#: .\padanukkama\templates\padanukkama\sadda.html:64
+msgid "Export"
+msgstr "บันทึกเป็นไฟล์"
+
 #: .\padanukkama\templates\padanukkama\sadda_update.html:103
 msgid "Pada related to this Sadda"
 msgstr "แสดงบทที่แจกวิภัตติแล้ว"
 
-#: .\padanukkama\views.py:73 .\padanukkama\views.py:109
-#: .\padanukkama\views.py:717
+#: .\padanukkama\views.py:75 .\padanukkama\views.py:111
+#: .\padanukkama\views.py:752
 msgid "Form saved successfully."
 msgstr "การบันทึกเสร็จสิ้น"
 
-#: .\padanukkama\views.py:78 .\padanukkama\views.py:114
-#: .\padanukkama\views.py:722
+#: .\padanukkama\views.py:80 .\padanukkama\views.py:116
+#: .\padanukkama\views.py:757
 msgid "Form contains errors. Please correct them."
 msgstr "พบข้อผิดพลาด"
 
-#: .\padanukkama\views.py:201
+#: .\padanukkama\views.py:203
 msgid "Form is invalid. Please correct the errors."
 msgstr "พบข้อผิดพลาด"
 
-#: .\padanukkama\views.py:253
+#: .\padanukkama\views.py:255
 msgid "Are you sure you want to delete this record?"
 msgstr "กรุณายืนยันการลบรายการ"
 
-#: .\padanukkama\views.py:314
+#: .\padanukkama\views.py:316
 msgid "The record has been added!"
 msgstr "การเพิ่มรายการสำเร็จ"
 
-#: .\padanukkama\views.py:342
+#: .\padanukkama\views.py:344
 msgid "The record has been duplicated!"
 msgstr "การสำเนารายการสำเร็จ"
 
-#: .\padanukkama\views.py:344
+#: .\padanukkama\views.py:346
 msgid "Error: Record duplication unsuccessful"
 msgstr "พบปัญหาในการทำสำเนา"
 
-#: .\padanukkama\views.py:361
+#: .\padanukkama\views.py:363
 msgid "The record has been deleted!"
 msgstr "การลบรายการเสร็จสิ้น"
 
-#: .\padanukkama\views.py:363
+#: .\padanukkama\views.py:365
 msgid "Error: Record deletion unsuccessful"
 msgstr "พบข้อผิดพลาด การลบรายการเสร็จสิ้น"
 
-#: .\padanukkama\views.py:493
+#: .\padanukkama\views.py:495
 msgid "Error: {}-{}, please contact SA"
 msgstr "พบข้อผิดพลาด"
 
-#: .\padanukkama\views.py:552
+#: .\padanukkama\views.py:554
 msgid "Record updated successfully!"
 msgstr "การบันทึกเสร็จสิ้น"
 
-#: .\padanukkama\views.py:560
+#: .\padanukkama\views.py:562
 msgid "Form is invalid. Please correct the errors"
 msgstr "พบข้อผิดพลาด โปรดติดต่อเจ้าหน้าที่"
 

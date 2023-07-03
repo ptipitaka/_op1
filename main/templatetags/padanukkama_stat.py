@@ -45,15 +45,15 @@ def all_saddas(padanukkama_id):
 
 @register.inclusion_tag('main/statistic/milestone.html')
 def milestone(padanukkama_id):
-    non_translated = Pada.objects.filter(
+    waiting = Pada.objects.filter(
             Q(padanukkama=padanukkama_id) & Q(children__isnull=True) & Q(sadda__isnull=True)
         ).count()
-    translated = Pada.objects.filter(
+    onprocess = Pada.objects.filter(
             Q(padanukkama=padanukkama_id) & Q(children__isnull=True) & Q(sadda__isnull=False)
         ).count()
     return {
-        'nonTranslated': non_translated,
-        'translated': translated
+        'waiting': waiting,
+        'onprocess': onprocess
         }
 
 

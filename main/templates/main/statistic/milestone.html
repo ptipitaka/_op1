@@ -18,7 +18,7 @@
         const ctx = document.getElementById('milestone');
 
         var xValues = ["{% trans 'Translated' %}", "{% trans 'Non Translate' %}"];
-        var yValues = [{{ translated }}, {{ nonTranslated }}];
+        var yValues = [{{ onprocess }}, {{ waiting }}];
         var barColors = [
             "#b91d47",
             "#00aba9",
