@@ -9,7 +9,7 @@ from django.views.generic import TemplateView, DetailView
 from django_filters.views import FilterView
 from django_tables2.views import SingleTableMixin
 
-from braces.views import LoginRequiredMixin
+from braces.views import LoginRequiredMixin, SuperuserRequiredMixin
 
 from utils.pali_char import *
 
@@ -57,7 +57,7 @@ class DigitalArchiveView(LoginRequiredMixin, View):
 # -----------------------------------------------------
 # DigitalArchiveDetialsView
 # -----------------------------------------------------
-class DigitalArchiveDetialsView(LoginRequiredMixin, UpdateView, SuccessMessageMixin):
+class DigitalArchiveDetialsView(SuperuserRequiredMixin, UpdateView, SuccessMessageMixin):
     template_name = "tipitaka/digital_archive_details.html"
     model = Page
     form_class = EditForm
@@ -90,7 +90,7 @@ class WordListView(LoginRequiredMixin, SingleTableMixin, FilterView):
 # -----------------------------------------------------
 # WordListPageSourceView
 # -----------------------------------------------------
-class WordListPageSourceView(LoginRequiredMixin, UpdateView):
+class WordListPageSourceView(SuperuserRequiredMixin, UpdateView):
     model = WordList
     template_name = "tipitaka/wordlist_page_source.html"
     form_class = UpdWlAndPageForm
@@ -143,7 +143,7 @@ class StructureView(LoginRequiredMixin, SingleTableMixin, FilterView):
 # -----------------------------------------------------
 # CommonReferenceSubformView
 # -----------------------------------------------------
-class CommonReferenceSubformView(LoginRequiredMixin, TemplateView):
+class CommonReferenceSubformView(SuperuserRequiredMixin, TemplateView):
     template_name = "tipitaka/common_reference_subform.html"
 
     def get_context_data(self, **kwargs):
@@ -251,7 +251,7 @@ class CommonReferenceSubformView(LoginRequiredMixin, TemplateView):
 # -----------------------------------------------------
 # CommonReferenceSubformDetailView
 # -----------------------------------------------------
-class CommonReferenceSubformDetailView(LoginRequiredMixin, DetailView):
+class CommonReferenceSubformDetailView(SuperuserRequiredMixin, DetailView):
     model = CommonReference
     template_name = "tipitaka/common_reference_detail.html"
     
@@ -269,7 +269,7 @@ class CommonReferenceSubformDetailView(LoginRequiredMixin, DetailView):
 # -----------------------------------------------------
 # CommonReferenceSubformDeleteView
 # -----------------------------------------------------
-class CommonReferenceSubformDeleteView(LoginRequiredMixin, DeleteView):
+class CommonReferenceSubformDeleteView(SuperuserRequiredMixin, DeleteView):
     model = CommonReference
     template_name = 'tipitaka/common_reference_delete.html'
         

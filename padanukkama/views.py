@@ -12,7 +12,7 @@ from django.urls import resolve, reverse_lazy
 from django_filters.views import FilterView
 from django_tables2.views import SingleTableMixin
 
-from braces.views import LoginRequiredMixin
+from braces.views import LoginRequiredMixin, SuperuserRequiredMixin
 from fuzzywuzzy import fuzz, process
 from simple_history.utils import get_history_manager_for_model
 from tablib import Dataset
@@ -167,7 +167,7 @@ class PadanukkamaView(LoginRequiredMixin, SingleTableMixin, FilterView):
 
 # PadanukkamaCreateView
 # ---------------------
-class PadanukkamaCreateView(LoginRequiredMixin, CreateView):
+class PadanukkamaCreateView(SuperuserRequiredMixin, CreateView):
     model = Padanukkama
     template_name = "padanukkama/padanukkama_create.html"
     form_class = PadanukkamaCreateForm
@@ -183,7 +183,7 @@ class PadanukkamaCreateView(LoginRequiredMixin, CreateView):
 
 # PadanukkamaUpdateView
 # ---------------------
-class PadanukkamaUpdateView(LoginRequiredMixin, UpdateView):
+class PadanukkamaUpdateView(SuperuserRequiredMixin, UpdateView):
     model = Padanukkama
     context_object_name = 'padanukkama'
     template_name = "padanukkama/padanukkama_update.html"
@@ -207,7 +207,7 @@ class PadanukkamaUpdateView(LoginRequiredMixin, UpdateView):
 
 # PadanukkamaDeleteView
 # ---------------------
-class PadanukkamaDeleteView(LoginRequiredMixin, DeleteView):
+class PadanukkamaDeleteView(SuperuserRequiredMixin, DeleteView):
     model = Padanukkama
     success_url = reverse_lazy('padanukkama')
     template_name = "padanukkama/padanukkama_delete.html"
@@ -353,7 +353,7 @@ class PadaDuplicateView(LoginRequiredMixin, View):
 
 # PadaDeleteView
 # --------------
-class PadaDeleteView(LoginRequiredMixin, View):
+class PadaDeleteView(SuperuserRequiredMixin, View):
     def get(self, request, padanukkama_id, pk):
         # Retrieve the Pada record to be delete
         pada = get_object_or_404(Pada, pk=pk)
