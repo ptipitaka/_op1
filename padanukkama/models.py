@@ -1,6 +1,8 @@
 from django.db import models
-from django.db.models import Q
+from django.db.models import Max
+from django.db.models.functions import Cast
 from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
@@ -14,6 +16,8 @@ from utils.pali_char import *
 
 from tipitaka.models import WordlistVersion, TableOfContent, Structure
 from .workflows import SaddaTranslationWorkflow
+
+User = get_user_model()
 
 # -----------------------------------------------------
 # NamaType
@@ -399,6 +403,19 @@ class Sadda(xwf_models.WorkflowEnabled, models.Model):
 
         super().save(*args, **kwargs)
 
+    @classmethod
+    def get_last_3_pada_updates(cls, user):
+        last_3_updates = cls.history.filter(history_user=user).values('sadda')
+        last_3_updates = last_3_updates.annotate(max_history_date=Max('history_date'))
+        last_3_updates = last_3_updates.order_by('-max_history_date')[:3]
+        
+        unique_saddas = set()
+        for update in last_3_updates:
+            sadda_id = update['sadda']
+            sadda = cls.history.get(sadda=sadda_id, history_date=update['max_history_date'])
+            unique_saddas.add(sadda)
+        
+        return unique_saddas
 
 
 

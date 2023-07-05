@@ -1,4 +1,6 @@
 from django.db.models import Q
+from django.contrib import messages
+from django.contrib.auth.views import redirect_to_login
 from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
@@ -63,6 +65,10 @@ class DigitalArchiveDetialsView(SuperuserRequiredMixin, UpdateView, SuccessMessa
     form_class = EditForm
     success_message = _('Update successfully!')
 
+    def handle_no_permission(self, request):
+        messages.error(request, _('You do not have permission to access this page'))
+        return redirect_to_login(request.get_full_path(), login_url=self.get_login_url(), redirect_field_name=self.get_redirect_field_name())
+
     def get_success_url(self):
         edition = int(self.request.GET.get('edition'))
         volume = self.request.GET.get('volume') or ''
@@ -95,7 +101,11 @@ class WordListPageSourceView(SuperuserRequiredMixin, UpdateView):
     template_name = "tipitaka/wordlist_page_source.html"
     form_class = UpdWlAndPageForm
     success_url = reverse_lazy('wordlist_master')
-    
+
+    def handle_no_permission(self, request):
+        messages.error(request, _('You do not have permission to access this page'))
+        return redirect_to_login(request.get_full_path(), login_url=self.get_login_url(), redirect_field_name=self.get_redirect_field_name())
+
     def get_success_url(self):
         return self.request.path
 
@@ -145,6 +155,10 @@ class StructureView(LoginRequiredMixin, SingleTableMixin, FilterView):
 # -----------------------------------------------------
 class CommonReferenceSubformView(SuperuserRequiredMixin, TemplateView):
     template_name = "tipitaka/common_reference_subform.html"
+
+    def handle_no_permission(self, request):
+        messages.error(request, _('You do not have permission to access this page'))
+        return redirect_to_login(request.get_full_path(), login_url=self.get_login_url(), redirect_field_name=self.get_redirect_field_name())
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -255,6 +269,10 @@ class CommonReferenceSubformDetailView(SuperuserRequiredMixin, DetailView):
     model = CommonReference
     template_name = "tipitaka/common_reference_detail.html"
     
+    def handle_no_permission(self, request):
+        messages.error(request, _('You do not have permission to access this page'))
+        return redirect_to_login(request.get_full_path(), login_url=self.get_login_url(), redirect_field_name=self.get_redirect_field_name())
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
@@ -272,7 +290,11 @@ class CommonReferenceSubformDetailView(SuperuserRequiredMixin, DetailView):
 class CommonReferenceSubformDeleteView(SuperuserRequiredMixin, DeleteView):
     model = CommonReference
     template_name = 'tipitaka/common_reference_delete.html'
-        
+
+    def handle_no_permission(self, request):
+        messages.error(request, _('You do not have permission to access this page'))
+        return redirect_to_login(request.get_full_path(), login_url=self.get_login_url(), redirect_field_name=self.get_redirect_field_name())
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 

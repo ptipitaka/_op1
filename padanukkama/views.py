@@ -1,6 +1,7 @@
 import inspect
 
 from django.contrib import messages
+from django.contrib.auth.views import redirect_to_login
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import JsonResponse, HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect, render
@@ -171,7 +172,11 @@ class PadanukkamaCreateView(SuperuserRequiredMixin, CreateView):
     model = Padanukkama
     template_name = "padanukkama/padanukkama_create.html"
     form_class = PadanukkamaCreateForm
-    
+
+    def handle_no_permission(self, request):
+        messages.error(request, _('You do not have permission to access this page'))
+        return redirect_to_login(request.get_full_path(), login_url=self.get_login_url(), redirect_field_name=self.get_redirect_field_name())
+
     def get_success_url(self):
         return reverse_lazy('padanukkama_update', args=(self.object.pk,))
 
@@ -189,7 +194,11 @@ class PadanukkamaUpdateView(SuperuserRequiredMixin, UpdateView):
     template_name = "padanukkama/padanukkama_update.html"
     form_class = PadanukkamaUpdateForm
     success_url = reverse_lazy('padanukkama')
-    
+
+    def handle_no_permission(self, request):
+        messages.error(request, _('You do not have permission to access this page'))
+        return redirect_to_login(request.get_full_path(), login_url=self.get_login_url(), redirect_field_name=self.get_redirect_field_name())
+
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
         kwargs['table_of_content'] = self.object.table_of_content
@@ -211,6 +220,10 @@ class PadanukkamaDeleteView(SuperuserRequiredMixin, DeleteView):
     model = Padanukkama
     success_url = reverse_lazy('padanukkama')
     template_name = "padanukkama/padanukkama_delete.html"
+
+    def handle_no_permission(self, request):
+        messages.error(request, _('You do not have permission to access this page'))
+        return redirect_to_login(request.get_full_path(), login_url=self.get_login_url(), redirect_field_name=self.get_redirect_field_name())
 
 
 
@@ -354,6 +367,10 @@ class PadaDuplicateView(LoginRequiredMixin, View):
 # PadaDeleteView
 # --------------
 class PadaDeleteView(SuperuserRequiredMixin, View):
+    def handle_no_permission(self, request):
+        messages.error(request, _('You do not have permission to access this page'))
+        return redirect_to_login(request.get_full_path(), login_url=self.get_login_url(), redirect_field_name=self.get_redirect_field_name())
+
     def get(self, request, padanukkama_id, pk):
         # Retrieve the Pada record to be delete
         pada = get_object_or_404(Pada, pk=pk)

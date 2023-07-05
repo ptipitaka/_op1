@@ -1,0 +1,11 @@
+{% load i18n %}
+{% load padanukkama_stat %}
+
+{% if result %}
+    {% trans 'Recently Updated' %}
+{% endif %}
+<ul>
+{% for item in result %}
+    <li>{{ item.sadda }} <small>{% relate_pada item.sadda %}</small></li>
+{% endfor %}
+</ul>

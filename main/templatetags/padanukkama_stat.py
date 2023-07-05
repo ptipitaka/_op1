@@ -58,6 +58,23 @@ def milestone(padanukkama_id):
 
 
 
+@register.inclusion_tag('main/statistic/last_update.html', takes_context=True)
+def last_10_updates(context):
+    current_user = context.request.user
+    result = None
+    if current_user.id:
+        result = Sadda.get_last_3_pada_updates(current_user)
+    return { 'result': result }
+
+
+
+@register.inclusion_tag('main/statistic/relate_pada.html')
+def relate_pada(sadda):
+    result = Pada.objects.filter(sadda__sadda=sadda)[:10]
+    return {'result': result}
+
+
+
 @register.inclusion_tag('main/statistic/translation_process.html')
 def translation_process(padanukkama_id):
     # Count Sadda objects for each workflow state

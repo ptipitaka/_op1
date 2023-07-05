@@ -1,0 +1,8 @@
+<ul>
+{% for item in result %}
+    <li>
+        <a href="{% url "padanukkama_pada" item.padanukkama.id %}?pada_filter={{ item.pada }}&pada_filter_options=IN">{{ item.pada }}</a>
+    </li>
+{% endfor %}
+</ul>
+
