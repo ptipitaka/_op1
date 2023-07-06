@@ -1,5 +1,5 @@
 from django.db import models
-from django.db.models import Max
+from django.db.models import Max, Q
 from django.db.models.functions import Cast
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
