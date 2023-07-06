@@ -1,3 +1,4 @@
+from aksharamukha import transliterate
 from django.contrib import admin
 from simple_history.admin import SimpleHistoryAdmin
 from import_export import resources
@@ -35,11 +36,14 @@ class PadanukkamaAdmin(admin.ModelAdmin):
 class SaddaResource(resources.ModelResource):
     class Meta:
         model = Sadda
-        fields = ('sadda_seq', 'sadda','sadda_type','namasaddamala','construction',)
+        fields = ('sadda_seq','sadda','sadda_type','namasaddamala','construction',)
         export_order = ('sadda_seq',)
         
     def dehydrate_namasaddamala(self, sadda):
         return ", ".join([nama.title for nama in sadda.namasaddamala.all()])
+
+    def dehydrate_sadda(self, sadda):
+        return f"{ sadda.sadda } ({transliterate.process('Thai', 'Burmese', sadda.sadda)})"
 
 class SaddaAdmin(SimpleHistoryAdmin, ExportActionMixin, admin.ModelAdmin):
     list_display = ("sadda",)
