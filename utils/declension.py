@@ -36,22 +36,22 @@ def noun_declension(str, namasaddamala_id):
 
     try:
         # convert to Roman
-        str_roman = transliterate.process('Thai', 'IAST', str)
+        str_roman = transliterate.process('Thai', 'IASTPali', str)
         # remove endding vowels
         sadda_roman_without_karanta, removed_chars_roman = remove_ending_vowels(str_roman)
         # convert remove endding vowels to Thai
-        sadda_thai_without_karanta = transliterate.process('IAST', 'Thai', sadda_roman_without_karanta)
+        sadda_thai_without_karanta = transliterate.process('IASTPali', 'Thai', sadda_roman_without_karanta)
         # get namasaddamala
         pada = NamaSaddamala.objects.get(pk=namasaddamala_id)
 
         # get title code (base sadda) and cnvert to Roman
-        code_roman = transliterate.process('Thai', 'IAST', pada.title_code)
+        code_roman = transliterate.process('Thai', 'IASTPali', pada.title_code)
         # remove endding vowels of code title
         code_roman_without_karanta, code_roman_karanta = remove_ending_vowels(code_roman)
         
         for vipatti_field in vipatti_fields:
             vipatti_str_thai = getattr(pada, vipatti_field)
-            vipatti_str_roman = transliterate.process('Thai', 'IAST', vipatti_str_thai or '')
+            vipatti_str_roman = transliterate.process('Thai', 'IASTPali', vipatti_str_thai or '')
             
             if sadda_roman_without_karanta == code_roman_without_karanta:
                 result[vipatti_field] = vipatti_str_thai or ''
@@ -60,7 +60,7 @@ def noun_declension(str, namasaddamala_id):
                 for v in vipatti_str_roman.split(' '):
                     endding_chars = get_differing_characters(v, code_roman_without_karanta)
                     str_roman_with_declension = sadda_roman_without_karanta + endding_chars
-                    str_thai_with_declension = transliterate.process('IAST', 'Thai', str_roman_with_declension)
+                    str_thai_with_declension = transliterate.process('IASTPali', 'Thai', str_roman_with_declension)
                     result[vipatti_field].append(str_thai_with_declension)
                 result[vipatti_field] = " ".join(result[vipatti_field])
     except:
