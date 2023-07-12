@@ -57,11 +57,12 @@ def noun_declension(str, namasaddamala_id):
                 result[vipatti_field] = vipatti_str_thai or ''
             else:
                 result[vipatti_field] = []
-                for v in vipatti_str_roman.split(' '):
-                    endding_chars = get_differing_characters(v, code_roman_without_karanta)
-                    str_roman_with_declension = sadda_roman_without_karanta + endding_chars
-                    str_thai_with_declension = transliterate.process('IASTPali', 'Thai', str_roman_with_declension)
-                    result[vipatti_field].append(str_thai_with_declension)
+                if vipatti_str_roman:
+                    for v in vipatti_str_roman.split(' '):
+                        endding_chars = get_differing_characters(v, code_roman_without_karanta)
+                        str_roman_with_declension = sadda_roman_without_karanta + endding_chars
+                        str_thai_with_declension = transliterate.process('IASTPali', 'Thai', str_roman_with_declension)
+                        result[vipatti_field].append(str_thai_with_declension)
                 result[vipatti_field] = " ".join(result[vipatti_field])
     except:
         result = {'error':True}
