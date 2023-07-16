@@ -712,8 +712,12 @@ def FilterVerbConjugation(request, word):
                     id_list.append(verb_conjugation.id)
                     break
 
-    verb_conjugation_queryset = VerbConjugation.objects.filter(
-        id__in=id_list).order_by('sequence')
+    if id_list:
+        verb_conjugation_queryset = VerbConjugation.objects.filter(
+            id__in=id_list).order_by('sequence')
+    else:
+        verb_conjugation_queryset = VerbConjugation.objects.all().order_by('sequence')
+
     verb_conjugation_list = list(verb_conjugation_queryset.values())
 
     return JsonResponse(verb_conjugation_list, safe=False)
