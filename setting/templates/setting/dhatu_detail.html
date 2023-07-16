@@ -1,0 +1,70 @@
+{% extends 'main/base.html' %}
+
+{% load widget_tweaks i18n %}
+
+{% block apptitle %}
+    {% include 'setting/include/title.html' %} : {% trans 'Dhātu' %}
+    {% if url_name == 'dhatu_create' %}・{% trans 'Create' %}
+    {% elif url_name == 'dhatu_update' %}・{% trans 'Update' %}
+    {% elif url_name == 'dhatu_delete' %}・<span class="w3-text-red">{% trans 'Delete' %}</span>{% endif %}
+{% endblock %}
+
+{% block apptitle_option %}
+    <a href="{% url 'dhatu' %}?{{ request.GET.urlencode }}"
+        class="w3-button w3-round-xlarge w3-hover-amber w3-display-right">
+        {% trans "Back" %}
+    </a>
+{% endblock %}
+
+{% block body %}
+    <!-- case delete -->
+    {% if url_name == 'dhatu_delete' %}
+        <div class="w3-container w3-padding"
+             style="width:60%; margin:auto;">
+            <div class="w3-row">
+                <h4>{% trans 'Delete Dhātu' %}</h4>
+                <p>{% trans 'Are you sure you want to delete the following Dhātu?' %}</p>
+                <p><strong>{% trans 'Title' %}:</strong> {{ dhatu.title }}</p>
+                <p><strong>{% trans 'Dhātugana' %}:</strong> {{ dhatu.dhatugana }}</p>
+                <p><strong>{% trans 'Definition' %}:</strong> {{ dhatu.definition }}</p>
+                <p><strong>{% trans 'Meaning' %}:</strong> {{ dhatu.meaning }}</p>
+                <form method="post" action="{% url 'dhatu_delete' dhatu.pk %}">
+                    {% csrf_token %}
+                    <input type="submit" value="Confirm Delete" class="w3-button w3-round-xlarge w3-white w3-hover-red w3-border">
+                </form>
+            </div>
+        </div>
+    <!-- case add/update -->
+    {% else %}
+        <form action="" method="post"
+            class="w3-container w3-padding"
+            style="width:60%; margin:auto;">
+            {% csrf_token %}
+
+            {% for field in form %}
+                <p>
+                    <label>{% trans field.label_tag %}</label>
+                    {{ field|add_class:"w3-input" }}
+                </p>
+            {% endfor %}
+
+            <div class="w3-center">
+                <div class="w3-bar">
+                    {% if url_name == 'dhatu_update' %}
+                        <a href="{% url 'dhatu_delete' object.pk %}"
+                            class="w3-button w3-round-xlarge w3-white w3-border w3-hover-red w3-margin-right" 
+                            style="width:150px">
+                            {% trans 'Delete' %}
+                        </a>
+                    {% endif %}
+                    <button
+                        type="submit" style="width:150px"
+                        class="w3-button w3-dark-grey w3-border w3-round-xlarge w3-hover-brown">
+                        {% trans "Save" %}
+                    </button>
+                </div>
+            </div>
+        </form>
+    {% endif %}
+{% endblock %}
+

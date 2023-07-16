@@ -11,15 +11,18 @@
         }
         input {
             word-spacing: 10px;
+            background-color: #f7f7f7;
         }
-
+        select {
+            background-color: #f7f7f7;
+        }
     </style>
 {% endblock %}
 
 {% load widget_tweaks i18n %}
 
 {% block apptitle %}
-    {% include 'padanukkama/include/title.html' %} : {% trans 'Nāmasaddapadamālā' %}
+    {% include 'setting/include/title.html' %} : {% trans 'Nāmasaddapadamālā' %}
     {% if url_name == 'nama_saddamala_create' %}・{% trans 'Create' %}
     {% elif url_name == 'nama_saddamala_update' %}・{% trans 'Update' %}
     {% elif url_name == 'nama_saddamala_delete' %}・<span class="w3-text-red">{% trans 'Delete' %}</span>{% endif %}

@@ -1,0 +1,309 @@
+{% extends 'main/base.html' %}
+
+{% block extra_css %}
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 15px;
+        }
+        input {
+            word-spacing: 10px;
+            background-color: #f7f7f7;
+        }
+    </style>
+{% endblock %}
+
+{% load widget_tweaks i18n %}
+
+{% block apptitle %}
+    {% include 'padanukkama/include/title.html' %} : {% trans 'Ākhyātasaddapadamālā' %}・{% trans 'Update' %}
+{% endblock %}
+
+{% block body %}
+    <form method="post">
+        {% csrf_token %}
+        <div class="w3-container w3-margin">
+            <div class="w3-cell-row" style="padding-bottom: 15px;">
+                <div class="w3-container w3-cell">
+                    <label>{% trans form.title.label_tag %}</label>
+                    {{ form.title|add_class:"w3-input" }}
+                </div>
+            </div>
+            <!-- Vattamānā (present tense) -->
+            <h4 class="w3-center">{% trans "Conjugation of" %} {% trans "Vattamānā" %} ({% trans 'present tense' %})</h4>
+            <table class="w3-table w3-bordered w3-margin">
+                {% include 'setting/include/akhyata_thead.html' %}
+                <tbody>
+                    <tr>
+                        <td>{% trans 'Meaning' %}</td>
+                        <td colspan=4>{{ form.vat_meaning|add_class:"w3-input w3-border-0" }}</td>
+                    </tr>
+                    <tr>
+                        <td>{% trans '1st' %}</td>
+                        <td>{{ form.vat_pu1_para_sg|add_class:"w3-input w3-border-0" }}</td>
+                        <td>{{ form.vat_pu1_para_pl|add_class:"w3-input w3-border-0" }}</td>
+                        <td>{{ form.vat_pu1_atta_sg|add_class:"w3-input w3-border-0" }}</td>
+                        <td>{{ form.vat_pu1_atta_pl|add_class:"w3-input w3-border-0" }}</td>
+                    </tr>
+                    <tr>
+                        <td>{% trans '2nd' %}</td>
+                        <td>{{ form.vat_pu2_para_sg|add_class:"w3-input w3-border-0" }}</td>
+                        <td>{{ form.vat_pu2_para_pl|add_class:"w3-input w3-border-0" }}</td>
+                        <td>{{ form.vat_pu2_atta_sg|add_class:"w3-input w3-border-0" }}</td>
+                        <td>{{ form.vat_pu2_atta_pl|add_class:"w3-input w3-border-0" }}</td>
+                    </tr>
+                    <tr>
+                        <td>{% trans '3rd' %}</td>
+                        <td>{{ form.vat_pu3_para_sg|add_class:"w3-input w3-border-0" }}</td>
+                        <td>{{ form.vat_pu3_para_pl|add_class:"w3-input w3-border-0" }}</td>
+                        <td>{{ form.vat_pu3_atta_sg|add_class:"w3-input w3-border-0" }}</td>
+                        <td>{{ form.vat_pu3_atta_pl|add_class:"w3-input w3-border-0" }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- Pañcamī (imperative mood) -->
+            <h4 class="w3-center">{% trans "Conjugation of" %} {% trans "Pañcamī" %} ({% trans 'imperative mood' %})</h4>
+            <table class="w3-table w3-bordered w3-margin">
+                {% include 'setting/include/akhyata_thead.html' %}
+                <tbody>
+                    <tr>
+                        <td>{% trans 'Meaning' %}</td>
+                        <td colspan=4>{{ form.pan_meaning|add_class:"w3-input w3-border-0" }}</td>
+                    </tr>
+                    <tr>
+                        <td>{% trans '1st' %}</td>
+                        <td>{{ form.pan_pu1_para_sg|add_class:"w3-input w3-border-0" }}</td>
+                        <td>{{ form.pan_pu1_para_pl|add_class:"w3-input w3-border-0" }}</td>
+                        <td>{{ form.pan_pu1_atta_sg|add_class:"w3-input w3-border-0" }}</td>
+                        <td>{{ form.pan_pu1_atta_pl|add_class:"w3-input w3-border-0" }}</td>
+                    </tr>
+                    <tr>
+                        <td>{% trans '2nd' %}</td>
+                        <td>{{ form.pan_pu2_para_sg|add_class:"w3-input w3-border-0" }}</td>
+                        <td>{{ form.pan_pu2_para_pl|add_class:"w3-input w3-border-0" }}</td>
+                        <td>{{ form.pan_pu2_atta_sg|add_class:"w3-input w3-border-0" }}</td>
+                        <td>{{ form.pan_pu2_atta_pl|add_class:"w3-input w3-border-0" }}</td>
+                    </tr>
+                    <tr>
+                        <td>{% trans '3rd' %}</td>
+                        <td>{{ form.pan_pu3_para_sg|add_class:"w3-input w3-border-0" }}</td>
+                        <td>{{ form.pan_pu3_para_pl|add_class:"w3-input w3-border-0" }}</td>
+                        <td>{{ form.pan_pu3_atta_sg|add_class:"w3-input w3-border-0" }}</td>
+                        <td>{{ form.pan_pu3_atta_pl|add_class:"w3-input w3-border-0" }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- Sattamī (Optative Mood) -->
+            <h4 class="w3-center">{% trans "Conjugation of" %} {% trans "Sattamī" %} ({% trans 'Optative Mood' %})</h4>
+            <table class="w3-table w3-bordered w3-margin">
+                {% include 'setting/include/akhyata_thead.html' %}
+                <tbody>
+                    <tr>
+                        <td>{% trans 'Meaning' %}</td>
+                        <td colspan=4>{{ form.sat_meaning|add_class:"w3-input w3-border-0" }}</td>
+                    </tr>
+                    <tr>
+                        <td>{% trans '1st' %}</td>
+                        <td>{{ form.sat_pu1_para_sg|add_class:"w3-input w3-border-0" }}</td>
+                        <td>{{ form.sat_pu1_para_pl|add_class:"w3-input w3-border-0" }}</td>
+                        <td>{{ form.sat_pu1_atta_sg|add_class:"w3-input w3-border-0" }}</td>
+                        <td>{{ form.sat_pu1_atta_pl|add_class:"w3-input w3-border-0" }}</td>
+                    </tr>
+                    <tr>
+                        <td>{% trans '2nd' %}</td>
+                        <td>{{ form.sat_pu2_para_sg|add_class:"w3-input w3-border-0" }}</td>
+                        <td>{{ form.sat_pu2_para_pl|add_class:"w3-input w3-border-0" }}</td>
+                        <td>{{ form.sat_pu2_atta_sg|add_class:"w3-input w3-border-0" }}</td>
+                        <td>{{ form.sat_pu2_atta_pl|add_class:"w3-input w3-border-0" }}</td>
+                    </tr>
+                    <tr>
+                        <td>{% trans '3rd' %}</td>
+                        <td>{{ form.sat_pu3_para_sg|add_class:"w3-input w3-border-0" }}</td>
+                        <td>{{ form.sat_pu3_para_pl|add_class:"w3-input w3-border-0" }}</td>
+                        <td>{{ form.sat_pu3_atta_sg|add_class:"w3-input w3-border-0" }}</td>
+                        <td>{{ form.sat_pu3_atta_pl|add_class:"w3-input w3-border-0" }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- Parokkhā (Perfect Tense) -->
+            <h4 class="w3-center">{% trans "Conjugation of" %} {% trans "Parokkhā" %} ({% trans 'Perfect Tense' %})</h4>
+            <table class="w3-table w3-bordered w3-margin">
+                {% include 'setting/include/akhyata_thead.html' %}
+                <tbody>
+                    <tr>
+                        <td>{% trans 'Meaning' %}</td>
+                        <td colspan=4>{{ form.par_meaning|add_class:"w3-input w3-border-0" }}</td>
+                    </tr>
+                    <tr>
+                        <td>{% trans '1st' %}</td>
+                        <td>{{ form.par_pu1_para_sg|add_class:"w3-input w3-border-0" }}</td>
+                        <td>{{ form.par_pu1_para_pl|add_class:"w3-input w3-border-0" }}</td>
+                        <td>{{ form.par_pu1_atta_sg|add_class:"w3-input w3-border-0" }}</td>
+                        <td>{{ form.par_pu1_atta_pl|add_class:"w3-input w3-border-0" }}</td>
+                    </tr>
+                    <tr>
+                        <td>{% trans '2nd' %}</td>
+                        <td>{{ form.par_pu2_para_sg|add_class:"w3-input w3-border-0" }}</td>
+                        <td>{{ form.par_pu2_para_pl|add_class:"w3-input w3-border-0" }}</td>
+                        <td>{{ form.par_pu2_atta_sg|add_class:"w3-input w3-border-0" }}</td>
+                        <td>{{ form.par_pu2_atta_pl|add_class:"w3-input w3-border-0" }}</td>
+                    </tr>
+                    <tr>
+                        <td>{% trans '3rd' %}</td>
+                        <td>{{ form.par_pu3_para_sg|add_class:"w3-input w3-border-0" }}</td>
+                        <td>{{ form.par_pu3_para_pl|add_class:"w3-input w3-border-0" }}</td>
+                        <td>{{ form.par_pu3_atta_sg|add_class:"w3-input w3-border-0" }}</td>
+                        <td>{{ form.par_pu3_atta_pl|add_class:"w3-input w3-border-0" }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- Hiyyattanī (Imperfect Tense) -->
+            <h4 class="w3-center">{% trans "Conjugation of" %} {% trans "Hiyyattanī" %} ({% trans 'Imperfect Tense' %})</h4>
+            <table class="w3-table w3-bordered w3-margin">
+                {% include 'setting/include/akhyata_thead.html' %}
+                <tbody>
+                    <tr>
+                        <td>{% trans 'Meaning' %}</td>
+                        <td colspan=4>{{ form.hit_meaning|add_class:"w3-input w3-border-0" }}</td>
+                    </tr>
+                    <tr>
+                        <td>{% trans '1st' %}</td>
+                        <td>{{ form.hit_pu1_para_sg|add_class:"w3-input w3-border-0" }}</td>
+                        <td>{{ form.hit_pu1_para_pl|add_class:"w3-input w3-border-0" }}</td>
+                        <td>{{ form.hit_pu1_atta_sg|add_class:"w3-input w3-border-0" }}</td>
+                        <td>{{ form.hit_pu1_atta_pl|add_class:"w3-input w3-border-0" }}</td>
+                    </tr>
+                    <tr>
+                        <td>{% trans '2nd' %}</td>
+                        <td>{{ form.hit_pu2_para_sg|add_class:"w3-input w3-border-0" }}</td>
+                        <td>{{ form.hit_pu2_para_pl|add_class:"w3-input w3-border-0" }}</td>
+                        <td>{{ form.hit_pu2_atta_sg|add_class:"w3-input w3-border-0" }}</td>
+                        <td>{{ form.hit_pu2_atta_pl|add_class:"w3-input w3-border-0" }}</td>
+                    </tr>
+                    <tr>
+                        <td>{% trans '3rd' %}</td>
+                        <td>{{ form.hit_pu3_para_sg|add_class:"w3-input w3-border-0" }}</td>
+                        <td>{{ form.hit_pu3_para_pl|add_class:"w3-input w3-border-0" }}</td>
+                        <td>{{ form.hit_pu3_atta_sg|add_class:"w3-input w3-border-0" }}</td>
+                        <td>{{ form.hit_pu3_atta_pl|add_class:"w3-input w3-border-0" }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- Ajjatanī (Aorist Tense) -->
+            <h4 class="w3-center">{% trans "Conjugation of" %} {% trans "Ajjatanī" %} ({% trans 'Aorist Tense' %})</h4>
+            <table class="w3-table w3-bordered w3-margin">
+                {% include 'setting/include/akhyata_thead.html' %}
+                <tbody>
+                    <tr>
+                        <td>{% trans 'Meaning' %}</td>
+                        <td colspan=4>{{ form.ajj_meaning|add_class:"w3-input w3-border-0" }}</td>
+                    </tr>
+                    <tr>
+                        <td>{% trans '1st' %}</td>
+                        <td>{{ form.ajj_pu1_para_sg|add_class:"w3-input w3-border-0" }}</td>
+                        <td>{{ form.ajj_pu1_para_pl|add_class:"w3-input w3-border-0" }}</td>
+                        <td>{{ form.ajj_pu1_atta_sg|add_class:"w3-input w3-border-0" }}</td>
+                        <td>{{ form.ajj_pu1_atta_pl|add_class:"w3-input w3-border-0" }}</td>
+                    </tr>
+                    <tr>
+                        <td>{% trans '2nd' %}</td>
+                        <td>{{ form.ajj_pu2_para_sg|add_class:"w3-input w3-border-0" }}</td>
+                        <td>{{ form.ajj_pu2_para_pl|add_class:"w3-input w3-border-0" }}</td>
+                        <td>{{ form.ajj_pu2_atta_sg|add_class:"w3-input w3-border-0" }}</td>
+                        <td>{{ form.ajj_pu2_atta_pl|add_class:"w3-input w3-border-0" }}</td>
+                    </tr>
+                    <tr>
+                        <td>{% trans '3rd' %}</td>
+                        <td>{{ form.ajj_pu3_para_sg|add_class:"w3-input w3-border-0" }}</td>
+                        <td>{{ form.ajj_pu3_para_pl|add_class:"w3-input w3-border-0" }}</td>
+                        <td>{{ form.ajj_pu3_atta_sg|add_class:"w3-input w3-border-0" }}</td>
+                        <td>{{ form.ajj_pu3_atta_pl|add_class:"w3-input w3-border-0" }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- Bhavissanti (Future Tense) -->
+            <h4 class="w3-center">{% trans "Conjugation of" %} {% trans "Bhavissanti" %} ({% trans 'Future Tense' %})</h4>
+            <table class="w3-table w3-bordered w3-margin">
+                {% include 'setting/include/akhyata_thead.html' %}
+                <tbody>
+                    <tr>
+                        <td>{% trans 'Meaning' %}</td>
+                        <td colspan=4>{{ form.bha_meaning|add_class:"w3-input w3-border-0" }}</td>
+                    </tr>
+                    <tr>
+                        <td>{% trans '1st' %}</td>
+                        <td>{{ form.bha_pu1_para_sg|add_class:"w3-input w3-border-0" }}</td>
+                        <td>{{ form.bha_pu1_para_pl|add_class:"w3-input w3-border-0" }}</td>
+                        <td>{{ form.bha_pu1_atta_sg|add_class:"w3-input w3-border-0" }}</td>
+                        <td>{{ form.bha_pu1_atta_pl|add_class:"w3-input w3-border-0" }}</td>
+                    </tr>
+                    <tr>
+                        <td>{% trans '2nd' %}</td>
+                        <td>{{ form.bha_pu2_para_sg|add_class:"w3-input w3-border-0" }}</td>
+                        <td>{{ form.bha_pu2_para_pl|add_class:"w3-input w3-border-0" }}</td>
+                        <td>{{ form.bha_pu2_atta_sg|add_class:"w3-input w3-border-0" }}</td>
+                        <td>{{ form.bha_pu2_atta_pl|add_class:"w3-input w3-border-0" }}</td>
+                    </tr>
+                    <tr>
+                        <td>{% trans '3rd' %}</td>
+                        <td>{{ form.bha_pu3_para_sg|add_class:"w3-input w3-border-0" }}</td>
+                        <td>{{ form.bha_pu3_para_pl|add_class:"w3-input w3-border-0" }}</td>
+                        <td>{{ form.bha_pu3_atta_sg|add_class:"w3-input w3-border-0" }}</td>
+                        <td>{{ form.bha_pu3_atta_pl|add_class:"w3-input w3-border-0" }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- Kālātipatti (Conditional Mood) -->
+            <h4 class="w3-center">{% trans "Conjugation of" %} {% trans "Kālātipatti" %} ({% trans 'Conditional Mood' %})</h4>
+            <table class="w3-table w3-bordered w3-margin">
+                {% include 'setting/include/akhyata_thead.html' %}
+                <tbody>
+                    <tr>
+                        <td>{% trans 'Meaning' %}</td>
+                        <td colspan=4>{{ form.kal_meaning|add_class:"w3-input w3-border-0" }}</td>
+                    </tr>
+                    <tr>
+                        <td>{% trans '1st' %}</td>
+                        <td>{{ form.kal_pu1_para_sg|add_class:"w3-input w3-border-0" }}</td>
+                        <td>{{ form.kal_pu1_para_pl|add_class:"w3-input w3-border-0" }}</td>
+                        <td>{{ form.kal_pu1_atta_sg|add_class:"w3-input w3-border-0" }}</td>
+                        <td>{{ form.kal_pu1_atta_pl|add_class:"w3-input w3-border-0" }}</td>
+                    </tr>
+                    <tr>
+                        <td>{% trans '2nd' %}</td>
+                        <td>{{ form.kal_pu2_para_sg|add_class:"w3-input w3-border-0" }}</td>
+                        <td>{{ form.kal_pu2_para_pl|add_class:"w3-input w3-border-0" }}</td>
+                        <td>{{ form.kal_pu2_atta_sg|add_class:"w3-input w3-border-0" }}</td>
+                        <td>{{ form.kal_pu2_atta_pl|add_class:"w3-input w3-border-0" }}</td>
+                    </tr>
+                    <tr>
+                        <td>{% trans '3rd' %}</td>
+                        <td>{{ form.kal_pu3_para_sg|add_class:"w3-input w3-border-0" }}</td>
+                        <td>{{ form.kal_pu3_para_pl|add_class:"w3-input w3-border-0" }}</td>
+                        <td>{{ form.kal_pu3_atta_sg|add_class:"w3-input w3-border-0" }}</td>
+                        <td>{{ form.kal_pu3_atta_pl|add_class:"w3-input w3-border-0" }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="w3-center">
+            <div class="w3-bar">
+                {% if url_name == 'nama_saddamala_update' %}
+                    <a href="{% url 'nama_saddamala_delete' object.pk %}"
+                        class="w3-button w3-round-xlarge w3-white w3-border w3-hover-red w3-margin-right" 
+                        style="width:150px">
+                        {% trans 'Delete' %}
+                    </a>
+                {% endif %}
+                <button
+                    type="submit" style="width:150px"
+                    class="w3-button w3-dark-grey w3-border w3-round-xlarge w3-hover-brown">
+                    {% trans "Save" %}
+                </button>
+            </div>
+        </div>
+    </form>
+{% endblock%}

@@ -36,17 +36,39 @@
             {% trans "Padānukkama" %}
         </button>
         <div id="Padānukkama" class="w3-dropdown-content w3-bar-block w3-border">
-            <a href="{% url "nama_saddamala" %}"
-                class="w3-bar-item w3-button {% if '/padanukkama/nama-saddamala' in request.path %} nav-active {% endif %}">
-                {% trans "Nāmasaddapadamālā" %}
-            </a>
-            <a href="{% url "padanukkama" %}"
+            <a href="{% url "project" %}"
                 class="w3-bar-item w3-button {% if '/padanukkama/project' in request.path %} nav-active {% endif %}">
-                {% trans "Padanukkama" %}
+                {% trans "Project" %}
             </a>
             <a href="{% url "sadda" %}"
                 class="w3-bar-item w3-button {% if '/padanukkama/sadda' in request.path %} nav-active {% endif %}">
                 {% trans "Sadda" %}
+            </a>
+            <a href="{% url "literal_translation" %}"
+                class="w3-bar-item w3-button {% if '/padanukkama/literal-translation' in request.path %} nav-active {% endif %}">
+                {% trans "Literal Translation" %}
+            </a>
+        </div>
+    </div>
+    <!-- SETTING -->
+    <div class="w3-dropdown-click">
+        <button onclick="DDNavMenuFunction('Setting')" class="w3-button {% if '/setting/' in request.path %} nav-active {% endif %}">
+            {% trans "Setting" %}
+        </button>
+        <div id="Setting" class="w3-dropdown-content w3-bar-block w3-border">
+            <span class="w3-bar-item w3-button" style="font-weight:bold; cursor:default;">{% trans 'Nāma' %}</span>
+            <a href="{% url "nama_saddamala" %}"
+                class="w3-bar-item w3-button {% if '/setting/nama-saddamala' in request.path %} nav-active {% endif %}">
+                {% trans "Nāmasaddapadamālā" %}
+            </a>
+            <span class="w3-bar-item w3-button" style="font-weight:bold; cursor:default;">{% trans 'Akhyāta' %}</span>
+            <a href="{% url "dhatu" %}"
+                class="w3-bar-item w3-button {% if '/setting/dhatu' in request.path %} nav-active {% endif %}">
+                {% trans "Dhātu" %} - {% trans "Paccaya" %}
+            </a>
+            <a href="{% url "verb_conjugation" %}"
+                class="w3-bar-item w3-button {% if '/setting/verb-conjugation' in request.path %} nav-active {% endif %}">
+                {% trans "Verb Conjugation" %}
             </a>
         </div>
     </div>
@@ -91,6 +113,7 @@
 <style type="text/css">
     .nav-active {
         background-color: #ccc;
+        color: black;
     }
 </style>
 

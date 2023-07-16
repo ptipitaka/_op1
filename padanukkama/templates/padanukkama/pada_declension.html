@@ -90,6 +90,7 @@
             <div class="w3-bar w3-light-grey">
                 <button class="w3-bar-item w3-button tablink w3-grey" onclick="openTabs(event,'Abidan')">{% trans 'Abidan' %}</button>
                 <button class="w3-bar-item w3-button tablink" onclick="openTabs(event,'Sadda')">{% trans 'Sadda' %}</button>
+                <button class="w3-bar-item w3-button tablink" onclick="openTabs(event,'verb_conjugation')">{% trans 'Verb Conjugation' %}</button>
             </div>
             <!-- Abidan closest matches-->
             <div id="Abidan" class="w3-border tab">
@@ -111,6 +112,71 @@
                 <div class="w3-container w3-padding">
                     <ul id="sadda-closest-matches" class="w3-ul w3-hoverable">
                     </ul>
+                </div>
+            </div>
+            <!-- Verb Conjugation -->
+            <div id="verb_conjugation" class="w3-border tab" style="display:none">
+                <header class="w3-container w3-light-grey">
+                    <h5>{% trans 'Verb Conjugation' %}</h5>
+                </header>
+
+                <div class="w3-bar w3-light-grey">
+                    {% for each_v in verb_conjugation %}
+                        <button
+                            class="w3-bar-item w3-btn tablink w3-light-grey"
+                            onclick="openVerbCon(event, '{{ each_v.id }}')"
+                            {% if forloop.counter == 1 %}style="background-color: #f1f1f1;"{% endif %}>
+                            {{ each_v.title }}
+                        </button>
+                    {% endfor %}
+
+                    {% for each_v in verb_conjugation %}
+                        <div id="{{ each_v.id }}" class="w3-container verb-conjugation" {% if forloop.counter != 1 %}style="display:none"{% endif %}>
+                            <h4>{{ each_v.title }}</h4>
+                            <p>{{ each_v.description }}</p>
+                        
+                            <table class="w3-table w3-bordered">
+                                <tbody>
+                                    <tr>
+                                        <th>{% trans 'Meaning' %}</th>
+                                        <td colspan=4>{{ each_v.meaning }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th rowspan="2" style="width: 100px;">{% trans 'Person' %}</th>
+                                        <th colspan="2" class="w3-center">{% trans 'Parassapada' %}</th>
+                                        <th colspan="2" class="w3-center">{% trans 'Attanopada' %}</th>
+                                    </tr>
+                                    <tr>
+                                        <th style="padding:5px; min-width:50px;">เอก.</th>
+                                        <th style="padding:5px; min-width:50px;">พหุ.</th>
+                                        <th style="padding:5px; min-width:50px;">เอก.</th>
+                                        <th style="padding:5px; min-width:50px;">พหุ.</th>
+                                    </tr>
+                                    <tr>
+                                        <th>{% trans '1st' %}</th>
+                                        <td>{{ each_v.p1_para_sg }}</td>
+                                        <td>{{ each_v.p1_para_pl }}</td>
+                                        <td>{{ each_v.p1_atta_sg }}</td>
+                                        <td>{{ each_v.p1_atta_pl }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>{% trans '2nd' %}</th>
+                                        <td>{{ each_v.p2_para_sg }}</td>
+                                        <td>{{ each_v.p2_para_pl }}</td>
+                                        <td>{{ each_v.p2_atta_sg }}</td>
+                                        <td>{{ each_v.p2_atta_pl }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>{% trans '3rd' %}</th>
+                                        <td>{{ each_v.p3_para_sg }}</td>
+                                        <td>{{ each_v.p3_para_pl }}</td>
+                                        <td>{{ each_v.p3_atta_sg }}</td>
+                                        <td>{{ each_v.p3_atta_pl }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>
@@ -142,20 +208,24 @@
     <script>
         $(document).ready(function () {
             // Get the button element by its ID
-            var padaPada = $('#id_sadda').val();
+            var padaSadda = $('#id_sadda').val();
             $('#fieldWrapper_id_state').hide();
 
             // manage input / action fields
             manageInputFields();
             manageActionButton();
 
-            $('#id_sadda').change(function() {
-                check_existing_sadda(padaPada)
+            $('#id_sadda').on('input', function() {
+                var padaSadda = $(this).val();
+                checkExistingSadda(padaSadda);
+                updateVerbConjugation(padaSadda);
             });
 
             $('#id_sadda_type').change(function() {
+                var padaSadda = $('#id_sadda').val();
                 manageInputFields();
                 manageActionButton();
+                updateVerbConjugation(padaSadda)
             });
 
             // Attach change event listener to the inputs

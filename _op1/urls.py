@@ -30,6 +30,7 @@ urlpatterns = i18n_patterns(
     path('abidan/', include('abidan.urls')),
     path('tipitaka/', include('tipitaka.urls')),
     path('padanukkama/', include('padanukkama.urls')),
+    path('setting/', include('setting.urls')),
  ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)\
    + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)\
 

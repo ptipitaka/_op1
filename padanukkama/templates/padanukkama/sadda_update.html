@@ -137,13 +137,13 @@
         $(document).ready(function () {
 
             // Get the button element by its ID
-            var padaPada = $('#id_sadda').val();
+            var padaSadda = $('#id_sadda').val();
 
             // manage input / action fields
             manageInputFields();
 
             $('#id_sadda').change(function() {
-                check_existing_sadda(padaPada)
+                checkExistingSadda(padaSadda)
             });
 
             $('#id_sadda_type').change(function() {

@@ -2,7 +2,7 @@
 
 <script>
     // Find existing sadda and assign to form
-    function check_existing_sadda (padaPada) {
+    function checkExistingSadda (padaSadda) {
         // Get input data
         var id_padanukkama = '{{ padanukkama_id }}';
         var pada_id = '{{ pada_id }}'
@@ -53,7 +53,7 @@
                         });
                     } else {
                         // User canceled, handle accordingly
-                        $('#id_sadda').val(padaPada)
+                        $('#id_sadda').val(padaSadda)
                     }
                 } else {
                     // Handle case when sadda is not found

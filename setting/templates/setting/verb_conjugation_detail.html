@@ -1,0 +1,130 @@
+{% extends 'main/base.html' %}
+
+{% block extra_css %}
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 15px;
+        }
+        input {
+            word-spacing: 10px;
+            background-color: #f7f7f7;
+        }
+    </style>
+{% endblock %}
+
+{% load widget_tweaks i18n %}
+
+{% block apptitle %}
+    {% include 'setting/include/title.html' %} : {% trans 'Vert Conjugation' %}
+    {% if url_name == 'verb_conjugation_create' %}・{% trans 'Create' %}
+    {% elif url_name == 'verb_conjugation_update' %}・{% trans 'Update' %}
+    {% elif url_name == 'verb_conjugation_delete' %}・<span class="w3-text-red">{% trans 'Delete' %}</span>{% endif %}
+{% endblock %}
+
+{% block apptitle_option %}
+    <a href="{% url 'verb_conjugation' %}?{{ request.GET.urlencode }}"
+        class="w3-button w3-round-xlarge w3-hover-amber w3-display-right">
+        {% trans "Back" %}
+    </a>
+{% endblock %}
+
+{% block body %}
+    <!-- case delete -->
+    {% if url_name == 'verb_conjugation_delete' %}
+        <div class="w3-container w3-padding"
+             style="width:60%; margin:auto;">
+            <div class="w3-row">
+                <h4>{% trans 'Delete Verb Conjugation' %}</h4>
+                <p>{% trans 'Are you sure you want to delete the following Verb Conjugation?' %}</p>
+                <p><strong>{% trans 'Title' %}:</strong> {{ verb_conjugation.title }}</p>
+                <p><strong>{% trans 'Meaning' %}:</strong> {{ verb_conjugation.meaning }}</p>
+                <form method="post" action="{% url 'verb_conjugation_delete' verb_conjugation.pk %}">
+                    {% csrf_token %}
+                    <input type="submit" value="Confirm Delete" class="w3-button w3-round-xlarge w3-white w3-hover-red w3-border">
+                </form>
+            </div>
+        </div>
+    <!-- case add/update -->
+    {% else %}
+    <!-- form -->
+        <form method="post">
+            {% csrf_token %}
+            <div class="w3-container w3-margin">
+                <!-- table -->
+                <table class="w3-table w3-bordered">
+                    <tbody>
+                        <tr>
+                            <th>{% trans 'Sequence' %}</th>
+                            <td>{{ form.sequence|add_class:"w3-input w3-border-0" }}</td>
+                            <th>{% trans 'Title' %}</th>
+                            <td colspan=2>{{ form.title|add_class:"w3-input w3-border-0" }}</td>
+                        </tr>
+                        <tr>
+                            <th>{% trans 'Description' %}</th>
+                            <td colspan=4>{{ form.description|add_class:"w3-input w3-border-0" }}</td>
+                        </tr>
+                        <tr>
+                            <th>{% trans 'Meaning' %}</th>
+                            <td colspan=4>{{ form.meaning|add_class:"w3-input w3-border-0" }}</td>
+                        </tr>
+                        <tr>
+                            <th rowspan="2" style="width: 100px;">{% trans 'Person' %}</th>
+                            <th colspan="2" class="w3-center">{% trans 'Parassapada' %}</th>
+                            <th colspan="2" class="w3-center">{% trans 'Attanopada' %}</th>
+                        </tr>
+                        <tr>
+                            <th class="w3-center">{% trans 'sg.' %}</th>
+                            <th class="w3-center">{% trans 'pl. ' %}</th>
+                            <th class="w3-center">{% trans 'sg.' %}</th>
+                            <th class="w3-center">{% trans 'pl. ' %}</th>
+                        </tr>
+                        <tr>
+                            <th>{% trans '1st' %}</th>
+                            <td>{{ form.p1_para_sg|add_class:"w3-input w3-border-0" }}</td>
+                            <td>{{ form.p1_para_pl|add_class:"w3-input w3-border-0" }}</td>
+                            <td>{{ form.p1_atta_sg|add_class:"w3-input w3-border-0" }}</td>
+                            <td>{{ form.p1_atta_pl|add_class:"w3-input w3-border-0" }}</td>
+                        </tr>
+                        <tr>
+                            <th>{% trans '2nd' %}</th>
+                            <td>{{ form.p2_para_sg|add_class:"w3-input w3-border-0" }}</td>
+                            <td>{{ form.p2_para_pl|add_class:"w3-input w3-border-0" }}</td>
+                            <td>{{ form.p2_atta_sg|add_class:"w3-input w3-border-0" }}</td>
+                            <td>{{ form.p2_atta_pl|add_class:"w3-input w3-border-0" }}</td>
+                        </tr>
+                        <tr>
+                            <th>{% trans '3rd' %}</th>
+                            <td>{{ form.p3_para_sg|add_class:"w3-input w3-border-0" }}</td>
+                            <td>{{ form.p3_para_pl|add_class:"w3-input w3-border-0" }}</td>
+                            <td>{{ form.p3_atta_sg|add_class:"w3-input w3-border-0" }}</td>
+                            <td>{{ form.p3_atta_pl|add_class:"w3-input w3-border-0" }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- Action -->
+            <div class="w3-center">
+                <div class="w3-bar">
+                    {% if url_name == 'verb_conjugation_update' %}
+                        <a href="{% url 'verb_conjugation_delete' object.pk %}"
+                            class="w3-button w3-round-xlarge w3-white w3-border w3-hover-red w3-margin-right" 
+                            style="width:150px">
+                            {% trans 'Delete' %}
+                        </a>
+                    {% endif %}
+                    <button
+                        type="submit" style="width:150px"
+                        class="w3-button w3-dark-grey w3-border w3-round-xlarge w3-hover-brown">
+                        {% trans "Save" %}
+                    </button>
+                </div>
+            </div>
+        </form>
+
+    {% endif %}
+{% endblock %}
+

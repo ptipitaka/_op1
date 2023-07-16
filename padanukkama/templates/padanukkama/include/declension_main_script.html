@@ -6,12 +6,14 @@
     function saddaConst(event, string) {
         event.preventDefault();
         
-        var saddatext;
+        var padaSadda;
         var regex = /^(\S+)\s/;
         var match = string.match(regex);
-        saddatext = match ? match[1] : null;
+        padaSadda = match ? match[1] : null;
         // Update the value of sadda field
-        $("#id_sadda").val(saddatext);
+        $("#id_sadda").val(padaSadda);
+        checkExistingSadda(padaSadda);
+        updateVerbConjugation(padaSadda);
 
         var extractedText;
         var startIndex = string.indexOf('[');
@@ -39,14 +41,17 @@
 
     // Function manage input fields
     function manageInputFields(event) {
-        $('#fieldWrapper_id_namasaddamala').hide();
-
         // detact change from input value
         var selectedValue = $('#id_sadda_type').val();
         if (selectedValue === 'Nama') {
             $('#fieldWrapper_id_namasaddamala').show();
+            $('#fieldWrapper_id_verb_conjugation').hide();
+        } else if (selectedValue === 'Akhyata') {
+            $('#fieldWrapper_id_verb_conjugation').show();
+            $('#fieldWrapper_id_namasaddamala').hide();
         } else {
             $('#fieldWrapper_id_namasaddamala').hide();
+            $('#fieldWrapper_id_verb_conjugation').hide();
         };
     };
 
@@ -121,5 +126,42 @@
         evt.currentTarget.className += " w3-grey";
     }
 
+    // updateVerbConjugation
+    function updateVerbConjugation(padaSadda) {
+        // Make the AJAX call to the Django view
+        var url = "{% url 'filter_verb_conjugation' word='111' %}"
+            .replace('111', padaSadda);
+        $.ajax({
+            url: url,
+            data: {
+                word: padaSadda
+            },
+            dataType: 'json',
+            success: function(response) {
+                // Clear the existing options in the verb_conjugation select field
+                $('#id_verb_conjugation').empty();
+
+                // Add the new options based on the AJAX response
+                for (var i = 0; i < response.length; i++) {
+                    var option = $('<option>').val(response[i].id).text(response[i].title);
+                    $('#id_verb_conjugation').append(option);
+                }
+            },
+            error: function(xhr, status, error) {
+                // Handle the error, if any
+            }
+        });
+    }
+
+
+    // openVerbCon
+    function openVerbCon(event, verbCon_id) {
+        var i;
+        var x = document.getElementsByClassName("verb-conjugation");
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";  
+        }
+        document.getElementById(verbCon_id).style.display = "block";  
+    }
 
 </script>

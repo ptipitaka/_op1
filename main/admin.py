@@ -27,16 +27,17 @@ def get_app_list(self, request):
         if app['app_label'] == 'padanukkama':
             model_ordering = {
                 'padanukkama': 1,
-                'pada': 2,
-                'sadda': 3,
-                'nama_type': 4,
-                'namasaddamala': 5,
+                'language': 2,
+                'pada': 3,
+                'sadda': 4,
+                'namatype': 5,
                 'linga': 6,
                 'karanta': 7,
-                'dhatugana': 8,
-                'dhatu': 9,
-                'paccaya': 10,
-                'language': 11,
+                'namasaddamala': 8,
+                'dhatugana': 9,
+                'dhatu': 10,
+                'paccaya': 11,
+                'akhyatasaddamala': 12,
             }
             app['models'].sort(key=lambda x: model_ordering.get(x['object_name'].lower(), 100))
 

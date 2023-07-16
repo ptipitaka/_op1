@@ -8,7 +8,7 @@ from django.utils.translation import gettext_lazy as _
 from django_select2.forms import *
 from mptt.forms import TreeNodeMultipleChoiceField
 
-from .models import NamaSaddamala, Padanukkama, Pada, Language, Sadda
+from .models import NamaSaddamala, Padanukkama, Pada, Language, Sadda, VerbConjugation
 from tipitaka.models import WordlistVersion, Structure
 
 
@@ -114,6 +114,13 @@ class SaddaForm(forms.ModelForm):
         widget=Select2MultipleWidget,
         required=False,
         label=_('NamaSaddamala')
+    )
+
+    verb_conjugation = forms.ModelMultipleChoiceField(
+        queryset=VerbConjugation.objects.all().order_by('sequence'),
+        widget=Select2MultipleWidget,
+        required=False,
+        label=_('Verb Conjugation')
     )
 
 

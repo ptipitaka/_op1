@@ -194,6 +194,31 @@ class NamaSaddamala(models.Model):
 
 
 # -----------------------------------------------------
+# VerbConjugation
+# -----------------------------------------------------
+class VerbConjugation(models.Model):
+    sequence   = models.IntegerField(default=0, verbose_name=_("Sequence"))
+    title      = models.CharField(null=True, blank=True, verbose_name=_("Title"))
+    description= models.CharField(null=True, blank=True, verbose_name=_("Description"))
+    meaning    = models.CharField(null=True, blank=True, verbose_name=_("Meaning"))
+    p1_para_sg = models.CharField(null=True, blank=True, verbose_name=_("Purisa 1 Parassapada Ekavacana"))
+    p1_para_pl = models.CharField(null=True, blank=True, verbose_name=_("Purisa 1 Parassapada Bahuvacana"))
+    p1_atta_sg = models.CharField(null=True, blank=True, verbose_name=_("Purisa 1 Attanopada Ekavacana"))
+    p1_atta_pl = models.CharField(null=True, blank=True, verbose_name=_("Purisa 1 Attanopada Bahuvacana"))
+    p2_para_sg = models.CharField(null=True, blank=True, verbose_name=_("Purisa 2 Parassapada Ekavacana"))
+    p2_para_pl = models.CharField(null=True, blank=True, verbose_name=_("Purisa 2 Parassapada Bahuvacana"))
+    p2_atta_sg = models.CharField(null=True, blank=True, verbose_name=_("Purisa 2 Attanopada Ekavacana"))
+    p2_atta_pl = models.CharField(null=True, blank=True, verbose_name=_("Purisa 2 Attanopada Bahuvacana"))
+    p3_para_sg = models.CharField(null=True, blank=True, verbose_name=_("Purisa 3 Parassapada Ekavacana"))
+    p3_para_pl = models.CharField(null=True, blank=True, verbose_name=_("Purisa 3 Parassapada Bahuvacana"))
+    p3_atta_sg = models.CharField(null=True, blank=True, verbose_name=_("Purisa 3 Attanopada Ekavacana"))
+    p3_atta_pl = models.CharField(null=True, blank=True, verbose_name=_("Purisa 3 Attanopada Bahuvacana"))
+
+    def __str__(self):
+        return f"{self.title}"
+
+
+# -----------------------------------------------------
 # Language
 # -----------------------------------------------------
 class Language(models.Model):
@@ -245,90 +270,6 @@ class Padanukkama(models.Model):
         return self.title
 
 
-# -----------------------------------------------------
-# Paccaya
-# -----------------------------------------------------
-class Paccaya(models.Model):
-    title = models.CharField(
-        max_length=80,
-        verbose_name=_("Title"))
-    title_order = models.CharField(
-        max_length=80,
-        null=True,
-        blank=True,
-        verbose_name=_("Title order"))
-
-    def __str__(self):
-        return f"{self.title}"
-
-    def save(self, *args, **kwargs):
-        self.title_order = encode(extract(clean(self.title)))
-        super().save(*args, **kwargs)
-
-
-
-# -----------------------------------------------------
-# Dhatugana
-# -----------------------------------------------------
-class Dhatugana(models.Model):
-    sequence = models.IntegerField(
-        verbose_name=_("Sequence"))
-    title = models.CharField(
-        max_length=80,
-        verbose_name=_("Title"))
-    paccaya = models.ManyToManyField(
-        Paccaya,
-        verbose_name=_("Paccaya"))
-    description = models.TextField(
-        blank=True,
-        verbose_name=_("Description"))
-
-    def __str__(self):
-        return f"{self.title}"
-
-    def save(self, *args, **kwargs):
-        self.title_order = encode(extract(clean(self.title)))
-        super().save(*args, **kwargs)
-
-
-
-# -----------------------------------------------------
-# Dhatu
-# -----------------------------------------------------
-class Dhatu(models.Model):
-    title = models.CharField(
-        max_length=80,
-        verbose_name=_("Title"))
-    title_order = models.CharField(
-        max_length=80,
-        null=True,
-        blank=True,
-        verbose_name=_("Title order"))
-    dhatugana = models.ForeignKey(
-        Dhatugana,
-        null=True, blank=True,
-        verbose_name=_("Dhatugana"),
-        on_delete=models.CASCADE)
-    definition = models.CharField(
-        max_length=80,
-        verbose_name=_("Definition"))
-    meaning = models.CharField(
-        max_length=80,
-        verbose_name=_("Meaning"))
-    popularity = models.IntegerField(
-        default=0,
-        null=True,
-        blank=True,
-        verbose_name=_("Popularity"))
-
-    def __str__(self):
-        return f"{self.title}"
-
-    def save(self, *args, **kwargs):
-        self.title_order = encode(extract(clean(self.title)))
-        super().save(*args, **kwargs)
-
-
 
 # -----------------------------------------------------
 # Sadda
@@ -359,8 +300,12 @@ class Sadda(xwf_models.WorkflowEnabled, models.Model):
         verbose_name=_("Type"))
     namasaddamala = models.ManyToManyField(
         NamaSaddamala,
-        related_name='saddas',
+        related_name='namaSaddamala',
         verbose_name=_("NamaSaddamala"))
+    verb_conjugation = models.ManyToManyField(
+        VerbConjugation,
+        related_name='verb_conjugation',
+        verbose_name=_("Verb Conjugation"))
     construction = models.CharField(
         max_length=150,
         null=True,
@@ -506,5 +451,218 @@ class Pada(MPTTModel):
 
 
 
+# -----------------------------------------------------
+# Paccaya
+# -----------------------------------------------------
+class Paccaya(models.Model):
+    title = models.CharField(
+        max_length=80,
+        verbose_name=_("Title"))
+    title_order = models.CharField(
+        max_length=80,
+        null=True,
+        blank=True,
+        verbose_name=_("Title order"))
+
+    def __str__(self):
+        return f"{self.title}"
+
+    def save(self, *args, **kwargs):
+        self.title_order = encode(extract(clean(self.title)))
+        super().save(*args, **kwargs)
+
+
+
+# -----------------------------------------------------
+# Dhatugana
+# -----------------------------------------------------
+class Dhatugana(models.Model):
+    sequence = models.IntegerField(
+        verbose_name=_("Sequence"))
+    title = models.CharField(
+        max_length=80,
+        verbose_name=_("Title"))
+    paccaya = models.ManyToManyField(
+        Paccaya,
+        verbose_name=_("Paccaya"))
+    description = models.TextField(
+        blank=True,
+        verbose_name=_("Description"))
+
+    def __str__(self):
+        return f"{self.title}"
+
+    def save(self, *args, **kwargs):
+        self.title_order = encode(extract(clean(self.title)))
+        super().save(*args, **kwargs)
+
+
+
+# -----------------------------------------------------
+# Dhatu
+# -----------------------------------------------------
+class Dhatu(models.Model):
+    title = models.CharField(
+        max_length=80,
+        verbose_name=_("Title"))
+    title_order = models.CharField(
+        max_length=80,
+        null=True,
+        blank=True,
+        verbose_name=_("Title order"))
+    dhatugana = models.ForeignKey(
+        Dhatugana,
+        verbose_name=_("Dhatugana"),
+        null=True,
+        blank=True,
+        on_delete=models.CASCADE)
+    definition = models.CharField(
+        max_length=80,
+        verbose_name=_("Definition"))
+    meaning = models.CharField(
+        max_length=80,
+        verbose_name=_("Meaning"))
+    paccaya = models.ManyToManyField(
+        Paccaya,
+        related_name='paccayas',
+        verbose_name=_("Paccaya"))
+    popularity = models.IntegerField(
+        default=0,
+        null=True,
+        blank=True,
+        verbose_name=_("Popularity"))
+
+    def __str__(self):
+        return f"{self.title}"
+
+    def save(self, *args, **kwargs):
+        self.title_order = encode(extract(clean(self.title)))
+        super().save(*args, **kwargs)
+
+
+
+# -----------------------------------------------------
+# AkhyataSaddamala
+# -----------------------------------------------------
+class AkhyataSaddamala(models.Model):
+    title = models.CharField(
+        max_length=80,
+        verbose_name=_("title"))
+
+    # 1 Vattamānā (Present Tense)
+    vat_meaning     = models.CharField(null=True, blank=True, verbose_name=_("Vattamānā Purisa 1 Parassapada Ekavacana"))
+    vat_pu1_para_sg = models.CharField(null=True, blank=True, verbose_name=_("Vattamānā Purisa 1 Parassapada Ekavacana"))
+    vat_pu1_para_pl = models.CharField(null=True, blank=True, verbose_name=_("Vattamānā Purisa 1 Parassapada Bahuvacana"))
+    vat_pu1_atta_sg = models.CharField(null=True, blank=True, verbose_name=_("Vattamānā Purisa 1 Attanopada Ekavacana"))
+    vat_pu1_atta_pl = models.CharField(null=True, blank=True, verbose_name=_("Vattamānā Purisa 1 Attanopada Bahuvacana"))
+    vat_pu2_para_sg = models.CharField(null=True, blank=True, verbose_name=_("Vattamānā Purisa 2 Parassapada Ekavacana"))
+    vat_pu2_para_pl = models.CharField(null=True, blank=True, verbose_name=_("Vattamānā Purisa 2 Parassapada Bahuvacana"))
+    vat_pu2_atta_sg = models.CharField(null=True, blank=True, verbose_name=_("Vattamānā Purisa 2 Attanopada Ekavacana"))
+    vat_pu2_atta_pl = models.CharField(null=True, blank=True, verbose_name=_("Vattamānā Purisa 2 Attanopada Bahuvacana"))
+    vat_pu3_para_sg = models.CharField(null=True, blank=True, verbose_name=_("Vattamānā Purisa 3 Parassapada Ekavacana"))
+    vat_pu3_para_pl = models.CharField(null=True, blank=True, verbose_name=_("Vattamānā Purisa 3 Parassapada Bahuvacana"))
+    vat_pu3_atta_sg = models.CharField(null=True, blank=True, verbose_name=_("Vattamānā Purisa 3 Attanopada Ekavacana"))
+    vat_pu3_atta_pl = models.CharField(null=True, blank=True, verbose_name=_("Vattamānā Purisa 3 Attanopada Bahuvacana"))
+    # 2 Pañcamī (Imperative Mood)
+    pan_meaning     = models.CharField(null=True, blank=True, verbose_name=_("Vattamānā Purisa 1 Parassapada Ekavacana"))
+    pan_pu1_para_sg = models.CharField(null=True, blank=True, verbose_name=_("Pañcamī Purisa 1 Parassapada Ekavacana"))
+    pan_pu1_para_pl = models.CharField(null=True, blank=True, verbose_name=_("Pañcamī Purisa 1 Parassapada Bahuvacana"))
+    pan_pu1_atta_sg = models.CharField(null=True, blank=True, verbose_name=_("Pañcamī Purisa 1 Attanopada Ekavacana"))
+    pan_pu1_atta_pl = models.CharField(null=True, blank=True, verbose_name=_("Pañcamī Purisa 1 Attanopada Bahuvacana"))
+    pan_pu2_para_sg = models.CharField(null=True, blank=True, verbose_name=_("Pañcamī Purisa 2 Parassapada Ekavacana"))
+    pan_pu2_para_pl = models.CharField(null=True, blank=True, verbose_name=_("Pañcamī Purisa 2 Parassapada Bahuvacana"))
+    pan_pu2_atta_sg = models.CharField(null=True, blank=True, verbose_name=_("Pañcamī Purisa 2 Attanopada Ekavacana"))
+    pan_pu2_atta_pl = models.CharField(null=True, blank=True, verbose_name=_("Pañcamī Purisa 2 Attanopada Bahuvacana"))
+    pan_pu3_para_sg = models.CharField(null=True, blank=True, verbose_name=_("Pañcamī Purisa 3 Parassapada Ekavacana"))
+    pan_pu3_para_pl = models.CharField(null=True, blank=True, verbose_name=_("Pañcamī Purisa 3 Parassapada Bahuvacana"))
+    pan_pu3_atta_sg = models.CharField(null=True, blank=True, verbose_name=_("Pañcamī Purisa 3 Attanopada Ekavacana"))
+    pan_pu3_atta_pl = models.CharField(null=True, blank=True, verbose_name=_("Pañcamī Purisa 3 Attanopada Bahuvacana"))
+    # 3 Sattamī (Optative Mood)
+    sat_meaning     = models.CharField(null=True, blank=True, verbose_name=_("Vattamānā Purisa 1 Parassapada Ekavacana"))
+    sat_pu1_para_sg = models.CharField(null=True, blank=True, verbose_name=_("Sattamī Purisa 1 Parassapada Ekavacana"))
+    sat_pu1_para_pl = models.CharField(null=True, blank=True, verbose_name=_("Sattamī Purisa 1 Parassapada Bahuvacana"))
+    sat_pu1_atta_sg = models.CharField(null=True, blank=True, verbose_name=_("Sattamī Purisa 1 Attanopada Ekavacana"))
+    sat_pu1_atta_pl = models.CharField(null=True, blank=True, verbose_name=_("Sattamī Purisa 1 Attanopada Bahuvacana"))
+    sat_pu2_para_sg = models.CharField(null=True, blank=True, verbose_name=_("Sattamī Purisa 2 Parassapada Ekavacana"))
+    sat_pu2_para_pl = models.CharField(null=True, blank=True, verbose_name=_("Sattamī Purisa 2 Parassapada Bahuvacana"))
+    sat_pu2_atta_sg = models.CharField(null=True, blank=True, verbose_name=_("Sattamī Purisa 2 Attanopada Ekavacana"))
+    sat_pu2_atta_pl = models.CharField(null=True, blank=True, verbose_name=_("Sattamī Purisa 2 Attanopada Bahuvacana"))
+    sat_pu3_para_sg = models.CharField(null=True, blank=True, verbose_name=_("Sattamī Purisa 3 Parassapada Ekavacana"))
+    sat_pu3_para_pl = models.CharField(null=True, blank=True, verbose_name=_("Sattamī Purisa 3 Parassapada Bahuvacana"))
+    sat_pu3_atta_sg = models.CharField(null=True, blank=True, verbose_name=_("Sattamī Purisa 3 Attanopada Ekavacana"))
+    sat_pu3_atta_pl = models.CharField(null=True, blank=True, verbose_name=_("Sattamī Purisa 3 Attanopada Bahuvacana"))
+    # 4 Parokkhā (Perfect Tense)
+    par_meaning     = models.CharField(null=True, blank=True, verbose_name=_("Vattamānā Purisa 1 Parassapada Ekavacana"))
+    par_pu1_para_sg = models.CharField(null=True, blank=True, verbose_name=_("Parokkhā Purisa 1 Parassapada Ekavacana"))
+    par_pu1_para_pl = models.CharField(null=True, blank=True, verbose_name=_("Parokkhā Purisa 1 Parassapada Bahuvacana"))
+    par_pu1_atta_sg = models.CharField(null=True, blank=True, verbose_name=_("Parokkhā Purisa 1 Attanopada Ekavacana"))
+    par_pu1_atta_pl = models.CharField(null=True, blank=True, verbose_name=_("Parokkhā Purisa 1 Attanopada Bahuvacana"))
+    par_pu2_para_sg = models.CharField(null=True, blank=True, verbose_name=_("Parokkhā Purisa 2 Parassapada Ekavacana"))
+    par_pu2_para_pl = models.CharField(null=True, blank=True, verbose_name=_("Parokkhā Purisa 2 Parassapada Bahuvacana"))
+    par_pu2_atta_sg = models.CharField(null=True, blank=True, verbose_name=_("Parokkhā Purisa 2 Attanopada Ekavacana"))
+    par_pu2_atta_pl = models.CharField(null=True, blank=True, verbose_name=_("Parokkhā Purisa 2 Attanopada Bahuvacana"))
+    par_pu3_para_sg = models.CharField(null=True, blank=True, verbose_name=_("Parokkhā Purisa 3 Parassapada Ekavacana"))
+    par_pu3_para_pl = models.CharField(null=True, blank=True, verbose_name=_("Parokkhā Purisa 3 Parassapada Bahuvacana"))
+    par_pu3_atta_sg = models.CharField(null=True, blank=True, verbose_name=_("Parokkhā Purisa 3 Attanopada Ekavacana"))
+    par_pu3_atta_pl = models.CharField(null=True, blank=True, verbose_name=_("Parokkhā Purisa 3 Attanopada Bahuvacana"))
+    # 5 Hiyyattanī (Imperfect Tense)
+    hit_meaning     = models.CharField(null=True, blank=True, verbose_name=_("Vattamānā Purisa 1 Parassapada Ekavacana"))
+    hit_pu1_para_sg = models.CharField(null=True, blank=True, verbose_name=_("Hiyyattanī Purisa 1 Parassapada Ekavacana"))
+    hit_pu1_para_pl = models.CharField(null=True, blank=True, verbose_name=_("Hiyyattanī Purisa 1 Parassapada Bahuvacana"))
+    hit_pu1_atta_sg = models.CharField(null=True, blank=True, verbose_name=_("Hiyyattanī Purisa 1 Attanopada Ekavacana"))
+    hit_pu1_atta_pl = models.CharField(null=True, blank=True, verbose_name=_("Hiyyattanī Purisa 1 Attanopada Bahuvacana"))
+    hit_pu2_para_sg = models.CharField(null=True, blank=True, verbose_name=_("Hiyyattanī Purisa 2 Parassapada Ekavacana"))
+    hit_pu2_para_pl = models.CharField(null=True, blank=True, verbose_name=_("Hiyyattanī Purisa 2 Parassapada Bahuvacana"))
+    hit_pu2_atta_sg = models.CharField(null=True, blank=True, verbose_name=_("Hiyyattanī Purisa 2 Attanopada Ekavacana"))
+    hit_pu2_atta_pl = models.CharField(null=True, blank=True, verbose_name=_("Hiyyattanī Purisa 2 Attanopada Bahuvacana"))
+    hit_pu3_para_sg = models.CharField(null=True, blank=True, verbose_name=_("Hiyyattanī Purisa 3 Parassapada Ekavacana"))
+    hit_pu3_para_pl = models.CharField(null=True, blank=True, verbose_name=_("Hiyyattanī Purisa 3 Parassapada Bahuvacana"))
+    hit_pu3_atta_sg = models.CharField(null=True, blank=True, verbose_name=_("Hiyyattanī Purisa 3 Attanopada Ekavacana"))
+    hit_pu3_atta_pl = models.CharField(null=True, blank=True, verbose_name=_("Hiyyattanī Purisa 3 Attanopada Bahuvacana"))
+    # 6 Ajjatanī (Aorist Tense)
+    ajj_meaning     = models.CharField(null=True, blank=True, verbose_name=_("Vattamānā Purisa 1 Parassapada Ekavacana"))
+    ajj_pu1_para_sg = models.CharField(null=True, blank=True, verbose_name=_("Ajjatanī Purisa 1 Parassapada Ekavacana"))
+    ajj_pu1_para_pl = models.CharField(null=True, blank=True, verbose_name=_("Ajjatanī Purisa 1 Parassapada Bahuvacana"))
+    ajj_pu1_atta_sg = models.CharField(null=True, blank=True, verbose_name=_("Ajjatanī Purisa 1 Attanopada Ekavacana"))
+    ajj_pu1_atta_pl = models.CharField(null=True, blank=True, verbose_name=_("Ajjatanī Purisa 1 Attanopada Bahuvacana"))
+    ajj_pu2_para_sg = models.CharField(null=True, blank=True, verbose_name=_("Ajjatanī Purisa 2 Parassapada Ekavacana"))
+    ajj_pu2_para_pl = models.CharField(null=True, blank=True, verbose_name=_("Ajjatanī Purisa 2 Parassapada Bahuvacana"))
+    ajj_pu2_atta_sg = models.CharField(null=True, blank=True, verbose_name=_("Ajjatanī Purisa 2 Attanopada Ekavacana"))
+    ajj_pu2_atta_pl = models.CharField(null=True, blank=True, verbose_name=_("Ajjatanī Purisa 2 Attanopada Bahuvacana"))
+    ajj_pu3_para_sg = models.CharField(null=True, blank=True, verbose_name=_("Ajjatanī Purisa 3 Parassapada Ekavacana"))
+    ajj_pu3_para_pl = models.CharField(null=True, blank=True, verbose_name=_("Ajjatanī Purisa 3 Parassapada Bahuvacana"))
+    ajj_pu3_atta_sg = models.CharField(null=True, blank=True, verbose_name=_("Ajjatanī Purisa 3 Attanopada Ekavacana"))
+    ajj_pu3_atta_pl = models.CharField(null=True, blank=True, verbose_name=_("Ajjatanī Purisa 3 Attanopada Bahuvacana"))
+    # 7 Bhavissanti (Future Tense)
+    bha_meaning     = models.CharField(null=True, blank=True, verbose_name=_("Vattamānā Purisa 1 Parassapada Ekavacana"))
+    bha_pu1_para_sg = models.CharField(null=True, blank=True, verbose_name=_("Bhavissanti Purisa 1 Parassapada Ekavacana"))
+    bha_pu1_para_pl = models.CharField(null=True, blank=True, verbose_name=_("Bhavissanti Purisa 1 Parassapada Bahuvacana"))
+    bha_pu1_atta_sg = models.CharField(null=True, blank=True, verbose_name=_("Bhavissanti Purisa 1 Attanopada Ekavacana"))
+    bha_pu1_atta_pl = models.CharField(null=True, blank=True, verbose_name=_("Bhavissanti Purisa 1 Attanopada Bahuvacana"))
+    bha_pu2_para_sg = models.CharField(null=True, blank=True, verbose_name=_("Bhavissanti Purisa 2 Parassapada Ekavacana"))
+    bha_pu2_para_pl = models.CharField(null=True, blank=True, verbose_name=_("Bhavissanti Purisa 2 Parassapada Bahuvacana"))
+    bha_pu2_atta_sg = models.CharField(null=True, blank=True, verbose_name=_("Bhavissanti Purisa 2 Attanopada Ekavacana"))
+    bha_pu2_atta_pl = models.CharField(null=True, blank=True, verbose_name=_("Bhavissanti Purisa 2 Attanopada Bahuvacana"))
+    bha_pu3_para_sg = models.CharField(null=True, blank=True, verbose_name=_("Bhavissanti Purisa 3 Parassapada Ekavacana"))
+    bha_pu3_para_pl = models.CharField(null=True, blank=True, verbose_name=_("Bhavissanti Purisa 3 Parassapada Bahuvacana"))
+    bha_pu3_atta_sg = models.CharField(null=True, blank=True, verbose_name=_("Bhavissanti Purisa 3 Attanopada Ekavacana"))
+    bha_pu3_atta_pl = models.CharField(null=True, blank=True, verbose_name=_("Bhavissanti Purisa 3 Attanopada Bahuvacana"))
+    # 8 Kālātipatti (Conditional Mood)
+    kal_meaning     = models.CharField(null=True, blank=True, verbose_name=_("Vattamānā Purisa 1 Parassapada Ekavacana"))
+    kal_pu1_para_sg = models.CharField(null=True, blank=True, verbose_name=_("Kālātipatti Purisa 1 Parassapada Ekavacana"))
+    kal_pu1_para_pl = models.CharField(null=True, blank=True, verbose_name=_("Kālātipatti Purisa 1 Parassapada Bahuvacana"))
+    kal_pu1_atta_sg = models.CharField(null=True, blank=True, verbose_name=_("Kālātipatti Purisa 1 Attanopada Ekavacana"))
+    kal_pu1_atta_pl = models.CharField(null=True, blank=True, verbose_name=_("Kālātipatti Purisa 1 Attanopada Bahuvacana"))
+    kal_pu2_para_sg = models.CharField(null=True, blank=True, verbose_name=_("Kālātipatti Purisa 2 Parassapada Ekavacana"))
+    kal_pu2_para_pl = models.CharField(null=True, blank=True, verbose_name=_("Kālātipatti Purisa 2 Parassapada Bahuvacana"))
+    kal_pu2_atta_sg = models.CharField(null=True, blank=True, verbose_name=_("Kālātipatti Purisa 2 Attanopada Ekavacana"))
+    kal_pu2_atta_pl = models.CharField(null=True, blank=True, verbose_name=_("Kālātipatti Purisa 2 Attanopada Bahuvacana"))
+    kal_pu3_para_sg = models.CharField(null=True, blank=True, verbose_name=_("Kālātipatti Purisa 3 Parassapada Ekavacana"))
+    kal_pu3_para_pl = models.CharField(null=True, blank=True, verbose_name=_("Kālātipatti Purisa 3 Parassapada Bahuvacana"))
+    kal_pu3_atta_sg = models.CharField(null=True, blank=True, verbose_name=_("Kālātipatti Purisa 3 Attanopada Ekavacana"))
+    kal_pu3_atta_pl = models.CharField(null=True, blank=True, verbose_name=_("Kālātipatti Purisa 3 Attanopada Bahuvacana"))
+
+    def __str__(self):
+        return f"{self.title}"
 
 

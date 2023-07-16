@@ -19,60 +19,6 @@ from .models import NamaSaddamala, \
 
 from .workflows import SaddaTranslationWorkflow
 
-# -----------------------------------------------------
-# NamaSaddamala Table & Filter
-# -----------------------------------------------------
-class NamaSaddamalaTable(tables.Table):
-    title_order = tables.Column(visible=False)
-    popularity = tables.Column(visible=False)
-    
-    action = tables.Column(
-        empty_values=(),
-        orderable=False,
-        verbose_name=_('Action'))
-    
-    def render_action(self, record):
-        query_params = self.request.GET
-        url = reverse_lazy('nama_saddamala_update', args=[record.id])
-        url_with_params = f'{url}?{query_params.urlencode()}'
-        return mark_safe(
-            f'<a href="{url_with_params}" class="w3-button w3-round-xlarge w3-border w3-hover-brown">'
-            f'<i class="fas fa-pencil-alt"></i></a>'
-        )
-
-    class Meta:
-        model = NamaSaddamala
-        template_name = "django_tables2/w3css.html"
-        attrs = {"class": "w3-table w3-bordered"}
-        fields = ("title_order", "title", "title_code", "linga", "karanta", "nama_type", "popularity",)
-        order_by = ("-popularity", "title_order",)
-
-
-class NamaSaddamalaFilter(FilterSet):
-    title__contains = filters.CharFilter(
-        field_name='title',
-        lookup_expr='icontains',
-        label=_('Title contains'))
-    nama_type__exact = filters.ChoiceFilter(
-        field_name='nama_type',
-        lookup_expr='exact',
-        choices=NamaType.objects.values_list('id', 'title'),
-        label=_('Type'))
-    linga__exact = filters.ChoiceFilter(
-        field_name='linga',
-        lookup_expr='exact',
-        choices=NamaType.objects.values_list('id', 'title'),
-        label=_('Liṅga'))
-    karanta__exact = filters.ChoiceFilter(
-        field_name='karanta',
-        lookup_expr='exact',
-        choices=Karanta.objects.values_list('id', 'title'),
-        label=_('Kāranta'))
-    
-    class Meta:
-        model = NamaSaddamala
-        fields = {}
-        
 
 
 # -----------------------------------------------------

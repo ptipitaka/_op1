@@ -8,7 +8,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.utils.translation import gettext_lazy as _
 from django.views import View
 from django.views.generic import CreateView, UpdateView, DeleteView, FormView
-from django.urls import resolve, reverse_lazy
+from django.urls import reverse_lazy
 
 from django_filters.views import FilterView
 from django_tables2.views import SingleTableMixin
@@ -16,21 +16,18 @@ from django_tables2.views import SingleTableMixin
 from braces.views import LoginRequiredMixin, SuperuserRequiredMixin
 from fuzzywuzzy import fuzz, process
 from simple_history.utils import get_history_manager_for_model
-from tablib import Dataset
 from urllib.parse import urlencode
 
 from .models import NamaSaddamala, Padanukkama, Pada, Sadda
 
 from abidan.models import Word, WordLookup
 
-from .tables import NamaSaddamalaTable, NamaSaddamalaFilter, \
-                    PadanukkamaTable, PadanukkamaFilter, \
+from .tables import PadanukkamaTable, PadanukkamaFilter, \
                     PadaTable, PadaFilter, \
                     PadaParentChildTable, \
                     SaddaTable, SaddaFilter
 
-from .forms import  NamaSaddamalaForm, \
-                    PadanukkamaCreateForm, PadanukkamaUpdateForm, \
+from .forms import  PadanukkamaCreateForm, PadanukkamaUpdateForm, \
                     AddChildPadaForm, SaddaForm, ExportSaddaForm
 
 from .admin import SaddaResource
@@ -38,112 +35,6 @@ from .admin import SaddaResource
 from utils.pali_char import *
 from utils.padanukkama import *
 from utils.declension import *
-
-# ====================================================
-# NamaSaddamala
-# ====================================================
-
-# NamaSaddamalaView
-#------------------
-class NamaSaddamalaView(LoginRequiredMixin, SingleTableMixin, FilterView):
-    model = NamaSaddamala
-    template_name = "padanukkama/nama_saddamala.html"
-    context_object_name  = "nama_saddamala"
-    table_class = NamaSaddamalaTable
-    filterset_class = NamaSaddamalaFilter
-    
-    def get_context_data(self, **kwargs):
-        context = super(NamaSaddamalaView, self).get_context_data(**kwargs)
-        context["total_rec"] = '{:,}'.format(len(self.get_table().rows)) 
-        return context
-
-
-
-# NamaSaddamalaCreateView
-# -----------------------
-class NamaSaddamalaCreateView(LoginRequiredMixin, CreateView):
-    model = NamaSaddamala
-    template_name = "padanukkama/nama_saddamala_detail.html"
-    form_class = NamaSaddamalaForm
-    
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['url_name'] = resolve(self.request.path_info).url_name
-        return context
-    
-    def form_valid(self, form):
-        response = super().form_valid(form)
-        messages.success(self.request, _("Form saved successfully."))
-        return response
-
-    def form_invalid(self, form):
-        response = super().form_invalid(form)
-        error_message = _("Form contains errors. Please correct them.")
-        messages.error(self.request, error_message)
-        
-        # Print the detailed form errors
-        for field, errors in form.errors.items():
-            for error in errors:
-                print(f"Field '{field}': {error}")
-        return response
-
-    def get_success_url(self):
-        success_url = reverse_lazy('nama_saddamala')
-        query_params = self.request.GET.copy()  # Create a mutable copy of the request's GET parameters
-        success_url += '?' + urlencode(query_params)  # Add the query parameters to the success URL
-        return success_url
-
-
-
-# NamaSaddamalaUpdateView
-# -----------------------
-class NamaSaddamalaUpdateView(LoginRequiredMixin, UpdateView):
-    model = NamaSaddamala
-    template_name = "padanukkama/nama_saddamala_detail.html"
-    form_class = NamaSaddamalaForm
-    
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['url_name'] = resolve(self.request.path_info).url_name
-        return context
-    
-    def form_valid(self, form):
-        response = super().form_valid(form)
-        messages.success(self.request, _("Form saved successfully."))
-        return response
-
-    def form_invalid(self, form):
-        response = super().form_invalid(form)
-        error_message = _("Form contains errors. Please correct them.")
-        messages.error(self.request, error_message)
-        
-        # Print the detailed form errors
-        for field, errors in form.errors.items():
-            for error in errors:
-                print(f"Field '{field}': {error}")
-        return response
-
-    def get_success_url(self):
-        success_url = reverse_lazy('nama_saddamala')
-        query_params = self.request.GET.copy()  # Create a mutable copy of the request's GET parameters
-        success_url += '?' + urlencode(query_params)  # Add the query parameters to the success URL
-        return success_url
-    
-
-
-# NamaSaddamalaDeleteView
-# -----------------------
-class NamaSaddamalaDeleteView(LoginRequiredMixin, DeleteView):
-    model = NamaSaddamala
-    template_name = "padanukkama/nama_saddamala_detail.html"
-    success_url = reverse_lazy('nama_saddamala')
-    
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['nama_saddamala'] = self.get_object()
-        context['url_name'] = resolve(self.request.path_info).url_name
-        return context
-
 
 
 # ====================================================
@@ -156,8 +47,8 @@ class PadanukkamaView(LoginRequiredMixin, SingleTableMixin, FilterView):
     model = Padanukkama
     template_name = "padanukkama/padanukkama.html"
     context_object_name  = "padanukkama"
-    table_class =PadanukkamaTable
-    filterset_class =PadanukkamaFilter
+    table_class = PadanukkamaTable
+    filterset_class = PadanukkamaFilter
     
     def get_context_data(self, **kwargs):
         context = super(PadanukkamaView, self).get_context_data(**kwargs)
@@ -227,9 +118,9 @@ class PadanukkamaDeleteView(SuperuserRequiredMixin, DeleteView):
 
 
 
-# =====================================================
+# ====================================================
 # PadanukkamaPadaView
-# =====================================================
+# ====================================================
 class PadanukkamaPadaView(LoginRequiredMixin, SingleTableMixin, FilterView):
     model = Pada
     template_name = "padanukkama/pada.html"
@@ -497,12 +388,15 @@ class PadaDeclensionView(LoginRequiredMixin, View):
                     'sadda_type': 'Nama'
                 })
 
+            verb_conjugation = VerbConjugation.objects.all().order_by('sequence')
+
             context = {
                 'pada_id': pk,
                 'pada': pada,
                 'padanukkama_id': padanukkama_id,
                 'padanukkama': padanukkama,
                 'form': form,
+                'verb_conjugation': verb_conjugation,
             }
 
             return render(request, self.template_name, context)
@@ -689,9 +583,9 @@ class CreateVipatti(LoginRequiredMixin, View):
 
 
 
-# =====================================================
+# ====================================================
 # SaddaView
-# =====================================================
+# ====================================================
 
 # SaddaView
 # ---------
@@ -794,3 +688,44 @@ class FindRelatedPadaView(LoginRequiredMixin, View):
         }
 
         return JsonResponse(data)
+
+
+
+# FilterVerbConjugation
+# ----------------------
+def FilterVerbConjugation(request, word):
+    fields = [
+        "p1_para_sg", "p1_para_pl", "p1_atta_sg", "p1_atta_pl",
+        "p2_para_sg", "p2_para_pl", "p2_atta_sg", "p2_atta_pl",
+        "p3_para_sg", "p3_para_pl", "p3_atta_sg", "p3_atta_pl"
+    ]
+
+    id_list = []
+
+    verb_conjugations = VerbConjugation.objects.all()
+    for verb_conjugation in verb_conjugations:
+        endings_lists = [getattr(verb_conjugation, field).split(',') for field in fields]
+
+        for endings_list in endings_lists:
+            for ending in endings_list:
+                if word.endswith(ending.strip()):
+                    id_list.append(verb_conjugation.id)
+                    break
+
+    verb_conjugation_queryset = VerbConjugation.objects.filter(
+        id__in=id_list).order_by('sequence')
+    verb_conjugation_list = list(verb_conjugation_queryset.values())
+
+    return JsonResponse(verb_conjugation_list, safe=False)
+
+
+
+
+# ====================================================
+# Literal Translation
+# ====================================================
+
+# LiteralTranslationView
+# ----------------------
+class LiteralTranslationView(LoginRequiredMixin, SingleTableMixin, FilterView):
+    pass

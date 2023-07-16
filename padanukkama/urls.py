@@ -4,7 +4,7 @@ from . import views
 
 urlpatterns = [
     # padanukkama
-    path('project/', views.PadanukkamaView.as_view(), name='padanukkama'),
+    path('project/', views.PadanukkamaView.as_view(), name='project'),
     path('project/create/', views.PadanukkamaCreateView.as_view(), name='padanukkama_create'),
     path('project/<int:pk>/update/', views.PadanukkamaUpdateView.as_view(), name='padanukkama_update'),
     path('project/<int:pk>/delete/', views.PadanukkamaDeleteView.as_view(), name='padanukkama_delete'),
@@ -20,13 +20,12 @@ urlpatterns = [
     path('find-sadda-closest-matches/', views.FindSaddaClosestMatchesView.as_view(), name='find_sadda_closest_matches'),
     path('find-existing-sadda/<padanukkama_id>/<sadda>/', views.FindExistingSadda.as_view(), name= 'find_existing_sadda'),
     path('create-vipatti/<padanukkama_id>/<sadda>/<sadda_type>/<template_ids>/', views.CreateVipatti.as_view(), name='create_vipatti'),
+    path('filter-verb-conjugation/<str:word>/', views.FilterVerbConjugation, name='filter_verb_conjugation'),
     # sadda
     path('sadda/', views.SaddaView.as_view(), name='sadda'),
     path('sadda/<int:pk>/update/', views.SaddaUpdateView.as_view(), name='sadda_update'),
     path('find-related-padas/', views.FindRelatedPadaView.as_view(), name='find_related_pada'),
-    # nama-saddamala
-    path('nama-saddamala/', views.NamaSaddamalaView.as_view(), name='nama_saddamala'),
-    path('nama-saddamala/create/', views.NamaSaddamalaCreateView.as_view(), name='nama_saddamala_create'),
-    path('nama-saddamala/<int:pk>/update/', views.NamaSaddamalaUpdateView.as_view(), name='nama_saddamala_update'),
-    path('nama-saddamala/<int:pk>/delete/', views.NamaSaddamalaDeleteView.as_view(), name='nama_saddamala_delete'),
+    # literal_translation
+    path('literal-translation/', views.LiteralTranslationView.as_view(), name='literal_translation'),
+
 ]

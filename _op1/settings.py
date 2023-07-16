@@ -59,7 +59,8 @@ INSTALLED_APPS = [
     'main.apps.MainConfig',
     'abidan',
     'tipitaka',
-    'padanukkama'
+    'padanukkama',
+    'setting'
 ]
 
 MIDDLEWARE = [

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-05 23:26+0700\n"
+"POT-Creation-Date: 2023-07-14 14:19+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,11 +18,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: .\_op1\settings.py:144
+#: .\_op1\settings.py:145
 msgid "English"
 msgstr ""
 
-#: .\_op1\settings.py:145
+#: .\_op1\settings.py:146
 msgid "Thai"
 msgstr ""
 
@@ -884,11 +884,14 @@ msgid "Order"
 msgstr ""
 
 #: .\_venv\Lib\site-packages\django\forms\formsets.py:499
-#: .\padanukkama\tables.py:245 .\padanukkama\tables.py:354
-#: .\padanukkama\templates\padanukkama\nama_saddamala_detail.html:25
-#: .\padanukkama\templates\padanukkama\nama_saddamala_detail.html:181
+#: .\padanukkama\tables.py:191 .\padanukkama\tables.py:300
 #: .\padanukkama\templates\padanukkama\padanukkama_delete.html:6
-#: .\padanukkama\templates\padanukkama\padanukkama_update.html:64
+#: .\padanukkama\templates\padanukkama\padanukkama_update.html:60
+#: .\setting\templates\setting\akhyala_saddamala.html:262
+#: .\setting\templates\setting\dhatu_detail.html:9
+#: .\setting\templates\setting\dhatu_detail.html:57
+#: .\setting\templates\setting\nama_saddamala_detail.html:25
+#: .\setting\templates\setting\nama_saddamala_detail.html:181
 #: .\tipitaka\templates\tipitaka\common_reference_delete.html:5
 msgid "Delete"
 msgstr ""
@@ -1533,10 +1536,11 @@ msgstr "รหัส"
 
 #: .\abidan\models.py:8 .\padanukkama\models.py:30 .\padanukkama\models.py:48
 #: .\padanukkama\models.py:63 .\padanukkama\models.py:76
-#: .\padanukkama\models.py:215 .\padanukkama\models.py:254
-#: .\padanukkama\models.py:278 .\padanukkama\models.py:301
+#: .\padanukkama\models.py:215 .\padanukkama\models.py:431
+#: .\padanukkama\models.py:455 .\padanukkama\models.py:478
 #: .\padanukkama\templates\padanukkama\include\namasaddamala.html:15
-#: .\padanukkama\templates\padanukkama\nama_saddamala_detail.html:40
+#: .\setting\templates\setting\dhatu_detail.html:27
+#: .\setting\templates\setting\nama_saddamala_detail.html:40
 #: .\tipitaka\models.py:34 .\tipitaka\models.py:193
 msgid "Title"
 msgstr "หัวเรื่อง"
@@ -1581,8 +1585,9 @@ msgstr "เลขหน้า"
 msgid "Note"
 msgstr "บันทึก"
 
-#: .\abidan\tables.py:17 .\padanukkama\tables.py:32 .\padanukkama\tables.py:393
-#: .\tipitaka\tables.py:19 .\tipitaka\tables.py:43 .\tipitaka\tables.py:75
+#: .\abidan\tables.py:17 .\padanukkama\tables.py:339 .\setting\tables.py:22
+#: .\setting\tables.py:78 .\tipitaka\tables.py:19 .\tipitaka\tables.py:43
+#: .\tipitaka\tables.py:75
 msgid "Action"
 msgstr "ดำเนินการ"
 
@@ -1595,14 +1600,15 @@ msgid "Word contains"
 msgstr "คำประกอบด้วย"
 
 #: .\abidan\templates\abidan\details.html:17
-#: .\padanukkama\templates\padanukkama\nama_saddamala_detail.html:29
 #: .\padanukkama\templates\padanukkama\pada.html:16
 #: .\padanukkama\templates\padanukkama\pada_declension.html:32
 #: .\padanukkama\templates\padanukkama\pada_split_sandhi.html:14
 #: .\padanukkama\templates\padanukkama\padanukkama_create.html:10
 #: .\padanukkama\templates\padanukkama\padanukkama_delete.html:10
-#: .\padanukkama\templates\padanukkama\padanukkama_update.html:14
+#: .\padanukkama\templates\padanukkama\padanukkama_update.html:10
 #: .\padanukkama\templates\padanukkama\sadda_update.html:32
+#: .\setting\templates\setting\dhatu_detail.html:15
+#: .\setting\templates\setting\nama_saddamala_detail.html:29
 #: .\tipitaka\templates\tipitaka\common_reference_delete.html:9
 #: .\tipitaka\templates\tipitaka\common_reference_detail.html:9
 #: .\tipitaka\templates\tipitaka\common_reference_subform.html:16
@@ -1617,13 +1623,14 @@ msgstr "อภิธานพระไตรปิฎก บาลี-พม่�
 
 #: .\abidan\templates\abidan\index.html:26
 #: .\main\templates\registration\login.html:26
-#: .\padanukkama\templates\padanukkama\nama_saddamala.html:31
 #: .\padanukkama\templates\padanukkama\pada.html:35
 #: .\padanukkama\templates\padanukkama\pada_declension.html:71
 #: .\padanukkama\templates\padanukkama\pada_split_sandhi.html:35
 #: .\padanukkama\templates\padanukkama\padanukkama.html:31
 #: .\padanukkama\templates\padanukkama\sadda.html:59
 #: .\padanukkama\templates\padanukkama\sadda.html:89
+#: .\setting\templates\setting\dhatu.html:31
+#: .\setting\templates\setting\nama_saddamala.html:31
 #: .\tipitaka\templates\tipitaka\digital_archive.html:30
 #: .\tipitaka\templates\tipitaka\structure.html:28
 #: .\tipitaka\templates\tipitaka\wordlist.html:62
@@ -1632,10 +1639,11 @@ msgid "Submit"
 msgstr "ดำเนินการ"
 
 #: .\abidan\templates\abidan\index.html:34
-#: .\padanukkama\templates\padanukkama\nama_saddamala.html:39
 #: .\padanukkama\templates\padanukkama\pada.html:44
 #: .\padanukkama\templates\padanukkama\padanukkama.html:39
 #: .\padanukkama\templates\padanukkama\sadda.html:74
+#: .\setting\templates\setting\dhatu.html:39
+#: .\setting\templates\setting\nama_saddamala.html:39
 #: .\tipitaka\templates\tipitaka\digital_archive.html:39
 #: .\tipitaka\templates\tipitaka\structure.html:36
 #: .\tipitaka\templates\tipitaka\toc.html:16
@@ -1644,10 +1652,11 @@ msgid "found"
 msgstr "พบ"
 
 #: .\abidan\templates\abidan\index.html:34
-#: .\padanukkama\templates\padanukkama\nama_saddamala.html:39
 #: .\padanukkama\templates\padanukkama\pada.html:44
 #: .\padanukkama\templates\padanukkama\padanukkama.html:39
 #: .\padanukkama\templates\padanukkama\sadda.html:74
+#: .\setting\templates\setting\dhatu.html:39
+#: .\setting\templates\setting\nama_saddamala.html:39
 #: .\tipitaka\templates\tipitaka\digital_archive.html:39
 #: .\tipitaka\templates\tipitaka\structure.html:36
 #: .\tipitaka\templates\tipitaka\toc.html:16
@@ -1656,7 +1665,7 @@ msgid "record(s)"
 msgstr "รายการ"
 
 #: .\main\templates\main\change_password.html:6
-#: .\main\templates\main\navbar.html:64
+#: .\main\templates\main\navbar.html:86
 msgid "Change Password"
 msgstr "เปลี่ยนรหัสผ่าน"
 
@@ -1711,19 +1720,12 @@ msgid "Padānukkama"
 msgstr "ปทานุกรม"
 
 #: .\main\templates\main\navbar.html:41
-#: .\padanukkama\templates\padanukkama\nama_saddamala.html:8
-#: .\padanukkama\templates\padanukkama\nama_saddamala_detail.html:22
-msgid "Nāmasaddapadamālā"
-msgstr "การจำแนกแบบแจกบทนาม"
+msgid "Project"
+msgstr "โครงการ"
 
-#: .\main\templates\main\navbar.html:45 .\padanukkama\models.py:346
-#: .\padanukkama\models.py:430 .\padanukkama\tables.py:436
-msgid "Padanukkama"
-msgstr "ปทานุกรม"
-
-#: .\main\templates\main\navbar.html:49 .\padanukkama\models.py:349
-#: .\padanukkama\models.py:455 .\padanukkama\tables.py:196
-#: .\padanukkama\tables.py:216
+#: .\main\templates\main\navbar.html:45 .\padanukkama\models.py:265
+#: .\padanukkama\models.py:371 .\padanukkama\tables.py:142
+#: .\padanukkama\tables.py:162
 #: .\padanukkama\templates\padanukkama\pada_declension.html:26
 #: .\padanukkama\templates\padanukkama\pada_declension.html:92
 #: .\padanukkama\templates\padanukkama\padanukkama_create.html:6
@@ -1731,18 +1733,56 @@ msgstr "ปทานุกรม"
 #: .\padanukkama\templates\padanukkama\sadda_update.html:26
 #: .\padanukkama\templates\padanukkama\sadda_update.html:75
 msgid "Sadda"
-msgstr "ศัพท์"
+msgstr "คำศัพท์"
 
-#: .\main\templates\main\navbar.html:57
+#: .\main\templates\main\navbar.html:49
+msgid "Literal Translation"
+msgstr "แปลยกศัพท์"
+
+#: .\main\templates\main\navbar.html:56
+#: .\setting\templates\setting\include\title.html:3
+msgid "Setting"
+msgstr "กำหนดค่า"
+
+#: .\main\templates\main\navbar.html:59 .\padanukkama\models.py:254
+msgid "Nāma"
+msgstr "นาม"
+
+#: .\main\templates\main\navbar.html:62
+#: .\setting\templates\setting\dhatu.html:8
+#: .\setting\templates\setting\nama_saddamala.html:8
+#: .\setting\templates\setting\nama_saddamala_detail.html:22
+msgid "Nāmasaddapadamālā"
+msgstr "แบบวิภัตติบทนาม"
+
+#: .\main\templates\main\navbar.html:64 .\padanukkama\models.py:255
+msgid "Akhyāta"
+msgstr "อาขฺยาต"
+
+#: .\main\templates\main\navbar.html:67
+#: .\setting\templates\setting\dhatu_detail.html:6
+msgid "Dhātu"
+msgstr "ธาตุ"
+
+#: .\main\templates\main\navbar.html:67 .\padanukkama\models.py:458
+#: .\padanukkama\models.py:499
+msgid "Paccaya"
+msgstr "ปัจจัย"
+
+#: .\main\templates\main\navbar.html:71
+msgid "Akhyātasaddapadamālā"
+msgstr "แบบวิภัตติบทอขยาต"
+
+#: .\main\templates\main\navbar.html:79
 msgid "Login"
 msgstr "เข้าระบบ"
 
-#: .\main\templates\main\navbar.html:65
+#: .\main\templates\main\navbar.html:87
 msgid "Logout"
 msgstr "ออกระบบ"
 
 #: .\main\templates\main\statistic\dashboard.html:75
-#: .\padanukkama\models.py:221 .\padanukkama\tables.py:119
+#: .\padanukkama\models.py:221 .\padanukkama\tables.py:65
 msgid "Publication"
 msgstr "เผยแพร่"
 
@@ -1781,7 +1821,7 @@ msgstr "เวอร์ชัน รายการคำ"
 msgid "Collaborators"
 msgstr "ผู้ร่วมดำเนินการ"
 
-#: .\main\templates\main\statistic\dashboard.html:132
+#: .\main\templates\main\statistic\last_update.html:5
 msgid "Recently Updated"
 msgstr "ปรับปรุงล่าสุด"
 
@@ -1805,7 +1845,7 @@ msgstr "รหัสผ่านของคุณถูกอัปเดตเ
 msgid "Please correct the error"
 msgstr "กรุณาแก้ไขข้อผิดพลาด"
 
-#: .\padanukkama\forms.py:116 .\padanukkama\models.py:363
+#: .\padanukkama\forms.py:116 .\padanukkama\models.py:279
 msgid "NamaSaddamala"
 msgstr "การจำแนกแบบแจกบทนาม"
 
@@ -1814,27 +1854,28 @@ msgid "Format"
 msgstr ""
 
 #: .\padanukkama\models.py:27 .\padanukkama\models.py:42
-#: .\padanukkama\models.py:60 .\padanukkama\models.py:275
+#: .\padanukkama\models.py:60 .\padanukkama\models.py:452
 msgid "Sequence"
 msgstr "ลำดับ"
 
-#: .\padanukkama\models.py:79 .\padanukkama\models.py:259
-#: .\padanukkama\models.py:306
+#: .\padanukkama\models.py:79 .\padanukkama\models.py:436
+#: .\padanukkama\models.py:483
 msgid "Title order"
 msgstr "ลำดับตามชื่อเรื่อง"
 
-#: .\padanukkama\models.py:87 .\padanukkama\models.py:359
-#: .\padanukkama\tables.py:60
+#: .\padanukkama\models.py:87 .\padanukkama\models.py:275
 #: .\padanukkama\templates\padanukkama\include\namasaddamala.html:16
+#: .\setting\tables.py:50
 msgid "Type"
 msgstr "ประเภท"
 
-#: .\padanukkama\models.py:93 .\padanukkama\tables.py:65
+#: .\padanukkama\models.py:93
 #: .\padanukkama\templates\padanukkama\include\namasaddamala.html:17
+#: .\setting\tables.py:55
 msgid "Liṅga"
 msgstr "ลิงค์"
 
-#: .\padanukkama\models.py:99 .\padanukkama\tables.py:70
+#: .\padanukkama\models.py:99 .\setting\tables.py:60
 msgid "Kāranta"
 msgstr "การันต์"
 
@@ -1902,7 +1943,7 @@ msgstr "สัตตมี เอกวจนะ"
 msgid "Sattamī Bahuvacana"
 msgstr "สัตตมี พหุวจนะ"
 
-#: .\padanukkama\models.py:185 .\padanukkama\models.py:322
+#: .\padanukkama\models.py:185 .\padanukkama\models.py:504
 msgid "Popularity"
 msgstr "ความนิยม"
 
@@ -1938,145 +1979,578 @@ msgstr "สารบัญ"
 msgid "Structure"
 msgstr "โครงสร้าง"
 
-#: .\padanukkama\models.py:281
-msgid "Paccaya"
-msgstr "ปัจจัย"
+#: .\padanukkama\models.py:256
+msgid "Byaya"
+msgstr "พฺยย"
 
-#: .\padanukkama\models.py:284 .\padanukkama\models.py:393
+#: .\padanukkama\models.py:262 .\padanukkama\models.py:346
+#: .\padanukkama\tables.py:382
+msgid "Padanukkama"
+msgstr "ปทานุกรม"
+
+#: .\padanukkama\models.py:269 .\padanukkama\models.py:353
+msgid "Pada sequence"
+msgstr "ลำดับบท"
+
+#: .\padanukkama\models.py:285
+msgid "Construction"
+msgstr "การประกอบคำ"
+
+#: .\padanukkama\models.py:309 .\padanukkama\models.py:461
 #: .\tipitaka\models.py:19 .\tipitaka\models.py:35 .\tipitaka\models.py:48
 #: .\tipitaka\models.py:194 .\tipitaka\models.py:225
 msgid "Description"
 msgstr "รายละเอียด"
 
-#: .\padanukkama\models.py:310
-msgid "Dhatugana"
-msgstr ""
-
-#: .\padanukkama\models.py:314
-msgid "Definition"
-msgstr "รายละเอียด"
-
-#: .\padanukkama\models.py:317
-msgid "Meaning"
-msgstr "ความหมาย"
-
-#: .\padanukkama\models.py:338
-msgid "Nāma"
-msgstr "นาม"
-
-#: .\padanukkama\models.py:339
-msgid "Akhyāta"
-msgstr "อาขฺยาต"
-
-#: .\padanukkama\models.py:340
-msgid "Byaya"
-msgstr "พฺยย"
-
-#: .\padanukkama\models.py:353 .\padanukkama\models.py:437
-msgid "Pada sequence"
-msgstr "ลำดับบท"
-
-#: .\padanukkama\models.py:369
-msgid "Construction"
-msgstr "การประกอบคำ"
-
-#: .\padanukkama\models.py:397 .\padanukkama\tables.py:442
+#: .\padanukkama\models.py:313 .\padanukkama\tables.py:388
 msgid "State"
 msgstr "สถานะ"
 
-#: .\padanukkama\models.py:433 .\padanukkama\tables.py:100
-#: .\padanukkama\tables.py:276
+#: .\padanukkama\models.py:349 .\padanukkama\tables.py:46
+#: .\padanukkama\tables.py:222
 #: .\padanukkama\templates\padanukkama\pada_declension.html:26
 #: .\padanukkama\templates\padanukkama\pada_split_sandhi.html:8
 #: .\padanukkama\templates\padanukkama\sadda_update.html:76
 msgid "Pada"
 msgstr "บท"
 
-#: .\padanukkama\models.py:442 .\tipitaka\models.py:129
+#: .\padanukkama\models.py:358 .\tipitaka\models.py:129
 msgid "Word in roman script"
 msgstr "คำในอักษรโรมัน"
 
-#: .\padanukkama\models.py:448
+#: .\padanukkama\models.py:364
 msgid "Parent word"
 msgstr "จากคำ"
 
-#: .\padanukkama\tables.py:55 .\padanukkama\tables.py:117
-msgid "Title contains"
-msgstr "หัวเรื่องประกอบด้วย"
+#: .\padanukkama\models.py:486 .\setting\tables.py:110
+msgid "Dhatugana"
+msgstr ""
 
-#: .\padanukkama\tables.py:90
-#: .\padanukkama\templates\padanukkama\nama_saddamala_detail.html:24
-#: .\padanukkama\templates\padanukkama\padanukkama_update.html:10
+#: .\padanukkama\models.py:492 .\setting\templates\setting\dhatu_detail.html:29
+msgid "Definition"
+msgstr "รายละเอียด"
+
+#: .\padanukkama\models.py:495 .\setting\templates\setting\dhatu_detail.html:30
+msgid "Meaning"
+msgstr "ความหมาย"
+
+#: .\padanukkama\models.py:521
+#, fuzzy
+#| msgid "Title"
+msgid "title"
+msgstr "หัวเรื่อง"
+
+#: .\padanukkama\models.py:524
+msgid "Vattamānā Purisa 3 Parassapada Ekavacana"
+msgstr ""
+
+#: .\padanukkama\models.py:525
+msgid "Vattamānā Purisa 3 Parassapada Bahuvacana"
+msgstr ""
+
+#: .\padanukkama\models.py:526
+msgid "Vattamānā Purisa 3 Attanopada Ekavacana"
+msgstr ""
+
+#: .\padanukkama\models.py:527
+msgid "Vattamānā Purisa 3 Attanopada Bahuvacana"
+msgstr ""
+
+#: .\padanukkama\models.py:528
+msgid "Vattamānā Purisa 2 Parassapada Ekavacana"
+msgstr ""
+
+#: .\padanukkama\models.py:529
+msgid "Vattamānā Purisa 2 Parassapada Bahuvacana"
+msgstr ""
+
+#: .\padanukkama\models.py:530
+msgid "Vattamānā Purisa 2 Attanopada Ekavacana"
+msgstr ""
+
+#: .\padanukkama\models.py:531
+msgid "Vattamānā Purisa 2 Attanopada Bahuvacana"
+msgstr ""
+
+#: .\padanukkama\models.py:532
+msgid "Vattamānā Purisa 1 Parassapada Ekavacana"
+msgstr ""
+
+#: .\padanukkama\models.py:533
+msgid "Vattamānā Purisa 1 Parassapada Bahuvacana"
+msgstr ""
+
+#: .\padanukkama\models.py:534
+msgid "Vattamānā Purisa 1 Attanopada Ekavacana"
+msgstr ""
+
+#: .\padanukkama\models.py:535
+msgid "Vattamānā Purisa 1 Attanopada Bahuvacana"
+msgstr ""
+
+#: .\padanukkama\models.py:537
+#, fuzzy
+#| msgid "Pañcamī Ekavacana"
+msgid "Pañcamī Purisa 3 Parassapada Ekavacana"
+msgstr "ปัญจมี เอกวจนะ"
+
+#: .\padanukkama\models.py:538
+#, fuzzy
+#| msgid "Pañcamī Bahuvacana"
+msgid "Pañcamī Purisa 3 Parassapada Bahuvacana"
+msgstr "ปัญจมี พหุวจนะ"
+
+#: .\padanukkama\models.py:539
+#, fuzzy
+#| msgid "Pañcamī Ekavacana"
+msgid "Pañcamī Purisa 3 Attanopada Ekavacana"
+msgstr "ปัญจมี เอกวจนะ"
+
+#: .\padanukkama\models.py:540
+#, fuzzy
+#| msgid "Pañcamī Bahuvacana"
+msgid "Pañcamī Purisa 3 Attanopada Bahuvacana"
+msgstr "ปัญจมี พหุวจนะ"
+
+#: .\padanukkama\models.py:541
+#, fuzzy
+#| msgid "Pañcamī Ekavacana"
+msgid "Pañcamī Purisa 2 Parassapada Ekavacana"
+msgstr "ปัญจมี เอกวจนะ"
+
+#: .\padanukkama\models.py:542
+#, fuzzy
+#| msgid "Pañcamī Bahuvacana"
+msgid "Pañcamī Purisa 2 Parassapada Bahuvacana"
+msgstr "ปัญจมี พหุวจนะ"
+
+#: .\padanukkama\models.py:543
+#, fuzzy
+#| msgid "Pañcamī Ekavacana"
+msgid "Pañcamī Purisa 2 Attanopada Ekavacana"
+msgstr "ปัญจมี เอกวจนะ"
+
+#: .\padanukkama\models.py:544
+#, fuzzy
+#| msgid "Pañcamī Bahuvacana"
+msgid "Pañcamī Purisa 2 Attanopada Bahuvacana"
+msgstr "ปัญจมี พหุวจนะ"
+
+#: .\padanukkama\models.py:545
+#, fuzzy
+#| msgid "Pañcamī Ekavacana"
+msgid "Pañcamī Purisa 1 Parassapada Ekavacana"
+msgstr "ปัญจมี เอกวจนะ"
+
+#: .\padanukkama\models.py:546
+#, fuzzy
+#| msgid "Pañcamī Bahuvacana"
+msgid "Pañcamī Purisa 1 Parassapada Bahuvacana"
+msgstr "ปัญจมี พหุวจนะ"
+
+#: .\padanukkama\models.py:547
+#, fuzzy
+#| msgid "Pañcamī Ekavacana"
+msgid "Pañcamī Purisa 1 Attanopada Ekavacana"
+msgstr "ปัญจมี เอกวจนะ"
+
+#: .\padanukkama\models.py:548
+#, fuzzy
+#| msgid "Pañcamī Bahuvacana"
+msgid "Pañcamī Purisa 1 Attanopada Bahuvacana"
+msgstr "ปัญจมี พหุวจนะ"
+
+#: .\padanukkama\models.py:550
+#, fuzzy
+#| msgid "Sattamī Ekavacana"
+msgid "Sattamī Purisa 3 Parassapada Ekavacana"
+msgstr "สัตตมี เอกวจนะ"
+
+#: .\padanukkama\models.py:551
+#, fuzzy
+#| msgid "Sattamī Bahuvacana"
+msgid "Sattamī Purisa 3 Parassapada Bahuvacana"
+msgstr "สัตตมี พหุวจนะ"
+
+#: .\padanukkama\models.py:552
+#, fuzzy
+#| msgid "Sattamī Ekavacana"
+msgid "Sattamī Purisa 3 Attanopada Ekavacana"
+msgstr "สัตตมี เอกวจนะ"
+
+#: .\padanukkama\models.py:553
+#, fuzzy
+#| msgid "Sattamī Bahuvacana"
+msgid "Sattamī Purisa 3 Attanopada Bahuvacana"
+msgstr "สัตตมี พหุวจนะ"
+
+#: .\padanukkama\models.py:554
+#, fuzzy
+#| msgid "Sattamī Ekavacana"
+msgid "Sattamī Purisa 2 Parassapada Ekavacana"
+msgstr "สัตตมี เอกวจนะ"
+
+#: .\padanukkama\models.py:555
+#, fuzzy
+#| msgid "Sattamī Bahuvacana"
+msgid "Sattamī Purisa 2 Parassapada Bahuvacana"
+msgstr "สัตตมี พหุวจนะ"
+
+#: .\padanukkama\models.py:556
+#, fuzzy
+#| msgid "Sattamī Ekavacana"
+msgid "Sattamī Purisa 2 Attanopada Ekavacana"
+msgstr "สัตตมี เอกวจนะ"
+
+#: .\padanukkama\models.py:557
+#, fuzzy
+#| msgid "Sattamī Bahuvacana"
+msgid "Sattamī Purisa 2 Attanopada Bahuvacana"
+msgstr "สัตตมี พหุวจนะ"
+
+#: .\padanukkama\models.py:558
+#, fuzzy
+#| msgid "Sattamī Ekavacana"
+msgid "Sattamī Purisa 1 Parassapada Ekavacana"
+msgstr "สัตตมี เอกวจนะ"
+
+#: .\padanukkama\models.py:559
+#, fuzzy
+#| msgid "Sattamī Bahuvacana"
+msgid "Sattamī Purisa 1 Parassapada Bahuvacana"
+msgstr "สัตตมี พหุวจนะ"
+
+#: .\padanukkama\models.py:560
+#, fuzzy
+#| msgid "Sattamī Ekavacana"
+msgid "Sattamī Purisa 1 Attanopada Ekavacana"
+msgstr "สัตตมี เอกวจนะ"
+
+#: .\padanukkama\models.py:561
+#, fuzzy
+#| msgid "Sattamī Bahuvacana"
+msgid "Sattamī Purisa 1 Attanopada Bahuvacana"
+msgstr "สัตตมี พหุวจนะ"
+
+#: .\padanukkama\models.py:563
+msgid "Parokkhā Purisa 3 Parassapada Ekavacana"
+msgstr ""
+
+#: .\padanukkama\models.py:564
+msgid "Parokkhā Purisa 3 Parassapada Bahuvacana"
+msgstr ""
+
+#: .\padanukkama\models.py:565
+msgid "Parokkhā Purisa 3 Attanopada Ekavacana"
+msgstr ""
+
+#: .\padanukkama\models.py:566
+msgid "Parokkhā Purisa 3 Attanopada Bahuvacana"
+msgstr ""
+
+#: .\padanukkama\models.py:567
+msgid "Parokkhā Purisa 2 Parassapada Ekavacana"
+msgstr ""
+
+#: .\padanukkama\models.py:568
+msgid "Parokkhā Purisa 2 Parassapada Bahuvacana"
+msgstr ""
+
+#: .\padanukkama\models.py:569
+msgid "Parokkhā Purisa 2 Attanopada Ekavacana"
+msgstr ""
+
+#: .\padanukkama\models.py:570
+msgid "Parokkhā Purisa 2 Attanopada Bahuvacana"
+msgstr ""
+
+#: .\padanukkama\models.py:571
+msgid "Parokkhā Purisa 1 Parassapada Ekavacana"
+msgstr ""
+
+#: .\padanukkama\models.py:572
+msgid "Parokkhā Purisa 1 Parassapada Bahuvacana"
+msgstr ""
+
+#: .\padanukkama\models.py:573
+msgid "Parokkhā Purisa 1 Attanopada Ekavacana"
+msgstr ""
+
+#: .\padanukkama\models.py:574
+msgid "Parokkhā Purisa 1 Attanopada Bahuvacana"
+msgstr ""
+
+#: .\padanukkama\models.py:576
+msgid "Hiyyattanī Purisa 3 Parassapada Ekavacana"
+msgstr ""
+
+#: .\padanukkama\models.py:577
+msgid "Hiyyattanī Purisa 3 Parassapada Bahuvacana"
+msgstr ""
+
+#: .\padanukkama\models.py:578
+msgid "Hiyyattanī Purisa 3 Attanopada Ekavacana"
+msgstr ""
+
+#: .\padanukkama\models.py:579
+msgid "Hiyyattanī Purisa 3 Attanopada Bahuvacana"
+msgstr ""
+
+#: .\padanukkama\models.py:580
+msgid "Hiyyattanī Purisa 2 Parassapada Ekavacana"
+msgstr ""
+
+#: .\padanukkama\models.py:581
+msgid "Hiyyattanī Purisa 2 Parassapada Bahuvacana"
+msgstr ""
+
+#: .\padanukkama\models.py:582
+msgid "Hiyyattanī Purisa 2 Attanopada Ekavacana"
+msgstr ""
+
+#: .\padanukkama\models.py:583
+msgid "Hiyyattanī Purisa 2 Attanopada Bahuvacana"
+msgstr ""
+
+#: .\padanukkama\models.py:584
+msgid "Hiyyattanī Purisa 1 Parassapada Ekavacana"
+msgstr ""
+
+#: .\padanukkama\models.py:585
+msgid "Hiyyattanī Purisa 1 Parassapada Bahuvacana"
+msgstr ""
+
+#: .\padanukkama\models.py:586
+msgid "Hiyyattanī Purisa 1 Attanopada Ekavacana"
+msgstr ""
+
+#: .\padanukkama\models.py:587
+msgid "Hiyyattanī Purisa 1 Attanopada Bahuvacana"
+msgstr ""
+
+#: .\padanukkama\models.py:589
+msgid "Ajjatanī Purisa 3 Parassapada Ekavacana"
+msgstr ""
+
+#: .\padanukkama\models.py:590
+msgid "Ajjatanī Purisa 3 Parassapada Bahuvacana"
+msgstr ""
+
+#: .\padanukkama\models.py:591
+msgid "Ajjatanī Purisa 3 Attanopada Ekavacana"
+msgstr ""
+
+#: .\padanukkama\models.py:592
+msgid "Ajjatanī Purisa 3 Attanopada Bahuvacana"
+msgstr ""
+
+#: .\padanukkama\models.py:593
+msgid "Ajjatanī Purisa 2 Parassapada Ekavacana"
+msgstr ""
+
+#: .\padanukkama\models.py:594
+msgid "Ajjatanī Purisa 2 Parassapada Bahuvacana"
+msgstr ""
+
+#: .\padanukkama\models.py:595
+msgid "Ajjatanī Purisa 2 Attanopada Ekavacana"
+msgstr ""
+
+#: .\padanukkama\models.py:596
+msgid "Ajjatanī Purisa 2 Attanopada Bahuvacana"
+msgstr ""
+
+#: .\padanukkama\models.py:597
+msgid "Ajjatanī Purisa 1 Parassapada Ekavacana"
+msgstr ""
+
+#: .\padanukkama\models.py:598
+msgid "Ajjatanī Purisa 1 Parassapada Bahuvacana"
+msgstr ""
+
+#: .\padanukkama\models.py:599
+msgid "Ajjatanī Purisa 1 Attanopada Ekavacana"
+msgstr ""
+
+#: .\padanukkama\models.py:600
+msgid "Ajjatanī Purisa 1 Attanopada Bahuvacana"
+msgstr ""
+
+#: .\padanukkama\models.py:602
+msgid "Bhavissanti Purisa 3 Parassapada Ekavacana"
+msgstr ""
+
+#: .\padanukkama\models.py:603
+msgid "Bhavissanti Purisa 3 Parassapada Bahuvacana"
+msgstr ""
+
+#: .\padanukkama\models.py:604
+msgid "Bhavissanti Purisa 3 Attanopada Ekavacana"
+msgstr ""
+
+#: .\padanukkama\models.py:605
+msgid "Bhavissanti Purisa 3 Attanopada Bahuvacana"
+msgstr ""
+
+#: .\padanukkama\models.py:606
+msgid "Bhavissanti Purisa 2 Parassapada Ekavacana"
+msgstr ""
+
+#: .\padanukkama\models.py:607
+msgid "Bhavissanti Purisa 2 Parassapada Bahuvacana"
+msgstr ""
+
+#: .\padanukkama\models.py:608
+msgid "Bhavissanti Purisa 2 Attanopada Ekavacana"
+msgstr ""
+
+#: .\padanukkama\models.py:609
+msgid "Bhavissanti Purisa 2 Attanopada Bahuvacana"
+msgstr ""
+
+#: .\padanukkama\models.py:610
+msgid "Bhavissanti Purisa 1 Parassapada Ekavacana"
+msgstr ""
+
+#: .\padanukkama\models.py:611
+msgid "Bhavissanti Purisa 1 Parassapada Bahuvacana"
+msgstr ""
+
+#: .\padanukkama\models.py:612
+msgid "Bhavissanti Purisa 1 Attanopada Ekavacana"
+msgstr ""
+
+#: .\padanukkama\models.py:613
+msgid "Bhavissanti Purisa 1 Attanopada Bahuvacana"
+msgstr ""
+
+#: .\padanukkama\models.py:615
+msgid "Kālātipatti Purisa 3 Parassapada Ekavacana"
+msgstr ""
+
+#: .\padanukkama\models.py:616
+msgid "Kālātipatti Purisa 3 Parassapada Bahuvacana"
+msgstr ""
+
+#: .\padanukkama\models.py:617
+msgid "Kālātipatti Purisa 3 Attanopada Ekavacana"
+msgstr ""
+
+#: .\padanukkama\models.py:618
+msgid "Kālātipatti Purisa 3 Attanopada Bahuvacana"
+msgstr ""
+
+#: .\padanukkama\models.py:619
+msgid "Kālātipatti Purisa 2 Parassapada Ekavacana"
+msgstr ""
+
+#: .\padanukkama\models.py:620
+msgid "Kālātipatti Purisa 2 Parassapada Bahuvacana"
+msgstr ""
+
+#: .\padanukkama\models.py:621
+msgid "Kālātipatti Purisa 2 Attanopada Ekavacana"
+msgstr ""
+
+#: .\padanukkama\models.py:622
+msgid "Kālātipatti Purisa 2 Attanopada Bahuvacana"
+msgstr ""
+
+#: .\padanukkama\models.py:623
+msgid "Kālātipatti Purisa 1 Parassapada Ekavacana"
+msgstr ""
+
+#: .\padanukkama\models.py:624
+msgid "Kālātipatti Purisa 1 Parassapada Bahuvacana"
+msgstr ""
+
+#: .\padanukkama\models.py:625
+msgid "Kālātipatti Purisa 1 Attanopada Ekavacana"
+msgstr ""
+
+#: .\padanukkama\models.py:626
+msgid "Kālātipatti Purisa 1 Attanopada Bahuvacana"
+msgstr ""
+
+#: .\padanukkama\tables.py:36
+#: .\padanukkama\templates\padanukkama\padanukkama_update.html:6
+#: .\setting\templates\setting\akhyala_saddamala.html:18
+#: .\setting\templates\setting\dhatu_detail.html:8
+#: .\setting\templates\setting\nama_saddamala_detail.html:24
 #: .\tipitaka\templates\tipitaka\digital_archive_details.html:50
 #: .\tipitaka\templates\tipitaka\wordlist_page_source.html:54
 msgid "Update"
 msgstr "ปรับปรุง"
 
-#: .\padanukkama\tables.py:121
+#: .\padanukkama\tables.py:63 .\setting\tables.py:45 .\setting\tables.py:105
+msgid "Title contains"
+msgstr "หัวเรื่องประกอบด้วย"
+
+#: .\padanukkama\tables.py:67
 msgid "All"
 msgstr "ทั้งหมด"
 
-#: .\padanukkama\tables.py:121
+#: .\padanukkama\tables.py:67
 msgid "True"
 msgstr "ใช่"
 
-#: .\padanukkama\tables.py:121
+#: .\padanukkama\tables.py:67
 msgid "False"
 msgstr "ไม่ใช่"
 
-#: .\padanukkama\tables.py:156 .\padanukkama\tables.py:176
+#: .\padanukkama\tables.py:102 .\padanukkama\tables.py:122
 msgid "Sandhi"
 msgstr "สนธิ"
 
-#: .\padanukkama\tables.py:186
+#: .\padanukkama\tables.py:132
 msgid "Origin"
 msgstr "ต้นฉบับ"
 
-#: .\padanukkama\tables.py:225
+#: .\padanukkama\tables.py:171
 msgid "Dupl."
 msgstr "สำเนา"
 
-#: .\padanukkama\tables.py:235
+#: .\padanukkama\tables.py:181
 msgid "Do you want to duplicate record of "
 msgstr "คุณต้องการสำเนารายการของ "
 
-#: .\padanukkama\tables.py:255 .\padanukkama\tables.py:364
+#: .\padanukkama\tables.py:201 .\padanukkama\tables.py:310
 msgid "Do you want to delete record of "
 msgstr "คุณต้องการสำเนารายการของ "
 
-#: .\padanukkama\tables.py:267
+#: .\padanukkama\tables.py:213
 msgid "Search for Padas that start with these characters"
 msgstr "ค้นหาบทที่เริ่มต้นด้วยตัวอักษรเหล่านี้"
 
-#: .\padanukkama\tables.py:268
+#: .\padanukkama\tables.py:214
 msgid "Search for Padas that contain these characters"
 msgstr "ค้นหาบทที่มีตัวอักษรเหล่านี้อยู่ในภายใน"
 
-#: .\padanukkama\tables.py:269
+#: .\padanukkama\tables.py:215
 msgid "Go to the page where this Pada is located"
 msgstr "ไปยังหน้าที่บทนี้ตั้งอยู่"
 
-#: .\padanukkama\tables.py:270
+#: .\padanukkama\tables.py:216
 msgid "Go to the page of the latest updated Pada"
 msgstr "ไปยังหน้าของบทที่ได้รับการปรับปรุงล่าสุด"
 
-#: .\padanukkama\tables.py:281
+#: .\padanukkama\tables.py:227
 msgid "Please select"
 msgstr "โปรดเลือก"
 
-#: .\padanukkama\tables.py:337
+#: .\padanukkama\tables.py:283
 msgid "Decl."
 msgstr "วิภัตติ์"
 
-#: .\padanukkama\tables.py:391
+#: .\padanukkama\tables.py:337
 msgid "Related Padas"
 msgstr "บทที่เกี่ยวข้อง"
 
-#: .\padanukkama\tables.py:392 .\tipitaka\models.py:115
+#: .\padanukkama\tables.py:338 .\tipitaka\models.py:115
 msgid "Created by"
 msgstr "สร้างโดย"
 
-#: .\padanukkama\tables.py:446
+#: .\padanukkama\tables.py:392
 msgid "Created By"
 msgstr "สร้างโดย"
 
@@ -2087,68 +2561,70 @@ msgid ""
 msgstr "กรุณาตรวจสอบคำศัพท์ที่อาจจะไม่ถูกต้อง โปรดติดต่อเจ้าหน้าที่"
 
 #: .\padanukkama\templates\padanukkama\include\declension_create_vipatti.html:76
-#: .\padanukkama\templates\padanukkama\nama_saddamala_detail.html:52
-#: .\padanukkama\templates\padanukkama\nama_saddamala_detail.html:129
+#: .\setting\templates\setting\nama_saddamala_detail.html:52
+#: .\setting\templates\setting\nama_saddamala_detail.html:129
 msgid "Vibhatti"
 msgstr "วิภัตติ์"
 
 #: .\padanukkama\templates\padanukkama\include\declension_create_vipatti.html:77
-#: .\padanukkama\templates\padanukkama\nama_saddamala_detail.html:53
-#: .\padanukkama\templates\padanukkama\nama_saddamala_detail.html:130
+#: .\setting\templates\setting\nama_saddamala_detail.html:53
+#: .\setting\templates\setting\nama_saddamala_detail.html:130
 msgid "Ekavacana"
 msgstr "เอกวจนะ"
 
 #: .\padanukkama\templates\padanukkama\include\declension_create_vipatti.html:78
-#: .\padanukkama\templates\padanukkama\nama_saddamala_detail.html:54
-#: .\padanukkama\templates\padanukkama\nama_saddamala_detail.html:131
+#: .\setting\templates\setting\nama_saddamala_detail.html:54
+#: .\setting\templates\setting\nama_saddamala_detail.html:131
 msgid "Bahuvacana"
 msgstr "พหุวจนะ"
 
 #: .\padanukkama\templates\padanukkama\include\declension_create_vipatti.html:81
-#: .\padanukkama\templates\padanukkama\nama_saddamala_detail.html:57
-#: .\padanukkama\templates\padanukkama\nama_saddamala_detail.html:134
+#: .\setting\templates\setting\nama_saddamala_detail.html:57
+#: .\setting\templates\setting\nama_saddamala_detail.html:134
 msgid "Paṭhamā"
 msgstr "ปฐมา"
 
 #: .\padanukkama\templates\padanukkama\include\declension_create_vipatti.html:86
-#: .\padanukkama\templates\padanukkama\nama_saddamala_detail.html:62
-#: .\padanukkama\templates\padanukkama\nama_saddamala_detail.html:139
+#: .\setting\templates\setting\nama_saddamala_detail.html:62
+#: .\setting\templates\setting\nama_saddamala_detail.html:139
 msgid "Ālapana"
 msgstr "อาลปนะ"
 
 #: .\padanukkama\templates\padanukkama\include\declension_create_vipatti.html:91
-#: .\padanukkama\templates\padanukkama\nama_saddamala_detail.html:67
-#: .\padanukkama\templates\padanukkama\nama_saddamala_detail.html:144
+#: .\setting\templates\setting\nama_saddamala_detail.html:67
+#: .\setting\templates\setting\nama_saddamala_detail.html:144
 msgid "Dutiyā"
 msgstr "ทุติยา"
 
 #: .\padanukkama\templates\padanukkama\include\declension_create_vipatti.html:96
-#: .\padanukkama\templates\padanukkama\nama_saddamala_detail.html:72
-#: .\padanukkama\templates\padanukkama\nama_saddamala_detail.html:149
+#: .\setting\templates\setting\nama_saddamala_detail.html:72
+#: .\setting\templates\setting\nama_saddamala_detail.html:149
 msgid "Tatiyā"
 msgstr "ตติยา"
 
 #: .\padanukkama\templates\padanukkama\include\declension_create_vipatti.html:101
-#: .\padanukkama\templates\padanukkama\nama_saddamala_detail.html:77
-#: .\padanukkama\templates\padanukkama\nama_saddamala_detail.html:154
+#: .\setting\templates\setting\nama_saddamala_detail.html:77
+#: .\setting\templates\setting\nama_saddamala_detail.html:154
 msgid "Catutthī"
 msgstr "จตุตถี"
 
 #: .\padanukkama\templates\padanukkama\include\declension_create_vipatti.html:106
-#: .\padanukkama\templates\padanukkama\nama_saddamala_detail.html:82
-#: .\padanukkama\templates\padanukkama\nama_saddamala_detail.html:159
+#: .\setting\templates\setting\akhyala_saddamala.html:60
+#: .\setting\templates\setting\nama_saddamala_detail.html:82
+#: .\setting\templates\setting\nama_saddamala_detail.html:159
 msgid "Pañcamī"
 msgstr "ปัญจมี"
 
 #: .\padanukkama\templates\padanukkama\include\declension_create_vipatti.html:111
-#: .\padanukkama\templates\padanukkama\nama_saddamala_detail.html:87
-#: .\padanukkama\templates\padanukkama\nama_saddamala_detail.html:164
+#: .\setting\templates\setting\nama_saddamala_detail.html:87
+#: .\setting\templates\setting\nama_saddamala_detail.html:164
 msgid "Chaṭṭhī"
 msgstr "ฉัฏฐี"
 
 #: .\padanukkama\templates\padanukkama\include\declension_create_vipatti.html:116
-#: .\padanukkama\templates\padanukkama\nama_saddamala_detail.html:92
-#: .\padanukkama\templates\padanukkama\nama_saddamala_detail.html:169
+#: .\setting\templates\setting\akhyala_saddamala.html:88
+#: .\setting\templates\setting\nama_saddamala_detail.html:92
+#: .\setting\templates\setting\nama_saddamala_detail.html:169
 msgid "Sattamī"
 msgstr "สัตตมี"
 
@@ -2171,39 +2647,6 @@ msgstr "กำลังดำเนินการ"
 #: .\padanukkama\templates\padanukkama\include\namasaddamala.html:14
 msgid "ID"
 msgstr "รหัส"
-
-#: .\padanukkama\templates\padanukkama\nama_saddamala.html:12
-#: .\padanukkama\templates\padanukkama\padanukkama.html:12
-msgid "Add"
-msgstr "เพิ่ม"
-
-#: .\padanukkama\templates\padanukkama\nama_saddamala_detail.html:23
-#: .\padanukkama\templates\padanukkama\padanukkama_create.html:6
-msgid "Create"
-msgstr "สร้าง"
-
-#: .\padanukkama\templates\padanukkama\nama_saddamala_detail.html:38
-msgid "Delete Namasaddamala"
-msgstr "ลบ นามสทฺทมาลา"
-
-#: .\padanukkama\templates\padanukkama\nama_saddamala_detail.html:39
-msgid "Are you sure you want to delete the following Namasaddamala?"
-msgstr "กรุณายืนยันการลบรายการนามสัททมาลา"
-
-#: .\padanukkama\templates\padanukkama\nama_saddamala_detail.html:41
-msgid "Linga"
-msgstr "ลิงค์"
-
-#: .\padanukkama\templates\padanukkama\nama_saddamala_detail.html:42
-msgid "Karanta"
-msgstr "การันต์"
-
-#: .\padanukkama\templates\padanukkama\nama_saddamala_detail.html:187
-#: .\padanukkama\templates\padanukkama\padanukkama_create.html:37
-#: .\padanukkama\templates\padanukkama\padanukkama_update.html:74
-#: .\padanukkama\templates\padanukkama\sadda_update.html:62
-msgid "Save"
-msgstr "บันทึก"
 
 #: .\padanukkama\templates\padanukkama\pada.html:12
 msgid "Pada "
@@ -2236,6 +2679,27 @@ msgstr "ค้นหาในศัพท์"
 msgid "Sondhi"
 msgstr "สนธิ"
 
+#: .\padanukkama\templates\padanukkama\padanukkama.html:12
+#: .\setting\templates\setting\dhatu.html:12
+#: .\setting\templates\setting\nama_saddamala.html:12
+msgid "Add"
+msgstr "เพิ่ม"
+
+#: .\padanukkama\templates\padanukkama\padanukkama_create.html:6
+#: .\setting\templates\setting\dhatu_detail.html:7
+#: .\setting\templates\setting\nama_saddamala_detail.html:23
+msgid "Create"
+msgstr "สร้าง"
+
+#: .\padanukkama\templates\padanukkama\padanukkama_create.html:37
+#: .\padanukkama\templates\padanukkama\padanukkama_update.html:70
+#: .\padanukkama\templates\padanukkama\sadda_update.html:62
+#: .\setting\templates\setting\akhyala_saddamala.html:268
+#: .\setting\templates\setting\dhatu_detail.html:63
+#: .\setting\templates\setting\nama_saddamala_detail.html:187
+msgid "Save"
+msgstr "บันทึก"
+
 #: .\padanukkama\templates\padanukkama\padanukkama_delete.html:6
 #: .\tipitaka\templates\tipitaka\common_reference_delete.html:5
 #: .\tipitaka\templates\tipitaka\common_reference_detail.html:5
@@ -2253,7 +2717,7 @@ msgstr "กรุณายืนยันการลบรายการ"
 msgid "Confirm Delete"
 msgstr "กรุณายืนยันการลบรายการ"
 
-#: .\padanukkama\templates\padanukkama\padanukkama_update.html:69
+#: .\padanukkama\templates\padanukkama\padanukkama_update.html:65
 msgid "Translation"
 msgstr "แปล"
 
@@ -2265,62 +2729,62 @@ msgstr "บันทึกเป็นไฟล์"
 msgid "Pada related to this Sadda"
 msgstr "แสดงบทที่แจกวิภัตติแล้ว"
 
-#: .\padanukkama\views.py:76 .\padanukkama\views.py:112
-#: .\padanukkama\views.py:769
-msgid "Form saved successfully."
-msgstr "การบันทึกเสร็จสิ้น"
-
-#: .\padanukkama\views.py:81 .\padanukkama\views.py:117
-#: .\padanukkama\views.py:774
-msgid "Form contains errors. Please correct them."
-msgstr "พบข้อผิดพลาด"
-
-#: .\padanukkama\views.py:177 .\padanukkama\views.py:199
-#: .\padanukkama\views.py:225 .\padanukkama\views.py:371 .\tipitaka\views.py:69
+#: .\padanukkama\views.py:68 .\padanukkama\views.py:90
+#: .\padanukkama\views.py:116 .\padanukkama\views.py:262 .\tipitaka\views.py:69
 #: .\tipitaka\views.py:106 .\tipitaka\views.py:160 .\tipitaka\views.py:273
 #: .\tipitaka\views.py:295
 msgid "You do not have permission to access this page"
 msgstr ""
 
-#: .\padanukkama\views.py:212
+#: .\padanukkama\views.py:103
 msgid "Form is invalid. Please correct the errors."
 msgstr "พบข้อผิดพลาด"
 
-#: .\padanukkama\views.py:268
+#: .\padanukkama\views.py:159
 msgid "Are you sure you want to delete this record?"
 msgstr "กรุณายืนยันการลบรายการ"
 
-#: .\padanukkama\views.py:329
+#: .\padanukkama\views.py:220
 msgid "The record has been added!"
 msgstr "การเพิ่มรายการสำเร็จ"
 
-#: .\padanukkama\views.py:357
+#: .\padanukkama\views.py:248
 msgid "The record has been duplicated!"
 msgstr "การสำเนารายการสำเร็จ"
 
-#: .\padanukkama\views.py:359
+#: .\padanukkama\views.py:250
 msgid "Error: Record duplication unsuccessful"
 msgstr "พบปัญหาในการทำสำเนา"
 
-#: .\padanukkama\views.py:380
+#: .\padanukkama\views.py:271
 msgid "The record has been deleted!"
 msgstr "การลบรายการเสร็จสิ้น"
 
-#: .\padanukkama\views.py:382
+#: .\padanukkama\views.py:273
 msgid "Error: Record deletion unsuccessful"
 msgstr "พบข้อผิดพลาด การลบรายการเสร็จสิ้น"
 
-#: .\padanukkama\views.py:512
+#: .\padanukkama\views.py:403
 msgid "Error: {}-{}, please contact SA"
 msgstr "พบข้อผิดพลาด"
 
-#: .\padanukkama\views.py:571
+#: .\padanukkama\views.py:462
 msgid "Record updated successfully!"
 msgstr "การบันทึกเสร็จสิ้น"
 
-#: .\padanukkama\views.py:579
+#: .\padanukkama\views.py:470
 msgid "Form is invalid. Please correct the errors"
 msgstr "พบข้อผิดพลาด โปรดติดต่อเจ้าหน้าที่"
+
+#: .\padanukkama\views.py:660 .\setting\views.py:53 .\setting\views.py:89
+#: .\setting\views.py:158 .\setting\views.py:193
+msgid "Form saved successfully."
+msgstr "การบันทึกเสร็จสิ้น"
+
+#: .\padanukkama\views.py:665 .\setting\views.py:58 .\setting\views.py:94
+#: .\setting\views.py:163 .\setting\views.py:198
+msgid "Form contains errors. Please correct them."
+msgstr "พบข้อผิดพลาด"
 
 #: .\padanukkama\workflows.py:6
 msgid "New"
@@ -2337,6 +2801,162 @@ msgstr "แสดง"
 #: .\padanukkama\workflows.py:9
 msgid "Approved"
 msgstr "อนุมัติ"
+
+#: .\setting\templates\setting\akhyala_saddamala.html:18
+#, fuzzy
+#| msgid "Akhyātasaddapadamālā"
+msgid "Ākhyātasaddapadamālā"
+msgstr "แบบวิภัตติบทอขยาต"
+
+#: .\setting\templates\setting\akhyala_saddamala.html:32
+#: .\setting\templates\setting\akhyala_saddamala.html:60
+#: .\setting\templates\setting\akhyala_saddamala.html:88
+#: .\setting\templates\setting\akhyala_saddamala.html:116
+#: .\setting\templates\setting\akhyala_saddamala.html:144
+#: .\setting\templates\setting\akhyala_saddamala.html:172
+#: .\setting\templates\setting\akhyala_saddamala.html:200
+#: .\setting\templates\setting\akhyala_saddamala.html:228
+msgid "Conjugation of"
+msgstr "วิภัตติ"
+
+#: .\setting\templates\setting\akhyala_saddamala.html:32
+msgid "Vattamānā"
+msgstr "วัตตมานา"
+
+#: .\setting\templates\setting\akhyala_saddamala.html:32
+msgid "present tense"
+msgstr ""
+
+#: .\setting\templates\setting\akhyala_saddamala.html:37
+#: .\setting\templates\setting\akhyala_saddamala.html:65
+#: .\setting\templates\setting\akhyala_saddamala.html:93
+#: .\setting\templates\setting\akhyala_saddamala.html:121
+#: .\setting\templates\setting\akhyala_saddamala.html:149
+#: .\setting\templates\setting\akhyala_saddamala.html:177
+#: .\setting\templates\setting\akhyala_saddamala.html:205
+#: .\setting\templates\setting\akhyala_saddamala.html:233
+msgid "3rd"
+msgstr "ที่ 3"
+
+#: .\setting\templates\setting\akhyala_saddamala.html:44
+#: .\setting\templates\setting\akhyala_saddamala.html:72
+#: .\setting\templates\setting\akhyala_saddamala.html:100
+#: .\setting\templates\setting\akhyala_saddamala.html:128
+#: .\setting\templates\setting\akhyala_saddamala.html:156
+#: .\setting\templates\setting\akhyala_saddamala.html:184
+#: .\setting\templates\setting\akhyala_saddamala.html:212
+#: .\setting\templates\setting\akhyala_saddamala.html:240
+msgid "2nd"
+msgstr "ที่ 2"
+
+#: .\setting\templates\setting\akhyala_saddamala.html:51
+#: .\setting\templates\setting\akhyala_saddamala.html:79
+#: .\setting\templates\setting\akhyala_saddamala.html:107
+#: .\setting\templates\setting\akhyala_saddamala.html:135
+#: .\setting\templates\setting\akhyala_saddamala.html:163
+#: .\setting\templates\setting\akhyala_saddamala.html:191
+#: .\setting\templates\setting\akhyala_saddamala.html:219
+#: .\setting\templates\setting\akhyala_saddamala.html:247
+msgid "1st"
+msgstr "ที่ 1"
+
+#: .\setting\templates\setting\akhyala_saddamala.html:60
+msgid "imperative mood"
+msgstr ""
+
+#: .\setting\templates\setting\akhyala_saddamala.html:88
+msgid "Optative Mood"
+msgstr ""
+
+#: .\setting\templates\setting\akhyala_saddamala.html:116
+msgid "Parokkhā"
+msgstr "ปโรกขา"
+
+#: .\setting\templates\setting\akhyala_saddamala.html:116
+msgid "Perfect Tense"
+msgstr ""
+
+#: .\setting\templates\setting\akhyala_saddamala.html:144
+msgid "Hiyyattanī"
+msgstr "หิยัตตนี"
+
+#: .\setting\templates\setting\akhyala_saddamala.html:144
+msgid "Imperfect Tense"
+msgstr ""
+
+#: .\setting\templates\setting\akhyala_saddamala.html:172
+msgid "Ajjatanī"
+msgstr "อัชชัตนี"
+
+#: .\setting\templates\setting\akhyala_saddamala.html:172
+msgid "Aorist Tense"
+msgstr ""
+
+#: .\setting\templates\setting\akhyala_saddamala.html:200
+msgid "Bhavissanti"
+msgstr "ภวิสสันติ"
+
+#: .\setting\templates\setting\akhyala_saddamala.html:200
+msgid "Future Tense"
+msgstr ""
+
+#: .\setting\templates\setting\akhyala_saddamala.html:228
+msgid "Kālātipatti"
+msgstr "กาลาติปัตติ"
+
+#: .\setting\templates\setting\akhyala_saddamala.html:228
+msgid "Conditional Mood"
+msgstr ""
+
+#: .\setting\templates\setting\dhatu_detail.html:25
+msgid "Delete Dhātu"
+msgstr "ลบธาตุ"
+
+#: .\setting\templates\setting\dhatu_detail.html:26
+msgid "Are you sure you want to delete the following Dhātu?"
+msgstr "กรุณายืนยันการลบรายการ 'ธาตุ'"
+
+#: .\setting\templates\setting\dhatu_detail.html:28
+msgid "Dhātugana"
+msgstr "ธาตุคณะ"
+
+#: .\setting\templates\setting\include\akhyata_thead.html:5
+msgid "Person"
+msgstr "บุรุษ"
+
+#: .\setting\templates\setting\include\akhyata_thead.html:6
+msgid "Parassapada"
+msgstr "ปรัสสบท"
+
+#: .\setting\templates\setting\include\akhyata_thead.html:7
+msgid "Attanopada"
+msgstr "อัตตโนบท"
+
+#: .\setting\templates\setting\include\akhyata_thead.html:10
+#: .\setting\templates\setting\include\akhyata_thead.html:12
+msgid "sg."
+msgstr "เอกวจนะ"
+
+#: .\setting\templates\setting\include\akhyata_thead.html:11
+#: .\setting\templates\setting\include\akhyata_thead.html:13
+msgid "pl."
+msgstr "พหุวจนะ"
+
+#: .\setting\templates\setting\nama_saddamala_detail.html:38
+msgid "Delete Namasaddamala"
+msgstr "ลบ นามสทฺทมาลา"
+
+#: .\setting\templates\setting\nama_saddamala_detail.html:39
+msgid "Are you sure you want to delete the following Namasaddamala?"
+msgstr "กรุณายืนยันการลบรายการนามสัททมาลา"
+
+#: .\setting\templates\setting\nama_saddamala_detail.html:41
+msgid "Linga"
+msgstr "ลิงค์"
+
+#: .\setting\templates\setting\nama_saddamala_detail.html:42
+msgid "Karanta"
+msgstr "การันต์"
 
 #: .\templates\admin\base_site.html:5
 msgid "Django site admin"
@@ -2534,407 +3154,3 @@ msgstr "ไม่พบ การอ้างอิงร่วม"
 msgid "Invalid input. Please correct the errors below"
 msgstr "พบข้อผิดพลาด"
 
-#~ msgid "Non Translate"
-#~ msgstr "ยังไม่ได้แปล"
-
-#~ msgid "Enter meanings (separated by commas)"
-#~ msgstr "กรุณาใส่ความหมาย (คั่นด้วยเครื่องหมายจุลภาค)"
-
-#~ msgid "Only Pada without Sadda"
-#~ msgstr "แสดงเฉพาะบทที่ยังไม่ถอดวิภัตติ"
-
-#~ msgid "Pada starts with"
-#~ msgstr "เริ่มต้นคำด้วย"
-
-#~ msgid "Pada contains"
-#~ msgstr "คำประกอบด้วย"
-
-#~ msgid "Pada with Sadda"
-#~ msgstr "แสดงบทที่แจกวิภัตติแล้ว"
-
-#~ msgid "Vipatti"
-#~ msgstr "วิภัตติ์"
-
-#~ msgid "Existing sadda found."
-#~ msgstr "พบว่ามีศัพท์นี้ในฐานข้อมูล ต้องการดำเนินการต่อหรือไม่?"
-
-#~ msgid "Ākhyātasaddapadamālā"
-#~ msgstr "การจำแนกแบบแจกบทอาขยาต"
-
-#~ msgid "AkhyataSaddamala"
-#~ msgstr "การจำแนกแบบแจกบทอาขยาต"
-
-#~ msgid "Dhātu"
-#~ msgstr "ธาตุ"
-
-#~ msgid "Vattamānā Purisa 3 Parassapada Ekavacana"
-#~ msgstr "วัตตมานา บุรษที่ 3 ปรัสสบท"
-
-#~ msgid "Vattamānā Purisa 3 Parassapada Bahuvacana"
-#~ msgstr "วัตตมานา บุรษที่ 3 ปรัสสบท พหุวจนะ"
-
-#~ msgid "Vattamānā Purisa 3 Attanopada Ekavacana"
-#~ msgstr "วัตตมานา บุรษที่ 3 อัตตโนบท เอกวจนะ"
-
-#~ msgid "Vattamānā Purisa 3 Attanopada Bahuvacana"
-#~ msgstr "วัตตมานา บุรษที่ 3 อัตตโนบท พหุวจนะ"
-
-#~ msgid "Vattamānā Purisa 2 Parassapada Ekavacana"
-#~ msgstr "วัตตมานา บุรษที่ 2 เอกวจนะ"
-
-#~ msgid "Vattamānā Purisa 2 Parassapada Bahuvacana"
-#~ msgstr "วัตตมานา บุรษที่ 2 ปรัสสบท พหุวจนะ"
-
-#~ msgid "Vattamānā Purisa 2 Attanopada Ekavacana"
-#~ msgstr "วัตตมานา บุรษที่ 2 อัตตโนบท เอกวจนะ"
-
-#~ msgid "Vattamānā Purisa 2 Attanopada Bahuvacana"
-#~ msgstr "วัตตมานา บุรษที่ 2 อัตตโนบท พหุวจนะ"
-
-#~ msgid "Vattamānā Purisa 1 Parassapada Ekavacana"
-#~ msgstr "วัตตมานา บุรษที่ 1 ปรัสสบท เอกวจนะ"
-
-#~ msgid "Vattamānā Purisa 1 Parassapada Bahuvacana"
-#~ msgstr "วัตตมานา บุรษที่ 2 ปรัสสบท พหุวจนะ"
-
-#~ msgid "Vattamānā Purisa 1 Attanopada Ekavacana"
-#~ msgstr "วัตตมานา บุรษที่ 1 อัตตโนบท เอกวจนะ"
-
-#~ msgid "Vattamānā Purisa 1 Attanopada Bahuvacana"
-#~ msgstr "วัตตมานา บุรษที่ 1 อัตตโนบท พหุวจนะ"
-
-#~ msgid "Pañcamī Purisa 3 Parassapada Ekavacana"
-#~ msgstr "ปัญจมี บุรษที่ 3 ปรัสสบท เอกวจนะ"
-
-#~ msgid "Pañcamī Purisa 3 Parassapada Bahuvacana"
-#~ msgstr "ปัญจมี บุรษที่ 3 ปรัสสบท พหุวจนะ"
-
-#~ msgid "Pañcamī Purisa 3 Attanopada Ekavacana"
-#~ msgstr "ปัญจมี บุรษที่ 3 อัตตโนบท เอกวจนะ"
-
-#~ msgid "Pañcamī Purisa 3 Attanopada Bahuvacana"
-#~ msgstr "ปัญจมี บุรษที่ 3 อัตตโนบท พหุวจนะ"
-
-#~ msgid "Pañcamī Purisa 2 Parassapada Ekavacana"
-#~ msgstr "ปัญจมี บุรษที่ 2 ปรัสสบท เอกวจนะ"
-
-#~ msgid "Pañcamī Purisa 2 Parassapada Bahuvacana"
-#~ msgstr "ปัญจมี บุรษที่ 2 ปรัสสบท พหุวจนะ"
-
-#~ msgid "Pañcamī Purisa 2 Attanopada Ekavacana"
-#~ msgstr "ปัญจมี บุรษที่ 2 อัตตโนบท เอกวจนะ"
-
-#~ msgid "Pañcamī Purisa 2 Attanopada Bahuvacana"
-#~ msgstr "ปัญจมี บุรษที่ 2 อัตตโนบท พหุวจนะ"
-
-#~ msgid "Pañcamī Purisa 1 Parassapada Ekavacana"
-#~ msgstr "ปัญจมี บุรษที่ 1 ปรัสสบท เอกวจนะ"
-
-#~ msgid "Pañcamī Purisa 1 Parassapada Bahuvacana"
-#~ msgstr "ปัญจมี บุรษที่ 1 ปรัสสบท พหุวจนะ"
-
-#~ msgid "Pañcamī Purisa 1 Attanopada Ekavacana"
-#~ msgstr "ปัญจมี บุรษที่ 1 อัตตโนบท เอกวจนะ"
-
-#~ msgid "Pañcamī Purisa 1 Attanopada Bahuvacana"
-#~ msgstr "ปัญจมี บุรษที่ 1 อัตตโนบท พหุวจนะ"
-
-#~ msgid "Sattamī Purisa 3 Parassapada Ekavacana"
-#~ msgstr "สัตตมี บุรษที่ 3 ปรัสสบท เอกวจนะ"
-
-#~ msgid "Sattamī Purisa 3 Parassapada Bahuvacana"
-#~ msgstr "สัตตมี บุรษที่ 3 ปรัสสบท พหุวจนะ"
-
-#~ msgid "Sattamī Purisa 3 Attanopada Ekavacana"
-#~ msgstr "สัตตมี บุรษที่ 3 อัตตโนบท เอกวจนะ"
-
-#~ msgid "Sattamī Purisa 3 Attanopada Bahuvacana"
-#~ msgstr "สัตตมี บุรษที่ 3 อัตตโนบท พหุวจนะ"
-
-#~ msgid "Sattamī Purisa 2 Parassapada Ekavacana"
-#~ msgstr "สัตตมี บุรษที่ 2 ปรัสสบท เอกวจนะ"
-
-#~ msgid "Sattamī Purisa 2 Parassapada Bahuvacana"
-#~ msgstr "สัตตมี บุรษที่ 2 ปรัสสบท พหุวจนะ"
-
-#~ msgid "Sattamī Purisa 2 Attanopada Ekavacana"
-#~ msgstr "สัตตมี บุรษที่ 2 อัตตโนบท เอกวจนะ"
-
-#~ msgid "Sattamī Purisa 2 Attanopada Bahuvacana"
-#~ msgstr "สัตตมี บุรษที่ 2 อัตตโนบท พหุวจนะ"
-
-#~ msgid "Sattamī Purisa 1 Parassapada Ekavacana"
-#~ msgstr "สัตตมี บุรษที่ 1 ปรัสสบท เอกวจนะ"
-
-#~ msgid "Sattamī Purisa 1 Parassapada Bahuvacana"
-#~ msgstr "สัตตมี บุรษที่ 1 ปรัสสบท พหุวจนะ"
-
-#~ msgid "Sattamī Purisa 1 Attanopada Ekavacana"
-#~ msgstr "สัตตมี บุรษที่ 1 อัตตโนบท เอกวจนะ"
-
-#~ msgid "Sattamī Purisa 1 Attanopada Bahuvacana"
-#~ msgstr "สัตตมี บุรษที่ 1 อัตตโนบท พหุวจนะ"
-
-#~ msgid "Parokkhā Purisa 3 Parassapada Ekavacana"
-#~ msgstr "ปโรกขา บุรษที่ 3 ปรัสสบท เอกวจนะ"
-
-#~ msgid "Parokkhā Purisa 3 Parassapada Bahuvacana"
-#~ msgstr "ปโรกขา บุรษที่ 3 ปรัสสบท พหุวจนะ"
-
-#~ msgid "Parokkhā Purisa 3 Attanopada Ekavacana"
-#~ msgstr "ปโรกขา บุรษที่ 3 อัตตโนบท เอกวจนะ"
-
-#~ msgid "Parokkhā Purisa 3 Attanopada Bahuvacana"
-#~ msgstr "ปโรกขา บุรษที่ 3 อัตตโนบท พหุวจนะ"
-
-#~ msgid "Parokkhā Purisa 2 Parassapada Ekavacana"
-#~ msgstr "ปโรกขา บุรษที่ 2 ปรัสสบท เอกวจนะ"
-
-#~ msgid "Parokkhā Purisa 2 Parassapada Bahuvacana"
-#~ msgstr "ปโรกขา บุรษที่ 2 ปรัสสบท พหุวจนะ"
-
-#~ msgid "Parokkhā Purisa 2 Attanopada Ekavacana"
-#~ msgstr "ปโรกขา บุรษที่ 2 อัตตโนบท เอกวจนะ"
-
-#~ msgid "Parokkhā Purisa 2 Attanopada Bahuvacana"
-#~ msgstr "ปโรกขา บุรษที่ 2 อัตตโนบท พหุวจนะ"
-
-#~ msgid "Parokkhā Purisa 1 Parassapada Ekavacana"
-#~ msgstr "ปโรกขา บุรษที่ 1 ปรัสสบท เอกวจนะ"
-
-#~ msgid "Parokkhā Purisa 1 Parassapada Bahuvacana"
-#~ msgstr "ปโรกขา บุรษที่ 1 ปรัสสบท พหุวจนะ"
-
-#~ msgid "Parokkhā Purisa 1 Attanopada Ekavacana"
-#~ msgstr "ปโรกขา บุรษที่ 1 อัตตโนบท เอกวจนะ"
-
-#~ msgid "Parokkhā Purisa 1 Attanopada Bahuvacana"
-#~ msgstr "ปโรกขา บุรษที่ 1 อัตตโนบท พหุวจนะ"
-
-#~ msgid "Hiyyattanī Purisa 3 Parassapada Ekavacana"
-#~ msgstr "หิยยัตตนี บุรษที่ 3 ปรัสสบท เอกวจนะ"
-
-#~ msgid "Hiyyattanī Purisa 3 Parassapada Bahuvacana"
-#~ msgstr "หิยยัตตนี บุรษที่ 3 ปรัสสบท พหุวจนะ"
-
-#~ msgid "Hiyyattanī Purisa 3 Attanopada Ekavacana"
-#~ msgstr "หิยยัตตนี บุรษที่ 3 อัตตโนบท เอกวจนะ"
-
-#~ msgid "Hiyyattanī Purisa 3 Attanopada Bahuvacana"
-#~ msgstr "หิยยัตตนี บุรษที่ 3 อัตตโนบท พหุวจนะ"
-
-#~ msgid "Hiyyattanī Purisa 2 Parassapada Ekavacana"
-#~ msgstr "หิยยัตตนี บุรษที่ 2 ปรัสสบท เอกวจนะ"
-
-#~ msgid "Hiyyattanī Purisa 2 Parassapada Bahuvacana"
-#~ msgstr "หิยยัตตนี บุรษที่ 2 ปรัสสบท พหุวจนะ"
-
-#~ msgid "Hiyyattanī Purisa 2 Attanopada Ekavacana"
-#~ msgstr "หิยยัตตนี บุรษที่ 2 อัตตโนบท เอกวจนะ"
-
-#~ msgid "Hiyyattanī Purisa 2 Attanopada Bahuvacana"
-#~ msgstr "หิยยัตตนี บุรษที่ 2 อัตตโนบท พหุวจนะ"
-
-#~ msgid "Hiyyattanī Purisa 1 Parassapada Ekavacana"
-#~ msgstr "หิยยัตตนี บุรษที่ 1 ปรัสสบท เอกวจนะ"
-
-#~ msgid "Hiyyattanī Purisa 1 Parassapada Bahuvacana"
-#~ msgstr "หิยยัตตนี บุรษที่ 1 ปรัสสบท พหุวจนะ"
-
-#~ msgid "Hiyyattanī Purisa 1 Attanopada Ekavacana"
-#~ msgstr "หิยยัตตนี บุรษที่ 1 อัตตโนบท เอกวจนะ"
-
-#~ msgid "Hiyyattanī Purisa 1 Attanopada Bahuvacana"
-#~ msgstr "หิยยัตตนี บุรษที่ 1 อัตตโนบท พหุวจนะ"
-
-#~ msgid "Ajjatanī Purisa 3 Parassapada Ekavacana"
-#~ msgstr "อัชชัตนี บุรษที่ 3 ปรัสสบท เอกวจนะ"
-
-#~ msgid "Ajjatanī Purisa 3 Parassapada Bahuvacana"
-#~ msgstr "อัชชัตนี บุรษที่ 3 ปรัสสบท พหุวจนะ"
-
-#~ msgid "Ajjatanī Purisa 3 Attanopada Ekavacana"
-#~ msgstr "อัชชัตนี บุรษที่ 3 อัตตโนบท เอกวจนะ"
-
-#~ msgid "Ajjatanī Purisa 3 Attanopada Bahuvacana"
-#~ msgstr "อัชชัตนี บุรษที่ 3 อัตตโนบท พหุวจนะ"
-
-#~ msgid "Ajjatanī Purisa 2 Parassapada Ekavacana"
-#~ msgstr "อัชชัตนี บุรษที่ 2 ปรัสสบท เอกวจนะ"
-
-#~ msgid "Ajjatanī Purisa 2 Parassapada Bahuvacana"
-#~ msgstr "อัชชัตนี บุรษที่ 2 ปรัสสบท พหุวจนะ"
-
-#~ msgid "Ajjatanī Purisa 2 Attanopada Ekavacana"
-#~ msgstr "อัชชัตนี บุรษที่ 2 อัตตโนบท เอกวจนะ"
-
-#~ msgid "Ajjatanī Purisa 2 Attanopada Bahuvacana"
-#~ msgstr "อัชชัตนี บุรษที่ 2 อัตตโนบท พหุวจนะ"
-
-#~ msgid "Ajjatanī Purisa 1 Parassapada Ekavacana"
-#~ msgstr "อัชชัตนี บุรษที่ 1 ปรัสสบท เอกวจนะ"
-
-#~ msgid "Ajjatanī Purisa 1 Parassapada Bahuvacana"
-#~ msgstr "อัชชัตนี บุรษที่ 1 ปรัสสบท พหุวจนะ"
-
-#~ msgid "Ajjatanī Purisa 1 Attanopada Ekavacana"
-#~ msgstr "อัชชัตนี บุรษที่ 1 อัตตโนบท เอกวจนะ"
-
-#~ msgid "Ajjatanī Purisa 1 Attanopada Bahuvacana"
-#~ msgstr "อัชชัตนี บุรษที่ 1 อัตตโนบท พหุวจนะ"
-
-#~ msgid "Bhavissanti Purisa 3 Parassapada Ekavacana"
-#~ msgstr "ภวิสสันติ บุรุษที่ 3 ปรัสสบท เอกวจนะ"
-
-#~ msgid "Bhavissanti Purisa 3 Parassapada Bahuvacana"
-#~ msgstr "ภวิสสันติ บุรุษที่ 3 ปรัสสบท พหุวจนะ"
-
-#~ msgid "Bhavissanti Purisa 3 Attanopada Ekavacana"
-#~ msgstr "ภวิสสันติ บุรุษที่ 3 อัตตโนบท เอกวจนะ"
-
-#~ msgid "Bhavissanti Purisa 3 Attanopada Bahuvacana"
-#~ msgstr "ภวิสสันติ บุรุษที่ 3 อัตตโนบท พหุวจนะ"
-
-#~ msgid "Bhavissanti Purisa 2 Parassapada Ekavacana"
-#~ msgstr "ภวิสสันติ บุรุษที่ 2 ปรัสสบท เอกวจนะ"
-
-#~ msgid "Bhavissanti Purisa 2 Parassapada Bahuvacana"
-#~ msgstr "ภวิสสันติ บุรุษที่ 2 ปรัสสบท พหุวจนะ"
-
-#~ msgid "Bhavissanti Purisa 2 Attanopada Ekavacana"
-#~ msgstr "ภวิสสันติ บุรุษที่ 2 อัตตโนบท เอกวจนะ"
-
-#~ msgid "Bhavissanti Purisa 2 Attanopada Bahuvacana"
-#~ msgstr "ภวิสสันติ บุรุษที่ 2 อัตตโนบท พหุวจนะ"
-
-#~ msgid "Bhavissanti Purisa 1 Parassapada Ekavacana"
-#~ msgstr "ภวิสสันติ บุรุษที่ 1 ปรัสสบท เอกวจนะ"
-
-#~ msgid "Bhavissanti Purisa 1 Parassapada Bahuvacana"
-#~ msgstr "ภวิสสันติ บุรุษที่ 1 ปรัสสบท พหุวจนะ"
-
-#~ msgid "Bhavissanti Purisa 1 Attanopada Ekavacana"
-#~ msgstr "ภวิสสันติ บุรุษที่ 1 อัตตโนบท เอกวจนะ"
-
-#~ msgid "Bhavissanti Purisa 1 Attanopada Bahuvacana"
-#~ msgstr "ภวิสสันติ บุรุษที่ 1 อัตตโนบท พหุวจนะ"
-
-#~ msgid "Kālātipatti Purisa 3 Parassapada Ekavacana"
-#~ msgstr "กาลาติปัตติ บุรุษที่ 3 ปรัสสบท เอกวจนะ"
-
-#~ msgid "Kālātipatti Purisa 3 Parassapada Bahuvacana"
-#~ msgstr "กาลาติปัตติ บุรุษที่ 3 ปรัสสบท พหุวจนะ"
-
-#~ msgid "Kālātipatti Purisa 3 Attanopada Ekavacana"
-#~ msgstr "กาลาติปัตติ บุรุษที่ 3 อัตตโนบท เอกวจนะ"
-
-#~ msgid "Kālātipatti Purisa 3 Attanopada Bahuvacana"
-#~ msgstr "กาลาติปัตติ บุรุษที่ 3 อัตตโนบท พหุวจนะ"
-
-#~ msgid "Kālātipatti Purisa 2 Parassapada Ekavacana"
-#~ msgstr "กาลาติปัตติ บุรุษที่ 2 ปรัสสบท เอกวจนะ"
-
-#~ msgid "Kālātipatti Purisa 2 Parassapada Bahuvacana"
-#~ msgstr "กาลาติปัตติ บุรุษที่ 2 ปรัสสบท พหุวจนะ"
-
-#~ msgid "Kālātipatti Purisa 2 Attanopada Ekavacana"
-#~ msgstr "กาลาติปัตติ บุรุษที่ 2 อัตตโนบท เอกวจนะ"
-
-#~ msgid "Kālātipatti Purisa 2 Attanopada Bahuvacana"
-#~ msgstr "กาลาติปัตติ บุรุษที่ 2 อัตตโนบท พหุวจนะ"
-
-#~ msgid "Kālātipatti Purisa 1 Parassapada Ekavacana"
-#~ msgstr "กาลาติปัตติ บุรุษที่ 1 ปรัสสบท เอกวจนะ"
-
-#~ msgid "Kālātipatti Purisa 1 Parassapada Bahuvacana"
-#~ msgstr "กาลาติปัตติ บุรุษที่ 1 ปรัสสบท พหุวจนะ"
-
-#~ msgid "Kālātipatti Purisa 1 Attanopada Ekavacana"
-#~ msgstr "กาลาติปัตติ บุรุษที่ 1 อัตตโนบท เอกวจนะ"
-
-#~ msgid "Kālātipatti Purisa 1 Attanopada Bahuvacana"
-#~ msgstr "กาลาติปัตติ บุรุษที่ 1 อัตตโนบท พหุวจนะ"
-
-#~ msgid "Namasaddamala"
-#~ msgstr "การจำแนกแบบแจกบทนาม"
-
-#~ msgid "Akhyatasaddamala"
-#~ msgstr "การจำแนกแบบแจกบทอาขยาต"
-
-#~ msgid "Delete Ākhyātasaddamala"
-#~ msgstr "ลบ อาขยาตสัททมาลา"
-
-#~ msgid "Are you sure you want to delete the following Ākhyātasaddamala?"
-#~ msgstr "กรุณายืนยันการลบรายการ อาขยาตสัททมาลานี้?"
-
-#~ msgid "Conjugation of"
-#~ msgstr "การผันคำ"
-
-#~ msgid "Vattamānā"
-#~ msgstr "วัตตมานา"
-
-#~ msgid "3rd"
-#~ msgstr "ที่ 3"
-
-#~ msgid "2nd"
-#~ msgstr "ที่ 2"
-
-#~ msgid "1st"
-#~ msgstr "ที่ 1"
-
-#~ msgid "Imperative mood"
-#~ msgstr "Imperative mood"
-
-#~ msgid "Optative Mood"
-#~ msgstr "Optative Mood"
-
-#~ msgid "Parokkhā"
-#~ msgstr "ปโรกขา"
-
-#~ msgid "Perfect tense"
-#~ msgstr "Perfect tense"
-
-#~ msgid "Hiyyattanī"
-#~ msgstr "หิยยัตตนี"
-
-#~ msgid "Imperfect tense"
-#~ msgstr "Imperative tense"
-
-#~ msgid "Ajjatanī"
-#~ msgstr "อัชชัตนี"
-
-#~ msgid "Aorist tense"
-#~ msgstr "Aorist tense"
-
-#~ msgid "Bhavissanti"
-#~ msgstr "ภวิสสันติ"
-
-#~ msgid "Future tense"
-#~ msgstr "Future tense"
-
-#~ msgid "Kālātipatti"
-#~ msgstr "กาลาติปัตติ"
-
-#~ msgid "Conditional mood"
-#~ msgstr "Conditional mood"
-
-#~ msgid "Person"
-#~ msgstr "บุคคล"
-
-#~ msgid "Parassapada"
-#~ msgstr "ปรัสสบท"
-
-#~ msgid "Attanopada"
-#~ msgstr "อัตตโนบท"
-
-#~ msgid "sg."
-#~ msgstr "เอก"
-
-#~ msgid "pl. "
-#~ msgstr "พหุ"
-
-#~ msgid "pl."
-#~ msgstr "พหุ"
-
-#~ msgid "Tipiṭaka "
-#~ msgstr "พระไตรปิฎก"
