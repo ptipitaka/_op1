@@ -19,7 +19,7 @@
 {% load widget_tweaks i18n %}
 
 {% block apptitle %}
-    {% include 'setting/include/title.html' %} : {% trans 'Vert Conjugation' %}
+    {% include 'setting/include/title.html' %} : {% trans 'Verb Conjugation' %}
     {% if url_name == 'verb_conjugation_create' %}・{% trans 'Create' %}
     {% elif url_name == 'verb_conjugation_update' %}・{% trans 'Update' %}
     {% elif url_name == 'verb_conjugation_delete' %}・<span class="w3-text-red">{% trans 'Delete' %}</span>{% endif %}
