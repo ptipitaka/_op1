@@ -34,13 +34,16 @@ class PadanukkamaCreateForm(forms.ModelForm):
 # -----------------------------------------------------
 # CheckboxMultipleSelect
 # -----------------------------------------------------
+# from django.forms.utils import flatatt
+
 class CheckboxMultipleSelect(forms.CheckboxSelectMultiple):
     def render(self, name, value, attrs=None, renderer=None):
         if value is None:
             value = []
         final_attrs = self.build_attrs(self.attrs, attrs)
-        output = []
+        output = ['<div class="scrollable-div">']
         id_ = final_attrs.get('id')
+        output.append('<div class="checkbox-options">')
         for i, (option_value, option_label) in enumerate(self.choices):
             checkbox_id = f'{id_}_{i}'
             checked = option_value in value
@@ -50,7 +53,18 @@ class CheckboxMultipleSelect(forms.CheckboxSelectMultiple):
                 f'{" checked" if checked else ""}>'
                 f'{option_label}</label></div>'
             )
+        output.append('</div></div>')
         return mark_safe('\n'.join(output))
+
+    def build_attrs(self, base_attrs, extra_attrs=None):
+        attrs = dict(base_attrs, **(extra_attrs or {}))
+        return attrs
+
+    def format_value(self, value):
+        if not isinstance(value, (list, tuple)):
+            value = [value]
+        return [str(v) for v in value]
+
     
 
 # -----------------------------------------------------
@@ -65,15 +79,18 @@ class PadanukkamaUpdateForm(forms.ModelForm):
     
     wordlist_version = forms.ModelMultipleChoiceField(
         queryset=WordlistVersion.objects.all(),
-        widget=forms.CheckboxSelectMultiple(attrs={'class': 'checkbox-select'}))
+        widget=CheckboxSelectMultiple(
+            attrs={'class': 'checkbox-select'}))
 
     collaborators = forms.ModelMultipleChoiceField(
         queryset=User.objects.all(),
-        widget=forms.CheckboxSelectMultiple(attrs={'class': 'checkbox-select'}))
+        widget=CheckboxSelectMultiple(
+            attrs={'class': 'checkbox-select'}))
 
     target_languages = forms.ModelMultipleChoiceField(
         queryset=Language.objects.all(),
-        widget=forms.CheckboxSelectMultiple(attrs={'class': 'checkbox-select'}))
+        widget=CheckboxSelectMultiple(
+            attrs={'class': 'checkbox-select'}))
 
     def __init__(self, *args, **kwargs):
         table_of_content = kwargs.pop('table_of_content')
@@ -83,7 +100,7 @@ class PadanukkamaUpdateForm(forms.ModelForm):
             'edition__code', 'version')
         self.fields['structure'].queryset = Structure.objects.filter(
             table_of_content=table_of_content,
-            level__in=[1, 2, 3])
+            level__in=[1, 2, 3, 4])
 
     class Meta:
         model = Padanukkama

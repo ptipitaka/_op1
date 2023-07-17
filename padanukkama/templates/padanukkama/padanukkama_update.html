@@ -10,6 +10,17 @@
     <a class="w3-button w3-round-xlarge w3-hover-amber w3-display-right" onClick="javascript:history.go(-1);">{% trans "Back" %}</a>
 {% endblock %}
 
+
+{% block extra_css %}
+    <style>
+    .scrollable-div {
+        max-height: 280px;
+        overflow-y: auto;
+        padding: 10px;
+    }
+    </style>
+{% endblock %}
+
 {% block body %}
     <form method="post" class="w3-container w3-padding">
         {% csrf_token %}
@@ -40,16 +51,16 @@
             <div class="w3-container w3-cell">
                 <p>
                     <label>{% trans form.table_of_content.label_tag %}</label>
-                    {{ form.table_of_content|add_class:"w3-input" }}
+                    {{ form.table_of_content }}
                 </p>
-                {% for field in form %}
-                    {% if field.name == 'wordlist_version' or field.name == 'structure' %}
-                        <p>
-                            <label>{% trans field.label_tag %}</label>
-                            {{ field }}
-                        </p>
-                    {% endif %}
-                {% endfor %}
+                <p>
+                    <label>{% trans form.wordlist_version.label_tag %}</label>
+                    {{ form.wordlist_version }}
+                </p>
+                <p>
+                    <div><label>{% trans form.structure.label_tag %}</label></div>
+                    {{ form.structure }}
+                </p>
             </div>
         </div>
         <div class="w3-container w3-padding">
