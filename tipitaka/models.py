@@ -174,6 +174,7 @@ class WordList(models.Model):
 class TableOfContent(models.Model):
     code = models.CharField(max_length=20, unique=True, db_index=True, verbose_name=_("Code"))
     wordlist_version = models.ManyToManyField(WordlistVersion,
+                blank=True, null=True,
                 verbose_name=_("Wordlist version"),
                 related_name="wordlist_version")
     slug = models.SlugField(default="", null=False, db_index=True, unique=True, editable=True)

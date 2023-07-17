@@ -83,7 +83,7 @@ class PadanukkamaUpdateForm(forms.ModelForm):
             'edition__code', 'version')
         self.fields['structure'].queryset = Structure.objects.filter(
             table_of_content=table_of_content,
-            level__in=[1, 2])
+            level__in=[1, 2, 3])
 
     class Meta:
         model = Padanukkama

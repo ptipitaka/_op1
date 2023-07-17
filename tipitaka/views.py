@@ -77,6 +77,7 @@ class DigitalArchiveDetialsView(SuperuserRequiredMixin, UpdateView, SuccessMessa
         return '/tipitaka/digital-archive?edition=%s&volume=%s&page_number=%s&content=%s' %(edition, volume, page_number, content)
 
 
+
 # -----------------------------------------------------
 # WordListView
 # -----------------------------------------------------
@@ -91,6 +92,7 @@ class WordListView(LoginRequiredMixin, SingleTableMixin, FilterView):
         context = super(WordListView, self).get_context_data(**kwargs)
         context["total_rec"] = '{:,}'.format(len(self.get_table().rows)) 
         return context
+
 
 
 # -----------------------------------------------------
@@ -108,6 +110,7 @@ class WordListPageSourceView(SuperuserRequiredMixin, UpdateView):
 
     def get_success_url(self):
         return self.request.path
+
 
 
 # -----------------------------------------------------
@@ -148,6 +151,7 @@ class StructureView(LoginRequiredMixin, SingleTableMixin, FilterView):
         context = super(StructureView, self).get_context_data(**kwargs)
         context["total_rec"] = '{:,}'.format(len(self.get_table().rows)) 
         return context
+
 
 
 # -----------------------------------------------------
@@ -262,6 +266,7 @@ class CommonReferenceSubformView(SuperuserRequiredMixin, TemplateView):
         return self.render_to_response(context)
 
 
+
 # -----------------------------------------------------
 # CommonReferenceSubformDetailView
 # -----------------------------------------------------
@@ -282,6 +287,7 @@ class CommonReferenceSubformDetailView(SuperuserRequiredMixin, DetailView):
         context['all_wordlist_in_from_position_page'] = self.object.all_wordlist_in_from_position_page
         context['count_all_wordlist_in_from_position_page'] = self.object.count_all_wordlist_in_from_position_page
         return context
+
 
 
 # -----------------------------------------------------

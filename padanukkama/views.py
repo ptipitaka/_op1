@@ -84,7 +84,7 @@ class PadanukkamaUpdateView(SuperuserRequiredMixin, UpdateView):
     context_object_name = 'padanukkama'
     template_name = "padanukkama/padanukkama_update.html"
     form_class = PadanukkamaUpdateForm
-    success_url = reverse_lazy('padanukkama')
+    success_url = reverse_lazy('project')
 
     def handle_no_permission(self, request):
         messages.error(request, _('You do not have permission to access this page'))

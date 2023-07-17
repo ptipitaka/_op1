@@ -9,6 +9,8 @@ from mptt.templatetags.mptt_tags import cache_tree_children
 
 from .models import Page, TableOfContent, Structure, WordList, CommonReference
 
+# DigitalArchiveTable
+# -------------------
 class DigitalArchiveTable(tables.Table):
     action = tables.LinkColumn(
         viewname='digital_archive',
@@ -32,6 +34,9 @@ class DigitalArchiveTable(tables.Table):
         order_by = ("page_number",)
 
 
+
+# WordlistMasterTable
+# -------------------
 class WordlistMasterTable(tables.Table):
     word_seq = tables.Column(order_by=("word_seq"), visible=False)
     action = tables.LinkColumn(
@@ -51,6 +56,7 @@ class WordlistMasterTable(tables.Table):
         order_by = ("code",)
 
 
+
 class WordlistMasterFilter(FilterSet):
     word__startswith = filters.CharFilter(
         field_name='word',
@@ -65,6 +71,8 @@ class WordlistMasterFilter(FilterSet):
         fields = {"wordlist_version": ["exact"]}
 
 
+# TocTable
+# --------
 class TocTable(tables.Table):    
     action = tables.LinkColumn(
         viewname='structure',
@@ -80,6 +88,7 @@ class TocTable(tables.Table):
         attrs = {"class": "w3-table w3-bordered"}
         fields = ("code", "wordlist_version",)
         order_by = ("code",)
+
 
 
 class StructureTable(tables.Table):
@@ -108,17 +117,15 @@ class StructureTable(tables.Table):
         ## Cache the tree structure for performance ##
         cache_tree_children(data)
 
-        ## Add tree structure to table ##
-        # new_data = []
-        # for row in data:
-        #     new_data.append(row)
-        #     children = row.get_children()
-        #     for child in children:
-        #         child.level = row.level + 1
-        #         new_data.append(child)
-        # self.data = Structure.objects.filter(pk__in=[obj.pk for obj in new_data])
 
-class StructureFilter(FilterSet):    
+
+class StructureFilter(FilterSet):
+    title = django_filters.CharFilter(
+        field_name="title",
+        lookup_expr="contains",
+        label=_("Title contains"),
+    )
+
     deep_search_field = django_filters.ModelChoiceFilter(
         queryset=Structure.objects.filter(level__in=[1, 2, 3]),
         method='search_children',
@@ -127,7 +134,7 @@ class StructureFilter(FilterSet):
 
     class Meta:
         model = Structure
-        fields = {"title": ["contains"],}
+        fields = {}
 
     def __init__(self, *args, **kwargs):
         super(StructureFilter, self).__init__(*args, **kwargs)
@@ -141,6 +148,9 @@ class StructureFilter(FilterSet):
         return descendants
 
 
+
+# WordListTable
+# -------------
 class WordListTable(tables.Table):
     action = tables.TemplateColumn(
         """
@@ -160,6 +170,8 @@ class WordListTable(tables.Table):
         attrs = {"class": "w3-table w3-bordered"}
         fields = ("line_number", "word", "code",)
         order_by = ("code",)
+
+
 
 class CommonReferenceTable(tables.Table):
     action = tables.TemplateColumn(
