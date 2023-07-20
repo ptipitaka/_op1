@@ -2,7 +2,8 @@ from django import template
 from django.contrib.humanize.templatetags.humanize import intcomma
 from django.db.models import Q, Count
 from django.db.models.functions import TruncDate
-from django.utils import timezone
+from django.utils.translation import gettext_lazy as _
+
 
 import json
 import datetime 
@@ -52,6 +53,7 @@ def milestone(padanukkama_id):
             Q(padanukkama=padanukkama_id) & Q(children__isnull=True) & Q(sadda__isnull=False)
         ).count()
     return {
+        'padanukkama_id': padanukkama_id,
         'waiting': waiting,
         'onprocess': onprocess
         }
@@ -80,7 +82,10 @@ def translation_process(padanukkama_id):
     # Count Sadda objects for each workflow state
     sadda_by_state = Sadda.objects.filter(
         padanukkama_id=padanukkama_id).values('state').annotate(count=Count('state'))
-    return {'sadda_by_state': sadda_by_state}
+    return {
+        'padanukkama_id': padanukkama_id,
+        'sadda_by_state': sadda_by_state,
+        }
 
 
 
@@ -131,4 +136,7 @@ def monthly_progress(padanukkama_id):
 
         result.append({'wfs': wfs.name, 'data': result_of_sadda_summary_by_wf_by_date})
 
-    return {'result': json.dumps({'result': result})}
+    return {
+        'padanukkama_id': padanukkama_id,
+        'result': json.dumps({'result': result})
+        }

@@ -65,16 +65,16 @@
     </style>
 {% endblock %}
 
-{% for item in padanukkama %}
+{% for each_padanukkama in padanukkama %}
     <div class="w3-container">
         <div class="w3-card w3-padding">
             <header class="w3-border">
                 <div class="w3-bar">
-                    <span class="w3-bar-item" style="font-weight: bold;">{{ item.title }}</span>
+                    <span class="w3-bar-item" style="font-weight: bold;">{{ each_padanukkama.title }}</span>
                     <span class="w3-bar-item w3-right">
                         {% trans 'Publication' %}
                         <label class="switch">
-                            <input type="checkbox" {% if item.publication %} "checked" {% endif %} disabled>
+                            <input type="checkbox" {% if each_padanukkama.publication %} "checked" {% endif %} disabled>
                             <span class="slider round"></span>
                         </label>
                     </span>
@@ -85,21 +85,21 @@
                 <div class="w3-row">
                     <!-- left pan -->
                     <div class="w3-threequarter w3-padding">
-                        <p>{{ item.about }}</p>
+                        <p>{{ each_padanukkama.about }}</p>
 
                         <div class="w3-panel w3-win8-taupe w3-round-xlarge w3-padding">
-                            <div>{% trans 'All Pada' %} : {% all_padas item.id %} {% trans 'items' %}</div>
-                            <div>{% trans 'All Sadda' %} : {% all_saddas item.id %} {% trans 'items' %}</div>
+                            <div>{% trans 'All Pada' %} : {% all_padas each_padanukkama.id %} {% trans 'items' %}</div>
+                            <div>{% trans 'All Sadda' %} : {% all_saddas each_padanukkama.id %} {% trans 'items' %}</div>
                         </div>
 
                         <div class="w3-row">
                             <div class="w3-half w3-container">
                                 {% trans 'Overview of operations' %}
-                                {% milestone item.id %}
+                                {% milestone each_padanukkama.id %}
                             </div>
                             <div class="w3-half w3-container">
                                 {% trans 'Overview of the translation process' %}
-                                 {% translation_process item.id %}
+                                 {% translation_process each_padanukkama.id %}
                             </div>
                         </div>
 
@@ -107,7 +107,7 @@
                             <div class="w3-panel w3-win8-taupe w3-round-xlarge w3-padding">
                                 {% trans 'The daily progress by date' %}
                             </div>
-                            {% monthly_progress item.id %}
+                            {% monthly_progress each_padanukkama.id %}
                         </div>
                         
                       
@@ -117,14 +117,14 @@
                         <p>
                             {% trans 'Wordlist Version' %}
                             <ul>
-                                {% for version in item.wordlist_version.all %}
+                                {% for version in each_padanukkama.wordlist_version.all %}
                                     <li>{{ version }}</li>
                                 {% endfor %}
                             </ul>
 
                             {% trans 'Collaborators' %}
                             <ul>
-                                {% for user in item.collaborators.all %}
+                                {% for user in each_padanukkama.collaborators.all %}
                                     <li>{{ user }}</li>
                                 {% endfor %}
                             </ul>
