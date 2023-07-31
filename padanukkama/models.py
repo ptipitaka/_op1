@@ -1,9 +1,11 @@
 from django.db import models
 from django.db.models import Max, Q
+from django.db.models.functions import Cast
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
-from django.utils.translation import gettext_lazy as _
 
+from django.utils import timezone
+from django.utils.translation import gettext_lazy as _
 from django_editorjs import EditorJsField
 from django_xworkflows import models as xwf_models
 from mptt.models import MPTTModel, TreeForeignKey
@@ -12,7 +14,7 @@ from smart_selects.db_fields import ChainedManyToManyField
 
 from utils.pali_char import *
 
-from tipitaka.models import WordlistVersion, TableOfContent, Structure, WordList
+from tipitaka.models import WordlistVersion, TableOfContent, Structure
 from .workflows import SaddaTranslationWorkflow
 
 User = get_user_model()
@@ -97,82 +99,82 @@ class NamaSaddamala(models.Model):
         verbose_name=_("Kāranta"),
         on_delete=models.SET_NULL) 
     nom_sg = models.CharField(
-        max_length=255,
+        max_length=225,
         null=True,
         blank=True,
         verbose_name=_("Paṭhamā Ekavacana"))
     nom_pl = models.CharField(
-        max_length=255,
+        max_length=225,
         null=True,
         blank=True,
         verbose_name=_("Paṭhamā Bahuvacana"))
     voc_sg = models.CharField(
-        max_length=255,
+        max_length=225,
         null=True,
         blank=True,
         verbose_name=_("Ālapana Ekavacana"))
     voc_pl = models.CharField(
-        max_length=255,
+        max_length=225,
         null=True,
         blank=True,
         verbose_name=_("Ālapana Bahuvacana"))
     acc_sg = models.CharField(
-        max_length=255,
+        max_length=225,
         null=True,
         blank=True,
         verbose_name=_("Dutiyā Ekavacana"))
     acc_pl = models.CharField(
-        max_length=255,
+        max_length=225,
         null=True,
         blank=True,
         verbose_name=_("Dutiyā Bahuvacana"))
     instr_sg = models.CharField(
-        max_length=255,
+        max_length=225,
         null=True,
         blank=True,
         verbose_name=_("Tatiyā Ekavacana"))
     instr_pl = models.CharField(
-        max_length=255,
+        max_length=225,
         null=True,
         blank=True,
         verbose_name=_("Tatiyā Bahuvacana"))
     dat_sg = models.CharField(
-        max_length=255,
+        max_length=225,
         null=True,
         blank=True,
         verbose_name=_("Catutthī Ekavacana"))
     dat_pl = models.CharField(
-        max_length=255,
+        max_length=225,
         null=True,
         blank=True,
         verbose_name=_("Catutthī Bahuvacana"))
     abl_sg = models.CharField(
-        max_length=255,
+        max_length=225,
         null=True,
         blank=True,
         verbose_name=_("Pañcamī Ekavacana"))
     abl_pl = models.CharField(
-        max_length=255,
+        max_length=225,
         null=True,
         blank=True,
         verbose_name=_("Pañcamī Bahuvacana"))
     gen_sg = models.CharField(
-        max_length=255,
+        max_length=225,
         null=True,
         blank=True,
         verbose_name=_("Chaṭṭhī Ekavacana"))
     gen_pl = models.CharField(
-        max_length=255,
+        max_length=225,
         null=True,
         blank=True,
         verbose_name=_("Chaṭṭhī Bahuvacana"))
     loc_sg = models.CharField(
-        max_length=255,
+        max_length=225,
         null=True,
         blank=True,
         verbose_name=_("Sattamī Ekavacana"))
     loc_pl = models.CharField(
-        max_length=255,
+        max_length=225,
         null=True,
         blank=True,
         verbose_name=_("Sattamī Bahuvacana"))
@@ -188,44 +190,6 @@ class NamaSaddamala(models.Model):
     def save(self, *args, **kwargs):
         self.title_order = encode(extract(clean(self.title)))
         super().save(*args, **kwargs)
-
-
-
-# -----------------------------------------------------
-# NounDeclension
-# -----------------------------------------------------
-class NounDeclension(models.Model):
-    code = models.CharField(max_length=10, verbose_name=_("Code"))
-    title = models.CharField(verbose_name=_("Title"))
-    description = EditorJsField(
-        editorjs_config={
-            "tools":{
-                "Attaches":{"disabled":True},
-                "Checklist":{"disabled":True},
-                "Delimiter":{"disabled":True},
-                "Embed":{"disabled":True},
-                "Header":{
-                    "config":{
-
-                        "levels":[4, 5],
-                        "defaultLevel":4,
-                    },
-                },
-                "Image":{"disabled":True},
-                "Link":{"disabled":True},
-                "Quote":{"disabled":True},
-                "Raw":{"disabled":True},
-                "Warning": {"disabled":True},
-            },
-        },
-        null=True,
-        blank=True,
-        verbose_name=_("Description"))
-    ekavacana  = models.CharField(null=True, blank=True, verbose_name=_("Meaning (Ekavacana)"))
-    bahuvachana = models.CharField(null=True, blank=True, verbose_name=_("Meaning (Bahuvacana)"))
-
-    def __str__(self):
-        return f"{self.code} : {self.title}"
 
 
 
@@ -384,7 +348,6 @@ class Sadda(xwf_models.WorkflowEnabled, models.Model):
 
         super().save(*args, **kwargs)
 
-
     @classmethod
     def get_last_3_pada_updates(cls, user):
         last_3_updates = cls.history.filter(history_user=user).values('sadda')
@@ -486,91 +449,6 @@ class Pada(MPTTModel):
         order_insertion_by = ['pada_seq']
 
 
-
-# -----------------------------------------------------
-# LiteralTranslation
-# -----------------------------------------------------
-class LiteralTranslation(models.Model):
-    padanukkama = models.ForeignKey(
-        Padanukkama,
-        on_delete=models.CASCADE,
-        related_name='literal_translation',
-        verbose_name=_("Padanukkama"))
-    title = models.CharField(
-        max_length=80,
-        verbose_name=_("Title"))
-    description = EditorJsField(
-        editorjs_config={
-            "tools":{
-                "Attaches":{"disabled":True},
-                "Checklist":{"disabled":True},
-                "Delimiter":{"disabled":True},
-                "Embed":{"disabled":True},
-                "Header":{
-                    "config":{
-
-                        "levels":[4, 5],
-                        "defaultLevel":4,
-                    },
-                },
-                "Image":{"disabled":True},
-                "Link":{"disabled":True},
-                "Quote":{"disabled":True},
-                "Raw":{"disabled":True},
-                "Warning": {"disabled":True},
-            },
-        },
-        null=True,
-        blank=True,
-        verbose_name=_("Description"))
-    wordlist_version = models.ForeignKey(
-        WordlistVersion,
-        verbose_name=_("Wordlist Version"),
-        on_delete=models.CASCADE)
-    publication = models.BooleanField(
-        default=False,
-        verbose_name=_("Publication"))
-
-    def __str__(self):
-        return self.title
-
-
-
-# -----------------------------------------------------
-# TranslatedWord
-# -----------------------------------------------------
-class TranslatedWord(models.Model):
-    literal_translation = models.ForeignKey(
-        LiteralTranslation,
-        on_delete=models.CASCADE,
-        related_name='translated_word',
-        verbose_name=_("Literal Translation"))
-    wordlist = models.ForeignKey(
-        WordList,
-        on_delete=models.CASCADE,
-        related_name='translated_words',
-        verbose_name=_("Word List"))
-    pada = models.ManyToManyField(
-        Pada,
-        verbose_name=_("Pada"))
-    sadda = models.ManyToManyField(
-        Sadda,
-        verbose_name=_("Sadda"))
-    translate = models.CharField(
-        max_length=255,
-        verbose_name=_("Translate"))
-    paragraph = models.IntegerField(
-        default=1,
-        verbose_name=_("Paragraph"))
-    sentence = models.IntegerField(
-        default=1,
-        verbose_name=_("Sentence"))
-    word_seq = models.IntegerField(
-        default=1,
-        verbose_name=_("Word Sequence"))
-    
-    def __str__(self):
-        return f"{self.translated_word}"
 
 
 # -----------------------------------------------------

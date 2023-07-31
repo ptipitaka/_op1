@@ -6,8 +6,7 @@
     {% include 'setting/include/title.html' %} : {% trans 'Dhātu' %}
     {% if url_name == 'dhatu_create' %}・{% trans 'Create' %}
     {% elif url_name == 'dhatu_update' %}・{% trans 'Update' %}
-    {% elif url_name == 'dhatu_delete' %}・<span class="w3-text-red">{% trans 'Delete' %}</span>
-    {% endif %}
+    {% elif url_name == 'dhatu_delete' %}・<span class="w3-text-red">{% trans 'Delete' %}</span>{% endif %}
 {% endblock %}
 
 {% block apptitle_option %}

@@ -7,11 +7,7 @@ from django.utils.translation import gettext_lazy as _
 from django_filters import FilterSet, filters
 
 from padanukkama.models import NamaSaddamala, NamaType, \
-                    Karanta,Dhatugana, Dhatu, VerbConjugation, \
-                    NounDeclension
-
-from django_editorjs_parser import EditorJSParser
-import json
+                    Karanta,Dhatugana, Dhatu, VerbConjugation
 
 
 # -----------------------------------------------------
@@ -116,62 +112,6 @@ class DhatuFilter(FilterSet):
     
     class Meta:
         model = Dhatu
-        fields = {}
-
-
-
-# -----------------------------------------------------
-# NounDeclension Table & Filter
-# -----------------------------------------------------
-class NounDeclensionTable(tables.Table):
-    action = tables.Column(
-        empty_values=(),
-        orderable=False,
-        verbose_name=_('Action'))
-    
-    description = tables.Column(attrs={"td": {"style": "background-color: whitesmoke;"}})
-
-
-    def render_action(self, record):
-        # Get all the query parameters from the request's GET parameters
-        query_params = self.request.GET
-
-        # Generate the URL with the updated parameters
-        url = reverse_lazy('noun_declension_update', args=[record.id])
-        url_with_params = f'{url}?{query_params.urlencode()}'
-
-        return mark_safe(
-            f'<a href="{url_with_params}" class="w3-button w3-round-xlarge w3-border w3-hover-brown">'
-            f'<i class="fas fa-pencil-alt"></i></a>'
-        )
-
-    def render_description(self, value):
-        data = json.loads(value)
-        parser = EditorJSParser()
-        html_description = parser.parse(data)
-        return mark_safe(html_description)
-
-    class Meta:
-        model = NounDeclension
-        template_name = "django_tables2/w3css.html"
-        attrs = {"class": "w3-table w3-bordered"}
-        fields = ('code', 'title', 'description',)
-        order_by = ("code",) 
-
-
-
-class NounDeclensionFilter(FilterSet):
-    code__exact = filters.CharFilter(
-        field_name='code',
-        lookup_expr='exact',
-        label=_('Code'))
-    title__contains = filters.CharFilter(
-        field_name='title',
-        lookup_expr='icontains',
-        label=_('Title contains'))
-    
-    class Meta:
-        model = NounDeclension
         fields = {}
 
 

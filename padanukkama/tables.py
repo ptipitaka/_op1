@@ -5,8 +5,7 @@ from django import forms
 from django.db.models import Q
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator
-from django.urls import reverse_lazy, reverse
-from django.utils.html import format_html
+from django.urls import reverse_lazy
 from django.utils.safestring import mark_safe
 from django.utils.translation import gettext_lazy as _
 
@@ -15,8 +14,8 @@ from django_tables2.utils import A
 from mptt.templatetags.mptt_tags import cache_tree_children
 from simple_history.utils import get_history_manager_for_model
 
-from .models import Padanukkama, Pada, Sadda, LiteralTranslation
-from tipitaka.models import Structure
+from .models import NamaSaddamala, \
+    Padanukkama, Pada, Sadda, NamaType, Karanta
 
 from .workflows import SaddaTranslationWorkflow
 
@@ -40,56 +39,23 @@ class PadanukkamaTable(tables.Table):
     pada_list = tables.LinkColumn(
         viewname='padanukkama_pada',
         args=[A('pk')],
-        attrs={"a": {"class": "w3-button w3-round-xlarge w3-border w3-hover-brown"}}, 
+        attrs={"a": {"class": "w3-button w3-round-xlarge w3-hover-brown"}}, 
         text=mark_safe('<i class="far fa-list"></i>'),
         empty_values=(),
         orderable=False,
         verbose_name=_("Pada")
     )
 
-    sadda_list = tables.Column(
-        empty_values=(),
-        orderable=False,
-        verbose_name=_('Sadda')
-    )
-
-    def render_sadda_list(self, record):
-        url = reverse_lazy('sadda')
-        url_with_params = f'{url}?padanukkama={record.pk}'
-        return mark_safe(
-            f'<a href="{url_with_params}" class="w3-button w3-round-xlarge w3-border w3-hover-indigo">'
-            f'<i class="far fa-list"></i></a>'
-        )
-
-    literal_translation_list = tables.Column(
-        empty_values=(),
-        orderable=False,
-        verbose_name=_('Literal Translation')
-    )
-
-    def render_literal_translation_list(self, record):
-        url = reverse_lazy('literal_translation')
-        url_with_params = f'{url}?padanukkama={record.pk}'
-        return mark_safe(
-            f'<a href="{url_with_params}" class="w3-button w3-round-xlarge w3-border w3-hover-orange">'
-            f'<i class="far fa-list"></i></a>'
-        )
-
-
     about = tables.Column(attrs={'td': {'style': 'width: 40%;'}})
-
-    def __init__(self, *args, **kwargs):
-        # Get the padanukkama_pk parameter from kwargs
-        self.padanukkama_pk = kwargs.pop('padanukkama_pk', None)
-        super().__init__(*args, **kwargs)
 
     class Meta:
         model = Padanukkama
         template_name = "django_tables2/w3css.html"
         attrs = {"class": "w3-table w3-bordered"}
-        fields = ("title", "about",)
+        fields = ("title", "about", "target_languages", "collaborators")
         order_by = ("title",)
     
+
 class PadanukkamaFilter(FilterSet):
     title__contains = filters.CharFilter(
         field_name='title',
@@ -104,7 +70,6 @@ class PadanukkamaFilter(FilterSet):
     class Meta:
         model = Padanukkama
         fields = {}
-
 
 
 # -----------------------------------------------------
@@ -242,6 +207,7 @@ class PadaTable(tables.Table):
             )
 
 
+
 class PadaFilter(FilterSet):
     OPTION_CHOICES = [
         ('SW', _("Search for Padas that start with these characters")),
@@ -306,7 +272,6 @@ class PadaFilter(FilterSet):
         fields = {}
 
 
-
 # -----------------------------------------------------
 # PadaParentChildTable
 # -----------------------------------------------------
@@ -363,11 +328,10 @@ class PadaParentChildTable(tables.Table):
         ## Cache the tree Pada for performance ##
         cache_tree_children(data)
 
-
-
 # -----------------------------------------------------
 # Sadda Table & Filter
 # -----------------------------------------------------
+
 class SaddaTable(tables.Table):
     sadda_seq = tables.Column(visible=False)
     pada = tables.Column(verbose_name=_('Related Padas'))
@@ -405,6 +369,8 @@ class SaddaTable(tables.Table):
             f'<a href="{url_with_params}" class="w3-button w3-round-xlarge w3-border w3-hover-brown">'
             f'<i class="fas fa-pencil-alt"></i></a>'
         )
+    
+     
 
 class SaddaFilter(FilterSet):
     PAGINATE_BY=10
@@ -467,86 +433,3 @@ class SaddaFilter(FilterSet):
         fields = ("padanukkama", "sadda", "sadda_type", "state",)
 
 
-
-# -----------------------------------------------------
-# LiteralTranslation Table & Filter
-# -----------------------------------------------------
-class LiteralTranslationTable(tables.Table):
-    update_action = tables.Column(
-        empty_values=(), orderable=False, verbose_name=_('Update'))
-    
-    translation_action = tables.Column(
-        empty_values=(), orderable=False, verbose_name=_('Translation'))
-
-    class Meta:
-        model = LiteralTranslation
-        template_name = "django_tables2/w3css.html"
-        attrs = {"class": "w3-table w3-bordered"}
-        fields = ('padanukkama', 'title', 'wordlist_version')
-        order_by = ("title",)
-        per_page = 10
-
-    def render_update_action(self, record):
-        # Get all the query parameters from the request's GET parameters
-        query_params = self.request.GET
-
-        # Generate the URL with the updated parameters
-        url = reverse_lazy('literal_translation_update', args=[record.id])
-        url_with_params = f'{url}?{query_params.urlencode()}'
-
-        return mark_safe(
-            f'<a href="{url_with_params}" class="w3-button w3-round-xlarge w3-border w3-hover-brown">'
-            f'<i class="fas fa-pencil-alt"></i></a>'
-        )
-    
-    def render_translation_action(self, record):
-        # Get all the query parameters from the request's GET parameters
-        query_params = self.request.GET
-
-        # Generate the URL with the updated parameters
-        url = reverse_lazy('literal_translation_translate', args=[record.id])
-        url_with_params = f'{url}?{query_params.urlencode()}'
-
-        return mark_safe(
-            f'<a href="{url_with_params}" class="w3-button w3-round-xlarge w3-border w3-hover-blue">'
-            f'<i class="fa fa-book"></i></a>'
-        )
-
-
-class LiteralTranslationFilter(FilterSet):
-    padanukkama = ModelChoiceFilter(
-        queryset=Padanukkama.objects.none(),  # Set an initial empty queryset
-        widget=forms.Select(attrs={'class': 'form-control'}),
-        label=_("Padanukkama")
-    )
-    class Meta:
-        model = LiteralTranslation
-        fields = ("padanukkama", "title",)
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        # padanukkama
-        # -----------
-        self.filters['padanukkama'].field.queryset = Padanukkama.objects.filter(
-            collaborators__id=self.request.user.id
-        )
-
-
-
-class StructureTable(tables.Table):
-    title = tables.Column(attrs={'td': {
-        'style': lambda value, record: 'padding-left: %spx' % (50 + (record.level * 50)),
-        } 
-    })
-
-    class Meta:
-        model = Structure
-        template_name = "django_tables2/w3css.html"
-        attrs = {"class": "w3-table w3-bordered"}
-        fields = ('code', 'title', 'breadcrumb',)
-        
-    def __init__(self, data, **kwargs):
-        super().__init__(data, **kwargs)
-        
-        ## Cache the tree structure for performance ##
-        cache_tree_children(data)

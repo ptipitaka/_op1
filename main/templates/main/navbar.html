@@ -57,10 +57,6 @@
         </button>
         <div id="Setting" class="w3-dropdown-content w3-bar-block w3-border">
             <span class="w3-bar-item w3-button" style="font-weight:bold; cursor:default;">{% trans 'Nāma' %}</span>
-            <a href="{% url "noun_declension" %}"
-                class="w3-bar-item w3-button {% if '/setting/noun-declension' in request.path %} nav-active {% endif %}">
-                {% trans "Noun Declension" %}
-            </a>
             <a href="{% url "nama_saddamala" %}"
                 class="w3-bar-item w3-button {% if '/setting/nama-saddamala' in request.path %} nav-active {% endif %}">
                 {% trans "Nāmasaddapadamālā" %}

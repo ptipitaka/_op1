@@ -7,15 +7,14 @@ from django.http import JsonResponse, HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils.translation import gettext_lazy as _
 from django.views import View
-from django.views.generic import CreateView, DetailView, UpdateView, DeleteView, FormView
-from django.urls import resolve, reverse_lazy
+from django.views.generic import CreateView, UpdateView, DeleteView, FormView
+from django.urls import reverse_lazy
 
 from django_filters.views import FilterView
 from django_tables2.views import SingleTableMixin
 
 from braces.views import LoginRequiredMixin, SuperuserRequiredMixin
 from fuzzywuzzy import fuzz, process
-from mptt.templatetags.mptt_tags import cache_tree_children
 from simple_history.utils import get_history_manager_for_model
 from urllib.parse import urlencode
 
@@ -26,13 +25,10 @@ from abidan.models import Word, WordLookup
 from .tables import PadanukkamaTable, PadanukkamaFilter, \
                     PadaTable, PadaFilter, \
                     PadaParentChildTable, \
-                    SaddaTable, SaddaFilter, \
-                    LiteralTranslationTable, LiteralTranslationFilter, \
-                    StructureTable
+                    SaddaTable, SaddaFilter
 
 from .forms import  PadanukkamaCreateForm, PadanukkamaUpdateForm, \
-                    AddChildPadaForm, SaddaForm, ExportSaddaForm, \
-                    LiteralTranslationCreateForm, LiteralTranslationUpdateForm
+                    AddChildPadaForm, SaddaForm, ExportSaddaForm
 
 from .admin import SaddaResource
 
@@ -53,15 +49,6 @@ class PadanukkamaView(LoginRequiredMixin, SingleTableMixin, FilterView):
     context_object_name  = "padanukkama"
     table_class = PadanukkamaTable
     filterset_class = PadanukkamaFilter
-
-    def get_queryset(self):
-        # Get the current logged-in user
-        current_user = self.request.user
-        
-        # Filter the Padanukkama instances where the current user is one of the collaborators
-        queryset = super().get_queryset().filter(collaborators=current_user)
-        
-        return queryset
     
     def get_context_data(self, **kwargs):
         context = super(PadanukkamaView, self).get_context_data(**kwargs)
@@ -596,7 +583,6 @@ class CreateVipatti(LoginRequiredMixin, View):
 
 
 
-
 # ====================================================
 # SaddaView
 # ====================================================
@@ -649,7 +635,7 @@ class SaddaView(LoginRequiredMixin, SingleTableMixin, FilterView, FormView):
             response = HttpResponse(ds, content_type=f"{format}")
             response['Content-Disposition'] = f"attachment; filename=sadda.{format}"
             return response
-
+    
 
 
 # SaddaUpdateView
@@ -746,161 +732,4 @@ def FilterVerbConjugation(request, word):
 # LiteralTranslationView
 # ----------------------
 class LiteralTranslationView(LoginRequiredMixin, SingleTableMixin, FilterView):
-    model = LiteralTranslation
-    template_name = "padanukkama/literal_translation.html"
-    context_object_name = "LiteralTranslation"
-    table_class = LiteralTranslationTable
-    filterset_class = LiteralTranslationFilter
-
-
-
-# LiteralTranslationCreateView
-# ---------------------
-class LiteralTranslationCreateView(SuperuserRequiredMixin, CreateView):
-    model = LiteralTranslation
-    template_name = "padanukkama/literal_translation_detail.html"
-    form_class = LiteralTranslationCreateForm
-
-    def handle_no_permission(self, request):
-        messages.error(request, _('You do not have permission to access this page'))
-        return redirect_to_login(request.get_full_path(), login_url=self.get_login_url(), redirect_field_name=self.get_redirect_field_name())
-
-    def get_success_url(self):
-        return reverse_lazy('literal_translation')
-
-    def get_form_kwargs(self):
-        kwargs = super().get_form_kwargs()
-        padanukkama_id = self.kwargs.get('padanukkama_id')
-
-        # Fetch the Padanukkama instance using padanukkama_id
-        padanukkama_instance = get_object_or_404(Padanukkama, id=padanukkama_id)
-
-        # Add the 'padanukkama_instance' to the form kwargs
-        kwargs['padanukkama_instance'] = padanukkama_instance
-
-        return kwargs
-
-
-
-# LiteralTranslationUpdateView
-# ----------------------------
-
-class LiteralTranslationUpdateView(LoginRequiredMixin, UpdateView):
-    model = LiteralTranslation
-    template_name = "padanukkama/literal_translation_detail.html"
-    form_class = LiteralTranslationUpdateForm
-
-    def handle_no_permission(self, request):
-        messages.error(request, _('You do not have permission to access this page'))
-        return redirect_to_login(request.get_full_path(), login_url=self.get_login_url(), redirect_field_name=self.get_redirect_field_name())
-
-    def get_success_url(self):
-        return reverse_lazy('literal_translation')
-    
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        padanukkama = self.object.padanukkama
-        # Here we fetch only structures associated with this padanukkama instance
-        selected_structures = padanukkama.structure.all()
-
-        context['structures'] = selected_structures
-        context['url_name'] = resolve(self.request.path_info).url_name
-        return context
-
-
-
-# LiteralTranslationDeleteView
-class LiteralTranslationDeleteView(LoginRequiredMixin, DeleteView):
-    model = LiteralTranslation
-    template_name = "padanukkama/literal_translation_detail.html"
-    success_url = reverse_lazy('literal_translation')
-    
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['literal_translation'] = self.get_object()
-        context['url_name'] = resolve(self.request.path_info).url_name
-        return context
-
-
-
-# LiteralTranslationTranslationView
-class LiteralTranslationTranslateView(LoginRequiredMixin, DetailView):
-    model = LiteralTranslation
-    template_name = 'padanukkama/literal_translation_translate.html'
-    context_object_name = 'literal_translation'
-
-    def handle_no_permission(self, request):
-        messages.error(request, _('You do not have permission to access this page'))
-        return redirect_to_login(request.get_full_path(), login_url=self.get_login_url(), redirect_field_name=self.get_redirect_field_name())
-
-    def get_success_url(self):
-        return reverse_lazy('literal_translation')
-    
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-
-        # Check if padanukkama exists and fetch structures associated with it
-        padanukkama = self.object.padanukkama
-        context['padanukkama_id'] = padanukkama.id
-        if padanukkama:
-            selected_structures = padanukkama.structure.all()
-        else:
-            selected_structures = []
-
-        # Fetch only structures associated with this padanukkama instance
-        selected_structures = padanukkama.structure.all()
-        context['structures'] = selected_structures
-
-        # Fetch CommonReference objects for all selected structures
-        common_references = CommonReference.objects.filter(structure__in=selected_structures)
-
-        context['common_references'] = common_references
-
-        # Get the 'toc_id' query parameter from the request's GET dictionary
-        toc_id = self.request.GET.get('toc_id')
-        # Retrieve the structure using get_object_or_404
-        if toc_id:
-            try:
-                # Retrieve the structure using get_object_or_404
-                selected_structure = get_object_or_404(Structure, id=toc_id)
-            except Structure.DoesNotExist:
-                selected_structure = None
-        else:
-            selected_structure = None
-        
-        context['selected_structure'] = selected_structure
-
-        # Get the wordlist_version from the selected_structure
-        if selected_structure:
-            common_reference = CommonReference.objects.filter(
-                Q(structure=selected_structure) & Q(wordlist_version=self.object.wordlist_version)).first()
-
-            if common_reference:
-                # Fetch WordList instances based on the provided from_position and to_position
-                from_position = common_reference.from_position
-                to_position = common_reference.to_position
-                wordlist_version = common_reference.wordlist_version
-
-                words_list = WordList.objects.filter(
-                    Q(code__gte=from_position, code__lte=to_position),
-                    wordlist_version=wordlist_version
-                )
-
-                # Get the words from words_list
-                words = words_list.values_list('word', flat=True)
-
-                # Fetch the Pada instances related to the current padanukkama and have pada matching any word in words
-                padas_list = Pada.objects.filter(padanukkama=padanukkama, pada__in=words)
-
-            else:
-                words_list = []
-                padas_list = []
-        else:
-            words_list = []
-            padas_list = []
-
-        context['words_list'] = words_list
-        context['padas_list'] = padas_list
-
-
-        return context
+    pass

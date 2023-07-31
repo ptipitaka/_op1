@@ -1,6 +1,6 @@
 from django.urls import path
 
-from . import views, htmx
+from . import views
 
 urlpatterns = [
     # padanukkama
@@ -27,16 +27,5 @@ urlpatterns = [
     path('find-related-padas/', views.FindRelatedPadaView.as_view(), name='find_related_pada'),
     # literal_translation
     path('literal-translation/', views.LiteralTranslationView.as_view(), name='literal_translation'),
-    path('literal-translation/project/<int:padanukkama_id>/create/', views.LiteralTranslationCreateView.as_view(), name='literal_translation_create'),
-    path('literal-translation/<int:pk>/update/', views.LiteralTranslationUpdateView.as_view(), name='literal_translation_update'),
-    path('literal-translation/<int:pk>/delete/', views.LiteralTranslationDeleteView.as_view(), name='literal_translation_delete'),
-    path('literal-translation/<int:pk>/translate/', views.LiteralTranslationTranslateView.as_view(), name='literal_translation_translate'),
+
 ]
-
-
-htmx_urlpatterns = [
-    # literal_translation
-    path('htmx-pada-details/<int:padanukkama_id>/<pada>/', htmx.PadaDetailsView.as_view(), name='htmx_pada_details'),
-]
-
-urlpatterns += htmx_urlpatterns

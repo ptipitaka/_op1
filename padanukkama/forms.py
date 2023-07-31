@@ -8,8 +8,7 @@ from django.utils.translation import gettext_lazy as _
 from django_select2.forms import *
 from mptt.forms import TreeNodeMultipleChoiceField
 
-from .models import NamaSaddamala, Padanukkama, Pada, Language, Sadda, \
-                    VerbConjugation, LiteralTranslation
+from .models import NamaSaddamala, Padanukkama, Pada, Language, Sadda, VerbConjugation
 from tipitaka.models import WordlistVersion, Structure
 
 
@@ -32,10 +31,11 @@ class PadanukkamaCreateForm(forms.ModelForm):
         exclude = ['structure', 'wordlist_version']
 
 
-
 # -----------------------------------------------------
 # CheckboxMultipleSelect
 # -----------------------------------------------------
+# from django.forms.utils import flatatt
+
 class CheckboxMultipleSelect(forms.CheckboxSelectMultiple):
     def render(self, name, value, attrs=None, renderer=None):
         if value is None:
@@ -118,43 +118,6 @@ class AddChildPadaForm(forms.ModelForm):
 
 
 # -----------------------------------------------------
-# LiteralTranslationCreateForm
-# -----------------------------------------------------
-class LiteralTranslationCreateForm(forms.ModelForm):
-    padanukkama = forms.ModelChoiceField(
-        queryset=Padanukkama.objects.all(),
-        widget=forms.TextInput(attrs={'readonly': 'readonly'}),
-        to_field_name='title')
-
-    def __init__(self, *args, **kwargs):
-        padanukkama_instance = kwargs.pop('padanukkama_instance', None)
-        super().__init__(*args, **kwargs)
-
-        # Use the 'padanukkama_instance' for any additional processing in the form if needed
-        if padanukkama_instance:
-            # Set a default value for a field based on 'padanukkama_instance'
-            self.fields['padanukkama'].initial = padanukkama_instance
-            self.fields['title'].initial = f"Translation for {padanukkama_instance.title}"
-            self.fields['wordlist_version'].queryset = padanukkama_instance.wordlist_version.all()
-
-    class Meta:
-        model = LiteralTranslation
-        exclude = ['publication']
-
-
-
-# -----------------------------------------------------
-# LiteralTranslationUpdateForm
-# -----------------------------------------------------
-class LiteralTranslationUpdateForm(forms.ModelForm):
-
-    class Meta:
-        model = LiteralTranslation
-        exclude = ['padanukkama', 'wordlist_version']
-
-
-
-# -----------------------------------------------------
 # SaddaForm
 # -----------------------------------------------------
 class SaddaForm(forms.ModelForm):
@@ -199,6 +162,3 @@ class ExportSaddaForm(forms.Form):
         required=True,
         label=_('Format')
     )
-
-
-
