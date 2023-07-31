@@ -4,7 +4,6 @@ from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
 from django.core.validators import MinValueValidator
 from django.urls import reverse
-from django.utils import timezone
 from django.utils.text import slugify
 from django.utils.translation import gettext_lazy as _
 from smart_selects.db_fields import ChainedForeignKey
@@ -29,6 +28,7 @@ class Script(models.Model):
         super(Script, self).save(*args, **kwargs)
 
 
+
 class Edition(models.Model):
     code = models.CharField(max_length=5, db_index=True, verbose_name=_("Code"))
     title = models.CharField(max_length=80, db_index=True, verbose_name=_("Title"))
@@ -39,6 +39,7 @@ class Edition(models.Model):
 
     def __str__(self):
         return f"{self.title} ({self.code})"
+
 
 
 class Volume(models.Model):
@@ -61,6 +62,7 @@ class Volume(models.Model):
     def __str__(self):
         return f"{_('Volume')}# {(str(self.volume_number).zfill(3))}"
     
+
 
 class Page(models.Model):
     edition = models.ForeignKey("Edition", on_delete=models.CASCADE, verbose_name=_("Edition"),)
@@ -109,6 +111,7 @@ class Page(models.Model):
         return image_slide
 
 
+
 class WordlistVersion(models.Model):
     version = models.IntegerField(default=0, verbose_name=_("Version"))
     edition = models.ForeignKey("Edition", on_delete=models.CASCADE, verbose_name=_("Edition"))
@@ -120,6 +123,7 @@ class WordlistVersion(models.Model):
 
     def get_edition_and_version(self):
         return {self.pk: f"{self.edition.code} v.{self.version}"}
+
 
 
 class WordList(models.Model):
@@ -174,7 +178,6 @@ class WordList(models.Model):
 class TableOfContent(models.Model):
     code = models.CharField(max_length=20, unique=True, db_index=True, verbose_name=_("Code"))
     wordlist_version = models.ManyToManyField(WordlistVersion,
-                blank=True, null=True,
                 verbose_name=_("Wordlist version"),
                 related_name="wordlist_version")
     slug = models.SlugField(default="", null=False, db_index=True, unique=True, editable=True)
@@ -187,18 +190,19 @@ class TableOfContent(models.Model):
         return self.code
 
 
+
 class Structure(MPTTModel):
     table_of_content = models.ForeignKey(TableOfContent, verbose_name=_("Table of contents"), on_delete=models.CASCADE)
     parent = TreeForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='children')
     code = models.CharField(max_length=20, null=True, blank=True, verbose_name=_("Code"))
     title = models.CharField(verbose_name=_("Title"), db_index=True, max_length=255)
     description = models.TextField(verbose_name=_("Description") ,max_length=255, blank=True, null=True)
-    ro = models.CharField(verbose_name=_("Roman Script"), null=True, db_index=True, max_length=255)
-    si = models.CharField(verbose_name=_("Sinhala Script"), null=True, db_index=True, max_length=255)
-    hi = models.CharField(verbose_name=_("Hindi Script"), null=True, db_index=True, max_length=255)
-    lo = models.CharField(verbose_name=_("Lao Script"), null=True, db_index=True, max_length=255)
-    my = models.CharField(verbose_name=_("Myanmar Script"), null=True, db_index=True, max_length=255)
-    km = models.CharField(verbose_name=_("Khmar Script"), null=True, db_index=True, max_length=255)
+    ro = models.CharField(verbose_name=_("Roman Script"), null=True, blank=True, max_length=255)
+    si = models.CharField(verbose_name=_("Sinhala Script"), null=True, blank=True, max_length=255)
+    hi = models.CharField(verbose_name=_("Hindi Script"), null=True, blank=True, max_length=255)
+    lo = models.CharField(verbose_name=_("Lao Script"), null=True, blank=True, max_length=255)
+    my = models.CharField(verbose_name=_("Myanmar Script"), null=True, blank=True, max_length=255)
+    km = models.CharField(verbose_name=_("Khmar Script"), null=True, blank=True, max_length=255)
 
     class MPTTMeta:
         pass
@@ -214,10 +218,19 @@ class Structure(MPTTModel):
 
     def get_absolute_url(self):
         return reverse('structure_detail', kwargs={'pk': self.pk, })
+    
+    def get_descendants_include_self(self):
+        return self.get_descendants(include_self=True)
+    
+    def get_common_reference(self):
+        common_reference = CommonReference.objects.filter(structure=self).first()
+        return common_reference
 
     def __str__(self):
         return f"{self.title}"
-    
+
+
+
 class CommonReference(models.Model):
     structure = models.ForeignKey("Structure", verbose_name=_("Structure"), on_delete=models.CASCADE,)
     wordlist_version = models.ForeignKey("WordlistVersion", verbose_name=_("Wordlist Version"), on_delete=models.CASCADE)

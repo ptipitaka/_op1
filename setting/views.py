@@ -12,12 +12,13 @@ from braces.views import LoginRequiredMixin, SuperuserRequiredMixin
 from urllib.parse import urlencode
 
 from padanukkama.models import NamaSaddamala, Dhatu, \
-                    AkhyataSaddamala, VerbConjugation
+                    AkhyataSaddamala, VerbConjugation, NounDeclension
 from .tables import NamaSaddamalaTable, NamaSaddamalaFilter, \
                     DhatuTable, DhatuFilter, \
+                    NounDeclensionTable, NounDeclensionFilter, \
                     VerbConjugationTable, VerbConjugationFilter
 from .forms import  NamaSaddamalaForm, DhatuForm, AkhyataSaddamalaForm, \
-                    VerbConjugationForm
+                    VerbConjugationForm, NounDeclensionForm
 
 # ====================================================
 # NamaSaddamala
@@ -228,6 +229,113 @@ class DhatuDeleteView(LoginRequiredMixin, DeleteView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['dhatu'] = self.get_object()
+        context['url_name'] = resolve(self.request.path_info).url_name
+        return context
+
+
+
+# ====================================================
+# NounDeclension
+# ====================================================
+
+# NounDeclensionView
+# ---------
+class NounDeclensionView(LoginRequiredMixin, SingleTableMixin, FilterView):
+    model = NounDeclension
+    template_name = "setting/noun_declension.html"
+    context_object_name  = "noun_declension"
+    table_class = NounDeclensionTable
+    filterset_class = NounDeclensionFilter
+    
+    def get_context_data(self, **kwargs):
+        context = super(NounDeclensionView, self).get_context_data(**kwargs)
+        context["total_rec"] = '{:,}'.format(len(self.get_table().rows)) 
+        return context
+
+
+
+# NounDeclensionCreateView
+# ---------------
+class NounDeclensionCreateView(LoginRequiredMixin, CreateView):
+    model = NounDeclension
+    template_name = "setting/noun_declension_detail.html"
+    form_class = NounDeclensionForm
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['url_name'] = resolve(self.request.path_info).url_name
+        return context
+    
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        messages.success(self.request, _("Form saved successfully."))
+        return response
+
+    def form_invalid(self, form):
+        response = super().form_invalid(form)
+        error_message = _("Form contains errors. Please correct them.")
+        messages.error(self.request, error_message)
+        
+        # Print the detailed form errors
+        for field, errors in form.errors.items():
+            for error in errors:
+                print(f"Field '{field}': {error}")
+        return response
+
+    def get_success_url(self):
+        success_url = reverse_lazy('noun_declension')
+        query_params = self.request.GET.copy()  # Create a mutable copy of the request's GET parameters
+        success_url += '?' + urlencode(query_params)  # Add the query parameters to the success URL
+        return success_url
+
+
+
+# NounDeclensionUpdateView
+# ---------------
+class NounDeclensionUpdateView(LoginRequiredMixin, UpdateView):
+    model = NounDeclension
+    template_name = "setting/noun_declension_detail.html"
+    form_class = NounDeclensionForm
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['url_name'] = resolve(self.request.path_info).url_name
+        return context
+    
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        messages.success(self.request, _("Form saved successfully."))
+        return response
+
+    def form_invalid(self, form):
+        response = super().form_invalid(form)
+        error_message = _("Form contains errors. Please correct them.")
+        messages.error(self.request, error_message)
+        
+        # Print the detailed form errors
+        for field, errors in form.errors.items():
+            for error in errors:
+                print(f"Field '{field}': {error}")
+        return response
+
+    def get_success_url(self):
+        success_url = reverse_lazy('noun_declension')
+        query_params = self.request.GET.copy()  # Create a mutable copy of the request's GET parameters
+        success_url += '?' + urlencode(query_params)  # Add the query parameters to the success URL
+        return success_url
+
+
+
+# NounDeclensionDeleteView
+# ---------------
+class NounDeclensionDeleteView(LoginRequiredMixin, DeleteView):
+    model = NounDeclension
+    template_name = "setting/noun_declension_detail.html"
+    success_url = reverse_lazy('noun_declension')
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['noun_declension'] = self.get_object()
         context['url_name'] = resolve(self.request.path_info).url_name
         return context
 

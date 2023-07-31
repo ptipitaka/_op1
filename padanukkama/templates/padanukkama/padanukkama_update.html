@@ -67,16 +67,22 @@
             <div class="w3-bar w3-center">
                 <a href="{% url 'padanukkama_delete' object.pk %}"
                     class="w3-button w3-white w3-border w3-round-xlarge w3-hover-red" 
-                    style="width:150px">
+                    style="width:100px">
                     {% trans 'Delete' %}
+                </a>
+                <a href="{% url 'literal_translation' %}?padanukkama={{ object.pk }}"
+                    class="w3-button w3-white w3-border w3-round-xlarge w3-hover-orange" 
+                    style="width:100px">
+                    {% trans 'Translation' %}
                 </a>
                 <a href="{% url 'padanukkama_pada' object.pk %}"
                     class="w3-button w3-white w3-border w3-round-xlarge w3-hover-blue" 
-                    style="width:150px">
-                    {% trans 'Translation' %}
+                    style="width:100px">
+                    {% trans 'Pada' %}
                 </a>
                 <button
-                    type="submit" style="width:150px"
+                    type="submit"
+                    style="width:100px"
                     class="w3-button w3-dark-grey w3-border w3-round-xlarge w3-hover-brown">
                     {% trans "Save" %}
                 </button>

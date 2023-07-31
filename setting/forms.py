@@ -7,7 +7,7 @@ from django.utils.safestring import mark_safe
 from django_select2.forms import *
 
 from padanukkama.models import NamaSaddamala, Dhatu, Paccaya, \
-                    AkhyataSaddamala, VerbConjugation
+                    AkhyataSaddamala, VerbConjugation, NounDeclension
 
 
 
@@ -58,6 +58,22 @@ class DhatuForm(forms.ModelForm):
     class Meta:
         model = Dhatu
         exclude = ['title_order', 'popularity']
+
+
+
+# -----------------------------------------------------
+# NounDeclensionForm
+# -----------------------------------------------------
+class NounDeclensionForm(forms.ModelForm):
+    # Define the widget for ekavacana field
+    ekavacana = forms.CharField(widget=forms.TextInput(attrs={'style': 'word-spacing: 10px;'}))
+    # Define the widget for bahuvachana field
+    bahuvachana = forms.CharField(widget=forms.TextInput(attrs={'style': 'word-spacing: 10px;'}))
+    class Meta:
+        # Specify the model to be used
+        model = NounDeclension
+        # Include all fields from the model
+        fields = '__all__'
 
 
 
