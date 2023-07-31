@@ -5,13 +5,17 @@
 <script src="{% static 'js/chartjs-plugin-labels.min.js' %}"></script>
 
 <div>
-    <canvas id="translation_process"></canvas>
+    <span id="msg_{{ padanukkama_id }}"></span>
+    <canvas id="translation_process_{{ padanukkama_id }}"></canvas>
 </div>
 
 <script>
     $(document).ready(function(){
-        const ctx = document.getElementById('translation_process');
+        {% if not sadda_by_state %}
+            $('#msg_{{ padanukkama_id }}').text('{% trans "Not started yet" %}');
+        {% endif %}
 
+        const ctx = document.getElementById('translation_process_{{ padanukkama_id }}');
         var xValues = [{% for count in sadda_by_state %}"{{ count.state }}",{% endfor %}];
         var yValues = [{% for count in sadda_by_state %}{{ count.count }},{% endfor %}];
 
@@ -29,7 +33,7 @@
             data: {
                 labels: xValues,
                 datasets: [{
-                    backgroundColor: barColors,
+                    backgroundColor: colors,
                     data: yValues
                 }]
             },
