@@ -5,7 +5,7 @@
 <script src="{% static 'js/hex-to-rgb.js' %}"></script>
 
 <div>
-    <canvas id="milestone_{{ padanukkama_id }}"></canvas>
+    <canvas id="milestone"></canvas>
 </div>
 
 <script>
@@ -15,7 +15,7 @@
         var hexColor = '#ff0000';
         var rgbColor = hexToRgb(hexColor);
 
-        const ctx = document.getElementById('milestone_{{ padanukkama_id }}');
+        const ctx = document.getElementById('milestone');
 
         var xValues = ["{% trans 'On Process' %}", "{% trans 'Waiting' %}"];
         var yValues = [{{ onprocess }}, {{ waiting }}];

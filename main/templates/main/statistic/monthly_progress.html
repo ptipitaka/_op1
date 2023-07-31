@@ -5,7 +5,7 @@
 <script src="{% static 'js/chartjs-plugin-labels.min.js' %}"></script>
 
 <div>
-    <canvas id="monthly_progress_{{ padanukkama_id }}" style="height: 400px;"></canvas>
+    <canvas id="monthly_progress" style="height: 400px;"></canvas>
 </div>
 
 <script>
@@ -32,12 +32,16 @@
 
     // Generate a random color
     function getRandomColor() {
-        var colors = ['#a4c400', '#00aba9', '#3e65ff', '#6a00ff', '#f472d0', '#a20025', '#fa680', '#e3c800', '#825a2c', '#6d8764', '#647687', '#76608a', '#87794e', '#a0522d'];
-        return colors;
+        var letters = '0123456789ABCDEF';
+        var color = '#';
+        for (var i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
     }
 
     // Create the line chart using Chart.js
-    var ctx = document.getElementById('monthly_progress_{{ padanukkama_id }}').getContext('2d');
+    var ctx = document.getElementById('monthly_progress').getContext('2d');
     new Chart(ctx, {
         type: 'line',
         data: {

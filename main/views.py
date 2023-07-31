@@ -18,7 +18,7 @@ class HomeView(TemplateView):
         context["app_name"] = _("OPENPĀḶI")
         context["request"] = self.request
         return context
-
+    
 
 
 # ---------------

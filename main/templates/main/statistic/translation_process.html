@@ -5,28 +5,31 @@
 <script src="{% static 'js/chartjs-plugin-labels.min.js' %}"></script>
 
 <div>
-    <span id="msg_{{ padanukkama_id }}"></span>
-    <canvas id="translation_process_{{ padanukkama_id }}"></canvas>
+    <canvas id="translation_process"></canvas>
 </div>
 
 <script>
     $(document).ready(function(){
-        {% if not sadda_by_state %}
-            $('#msg_{{ padanukkama_id }}').text('{% trans "Not started yet" %}');
-        {% endif %}
-        
-        const ctx = document.getElementById('translation_process_{{ padanukkama_id }}');
+        const ctx = document.getElementById('translation_process');
+
         var xValues = [{% for count in sadda_by_state %}"{{ count.state }}",{% endfor %}];
         var yValues = [{% for count in sadda_by_state %}{{ count.count }},{% endfor %}];
 
+        var barColors = [];
         var colors = ['#a4c400', '#00aba9', '#3e65ff', '#6a00ff', '#f472d0', '#a20025', '#fa680', '#e3c800', '#825a2c', '#6d8764', '#647687', '#76608a', '#87794e', '#a0522d'];
+
+        {% for count in sadda_by_state %}
+            var randomIndex = Math.floor(Math.random() * colors.length);
+            var randomColor = colors[randomIndex];
+            barColors.push(randomColor);
+        {% endfor %}
 
         new Chart(ctx, {
             type: "pie",
             data: {
                 labels: xValues,
                 datasets: [{
-                    backgroundColor: colors,
+                    backgroundColor: barColors,
                     data: yValues
                 }]
             },
