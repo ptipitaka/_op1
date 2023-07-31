@@ -1,0 +1,36 @@
+{% load mptt_tags i18n %}
+
+{% load translate_tags %}
+
+<ul>
+    {% recursetree pada.get_current_with_descendants %}
+        <li>
+            {{ node.pada }}
+            {% if not pada.get_sandhi %}
+                <small>({{ pada.sadda.get_sadda_type_display }})</small>
+                <div>{% nama_translation pada.id %}</div>
+            {% else %}
+                <small>({{ pada.get_sandhi }})</small>
+            {% endif %}
+            
+            {% if not node.is_leaf_node %}
+                <ul>
+                    {% for child in node.get_children %}
+                        <li>
+                            {% with child_object=child %}
+                                <!-- Access child object here using 'child_object' variable -->
+                                {{ child.pada }}
+                                <!-- To get child object details -->
+                                (<small>{{ child_object.sadda.get_sadda_type_display }}</small>)
+                                <div>{% nama_translation child.id %}</div>
+                            {% endwith %}
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </li>
+    {% endrecursetree %}
+</ul>
+
+
+

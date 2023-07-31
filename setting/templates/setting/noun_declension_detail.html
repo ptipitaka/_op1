@@ -1,0 +1,86 @@
+{% extends 'main/base.html' %}
+
+{% load widget_tweaks i18n static %}
+
+{% block extra_css %}
+    <style>
+        .responsive {
+            width: 100%;
+            height: auto;
+        }
+        .hidden {
+            visibility: hidden;
+            height: 10px;
+        }
+        .codex-editor__redactor {
+            padding-bottom: 10px !important;
+        }
+    </style>
+{% endblock %}
+
+{% block apptitle %}
+    {% include 'setting/include/title.html' %} : {% trans 'Noun Declension' %}
+    {% if url_name == 'noun_declension_create' %}・{% trans 'Create' %}
+    {% elif url_name == 'noun_declension_update' %}・{% trans 'Update' %}
+    {% elif url_name == 'noun_declension_delete' %}・<span class="w3-text-red">{% trans 'Delete' %}</span>
+    {% endif %}
+{% endblock %}
+
+{% block apptitle_option %}
+    <a href="{% url 'noun_declension' %}?{{ request.GET.urlencode }}"
+        class="w3-button w3-round-xlarge w3-hover-amber w3-display-right">
+        {% trans "Back" %}
+    </a>
+{% endblock %}
+
+{% block body %}
+    <!-- case delete -->
+    {% if url_name == 'noun_declension_delete' %}
+        <div class="w3-container w3-padding"
+             style="width:60%; margin:auto;">
+            <div class="w3-row">
+                <h4>{% trans 'Delete Noun Declension' %}</h4>
+                <p>{% trans 'Are you sure you want to delete the following Noun Declension?' %}</p>
+                <p><strong>{% trans 'Code' %}:</strong> {{ noun_declension.code }}</p>
+                <p><strong>{% trans 'Title' %}:</strong> {{ noun_declension.title }}</p>
+                <form method="post" action="{% url 'dhatu_delete' dhatu.pk %}">
+                    {% csrf_token %}
+                    <input type="submit" value="Confirm Delete" class="w3-button w3-round-xlarge w3-white w3-hover-red w3-border">
+                </form>
+            </div>
+        </div>
+    <!-- case add/update -->
+    {% else %}
+        <form action="" method="post"
+            class="w3-container w3-padding"
+            style="width:60%; margin:auto;">
+            {% csrf_token %}
+            {{ form.media }}
+
+            {% for field in form %}
+                <p>
+                    <label>{% trans field.label_tag %}</label>
+                    {{ field|add_class:"w3-input" }}
+                </p>
+            {% endfor %}
+
+            <div class="w3-center">
+                <div class="w3-bar">
+                    {% if url_name == 'noun_declension_update' %}
+                        <a href="{% url 'noun_declension_delete' object.pk %}"
+                            class="w3-button w3-round-xlarge w3-white w3-border w3-hover-red w3-margin-right" 
+                            style="width:150px">
+                            {% trans 'Delete' %}
+                        </a>
+                    {% endif %}
+                    <button
+                        type="submit" style="width:150px"
+                        class="w3-button w3-dark-grey w3-border w3-round-xlarge w3-hover-brown">
+                        {% trans "Save" %}
+                    </button>
+                </div>
+            </div>
+        </form>
+    {% endif %}
+{% endblock %}
+

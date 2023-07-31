@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # third party libraries
     'django_editorjs',
+    'django_htmx',
     'django_mptt_admin',
     'django_tables2',
     'django_select2',
@@ -72,6 +73,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.locale.LocaleMiddleware',
+    'django_htmx.middleware.HtmxMiddleware',
     'simple_history.middleware.HistoryRequestMiddleware',
 ]
 
