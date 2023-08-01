@@ -1,7 +1,6 @@
 from django.db import models
 from django.db.models import Q
 from django.contrib.auth.models import User
-from django.contrib.auth import get_user_model
 from django.core.validators import MinValueValidator
 from django.urls import reverse
 from django.utils.text import slugify
@@ -11,8 +10,10 @@ from mptt.models import MPTTModel, TreeForeignKey
 
 from utils.pali_char import *
 
-# Create your models here.
 
+# ---------------
+# Script
+# ---------------
 class Script(models.Model):
     code = models.CharField(max_length=20, db_index=True, verbose_name=_("Code"))
     description = models.CharField(max_length=80, blank=True, verbose_name=_("Description"))
@@ -28,7 +29,9 @@ class Script(models.Model):
         super(Script, self).save(*args, **kwargs)
 
 
-
+# ---------------
+# Edition
+# ---------------
 class Edition(models.Model):
     code = models.CharField(max_length=5, db_index=True, verbose_name=_("Code"))
     title = models.CharField(max_length=80, db_index=True, verbose_name=_("Title"))
@@ -41,7 +44,9 @@ class Edition(models.Model):
         return f"{self.title} ({self.code})"
 
 
-
+# ---------------
+# Volume
+# ---------------
 class Volume(models.Model):
     edition = models.ForeignKey("Edition", verbose_name=_("Edition"), on_delete=models.CASCADE)
     volume_number = models.IntegerField(db_index=True, verbose_name=_("Number"))
@@ -63,7 +68,9 @@ class Volume(models.Model):
         return f"{_('Volume')}# {(str(self.volume_number).zfill(3))}"
     
 
-
+# ---------------
+# Page
+# ---------------
 class Page(models.Model):
     edition = models.ForeignKey("Edition", on_delete=models.CASCADE, verbose_name=_("Edition"),)
     volume = ChainedForeignKey(
@@ -111,7 +118,9 @@ class Page(models.Model):
         return image_slide
 
 
-
+# ---------------
+# WordlistVersion
+# ---------------
 class WordlistVersion(models.Model):
     version = models.IntegerField(default=0, verbose_name=_("Version"))
     edition = models.ForeignKey("Edition", on_delete=models.CASCADE, verbose_name=_("Edition"))
@@ -125,7 +134,9 @@ class WordlistVersion(models.Model):
         return {self.pk: f"{self.edition.code} v.{self.version}"}
 
 
-
+# ---------------
+# WordList
+# ---------------
 class WordList(models.Model):
     code = models.SlugField(default="", max_length=20, verbose_name=_("Code"))
     word = models.CharField(default="", max_length=150, verbose_name=_("Word"))
@@ -174,7 +185,9 @@ class WordList(models.Model):
     #     super().save(*args, **kwargs)
 
     
-
+# ---------------
+# TableOfContent
+# ---------------
 class TableOfContent(models.Model):
     code = models.CharField(max_length=20, unique=True, db_index=True, verbose_name=_("Code"))
     wordlist_version = models.ManyToManyField(WordlistVersion,
@@ -190,16 +203,18 @@ class TableOfContent(models.Model):
         return self.code
 
 
-
+# ---------------
+# Structure
+# ---------------
 class Structure(MPTTModel):
     table_of_content = models.ForeignKey(TableOfContent, on_delete=models.CASCADE, verbose_name=_("Table of contents"),)
     parent = TreeForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='children')
     code = models.CharField(max_length=20, null=True, blank=True, verbose_name=_("Code"))
     title_number = models.CharField(max_length=20, null=True, blank=True, verbose_name=_("Number")) 
     title = models.CharField(max_length=255, db_index=True, verbose_name=_("Title"))
+    ro = models.CharField(max_length=255, null=True, blank=True, verbose_name=_("Roman Script"))
     additional_title = models.CharField(max_length=255, blank=True, null=True, verbose_name=_("Additional Title"))
     description = models.TextField(max_length=255, blank=True, null=True, verbose_name=_("Description") )
-    ro = models.CharField(max_length=255, null=True, blank=True, verbose_name=_("Roman Script"))
 
     class MPTTMeta:
         pass
@@ -224,10 +239,17 @@ class Structure(MPTTModel):
         return common_reference
 
     def __str__(self):
-        return f"{self.title}"
+        trimmed_title = self.title.strip() if self.title else ""
+        trimmed_title_number = self.title_number.strip() if self.title_number else ""
+        trimmed_additional_title = self.additional_title.strip() if self.additional_title else ""
+        trimmed_ro = f"({self.ro.strip().capitalize()})" if (self.ro and self.ro != '-') else ""
+
+        return f"{trimmed_title_number} {trimmed_title} {trimmed_ro} {trimmed_additional_title}"
 
 
-
+# ---------------
+# CommonReference
+# ---------------
 class CommonReference(models.Model):
     structure = models.ForeignKey("Structure", on_delete=models.CASCADE, verbose_name=_("Structure"))
     wordlist_version = models.ForeignKey("WordlistVersion", on_delete=models.CASCADE, verbose_name=_("Wordlist Version"))
