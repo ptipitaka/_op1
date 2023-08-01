@@ -93,9 +93,14 @@ class TocTable(tables.Table):
 
 class StructureTable(tables.Table):
     title = tables.Column(attrs={'td': {
-        'style': lambda value, record: 'padding-left: %spx' % (50 + (record.level * 50)),
+        'style': lambda value, record: 'padding-left: %spx' % (30 + (record.level * 30)),
         } 
     })
+
+    def render_title(self, value, record):
+        # Customize how the title is displayed along with other fields
+        return f"{(record.title_number or '')} {record.title}"
+
 
     action = tables.LinkColumn(
         viewname='common_reference_subform',

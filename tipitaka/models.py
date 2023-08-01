@@ -220,13 +220,19 @@ class Structure(MPTTModel):
         pass
 
     def breadcrumb(self):
+        titles = []
         ancestors = self.get_ancestors(ascending=True)
-        return ' / '.join([str(ancestor) for ancestor in ancestors.reverse()][1:])
-
+        for ancestor in ancestors.reverse()[1:]:
+            titles.append(ancestor.title.strip())
+        return ' / '.join(titles)
+    
     def breadcrumb_option(self):
+        titles = []
         ancestors = self.get_ancestors(ascending=True)
-        bc = ' / '.join([str(ancestor) for ancestor in ancestors.reverse()]) 
-        return bc + ' / ' + self.title  
+        for ancestor in ancestors.reverse():
+            titles.append(ancestor.title.strip())
+        titles.append(self.title.strip())
+        return ' / '.join(titles)
 
     def get_absolute_url(self):
         return reverse('structure_detail', kwargs={'pk': self.pk, })
