@@ -70,8 +70,12 @@ class CheckboxMultipleSelect(forms.CheckboxSelectMultiple):
 # -----------------------------------------------------
 # PadanukkamaUpdateForm
 # -----------------------------------------------------
+class StructureTitleOnlyTreeNodeMultipleChoiceField(TreeNodeMultipleChoiceField):
+    def label_from_instance(self, obj):
+        return f"{obj.level * '--'} {obj.title_number or ''} {obj.title}"
+    
 class PadanukkamaUpdateForm(forms.ModelForm):
-    structure = TreeNodeMultipleChoiceField(
+    structure = StructureTitleOnlyTreeNodeMultipleChoiceField(
         queryset=Structure.objects.none(),
         widget=CheckboxMultipleSelect(
         attrs={'class': 'structure-checkbox-select'})
