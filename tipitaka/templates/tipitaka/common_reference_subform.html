@@ -36,7 +36,7 @@
                 {% recursetree structure_tree %}
                     <li>
                         <a href="{% url 'common_reference_subform' slug=node.table_of_content.slug structure_id=node.id %}" style="text-decoration: none">
-                            {{ node.title }}
+                            {{ node.title_number|default:"" }} {{ node.title }}
                         </a>
                     </li>
                 {% endrecursetree %}
