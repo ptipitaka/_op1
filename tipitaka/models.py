@@ -33,7 +33,7 @@ class Edition(models.Model):
     code = models.CharField(max_length=5, db_index=True, verbose_name=_("Code"))
     title = models.CharField(max_length=80, db_index=True, verbose_name=_("Title"))
     description = models.TextField(null=True, verbose_name=_("Description"))
-    script = models.ForeignKey("Script", verbose_name=_("Script"), on_delete=models.SET_NULL, null=True)
+    script = models.ForeignKey("Script", on_delete=models.SET_NULL, null=True, verbose_name=_("Script"))
     digitization = models.BooleanField(default=False, verbose_name=_("Digitization"))
     version = models.CharField(max_length=10, verbose_name=_("Version"), blank=True)
 
@@ -68,16 +68,16 @@ class Page(models.Model):
     edition = models.ForeignKey("Edition", on_delete=models.CASCADE, verbose_name=_("Edition"),)
     volume = ChainedForeignKey(
         Volume,
+        on_delete = models.CASCADE,
         chained_field = "edition",
         chained_model_field = "edition",
         show_all = False,
         auto_choose = True,
         sort = True,
-        verbose_name = _("Volume"),
-        on_delete = models.CASCADE)
+        verbose_name = _("Volume"))
     page_number = models.IntegerField(db_index=True, verbose_name=_("Page Number"))
     content = models.TextField(null=True, verbose_name=_("Content"))
-    proofread = models.BooleanField(verbose_name=_("Proof-read"), default=False)
+    proofread = models.BooleanField(default=False, verbose_name=_("Proof-read"))
     
     class Meta:
         ordering = ['page_number']
@@ -135,35 +135,35 @@ class WordList(models.Model):
     line_number = models.IntegerField(default=0, null=True, verbose_name=_("Line no"))
     edition = models.ForeignKey(
         "Edition",
-        verbose_name=_("Edition"),
-        on_delete=models.CASCADE)
+        on_delete=models.CASCADE,
+        verbose_name=_("Edition"))
     wordlist_version = ChainedForeignKey(
         WordlistVersion,
+        on_delete = models.CASCADE,
         chained_field = "edition",
         chained_model_field = "edition",
         show_all = False,
         auto_choose = True,
         sort = True,
-        verbose_name = _("Wordlist version"),
-        on_delete = models.CASCADE)
+        verbose_name = _("Wordlist version"))
     volume = ChainedForeignKey(
         Volume,
+        on_delete = models.CASCADE,
         chained_field = "edition",
         chained_model_field = "edition",
         show_all = False,
         auto_choose = True,
         sort = True,
-        verbose_name = _("Volume"),
-        on_delete = models.CASCADE)
+        verbose_name = _("Volume"))
     page = ChainedForeignKey(
         Page,
+        on_delete = models.CASCADE,
         chained_field = "volume",
         chained_model_field = "volume",
         show_all = False,
         auto_choose = True,
         sort = True,
-        verbose_name = _("Page"),
-        on_delete = models.CASCADE)
+        verbose_name = _("Page"))
     
     def __str__(self):
         return f"{self.code} {self.word}"
@@ -229,11 +229,11 @@ class Structure(MPTTModel):
 
 
 class CommonReference(models.Model):
-    structure = models.ForeignKey("Structure", verbose_name=_("Structure"), on_delete=models.CASCADE,)
-    wordlist_version = models.ForeignKey("WordlistVersion", verbose_name=_("Wordlist Version"), on_delete=models.CASCADE)
-    from_position = models.CharField(verbose_name=_("From Position"), null=True,  max_length=20)
-    to_position = models.CharField(verbose_name=_("To Position"), null=True,  max_length=20)
-    description = models.CharField(verbose_name=_("Description"), null=True,  max_length=255)
+    structure = models.ForeignKey("Structure", on_delete=models.CASCADE, verbose_name=_("Structure"))
+    wordlist_version = models.ForeignKey("WordlistVersion", on_delete=models.CASCADE, verbose_name=_("Wordlist Version"))
+    from_position = models.CharField( null=True,  max_length=20, verbose_name=_("From Position"))
+    to_position = models.CharField(null=True,  max_length=20, verbose_name=_("To Position"))
+    description = models.CharField(null=True,  max_length=255, verbose_name=_("Description"))
 
     def from_wordlist_position(self):
         wordlist = WordList.objects.get(
