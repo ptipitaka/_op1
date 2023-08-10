@@ -1,0 +1,33 @@
+<h4>{{ structure.title }}</h4>
+<div class="w3-small">{{ structure.breadcrumb }}</div>
+{% with structure.get_common_reference as common_reference %}
+    {% if common_reference %}
+        <div class="w3-small">{{ common_reference.wordlist_version }} : {{ common_reference.from_position }} - {{ common_reference.to_position }}</div>
+        <div class="w3-section">
+            <!-- loop words -->
+            {% for item in words_list_with_breaks %}
+            {% if item.break %}
+                <br>
+                <br>
+            {% else %}
+                <button
+                    id="{{ item.word.id }}"
+                    class="pada-btn w3-btn w3-small w3-tooltip"
+                    style="border:none; background:none; cursor:pointer"
+                    onclick="handlePadaButtonClick(this)"
+                    hx-get="{% url "htmx_translation_pada" item.word.id %}"
+                    hx-target="#htmx-translation-form"
+                >
+                    {{ item.word.word }}
+                    <span
+                        style="position:absolute;right:0;bottom:18px"
+                        class="w3-text w3-tag w3-tiny w3-round-xlarge w3-brown">
+                        {{ item.word.sentence }}.{{ item.word.word_position }}
+                    </span>
+                </button>
+            {% endif %}
+        {% endfor %}
+        <!-- end loop word -->
+        </div>
+    {% endif %}
+{% endwith %}

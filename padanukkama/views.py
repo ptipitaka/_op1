@@ -19,16 +19,17 @@ from mptt.templatetags.mptt_tags import cache_tree_children
 from simple_history.utils import get_history_manager_for_model
 from urllib.parse import urlencode
 
-from .models import NamaSaddamala, Padanukkama, Pada, Sadda
+from .models import NamaSaddamala, Padanukkama, Pada, Sadda, VerbConjugation
 
 from abidan.models import Word, WordLookup
+
+from tipitaka.models import Page
 
 from .tables import PadanukkamaTable, PadanukkamaFilter, \
                     PadaTable, PadaFilter, \
                     PadaParentChildTable, \
                     SaddaTable, SaddaFilter, \
-                    LiteralTranslationTable, LiteralTranslationFilter, \
-                    StructureTable
+                    LiteralTranslationTable, LiteralTranslationFilter
 
 from .forms import  PadanukkamaCreateForm, PadanukkamaUpdateForm, \
                     AddChildPadaForm, SaddaForm, ExportSaddaForm, \
@@ -454,7 +455,6 @@ class PadaDeclensionView(LoginRequiredMixin, View):
             pada.sadda = sadda
             pada.save()
 
-
             # Find all related Pada
             if sadda.sadda_type == 'Nama':
                 template_ids = list(sadda.namasaddamala.all())
@@ -771,14 +771,61 @@ class LiteralTranslationCreateView(SuperuserRequiredMixin, CreateView):
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
         padanukkama_id = self.kwargs.get('padanukkama_id')
-
         # Fetch the Padanukkama instance using padanukkama_id
         padanukkama_instance = get_object_or_404(Padanukkama, id=padanukkama_id)
-
         # Add the 'padanukkama_instance' to the form kwargs
         kwargs['padanukkama_instance'] = padanukkama_instance
-
         return kwargs
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        padanukkama_id = self.kwargs.get('padanukkama_id')
+        padanukkama = get_object_or_404(Padanukkama, id=padanukkama_id)
+        selected_structures = padanukkama.structure.all()
+        context['structures'] = selected_structures
+        return context
+
+    def form_valid(self, form):
+        # Call the parent class's form_valid method first
+        super().form_valid(form)
+
+        # Run your additional function here
+        self.run_additional_function()
+
+        return HttpResponseRedirect(self.get_success_url())
+
+    def run_additional_function(self):
+        padanukkama = self.object.padanukkama
+        # Fetch only structures associated with this padanukkama instance
+        selected_structures = padanukkama.structure.all()
+        for selected_structure in selected_structures:
+            selected_structure_with_descendants = selected_structure.get_descendants(include_self=True)
+            for descendant in selected_structure_with_descendants:
+                if not descendant.get_descendants().exists():
+                    common_reference = CommonReference.objects.filter(
+                        Q(structure=descendant) & Q(wordlist_version=self.object.wordlist_version)).first()
+                    if common_reference:
+                        # Fetch WordList instances based on the provided from_position and to_position
+                        words_list = WordList.objects.filter(
+                            Q(code__gte=common_reference.from_position, code__lte=common_reference.to_position),
+                            wordlist_version=common_reference.wordlist_version
+                        )
+                        running_position = 1
+                        # Iterate over the words_list and create TranslatedWord instances
+                        for wordlist in words_list:
+                            pada = Pada.objects.filter(
+                                Q(padanukkama=padanukkama) & Q(pada=wordlist.word)).first()
+                            TranslatedWord.objects.create(
+                                literal_translation=self.object,
+                                structure=descendant,
+                                wordlist=wordlist,
+                                word=wordlist.word,
+                                pada=pada,
+                                sentence=1,
+                                word_position=running_position,
+                                word_order_by_translation=running_position
+                            )
+                            running_position += 1
 
 
 
@@ -842,65 +889,45 @@ class LiteralTranslationTranslateView(LoginRequiredMixin, DetailView):
         # Check if padanukkama exists and fetch structures associated with it
         padanukkama = self.object.padanukkama
         context['padanukkama_id'] = padanukkama.id
-        if padanukkama:
-            selected_structures = padanukkama.structure.all()
-        else:
-            selected_structures = []
 
         # Fetch only structures associated with this padanukkama instance
         selected_structures = padanukkama.structure.all()
         context['structures'] = selected_structures
 
-        # Fetch CommonReference objects for all selected structures
-        common_references = CommonReference.objects.filter(structure__in=selected_structures)
+        # Get the 'structure_id' query parameter from the request's GET dictionary
+        structure_id = self.request.GET.get('structure_id')
+        words_list = []
+        words_list_with_breaks = []
+        previous_sentence = None
 
-        context['common_references'] = common_references
+        if structure_id:
+            structure = get_object_or_404(Structure, id=structure_id)
+            context['structure'] = structure
 
-        # Get the 'toc_id' query parameter from the request's GET dictionary
-        toc_id = self.request.GET.get('toc_id')
-        # Retrieve the structure using get_object_or_404
-        if toc_id:
-            try:
-                # Retrieve the structure using get_object_or_404
-                selected_structure = get_object_or_404(Structure, id=toc_id)
-            except Structure.DoesNotExist:
-                selected_structure = None
-        else:
-            selected_structure = None
-        
-        context['selected_structure'] = selected_structure
+            words_list = TranslatedWord.objects.filter(
+                Q(literal_translation=self.object.pk) & Q(structure=structure_id)
+            ).order_by('sentence', 'word_position')
+ 
+        for word in words_list:
+            if previous_sentence is not None and word.sentence != previous_sentence:
+                words_list_with_breaks.append({'break': True})
+            words_list_with_breaks.append({'word': word})
+            previous_sentence = word.sentence
 
-        # Get the wordlist_version from the selected_structure
-        if selected_structure:
-            common_reference = CommonReference.objects.filter(
-                Q(structure=selected_structure) & Q(wordlist_version=self.object.wordlist_version)).first()
+        context['words_list_with_breaks'] = words_list_with_breaks
 
-            if common_reference:
-                # Fetch WordList instances based on the provided from_position and to_position
-                from_position = common_reference.from_position
-                to_position = common_reference.to_position
-                wordlist_version = common_reference.wordlist_version
 
-                words_list = WordList.objects.filter(
-                    Q(code__gte=from_position, code__lte=to_position),
-                    wordlist_version=wordlist_version
-                )
-
-                # Get the words from words_list
-                words = words_list.values_list('word', flat=True)
-
-                # Fetch the Pada instances related to the current padanukkama and have pada matching any word in words
-                padas_list = Pada.objects.filter(padanukkama=padanukkama, pada__in=words)
-
-            else:
-                words_list = []
-                padas_list = []
-        else:
-            words_list = []
-            padas_list = []
-
-        context['words_list'] = words_list
-        context['padas_list'] = padas_list
-
+        # Get the image URLs
+        page_image_urls = []
+        visited_pages = set()
+        # Loop through the words_list and get the related Page objects
+        for word in words_list:
+            page = word.wordlist.page
+            if page and page not in visited_pages:
+                # Call the image_ref method on each Page object to get the image URL
+                page_image_url = page.image_ref()
+                page_image_urls.append(page_image_url)
+                visited_pages.add(page)
+        context['page_image_urls'] = sorted(page_image_urls)
 
         return context

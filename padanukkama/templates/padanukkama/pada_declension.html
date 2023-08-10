@@ -52,7 +52,10 @@
                         {% for field in form %}
                             <p id="fieldWrapper_{{ field.id_for_label }}">
                                 <label>{% trans field.label_tag %}</label>
-                                {{ field|add_class:"w3-input" }}
+                                {{ field|add_class:"w3-input w3-border" }}
+                                {% if field.help_text %}
+                                    <small class="form-text text-muted">{{ field.help_text }}</small>
+                                {% endif %}
                             </p>
                         {% endfor %}
                         <!-- preview button-->

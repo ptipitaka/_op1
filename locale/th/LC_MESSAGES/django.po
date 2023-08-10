@@ -2985,7 +2985,7 @@ msgstr "แปล"
 
 #: .\padanukkama\workflows.py:8
 msgid "Reviewed"
-msgstr "แสดง"
+msgstr "ตรวจทาน"
 
 #: .\padanukkama\workflows.py:9
 msgid "Approved"

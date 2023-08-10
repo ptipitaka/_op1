@@ -1,7 +1,8 @@
 from django.db import models
 from django.db.models import Max, Q
-from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
+from django.contrib.auth.models import User
+from django.contrib.postgres.fields import ArrayField
 from django.utils.translation import gettext_lazy as _
 
 from django_editorjs import EditorJsField
@@ -9,6 +10,8 @@ from django_xworkflows import models as xwf_models
 from mptt.models import MPTTModel, TreeForeignKey
 from simple_history.models import HistoricalRecords
 from smart_selects.db_fields import ChainedManyToManyField
+from taggit.managers import TaggableManager
+from taggit_labels.widgets import LabelWidget
 
 from utils.pali_char import *
 
@@ -348,6 +351,13 @@ class Sadda(xwf_models.WorkflowEnabled, models.Model):
         blank=True,
         default="",
         verbose_name=_("Construction"))
+    meaning = models.TextField(
+        null=True,
+        blank=True,
+        default="",
+        help_text=_("A comma-seperated list of meanings"),
+        verbose_name=_("Meaning"),
+    )
     description = EditorJsField(
         editorjs_config={
             "tools":{
@@ -439,12 +449,27 @@ class Pada(MPTTModel):
     def __str__(self):
         return f"{self.pada}"
     
+    def has_sadda(self):
+        return hasattr(self, 'sadda') and self.sadda is not None
+
+    def has_parent(self):
+        return hasattr(self, 'parent') and self.parent is not None
+
     def has_descendants(self):
         return self.get_descendant_count()
 
     def get_current_with_descendants(self):
         descendants = self.get_descendants(include_self=True)
-        return Pada.objects.filter(Q(pk=self.pk) | Q(pk__in=descendants))
+        return Pada.objects.filter(Q(pk=self.pk) | Q(pk__in=descendants)).order_by('pk')
+    
+    def is_descendant(self):
+        return True if self.parent else False
+    
+    def get_parent(self):
+        return self.parent
+
+    def get_only_descendants(self):
+        return Pada.objects.filter(parent=self.id).order_by('pk')
     
     def get_parent_and_siblings(self):
         if self.parent:
@@ -545,32 +570,46 @@ class TranslatedWord(models.Model):
         on_delete=models.CASCADE,
         related_name='translated_word',
         verbose_name=_("Literal Translation"))
+    structure = models.ForeignKey(
+        Structure,
+        on_delete=models.PROTECT,
+        verbose_name=_("Structure"))
     wordlist = models.ForeignKey(
         WordList,
-        on_delete=models.CASCADE,
+        on_delete=models.PROTECT,
         related_name='translated_words',
         verbose_name=_("Word List"))
-    pada = models.ManyToManyField(
+    word = models.CharField(
+        default="",
+        max_length=150,
+        verbose_name=_("Word"))
+    pada = models.ForeignKey(
         Pada,
+        on_delete=models.PROTECT,
         verbose_name=_("Pada"))
-    sadda = models.ManyToManyField(
-        Sadda,
-        verbose_name=_("Sadda"))
-    translate = models.CharField(
+    translation = models.CharField(
         max_length=255,
-        verbose_name=_("Translate"))
-    paragraph = models.IntegerField(
-        default=1,
-        verbose_name=_("Paragraph"))
+        default="",
+        null=True,
+        blank=True,
+        verbose_name=_("Translation"))
+    description = models.TextField(
+        default="",
+        null=True,
+        blank=True,
+        verbose_name=_("Description"))
     sentence = models.IntegerField(
         default=1,
         verbose_name=_("Sentence"))
-    word_seq = models.IntegerField(
+    word_position = models.IntegerField(
         default=1,
         verbose_name=_("Word Sequence"))
+    word_order_by_translation = models.IntegerField(
+        default=1,
+        verbose_name=_("Word Order by Translation"))
     
     def __str__(self):
-        return f"{self.translated_word}"
+        return f"{self.word}"
 
 
 # -----------------------------------------------------

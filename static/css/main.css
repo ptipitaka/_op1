@@ -141,3 +141,11 @@
     transform: scale(1.5);
     margin-right: 10px;
 }
+
+.rotate-45 {
+    transform: rotate(45deg);
+}
+
+.rotate-90 {
+    transform: rotate(90deg);
+}

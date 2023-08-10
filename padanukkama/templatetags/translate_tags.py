@@ -26,6 +26,15 @@ def parse_editorjs(value):
         pass
     return []
 
+
+# ---------------------
+# pages_preview
+# ---------------------
+@register.inclusion_tag('padanukkama/templatetags/pages_preview.html', takes_context=True)
+def pages_preview(context):
+    return context
+
+
 # ---------------------
 # nama_translation
 # ---------------------

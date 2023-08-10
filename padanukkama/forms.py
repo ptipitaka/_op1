@@ -7,9 +7,11 @@ from django.utils.translation import gettext_lazy as _
 
 from django_select2.forms import *
 from mptt.forms import TreeNodeMultipleChoiceField
+from taggit.forms import TagField
+from taggit_labels.widgets import LabelWidget
 
 from .models import NamaSaddamala, Padanukkama, Pada, Language, Sadda, \
-                    VerbConjugation, LiteralTranslation
+                    VerbConjugation, LiteralTranslation, TranslatedWord
 from tipitaka.models import WordlistVersion, Structure
 
 
@@ -158,6 +160,50 @@ class LiteralTranslationUpdateForm(forms.ModelForm):
 
 
 
+class TranslatedWordForm(forms.ModelForm):
+    description = forms.CharField(
+        widget=forms.Textarea(attrs={'rows': 5}),  # Setting rows to 5
+        required=False,
+        label=_('Description'),
+    )
+
+    class Meta:
+        model = TranslatedWord
+        fields = ['translation', 'description',]
+
+# -----------------------------------------------------
+# LiteralTranslationSaddaForm
+# -----------------------------------------------------
+class LiteralTranslationSaddaForm(forms.ModelForm):
+    namasaddamala = forms.ModelMultipleChoiceField(
+        queryset=NamaSaddamala.objects.all().order_by('-popularity', 'linga', 'title_order'),
+        widget=Select2MultipleWidget,
+        required=False,
+        label=_('NamaSaddamala')
+    )
+
+    verb_conjugation = forms.ModelMultipleChoiceField(
+        queryset=VerbConjugation.objects.all().order_by('sequence'),
+        widget=Select2MultipleWidget,
+        required=False,
+        label=_('Verb Conjugation')
+    )
+
+    meaning = forms.CharField(
+        widget=forms.Textarea(attrs={'rows': 5}),  # Setting rows to 5
+        required=False,
+        label=_('Meaning'),
+    )
+
+    class Meta:
+        model = Sadda
+        exclude = ['sadda_seq', 'description', 'padanukkama', 'state']
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+
+
 # -----------------------------------------------------
 # SaddaForm
 # -----------------------------------------------------
@@ -181,12 +227,24 @@ class SaddaForm(forms.ModelForm):
         label=_('Verb Conjugation')
     )
 
-
+    meaning = forms.CharField(
+        widget=forms.Textarea(attrs={'rows': 5}),  # Setting rows to 5
+        required=False,
+        label=_('Meaning'),
+    )
+    
     class Meta:
         model = Sadda
         exclude = ['sadda_seq']
 
-
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Set help_text dynamically for each field
+        for field_name in self.fields:
+            field = self.fields[field_name]
+            model_field = self.Meta.model._meta.get_field(field_name)
+            if model_field.help_text:
+                field.help_text = model_field.help_text
 
 # -----------------------------------------------------
 # ExportSaddaForm

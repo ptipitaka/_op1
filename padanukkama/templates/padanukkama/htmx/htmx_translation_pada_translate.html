@@ -1,0 +1,382 @@
+{% load static i18n widget_tweaks %}
+
+<div class="w3-container">
+    <div class="w3-text-brown">
+        {{ pada }} {% if pada.parent %}<small>({{ pada.get_parent_and_siblings }})</small>{% endif %}
+    </div>
+</div>
+
+<div class="w3-container">
+    <form
+        hx-post="{% url 'htmx_translation_pada_translate_post' translate_word_id=translate_word_id pk=pada_id %}"
+        hx-target="#htmx-translation-form"
+        method="post"
+        class="w3-container w3-padding">
+        {% csrf_token %}
+        {{ form.media }}
+        
+        <div>
+            {% for field in form %}
+                <p id="fieldWrapper_{{ field.id_for_label }}">
+                    <label>{% trans field.label_tag %}</label>
+                    {{ field|add_class:"w3-input w3-border" }}
+                    {% if field.help_text %}
+                        <small class="form-text text-muted">{{ field.help_text }}</small>
+                    {% endif %}
+                </p>
+            {% endfor %}
+            <!-- submit data -->
+            <button type="submit"
+                id="submit_data"
+                style="display:none"
+                class="w3-button w3-dark-grey w3-hover-blue w3-round-xlarge">
+                {% trans "Submit" %}
+            </button>
+            <!-- decoupling -->
+            <button
+                id="decoupling"
+                style="display:none"
+                class="w3-button w3-right w3-dark-grey w3-hover-orange w3-round-xlarge"
+                onclick="handleDecoupling(event);">
+                {% trans "Decoupling" %}
+            </button>
+        </div>
+        <!-- Vipatti table -->
+        <div id="result-container" class="w3-border w3-margin-top"></div>
+    </form>  
+</div>
+
+{% block script %}
+
+    <script>
+        $(document).ready(function () {
+            // manage input / action fields
+            manageInputFields();
+            manageActionButton();
+
+            $('#id_sadda').on('input', function() {
+                var padaSadda = $(this).val();
+                checkExistingSadda(padaSadda);
+                updateVerbConjugation(padaSadda);
+            });
+
+            $('#id_sadda_type').change(function() {
+                var padaSadda = $('#id_sadda').val();
+                manageInputFields();
+                manageActionButton();
+                updateVerbConjugation(padaSadda)
+                create_vipatti();
+            });
+
+            // Attach change event listener to the inputs
+            $('#id_namasaddamala').change(function() {
+                manageInputFields();
+                manageActionButton();
+                create_vipatti();
+            });
+
+            {% if pada.sadda %}
+                create_vipatti();
+                var decouplingButton = $("#decoupling");
+                decouplingButton.css("display", "");
+            {% endif %}
+        });
+
+        // Function manage input fields
+        function manageInputFields(event) {
+            // detact change from input value
+            var selectedValue = $('#id_sadda_type').val();
+            if (selectedValue === 'Nama') {
+                $('#fieldWrapper_id_namasaddamala').show();
+                $('#fieldWrapper_id_verb_conjugation').hide();
+            } else if (selectedValue === 'Akhyata') {
+                $('#fieldWrapper_id_verb_conjugation').show();
+                $('#fieldWrapper_id_namasaddamala').hide();
+            } else {
+                $('#fieldWrapper_id_namasaddamala').hide();
+                $('#fieldWrapper_id_verb_conjugation').hide();
+            };
+            $(".select2").each(function() {
+                $(this).css("width", "100%");
+            });
+        };
+
+        // Function manage button
+        function manageActionButton(event) {
+            // Button value
+            var submitButton = $("#submit_data");
+            var vipattiTable = $('#result-container')
+
+            // Retrieve the updated values from the inputs
+            var sadda = $('#id_sadda').val();
+            var sadda_type = $('#id_sadda_type').val();
+            var namasaddamalaValues = $('#id_namasaddamala').val();
+
+            if (sadda !== '') {
+                if (sadda_type == 'Nama') {
+                    // Check if each array has a value
+                    var isNamasaddamalaSelected = namasaddamalaValues.length > 0;
+                    // Perform your desired actions with the updated values
+                    if (namasaddamalaValues !== '') {
+                    } else {
+                        submitButton.css("display", "none");
+                        vipattiTable.html('');
+                    }
+
+                    if (isNamasaddamalaSelected ) {
+                    } else {
+                        submitButton.css("display", "none");
+                        vipattiTable.html('');
+                    }
+                } else if ((sadda_type == 'Akhyata') || (sadda_type == 'Byaya')) {
+                    submitButton.css("display", "");
+                    vipattiTable.html('');
+                } else {
+                    submitButton.css("display", "none");
+                    vipattiTable.html('');
+                }
+            }
+        }
+
+        // Find existing sadda and assign to form
+        function checkExistingSadda (padaSadda) {
+            // Get input data
+            var id_padanukkama = '{{ padanukkama_id }}';
+            var pada_id = '{{ pada_id }}'
+            var id_sadda = $('#id_sadda').val();
+
+            var url = "{% url 'find_existing_sadda' padanukkama_id=111 sadda=222 %}"
+                .replace('111', id_padanukkama)
+                .replace('222', id_sadda);
+            $.ajax({
+                url: url,
+                type: 'GET',
+                success: function (response) {
+                    if (response.found) {
+                        // Show confirmation popup here
+                        if (confirm('{% trans "Existing sadda found. Do you want to proceed?" %}')) {
+                            // User confirmed, perform further actions
+                            var csrftoken = $('input[name="csrfmiddlewaretoken"]').val();
+                            var re_url = "{% url 'add_sadda_to_pada' padanukkama_id=111 pada_id=222 sadda_id=333 %}"
+                                .replace('111', id_padanukkama)
+                                .replace('222', pada_id)
+                                .replace('333', response.existing_sadda_id)
+                            $.ajax({
+                                url: re_url,
+                                type: 'POST',
+                                beforeSend: function(xhr) {
+                                    // Set the CSRF token in the request headers
+                                    xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                                },
+                                success: function (response) {
+                                    // Handle success case
+                                    if (response.success) {
+                                        // Handle success case
+                                        console.log("Pada record updated successfully");
+                                        reload_url = "{% url 'pada_declension' padanukkama_id=111 pk=222 %}"
+                                            .replace('111', id_padanukkama)
+                                            .replace('222', pada_id);
+                                        // Redirect the user to a different page
+                                        window.location.href = reload_url;
+                                    } else {
+                                        // Handle error case
+                                        console.log("Failed to update pada record");
+                                    }
+                                },
+                                error: function (xhr, status, error) {
+                                    // Handle error cases
+                                    console.error(error)
+                                }
+                            });
+                        } else {
+                            // User canceled, handle accordingly
+                            $('#id_sadda').val(padaSadda)
+                        }
+                    } else {
+                        // Handle case when sadda is not found
+                        console.log('Sadda not found');
+                    }
+                },
+                error: function (xhr, status, error) {
+                    // Handle error cases
+                    console.error(error)
+                }
+            })
+        }
+
+        // updateVerbConjugation
+        function updateVerbConjugation(padaSadda) {
+            // Make the AJAX call to the Django view
+            var url = "{% url 'filter_verb_conjugation' word='111' %}"
+                .replace('111', padaSadda);
+            $.ajax({
+                url: url,
+                data: {
+                    word: padaSadda
+                },
+                dataType: 'json',
+                success: function(response) {
+                    // Clear the existing options in the verb_conjugation select field
+                    $('#id_verb_conjugation').empty();
+
+                    // Add the new options based on the AJAX response
+                    for (var i = 0; i < response.length; i++) {
+                        var option = $('<option>').val(response[i].id).text(response[i].title);
+                        $('#id_verb_conjugation').append(option);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    // Handle the error, if any
+                }
+            });
+        }
+
+        // Function to handle preview btn
+        function handlePreview(event) {
+            event.preventDefault();
+            // Call your desired functions here
+            create_vipatti();
+        };
+
+        // Crate vipatti table
+        function create_vipatti () {
+            // Get input data
+            var id_padanukkama = '{{ padanukkama_id }}';
+            var id_sadda = $('#id_sadda').val();
+            var id_sadda_type = $('#id_sadda_type').val();
+            var id_namasaddamala = $('#id_namasaddamala').val();
+            
+            // Get the button element by its ID
+            var submitButton = $("#submit_data");
+
+            // Function to highlight matches in the given text
+            function highlightMatch(text, padas) {
+                var words = text.split(/\s+/);
+                var highlightedText = '';
+                for (var i = 0; i < words.length; i++) {
+                    var word = words[i];
+                    var isMatched = false;
+                    for (var j = 0; j < padas.length; j++) {
+                        var pada = padas[j];
+                        var regex = new RegExp('^' + escapeRegExp(pada) + '$', 'i');
+                        if (word.match(regex)) {
+                            highlightedText += '<div class="w3-text-blue">' + word + '</div> ';
+                            isMatched = true;
+                            break;
+                        }
+                    }
+                    if (!isMatched) {
+                        highlightedText += '<div class="w3-text-grey">' + word + '</div> ';
+                    }
+                }
+                return highlightedText.trim();
+            }
+
+            // Function to escape special characters in a string
+            function escapeRegExp(string) {
+                return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+            }
+
+
+            // Check if template_id and sadda are not empty
+            if (id_sadda_type && id_sadda && id_namasaddamala) {
+
+                var templateIdString = id_namasaddamala.join(',');
+
+                var url = "{% url 'create_vipatti' padanukkama_id=111 sadda=222 sadda_type=333 template_ids=444 %}"
+                    .replace('111', id_padanukkama)
+                    .replace('222', id_sadda)
+                    .replace('333', id_sadda_type)
+                    .replace('444', templateIdString);
+                
+                $.ajax({
+                    url: url,
+                    type: 'GET',
+                    success: function (responses) {
+                        // ------------- //
+                        // initial value //
+                        // ------------- //
+                        var matchesHtml = '';
+
+                        for (const response of responses) {
+                            if(response.result.error) {
+                                console.error(response.result.error)
+                                submitButton.css("display", "none");
+                                matchesHtml = "{% trans 'Please verify any potentially incorrect `sadda` or possible declension error, Contact to SA to assistance.'%}"
+                            } else {
+                                submitButton.css("display", "");
+                                // ------------- //
+                                // NamaSaddamala //
+                                // ------------- //
+                                if (response.sadda_type == 'Nama') {
+                                    matchesHtml += '<div class="w3-bar">'
+                                    matchesHtml += '    <span class="w3-bar-item" style="font-weight: bold;">' + response.template_data.title
+                                    matchesHtml += '    (' + response.template_data.nama_type + ', ' + response.template_data.linga + ')</span> '
+                                    matchesHtml += '    <a href="'+ response.template_data.update_url +'" class="w3-bar-item w3-button w3-right" target="_blank">'
+                                    matchesHtml += '         <i class="far fa-edit w3-padding-small"></i></a>'
+                                    matchesHtml += '</div>'
+                                    matchesHtml += '<table class="w3-table w3-bordered w3-small">'
+                                    matchesHtml += '  <tr>'
+                                    matchesHtml += '      <th>{% trans "Vibhatti" %}</th>'
+                                    matchesHtml += '      <th>{% trans "Ekavacana" %}</th>'
+                                    matchesHtml += '      <th>{% trans "Bahuvacana" %}</th>'
+                                    matchesHtml += '  </tr>'
+                                    matchesHtml += '  <tr>'
+                                    matchesHtml += '      <td>{% trans "Paṭhamā" %}</td>'
+                                    matchesHtml += '      <td>' + highlightMatch(response.result.nom_sg, response.padas) + '</td>'
+                                    matchesHtml += '      <td>' + highlightMatch(response.result.nom_pl, response.padas) + '</td>'
+                                    matchesHtml += '  </tr>'
+                                    matchesHtml += '  <tr>'
+                                    matchesHtml += '      <td>{% trans "Ālapana" %}</td>'
+                                    matchesHtml += '      <td>' + highlightMatch(response.result.voc_sg, response.padas) + '</td>'
+                                    matchesHtml += '      <td>' + highlightMatch(response.result.voc_pl, response.padas) + '</td>'
+                                    matchesHtml += '  </tr>'
+                                    matchesHtml += '  <tr>'
+                                    matchesHtml += '      <td>{% trans "Dutiyā" %}</td>'
+                                    matchesHtml += '      <td>' + highlightMatch(response.result.acc_sg, response.padas) + '</td>'
+                                    matchesHtml += '      <td>' + highlightMatch(response.result.acc_pl, response.padas) + '</td>'
+                                    matchesHtml += '  </tr>'
+                                    matchesHtml += '  <tr>'
+                                    matchesHtml += '      <td>{% trans "Tatiyā" %}</td>'
+                                    matchesHtml += '      <td>' + highlightMatch(response.result.instr_sg, response.padas) + '</td>'
+                                    matchesHtml += '      <td>' + highlightMatch(response.result.instr_pl, response.padas) + '</td>'
+                                    matchesHtml += '  </tr>'
+                                    matchesHtml += '  <tr>'
+                                    matchesHtml += '      <td>{% trans "Catutthī" %}</td>'
+                                    matchesHtml += '      <td>' + highlightMatch(response.result.dat_sg, response.padas) + '</td>'
+                                    matchesHtml += '      <td>' + highlightMatch(response.result.dat_pl, response.padas) + '</td>'
+                                    matchesHtml += '  </tr>'
+                                    matchesHtml += '  <tr>'
+                                    matchesHtml += '      <td>{% trans "Pañcamī" %}</td>'
+                                    matchesHtml += '      <td>' + highlightMatch(response.result.abl_sg, response.padas) + '</td>'
+                                    matchesHtml += '      <td>' + highlightMatch(response.result.abl_pl, response.padas) + '</td>'
+                                    matchesHtml += '  </tr>'
+                                    matchesHtml += '  <tr>'
+                                    matchesHtml += '      <td>{% trans "Chaṭṭhī" %}</td>'
+                                    matchesHtml += '      <td>' + highlightMatch(response.result.gen_sg, response.padas) + '</td>'
+                                    matchesHtml += '      <td>' + highlightMatch(response.result.gen_pl, response.padas) + '</td>'
+                                    matchesHtml += '  </tr>'
+                                    matchesHtml += '  <tr>'
+                                    matchesHtml += '      <td>{% trans "Sattamī" %}</td>'
+                                    matchesHtml += '      <td>' + highlightMatch(response.result.loc_sg, response.padas) + '</td>'
+                                    matchesHtml += '      <td>' + highlightMatch(response.result.loc_pl, response.padas) + '</td>'
+                                    matchesHtml += '  </tr>'
+                                    matchesHtml += '</table>'
+                                }
+                            }
+                        }
+
+                        $('#result-container').html(matchesHtml);
+                    },
+                    error: function (xhr, status, error) {
+                        // Handle error cases
+                        console.error(error);
+                    }
+                })
+            } else {
+                // Handle the case when template_id or sadda is empty
+                console.log("template_id or sadda is empty");
+            }
+        }
+    </script>
+{% endblock %}

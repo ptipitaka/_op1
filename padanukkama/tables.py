@@ -2,11 +2,10 @@ import django_filters
 import django_tables2 as tables
 
 from django import forms
-from django.db.models import Q
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator
-from django.urls import reverse_lazy, reverse
-from django.utils.html import format_html
+from django.middleware.csrf import get_token
+from django.urls import reverse, reverse_lazy
 from django.utils.safestring import mark_safe
 from django.utils.translation import gettext_lazy as _
 
@@ -363,6 +362,65 @@ class PadaParentChildTable(tables.Table):
         ## Cache the tree Pada for performance ##
         cache_tree_children(data)
 
+
+
+# -----------------------------------------------------
+# TranslatePadaParentChildTable
+# -----------------------------------------------------
+class TranslatePadaParentChildTable(tables.Table):
+    pada = tables.Column(attrs={'td': {
+        'style': lambda value, record: 'min-width: 200px; padding-left: %spx' % (15 + (record.level * 40)),
+    }})
+
+    translate_action = tables.Column(empty_values=(), orderable=False, verbose_name=_('Translate Sadda'))
+    def render_translate_action(self, record):
+        if record.get_descendants().exists():
+            # Record has descendants, do not show translate_action
+            return ''
+        else:
+            # Generate the URL with the updated parameters
+            url = reverse_lazy('htmx_translation_pada_translate', args=[self.translate_word_id, record.id])
+
+            return mark_safe(
+                f'<button hx-get="{url}" hx-target="#htmx-translation-form"'
+                f'class="w3-button w3-round-xlarge w3-border w3-hover-white">'
+                f'<i class="fas fa-layer-group w3-text-indigo"></i>'
+                f'</button>'
+            )
+        
+    delete_action = tables.Column(empty_values=(), orderable=False, verbose_name=_('Delete'))
+    def render_delete_action(self, record):
+        if not record.parent:
+            # Record has descendants, do not show delete_action
+            return ''
+        else:
+            # Generate the URL with the updated parameters
+            message = _('Do you want to delete record of ') + record.pada
+            url = reverse_lazy('htmx_translation_pada_delete', args=[self.translate_word_id, record.id])
+
+            csrf_token = get_token(self.request)
+
+            return mark_safe(
+                f'<form hx-post="{url}" hx-target="#htmx-translation-form" method="post">'
+                f'<input type="hidden" name="csrfmiddlewaretoken" value="{csrf_token}">'
+                f'<button type="submit" onclick="return confirm(\'{message}\')" class="w3-button w3-round-xlarge w3-border w3-hover-white">'
+                f'<i class="far fa-trash-alt w3-text-red"></i>'
+                f'</button>'
+                f'</form>'
+            )
+
+    class Meta:
+        model = Pada
+        template_name = "django_tables2/w3css.html"
+        attrs = {"class": "w3-table w3-bordered"}
+        fields = ('pada',)
+
+    def __init__(self, data, *args, **kwargs):
+        self.translate_word_id = kwargs.pop('translate_word_id', None)
+        super().__init__(data, *args, **kwargs)
+        
+        ## Cache the tree Pada for performance ##
+        cache_tree_children(data)
 
 
 # -----------------------------------------------------

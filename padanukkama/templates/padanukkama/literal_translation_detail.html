@@ -53,14 +53,39 @@
         <div class="w3-cell-row">
             <!-- left panel -->
             <div class="w3-container w3-cell" style="width:50%">
-                <div class="w3-cell-row w3-margin-bottom">    
-                    <h4>
-                        {% trans 'Padanukkama' %}: {{ object.padanukkama }}
-                    </h4>
-                    <p>
-                        {% trans 'Wordlist version' %}: {{ object.wordlist_version }}
-                    </p>
-                </div>
+                <h4>{% trans 'Table of Contents' %}</h4>
+                {% for structure in structures %}
+                    <ul>
+                        {% recursetree structure.get_descendants_include_self %}
+                            <li>
+                                {% if node.is_leaf_node %}
+                                    <a href="#">{{ node.title }}</a>
+                                {% else %}
+                                    {{ node.title }}
+                                {% endif %}
+                                {% if not node.is_leaf_node %}
+                                    <ul>
+                                        {{ children }}
+                                    </ul>
+                                {% endif %}
+                            </li>
+                        {% endrecursetree %}
+                    </ul>
+                {% endfor %}
+            </div>
+
+            <!-- right panel -->
+            <div class="w3-container">
+                {% if url_name == 'literal_translation_update' %}
+                    <div class="w3-cell-row w3-margin-bottom">    
+                        <h4>
+                            {% trans 'Padanukkama' %}: {{ object.padanukkama }}
+                        </h4>
+                        <p>
+                            {% trans 'Wordlist version' %}: {{ object.wordlist_version }}
+                        </p>
+                    </div>
+                {% endif %}
                 <form action="" method="post">
 
                     {% csrf_token %}
@@ -95,29 +120,6 @@
                         </div>
                     </div>
                 </form>
-            </div>
-
-            <!-- right panel -->
-            <div class="w3-container">
-                <h4>{% trans 'Table of Contents' %}</h4>
-                {% for structure in structures %}
-                    <ul>
-                        {% recursetree structure.get_descendants_include_self %}
-                            <li>
-                                {% if node.is_leaf_node %}
-                                    <a href="#">{{ node.title }}</a>
-                                {% else %}
-                                    {{ node.title }}
-                                {% endif %}
-                                {% if not node.is_leaf_node %}
-                                    <ul>
-                                        {{ children }}
-                                    </ul>
-                                {% endif %}
-                            </li>
-                        {% endrecursetree %}
-                    </ul>
-                {% endfor %}
             </div>
         </div>
     {% endif %}

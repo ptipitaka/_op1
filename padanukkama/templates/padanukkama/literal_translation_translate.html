@@ -2,8 +2,12 @@
 
 {% load widget_tweaks mptt_tags i18n static %}
 
+{% load translate_tags %}
+
 {% block extra_js %}
+    <script src="{% static 'js/jquery-3.6.4.min.js' %}"></script>
     <script src="{% static 'htmx/htmx.min.js' %}" defer></script>
+    <script src="{% static 'js/sortable.min.js'%}"></script>
 {% endblock %}
 
 {% block apptitle %}
@@ -26,7 +30,7 @@
                 {% recursetree structure.get_descendants_include_self %}
                     <li>
                         {% if node.is_leaf_node %}
-                            <a href="{% url 'literal_translation_translate' literal_translation.id %}?toc_id={{ node.id }}"
+                            <a href="{% url 'literal_translation_translate' literal_translation.id %}?structure_id={{ node.id }}"
                                 style="text-decoration: none;">
                                 {{ node.title }}
                             </a>
@@ -44,60 +48,103 @@
         {% endfor %}
     </div>
     
-    <!-- table of contents toggle menu -->
-    <button class="openbtn" onclick="openNav()">☰ {% trans 'Table of Contents' %}</button>
-
-    <!-- selected structure content -->
-    <div class="w3-cell-row">
+    <!-- toolbar -->
+    <div class="w3-cell-row w3-light-grey">
+        <!-- left panel -->
         <div class="w3-container">
-            {% if selected_structure %}
-                <h4>{{ selected_structure.title }}</h4>
-                <div class="w3-small">{{ selected_structure.breadcrumb }}</div>
-                {% with selected_structure.get_common_reference as common_reference %}
-                    {% if common_reference %}
-                        <div class="w3-small">{{ common_reference.wordlist_version }} : {{ common_reference.from_position }} - {{ common_reference.to_position }}</div>
-                        <div class="w3-section">
-                            {% for each_word in words_list %}
-                            <button
-                                class="w3-btn w3-tiny"
-                                hx-trigger="click"
-                                hx-get="{% url "htmx_pada_details" padanukkama_id each_word.word %}"
-                                hx-target="#htmx-pada-details"
-                            >
-                                {{ each_word.word }}
-                            </button>
-                            {% endfor %}
-                        </div>
-                    {% endif %}
-                {% endwith %}
-            {% endif %}
+            <div class="w3-bar">
+                <!-- table of contents toggle menu -->
+                <a type="button" onclick="openNav()" class="w3-bar-item w3-button">☰ {% trans 'Table of Contents' %}</a>
+            </div>
         </div>
     </div>
 
     <!-- transalation operation panel -->
-    <div class="w3-cell-row">
-        <!-- left panel -->
-        <div class="w3-container w3-third">
-            <div id="htmx-pada-details"></div>
-        </div>
+    {% if structure %}
+        <div class="w3-cell-row">
+            <!-- left panel -->
+            <div class="w3-container w3-half">
+                <!-- page preview -->
+                <div id="pages-preview">
+                    {% pages_preview %}
+                </div>         
+                <!-- operation space -->
+                <div id="htmx-translation-form" style="padding-top:8px"></div>
+            </div>
+            
+            <!-- right panel -->
+            <div id="translation-pada" class="w3-container w3-half">
+                <h4>{{ structure.title }}</h4>
+                <div class="w3-small">{{ structure.breadcrumb }}</div>
+                {% with structure.get_common_reference as common_reference %}
+                    {% if common_reference %}
+                        <div class="w3-small">{{ common_reference.wordlist_version }} : {{ common_reference.from_position }} - {{ common_reference.to_position }}</div>
+                        <div class="w3-section">
+                            <!-- loop words -->
+                            {% for item in words_list_with_breaks %}
+                            {% if item.break %}
+                                <br><br>
+                            {% else %}
+                                <button
+                                    id="{{ item.word.id }}"
+                                    class="pada-btn w3-btn w3-small w3-tooltip"
+                                    style="border:none; background:none; cursor:pointer"
+                                    onclick="handlePadaButtonClick(this)"
+                                    hx-get="{% url "htmx_translation_pada" item.word.id %}"
+                                    hx-target="#htmx-translation-form"
+                                >
+                                    {{ item.word.word }}
+                                    <span
+                                        style="position:absolute;right:0;bottom:18px"
+                                        class="w3-text w3-tag w3-tiny w3-round-xlarge w3-brown">
+                                        {{ item.word.sentence }}.{{ item.word.word_position }}
+                                    </span>
+                                </button>
+                            {% endif %}
+                        {% endfor %}
+                        <!-- end loop word -->
+                        </div>
+                    {% endif %}
+                {% endwith %}
+            </div>
         
-        <!-- right panel -->
-        <div class="w3-container w3-twothird">
-            right panel
         </div>
-    </div>
-
-
+    {% endif %}
 {% endblock %}
 
 {% block script %}
     <script>
+        // Navigation
         function openNav() {
             document.getElementById("mySidepanel").style.width = "250px";
         }
         
         function closeNav() {
             document.getElementById("mySidepanel").style.width = "0";
+        }
+
+        // Sortable
+        var sortables = document.querySelectorAll(".sortable");
+        for (var i = 0; i < sortables.length; i++) {
+            var sortable = sortables[i];
+            new Sortable(sortable, {
+                animation: 150,
+                ghostClass: 'blue-background-class'
+            });
+        }
+
+        // handlePadaButtonClick 
+        function handlePadaButtonClick(button) {
+            $('#pages-preview').hide()
+            // Get the button element by its ID
+            var buttonId = $(button).attr('id');
+            var buttonElement = $('#' + buttonId);
+            
+            // Reset background color for all buttons with class pada-btn
+            $('.pada-btn').css('background-color', 'transparent');
+            
+            // Change the background color of the clicked button
+            buttonElement.css('background-color', 'lightblue');
         }
     </script>
 {% endblock %}

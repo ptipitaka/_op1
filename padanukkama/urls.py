@@ -36,7 +36,16 @@ urlpatterns = [
 
 htmx_urlpatterns = [
     # literal_translation
-    path('htmx-pada-details/<int:padanukkama_id>/<pada>/', htmx.PadaDetailsView.as_view(), name='htmx_pada_details'),
+    path('htmx-translation-form/<int:pk>/', htmx.TranslationPadaView.as_view(), name='htmx_translation_pada'),
+    path('htmx-translation-form/<int:pk>/pada/create/', htmx.TranslationPadaCreateView.as_view(), name='htmx_translation_pada_create'),
+    path('htmx-translation-form/<int:translate_word_id>/pada/<int:pk>/delete/', htmx.TranslationPadaDeleteView.as_view(), name='htmx_translation_pada_delete'),
+    path('htmx-translation-form/<int:translate_word_id>/pada/<int:pk>/translate/', htmx.TranslationPadaTranslateView.as_view(), name='htmx_translation_pada_translate'),
+    path('htmx-translation-form/<int:translate_word_id>/pada/<int:pk>/translate_post/', htmx.TranslationPadaTranslatePostView.as_view(), name='htmx_translation_pada_translate_post'),
+    path('htmx-translation-form/<int:translate_word_id>/addsentence/', htmx.addSentenceView.as_view(), name='htmx_add_sentence'),
+    path('htmx-translation-form/<int:translate_word_id>/backspace/', htmx.backspaceView.as_view(), name='htmx_backspace'),
+    path('htmx-translation-form/<int:translate_word_id>/split_pada_in_sentence/', htmx.splitPadaInSentenceView.as_view(), name='htmx_split_pada_in_sentence'),
+    path('htmx-translation-form/<int:translate_word_id>/merge_pada_in_sentence/', htmx.mergePadaInSentenceView.as_view(), name='htmx_merge_pada_in_sentence'),
+    path('htmx-translation-form/<int:pk>/update', htmx.updateTranslationWord.as_view(), name='htmx_update_translation_word'),
 ]
 
 urlpatterns += htmx_urlpatterns

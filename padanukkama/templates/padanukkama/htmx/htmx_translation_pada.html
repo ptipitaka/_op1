@@ -1,0 +1,167 @@
+{% load static i18n widget_tweaks mptt_tags %}
+
+{% load render_table from django_tables2 %}
+
+{% block extra_js %}
+    <script src="{% static 'js/jquery-3.6.4.min.js' %}"></script>
+{% endblock %}
+
+{% csrf_token %}
+
+<div id="" class="w3-bar">
+    <!-- page preview button -->
+    <button type="button"
+        id="togglePagesPriview"
+        class="w3-bar-item w3-button"
+        onclick="$('#pages-preview').toggle();">
+        <i class="far fa-clipboard"></i>
+    </button>
+    <span id="toolbar">
+    <!-- Split button -->
+    <button
+        class="btn-toolbar w3-bar-item w3-button w3-white w3-tooltip {% if not split_pada %} w3-disabled {% endif %}"
+        hx-post="{% url 'htmx_split_pada_in_sentence' translate_word_id=pk %}"
+        hx-target="#translation-pada"
+        hx-trigger.once="click"
+        hx-boost="once"
+        hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
+        >
+        <icon class="far fa-object-ungroup"></icon>
+        <span class="w3-text w3-tag w3-light-grey">
+            {% trans 'Split' %}
+        </span>
+    </button>
+    <!-- Merge button -->
+    <button
+        class="btn-toolbar w3-bar-item w3-button w3-white w3-tooltip {% if not merge_pada %} w3-disabled {% endif %}"
+        hx-post="{% url 'htmx_merge_pada_in_sentence' translate_word_id=pk %}"
+        hx-target="#translation-pada"
+        hx-trigger.once="click"
+        hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
+        >
+        <icon class="far fa-object-group"></icon>
+        <span class="w3-text w3-tag w3-light-grey">
+            {% trans 'Merge' %}
+        </span>
+    </button>
+    <!-- Backspace button -->
+    <button
+        class="btn-toolbar w3-bar-item w3-right w3-button w3-white w3-tooltip {% if not backspace %} w3-disabled {% endif %}"
+        hx-post="{% url 'htmx_backspace' translate_word_id=pk %}"
+        hx-trigger.once="click"
+        hx-target="#translation-pada"
+        hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
+        >
+        <icon class="fas fa-backspace"></icon>
+        <span class="w3-text w3-tag w3-light-grey">
+            {% trans 'Backspace' %}
+        </span>
+    </button>
+    <!-- Add Sentence button -->
+    <button
+        class="btn-toolbar w3-bar-item w3-right w3-button w3-white w3-tooltip {% if not new_sentence %} w3-disabled {% endif %}"
+        hx-post="{% url 'htmx_add_sentence' translate_word_id=pk %}"
+        hx-trigger.once="click"
+        hx-target="#translation-pada"
+        hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
+    >
+        <icon class="fas fa-stream"></icon>
+        <span class="w3-text w3-tag w3-light-grey">
+            {% trans '+Sentence' %}
+        </span>
+    </button>
+    </span>
+
+</div>
+
+{% render_table table %}
+
+{% if not has_sadda and not has_parent %}
+    <form
+        hx-post="{% url 'htmx_translation_pada_create' pk=pk %}"
+        hx-target="#htmx-translation-form"
+        method="post"
+        class="w3-container w3-text-blue w3-padding"
+        style="width:60%;margin:auto;">
+        {% csrf_token %}
+        {% for field in add_child_pada_form %}
+            <p>
+                <label>{% trans field.label_tag %}</label>
+                {{ field|add_class:"w3-input" }}
+            </p>
+        {% endfor %}
+
+        <input
+            type="submit"
+            name="filter-submit"
+            value="{% trans "Submit" %}"
+            class="w3-button w3-dark-grey w3-hover-brown w3-round-xlarge"
+        />
+    </form>
+{% endif %}
+
+<div class="container w3-padding">
+    <div class="w3-panel w3-round-xxlarge w3-padding w3-light-grey">
+        <button onclick="acordion('translationHelper')" class="w3-btn w3-border-white w3-round-xxlarge">
+            {% trans 'Padanukkama' %}
+        </button>
+            
+        <div id="translationHelper" class="w3-hide w3-container w3-light-grey">
+            <p>Lorem ipsum...</p>
+        </div>
+    </div>
+
+
+
+    <form
+        hx-post="{% url 'htmx_update_translation_word' pk=pk %}"
+        hx-target="#htmx-translation-form"
+        method="post"
+        class="w3-container w3-padding"
+        style="margin:auto;">
+        {% csrf_token %}
+        {% for field in translated_word_form %}
+            <p>
+                <label>{% trans field.label_tag %}</label>
+                {{ field|add_class:"w3-input w3-border" }}
+            </p>
+        {% endfor %}
+
+        <input
+            type="submit"
+            name="filter-submit"
+            value="{% trans "Submit" %}"
+            class="w3-button w3-dark-grey w3-hover-brown w3-round-xlarge"
+        />
+        </form>
+</div>
+
+
+{% block script %}
+
+<script>
+    $(document).ready(function() {
+        // Event listener for the button click
+        $(".btn-toolbar").on("click", function(event) {
+            const button = $(event.target);
+            const toolbarDiv = $("#toolbar");
+            
+            // Hide the clicked button
+            button.hide();
+            
+            // Hide the toolbar div
+            toolbarDiv.hide();
+        });
+    });
+
+    function acordion(id) {
+        var x = document.getElementById(id);
+        if (x.className.indexOf("w3-show") == -1) {
+          x.className += " w3-show";
+        } else { 
+          x.className = x.className.replace(" w3-show", "");
+        }
+      }
+</script>
+
+{% endblock %}
