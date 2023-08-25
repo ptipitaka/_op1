@@ -2,7 +2,6 @@ from django.db import models
 from django.db.models import Max, Q
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import User
-from django.contrib.postgres.fields import ArrayField
 from django.utils.translation import gettext_lazy as _
 
 from django_editorjs import EditorJsField
@@ -10,8 +9,6 @@ from django_xworkflows import models as xwf_models
 from mptt.models import MPTTModel, TreeForeignKey
 from simple_history.models import HistoricalRecords
 from smart_selects.db_fields import ChainedManyToManyField
-from taggit.managers import TaggableManager
-from taggit_labels.widgets import LabelWidget
 
 from utils.pali_char import *
 
@@ -198,34 +195,21 @@ class NamaSaddamala(models.Model):
 # NounDeclension
 # -----------------------------------------------------
 class NounDeclension(models.Model):
-    code = models.CharField(max_length=10, verbose_name=_("Code"))
+    sequence = models.IntegerField(
+        verbose_name=_("Sequence"))
+    code = models.CharField(
+        max_length=10,
+        verbose_name=_("Code"))
     title = models.CharField(verbose_name=_("Title"))
-    description = EditorJsField(
-        editorjs_config={
-            "tools":{
-                "Attaches":{"disabled":True},
-                "Checklist":{"disabled":True},
-                "Delimiter":{"disabled":True},
-                "Embed":{"disabled":True},
-                "Header":{
-                    "config":{
-
-                        "levels":[4, 5],
-                        "defaultLevel":4,
-                    },
-                },
-                "Image":{"disabled":True},
-                "Link":{"disabled":True},
-                "Quote":{"disabled":True},
-                "Raw":{"disabled":True},
-                "Warning": {"disabled":True},
-            },
-        },
-        null=True,
-        blank=True,
+    description = models.TextField(
+        blank=True, null=True,
         verbose_name=_("Description"))
-    ekavacana  = models.CharField(null=True, blank=True, verbose_name=_("Meaning (Ekavacana)"))
-    bahuvachana = models.CharField(null=True, blank=True, verbose_name=_("Meaning (Bahuvacana)"))
+    ekavacana  = models.CharField(
+        null=True, blank=True, 
+        verbose_name=_("Meaning (Ekavacana)"))
+    bahuvachana = models.CharField(
+        null=True, blank=True, 
+        verbose_name=_("Meaning (Bahuvacana)"))
 
     def __str__(self):
         return f"{self.code} : {self.title}"
@@ -576,22 +560,24 @@ class TranslatedWord(models.Model):
         verbose_name=_("Structure"))
     wordlist = models.ForeignKey(
         WordList,
+        null=True,
         on_delete=models.PROTECT,
         related_name='translated_words',
         verbose_name=_("Word List"))
     word = models.CharField(
+        blank=True,
         default="",
         max_length=150,
         verbose_name=_("Word"))
     pada = models.ForeignKey(
         Pada,
+        null=True,
         on_delete=models.PROTECT,
         verbose_name=_("Pada"))
     translation = models.CharField(
         max_length=255,
-        default="",
-        null=True,
         blank=True,
+        default="",
         verbose_name=_("Translation"))
     description = models.TextField(
         default="",
@@ -610,6 +596,20 @@ class TranslatedWord(models.Model):
     
     def __str__(self):
         return f"{self.word}"
+    
+    def has_pada(self):
+        """Check if the TranslatedWord has a Pada."""
+        return True if self.pada else False
+    
+    @classmethod
+    def get_max_word_order_by_translation(cls, literal_translation, structure, sentence):
+        max_order = cls.objects.filter(
+            literal_translation=literal_translation,
+            structure=structure,
+            sentence=sentence
+        ).aggregate(Max('word_order_by_translation'))
+
+        return max_order['word_order_by_translation__max']
 
 
 # -----------------------------------------------------

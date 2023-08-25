@@ -19,7 +19,7 @@ from mptt.templatetags.mptt_tags import cache_tree_children
 from simple_history.utils import get_history_manager_for_model
 from urllib.parse import urlencode
 
-from .models import NamaSaddamala, Padanukkama, Pada, Sadda, VerbConjugation
+from .models import NamaSaddamala, Padanukkama, Pada, Sadda, VerbConjugation, NounDeclension
 
 from abidan.models import Word, WordLookup
 
@@ -391,6 +391,8 @@ class PadaDeclensionView(LoginRequiredMixin, View):
                     'sadda_type':  pada.sadda.sadda_type,
                     'namasaddamala': [item.pk for item in pada.sadda.namasaddamala.all()],
                     'construction':  pada.sadda.construction,
+                    'verb_conjugation': [item.pk for item in pada.sadda.verb_conjugation.all()],
+                    'meaning': pada.sadda.meaning,
                     'description': pada.sadda.description
                 }
                 form = SaddaForm(initial = initial_data)
@@ -560,6 +562,8 @@ class CreateVipatti(LoginRequiredMixin, View):
         data = []
 
         if sadda_type == 'Nama':
+            noun_decl_meaning = NounDeclension.objects.all().order_by('code').values_list('description', 'ekavacana')
+            
             for tid in template_ids:
                 result = noun_declension(sadda, tid)
                 # result = mix_namavipatties(sadda, tid)
@@ -589,7 +593,15 @@ class CreateVipatti(LoginRequiredMixin, View):
                     'result': result,
                     'sadda_type': sadda_type,
                     'template_data': template_data,
-                    'padas': list(wordlist_data)
+                    'padas': list(wordlist_data),
+                    'nom': list(noun_decl_meaning)[0],
+                    'acc': list(noun_decl_meaning)[1],
+                    'instr': list(noun_decl_meaning)[2],
+                    'dat': list(noun_decl_meaning)[3],
+                    'abl': list(noun_decl_meaning)[4],
+                    'gen': list(noun_decl_meaning)[5],
+                    'loc': list(noun_decl_meaning)[6],
+                    'voc': list(noun_decl_meaning)[7],
                 })
 
         return JsonResponse(data, safe=False)
@@ -708,6 +720,7 @@ class FindRelatedPadaView(LoginRequiredMixin, View):
 # FilterVerbConjugation
 # ----------------------
 def FilterVerbConjugation(request, word):
+    print('FilterVerbConjugation', word)
     fields = [
         "p1_para_sg", "p1_para_pl", "p1_atta_sg", "p1_atta_pl",
         "p2_para_sg", "p2_para_pl", "p2_atta_sg", "p2_atta_pl",
@@ -897,37 +910,31 @@ class LiteralTranslationTranslateView(LoginRequiredMixin, DetailView):
         # Get the 'structure_id' query parameter from the request's GET dictionary
         structure_id = self.request.GET.get('structure_id')
         words_list = []
-        words_list_with_breaks = []
-        previous_sentence = None
 
-        if structure_id:
+        if structure_id and structure_id.isdigit():
             structure = get_object_or_404(Structure, id=structure_id)
             context['structure'] = structure
 
             words_list = TranslatedWord.objects.filter(
-                Q(literal_translation=self.object.pk) & Q(structure=structure_id)
-            ).order_by('sentence', 'word_position')
- 
-        for word in words_list:
-            if previous_sentence is not None and word.sentence != previous_sentence:
-                words_list_with_breaks.append({'break': True})
-            words_list_with_breaks.append({'word': word})
-            previous_sentence = word.sentence
-
-        context['words_list_with_breaks'] = words_list_with_breaks
-
+                Q(literal_translation=self.object.pk) & 
+                Q(structure=structure_id)
+            ).order_by('sentence', 'word_order_by_translation')
+        
+        context['words_list'] = words_list
+        context['order_type'] = 'translation'
 
         # Get the image URLs
         page_image_urls = []
         visited_pages = set()
         # Loop through the words_list and get the related Page objects
         for word in words_list:
-            page = word.wordlist.page
-            if page and page not in visited_pages:
-                # Call the image_ref method on each Page object to get the image URL
-                page_image_url = page.image_ref()
-                page_image_urls.append(page_image_url)
-                visited_pages.add(page)
+            if word.has_pada():
+                page = word.wordlist.page
+                if page and page not in visited_pages:
+                    # Call the image_ref method on each Page object to get the image URL
+                    page_image_url = page.image_ref()
+                    page_image_urls.append(page_image_url)
+                    visited_pages.add(page)
         context['page_image_urls'] = sorted(page_image_urls)
 
         return context

@@ -221,14 +221,14 @@
             $('#id_sadda').on('input', function() {
                 var padaSadda = $(this).val();
                 checkExistingSadda(padaSadda);
-                updateVerbConjugation(padaSadda);
+                // updateVerbConjugation(padaSadda);
             });
 
             $('#id_sadda_type').change(function() {
                 var padaSadda = $('#id_sadda').val();
                 manageInputFields();
                 manageActionButton();
-                updateVerbConjugation(padaSadda)
+                // updateVerbConjugation(padaSadda)
             });
 
             // Attach change event listener to the inputs

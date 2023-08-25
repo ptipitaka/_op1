@@ -4,6 +4,19 @@
     font-family: 'Sarabun', sans-serif;
 }
 
+
+.container {
+    position: relative; /* ใช้ relative สำหรับ container */
+    min-height: 100vh; /* ให้ความสูงของ container ไม่น้อยกว่าจอภาพ */
+}
+
+.footer-div {
+    position: absolute; /* ตั้งตำแหน่งแบบ absolute */
+    bottom: 0; /* ตั้งให้ element อยู่ที่ด้านล่างสุดของ container */
+    left: 0;
+    width: 100%; /* ความกว้าง 100% ของ container */
+}
+
 /* extra color */
 .w3-win8-lime {
     color: #fff !important;

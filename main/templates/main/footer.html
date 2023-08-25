@@ -3,7 +3,6 @@
 {% block extra_css %}
 <style>
 .footer {
-   position: fixed;
    left: 0;
    bottom: 0;
    width: 100%;
@@ -12,10 +11,11 @@
    color: black;
    text-align: center;
    font-size: 8pt;
+   padding-top: 10px;
 }
 </style>
 {% endblock %}
 
-<footer class="footer w3-center">  
- <p>{% trans "Powered by" %} <a href="https://ptipitaka.org" target="_blank">{% trans "People's Tipiṭaka Foundation" %}</a></p>
-</footer>
+<div class="footer w3-center">  
+   {% trans "Powered by" %} <a href="https://ptipitaka.org" target="_blank">{% trans "People's Tipiṭaka Foundation" %}</a>
+</div>

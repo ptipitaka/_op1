@@ -19,6 +19,11 @@
 
 {% block extra_css %}
     <link rel="stylesheet" type="text/css" href="{% static 'padanukkama/sidepanel.css' %}">
+    <style>
+        .sentence {
+            margin-bottom: 1em;
+        }
+    </style>
 {% endblock %}
 
 {% block body %}
@@ -55,6 +60,22 @@
             <div class="w3-bar">
                 <!-- table of contents toggle menu -->
                 <a type="button" onclick="openNav()" class="w3-bar-item w3-button">☰ {% trans 'Table of Contents' %}</a>
+
+                {% if structure %}
+                <form
+                    class="w3-select w3-bar-item w3-right" name="option" 
+                    hx-get="{% url 'htmx_change_word_order' %}"
+                    hx-target="#translation-pada"
+                    hx-trigger="change"
+                >
+                    <select name="order_type">
+                        <option value="translation">{% trans 'Order by Translation' %}</option>
+                        <option value="position">{% trans 'Order by Pāḷi' %}</option>
+                    </select>
+                    <input type="hidden" name="structure_id" value="{{ structure.id }}">
+                    <input type="hidden" name="literal_translation_id" value="{{ literal_translation.id }}">
+                </form>                
+                {% endif %}
             </div>
         </div>
     </div>
@@ -69,51 +90,25 @@
                     {% pages_preview %}
                 </div>         
                 <!-- operation space -->
-                <div id="htmx-translation-form" style="padding-top:8px"></div>
+                <div id="htmx-translation-form"></div>
             </div>
-            
+
             <!-- right panel -->
-            <div id="translation-pada" class="w3-container w3-half">
-                <h4>{{ structure.title }}</h4>
-                <div class="w3-small">{{ structure.breadcrumb }}</div>
-                {% with structure.get_common_reference as common_reference %}
-                    {% if common_reference %}
-                        <div class="w3-small">{{ common_reference.wordlist_version }} : {{ common_reference.from_position }} - {{ common_reference.to_position }}</div>
-                        <div class="w3-section">
-                            <!-- loop words -->
-                            {% for item in words_list_with_breaks %}
-                            {% if item.break %}
-                                <br><br>
-                            {% else %}
-                                <button
-                                    id="{{ item.word.id }}"
-                                    class="pada-btn w3-btn w3-small w3-tooltip"
-                                    style="border:none; background:none; cursor:pointer"
-                                    onclick="handlePadaButtonClick(this)"
-                                    hx-get="{% url "htmx_translation_pada" item.word.id %}"
-                                    hx-target="#htmx-translation-form"
-                                >
-                                    {{ item.word.word }}
-                                    <span
-                                        style="position:absolute;right:0;bottom:18px"
-                                        class="w3-text w3-tag w3-tiny w3-round-xlarge w3-brown">
-                                        {{ item.word.sentence }}.{{ item.word.word_position }}
-                                    </span>
-                                </button>
-                            {% endif %}
-                        {% endfor %}
-                        <!-- end loop word -->
-                        </div>
-                    {% endif %}
-                {% endwith %}
+            <div id="translation-pada" class="w3-container w3-half" style="min-height:200vh !important;">
+                {% include 'padanukkama/include/translation_pada.html' %}
             </div>
-        
         </div>
     {% endif %}
 {% endblock %}
 
 {% block script %}
     <script>
+        $(document).ready(function() {
+            var wordListHeight = $('#word-list').height();
+
+            handleSortable();
+        });
+
         // Navigation
         function openNav() {
             document.getElementById("mySidepanel").style.width = "250px";
@@ -124,14 +119,43 @@
         }
 
         // Sortable
-        var sortables = document.querySelectorAll(".sortable");
-        for (var i = 0; i < sortables.length; i++) {
-            var sortable = sortables[i];
-            new Sortable(sortable, {
-                animation: 150,
-                ghostClass: 'blue-background-class'
+        function handleSortable() {
+            var sortables = document.querySelectorAll(".sortable");
+            for (var i = 0; i < sortables.length; i++) {
+                var sortable = sortables[i];
+                new Sortable(sortable, {
+                    animation: 150,
+                    ghostClass: 'blue-background-class',
+                    onEnd: function(evt) {
+                        var sortedIDs = Array.from(evt.from.querySelectorAll('[data-sortable-id]'))
+                            .map(button => button.getAttribute('data-sortable-id'));
+                        
+                        sendSortedData(evt.from.getAttribute('data-post-url'), sortedIDs);
+                    }
+                });
+            }
+        }
+        
+        function sendSortedData(url, sortedIDs) {
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': "{{ csrf_token }}"
+                },
+                body: JSON.stringify({ sortedIDs: sortedIDs })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status !== 'success') {
+                    console.error('Error updating order:', data);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
             });
         }
+                     
 
         // handlePadaButtonClick 
         function handlePadaButtonClick(button) {
@@ -144,7 +168,7 @@
             $('.pada-btn').css('background-color', 'transparent');
             
             // Change the background color of the clicked button
-            buttonElement.css('background-color', 'lightblue');
+            buttonElement.css('background-color', 'lightgrey');
         }
     </script>
 {% endblock %}

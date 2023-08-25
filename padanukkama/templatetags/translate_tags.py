@@ -28,6 +28,38 @@ def parse_editorjs(value):
 
 
 # ---------------------
+# get_at_index
+# ---------------------
+
+@register.filter
+def get_at_index(list, index):
+    return list[index]
+
+
+# ---------------------
+# get_from_dict
+# ---------------------
+@register.filter(name='get_from_dict')
+def get_from_dict(value, arg):
+    return value.get(arg, '')
+
+
+# ---------------------
+# get_from_array
+# ---------------------
+@register.filter(name='lookup')
+def lookup(d, key):
+    return d.get(key, '')
+
+# ---------------------
+# splits
+# ---------------------
+@register.filter
+def split(value, arg):
+    return value.split(arg)
+
+
+# ---------------------
 # pages_preview
 # ---------------------
 @register.inclusion_tag('padanukkama/templatetags/pages_preview.html', takes_context=True)

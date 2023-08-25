@@ -1,0 +1,89 @@
+{% load i18n %}
+
+{% load translate_tags %}
+
+{% for i in nama_declension_table %}
+<div class="w3-margin-top">
+    <span class="w3-text-brown w3-large">{{ i.namasaddamala.title }}</span> •
+    {{ i.namasaddamala.nama_type }} •
+    {{ i.namasaddamala.linga }} {% trans 'Liṅga' %} •
+    {{ i.namasaddamala.karanta }} {% trans 'Kāranta' %}
+</div>
+<div class="w3-responsive">
+    <table class="w3-table w3-bordered">
+        <thead>
+              <tr>
+                   <th>{% trans "Vibhatti" %}</th>
+                   <th>{% trans "Ekavacana" %}</th>
+                   <th>{% trans "Bahuvacana" %}</th>
+               </tr>
+        </thead>
+        <tbody>
+            {% for group in i.declension %}
+                {% with sg_entry=group|first pl_entry=group|last %}
+                   <tr class="">
+                        <td>{{ sg_entry.detail.title }}</td>
+                        <td style="word-spacing: 0.5em;">
+                            {% if sg_entry.vacana == 'sg' %}
+                                {% for w in sg_entry.value|split:" " %}
+                                    <div class="w3-small">{{ w }}</div>
+                                {% endfor %}
+                            {% endif %}
+
+                        </td>
+                        <td style="word-spacing: 0.5em;">
+                            {% if pl_entry.vacana == 'pl' %}
+                                {% for w in pl_entry.value|split:" " %}
+                                    <div class="w3-small">{{ w }}</div>
+                                {% endfor %}
+                            {% endif %}
+
+                        </td>
+                   </tr>
+                   <tr class="w3-small">
+                        <td colspan=3>
+                            <div class="w3-margin-bottom">
+                                {% if sg_entry.vacana == 'sg' %}
+                                    {% for t in sg_entry.detail.ekavacana|split:" " %}
+                                        {% with specific_noun_declension=noun_declension_dict|lookup:sg_entry.code %}
+                                            {% if specific_noun_declension %}
+                                                <button
+                                                    class="noun-translation-btn w3-btn w3-white w3-border-0 w3-round-xlarge"
+                                                    style="cursor:pointer;"
+                                                    data-nounDeclension="{{ specific_noun_declension.title }}"
+                                                    data-vacana="{{ vacana|lookup:sg_entry.vacana }}" 
+                                                >
+                                                    {{ t }}
+                                                </button>
+                                            {% endif %}
+                                        {% endwith %}
+                                    {% endfor %}
+                                {% endif %}
+                            </div>
+                            <div>
+                                {% if pl_entry.vacana == 'pl' %}
+                                    {% for t in pl_entry.detail.bahuvachana|split:" " %}
+                                        {% with specific_noun_declension=noun_declension_dict|lookup:pl_entry.code %}
+                                            {% if specific_noun_declension %}
+                                                <button
+                                                    class="noun-translation-btn w3-btn w3-white w3-border-0 w3-round-xlarge"
+                                                    style="cursor:pointer;"
+                                                    data-nounDeclension="{{ specific_noun_declension.title }}"
+                                                    data-vacana="{{ vacana|lookup:pl_entry.vacana }}" 
+                                                >
+                                                    {{ t }}
+                                                </button>
+                                            {% endif %}
+                                        {% endwith %}
+                                    {% endfor %}
+                                {% endif %}
+                            </div>
+                        </td>
+                   </tr>
+                {% endwith %}
+            {% endfor %}
+        </tbody>
+    </table>
+    
+</div>
+{% endfor %}

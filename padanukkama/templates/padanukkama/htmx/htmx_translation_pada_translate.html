@@ -1,9 +1,16 @@
 {% load static i18n widget_tweaks %}
 
 <div class="w3-container">
-    <div class="w3-text-brown">
+    <h4 class="w3-text-brown">
         {{ pada }} {% if pada.parent %}<small>({{ pada.get_parent_and_siblings }})</small>{% endif %}
-    </div>
+        <small class="w3-right">
+            <a  href="{% url 'pada_declension' padanukkama_id pada_id %}" target="_blank"
+                class="w3-button w3-round-xlarge w3-border w3-hover-white"
+            >
+                <i class="fas fa-layer-group w3-text-indigo"></i> 
+            </a>
+        </small>
+    </h4>
 </div>
 
 <div class="w3-container">
@@ -57,14 +64,12 @@
             $('#id_sadda').on('input', function() {
                 var padaSadda = $(this).val();
                 checkExistingSadda(padaSadda);
-                updateVerbConjugation(padaSadda);
             });
 
             $('#id_sadda_type').change(function() {
                 var padaSadda = $('#id_sadda').val();
                 manageInputFields();
                 manageActionButton();
-                updateVerbConjugation(padaSadda)
                 create_vipatti();
             });
 
@@ -203,33 +208,7 @@
                 }
             })
         }
-
-        // updateVerbConjugation
-        function updateVerbConjugation(padaSadda) {
-            // Make the AJAX call to the Django view
-            var url = "{% url 'filter_verb_conjugation' word='111' %}"
-                .replace('111', padaSadda);
-            $.ajax({
-                url: url,
-                data: {
-                    word: padaSadda
-                },
-                dataType: 'json',
-                success: function(response) {
-                    // Clear the existing options in the verb_conjugation select field
-                    $('#id_verb_conjugation').empty();
-
-                    // Add the new options based on the AJAX response
-                    for (var i = 0; i < response.length; i++) {
-                        var option = $('<option>').val(response[i].id).text(response[i].title);
-                        $('#id_verb_conjugation').append(option);
-                    }
-                },
-                error: function(xhr, status, error) {
-                    // Handle the error, if any
-                }
-            });
-        }
+        
 
         // Function to handle preview btn
         function handlePreview(event) {
@@ -249,8 +228,13 @@
             // Get the button element by its ID
             var submitButton = $("#submit_data");
 
+            // Function to escape special characters in a string
+            function escapeRegExp(string) {
+                return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+            }
+
             // Function to highlight matches in the given text
-            function highlightMatch(text, padas) {
+            function highlightMatch(text, padas, origin) {
                 var words = text.split(/\s+/);
                 var highlightedText = '';
                 for (var i = 0; i < words.length; i++) {
@@ -258,28 +242,28 @@
                     var isMatched = false;
                     for (var j = 0; j < padas.length; j++) {
                         var pada = padas[j];
-                        var regex = new RegExp('^' + escapeRegExp(pada) + '$', 'i');
+                        var regex = new RegExp('^' + escapeRegExp(origin) + '$', 'i');
+                        var regexPada = new RegExp('^' + escapeRegExp(pada) + '$', 'i');
                         if (word.match(regex)) {
+                            highlightedText += '<div class="w3-text-red">' + word + '</div> ';
+                            isMatched = true;
+                            break;
+                        } else if (word.match(regexPada)) {
                             highlightedText += '<div class="w3-text-blue">' + word + '</div> ';
                             isMatched = true;
                             break;
                         }
                     }
                     if (!isMatched) {
-                        highlightedText += '<div class="w3-text-grey">' + word + '</div> ';
+                        // highlightedText += '<div class="w3-text-grey">' + word + '</div> ';
                     }
                 }
                 return highlightedText.trim();
             }
 
-            // Function to escape special characters in a string
-            function escapeRegExp(string) {
-                return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-            }
-
 
             // Check if template_id and sadda are not empty
-            if (id_sadda_type && id_sadda && id_namasaddamala) {
+            if ((id_sadda_type == 'Nama') && id_sadda && (id_namasaddamala.length>0)) {
 
                 var templateIdString = id_namasaddamala.join(',');
 
@@ -321,46 +305,119 @@
                                     matchesHtml += '      <th>{% trans "Ekavacana" %}</th>'
                                     matchesHtml += '      <th>{% trans "Bahuvacana" %}</th>'
                                     matchesHtml += '  </tr>'
-                                    matchesHtml += '  <tr>'
-                                    matchesHtml += '      <td>{% trans "Paṭhamā" %}</td>'
-                                    matchesHtml += '      <td>' + highlightMatch(response.result.nom_sg, response.padas) + '</td>'
-                                    matchesHtml += '      <td>' + highlightMatch(response.result.nom_pl, response.padas) + '</td>'
-                                    matchesHtml += '  </tr>'
-                                    matchesHtml += '  <tr>'
-                                    matchesHtml += '      <td>{% trans "Ālapana" %}</td>'
-                                    matchesHtml += '      <td>' + highlightMatch(response.result.voc_sg, response.padas) + '</td>'
-                                    matchesHtml += '      <td>' + highlightMatch(response.result.voc_pl, response.padas) + '</td>'
-                                    matchesHtml += '  </tr>'
-                                    matchesHtml += '  <tr>'
-                                    matchesHtml += '      <td>{% trans "Dutiyā" %}</td>'
-                                    matchesHtml += '      <td>' + highlightMatch(response.result.acc_sg, response.padas) + '</td>'
-                                    matchesHtml += '      <td>' + highlightMatch(response.result.acc_pl, response.padas) + '</td>'
-                                    matchesHtml += '  </tr>'
-                                    matchesHtml += '  <tr>'
-                                    matchesHtml += '      <td>{% trans "Tatiyā" %}</td>'
-                                    matchesHtml += '      <td>' + highlightMatch(response.result.instr_sg, response.padas) + '</td>'
-                                    matchesHtml += '      <td>' + highlightMatch(response.result.instr_pl, response.padas) + '</td>'
-                                    matchesHtml += '  </tr>'
-                                    matchesHtml += '  <tr>'
-                                    matchesHtml += '      <td>{% trans "Catutthī" %}</td>'
-                                    matchesHtml += '      <td>' + highlightMatch(response.result.dat_sg, response.padas) + '</td>'
-                                    matchesHtml += '      <td>' + highlightMatch(response.result.dat_pl, response.padas) + '</td>'
-                                    matchesHtml += '  </tr>'
-                                    matchesHtml += '  <tr>'
-                                    matchesHtml += '      <td>{% trans "Pañcamī" %}</td>'
-                                    matchesHtml += '      <td>' + highlightMatch(response.result.abl_sg, response.padas) + '</td>'
-                                    matchesHtml += '      <td>' + highlightMatch(response.result.abl_pl, response.padas) + '</td>'
-                                    matchesHtml += '  </tr>'
-                                    matchesHtml += '  <tr>'
-                                    matchesHtml += '      <td>{% trans "Chaṭṭhī" %}</td>'
-                                    matchesHtml += '      <td>' + highlightMatch(response.result.gen_sg, response.padas) + '</td>'
-                                    matchesHtml += '      <td>' + highlightMatch(response.result.gen_pl, response.padas) + '</td>'
-                                    matchesHtml += '  </tr>'
-                                    matchesHtml += '  <tr>'
-                                    matchesHtml += '      <td>{% trans "Sattamī" %}</td>'
-                                    matchesHtml += '      <td>' + highlightMatch(response.result.loc_sg, response.padas) + '</td>'
-                                    matchesHtml += '      <td>' + highlightMatch(response.result.loc_pl, response.padas) + '</td>'
-                                    matchesHtml += '  </tr>'
+                                    if (
+                                        highlightMatch(response.result.nom_sg, response.padas, '{{ pada.pada }}') || 
+                                        highlightMatch(response.result.nom_pl, response.padas, '{{ pada.pada }}')
+                                    ) {
+                                        matchesHtml += '  <tr class="w3-light-gray">'
+                                        matchesHtml += '      <td>{% trans "Paṭhamā" %}</td>'
+                                        matchesHtml += '      <td>' + highlightMatch(response.result.nom_sg, response.padas, '{{ pada.pada }}') + '</td>'
+                                        matchesHtml += '      <td>' + highlightMatch(response.result.nom_pl, response.padas, '{{ pada.pada }}') + '</td>'
+                                        matchesHtml += '  </tr>'
+                                        matchesHtml += '  <tr>'
+                                        matchesHtml += '      <td colspan="3" class="space-normal w3-tiny">' + response.nom[0] + '<br>' + response.nom[1] + '</td>'
+                                        matchesHtml += '  </tr>'
+                                    }
+
+                                    if (
+                                        highlightMatch(response.result.voc_sg, response.padas, '{{ pada.pada }}') || 
+                                        highlightMatch(response.result.voc_pl, response.padas, '{{ pada.pada }}')
+                                    ) {
+                                        matchesHtml += '  <tr class="w3-light-gray">'
+                                        matchesHtml += '      <td>{% trans "Ālapana" %}</td>'
+                                        matchesHtml += '      <td>' + highlightMatch(response.result.voc_sg, response.padas, '{{ pada.pada }}') + '</td>'
+                                        matchesHtml += '      <td>' + highlightMatch(response.result.voc_pl, response.padas, '{{ pada.pada }}') + '</td>'
+                                        matchesHtml += '  </tr>'
+                                        matchesHtml += '  <tr>'
+                                        matchesHtml += '      <td colspan="3" class="space-normal w3-tiny">' + response.voc[0] + '<br>' + response.voc[1] + '</td>'
+                                        matchesHtml += '  </tr>'
+                                    }
+
+                                    if (
+                                        highlightMatch(response.result.acc_sg, response.padas, '{{ pada.pada }}') || 
+                                        highlightMatch(response.result.acc_pl, response.padas, '{{ pada.pada }}')
+                                    ) {
+                                        matchesHtml += '  <tr class="w3-light-gray">'
+                                        matchesHtml += '      <td>{% trans "Dutiyā" %}</td>'
+                                        matchesHtml += '      <td>' + highlightMatch(response.result.acc_sg, response.padas, '{{ pada.pada }}') + '</td>'
+                                        matchesHtml += '      <td>' + highlightMatch(response.result.acc_pl, response.padas, '{{ pada.pada }}') + '</td>'
+                                        matchesHtml += '  </tr>'
+                                        matchesHtml += '  <tr>'
+                                        matchesHtml += '      <td colspan="3" class="space-normal w3-tiny">' + response.acc[0] + '<br>' + response.acc[1] + '</td>'
+                                        matchesHtml += '  </tr>'
+                                    }
+
+                                    if (
+                                        highlightMatch(response.result.instr_sg, response.padas, '{{ pada.pada }}') || 
+                                        highlightMatch(response.result.instr_pl, response.padas, '{{ pada.pada }}')
+                                    ) {
+                                        matchesHtml += '  <tr class="w3-light-gray">'
+                                        matchesHtml += '      <td>{% trans "Tatiyā" %}</td>'
+                                        matchesHtml += '      <td>' + highlightMatch(response.result.instr_sg, response.padas, '{{ pada.pada }}') + '</td>'
+                                        matchesHtml += '      <td>' + highlightMatch(response.result.instr_pl, response.padas, '{{ pada.pada }}') + '</td>'
+                                        matchesHtml += '  </tr>'
+                                        matchesHtml += '  <tr>'
+                                        matchesHtml += '      <td colspan="3" class="space-normal w3-tiny">' + response.instr[0] + '<br>' + response.instr[1] + '</td>'
+                                        matchesHtml += '  </tr>'
+                                    }
+
+                                    if (
+                                        highlightMatch(response.result.dat_sg, response.padas, '{{ pada.pada }}') || 
+                                        highlightMatch(response.result.dat_pl, response.padas, '{{ pada.pada }}')
+                                    ) {
+                                        matchesHtml += '  <tr class="w3-light-gray">'
+                                        matchesHtml += '      <td>{% trans "Catutthī" %}</td>'
+                                        matchesHtml += '      <td>' + highlightMatch(response.result.dat_sg, response.padas, '{{ pada.pada }}') + '</td>'
+                                        matchesHtml += '      <td>' + highlightMatch(response.result.dat_pl, response.padas, '{{ pada.pada }}') + '</td>'
+                                        matchesHtml += '  </tr>'
+                                        matchesHtml += '  <tr>'
+                                        matchesHtml += '      <td colspan="3" class="space-normal w3-tiny">' + response.dat[0] + '<br>' + response.dat[1] + '</td>'
+                                        matchesHtml += '  </tr>'
+                                    }
+
+                                    if (
+                                        highlightMatch(response.result.abl_sg, response.padas, '{{ pada.pada }}') || 
+                                        highlightMatch(response.result.abl_pl, response.padas, '{{ pada.pada }}')
+                                    ) {
+                                        matchesHtml += '  <tr class="w3-light-gray">'
+                                        matchesHtml += '      <td>{% trans "Pañcamī" %}</td>'
+                                        matchesHtml += '      <td>' + highlightMatch(response.result.abl_sg, response.padas, '{{ pada.pada }}') + '</td>'
+                                        matchesHtml += '      <td>' + highlightMatch(response.result.abl_pl, response.padas, '{{ pada.pada }}') + '</td>'
+                                        matchesHtml += '  </tr>'
+                                        matchesHtml += '  <tr>'
+                                        matchesHtml += '      <td colspan="3" class="space-normal w3-tiny">' + response.abl[0] + '<br>' + response.abl[1] + '</td>'
+                                        matchesHtml += '  </tr>'
+                                    }
+
+                                    if (
+                                        highlightMatch(response.result.gen_sg, response.padas, '{{ pada.pada }}') || 
+                                        highlightMatch(response.result.gen_pl, response.padas, '{{ pada.pada }}')
+                                    ) {
+                                        matchesHtml += '  <tr class="w3-light-gray">'
+                                        matchesHtml += '      <td>{% trans "Chaṭṭhī" %}</td>'
+                                        matchesHtml += '      <td>' + highlightMatch(response.result.gen_sg, response.padas, '{{ pada.pada }}') + '</td>'
+                                        matchesHtml += '      <td>' + highlightMatch(response.result.gen_pl, response.padas, '{{ pada.pada }}') + '</td>'
+                                        matchesHtml += '  </tr>'
+                                        matchesHtml += '  <tr>'
+                                        matchesHtml += '      <td colspan="3" class="space-normal w3-tiny">' + response.gen[0] + '<br>' + response.gen[1] + '</td>'
+                                        matchesHtml += '  </tr>'
+                                    }
+
+                                    if (
+                                        highlightMatch(response.result.loc_sg, response.padas, '{{ pada.pada }}') || 
+                                        highlightMatch(response.result.loc_pl, response.padas, '{{ pada.pada }}')
+                                    ) {
+                                        matchesHtml += '  <tr class="w3-light-gray">'
+                                        matchesHtml += '      <td>{% trans "Sattamī" %}</td>'
+                                        matchesHtml += '      <td>' + highlightMatch(response.result.loc_sg, response.padas, '{{ pada.pada }}') + '</td>'
+                                        matchesHtml += '      <td>' + highlightMatch(response.result.loc_pl, response.padas, '{{ pada.pada }}') + '</td>'
+                                        matchesHtml += '  </tr>'
+                                        matchesHtml += '  <tr>'
+                                        matchesHtml += '      <td colspan="3" class="space-normal w3-tiny">' + response.loc[0] + '<br>' + response.loc[1] + '</td>'
+                                        matchesHtml += '  </tr>'
+                                    }
+
+
                                     matchesHtml += '</table>'
                                 }
                             }

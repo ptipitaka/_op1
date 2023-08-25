@@ -40,12 +40,16 @@ htmx_urlpatterns = [
     path('htmx-translation-form/<int:pk>/pada/create/', htmx.TranslationPadaCreateView.as_view(), name='htmx_translation_pada_create'),
     path('htmx-translation-form/<int:translate_word_id>/pada/<int:pk>/delete/', htmx.TranslationPadaDeleteView.as_view(), name='htmx_translation_pada_delete'),
     path('htmx-translation-form/<int:translate_word_id>/pada/<int:pk>/translate/', htmx.TranslationPadaTranslateView.as_view(), name='htmx_translation_pada_translate'),
-    path('htmx-translation-form/<int:translate_word_id>/pada/<int:pk>/translate_post/', htmx.TranslationPadaTranslatePostView.as_view(), name='htmx_translation_pada_translate_post'),
-    path('htmx-translation-form/<int:translate_word_id>/addsentence/', htmx.addSentenceView.as_view(), name='htmx_add_sentence'),
-    path('htmx-translation-form/<int:translate_word_id>/backspace/', htmx.backspaceView.as_view(), name='htmx_backspace'),
-    path('htmx-translation-form/<int:translate_word_id>/split_pada_in_sentence/', htmx.splitPadaInSentenceView.as_view(), name='htmx_split_pada_in_sentence'),
-    path('htmx-translation-form/<int:translate_word_id>/merge_pada_in_sentence/', htmx.mergePadaInSentenceView.as_view(), name='htmx_merge_pada_in_sentence'),
-    path('htmx-translation-form/<int:pk>/update', htmx.updateTranslationWord.as_view(), name='htmx_update_translation_word'),
+    path('htmx-translation-form/<int:translate_word_id>/pada/<int:pk>/translate-post/', htmx.TranslationPadaTranslatePostView.as_view(), name='htmx_translation_pada_translate_post'),
+    path('htmx-translation-form/<int:translate_word_id>/add-sentence/', htmx.AddSentenceView.as_view(), name='htmx_add_sentence'),
+    path('htmx-translation-form/<int:translate_word_id>/update-sentence/', htmx.UpdateSentenceView.as_view(), name='htmx_update_sentence'),
+    path('htmx-translation-form/<int:translate_word_id>/backspace/', htmx.BackspaceView.as_view(), name='htmx_backspace'),
+    path('htmx-translation-form/<int:translate_word_id>/split-pada-in-sentence/', htmx.SplitPadaInSentenceView.as_view(), name='htmx_split_pada_in_sentence'),
+    path('htmx-translation-form/<int:translate_word_id>/merge-pada-in-sentence/', htmx.MergePadaInSentenceView.as_view(), name='htmx_merge_pada_in_sentence'),
+    path('htmx-translation-form/<int:pk>/translation-helper/', htmx.TranslationHelperView.as_view(), name='htmx_translation_helper'),
+    path('htmx-translation-form/<int:translate_word_id>/translation-sequence/<str:direction>/', htmx.UpdateTranslationSequence.as_view(), name='htmx_update_translation_sequence'),
+    path('htmx-translation-form/htmx-update-translation-sequence-by-sortablejs/', htmx.UpdateTranslationSequenceBySortableJs, name='htmx_update_translation_sequence_by_sortablejs'),
+    path('htmx-translation-form/htmx-change-word-order/', htmx.ChangeWordOrder.as_view(), name='htmx_change_word_order')
 ]
 
 urlpatterns += htmx_urlpatterns

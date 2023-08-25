@@ -1,7 +1,7 @@
 from django.db.models import Q
 
 from tipitaka.models import CommonReference, WordList
-from padanukkama.models import Padanukkama, Pada, NamaSaddamala, Sadda
+from padanukkama.models import Padanukkama, Pada, NamaSaddamala, Sadda, AkhyataSaddamala
 from .pali_char import *
 
 from padanukkama.workflows import SaddaTranslationWorkflow

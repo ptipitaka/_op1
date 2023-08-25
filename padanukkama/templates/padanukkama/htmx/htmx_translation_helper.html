@@ -1,0 +1,107 @@
+{% load i18n %}
+
+{% load translate_tags %}
+
+<div class="w3-margin-top">
+    <!-- word from source (Tipitaka) -->
+    {% if pada %}
+    <!-- has sadda -->
+        {% if sadda %}
+            <div>
+                <b>{% trans 'Sadda' %} : {{ translate_word.pada.sadda.sadda }}</b> {{ translate_word.pada.sadda.construction }}
+            </div>
+            
+            <div class="w3-margin-bottom">{% trans 'Meaning' %} : 
+                {% for each_meaning in translate_word.pada.sadda.meaning|split:"," %}
+                    <button
+                        class="w3-btn w3-white w3-border-0 w3-round-xlarge"
+                        style="cursor:pointer;"
+                        onclick="$('#id_translated_word_form-translation').val('{{ each_meaning }}')"
+                    >
+                        {{ each_meaning }}
+                    </button>
+                {% endfor %}
+                <span class="w3-hide" id="meaning">{{ translate_word.pada.sadda.meaning }}</span>
+            </div>
+            <div>
+                {% if sadda_type == 'Nama' %}
+                    <!-- Noun Declension -->
+                    {% include 'padanukkama/include/htmx_translation_helper/nama_declension_table.html' %}
+                {% elif sadda_type == 'Akhyata' %}
+                    <!-- Verb Conjugation -->
+                    {% include 'padanukkama/include/htmx_translation_helper/verb_conjugation_table.html' %}
+                {% endif %}
+            </div>
+        {% else %}
+            {% trans 'No translation found' %}
+        {% endif %}
+    <!-- Interpolation -->
+    {% else %}
+        {% trans 'Interpolation' %}
+    {% endif %}
+</div>
+
+
+<script>
+    $(document).ready(function() {
+        // แยกความหมายที่มีการแบ่งด้วย comma
+        let meanings = $("#meaning").text().split(",");
+        let currentIndex = 0;
+        
+        $(".noun-translation-btn").on("click", function() {
+            // นำความหมายมาแทนที่ "...."
+            let translatedText = $(this).text().trim().replace("....", meanings[currentIndex].trim());
+            let nounDeclension = $(this).attr("data-nounDeclension");
+            let vacana = $(this).attr("data-vacana");
+            let combinedValue = nounDeclension + " " + vacana;
+
+            // ใส่ค่าใน #id_translation
+            $("#id_translated_word_form-translation").val(translatedText);
+            $("#id_translated_word_form-description").val(combinedValue);
+            
+            // หากมีความหมายหลายความหมาย, วนไปเรื่อยๆ
+            if(currentIndex < meanings.length - 1) {
+                currentIndex++;
+            } else {
+                currentIndex = 0;
+            }
+        });
+
+        $(".verb-translation-btn").on("click", function() {
+            let akhyata = $(this).attr("data-akhyata");
+            let selection = $(this).attr("data-selection");
+            let combinedValue = selection + " " + akhyata;
+            
+            // ใส่ค่าใน #id_translation
+            $("#id_translated_word_form-description").val(combinedValue);
+        });
+        
+        $(".declension-meaning-btn").on("click", function() {
+            let translatedText = $(this).text().trim().replace("....", meanings[currentIndex].trim());
+            $("#id_translated_word_form-translation").val(translatedText);
+
+            // หากมีความหมายหลายความหมาย, วนไปเรื่อยๆ
+            if(currentIndex < meanings.length - 1) {
+                currentIndex++;
+            } else {
+                currentIndex = 0;
+            }
+        })
+    });
+
+    // openVerbCon
+    function openVerbCon(evt, cityName) {
+        var i, x, tablinks;
+        x = document.getElementsByClassName("verb-conjugation");
+        for (i = 0; i < x.length; i++) {
+          x[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablink");
+        for (i = 0; i < x.length; i++) {
+          tablinks[i].className = tablinks[i].className.replace(" w3-win8-taupe", "");
+        }
+        document.getElementById(cityName).style.display = "block";
+        evt.currentTarget.className += " w3-win8-taupe";
+      }
+
+</script>

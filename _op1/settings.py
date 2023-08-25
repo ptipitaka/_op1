@@ -54,8 +54,6 @@ INSTALLED_APPS = [
     'simple_history',
     'smart_selects',
     'storages',
-    'taggit',
-    'taggit_labels',
     'widget_tweaks',
     # internal
     'main.apps.MainConfig',

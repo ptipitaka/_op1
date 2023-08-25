@@ -1,146 +1,164 @@
 {% load static i18n widget_tweaks mptt_tags %}
 
-{% load render_table from django_tables2 %}
-
 {% block extra_js %}
     <script src="{% static 'js/jquery-3.6.4.min.js' %}"></script>
 {% endblock %}
 
 {% csrf_token %}
 
-<div id="" class="w3-bar">
-    <!-- page preview button -->
-    <button type="button"
-        id="togglePagesPriview"
-        class="w3-bar-item w3-button"
-        onclick="$('#pages-preview').toggle();">
-        <i class="far fa-clipboard"></i>
-    </button>
-    <span id="toolbar">
-    <!-- Split button -->
-    <button
-        class="btn-toolbar w3-bar-item w3-button w3-white w3-tooltip {% if not split_pada %} w3-disabled {% endif %}"
-        hx-post="{% url 'htmx_split_pada_in_sentence' translate_word_id=pk %}"
-        hx-target="#translation-pada"
-        hx-trigger.once="click"
-        hx-boost="once"
-        hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
-        >
-        <icon class="far fa-object-ungroup"></icon>
-        <span class="w3-text w3-tag w3-light-grey">
-            {% trans 'Split' %}
-        </span>
-    </button>
-    <!-- Merge button -->
-    <button
-        class="btn-toolbar w3-bar-item w3-button w3-white w3-tooltip {% if not merge_pada %} w3-disabled {% endif %}"
-        hx-post="{% url 'htmx_merge_pada_in_sentence' translate_word_id=pk %}"
-        hx-target="#translation-pada"
-        hx-trigger.once="click"
-        hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
-        >
-        <icon class="far fa-object-group"></icon>
-        <span class="w3-text w3-tag w3-light-grey">
-            {% trans 'Merge' %}
-        </span>
-    </button>
-    <!-- Backspace button -->
-    <button
-        class="btn-toolbar w3-bar-item w3-right w3-button w3-white w3-tooltip {% if not backspace %} w3-disabled {% endif %}"
-        hx-post="{% url 'htmx_backspace' translate_word_id=pk %}"
-        hx-trigger.once="click"
-        hx-target="#translation-pada"
-        hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
-        >
-        <icon class="fas fa-backspace"></icon>
-        <span class="w3-text w3-tag w3-light-grey">
-            {% trans 'Backspace' %}
-        </span>
-    </button>
-    <!-- Add Sentence button -->
-    <button
-        class="btn-toolbar w3-bar-item w3-right w3-button w3-white w3-tooltip {% if not new_sentence %} w3-disabled {% endif %}"
-        hx-post="{% url 'htmx_add_sentence' translate_word_id=pk %}"
-        hx-trigger.once="click"
-        hx-target="#translation-pada"
-        hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
-    >
-        <icon class="fas fa-stream"></icon>
-        <span class="w3-text w3-tag w3-light-grey">
-            {% trans '+Sentence' %}
-        </span>
-    </button>
-    </span>
+<!-- defalut position of toolbars -->
+{% include 'padanukkama/include/htmx_translation_pada/default_toolbars.html' %}
 
-</div>
+<!-- toggle sondhi table -->
+{% include 'padanukkama/include/htmx_translation_pada/toggle_sondhi_table.html' %}
 
-{% render_table table %}
+<!-- help table -->
+{% include 'padanukkama/include/htmx_translation_pada/help_table.html' %}
 
-{% if not has_sadda and not has_parent %}
-    <form
-        hx-post="{% url 'htmx_translation_pada_create' pk=pk %}"
-        hx-target="#htmx-translation-form"
-        method="post"
-        class="w3-container w3-text-blue w3-padding"
-        style="width:60%;margin:auto;">
-        {% csrf_token %}
-        {% for field in add_child_pada_form %}
-            <p>
-                <label>{% trans field.label_tag %}</label>
-                {{ field|add_class:"w3-input" }}
-            </p>
-        {% endfor %}
-
-        <input
-            type="submit"
-            name="filter-submit"
-            value="{% trans "Submit" %}"
-            class="w3-button w3-dark-grey w3-hover-brown w3-round-xlarge"
-        />
-    </form>
-{% endif %}
-
-<div class="container w3-padding">
-    <div class="w3-panel w3-round-xxlarge w3-padding w3-light-grey">
-        <button onclick="acordion('translationHelper')" class="w3-btn w3-border-white w3-round-xxlarge">
-            {% trans 'Padanukkama' %}
-        </button>
-            
-        <div id="translationHelper" class="w3-hide w3-container w3-light-grey">
-            <p>Lorem ipsum...</p>
-        </div>
+<!-- form tabs -->
+<div id="scroll-then-fix-content">
+    <div class="w3-bar w3-white">
+        {% if has_pada %}
+            <button class="w3-bar-item w3-button tablink w3-win8-brown" onclick="openTabForm(event,'form1')">{% trans 'Translation' %}</button>
+            <button class="w3-bar-item w3-button tablink" onclick="openTabForm(event,'form2')">{% trans 'Interpolation' %}</button>
+        {% else %}
+            <button class="w3-bar-item w3-button tablink w3-win8-brown" onclick="openTabForm(event,'form2')">{% trans 'Interpolation' %}</button>
+        {% endif %}
     </div>
 
+    <!-- FORM 1: toolbars and translation update form -->
+    {% if has_pada %}
+        <div id="form1" class="w3-border form-tab">
+            <div id="toolbars" class="w3-bar" style="display: none;">
+                <span id="toolbar">
+                    <!-- htmx Split button -->
+                    <button
+                        class="btn-toolbar w3-bar-item w3-button w3-white w3-tooltip {% if not split_pada %} w3-disabled {% endif %}"
+                        hx-post="{% url 'htmx_split_pada_in_sentence' translate_word_id=pk %}"
+                        hx-target="#translation-pada"
+                        hx-trigger.once="click"
+                        hx-boost="once"
+                        hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
+                        >
+                        <icon class="far fa-object-ungroup"></icon>
+                        <span class="w3-text w3-tag w3-light-grey">
+                            {% trans 'Split' %}
+                        </span>
+                    </button>
+                    <!-- htmx Merge button -->
+                    <button
+                        class="btn-toolbar w3-bar-item w3-button w3-white w3-tooltip {% if not merge_pada %} w3-disabled {% endif %}"
+                        hx-post="{% url 'htmx_merge_pada_in_sentence' translate_word_id=pk %}"
+                        hx-target="#translation-pada"
+                        hx-trigger.once="click"
+                        hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
+                        >
+                        <icon class="far fa-object-group"></icon>
+                        <span class="w3-text w3-tag w3-light-grey">
+                            {% trans 'Merge' %}
+                        </span>
+                    </button>
+                    <!-- htmx Backspace button -->
+                    <button
+                        class="btn-toolbar w3-bar-item w3-right w3-button w3-white w3-tooltip {% if not backspace %} w3-disabled {% endif %}"
+                        hx-post="{% url 'htmx_backspace' translate_word_id=pk %}"
+                        hx-trigger.once="click"
+                        hx-target="#translation-pada"
+                        hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
+                        >
+                        <icon class="fas fa-backspace"></icon>
+                        <span class="w3-text w3-tag w3-light-grey">
+                            {% trans 'Backspace' %}
+                        </span>
+                    </button>
+                    <!-- htmx Add Sentence button -->
+                    <button
+                        class="btn-toolbar w3-bar-item w3-right w3-button w3-white w3-tooltip {% if not new_sentence %} w3-disabled {% endif %}"
+                        hx-post="{% url 'htmx_add_sentence' translate_word_id=pk %}"
+                        hx-trigger.once="click"
+                        hx-target="#translation-pada"
+                        hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
+                    >
+                        <icon class="fas fa-stream"></icon>
+                        <span class="w3-text w3-tag w3-light-grey">
+                            {% trans '+Sentence' %}
+                        </span>
+                    </button>
+                </span>
+            </div>
 
+            <form id="addForm"
+                hx-post="{% url 'htmx_update_sentence' translate_word_id=pk %}"
+                hx-target="#translation-pada"
+                method="post"
+                class="w3-container w3-padding">
+                {% csrf_token %}
+                {% for field in translated_word_form %}
+                    <p>
+                        <label>{% trans field.label_tag %}</label>
+                        {{ field|add_class:"w3-input w3-border" }}
+                    </p>
+                {% endfor %}
 
-    <form
-        hx-post="{% url 'htmx_update_translation_word' pk=pk %}"
-        hx-target="#htmx-translation-form"
-        method="post"
-        class="w3-container w3-padding"
-        style="margin:auto;">
-        {% csrf_token %}
-        {% for field in translated_word_form %}
-            <p>
-                <label>{% trans field.label_tag %}</label>
-                {{ field|add_class:"w3-input w3-border" }}
-            </p>
-        {% endfor %}
+                <input
+                    type="submit"
+                    name="translate-submit"
+                    value="{% trans "Submit" %}"
+                    class="w3-button w3-dark-grey w3-hover-brown w3-round-xlarge w3-right"
+                />
+            </form>
+        </div>
+    {% endif %}
+    <!-- FORM 2: translation add form -->
+    <div id="form2" class="w3-border form-tab" style="{% if has_pada %}display:none{% endif %}">
+        <form id="updateForm"
+            hx-post="{% url 'htmx_update_sentence' translate_word_id=pk %}"
+            hx-target="#translation-pada"
+            method="post"
+            class="w3-container w3-padding">
+            {% csrf_token %}
+            {% for field in translated_word_add_form %}
+                <p>
+                    <label>{% trans field.label_tag %}</label>
+                    {{ field|add_class:"w3-input w3-border" }}
+                </p>
+            {% endfor %}
 
-        <input
-            type="submit"
-            name="filter-submit"
-            value="{% trans "Submit" %}"
-            class="w3-button w3-dark-grey w3-hover-brown w3-round-xlarge"
-        />
+            {% if translated_word_add_form.instance.id %}
+                <!-- มี id หมายความว่าเป็นการแก้ไขรายการเก่า -->
+                <input
+                    type="submit"
+                    name="delete-word-submit"
+                    value="{% trans "Delete" %}"
+                    class="w3-button w3-red w3-hover-brown w3-round-xlarge"
+                />
+            {% endif %}
+            
+            <input
+                type="submit"
+                name="add-word-submit"
+                value="{% trans "Submit" %}"
+                class="w3-button w3-dark-grey w3-hover-brown w3-round-xlarge w3-right"
+            />
         </form>
+    </div>
 </div>
+
+
 
 
 {% block script %}
 
 <script>
+    // Document Ready
     $(document).ready(function() {
+        // initial
+        scrollAndFix();
+
+        $("#translationHelper").on('transitionend', function() {
+            scrollAndFix();
+        });
+
         // Event listener for the button click
         $(".btn-toolbar").on("click", function(event) {
             const button = $(event.target);
@@ -152,16 +170,85 @@
             // Hide the toolbar div
             toolbarDiv.hide();
         });
-    });
 
-    function acordion(id) {
+        // Add / Update (form 2) Interpolation Form
+        $("#updateForm").submit(function(event) {
+            console.log('form1 submit')
+            $('#htmx-translation-form').hide();
+            $('#pages-preview').show()
+        });
+    });
+    
+
+    // Accordion
+    function accordion(id) {
         var x = document.getElementById(id);
         if (x.className.indexOf("w3-show") == -1) {
-          x.className += " w3-show";
+            x.className += " w3-show";
         } else { 
-          x.className = x.className.replace(" w3-show", "");
+            x.className = x.className.replace(" w3-show", "");
         }
-      }
+    
+        const observer = new MutationObserver(function(mutationsList) {
+            for(const mutation of mutationsList) {
+                if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+                    scrollAndFix();
+                }
+            }
+        });
+        
+        observer.observe(x, { attributes: true });
+    }    
+
+    // Scroll And Fix
+    function scrollAndFix(screenHeight) {
+        const $contentDiv = $("#scroll-then-fix-content");
+        const initialWidth = $contentDiv.width();
+    
+        $contentDiv.css({
+            'position': 'relative',
+            'top': 'initial',
+            'width': initialWidth + 'px'
+        });
+    
+        if ($contentDiv.length > 0) {
+            const offsetTop = $contentDiv.offset().top;
+    
+            $(window).scroll(function() {
+                if ($(window).scrollTop() > offsetTop) {
+                    $('#toolbars').show()
+                    $contentDiv.css({
+                        'position': 'fixed',
+                        'top': '0',
+                        'z-index': '1000',
+                        'width': initialWidth + 'px'
+                    });
+                } else {
+                    $('#toolbars').hide()
+                    $contentDiv.css({
+                        'position': 'relative',
+                        'top': 'initial',
+                        'width': initialWidth + 'px'
+                    });
+                }
+            });
+        }
+    };
+    
+    // Open Tabs
+    function openTabForm(evt, formName) {
+        var i, x, tablinks;
+        x = document.getElementsByClassName("form-tab");
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablink");
+        for (i = 0; i < x.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" w3-win8-brown", "");
+        }
+        document.getElementById(formName).style.display = "block";
+        evt.currentTarget.className += " w3-win8-brown";
+    }
 </script>
 
 {% endblock %}

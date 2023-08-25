@@ -1,0 +1,13 @@
+<!-- notification -->
+{% if success_message or error_message %}
+<div class="w3-panel w3-display-container {% if success_message %} w3-green {% elif error_message %} w3-red {% endif %}">
+    <span onclick="this.parentElement.style.display='none'"
+        class="w3-button w3-display-topright">X</span>
+    <div class="w3-panel w3-green">
+        {{ success_message|safe }} {{ error_message|safe }}
+    </div>
+</div>
+{% endif %}
+
+{% include 'padanukkama/include/translation_pada.html' %}
+

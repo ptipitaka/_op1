@@ -128,8 +128,6 @@ class NounDeclensionTable(tables.Table):
         empty_values=(),
         orderable=False,
         verbose_name=_('Action'))
-    
-    description = tables.Column(attrs={"td": {"style": "background-color: whitesmoke;"}})
 
 
     def render_action(self, record):
@@ -145,18 +143,12 @@ class NounDeclensionTable(tables.Table):
             f'<i class="fas fa-pencil-alt"></i></a>'
         )
 
-    def render_description(self, value):
-        data = json.loads(value)
-        parser = EditorJSParser()
-        html_description = parser.parse(data)
-        return mark_safe(html_description)
-
     class Meta:
         model = NounDeclension
         template_name = "django_tables2/w3css.html"
         attrs = {"class": "w3-table w3-bordered"}
-        fields = ('code', 'title', 'description',)
-        order_by = ("code",) 
+        fields = ('sequence', 'code', 'title', 'description',)
+        order_by = ("sequence",) 
 
 
 

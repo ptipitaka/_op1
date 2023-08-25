@@ -1,0 +1,170 @@
+{% load i18n %}
+
+{% load translate_tags %}
+
+<div id="verb_conjugation" class="tab">
+
+    <div class="w3-bar">
+        {% for each_v in akhyata_declension_table %}
+            <button
+                class="w3-bar-item w3-button tablink {% if forloop.counter == 1 %} w3-win8-taupe {% endif %}"
+                onclick="openVerbCon(event, '{{ each_v.id }}')"
+            >
+                {{ each_v.title }}
+            </button>
+        {% endfor %}
+    </div>
+    <div class="w3-small">
+        {% for each_v in akhyata_declension_table %}
+            <div id="{{ each_v.id }}" class="verb-conjugation" {% if forloop.counter != 1 %}style="display:none"{% endif %}>
+                <p>{{ each_v.description }}</p>
+            
+                <table class="w3-table w3-bordered">
+                    <tbody>
+                        <tr>
+                            <th>{% trans 'Meaning' %}</th>
+                            <td colspan=4>
+                                {% for w in each_v.meaning|split:" " %}
+                                    <button 
+                                        class="declension-meaning-btn w3-btn w3-white w3-border-0 w3-round-xlarge"
+                                        style="cursor:pointer;"
+                                    >
+                                        {{ w }}
+                                    </button>
+                                {% endfor %}                                                   
+                            </td>
+                        </tr>
+                        <tr>
+                            <th rowspan="2" style="width: 100px;">{% trans 'Person' %}</th>
+                            <th colspan="2" class="w3-center">{% trans 'Parassapada' %}</th>
+                            <th colspan="2" class="w3-center">{% trans 'Attanopada' %}</th>
+                        </tr>
+                        <tr>
+                            <th style="padding:5px; min-width:50px;">เอก.</th>
+                            <th style="padding:5px; min-width:50px;">พหุ.</th>
+                            <th style="padding:5px; min-width:50px;">เอก.</th>
+                            <th style="padding:5px; min-width:50px;">พหุ.</th>
+                        </tr>
+                        <tr>
+                            <th>{% trans '1st' %}</th>
+                            <td>
+                                <button
+                                    class="verb-translation-btn w3-btn w3-white w3-border-0 w3-round-xlarge"
+                                    style="cursor:pointer;"
+                                    data-akhyata="{{ each_v.title}}"
+                                    data-selection="{{ each_v.p1_para_sg }}">
+                                    {{ each_v.p1_para_sg }}
+                                </button>
+                            </td>
+                            <td>
+                                <button
+                                    class="verb-translation-btn w3-btn w3-white w3-border-0 w3-round-xlarge"
+                                    style="cursor:pointer;"
+                                    data-akhyata="{{ each_v.title}}"
+                                    data-selection="{{ each_v.p1_para_pl }}">
+                                    {{ each_v.p1_para_pl }}
+                                </button>
+                            </td>
+                            <td>
+                                <button
+                                    class="verb-translation-btn w3-btn w3-white w3-border-0 w3-round-xlarge"
+                                    style="cursor:pointer;"
+                                    data-akhyata="{{ each_v.title}}"
+                                    data-selection="{{ each_v.p1_atta_sg }}">
+                                    {{ each_v.p1_atta_sg }}
+                                </button>
+                            </td>
+                            <td>
+                                <button
+                                    class="verb-translation-btn w3-btn w3-white w3-border-0 w3-round-xlarge"
+                                    style="cursor:pointer;"
+                                    data-akhyata="{{ each_v.title}}"
+                                    data-selection="{{ each_v.p1_atta_pl }}">
+                                    {{ each_v.p1_atta_pl }}
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>{% trans '2nd' %}</th>
+                            <td>
+                                <button
+                                    class="verb-translation-btn w3-btn w3-white w3-border-0 w3-round-xlarge"
+                                    style="cursor:pointer;"
+                                    data-akhyata="{{ each_v.title}}"
+                                    data-selection="{{ each_v.p2_para_sg }}">
+                                    {{ each_v.p2_para_sg }}
+                                </button>
+                            </td>
+                            <td>
+                                <button
+                                    class="verb-translation-btn w3-btn w3-white w3-border-0 w3-round-xlarge"
+                                    style="cursor:pointer;"
+                                    data-akhyata="{{ each_v.title}}"
+                                    data-selection="{{ each_v.p2_para_pl }}">
+                                    {{ each_v.p2_para_pl }}
+                                </button>
+                            </td>
+                            <td>
+                                <button
+                                    class="verb-translation-btn w3-btn w3-white w3-border-0 w3-round-xlarge"
+                                    style="cursor:pointer;"
+                                    data-akhyata="{{ each_v.title}}"
+                                    data-selection="{{ each_v.p2_atta_sg }}">
+                                    {{ each_v.p2_atta_sg }}
+                                </button>
+                            </td>
+                            <td>
+                                <button
+                                    class="verb-translation-btn w3-btn w3-white w3-border-0 w3-round-xlarge"
+                                    style="cursor:pointer;"
+                                    data-akhyata="{{ each_v.title}}"
+                                    data-selection="{{ each_v.p2_atta_pl }}">
+                                    {{ each_v.p2_atta_pl }}
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>{% trans '3rd' %}</th>
+                            <td>
+                                <button
+                                    class="verb-translation-btn w3-btn w3-white w3-border-0 w3-round-xlarge"
+                                    style="cursor:pointer;"
+                                    data-akhyata="{{ each_v.title}}"
+                                    data-selection="{{ each_v.p3_para_sg }}">
+                                    {{ each_v.p3_para_sg }}
+                                </button>
+                            </td>
+                            <td>
+                                <button
+                                    class="verb-translation-btn w3-btn w3-white w3-border-0 w3-round-xlarge"
+                                    style="cursor:pointer;"
+                                    data-akhyata="{{ each_v.title}}"
+                                    data-selection="{{ each_v.p3_para_pl }}">
+                                    {{ each_v.p3_para_pl }}
+                                </button>
+                            </td>
+                            <td>
+                                <button
+                                    class="verb-translation-btn w3-btn w3-white w3-border-0 w3-round-xlarge"
+                                    style="cursor:pointer;"
+                                    data-akhyata="{{ each_v.title}}"
+                                    data-selection="{{ each_v.p3_atta_sg }}">
+                                    {{ each_v.p3_atta_sg }}
+                                </button>
+                            </td>
+                            <td>
+                                <button
+                                    class="verb-translation-btn w3-btn w3-white w3-border-0 w3-round-xlarge"
+                                    style="cursor:pointer;"
+                                    data-akhyata="{{ each_v.title}}"
+                                    data-selection="{{ each_v.p3_atta_pl }}">
+                                    {{ each_v.p3_atta_pl }}
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        {% endfor %}
+    </div>
+</div>

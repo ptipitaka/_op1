@@ -1,14 +1,11 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.forms.widgets import CheckboxSelectMultiple
-from django.shortcuts import get_object_or_404
 from django.utils.safestring import mark_safe
 from django.utils.translation import gettext_lazy as _
 
 from django_select2.forms import *
 from mptt.forms import TreeNodeMultipleChoiceField
-from taggit.forms import TagField
-from taggit_labels.widgets import LabelWidget
 
 from .models import NamaSaddamala, Padanukkama, Pada, Language, Sadda, \
                     VerbConjugation, LiteralTranslation, TranslatedWord
@@ -160,9 +157,13 @@ class LiteralTranslationUpdateForm(forms.ModelForm):
 
 
 
+# -----------------------------------------------------
+# TranslatedWordForm
+# -----------------------------------------------------
 class TranslatedWordForm(forms.ModelForm):
     description = forms.CharField(
-        widget=forms.Textarea(attrs={'rows': 5}),  # Setting rows to 5
+        widget=forms.Textarea(
+            attrs={'rows': 5}),  # Setting rows to 5
         required=False,
         label=_('Description'),
     )
@@ -171,9 +172,55 @@ class TranslatedWordForm(forms.ModelForm):
         model = TranslatedWord
         fields = ['translation', 'description',]
 
+
+
+# -----------------------------------------------------
+# TranslatedWordAddForm
+# -----------------------------------------------------
+class TranslatedWordAddForm(forms.ModelForm):
+    description = forms.CharField(
+        widget=forms.Textarea(
+            attrs={'rows': 5}),  # Setting rows to 5
+        required=False,
+        label=_('Description'),
+    )
+
+    class Meta:
+        model = TranslatedWord
+        fields = ['word', 'translation', 'description',]
+
 # -----------------------------------------------------
 # LiteralTranslationSaddaForm
 # -----------------------------------------------------
+def FilterVerbConjugation(word):
+    fields = [
+        "p1_para_sg", "p1_para_pl", "p1_atta_sg", "p1_atta_pl",
+        "p2_para_sg", "p2_para_pl", "p2_atta_sg", "p2_atta_pl",
+        "p3_para_sg", "p3_para_pl", "p3_atta_sg", "p3_atta_pl"
+    ]
+    
+    id_list = []
+
+    verb_conjugations = VerbConjugation.objects.all()
+    for verb_conjugation in verb_conjugations:
+        endings_lists = [getattr(verb_conjugation, field).split(',') for field in fields]
+
+        for endings_list in endings_lists:
+            for ending in endings_list:
+                if word.endswith(ending.strip()):
+                    id_list.append(verb_conjugation.id)
+                    break
+
+    if id_list:
+        # return VerbConjugation.objects.filter(id__in=id_list).order_by('sequence')
+        matched_verb_conjugations = VerbConjugation.objects.filter(id__in=id_list).order_by('sequence')
+        return "𝓲 " + ", ".join([vc.title for vc in matched_verb_conjugations])
+    else:
+        # return VerbConjugation.objects.all().order_by('sequence')
+        return None
+
+
+
 class LiteralTranslationSaddaForm(forms.ModelForm):
     namasaddamala = forms.ModelMultipleChoiceField(
         queryset=NamaSaddamala.objects.all().order_by('-popularity', 'linga', 'title_order'),
@@ -201,6 +248,13 @@ class LiteralTranslationSaddaForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        sadda = self.initial.get('sadda', None)
+
+        if sadda:
+            # verb_conjugation_queryset = FilterVerbConjugation(sadda)
+            # self.fields['verb_conjugation'].queryset = verb_conjugation_queryset
+            help_text_result = FilterVerbConjugation(sadda)
+            self.fields['verb_conjugation'].help_text = help_text_result
 
 
 
@@ -239,12 +293,14 @@ class SaddaForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        # Set help_text dynamically for each field
-        for field_name in self.fields:
-            field = self.fields[field_name]
-            model_field = self.Meta.model._meta.get_field(field_name)
-            if model_field.help_text:
-                field.help_text = model_field.help_text
+        sadda = self.initial.get('sadda', None)
+
+        if sadda:
+            # verb_conjugation_queryset = FilterVerbConjugation(sadda)
+            # self.fields['verb_conjugation'].queryset = verb_conjugation_queryset
+            help_text_result = FilterVerbConjugation(sadda)
+            self.fields['verb_conjugation'].help_text = help_text_result
+
 
 # -----------------------------------------------------
 # ExportSaddaForm
