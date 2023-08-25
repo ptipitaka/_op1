@@ -87,7 +87,7 @@
                 </span>
             </div>
 
-            <form id="addForm"
+            <form id="formId1"
                 hx-post="{% url 'htmx_update_sentence' translate_word_id=pk %}"
                 hx-target="#translation-pada"
                 method="post"
@@ -111,7 +111,7 @@
     {% endif %}
     <!-- FORM 2: translation add form -->
     <div id="form2" class="w3-border form-tab" style="{% if has_pada %}display:none{% endif %}">
-        <form id="updateForm"
+        <form id="formId2"
             hx-post="{% url 'htmx_update_sentence' translate_word_id=pk %}"
             hx-target="#translation-pada"
             method="post"
@@ -172,7 +172,7 @@
         });
 
         // Add / Update (form 2) Interpolation Form
-        $("#updateForm").submit(function(event) {
+        $("#formId2").submit(function(event) {
             console.log('form1 submit')
             $('#htmx-translation-form').hide();
             $('#pages-preview').show()

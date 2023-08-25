@@ -600,7 +600,28 @@ class TranslatedWord(models.Model):
     def has_pada(self):
         """Check if the TranslatedWord has a Pada."""
         return True if self.pada else False
-    
+
+    def get_sentence_string(self):
+        """
+        รับคำศัพท์ทั้งประโยคจาก sentence และเรียงลำดับตาม word_order_by_translation
+        แล้วส่งกลับเป็น string ที่มีคำศัพท์ (word) เป็นตัวหนา และคำแปล (translation) เป็นตัวธรรมดา
+        ถ้าคำศัพท์ตรงกับคำที่ระบุ, จะแสดงเป็นสีน้ำตาล
+        """
+        words = TranslatedWord.objects.filter(
+            literal_translation=self.literal_translation,
+            sentence=self.sentence
+        ).order_by('word_order_by_translation')
+
+        formatted_words = []
+        for word in words:
+            if word.id == self.id:  # ตรวจสอบว่าเป็นคำศัพท์ที่กำลังระบุถึงหรือไม่
+                formatted_word = f'<button class="w3-btn w3-small w3-border-0"><b>{word.word}</b></button> <span class="w3-small w3-brown">{word.translation}</span>'
+            else:
+                formatted_word = f'<button class="w3-btn w3-small w3-border-0"><b>{word.word}</b></button> <span class="w3-small">{word.translation}</span>'
+            formatted_words.append(formatted_word)
+
+        return ' '.join(formatted_words)
+
     @classmethod
     def get_max_word_order_by_translation(cls, literal_translation, structure, sentence):
         max_order = cls.objects.filter(

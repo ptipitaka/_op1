@@ -2,7 +2,7 @@ import inspect
 import json
 
 from django.db import transaction
-from django.db.models import Q, Max, F
+from django.db.models import Q, Max, F, Count
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import ObjectDoesNotExist
@@ -12,7 +12,7 @@ from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 from django.views import View
 from django.views.decorators.http import require_POST
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, ListView
 from django.views.generic.detail import SingleObjectMixin
 
 from padanukkama.models import Pada, TranslatedWord, VerbConjugation
@@ -248,7 +248,8 @@ class UpdateSentenceView(LoginRequiredMixin, View):
             'structure': translate_word.structure,
             'words_list': words_list,
             'success_message': success_message,
-            'error_message': error_message
+            'error_message': error_message,
+            'order_type': 'translation'
         }
 
         return render(request, self.template_name, context)
@@ -783,6 +784,30 @@ class TranslationHelperView(LoginRequiredMixin, SingleObjectMixin, TemplateView)
 
         return context
     
+
+
+
+class FoundInTranslationView(LoginRequiredMixin, TemplateView):
+    template_name = 'padanukkama/htmx/htmx_found_in_translation.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        
+        # รับ object จาก pk ที่ส่งเข้ามา
+        obj = get_object_or_404(TranslatedWord, pk=self.kwargs['pk'])
+
+        # ค้นหา object ที่มีเนื้อหาเหมือนกันใน field 'word' กับ obj ที่รับมา
+        similar_objects = TranslatedWord.objects.filter(
+            word=obj.word,
+            literal_translation=obj.literal_translation
+        ).exclude(translation="")
+
+        # กรองเฉพาะรายการที่มีข้อมูลใน translation field มีความแตกต่างกัน
+        unique_translations = similar_objects.order_by(
+            'translation', 'id').distinct('translation')
+
+        context['found_in_translation'] = unique_translations
+        return context
 
 
 class UpdateTranslationSequence(LoginRequiredMixin, View):

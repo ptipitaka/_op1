@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-24 18:52+0700\n"
+"POT-Creation-Date: 2023-08-25 22:41+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAMfE <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1953,10 +1953,10 @@ msgid "Word not found."
 msgstr ""
 
 #: .\padanukkama\htmx.py:170 .\padanukkama\htmx.py:205
-#: .\padanukkama\htmx.py:215 .\padanukkama\htmx.py:318
-#: .\padanukkama\htmx.py:366 .\padanukkama\htmx.py:421
-#: .\padanukkama\htmx.py:487 .\padanukkama\htmx.py:818
-#: .\padanukkama\htmx.py:838 .\padanukkama\htmx.py:879
+#: .\padanukkama\htmx.py:215 .\padanukkama\htmx.py:319
+#: .\padanukkama\htmx.py:367 .\padanukkama\htmx.py:422
+#: .\padanukkama\htmx.py:488 .\padanukkama\htmx.py:843
+#: .\padanukkama\htmx.py:863 .\padanukkama\htmx.py:904
 #: .\padanukkama\views.py:689 .\setting\views.py:57 .\setting\views.py:93
 #: .\setting\views.py:164 .\setting\views.py:200 .\setting\views.py:271
 #: .\setting\views.py:307 .\setting\views.py:379 .\setting\views.py:415
@@ -1964,8 +1964,8 @@ msgid "Form saved successfully."
 msgstr "การบันทึกเสร็จสิ้น"
 
 #: .\padanukkama\htmx.py:172 .\padanukkama\htmx.py:207
-#: .\padanukkama\htmx.py:217 .\padanukkama\htmx.py:820
-#: .\padanukkama\htmx.py:840
+#: .\padanukkama\htmx.py:217 .\padanukkama\htmx.py:845
+#: .\padanukkama\htmx.py:865
 #, fuzzy
 #| msgid "Form saved successfully."
 msgid "Form saved unsuccessfully"
@@ -1983,23 +1983,23 @@ msgstr "การบันทึกเสร็จสิ้น"
 msgid "Form deleted unsuccessfully"
 msgstr "การบันทึกเสร็จสิ้น"
 
-#: .\padanukkama\htmx.py:539
+#: .\padanukkama\htmx.py:540
 msgid "Delete action failed: Record has descendants"
 msgstr ""
 
-#: .\padanukkama\htmx.py:545 .\padanukkama\views.py:287
+#: .\padanukkama\htmx.py:546 .\padanukkama\views.py:287
 msgid "Error: Record deletion unsuccessful"
 msgstr "พบข้อผิดพลาด การลบรายการเสร็จสิ้น"
 
-#: .\padanukkama\htmx.py:607 .\padanukkama\views.py:422
+#: .\padanukkama\htmx.py:608 .\padanukkama\views.py:422
 msgid "Error: {}-{}, please contact SA"
 msgstr "พบข้อผิดพลาด"
 
-#: .\padanukkama\htmx.py:668 .\padanukkama\views.py:488
+#: .\padanukkama\htmx.py:669 .\padanukkama\views.py:488
 msgid "Form is invalid. Please correct the errors"
 msgstr "พบข้อผิดพลาด โปรดติดต่อเจ้าหน้าที่"
 
-#: .\padanukkama\htmx.py:756
+#: .\padanukkama\htmx.py:757
 #: .\padanukkama\templates\padanukkama\htmx\htmx_translation_pada_translate.html:305
 #: .\padanukkama\templates\padanukkama\include\declension_create_vipatti.html:97
 #: .\padanukkama\templates\padanukkama\include\htmx_translation_helper\nama_declension_table.html:17
@@ -2008,7 +2008,7 @@ msgstr "พบข้อผิดพลาด โปรดติดต่อเ�
 msgid "Ekavacana"
 msgstr "เอกวจนะ"
 
-#: .\padanukkama\htmx.py:756
+#: .\padanukkama\htmx.py:757
 #: .\padanukkama\templates\padanukkama\htmx\htmx_translation_pada_translate.html:306
 #: .\padanukkama\templates\padanukkama\include\declension_create_vipatti.html:98
 #: .\padanukkama\templates\padanukkama\include\htmx_translation_helper\nama_declension_table.html:18
@@ -2764,9 +2764,20 @@ msgstr "สร้างโดย"
 msgid "Created By"
 msgstr "สร้างโดย"
 
+#: .\padanukkama\templates\padanukkama\htmx\htmx_found_in_translation.html:4
+#: .\padanukkama\templates\padanukkama\include\htmx_translation_pada\help_table.html:20
+msgid "Found in Translation"
+msgstr "พบในการแปล"
+
+#: .\padanukkama\templates\padanukkama\htmx\htmx_found_in_translation.html:11
+#, fuzzy
+#| msgid "Found in Translation"
+msgid "Not Found in Translation"
+msgstr "พบในการแปล"
+
 #: .\padanukkama\templates\padanukkama\htmx\htmx_translation_helper.html:36
-msgid "No translation found"
-msgstr "แปล"
+msgid "Not Found in Padanukkama"
+msgstr "ไม่พบในปทานุกรม"
 
 #: .\padanukkama\templates\padanukkama\htmx\htmx_translation_helper.html:40
 #: .\padanukkama\templates\padanukkama\htmx\htmx_translation_pada.html:23
@@ -3417,6 +3428,9 @@ msgstr "ไม่พบ การอ้างอิงร่วม"
 #: .\tipitaka\views.py:257 .\tipitaka\views.py:264
 msgid "Invalid input. Please correct the errors below"
 msgstr "พบข้อผิดพลาด"
+
+#~ msgid "No translation found"
+#~ msgstr "ไม่พบศัพท์ในปทานุกรม"
 
 #~ msgid "Add Word"
 #~ msgstr "เพิ่มคำ"

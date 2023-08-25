@@ -47,6 +47,7 @@ htmx_urlpatterns = [
     path('htmx-translation-form/<int:translate_word_id>/split-pada-in-sentence/', htmx.SplitPadaInSentenceView.as_view(), name='htmx_split_pada_in_sentence'),
     path('htmx-translation-form/<int:translate_word_id>/merge-pada-in-sentence/', htmx.MergePadaInSentenceView.as_view(), name='htmx_merge_pada_in_sentence'),
     path('htmx-translation-form/<int:pk>/translation-helper/', htmx.TranslationHelperView.as_view(), name='htmx_translation_helper'),
+    path('htmx-translation-form/<int:pk>/found-in-translation/', htmx.FoundInTranslationView.as_view(), name='htmx_found_in_translation'),
     path('htmx-translation-form/<int:translate_word_id>/translation-sequence/<str:direction>/', htmx.UpdateTranslationSequence.as_view(), name='htmx_update_translation_sequence'),
     path('htmx-translation-form/htmx-update-translation-sequence-by-sortablejs/', htmx.UpdateTranslationSequenceBySortableJs, name='htmx_update_translation_sequence_by_sortablejs'),
     path('htmx-translation-form/htmx-change-word-order/', htmx.ChangeWordOrder.as_view(), name='htmx_change_word_order')

@@ -1,0 +1,16 @@
+{% load i18n %}
+
+{% if found_in_translation %}
+    <div class="w3-tag w3-blue w3-round-large">{% trans 'Found in Translation' %}</div>
+    <ul>
+    {% for each_translation in found_in_translation %}
+        <li class="w3-margin-top">
+            <b>{{ each_translation.translation }}</b><br>
+            {{ each_translation.get_sentence_string|safe }}
+        </li>
+    {% endfor %}
+    </ul>
+
+{% else %}
+    <div class="w3-tag w3-brown w3-round-xlarge">{% trans 'Not Found in Translation' %}</div>
+{% endif %}

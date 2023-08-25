@@ -13,16 +13,18 @@
             </button>
             <!-- htmx Translation Helper-->
             <button
-                hx-get="{% url 'htmx_translation_helper' pk %}"
-                hx-target="#translationHelper"
-                onclick="accordion('translationHelper')"
+                hx-get="{% url 'htmx_found_in_translation' pk %}"
+                hx-target="#foundInTranslation"
+                onclick="accordion('foundInTranslation')"
                 class="w3-btn w3-border-white w3-round-xxlarge">
-                {% trans 'Padanukkama' %}
+                {% trans 'Found in Translation' %}
             </button>
             <span class="w3-btn w3-border-white w3-round-xxlarge w3-right">{{ translation_word.word }}</span>
         </div>
             
-        <div id="translationHelper" class="w3-hide w3-container w3-light-grey">
+        <div id="translationHelper" class="w3-hide w3-container w3-light-grey w3-padding-16">
+        </div>
+        <div id="foundInTranslation" class="w3-hide w3-container w3-light-grey w3-padding-16">
         </div>
     </div>
 {% endif %}
