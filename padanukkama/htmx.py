@@ -807,6 +807,7 @@ class FoundInTranslationView(LoginRequiredMixin, TemplateView):
             'translation', 'id').distinct('translation')
 
         context['found_in_translation'] = unique_translations
+        context['sentence'] = obj.sentence
         return context
 
 

@@ -615,9 +615,9 @@ class TranslatedWord(models.Model):
         formatted_words = []
         for word in words:
             if word.id == self.id:  # ตรวจสอบว่าเป็นคำศัพท์ที่กำลังระบุถึงหรือไม่
-                formatted_word = f'<button class="w3-btn w3-small w3-border-0"><b>{word.word}</b></button> <span class="w3-small w3-brown">{word.translation}</span>'
+                formatted_word = f'<button class="w3-btn w3-small w3-border-0" style="padding:0px;"><b>{word.word}</b></button> <span class="w3-small w3-brown">{word.translation}</span>'
             else:
-                formatted_word = f'<button class="w3-btn w3-small w3-border-0"><b>{word.word}</b></button> <span class="w3-small">{word.translation}</span>'
+                formatted_word = f'<button class="w3-btn w3-small w3-border-0" style="padding:0px;"><b>{word.word}</b></button> <span class="w3-small">{word.translation}</span>'
             formatted_words.append(formatted_word)
 
         return ' '.join(formatted_words)
