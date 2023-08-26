@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-25 22:41+0700\n"
+"POT-Creation-Date: 2023-08-26 16:10+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAMfE <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1557,8 +1557,8 @@ msgstr "รหัส"
 #: .\padanukkama\models.py:61 .\padanukkama\models.py:74
 #: .\padanukkama\models.py:203 .\padanukkama\models.py:224
 #: .\padanukkama\models.py:263 .\padanukkama\models.py:510
-#: .\padanukkama\models.py:621 .\padanukkama\models.py:645
-#: .\padanukkama\models.py:668
+#: .\padanukkama\models.py:642 .\padanukkama\models.py:666
+#: .\padanukkama\models.py:689
 #: .\padanukkama\templates\padanukkama\include\namasaddamala.html:15
 #: .\padanukkama\templates\padanukkama\literal_translation_detail.html:44
 #: .\setting\templates\setting\dhatu_detail.html:28
@@ -1817,8 +1817,8 @@ msgstr "อาขฺยาต"
 msgid "Dhātu"
 msgstr "ธาตุ"
 
-#: .\main\templates\main\navbar.html:71 .\padanukkama\models.py:648
-#: .\padanukkama\models.py:689
+#: .\main\templates\main\navbar.html:71 .\padanukkama\models.py:669
+#: .\padanukkama\models.py:710
 msgid "Paccaya"
 msgstr "ปัจจัย"
 
@@ -1912,7 +1912,7 @@ msgstr "กรุณาแก้ไขข้อผิดพลาด"
 #: .\padanukkama\forms.py:168 .\padanukkama\forms.py:185
 #: .\padanukkama\models.py:206 .\padanukkama\models.py:225
 #: .\padanukkama\models.py:368 .\padanukkama\models.py:534
-#: .\padanukkama\models.py:586 .\padanukkama\models.py:651
+#: .\padanukkama\models.py:586 .\padanukkama\models.py:672
 #: .\setting\templates\setting\verb_conjugation_detail.html:67
 #: .\tipitaka\models.py:19 .\tipitaka\models.py:38 .\tipitaka\models.py:54
 #: .\tipitaka\models.py:217 .\tipitaka\models.py:264
@@ -1926,7 +1926,7 @@ msgstr "การจำแนกแบบแจกบทนาม"
 
 #: .\padanukkama\forms.py:242 .\padanukkama\forms.py:287
 #: .\padanukkama\models.py:226 .\padanukkama\models.py:343
-#: .\padanukkama\models.py:685
+#: .\padanukkama\models.py:706
 #: .\padanukkama\templates\padanukkama\htmx\htmx_translation_helper.html:14
 #: .\padanukkama\templates\padanukkama\include\htmx_translation_helper\verb_conjugation_table.html:25
 #: .\padanukkama\templates\padanukkama\pada_declension.html:144
@@ -1955,8 +1955,8 @@ msgstr ""
 #: .\padanukkama\htmx.py:170 .\padanukkama\htmx.py:205
 #: .\padanukkama\htmx.py:215 .\padanukkama\htmx.py:319
 #: .\padanukkama\htmx.py:367 .\padanukkama\htmx.py:422
-#: .\padanukkama\htmx.py:488 .\padanukkama\htmx.py:843
-#: .\padanukkama\htmx.py:863 .\padanukkama\htmx.py:904
+#: .\padanukkama\htmx.py:488 .\padanukkama\htmx.py:844
+#: .\padanukkama\htmx.py:864 .\padanukkama\htmx.py:905
 #: .\padanukkama\views.py:689 .\setting\views.py:57 .\setting\views.py:93
 #: .\setting\views.py:164 .\setting\views.py:200 .\setting\views.py:271
 #: .\setting\views.py:307 .\setting\views.py:379 .\setting\views.py:415
@@ -1964,22 +1964,16 @@ msgid "Form saved successfully."
 msgstr "การบันทึกเสร็จสิ้น"
 
 #: .\padanukkama\htmx.py:172 .\padanukkama\htmx.py:207
-#: .\padanukkama\htmx.py:217 .\padanukkama\htmx.py:845
-#: .\padanukkama\htmx.py:865
-#, fuzzy
-#| msgid "Form saved successfully."
+#: .\padanukkama\htmx.py:217 .\padanukkama\htmx.py:846
+#: .\padanukkama\htmx.py:866
 msgid "Form saved unsuccessfully"
 msgstr "การบันทึกเสร็จสิ้น"
 
 #: .\padanukkama\htmx.py:237
-#, fuzzy
-#| msgid "Form saved successfully."
 msgid "Form deleted successfully."
 msgstr "การบันทึกเสร็จสิ้น"
 
 #: .\padanukkama\htmx.py:239
-#, fuzzy
-#| msgid "Form saved successfully."
 msgid "Form deleted unsuccessfully"
 msgstr "การบันทึกเสร็จสิ้น"
 
@@ -2019,13 +2013,13 @@ msgstr "พหุวจนะ"
 
 #: .\padanukkama\models.py:25 .\padanukkama\models.py:40
 #: .\padanukkama\models.py:58 .\padanukkama\models.py:199
-#: .\padanukkama\models.py:223 .\padanukkama\models.py:642
+#: .\padanukkama\models.py:223 .\padanukkama\models.py:663
 #: .\setting\templates\setting\verb_conjugation_detail.html:61
 msgid "Sequence"
 msgstr "ลำดับ"
 
-#: .\padanukkama\models.py:77 .\padanukkama\models.py:626
-#: .\padanukkama\models.py:673
+#: .\padanukkama\models.py:77 .\padanukkama\models.py:647
+#: .\padanukkama\models.py:694
 msgid "Title order"
 msgstr "ลำดับตามชื่อเรื่อง"
 
@@ -2112,7 +2106,7 @@ msgstr "สัตตมี เอกวจนะ"
 msgid "Sattamī Bahuvacana"
 msgstr "สัตตมี พหุวจนะ"
 
-#: .\padanukkama\models.py:183 .\padanukkama\models.py:694
+#: .\padanukkama\models.py:183 .\padanukkama\models.py:715
 msgid "Popularity"
 msgstr "ความนิยม"
 
@@ -2273,403 +2267,403 @@ msgstr "ลำดับคำ"
 msgid "Word Order by Translation"
 msgstr "แปลยกศัพท์"
 
-#: .\padanukkama\models.py:676 .\setting\tables.py:115
+#: .\padanukkama\models.py:697 .\setting\tables.py:115
 msgid "Dhatugana"
 msgstr ""
 
-#: .\padanukkama\models.py:682 .\setting\templates\setting\dhatu_detail.html:30
+#: .\padanukkama\models.py:703 .\setting\templates\setting\dhatu_detail.html:30
 msgid "Definition"
 msgstr "รายละเอียด"
 
-#: .\padanukkama\models.py:711
+#: .\padanukkama\models.py:732
 msgid "title"
 msgstr "หัวเรื่อง"
 
-#: .\padanukkama\models.py:714 .\padanukkama\models.py:715
-#: .\padanukkama\models.py:728 .\padanukkama\models.py:742
-#: .\padanukkama\models.py:756 .\padanukkama\models.py:770
-#: .\padanukkama\models.py:784 .\padanukkama\models.py:798
-#: .\padanukkama\models.py:812
+#: .\padanukkama\models.py:735 .\padanukkama\models.py:736
+#: .\padanukkama\models.py:749 .\padanukkama\models.py:763
+#: .\padanukkama\models.py:777 .\padanukkama\models.py:791
+#: .\padanukkama\models.py:805 .\padanukkama\models.py:819
+#: .\padanukkama\models.py:833
 msgid "Vattamānā Purisa 1 Parassapada Ekavacana"
 msgstr ""
 
-#: .\padanukkama\models.py:716
+#: .\padanukkama\models.py:737
 msgid "Vattamānā Purisa 1 Parassapada Bahuvacana"
 msgstr ""
 
-#: .\padanukkama\models.py:717
+#: .\padanukkama\models.py:738
 msgid "Vattamānā Purisa 1 Attanopada Ekavacana"
 msgstr ""
 
-#: .\padanukkama\models.py:718
+#: .\padanukkama\models.py:739
 msgid "Vattamānā Purisa 1 Attanopada Bahuvacana"
 msgstr ""
 
-#: .\padanukkama\models.py:719
+#: .\padanukkama\models.py:740
 msgid "Vattamānā Purisa 2 Parassapada Ekavacana"
 msgstr ""
 
-#: .\padanukkama\models.py:720
+#: .\padanukkama\models.py:741
 msgid "Vattamānā Purisa 2 Parassapada Bahuvacana"
 msgstr ""
 
-#: .\padanukkama\models.py:721
+#: .\padanukkama\models.py:742
 msgid "Vattamānā Purisa 2 Attanopada Ekavacana"
 msgstr ""
 
-#: .\padanukkama\models.py:722
+#: .\padanukkama\models.py:743
 msgid "Vattamānā Purisa 2 Attanopada Bahuvacana"
 msgstr ""
 
-#: .\padanukkama\models.py:723
+#: .\padanukkama\models.py:744
 msgid "Vattamānā Purisa 3 Parassapada Ekavacana"
 msgstr ""
 
-#: .\padanukkama\models.py:724
+#: .\padanukkama\models.py:745
 msgid "Vattamānā Purisa 3 Parassapada Bahuvacana"
 msgstr ""
 
-#: .\padanukkama\models.py:725
+#: .\padanukkama\models.py:746
 msgid "Vattamānā Purisa 3 Attanopada Ekavacana"
 msgstr ""
 
-#: .\padanukkama\models.py:726
+#: .\padanukkama\models.py:747
 msgid "Vattamānā Purisa 3 Attanopada Bahuvacana"
 msgstr ""
 
-#: .\padanukkama\models.py:729
+#: .\padanukkama\models.py:750
 msgid "Pañcamī Purisa 1 Parassapada Ekavacana"
 msgstr "ปัญจมี เอกวจนะ"
 
-#: .\padanukkama\models.py:730
+#: .\padanukkama\models.py:751
 msgid "Pañcamī Purisa 1 Parassapada Bahuvacana"
 msgstr "ปัญจมี พหุวจนะ"
 
-#: .\padanukkama\models.py:731
+#: .\padanukkama\models.py:752
 msgid "Pañcamī Purisa 1 Attanopada Ekavacana"
 msgstr "ปัญจมี เอกวจนะ"
 
-#: .\padanukkama\models.py:732
+#: .\padanukkama\models.py:753
 msgid "Pañcamī Purisa 1 Attanopada Bahuvacana"
 msgstr "ปัญจมี พหุวจนะ"
 
-#: .\padanukkama\models.py:733
+#: .\padanukkama\models.py:754
 msgid "Pañcamī Purisa 2 Parassapada Ekavacana"
 msgstr "ปัญจมี เอกวจนะ"
 
-#: .\padanukkama\models.py:734
+#: .\padanukkama\models.py:755
 msgid "Pañcamī Purisa 2 Parassapada Bahuvacana"
 msgstr "ปัญจมี พหุวจนะ"
 
-#: .\padanukkama\models.py:735
+#: .\padanukkama\models.py:756
 msgid "Pañcamī Purisa 2 Attanopada Ekavacana"
 msgstr "ปัญจมี เอกวจนะ"
 
-#: .\padanukkama\models.py:736
+#: .\padanukkama\models.py:757
 msgid "Pañcamī Purisa 2 Attanopada Bahuvacana"
 msgstr "ปัญจมี พหุวจนะ"
 
-#: .\padanukkama\models.py:737
+#: .\padanukkama\models.py:758
 msgid "Pañcamī Purisa 3 Parassapada Ekavacana"
 msgstr "ปัญจมี เอกวจนะ"
 
-#: .\padanukkama\models.py:738
+#: .\padanukkama\models.py:759
 msgid "Pañcamī Purisa 3 Parassapada Bahuvacana"
 msgstr "ปัญจมี พหุวจนะ"
 
-#: .\padanukkama\models.py:739
+#: .\padanukkama\models.py:760
 msgid "Pañcamī Purisa 3 Attanopada Ekavacana"
 msgstr "ปัญจมี เอกวจนะ"
 
-#: .\padanukkama\models.py:740
+#: .\padanukkama\models.py:761
 msgid "Pañcamī Purisa 3 Attanopada Bahuvacana"
 msgstr "ปัญจมี พหุวจนะ"
 
-#: .\padanukkama\models.py:743
+#: .\padanukkama\models.py:764
 msgid "Sattamī Purisa 1 Parassapada Ekavacana"
 msgstr "สัตตมี เอกวจนะ"
 
-#: .\padanukkama\models.py:744
+#: .\padanukkama\models.py:765
 msgid "Sattamī Purisa 1 Parassapada Bahuvacana"
 msgstr "สัตตมี พหุวจนะ"
 
-#: .\padanukkama\models.py:745
+#: .\padanukkama\models.py:766
 msgid "Sattamī Purisa 1 Attanopada Ekavacana"
 msgstr "สัตตมี เอกวจนะ"
 
-#: .\padanukkama\models.py:746
+#: .\padanukkama\models.py:767
 msgid "Sattamī Purisa 1 Attanopada Bahuvacana"
 msgstr "สัตตมี พหุวจนะ"
 
-#: .\padanukkama\models.py:747
+#: .\padanukkama\models.py:768
 msgid "Sattamī Purisa 2 Parassapada Ekavacana"
 msgstr "สัตตมี เอกวจนะ"
 
-#: .\padanukkama\models.py:748
+#: .\padanukkama\models.py:769
 msgid "Sattamī Purisa 2 Parassapada Bahuvacana"
 msgstr "สัตตมี พหุวจนะ"
 
-#: .\padanukkama\models.py:749
+#: .\padanukkama\models.py:770
 msgid "Sattamī Purisa 2 Attanopada Ekavacana"
 msgstr "สัตตมี เอกวจนะ"
 
-#: .\padanukkama\models.py:750
+#: .\padanukkama\models.py:771
 msgid "Sattamī Purisa 2 Attanopada Bahuvacana"
 msgstr "สัตตมี พหุวจนะ"
 
-#: .\padanukkama\models.py:751
+#: .\padanukkama\models.py:772
 msgid "Sattamī Purisa 3 Parassapada Ekavacana"
 msgstr "สัตตมี เอกวจนะ"
 
-#: .\padanukkama\models.py:752
+#: .\padanukkama\models.py:773
 msgid "Sattamī Purisa 3 Parassapada Bahuvacana"
 msgstr "สัตตมี พหุวจนะ"
 
-#: .\padanukkama\models.py:753
+#: .\padanukkama\models.py:774
 msgid "Sattamī Purisa 3 Attanopada Ekavacana"
 msgstr "สัตตมี เอกวจนะ"
 
-#: .\padanukkama\models.py:754
+#: .\padanukkama\models.py:775
 msgid "Sattamī Purisa 3 Attanopada Bahuvacana"
 msgstr "สัตตมี พหุวจนะ"
 
-#: .\padanukkama\models.py:757
+#: .\padanukkama\models.py:778
 msgid "Parokkhā Purisa 1 Parassapada Ekavacana"
 msgstr ""
 
-#: .\padanukkama\models.py:758
+#: .\padanukkama\models.py:779
 msgid "Parokkhā Purisa 1 Parassapada Bahuvacana"
 msgstr ""
 
-#: .\padanukkama\models.py:759
+#: .\padanukkama\models.py:780
 msgid "Parokkhā Purisa 1 Attanopada Ekavacana"
 msgstr ""
 
-#: .\padanukkama\models.py:760
+#: .\padanukkama\models.py:781
 msgid "Parokkhā Purisa 1 Attanopada Bahuvacana"
 msgstr ""
 
-#: .\padanukkama\models.py:761
+#: .\padanukkama\models.py:782
 msgid "Parokkhā Purisa 2 Parassapada Ekavacana"
 msgstr ""
 
-#: .\padanukkama\models.py:762
+#: .\padanukkama\models.py:783
 msgid "Parokkhā Purisa 2 Parassapada Bahuvacana"
 msgstr ""
 
-#: .\padanukkama\models.py:763
+#: .\padanukkama\models.py:784
 msgid "Parokkhā Purisa 2 Attanopada Ekavacana"
 msgstr ""
 
-#: .\padanukkama\models.py:764
+#: .\padanukkama\models.py:785
 msgid "Parokkhā Purisa 2 Attanopada Bahuvacana"
 msgstr ""
 
-#: .\padanukkama\models.py:765
+#: .\padanukkama\models.py:786
 msgid "Parokkhā Purisa 3 Parassapada Ekavacana"
 msgstr ""
 
-#: .\padanukkama\models.py:766
+#: .\padanukkama\models.py:787
 msgid "Parokkhā Purisa 3 Parassapada Bahuvacana"
 msgstr ""
 
-#: .\padanukkama\models.py:767
+#: .\padanukkama\models.py:788
 msgid "Parokkhā Purisa 3 Attanopada Ekavacana"
 msgstr ""
 
-#: .\padanukkama\models.py:768
+#: .\padanukkama\models.py:789
 msgid "Parokkhā Purisa 3 Attanopada Bahuvacana"
 msgstr ""
 
-#: .\padanukkama\models.py:771
+#: .\padanukkama\models.py:792
 msgid "Hiyyattanī Purisa 1 Parassapada Ekavacana"
 msgstr ""
 
-#: .\padanukkama\models.py:772
+#: .\padanukkama\models.py:793
 msgid "Hiyyattanī Purisa 1 Parassapada Bahuvacana"
 msgstr ""
 
-#: .\padanukkama\models.py:773
+#: .\padanukkama\models.py:794
 msgid "Hiyyattanī Purisa 1 Attanopada Ekavacana"
 msgstr ""
 
-#: .\padanukkama\models.py:774
+#: .\padanukkama\models.py:795
 msgid "Hiyyattanī Purisa 1 Attanopada Bahuvacana"
 msgstr ""
 
-#: .\padanukkama\models.py:775
+#: .\padanukkama\models.py:796
 msgid "Hiyyattanī Purisa 2 Parassapada Ekavacana"
 msgstr ""
 
-#: .\padanukkama\models.py:776
+#: .\padanukkama\models.py:797
 msgid "Hiyyattanī Purisa 2 Parassapada Bahuvacana"
 msgstr ""
 
-#: .\padanukkama\models.py:777
+#: .\padanukkama\models.py:798
 msgid "Hiyyattanī Purisa 2 Attanopada Ekavacana"
 msgstr ""
 
-#: .\padanukkama\models.py:778
+#: .\padanukkama\models.py:799
 msgid "Hiyyattanī Purisa 2 Attanopada Bahuvacana"
 msgstr ""
 
-#: .\padanukkama\models.py:779
+#: .\padanukkama\models.py:800
 msgid "Hiyyattanī Purisa 3 Parassapada Ekavacana"
 msgstr ""
 
-#: .\padanukkama\models.py:780
+#: .\padanukkama\models.py:801
 msgid "Hiyyattanī Purisa 3 Parassapada Bahuvacana"
 msgstr ""
 
-#: .\padanukkama\models.py:781
+#: .\padanukkama\models.py:802
 msgid "Hiyyattanī Purisa 3 Attanopada Ekavacana"
 msgstr ""
 
-#: .\padanukkama\models.py:782
+#: .\padanukkama\models.py:803
 msgid "Hiyyattanī Purisa 3 Attanopada Bahuvacana"
 msgstr ""
 
-#: .\padanukkama\models.py:785
+#: .\padanukkama\models.py:806
 msgid "Ajjatanī Purisa 1 Parassapada Ekavacana"
 msgstr ""
 
-#: .\padanukkama\models.py:786
+#: .\padanukkama\models.py:807
 msgid "Ajjatanī Purisa 1 Parassapada Bahuvacana"
 msgstr ""
 
-#: .\padanukkama\models.py:787
+#: .\padanukkama\models.py:808
 msgid "Ajjatanī Purisa 1 Attanopada Ekavacana"
 msgstr ""
 
-#: .\padanukkama\models.py:788
+#: .\padanukkama\models.py:809
 msgid "Ajjatanī Purisa 1 Attanopada Bahuvacana"
 msgstr ""
 
-#: .\padanukkama\models.py:789
+#: .\padanukkama\models.py:810
 msgid "Ajjatanī Purisa 2 Parassapada Ekavacana"
 msgstr ""
 
-#: .\padanukkama\models.py:790
+#: .\padanukkama\models.py:811
 msgid "Ajjatanī Purisa 2 Parassapada Bahuvacana"
 msgstr ""
 
-#: .\padanukkama\models.py:791
+#: .\padanukkama\models.py:812
 msgid "Ajjatanī Purisa 2 Attanopada Ekavacana"
 msgstr ""
 
-#: .\padanukkama\models.py:792
+#: .\padanukkama\models.py:813
 msgid "Ajjatanī Purisa 2 Attanopada Bahuvacana"
 msgstr ""
 
-#: .\padanukkama\models.py:793
+#: .\padanukkama\models.py:814
 msgid "Ajjatanī Purisa 3 Parassapada Ekavacana"
 msgstr ""
 
-#: .\padanukkama\models.py:794
+#: .\padanukkama\models.py:815
 msgid "Ajjatanī Purisa 3 Parassapada Bahuvacana"
 msgstr ""
 
-#: .\padanukkama\models.py:795
+#: .\padanukkama\models.py:816
 msgid "Ajjatanī Purisa 3 Attanopada Ekavacana"
 msgstr ""
 
-#: .\padanukkama\models.py:796
+#: .\padanukkama\models.py:817
 msgid "Ajjatanī Purisa 3 Attanopada Bahuvacana"
 msgstr ""
 
-#: .\padanukkama\models.py:799
+#: .\padanukkama\models.py:820
 msgid "Bhavissanti Purisa 1 Parassapada Ekavacana"
 msgstr ""
 
-#: .\padanukkama\models.py:800
+#: .\padanukkama\models.py:821
 msgid "Bhavissanti Purisa 1 Parassapada Bahuvacana"
 msgstr ""
 
-#: .\padanukkama\models.py:801
+#: .\padanukkama\models.py:822
 msgid "Bhavissanti Purisa 1 Attanopada Ekavacana"
 msgstr ""
 
-#: .\padanukkama\models.py:802
+#: .\padanukkama\models.py:823
 msgid "Bhavissanti Purisa 1 Attanopada Bahuvacana"
 msgstr ""
 
-#: .\padanukkama\models.py:803
+#: .\padanukkama\models.py:824
 msgid "Bhavissanti Purisa 2 Parassapada Ekavacana"
 msgstr ""
 
-#: .\padanukkama\models.py:804
+#: .\padanukkama\models.py:825
 msgid "Bhavissanti Purisa 2 Parassapada Bahuvacana"
 msgstr ""
 
-#: .\padanukkama\models.py:805
+#: .\padanukkama\models.py:826
 msgid "Bhavissanti Purisa 2 Attanopada Ekavacana"
 msgstr ""
 
-#: .\padanukkama\models.py:806
+#: .\padanukkama\models.py:827
 msgid "Bhavissanti Purisa 2 Attanopada Bahuvacana"
 msgstr ""
 
-#: .\padanukkama\models.py:807
+#: .\padanukkama\models.py:828
 msgid "Bhavissanti Purisa 3 Parassapada Ekavacana"
 msgstr ""
 
-#: .\padanukkama\models.py:808
+#: .\padanukkama\models.py:829
 msgid "Bhavissanti Purisa 3 Parassapada Bahuvacana"
 msgstr ""
 
-#: .\padanukkama\models.py:809
+#: .\padanukkama\models.py:830
 msgid "Bhavissanti Purisa 3 Attanopada Ekavacana"
 msgstr ""
 
-#: .\padanukkama\models.py:810
+#: .\padanukkama\models.py:831
 msgid "Bhavissanti Purisa 3 Attanopada Bahuvacana"
 msgstr ""
 
-#: .\padanukkama\models.py:813
+#: .\padanukkama\models.py:834
 msgid "Kālātipatti Purisa 1 Parassapada Ekavacana"
 msgstr ""
 
-#: .\padanukkama\models.py:814
+#: .\padanukkama\models.py:835
 msgid "Kālātipatti Purisa 1 Parassapada Bahuvacana"
 msgstr ""
 
-#: .\padanukkama\models.py:815
+#: .\padanukkama\models.py:836
 msgid "Kālātipatti Purisa 1 Attanopada Ekavacana"
 msgstr ""
 
-#: .\padanukkama\models.py:816
+#: .\padanukkama\models.py:837
 msgid "Kālātipatti Purisa 1 Attanopada Bahuvacana"
 msgstr ""
 
-#: .\padanukkama\models.py:817
+#: .\padanukkama\models.py:838
 msgid "Kālātipatti Purisa 2 Parassapada Ekavacana"
 msgstr ""
 
-#: .\padanukkama\models.py:818
+#: .\padanukkama\models.py:839
 msgid "Kālātipatti Purisa 2 Parassapada Bahuvacana"
 msgstr ""
 
-#: .\padanukkama\models.py:819
+#: .\padanukkama\models.py:840
 msgid "Kālātipatti Purisa 2 Attanopada Ekavacana"
 msgstr ""
 
-#: .\padanukkama\models.py:820
+#: .\padanukkama\models.py:841
 msgid "Kālātipatti Purisa 2 Attanopada Bahuvacana"
 msgstr ""
 
-#: .\padanukkama\models.py:821
+#: .\padanukkama\models.py:842
 msgid "Kālātipatti Purisa 3 Parassapada Ekavacana"
 msgstr ""
 
-#: .\padanukkama\models.py:822
+#: .\padanukkama\models.py:843
 msgid "Kālātipatti Purisa 3 Parassapada Bahuvacana"
 msgstr ""
 
-#: .\padanukkama\models.py:823
+#: .\padanukkama\models.py:844
 msgid "Kālātipatti Purisa 3 Attanopada Ekavacana"
 msgstr ""
 
-#: .\padanukkama\models.py:824
+#: .\padanukkama\models.py:845
 msgid "Kālātipatti Purisa 3 Attanopada Bahuvacana"
 msgstr ""
 
@@ -2769,11 +2763,9 @@ msgstr "สร้างโดย"
 msgid "Found in Translation"
 msgstr "พบในการแปล"
 
-#: .\padanukkama\templates\padanukkama\htmx\htmx_found_in_translation.html:11
-#, fuzzy
-#| msgid "Found in Translation"
+#: .\padanukkama\templates\padanukkama\htmx\htmx_found_in_translation.html:25
 msgid "Not Found in Translation"
-msgstr "พบในการแปล"
+msgstr "ไม่พบในการแปล"
 
 #: .\padanukkama\templates\padanukkama\htmx\htmx_translation_helper.html:36
 msgid "Not Found in Padanukkama"
