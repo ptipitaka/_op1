@@ -24,7 +24,7 @@ msgstr ""
 
 #: .\_op1\settings.py:147
 msgid "Thai"
-msgstr ""
+msgstr "ไทย"
 
 #: .\_test\origin.py:7 .\_test\suggestion.py:9 .\padanukkama\views.py:82
 #: .\padanukkama\views.py:104 .\padanukkama\views.py:130
