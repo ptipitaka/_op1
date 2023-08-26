@@ -5,7 +5,17 @@
     <ul>
     {% for each_translation in found_in_translation %}
         <li class="w3-margin-top">
-            <b>{{ each_translation.translation }}</b><br>
+            <button
+                class="w3-btn w3-white w3-border-0 w3-round-xlarge"
+                style="cursor:pointer;"
+                onclick="$('#id_translated_word_form-translation').val('{{ each_translation.translation }}'); $('#id_translated_word_form-description').val('{{ each_translation.description }}');"
+            >
+                <b>{{ each_translation.translation }}</b>
+            </button> {% if each_translation.sentence == sentence %}*{% endif %}<br>
+            
+            {% if each_translation.description %}
+            <span class="w3-tiny">{{ each_translation.description }}</span><br>
+            {% endif %}
             {{ each_translation.get_sentence_string|safe }}
         </li>
     {% endfor %}
