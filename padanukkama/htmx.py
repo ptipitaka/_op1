@@ -101,7 +101,7 @@ class TranslationPadaView(LoginRequiredMixin, View):
     def _render_page(self, request, translated_word_form, translated_word_add_form, add_child_pada_form, pk):
         translation_word = get_object_or_404(TranslatedWord, id=pk)
         
-        pada = table = has_parent = has_sadda = split_pada = merge_pada = None
+        pada = table = has_parent = has_sadda = split_pada = merge_pada = False
         has_pada = translation_word.has_pada()
 
         if has_pada:

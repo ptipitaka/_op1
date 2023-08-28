@@ -609,8 +609,10 @@ class TranslatedWord(models.Model):
         """
         words = TranslatedWord.objects.filter(
             literal_translation=self.literal_translation,
-            sentence=self.sentence
+            sentence=self.sentence,
+            structure=self.structure
         ).order_by('word_order_by_translation')
+
 
         formatted_words = []
         for word in words:

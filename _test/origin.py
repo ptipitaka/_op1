@@ -1,46 +1,63 @@
-class LiteralTranslationTranslateView(LoginRequiredMixin, DetailView):
-    model = LiteralTranslation
-    template_name = 'padanukkama/literal_translation_translate.html'
-    context_object_name = 'literal_translation'
-
-    def handle_no_permission(self, request):
-        messages.error(request, _('You do not have permission to access this page'))
-        return redirect_to_login(request.get_full_path(), login_url=self.get_login_url(), redirect_field_name=self.get_redirect_field_name())
-
-    def get_success_url(self):
-        return reverse_lazy('literal_translation')
-    
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-
-        # Check if padanukkama exists and fetch structures associated with it
-        padanukkama = self.object.padanukkama
-        if padanukkama:
-            selected_structures = padanukkama.structure.all()
-        else:
-            selected_structures = []
-
-        # Fetch only structures associated with this padanukkama instance
-        selected_structures = padanukkama.structure.all()
-
-        # Fetch CommonReference objects for all selected structures
-        common_references = CommonReference.objects.filter(structure__in=selected_structures)
-
-        context['structures'] = selected_structures
-        context['common_references'] = common_references
-
-        # Get the 'toc_id' query parameter from the request's GET dictionary
-        toc_id = self.request.GET.get('toc_id')
-        # Retrieve the structure using get_object_or_404
-        if toc_id:
-            try:
-                # Retrieve the structure using get_object_or_404
-                selected_structure = get_object_or_404(Structure, id=toc_id)
-            except Structure.DoesNotExist:
-                selected_structure = None
-        else:
-            selected_structure = None
-        
-        context['selected_structure'] = selected_structure
-
-        return context
+        <div id="form1" class="w3-border form-tab">
+            <div id="toolbars" class="w3-bar" style="display: none;">
+                <span id="toolbar">
+                    <!-- htmx Split button -->
+                    {% if split_pada %} 
+                    <button
+                        class="btn-toolbar w3-bar-item w3-button w3-white w3-tooltip {% if not split_pada %} w3-disabled {% endif %}"
+                        hx-post="{% url 'htmx_split_pada_in_sentence' translate_word_id=pk %}"
+                        hx-target="#translation-pada"
+                        hx-trigger.once="click"
+                        hx-boost="once"
+                        hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
+                        >
+                        <icon class="far fa-object-ungroup"></icon>
+                        <span class="w3-text w3-tag w3-light-grey">
+                            {% trans 'Split' %}
+                        </span>
+                    </button>
+                    {% endif %}
+                    <!-- htmx Merge button -->
+                    merge_pada: {{ merge_pada }}
+                    {% if merge_pada %}
+                    <button
+                        class="btn-toolbar w3-bar-item w3-button w3-white w3-tooltip {% if not merge_pada %} w3-disabled {% endif %}"
+                        hx-post="{% url 'htmx_merge_pada_in_sentence' translate_word_id=pk %}"
+                        hx-target="#translation-pada"
+                        hx-trigger.once="click"
+                        hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
+                        >
+                        <icon class="far fa-object-group"></icon>
+                        <span class="w3-text w3-tag w3-light-grey">
+                            {% trans 'Merge' %}
+                        </span>
+                    </button>
+                    {% endif %}
+                    <!-- htmx Backspace button -->
+                    <button
+                        class="btn-toolbar w3-bar-item w3-right w3-button w3-white w3-tooltip {% if not backspace %} w3-disabled {% endif %}"
+                        hx-post="{% url 'htmx_backspace' translate_word_id=pk %}"
+                        hx-trigger.once="click"
+                        hx-target="#translation-pada"
+                        hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
+                        >
+                        <icon class="fas fa-backspace"></icon>
+                        <span class="w3-text w3-tag w3-light-grey">
+                            {% trans 'Backspace' %}
+                        </span>
+                    </button>
+                    <!-- htmx Add Sentence button -->
+                    <button
+                        class="btn-toolbar w3-bar-item w3-right w3-button w3-white w3-tooltip {% if not new_sentence %} w3-disabled {% endif %}"
+                        hx-post="{% url 'htmx_add_sentence' translate_word_id=pk %}"
+                        hx-trigger.once="click"
+                        hx-target="#translation-pada"
+                        hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
+                    >
+                        <icon class="fas fa-stream"></icon>
+                        <span class="w3-text w3-tag w3-light-grey">
+                            {% trans '+Sentence' %}
+                        </span>
+                    </button>
+                </span>
+            </div>

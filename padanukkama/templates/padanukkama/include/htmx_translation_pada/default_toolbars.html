@@ -22,8 +22,9 @@
     <!-- toolbar group -->
     <span id="toolbar">
         <!-- htmx Split button -->
+        {% if split_pada %} 
         <button
-            class="btn-toolbar w3-bar-item w3-button w3-white w3-tooltip {% if not split_pada %} w3-disabled {% endif %}"
+            class="btn-toolbar w3-bar-item w3-button w3-white w3-tooltip"
             hx-post="{% url 'htmx_split_pada_in_sentence' translate_word_id=pk %}"
             hx-target="#translation-pada"
             hx-trigger.once="click"
@@ -36,9 +37,11 @@
                 {% trans 'Split' %}
             </span>
         </button>
+        {% endif %}
         <!-- htmx Merge button -->
+        {% if merge_pada %}
         <button
-            class="btn-toolbar w3-bar-item w3-button w3-white w3-tooltip {% if not merge_pada %} w3-disabled {% endif %}"
+            class="btn-toolbar w3-bar-item w3-button w3-white w3-tooltip"
             hx-post="{% url 'htmx_merge_pada_in_sentence' translate_word_id=pk %}"
             hx-target="#translation-pada"
             hx-trigger.once="click"
@@ -50,9 +53,11 @@
                 {% trans 'Merge' %}
             </span>
         </button>
+        {% endif %}
         <!-- htmx Backspace button -->
+        {% if backspace %}
         <button
-            class="btn-toolbar w3-bar-item w3-right w3-button w3-white w3-tooltip {% if not backspace %} w3-disabled {% endif %}"
+            class="btn-toolbar w3-bar-item w3-right w3-button w3-white w3-tooltip"
             hx-post="{% url 'htmx_backspace' translate_word_id=pk %}"
             hx-trigger.once="click"
             hx-target="#translation-pada"
@@ -64,9 +69,11 @@
                 {% trans 'Backspace' %}
             </span>
         </button>
+        {% endif %}
         <!-- htmx Add Sentence button -->
+        {% if new_sentence %}
         <button
-            class="btn-toolbar w3-bar-item w3-right w3-button w3-white w3-tooltip {% if not new_sentence %} w3-disabled {% endif %}"
+            class="btn-toolbar w3-bar-item w3-right w3-button w3-white w3-tooltip"
             hx-post="{% url 'htmx_add_sentence' translate_word_id=pk %}"
             hx-trigger.once="click"
             hx-target="#translation-pada"
@@ -78,5 +85,6 @@
                 {% trans '+Sentence' %}
             </span>
         </button>
+        {% endif %}
     </span>
 </div>
