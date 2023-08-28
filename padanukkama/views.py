@@ -123,7 +123,7 @@ class PadanukkamaUpdateView(SuperuserRequiredMixin, UpdateView):
 # ---------------------
 class PadanukkamaDeleteView(SuperuserRequiredMixin, DeleteView):
     model = Padanukkama
-    success_url = reverse_lazy('padanukkama')
+    success_url = reverse_lazy('project')
     template_name = "padanukkama/padanukkama_delete.html"
 
     def handle_no_permission(self, request):

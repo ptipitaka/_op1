@@ -19,9 +19,11 @@ from django.urls import path, include, re_path
 from django.conf.urls.static import static
 from django.conf import settings
 from django.conf.urls.i18n import i18n_patterns
+import debug_toolbar
 
 urlpatterns = i18n_patterns(
     path('admin/', admin.site.urls),
+    path("__debug__/", include("debug_toolbar.urls")),
     re_path(r'^chaining/', include('smart_selects.urls')),
     path('i18n/', include('django.conf.urls.i18n')),
     path('', include('django.contrib.auth.urls')),

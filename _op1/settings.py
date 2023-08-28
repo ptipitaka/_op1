@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # third party libraries
+    'debug_toolbar',
     'django_editorjs',
     'django_htmx',
     'django_mptt_admin',
@@ -64,6 +65,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -209,6 +211,13 @@ MESSAGE_TAGS = {
     messages.WARNING: 'w3-pale-yellow',
     messages.ERROR: 'w3-pale-red',
 }
+
+
+INTERNAL_IPS = [
+    "localhost",
+    "127.0.0.1",
+    # ...
+]
 
 
 # *** NOTE ***
