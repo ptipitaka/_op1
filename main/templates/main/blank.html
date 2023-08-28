@@ -1,0 +1,31 @@
+{% load static i18n %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" type="image/x-icon">
+    <link href="{% static 'css/w3.css' %}" rel="stylesheet">
+    <link href="{% static 'css/main.css' %}" rel="stylesheet">
+    <link href="{% static 'fontawesome/css/fontawesome.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'fontawesome/css/brands.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'fontawesome/css/solid.css' %}" rel="stylesheet" type="text/css">
+    {% block extra_js %}{% endblock %}
+    {% block extra_css %}{% endblock %}
+    <title>{% block title %}{% endblock %}</title>
+</head>
+
+<body>
+    <section class="w3-container w3-content w3-padding-16" style="max-width:800px">
+        {% block body %}
+        {% endblock %}
+    </section>
+
+    {% block script %}
+    {% endblock %}
+</body>
+
+</html>

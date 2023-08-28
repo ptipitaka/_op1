@@ -31,6 +31,7 @@ urlpatterns = [
     path('literal-translation/<int:pk>/update/', views.LiteralTranslationUpdateView.as_view(), name='literal_translation_update'),
     path('literal-translation/<int:pk>/delete/', views.LiteralTranslationDeleteView.as_view(), name='literal_translation_delete'),
     path('literal-translation/<int:pk>/translate/', views.LiteralTranslationTranslateView.as_view(), name='literal_translation_translate'),
+    path('literal-translation/<int:pk>/<str:structure_id>/', views.LiteralTranslationStudiesView.as_view(), name='literal_translation_studies')
 ]
 
 
@@ -53,4 +54,7 @@ htmx_urlpatterns = [
     path('htmx-translation-form/htmx-change-word-order/', htmx.ChangeWordOrder.as_view(), name='htmx_change_word_order')
 ]
 
+
 urlpatterns += htmx_urlpatterns
+
+

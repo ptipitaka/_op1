@@ -7,7 +7,7 @@ from django.http import JsonResponse, HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils.translation import gettext_lazy as _
 from django.views import View
-from django.views.generic import CreateView, DetailView, UpdateView, DeleteView, FormView
+from django.views.generic import CreateView, DetailView, UpdateView, DeleteView, FormView, TemplateView
 from django.urls import resolve, reverse_lazy
 
 from django_filters.views import FilterView
@@ -936,5 +936,32 @@ class LiteralTranslationTranslateView(LoginRequiredMixin, DetailView):
                     page_image_urls.append(page_image_url)
                     visited_pages.add(page)
         context['page_image_urls'] = sorted(page_image_urls)
+
+        return context
+    
+
+
+
+class LiteralTranslationStudiesView(DetailView):
+    model = LiteralTranslation
+    template_name = 'padanukkama/literal_translation_studies.html'
+    context_object_name = 'literal_translation'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # structure
+        structure_id = self.kwargs['structure_id']
+        structure = get_object_or_404(Structure, id=structure_id)
+        context['structure'] = structure
+        
+        # wordlist
+        words_list = TranslatedWord.objects.filter(
+            Q(literal_translation=self.object.pk) & 
+            Q(structure=structure_id)
+        ).order_by('sentence', 'word_order_by_translation')
+        context['words_list'] = words_list
+
+        # order_type 
+        context['order_type'] = 'translation'
 
         return context
