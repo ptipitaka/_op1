@@ -222,14 +222,17 @@ def update_structure_code(node):
                             break
     else:
         print(payangka)
-        new_code = payangka[0]
-        if new_code not in code_array:
-            for i in range(1, 50):
-                new_code = payangka[0] + str(i)
-                if new_code not in code_array:
-                    print('adding code=1', new_code)
-                    node.code = new_code
-                    break
+        if len(payangka) == 1:
+            new_code = payangka[0]
+            if new_code not in code_array:
+                for i in range(1, 50):
+                    new_code = payangka[0] + str(i)
+                    if new_code not in code_array:
+                        print('adding code=1', new_code)
+                        node.code = new_code
+                        break
+        else:
+            node.code = '-'
     
     node.save()
     print(code_array)

@@ -1,4 +1,5 @@
 from django.db.models import Q
+from django.db import transaction
 
 from tipitaka.models import CommonReference, WordList
 from padanukkama.models import Padanukkama, Pada, NamaSaddamala, Sadda, AkhyataSaddamala
@@ -26,6 +27,7 @@ def create_pada(padanukkama_id):
 
     # Filter the WordList objects based on the conditions and wordlist_version
     wordlists = WordList.objects.filter(wordlist_version__in=wordlist_versions).filter(conditions).distinct('word')
+    print(wordlists.count(), 'records')
 
     # Create Pada objects in bulk to minimize database queries
     pada_objects_to_create = []
@@ -39,11 +41,17 @@ def create_pada(padanukkama_id):
                     pada=wordlist.word,
                     pada_seq=wordlist.word_seq,
                     pada_roman_script=wordlist.word_roman_script,
+                    lft=0,
+                    rght=0,
+                    tree_id=0,
+                    level=0,
                 )
             )
 
     # Bulk create the Pada objects
     Pada.objects.bulk_create(pada_objects_to_create)
+    print('rebuilding...')
+    Pada.objects.rebuild()
 
 
 
@@ -203,6 +211,7 @@ def copy_child_padas(from_padanukkama_id, to_padanukkama_id):
             if first_pada.pada == second_pada.pada:
                 # ถ้า first_pada มี children
                 if first_pada.get_children().exists():
+                    print('found match and has children', first_pada.pada )
                     for child in first_pada.get_children():
                         # คัดลอก children ของ first_pada และเพิ่มเป็น children ของ second_pada
                         Pada.objects.create(
@@ -253,6 +262,7 @@ def copy_sadda(from_padanukkama_id, to_padanukkama_id):
                     # ให้ pada รายการที่สองเชื่อมโยงกับ sadda
                     second_pada.sadda = sadda
                     second_pada.save()
+                    print(sadda)
 
 
 

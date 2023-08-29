@@ -108,7 +108,7 @@ class TranslationPadaView(LoginRequiredMixin, View):
             pada = translation_word.pada
         
             table = TranslatePadaParentChildTable(
-                data=pada.get_current_with_descendants(),
+                data=pada.get_current_with_descendants().order_by('tree_id', 'lft'),
                 request=request, translate_word_id=pk)
             
             has_parent = pada.has_parent()
@@ -381,7 +381,7 @@ class SplitPadaInSentenceView(LoginRequiredMixin, View):
         sentence = translate_word.sentence
         word_position = translate_word.word_position
         pada = translate_word.pada
-        descendants = pada.get_only_descendants()
+        descendants = pada.get_only_descendants().order_by('tree_id', 'lft')
         descendants_count = pada.has_descendants()
 
         # Update data
