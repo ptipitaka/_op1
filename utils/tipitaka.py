@@ -1,4 +1,5 @@
 import traceback
+from django.core.exceptions import ObjectDoesNotExist
 from django.db import transaction
 
 from mptt.utils import tree_item_iterator
@@ -272,3 +273,39 @@ def import_structure(structure_datas):
     Structure.objects.partial_rebuild(tree_items)
 
     return True
+
+
+
+
+def import_structure_data(data):
+    for item in data:
+        try:
+            table_of_content = TableOfContent.objects.get(pk=item["table_of_content"])
+        except ObjectDoesNotExist:
+            print(f"TableOfContent with id {item['table_of_content']} does not exist. Skipping...")
+            continue
+
+        parent = None
+        if "parent" in item:
+            try:
+                parent = Structure.objects.get(pk=item["parent"])
+            except ObjectDoesNotExist:
+                print(f"Parent Structure with id {item['parent']} does not exist. Skipping...")
+                continue
+
+        structure, created = Structure.objects.get_or_create(
+            table_of_content=table_of_content,
+            parent=parent,
+            title_number=item["title_number"],
+            title=item["title"],
+            ro=item["ro"],
+            additional_title=item.get("additional_title", None),
+            description=item.get("description", None)
+        )
+
+        if created:
+            print(f"Created Structure with title {item['title']}")
+        else:
+            print(f"Found existing Structure with title {item['title']}")
+
+
