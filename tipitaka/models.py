@@ -65,7 +65,7 @@ class Volume(models.Model):
         ordering = ['volume_number']
 
     def __str__(self):
-        return f"{_('Volume')}# {(str(self.volume_number).zfill(3))}"
+        return f"{self.volume_number}"
     
 
 # ---------------
@@ -90,7 +90,7 @@ class Page(models.Model):
         ordering = ['page_number']
 
     def __str__(self):
-        return f"{_('Page')}# {self.page_number}"
+        return f"{self.page_number}"
 
     def sample_content(self):
         all_words = self.content.split(" ")

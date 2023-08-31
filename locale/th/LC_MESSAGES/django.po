@@ -726,7 +726,7 @@ msgstr ""
 #: .\tipitaka\templates\tipitaka\common_reference_subform.html:123
 #: .\tipitaka\templates\tipitaka\common_reference_subform.html:128
 msgid "Image"
-msgstr ""
+msgstr "รูปภาพ"
 
 #: .\_venv\Lib\site-packages\django\db\models\fields\json.py:26
 msgid "A JSON object"

@@ -11,6 +11,7 @@ from django.views.generic import TemplateView, DetailView
 from django_filters.views import FilterView
 from django_tables2.views import SingleTableMixin
 
+from itertools import groupby
 from braces.views import LoginRequiredMixin, SuperuserRequiredMixin
 
 from utils.pali_char import *
@@ -164,6 +165,11 @@ class CommonReferenceSubformView(SuperuserRequiredMixin, TemplateView):
         messages.error(request, _('You do not have permission to access this page'))
         return redirect_to_login(request.get_full_path(), login_url=self.get_login_url(), redirect_field_name=self.get_redirect_field_name())
 
+    def get_wordlists_grouped(self, wordlist_version, page, line_number):
+        queryset = self.get_wordlist_queryset(wordlist_version, page, line_number)
+        wordlists_grouped = [list(group) for key, group in groupby(queryset, key=lambda x: x.line_number)]
+        return wordlists_grouped
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         # get kwargs
@@ -214,17 +220,20 @@ class CommonReferenceSubformView(SuperuserRequiredMixin, TemplateView):
                     queryset = WordList.objects.filter(
                         wordlist_version=wordlist_version,
                         page=page
-                    )
+                    ).order_by('line_number', 'position')
                 else:
                     queryset = WordList.objects.filter(
                         wordlist_version=wordlist_version,
                         page=page,
                         line_number=line_number
                     )
+                wordlists_grouped = [list(group) for key, group in groupby(queryset, key=lambda x: x.line_number)]
                 wordlist_table = WordListTable(queryset)
                 context.update({
                     'wordlist_table': wordlist_table,
                     'page': page,
+                    'wordlists': queryset,
+                    'wordlists_grouped': wordlists_grouped
                 })
 
             elif 'WordlistFinderForm_Add_or_Update' in request.POST:

@@ -76,6 +76,7 @@ class CommonReferenceForm(forms.ModelForm):
             'to_position': forms.TextInput(attrs={'class': 'w3-input'}),
         }
 
+
 class WordlistFinderForm(forms.ModelForm):
     from_p = forms.CharField(label=_("From Position"), required=False,  max_length=20)
     to_p = forms.CharField(label=_("To Position"), required=False,  max_length=20)
