@@ -188,13 +188,13 @@ class CommonReferenceTable(tables.Table):
     )
 
     wlv = tables.Column(accessor="wordlist_version", verbose_name="Wl.V")
-    start = tables.Column(accessor="from_position", verbose_name="Start")
-    end = tables.Column(accessor="to_position", verbose_name="End")
+    # start = tables.Column(accessor="from_position", verbose_name="Start")
+    # end = tables.Column(accessor="to_position", verbose_name="End")
     class Meta:
         model = CommonReference
         template_name = "django_tables2/w3css.html"
         attrs = {"class": "w3-table w3-bordered"}
-        fields = ("wlv", "start", "end",)
+        fields = ("wlv",)
         order_by = ("wordlist_version",)
 
 
