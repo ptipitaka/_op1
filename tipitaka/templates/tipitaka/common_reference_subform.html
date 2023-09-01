@@ -23,7 +23,7 @@
     <div id="sidebar" class="w3-cell" style="width:25%; padding-left:5px;">
         <div class="w3-row">
             <div><i class="fas fa-folder-tree"></i> {{ structure.table_of_content }}</div>
-            <div><i class="fa fa-book"></i> {{ structure.title }}</div>
+            <div><i class="fa fa-book"></i> {{ structure.title_number|default:"" }} {{ structure.title }}</div>
 
             {% if no_data_in_common_ref_table %}
                 <p>{{ no_data_in_common_ref_table }}</p>
