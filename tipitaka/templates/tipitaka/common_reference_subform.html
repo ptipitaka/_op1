@@ -17,11 +17,14 @@
 {% endblock %}
 
 {% block body %}
-<div class="w3-cell-row">
-    <div class="w3-container w3-cell" style="width:25%;">
+
+<div class="w3-cell-row w3-margin-top">
+    <!-- sidebar -->
+    <div id="sidebar" class="w3-cell" style="width:25%; padding-left:5px;">
         <div class="w3-row">
-            <h4>{{ structure.table_of_content }} </h4>
-            <h5>{{ structure.title }}</h5>
+            <div><i class="fas fa-folder-tree"></i> {{ structure.table_of_content }}</div>
+            <div><i class="fa fa-book"></i> {{ structure.title }}</div>
+
             {% if no_data_in_common_ref_table %}
                 <p>{{ no_data_in_common_ref_table }}</p>
             {% else %}
@@ -29,7 +32,7 @@
             {% endif %}
 
         </div>
-
+        <!-- subfolder -->
         <div class="w3-row">
             {% load mptt_tags %}
             <ul class="root">
@@ -49,8 +52,7 @@
     <div class="w3-container w3-cell">
         {% if edition_field.queryset.count %}
         <section>
-            <h4>{% trans 'Wordlist Finder Form' %}</h4>
-            
+            <!-- search form -->
             <form method="post">
                 {% csrf_token %}
                 {{ WordlistFinderForm.media.js }}
@@ -123,6 +125,12 @@
                     <button class="w3-bar-item w3-button tablink w3-grey" onclick="openTabs(event,'overall')">{% trans 'Overall' %}</button>
                     <button class="w3-bar-item w3-button tablink" onclick="openTabs(event,'image_ref')">{% trans 'Image' %}</button>
                     <button class="w3-bar-item w3-button tablink" onclick="openTabs(event,'wordlist')">{% trans 'Wordlist' %}</button>
+                    <button id="toggleSidebar" class="w3-bar-item w3-btn w3-right">
+                        <i class="fa fa-toggle-on"></i>
+                    </button>
+                    <button id="adjustable-top" class="w3-bar-item w3-btn w3-right">
+                        <i class="fas fa-sort"></i>
+                    </button>
                 </div>
                 
                 <div id="overall" class="tab">
@@ -131,7 +139,9 @@
                             <img class="mySlides w3-image" src="{{ page.image_ref }}">
                         </div>
                         <div class="w3-cell">
-                            <br><br>
+                            <div id="add-br">
+                                <br>
+                            </div>
                             {% if wordlists %}
                                 {% for wordlist in wordlists_grouped %}
                                     {% for word in wordlist %}
@@ -141,7 +151,7 @@
                                         <button
                                             id="{{ word.id }}"
                                             data-code="{{ word.code }}"
-                                            class="w3-btn w3-round-xlarge w3-tiny"
+                                            class="word-id w3-btn w3-round-xlarge w3-tiny"
                                             style="border:none; background:none; cursor:pointer; padding:0px;"
                                             onclick="handlePadaButtonClick(this);"
                                         >
@@ -168,13 +178,47 @@
 </div>
 {% endblock %}
 
-
-
 {% block script%}
     <script>
         $(document).ready(function() {
             // set initial button state
             checkButtonState();
+
+            // tooggle sidebar
+            $( "#toggleSidebar" ).click(function(){
+                $("#sidebar").toggle();
+                
+                // Toggle Font Awesome icon
+                const icon = $(this).find("i");
+                if (icon.hasClass("fa-toggle-on")) {
+                    icon.removeClass("fa-toggle-on").addClass("fa-toggle-off");
+                    
+                    // Change class of buttons with class "word-id"
+                    $(".word-id").removeClass("w3-tiny").addClass("w3-small");
+                } else {
+                    icon.removeClass("fa-toggle-off").addClass("fa-toggle-on");
+                    
+                    // Change class of buttons with class "word-id"
+                    $(".word-id").removeClass("w3-small").addClass("w3-tiny");
+                }
+            });
+
+            // adjustable top
+            // ตัวแปรสำหรับเก็บจำนวน <br> ปัจจุบัน
+            let currentBrCount = 0;
+
+            // กำหนด event listener สำหรับปุ่ม
+            $('#adjustable-top').click(function() {
+                // ถ้าจำนวน <br> ถึง 5 แล้ว ให้รีเซ็ต
+                if (currentBrCount >= 5) {
+                    $('#add-br').html('<br>');
+                    currentBrCount = 1;
+                } else {
+                // เพิ่ม <br> ลงใน div
+                    $('#add-br').append('<br>');
+                    currentBrCount++;
+                }
+            });
         });
 
         function checkButtonState() {
@@ -238,7 +282,7 @@
             }
             checkButtonState();
         }
-
+          
     </script>
 {% endblock %}
 

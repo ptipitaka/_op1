@@ -3363,7 +3363,7 @@ msgstr "รีเซ็ต"
 
 #: .\tipitaka\templates\tipitaka\common_reference_subform.html:123
 msgid "Overall"
-msgstr ""
+msgstr "ภาพรวม"
 
 #: .\tipitaka\templates\tipitaka\digital_archive.html:8
 msgid "Digital Archived"

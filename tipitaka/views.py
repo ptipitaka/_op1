@@ -165,11 +165,6 @@ class CommonReferenceSubformView(SuperuserRequiredMixin, TemplateView):
         messages.error(request, _('You do not have permission to access this page'))
         return redirect_to_login(request.get_full_path(), login_url=self.get_login_url(), redirect_field_name=self.get_redirect_field_name())
 
-    def get_wordlists_grouped(self, wordlist_version, page, line_number):
-        queryset = self.get_wordlist_queryset(wordlist_version, page, line_number)
-        wordlists_grouped = [list(group) for key, group in groupby(queryset, key=lambda x: x.line_number)]
-        return wordlists_grouped
-
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         # get kwargs

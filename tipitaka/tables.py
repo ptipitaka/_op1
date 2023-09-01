@@ -181,7 +181,7 @@ class WordListTable(tables.Table):
 class CommonReferenceTable(tables.Table):
     action = tables.TemplateColumn(
         """
-        <a href='/tipitaka/toc/{{ record.structure.table_of_content.slug }}/structure/{{ record.structure.id }}/common-reference/{{ record.id }}' class='w3-button'>
+        <a href='/tipitaka/toc/{{ record.structure.table_of_content.slug }}/structure/{{ record.structure.id }}/common-reference/{{ record.id }}' class='w3-button w3-small w3-border w3-round-xlarge w3-hover-brown'>
             <i class='fas fa-glasses'></i>
         </a>
         """
