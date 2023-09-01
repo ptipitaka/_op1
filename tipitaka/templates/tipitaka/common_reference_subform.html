@@ -8,6 +8,14 @@
     <script src="{% static 'js/jquery-3.6.4.min.js' %}"></script>
 {% endblock %}
 
+{% block extra_css %}
+<style>
+    .highlight-button {
+        color: blue !important;
+    }
+</style>
+{% endblock %}
+
 {% block apptitle %}
     {% include 'tipitaka/include/title.html' %} : {% trans 'Table of Contents' %}・{% trans 'Structure' %}・{% trans 'Common Reference' %}
 {% endblock %}
@@ -226,13 +234,29 @@
             var fromField = $("#id_from_p");
             var toField = $("#id_to_p");
             var addButton = $("button[name='WordlistFinderForm_Add_or_Update']");
+        
             // check if both fields have values
             if (fromField.val() && toField.val()) {
                 addButton.prop("disabled", false);
             } else {
                 addButton.prop("disabled", true);
             }
+        
+            // Highlight buttons based on the values in fromField and toField
+            var fromValue = fromField.val();
+            var toValue = toField.val();
+
+            $(".word-id").each(function() {
+                var button = $(this);
+                var dataCode = button.attr("data-code");
+                if (dataCode === fromValue || dataCode === toValue) {
+                    button.addClass("highlight-button");
+                } else {
+                    button.removeClass("highlight-button");
+                }
+            });
         }
+        
 
         function openTabs(evt, tabName) {
             var i, x, tablinks;
