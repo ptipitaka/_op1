@@ -179,13 +179,32 @@ class WordListTable(tables.Table):
 
 
 class CommonReferenceTable(tables.Table):
-    action = tables.TemplateColumn(
-        """
-        <a href='/tipitaka/toc/{{ record.structure.table_of_content.slug }}/structure/{{ record.structure.id }}/common-reference/{{ record.id }}' class='w3-button w3-small w3-border w3-round-xlarge w3-hover-brown'>
-            <i class='fas fa-glasses'></i>
+    detail = tables.LinkColumn(
+        viewname='common_reference_subform_detail',
+        verbose_name=_('Detail'),  
+        args=[
+            A('structure.table_of_content.slug'),
+            A('structure.id'),
+            A('id')
+        ],
+        attrs={
+            "a": {
+                "class": "w3-button w3-small w3-border w3-round-xlarge w3-hover-brown"
+            }
+        },
+        text=format_html('<i class="fas fa-glasses"></i>'),
+        empty_values=(),
+    )
+
+    update = tables.TemplateColumn(
+        verbose_name=_('Update'),
+        template_code="""
+        <a href="{% url 'common_reference_subform' slug=record.structure.table_of_content.slug structure_id=record.structure.id %}?common-reference={{ record.id }}" class="w3-button w3-small w3-border w3-round-xlarge w3-hover-brown">
+            <i class='fas fa-pencil-alt'></i>
         </a>
         """
     )
+
 
     wlv = tables.Column(accessor="wordlist_version", verbose_name="Wl.V")
     # start = tables.Column(accessor="from_position", verbose_name="Start")

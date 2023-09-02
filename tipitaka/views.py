@@ -16,7 +16,7 @@ from braces.views import LoginRequiredMixin, SuperuserRequiredMixin
 
 from utils.pali_char import *
 
-from .models import Edition, Page, WordList, TableOfContent, Structure, CommonReference
+from .models import Edition, Volume, Page, WordList, TableOfContent, Structure, CommonReference
 from .tables import DigitalArchiveTable, WordlistMasterTable, WordlistMasterFilter, TocTable, StructureTable, StructureFilter, WordListTable, CommonReferenceTable
 from .forms import DigitalArchiveForm, EditForm, UpdWlAndPageForm, WordlistFinderForm
 
@@ -165,10 +165,40 @@ class CommonReferenceSubformView(SuperuserRequiredMixin, TemplateView):
         messages.error(request, _('You do not have permission to access this page'))
         return redirect_to_login(request.get_full_path(), login_url=self.get_login_url(), redirect_field_name=self.get_redirect_field_name())
 
+    def get_initial_data(self, common_reference_id):
+        if common_reference_id:
+            common_reference = get_object_or_404(CommonReference, id=common_reference_id)
+            parts = common_reference.from_position.split('-')
+            edition = Edition.objects.filter(code=parts[0]).first()
+            volume = Volume.objects.filter(Q(edition=edition) & Q(volume_number=int(parts[1]))).first() 
+            page = Page.objects.filter(Q(edition=edition) & Q(volume=volume) & Q(page_number=int(parts[2]))).first()
+            initial_data = {
+                'edition': edition,
+                'wordlist_version': common_reference.wordlist_version,
+                'volume': volume,
+                'page': page,
+                'line_number': 0,
+                'from_p': common_reference.from_position,
+                'to_p': common_reference.to_position,
+            }
+            return initial_data
+        else:
+            return {
+                'edition': '',
+                'wordlist_version': '',
+                'volume': '',
+                'page': '',
+                'line_number': 0,
+                'from_p': '',
+                'to_p': '',
+            }
+
     def get_context_data(self, **kwargs):
+        # context
         context = super().get_context_data(**kwargs)
         # get kwargs
         structure_id = self.kwargs['structure_id']
+        common_reference_id = self.request.GET.get('common-reference')
         
         # get Structure & Common Reference related to this structure
         structure = get_object_or_404(Structure, id=structure_id)
@@ -188,7 +218,8 @@ class CommonReferenceSubformView(SuperuserRequiredMixin, TemplateView):
             context['no_data_in_common_ref_table'] = _('No common references found')
         
         # form
-        context['WordlistFinderForm'] = WordlistFinderForm(structure_id=structure_id)
+        initial_data = self.get_initial_data(common_reference_id)
+        context['WordlistFinderForm'] = WordlistFinderForm(initial=initial_data, structure_id=structure_id)
 
         # Accessing the fields
         fields = context['WordlistFinderForm'].fields
@@ -202,14 +233,18 @@ class CommonReferenceSubformView(SuperuserRequiredMixin, TemplateView):
         return render(request, self.template_name, context=context)
 
     def post(self, request, *args, **kwargs):
+        # static variables
+        SEARCH_SUBMIT = 'WordlistFinderForm_Search_Submit'
+        ADD_OR_UPDATE = 'WordlistFinderForm_Add_or_Update'
+        
         context = self.get_context_data(**kwargs)
         structure_id = self.kwargs['structure_id']
         form = WordlistFinderForm(request.POST, structure_id = structure_id )
 
         if form.is_valid():
-            if 'WordlistFinderForm_Search_Submit' in request.POST:
+            if SEARCH_SUBMIT in request.POST:
                 page = Page.objects.get(id=request.POST['page'])
-                wordlist_version = request.POST['wordlist_version']
+                wordlist_version = request.POST.get('wordlist_version')
                 line_number = request.POST['line_number']
                 if line_number == '0':
                     queryset = WordList.objects.filter(
@@ -231,7 +266,7 @@ class CommonReferenceSubformView(SuperuserRequiredMixin, TemplateView):
                     'wordlists_grouped': wordlists_grouped
                 })
 
-            elif 'WordlistFinderForm_Add_or_Update' in request.POST:
+            elif ADD_OR_UPDATE in request.POST:
                 from_position_slug = request.POST.get('from_p')
                 to_position_slug = request.POST.get('to_p')
                 if from_position_slug and to_position_slug:
@@ -239,7 +274,7 @@ class CommonReferenceSubformView(SuperuserRequiredMixin, TemplateView):
                         common_reference_exist = CommonReference.objects.filter(
                             Q(structure=kwargs['structure_id']) & 
                             Q(wordlist_version_id=request.POST['wordlist_version']))
-                        if common_reference_exist:
+                        if common_reference_exist.exists:
                             # update the common reference object
                             common_reference_exist.update(
                                 from_position=from_position_slug,
