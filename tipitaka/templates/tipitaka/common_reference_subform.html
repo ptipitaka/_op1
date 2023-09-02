@@ -136,9 +136,6 @@
                     <button id="toggleSidebar" class="w3-bar-item w3-btn w3-right">
                         <i class="fa fa-toggle-on"></i>
                     </button>
-                    <button id="adjustable-top" class="w3-bar-item w3-btn w3-right">
-                        <i class="fas fa-sort"></i>
-                    </button>
                 </div>
                 
                 <div id="overall" class="tab">
@@ -150,26 +147,34 @@
                             <div id="add-br">
                                 <br>
                             </div>
-                            {% if wordlists %}
-                                {% for wordlist in wordlists_grouped %}
-                                    {% for word in wordlist %}
-                                        {% if forloop.first %}
-                                            <span class="w3-tiny">{{ word.line_number }}:</span>
-                                        {% endif %}
-                                        <button
-                                            id="{{ word.id }}"
-                                            data-code="{{ word.code }}"
-                                            class="word-id w3-btn w3-round-xlarge w3-tiny"
-                                            style="border:none; background:none; cursor:pointer; padding:0px;"
-                                            onclick="handlePadaButtonClick(this);"
-                                        >
-                                            {{ word.word }}
-                                        </button>
+                            <div class="w3-bar">
+                                <button id="goDown" class="w3-btn w3-circle w3-ripple w3-white w3-border">
+                                    <i class="fas fa-angle-down w3-small"></i>
+                                </button>
+                                <button id="goUp" class="w3-btn w3-circle w3-ripple w3-white w3-border">
+                                    <i class="fas fa-angle-up w3-small"></i>
+                                </button>
+                            </div>
+                                {% if wordlists %}
+                                    {% for wordlist in wordlists_grouped %}
+                                        {% for word in wordlist %}
+                                            {% if forloop.first %}
+                                                <span class="w3-tiny">{{ word.line_number }}:</span>
+                                            {% endif %}
+                                            <button
+                                                id="{{ word.id }}"
+                                                data-code="{{ word.code }}"
+                                                class="word-id w3-btn w3-round-xlarge w3-tiny"
+                                                style="border:none; background:none; cursor:pointer; padding:0px;"
+                                                onclick="handlePadaButtonClick(this);"
+                                            >
+                                                {{ word.word }}
+                                            </button>
+                                        {% endfor %}
+                                        <br>
                                     {% endfor %}
-                                    <br>
-                                {% endfor %}
-                            {% endif %}
-                        </div>
+                                {% endif %}
+                            </div>
                     </div>
                 </div>
                 <div id="image_ref" class="tab" style="display:none">
@@ -212,20 +217,17 @@
             });
 
             // adjustable top
-            // ตัวแปรสำหรับเก็บจำนวน <br> ปัจจุบัน
-            let currentBrCount = 0;
+            // กำหนดฟังก์ชันเมื่อกดปุ่มที่มี id ว่า "goDown"
+            $('#goDown').click(function() {
+                // เพิ่ม <br> ลงใน div ที่มี id ว่า "add-br" ทีละ 2 ตัว
+                $('#add-br').append('<br><br>');
+            });
 
-            // กำหนด event listener สำหรับปุ่ม
-            $('#adjustable-top').click(function() {
-                // ถ้าจำนวน <br> ถึง 12 แล้ว ให้รีเซ็ต
-                if (currentBrCount >= 12) {
-                    $('#add-br').html('<br>');
-                    currentBrCount = 1;
-                } else {
-                // เพิ่ม <br> ลงใน div
-                    $('#add-br').append('<br>');
-                    currentBrCount++;
-                }
+            // กำหนดฟังก์ชันเมื่อกดปุ่มที่มี id ว่า "goUp"
+            $('#goUp').click(function() {
+                // หา <br> ล่าสุดและลบออก 2 ตัว
+                $('#add-br').find('br:last').remove();
+                $('#add-br').find('br:last').remove();
             });
         });
 
@@ -257,7 +259,6 @@
             });
         }
         
-
         function openTabs(evt, tabName) {
             var i, x, tablinks;
             x = document.getElementsByClassName("tab");
