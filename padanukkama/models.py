@@ -572,6 +572,7 @@ class TranslatedWord(models.Model):
     pada = models.ForeignKey(
         Pada,
         null=True,
+        blank=True,
         on_delete=models.PROTECT,
         verbose_name=_("Pada"))
     translation = models.CharField(
