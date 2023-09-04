@@ -247,6 +247,7 @@ class PadaFilter(FilterSet):
         ('CT', _("Search for Padas that contain these characters")),
         ('IN', _("Go to the page where this Pada is located")),
         ('LP', _("Go to the page of the latest updated Pada")),
+        ('NS', _("Filter Padas that have not been processed.")),
     ]
     PAGINATE_BY=10
     page_number=None
@@ -266,29 +267,48 @@ class PadaFilter(FilterSet):
         super().__init__(*args, **kwargs)
         self.form.fields['pada_filter_options'].initial = 'SW'
 
+    def filter_start_with(self, queryset, value):
+        return queryset.filter(pada__startswith=value)
+
+    def filter_contain(self, queryset, value):
+        return queryset.filter(pada__contains=value)
+
+    def filter_go_to_page(self, queryset, value):
+        self.page_number = self.get_page_number_containing_keyword(queryset, value)
+        return queryset
+
+    def filter_latest_updated(self, queryset):
+        history_manager = get_history_manager_for_model(Sadda)
+        try:
+            last_sadda_updated = history_manager.filter(
+                history_user=self.request.user).latest('history_date')
+            sadda = Sadda.objects.filter(sadda=last_sadda_updated.sadda).first()
+            if sadda:
+                pada_value = Pada.objects.get(sadda=sadda.id)
+                if pada_value:
+                    self.page_number = self.get_page_number_containing_keyword(queryset, pada_value.pada)
+        except Exception as e:
+            self.page_number = None
+            print(f"An error occurred: {e}")
+        return queryset
+
+    def filter_padas_non_process(self, queryset):
+        return queryset.filter(sadda__isnull=True, children__isnull=True)
+
+
     def filter_pada_with_options(self, queryset, name, value):
         if value:
             pada_value = self.form.cleaned_data['pada_filter']
             if value == "SW":
-                return queryset.filter(pada__startswith=pada_value)
+                return self.filter_start_with(queryset, pada_value)
             elif value == "CT":
-                return queryset.filter(pada__contains=pada_value)
+                return self.filter_contain(queryset, pada_value)
             elif value == 'IN':
-                self.page_number = self.get_page_number_containing_keyword(queryset, pada_value)
-                return queryset
+                return self.filter_go_to_page(queryset, pada_value)
             elif value == 'LP':
-                history_manager = get_history_manager_for_model(Sadda)
-                try:
-                    last_sadda_updated = history_manager.filter(
-                        history_user=self.request.user).latest('history_date')
-                    sadda=Sadda.objects.filter(sadda=last_sadda_updated.sadda).first()
-                    if sadda:
-                        pada_value = Pada.objects.get(sadda=sadda.id)
-                        if pada_value:
-                            self.page_number = self.get_page_number_containing_keyword(queryset, pada_value.pada)
-                except:
-                    self.page_number = None
-                return queryset
+                return self.filter_latest_updated(queryset)
+            elif value == 'NS':
+                return self.filter_padas_non_process(queryset)
             else:
                 return queryset
 

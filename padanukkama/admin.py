@@ -37,6 +37,13 @@ class PadanukkamaAdmin(admin.ModelAdmin):
     list_display = ("title",)
     ordering = ("title",)
 
+
+class PadaResource(resources.ModelResource):
+    class Meta:
+        model = Pada
+        fields = ('pada_seq', 'pada',)
+        export_order = ('pada_seq',)
+
 class SaddaResource(resources.ModelResource):
     class Meta:
         model = Sadda

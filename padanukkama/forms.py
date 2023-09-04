@@ -303,7 +303,7 @@ class SaddaForm(forms.ModelForm):
 
 
 # -----------------------------------------------------
-# ExportSaddaForm
+# ExportForm
 # -----------------------------------------------------
 FORMAT_CHOICES = (
     ('xls', 'xls'),
@@ -311,12 +311,11 @@ FORMAT_CHOICES = (
     ('json', 'json')
 )
 
-class ExportSaddaForm(forms.Form):
+class ExportForm(forms.Form):
     format = forms.ChoiceField(
         choices=FORMAT_CHOICES, widget=forms.Select(attrs={'class': 'w3-select'}),
         required=True,
         label=_('Format')
     )
-
 
 

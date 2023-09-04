@@ -32,10 +32,10 @@ from .tables import PadanukkamaTable, PadanukkamaFilter, \
                     LiteralTranslationTable, LiteralTranslationFilter
 
 from .forms import  PadanukkamaCreateForm, PadanukkamaUpdateForm, \
-                    AddChildPadaForm, SaddaForm, ExportSaddaForm, \
+                    AddChildPadaForm, SaddaForm, ExportForm, \
                     LiteralTranslationCreateForm, LiteralTranslationUpdateForm
 
-from .admin import SaddaResource
+from .admin import SaddaResource, PadaResource
 
 from utils.pali_char import *
 from utils.padanukkama import *
@@ -135,13 +135,14 @@ class PadanukkamaDeleteView(SuperuserRequiredMixin, DeleteView):
 # ====================================================
 # PadanukkamaPadaView
 # ====================================================
-class PadanukkamaPadaView(LoginRequiredMixin, SingleTableMixin, FilterView):
+class PadanukkamaPadaView(LoginRequiredMixin, SingleTableMixin, FilterView, FormView):
     model = Pada
     template_name = "padanukkama/pada.html"
     context_object_name = 'pada'
     table_class = PadaTable
     filterset_class = PadaFilter
     paginate_by = 10
+    form_class = ExportForm
 
     def get(self, request, *args, **kwargs):
         # Call the parent get() method to get the initial queryset and set up the filter
@@ -192,7 +193,26 @@ class PadanukkamaPadaView(LoginRequiredMixin, SingleTableMixin, FilterView):
         url = self.request.get_full_path()
         return f"{url}?page={page_number}"
 
+    def post(self, request, **kwargs):
+        filter_form = self.get_form(self.form_class)
+        if filter_form.is_valid():
+            queryset = self.get_queryset()
+            filterset = self.filterset_class(request.GET, queryset=queryset, request=request)
+            filtered_queryset = filterset.qs
+            dataset = PadaResource().export(filtered_queryset)
 
+            format = request.POST.get('format')
+
+            if format == 'xls':
+                ds = dataset.xls
+            elif format == 'json':
+                ds = dataset.json
+            else:
+                ds = dataset.csv
+
+            response = HttpResponse(ds, content_type=f"{format}")
+            response['Content-Disposition'] = f"attachment; filename=sadda.{format}"
+            return response
 
 # PadaSplitSandhiView
 # -------------------
@@ -621,7 +641,7 @@ class SaddaView(LoginRequiredMixin, SingleTableMixin, FilterView, FormView):
     context_object_name = "sadda"
     table_class = SaddaTable
     filterset_class = SaddaFilter
-    form_class = ExportSaddaForm
+    form_class = ExportForm
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
