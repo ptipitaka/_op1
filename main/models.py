@@ -7,3 +7,7 @@ class UserProfile(models.Model):
 
     def __str__(self):
         return self.user.username
+    
+
+class AllowedOrigin(models.Model):
+    domain = models.CharField(max_length=255, unique=True)

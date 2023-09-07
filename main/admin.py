@@ -1,4 +1,10 @@
 from django.contrib import admin
+from main.models import AllowedOrigin
+
+@admin.register(AllowedOrigin)
+class AllowedOriginAdmin(admin.ModelAdmin):
+    list_display = ('domain',)
+
 
 def get_app_list(self, request):
     app_dict = self._build_app_dict(request)

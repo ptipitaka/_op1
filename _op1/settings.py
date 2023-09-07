@@ -77,6 +77,7 @@ MIDDLEWARE = [
     'django.middleware.locale.LocaleMiddleware',
     'django_htmx.middleware.HtmxMiddleware',
     'corsheaders.middleware.CorsMiddleware',
+    'main.middleware.CorsMiddleware',
     'simple_history.middleware.HistoryRequestMiddleware',
 ]
 
@@ -222,6 +223,3 @@ INTERNAL_IPS = [
 ]
 
 
-CORS_ALLOWED_ORIGINS = [
-    "https://openpali.net",
-]
