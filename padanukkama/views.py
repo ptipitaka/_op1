@@ -962,26 +962,31 @@ class LiteralTranslationTranslateView(LoginRequiredMixin, DetailView):
 
 
 
-class LiteralTranslationStudiesView(DetailView):
-    model = LiteralTranslation
-    template_name = 'padanukkama/literal_translation_studies.html'
-    context_object_name = 'literal_translation'
+class LiteralTranslationWidgetView(View):
+    template_name = 'padanukkama/literal_translation_widget.html'
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        # structure
-        structure_id = self.kwargs['structure_id']
-        structure = get_object_or_404(Structure, id=structure_id)
-        context['structure'] = structure
+    def get(self, request, *args, **kwargs):
+        # Getting the literal translation and structure ID from the query parameters
+        literal_translation_id = request.GET.get('literal_translation_id')
+        structure_id = request.GET.get('structure_id')
         
-        # wordlist
+        # Getting the literal translation and structure objects from the database
+        literal_translation = get_object_or_404(LiteralTranslation, pk=literal_translation_id)
+        structure = get_object_or_404(Structure, id=structure_id)
+
+        # Getting the words list using a filter on TranslatedWord objects
         words_list = TranslatedWord.objects.filter(
-            Q(literal_translation=self.object.pk) & 
+            Q(literal_translation=literal_translation.pk) & 
             Q(structure=structure_id)
         ).order_by('sentence', 'word_order_by_translation')
-        context['words_list'] = words_list
 
-        # order_type 
-        context['order_type'] = 'translation'
+        # Creating the context dictionary to pass to the template
+        context = {
+            'literal_translation': literal_translation,
+            'structure': structure,
+            'words_list': words_list,
+            'order_type': 'translation',
+        }
 
-        return context
+        # Rendering the template with the context
+        return render(request, self.template_name, context)

@@ -802,6 +802,9 @@ class FoundInTranslationView(LoginRequiredMixin, TemplateView):
             literal_translation=obj.literal_translation
         ).exclude(translation="")
 
+
+        # นับจำนวนที่พบในการแปลทั้งหมด
+        context['found_in_translation_count'] = similar_objects.count()
         # กรองเฉพาะรายการที่มีข้อมูลใน translation field มีความแตกต่างกัน
         unique_translations = similar_objects.order_by(
             'translation', 'id').distinct('translation')

@@ -1,7 +1,7 @@
 {% load i18n %}
 
 {% if found_in_translation %}
-    <div class="w3-tag w3-blue w3-round-large">{% trans 'Found in Translation' %}</div>
+    <div class="w3-tag w3-blue w3-round-large">{% trans 'Found in Translation' %} ({{ found_in_translation_count }})</div>
     <ul>
     {% for each_translation in found_in_translation %}
         <li class="w3-margin-top">
