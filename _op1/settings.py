@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # third party libraries
+    'corsheaders',
     'debug_toolbar',
     'django_editorjs',
     'django_htmx',
@@ -75,6 +76,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.locale.LocaleMiddleware',
     'django_htmx.middleware.HtmxMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'simple_history.middleware.HistoryRequestMiddleware',
 ]
 
@@ -220,21 +222,6 @@ INTERNAL_IPS = [
 ]
 
 
-# *** NOTE ***
-# *** DUMP DATABASE COMMAND => SERVER : op1 op1_dev1***
-# $ pg_dump -Fc -h 127.0.0.1 -U op1 op1 -f op1.dump
-# *** RESTORE DATABASE COMMAND ***
-# sudo -u postgres psql
-# DROP DATABASE op1_dev1;
-# CREATE DATABASE op1_dev1;
-# GRANT ALL PRIVILEGES ON DATABASE op1_dev1 TO op1;
-# \q
-# $ pg_restore -d op1_dev1 -h 127.0.0.1 -U op1 op1.dump
-
-# *** BACKUP DATABASE COMMAND => SERVER TO LOCAL : op1 to op1
-# FROM PGADMIN BACKUP FROM SERVER => RESTORE TO LOCAL
-# 1. BACKUP DATABASE op1 (SERVER SIDE)
-# 2. FTP DOWNLOAD op1 FROM SERVER
-# 3. DROP op1 (if exists) ON LOCAL
-# 4. CREATE DATABASE op1 =>
-# 2. RESTORE DATABASE op1.sql => sudo -u postgres pg_restore -U postgres -d op1 -1 op1.sql
+CORS_ALLOWED_ORIGINS = [
+    "https://openpali.net",
+]
