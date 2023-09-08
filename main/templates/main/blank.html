@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" type="image/x-icon">
     <link href="{% static 'css/w3.css' %}" rel="stylesheet">
-    <link href="{% static 'css/base-main.css' %}" rel="stylesheet">
+    <link href="{% static 'css/main-base.css' %}" rel="stylesheet">
     <link href="{% static 'fontawesome/css/fontawesome.min.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'fontawesome/css/brands.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'fontawesome/css/solid.css' %}" rel="stylesheet" type="text/css">
@@ -23,6 +23,10 @@
         {% block body %}
         {% endblock %}
     </section>
+
+    <footer class="footer-div">
+        {% include "main/footer.html" %}
+    </footer>
 
     {% block script %}
     {% endblock %}
