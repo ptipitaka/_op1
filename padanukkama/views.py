@@ -929,7 +929,10 @@ class LiteralTranslationTranslateView(LoginRequiredMixin, DetailView):
 
         # Get the 'structure_id' query parameter from the request's GET dictionary
         structure_id = self.request.GET.get('structure_id')
+        context['structure_id'] = structure_id
         words_list = []
+
+        context['literal_translation_id'] = self.object.pk
 
         if structure_id and structure_id.isdigit():
             structure = get_object_or_404(Structure, id=structure_id)

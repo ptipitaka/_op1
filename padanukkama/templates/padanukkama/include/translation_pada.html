@@ -6,7 +6,38 @@
 
 <h4>
     {{ structure.title }}
+    <span class="w3-right">
+        <button
+            onclick="document.getElementById('embeddedid').style.display='block'"
+            class="w3-button w3-small w3-round-large w3-hover-brown"
+        >
+            <i class="fas fa-code"></i>
+        </button>
+    </span>
 </h4>
+
+<div id="embeddedid" class="w3-modal">
+    <div class="w3-modal-content w3-card-4">
+        <header class="w3-container w3-win8-brown w3-padding"> 
+            <span onclick="document.getElementById('embeddedid').style.display='none'" 
+                class="w3-button w3-display-topright">&times;</span>
+            <h4><i class='fas fa-code'></i> {% trans 'Embedded code' %}</h4>
+            <div class="">{% trans "Click the 'Copy Code' button to copy this displayed code and paste it onto the webpage where you want it to appear." %}</div>
+        </header>
+        <div class="w3-container w3-margin-top">
+            <textarea id="embed-code" readonly class="w3-input w3-border" style="resize:none;">
+<div id="my-widget-container" data-literal_translation_id={{ literal_translation_id }} data-structure_id={{ structure_id }}></div>
+<script src="https://space.openpali.org/static/padanukkama/widgets/literal_translation_widget.js"></script>
+            </textarea>
+        </div>
+        <footer class="w3-container w3-white">
+            <p class="w3-center">
+                <button onclick="copyToClipboard()" class="w3-button w3-dark-grey w3-hover-brown w3-round-xlarge w3-center w3-padding">{% trans 'Copy Code' %}</button>
+            </p>
+        </footer>
+    </div>
+</div>
+
 <div class="w3-small">{{ structure.breadcrumb }}</div>
 
 <!-- show each sentence-->
@@ -75,5 +106,16 @@
                 console.error('Error:', error);
             });
         }
+
+        function copyToClipboard() {
+            var copyText = document.getElementById("embed-code").value;
+            navigator.clipboard.writeText(copyText).then(function() {
+                alert('Copied to clipboard');
+            }, function(err) {
+                alert('Error in copying text: ', err);
+            });
+        }
+        
     </script>
+    
 {% endblock %}
