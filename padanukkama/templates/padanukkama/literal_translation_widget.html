@@ -18,7 +18,7 @@
                     <!-- loop words -->
                     {% regroup words_list by sentence as sentence_list %}
                     {% for sentence_group in sentence_list %}
-                        <p class="sentence justify">
+                        <p class="">
                             {% for word in sentence_group.list %}
                                 <!-- Your code to display each word goes here -->
                                 <button
