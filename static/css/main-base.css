@@ -1,0 +1,163 @@
+@import url('https://fonts.googleapis.com/css2?family=Sarabun:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+* {
+    font-family: 'Sarabun', sans-serif;
+}
+
+
+.container {
+    position: relative; /* ใช้ relative สำหรับ container */
+}
+
+.footer-div {
+    position: absolute; /* ตั้งตำแหน่งแบบ absolute */
+    bottom: 0; /* ตั้งให้ element อยู่ที่ด้านล่างสุดของ container */
+    left: 0;
+    width: 100%; /* ความกว้าง 100% ของ container */
+}
+
+/* extra color */
+.w3-win8-lime {
+    color: #fff !important;
+    background-color: #a4c400 !important
+}
+
+.w3-win8-green {
+    color: #fff !important;
+    background-color: #60a917 !important
+}
+
+.w3-win8-emerald {
+    color: #fff !important;
+    background-color: #008a00 !important
+}
+
+.w3-win8-teal {
+    color: #fff !important;
+    background-color: #00aba9 !important
+}
+
+.w3-win8-cyan {
+    color: #fff !important;
+    background-color: #1ba1e2 !important
+}
+
+.w3-win8-blue {
+    color: #fff !important;
+    background-color: #3e65ff !important
+}
+
+.w3-win8-cobalt {
+    color: #fff !important;
+    background-color: #0050ef !important
+}
+
+.w3-win8-indigo {
+    color: #fff !important;
+    background-color: #6a00ff !important
+}
+
+.w3-win8-violet {
+    color: #fff !important;
+    background-color: #aa00ff !important
+}
+
+.w3-win8-pink {
+    color: #fff !important;
+    background-color: #f472d0 !important
+}
+
+.w3-win8-magenta {
+    color: #fff !important;
+    background-color: #d80073 !important
+}
+
+.w3-win8-crimson {
+    color: #fff !important;
+    background-color: #a20025 !important
+}
+
+.w3-win8-red {
+    color: #fff !important;
+    background-color: #e51400 !important
+}
+
+.w3-win8-orange {
+    color: #fff !important;
+    background-color: #fa6800 !important
+}
+
+.w3-win8-amber {
+    color: #fff !important;
+    background-color: #f0a30a !important
+}
+
+.w3-win8-yellow {
+    color: #fff !important;
+    background-color: #e3c800 !important
+}
+
+.w3-win8-brown {
+    color: #fff !important;
+    background-color: #825a2c !important
+}
+
+.w3-win8-olive {
+    color: #fff !important;
+    background-color: #6d8764 !important
+}
+
+.w3-win8-steel {
+    color: #fff !important;
+    background-color: #647687 !important
+}
+
+.w3-win8-mauve {
+    color: #fff !important;
+    background-color: #76608a !important
+}
+
+.w3-win8-taupe {
+    color: #fff !important;
+    background-color: #87794e !important
+}
+
+.w3-win8-sienna {
+    color: #fff !important;
+    background-color: #a0522d !important
+}
+
+.checkbox-select {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+}
+
+.checkbox-select label {
+    display: flex;
+    align-items: center;
+}
+
+.checkbox-select input[type="checkbox"] {
+    width: 25px;
+    height: 25px;
+    margin-right: 15px;
+}
+
+.checkbox-select select {
+    flex-grow: 1;
+}
+
+.structure-checkbox-select {
+    transform: scale(1.5);
+    margin-right: 10px;
+}
+
+.rotate-45 {
+    transform: rotate(45deg);
+}
+
+.rotate-90 {
+    transform: rotate(90deg);
+}
