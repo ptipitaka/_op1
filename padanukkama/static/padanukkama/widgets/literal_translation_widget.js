@@ -10,7 +10,8 @@
     fetch(url)
         .then(response => response.text())
         .then(html => {
-            widgetContainer.innerHTML = html;
+            var shadowRoot = widgetContainer.attachShadow({ mode: 'open' });
+            shadowRoot.innerHTML = html;
         })
         .catch(err => {
             console.warn('Error: ', err);

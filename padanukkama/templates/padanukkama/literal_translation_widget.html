@@ -5,41 +5,40 @@
 {% load translate_tags %}
 
 {% block body %}
+    <div id="my-widget-container">
+        <h4 class="w3-center">
+            {{ structure.title }}
+        </h4>
+        <div class="w3-center w3-small">{{ structure.breadcrumb }}</div>
 
-    <h4 class="w3-center">
-        {{ structure.title }}
-    </h4>
-    <div class="w3-center w3-small">{{ structure.breadcrumb }}</div>
-
-    {% with structure.get_common_reference as common_reference %}
-        {% if common_reference %}
-            <div class="w3-center w3-small">{{ common_reference.wordlist_version }} : {{ common_reference.from_position }} - {{ common_reference.to_position }}</div>
-            <div id="word-list" class="w3-section" style="margin-bottom:20px !important;">
-                <!-- loop words -->
-                {% regroup words_list by sentence as sentence_list %}
-                {% for sentence_group in sentence_list %}
-                    <p class="sentence justify">
-                        {% for word in sentence_group.list %}
-                            <!-- Your code to display each word goes here -->
-                            <button
-                                id="{{ word.id }}"
-                                class="pada-btn w3-btn w3-round-xlarge w3-small w3-tooltip"
-                                style="border:none; background:none; cursor:pointer;"
-                            >
-                                <b>{{ word.word }}</b>  {{ word.translation }}
-                                <span
-                                    style="position:absolute;right:0;bottom:18px"
-                                    class="w3-text w3-tag w3-tiny w3-round-xlarge w3-brown">
-                                    {{ word.sentence }}.{{ word.word_position }}
-                                </span>
-                            </button>
-                        {% endfor %}
-                    </p>
-                {% endfor %}
-                <!-- end loop word -->
-            </div>
-        {% endif %}
-    {% endwith %}
-
-
+        {% with structure.get_common_reference as common_reference %}
+            {% if common_reference %}
+                <div class="w3-center w3-small">{{ common_reference.wordlist_version }} : {{ common_reference.from_position }} - {{ common_reference.to_position }}</div>
+                <div id="word-list" class="w3-section" style="margin-bottom:20px !important;">
+                    <!-- loop words -->
+                    {% regroup words_list by sentence as sentence_list %}
+                    {% for sentence_group in sentence_list %}
+                        <p class="sentence justify">
+                            {% for word in sentence_group.list %}
+                                <!-- Your code to display each word goes here -->
+                                <button
+                                    id="{{ word.id }}"
+                                    class="pada-btn w3-btn w3-round-xlarge w3-small w3-tooltip"
+                                    style="border:none; background:none; cursor:pointer;"
+                                >
+                                    <b>{{ word.word }}</b>  {{ word.translation }}
+                                    <span
+                                        style="position:absolute;right:0;bottom:18px"
+                                        class="w3-text w3-tag w3-tiny w3-round-xlarge w3-brown">
+                                        {{ word.sentence }}.{{ word.word_position }}
+                                    </span>
+                                </button>
+                            {% endfor %}
+                        </p>
+                    {% endfor %}
+                    <!-- end loop word -->
+                </div>
+            {% endif %}
+        {% endwith %}
+    </div>
 {% endblock %}
