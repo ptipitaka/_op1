@@ -19,6 +19,21 @@
                     {% regroup words_list by sentence as sentence_list %}
                     {% for sentence_group in sentence_list %}
                         <div style="margin-top: 2px !important; margin-bottom: 1em !important;">
+                            <div class="w3-light-grey w3-padding">
+                                {% with sentence_group.list|dictsort:"word_position" as sorted_list %}
+                                    {% for word in sorted_list %}
+                                        {% if word.pada %}
+                                            <button
+                                                id="{{ word.id }}"
+                                                class="pada-btn w3-btn w3-round-xlarge w3-small w3-tooltip"
+                                                style="border:none; background:none; cursor:pointer; padding:1px 6px;"
+                                            >
+                                                <span style="text-shadow:1px 1px 0 grey">{{ word.word }}</span>
+                                            </button>
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endwith %}
+                            </div>
                             {% for word in sentence_group.list %}
                                 <!-- Your code to display each word goes here -->
                                 <button
