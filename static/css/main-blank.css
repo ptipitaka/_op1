@@ -13,6 +13,7 @@
     position: absolute; /* ตั้งตำแหน่งแบบ absolute */
     bottom: 0; /* ตั้งให้ element อยู่ที่ด้านล่างสุดของ container */
     left: 0;
+    padding-top: 1em;
     width: 100%; /* ความกว้าง 100% ของ container */
 }
 

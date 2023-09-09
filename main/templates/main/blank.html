@@ -19,17 +19,17 @@
 </head>
 
 <body>
-    <section class="w3-container w3-content w3-padding-16" style="max-width:800px">
-        {% block body %}
-        {% endblock %}
+    <section class="container w3-container w3-content w3-padding-16" style="max-width:800px">
+        <main style="padding-bottom: 100px;">
+            {% block body %}{% endblock %}
+        </main>
+        <footer class="footer-div">
+            {% include "main/footer-blank.html" %}
+        </footer>
     </section>
 
-    <footer class="footer-div">
-        {% include "main/footer-blank.html" %}
-    </footer>
 
     {% block script %}
     {% endblock %}
 </body>
-
 </html>

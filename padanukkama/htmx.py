@@ -676,7 +676,8 @@ class TranslationPadaTranslatePostView(LoginRequiredMixin, View):
         redirect_url = reverse_lazy('htmx_translation_pada', args=[translate_word_id])
 
         return redirect(redirect_url)
-    
+
+
 
 
 class TranslationHelperView(LoginRequiredMixin, SingleObjectMixin, TemplateView):

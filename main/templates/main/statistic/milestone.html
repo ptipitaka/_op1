@@ -1,8 +1,10 @@
 {% load static i18n %}
 
-<script src="{% static 'js/jquery-3.6.4.min.js' %}"></script>
-<script src="{% static 'js/chart.js.min.js' %}"></script>
-<script src="{% static 'js/hex-to-rgb.js' %}"></script>
+{% block extra_js %}
+    <script src="{% static 'js/jquery-3.6.4.min.js' %}"></script>
+    <script src="{% static 'js/chart.js.min.js' %}"></script>
+    <script src="{% static 'js/hex-to-rgb.js' %}"></script>
+{% endblock %}
 
 <div>
     <canvas id="milestone_{{ padanukkama_id }}"></canvas>

@@ -84,3 +84,27 @@ def nama_translation(pada_id):
         'meaning': meaning,
         'sadda_type': sadda_type
     }
+
+
+# ---------------------
+# once
+# ---------------------
+@register.filter(name='once')
+def once(value, arg):
+    if not hasattr(once, "cache"):
+        once.cache = {}
+    
+    if arg not in once.cache:
+        once.cache[arg] = value
+        return str(value) + ')'
+    return ""
+
+
+# ---------------------
+# clear once
+# ---------------------
+@register.simple_tag(name='clear_once_cache')
+def clear_once_cache():
+    if hasattr(once, "cache"):
+        del once.cache
+    return ""

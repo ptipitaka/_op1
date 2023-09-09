@@ -4,6 +4,11 @@
 
 {% load translate_tags %}
 
+{% block extra_js %}
+    <script src="{% static 'js/jquery-3.6.4.min.js' %}"></script>
+    <script src="{% static 'htmx/htmx.min.js' %}" defer></script>
+{% endblock %}
+
 {% block body %}
     <div id="my-widget-container" style="all: initial;">
         <h4 class="w3-center">
@@ -21,14 +26,19 @@
                         <div style="margin-top: 2px !important; margin-bottom: 1em !important;">
                             <div class="w3-light-grey w3-padding">
                                 {% with sentence_group.list|dictsort:"word_position" as sorted_list %}
+                                    <span style="padding-left:2em;">{% clear_once_cache %}</span>
                                     {% for word in sorted_list %}
+                                        {{ word.sentence|once:word.sentence }}
                                         {% if word.pada %}
                                             <button
                                                 id="{{ word.id }}"
                                                 class="pada-btn w3-btn w3-round-xlarge w3-small w3-tooltip"
                                                 style="border:none; background:none; cursor:pointer; padding:1px 6px;"
+                                                onclick="document.getElementById('padanukkamaModel').style.display='block'"
+                                                hx-get="{% url 'htmx_translation_helper' word.id %}"
+                                                hx-target="#translationHelper"
                                             >
-                                                <span style="text-shadow:1px 1px 0 grey">{{ word.word }}</span>
+                                                <b>{{ word.word }}</b>
                                             </button>
                                         {% endif %}
                                     {% endfor %}
@@ -55,5 +65,39 @@
                 </div>
             {% endif %}
         {% endwith %}
+
+        <div id="padanukkamaModel" class="w3-modal">
+            <div class="w3-modal-content">
+                <div class="w3-container">
+                    <span onclick="document.getElementById('padanukkamaModel').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+                    <div id="translationHelper">aaa</div>
+                </div>
+            </div>
+        </div>   
     </div>
+
+{% endblock %}
+
+{% block script %}
+<script>
+    $(document).ready(function(){
+        $('.pada-btn').hover(
+            function() {
+                const hoveredId = $(this).attr('id');
+                
+                $('.pada-btn').each(function() {
+                    if ($(this).attr('id') === hoveredId) {
+                        $(this).addClass('w3-pale-yellow');
+                    } else {
+                        $(this).removeClass('w3-pale-yellow');
+                    }
+                });
+            }, 
+            function() {
+                $('.pada-btn').removeClass('w3-pale-yellow');
+            }
+        );
+    });
+</script>
+
 {% endblock %}

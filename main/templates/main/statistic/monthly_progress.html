@@ -1,8 +1,10 @@
 {% load static i18n %}
 
-<script src="{% static 'js/jquery-3.6.4.min.js' %}"></script>
-<script src="{% static 'js/chart.js.min.js' %}"></script>
-<script src="{% static 'js/chartjs-plugin-labels.min.js' %}"></script>
+{% block extra_js %}
+    <script src="{% static 'js/jquery-3.6.4.min.js' %}"></script>
+    <script src="{% static 'js/chart.js.min.js' %}"></script>
+    <script src="{% static 'js/chartjs-plugin-labels.min.js' %}"></script>
+{% endblock %}
 
 <div>
     <canvas id="monthly_progress_{{ padanukkama_id }}" style="height: 400px;"></canvas>
