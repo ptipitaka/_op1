@@ -34,7 +34,7 @@
                                                 id="{{ word.id }}"
                                                 class="pada-btn w3-btn w3-round-xlarge w3-small w3-tooltip"
                                                 style="border:none; background:none; cursor:pointer; padding:1px 6px;"
-                                                onclick="document.getElementById('padanukkamaModel').style.display='block'"
+                                                onclick="document.getElementById('padanukkamaModal').style.display='block'"
                                                 hx-get="{% url 'htmx_translation_helper' word.id %}"
                                                 hx-target="#translationHelper"
                                             >
@@ -66,10 +66,10 @@
             {% endif %}
         {% endwith %}
 
-        <div id="padanukkamaModel" class="w3-modal">
+        <div id="padanukkamaModal" class="w3-modal">
             <div class="w3-modal-content">
                 <div class="w3-container">
-                    <span onclick="document.getElementById('padanukkamaModel').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+                    <span onclick="document.getElementById('padanukkamaModal').style.display='none'" class="w3-button w3-display-topright">&times;</span>
                     <div id="translationHelper">aaa</div>
                 </div>
             </div>
