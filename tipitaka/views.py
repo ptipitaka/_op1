@@ -274,7 +274,7 @@ class CommonReferenceSubformView(SuperuserRequiredMixin, TemplateView):
                         common_reference_exist = CommonReference.objects.filter(
                             Q(structure=kwargs['structure_id']) & 
                             Q(wordlist_version_id=request.POST['wordlist_version']))
-                        if common_reference_exist.exists:
+                        if common_reference_exist.exists():
                             # update the common reference object
                             common_reference_exist.update(
                                 from_position=from_position_slug,

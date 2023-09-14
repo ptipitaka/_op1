@@ -108,3 +108,25 @@ def clear_once_cache():
     if hasattr(once, "cache"):
         del once.cache
     return ""
+
+
+
+# ---------------------
+# unique_parents
+# ---------------------
+@register.simple_tag
+def initialize_parents_list():
+    return set()
+
+@register.simple_tag
+def add_to_parents_list(parents_list, parent):
+    parents_list.add(parent)
+    return ""
+
+@register.simple_tag
+def check_in_parents_list(parents_list, parent):
+    return parent in parents_list
+
+@register.filter(name='has_pada')
+def has_pada(value):
+    return [item for item in value if item.pada]

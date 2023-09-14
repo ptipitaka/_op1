@@ -2,7 +2,7 @@ from django.db.models import Q
 from django.db import transaction
 
 from tipitaka.models import CommonReference, WordList
-from padanukkama.models import Padanukkama, Pada, NamaSaddamala, Sadda, AkhyataSaddamala
+from padanukkama.models import Padanukkama, Pada, NamaSaddamala, Sadda, AkhyataSaddamala, LiteralTranslation, TranslatedWord
 from .pali_char import *
 
 from padanukkama.workflows import SaddaTranslationWorkflow
@@ -273,3 +273,18 @@ def delete_recently_created_sadda(to_padanukkama_id):
     
     # ลบข้อมูล Sadda ที่เชื่อมโยงกับ padanukkama รายการที่สอง
     second_padanukkama.saddas.all().delete()
+
+
+
+# ดำเนินการแก้ไข
+def fix_pada_in_translation(literal_translation_id):
+    all_words = TranslatedWord.objects.filter(
+        Q(literal_translation=literal_translation_id) & 
+        Q(pada__isnull=False) &
+        Q(structure_id=6889) &
+        Q(pada__parent__isnull=False)
+    )
+    
+
+
+

@@ -31,6 +31,7 @@ urlpatterns = [
     path('literal-translation/<int:pk>/update/', views.LiteralTranslationUpdateView.as_view(), name='literal_translation_update'),
     path('literal-translation/<int:pk>/delete/', views.LiteralTranslationDeleteView.as_view(), name='literal_translation_delete'),
     path('literal-translation/<int:pk>/translate/', views.LiteralTranslationTranslateView.as_view(), name='literal_translation_translate'),
+    path('literal-translation/<int:literal_translation_id>/reset/<int:structure_id>', views.LiteralTranslationResetView.as_view(), name='literal_translation_reset'),
     path('literal-translation/widget/', views.LiteralTranslationWidgetView.as_view(), name='literal_translation_widget')
 ]
 

@@ -847,7 +847,10 @@ class LiteralTranslationCreateView(SuperuserRequiredMixin, CreateView):
                         # Iterate over the words_list and create TranslatedWord instances
                         for wordlist in words_list:
                             pada = Pada.objects.filter(
-                                Q(padanukkama=padanukkama) & Q(pada=wordlist.word)).first()
+                                Q(padanukkama=padanukkama) &
+                                Q(pada=wordlist.word) &
+                                Q(parent=None)
+                            ).first()
                             TranslatedWord.objects.create(
                                 literal_translation=self.object,
                                 structure=descendant,
@@ -962,6 +965,45 @@ class LiteralTranslationTranslateView(LoginRequiredMixin, DetailView):
 
         return context
     
+
+
+
+class LiteralTranslationResetView(LoginRequiredMixin, View):
+
+    def post(self, request, literal_translation_id, structure_id):
+        literal_translation = get_object_or_404(LiteralTranslation, pk=literal_translation_id)
+        selected_structure = get_object_or_404(Structure, pk=structure_id)
+
+        common_reference = CommonReference.objects.filter(
+            Q(structure=selected_structure) &
+            Q(wordlist_version=literal_translation.wordlist_version)).first()
+        if common_reference:
+            # Fetch WordList instances based on the provided from_position and to_position
+            words_list = WordList.objects.filter(
+                Q(code__gte=common_reference.from_position, code__lte=common_reference.to_position),
+                wordlist_version=common_reference.wordlist_version
+            )
+            running_position = 1
+            # Iterate over the words_list and create TranslatedWord instances
+            for wordlist in words_list:
+                pada = Pada.objects.filter(
+                    Q(padanukkama=literal_translation.padanukkama) &
+                    Q(pada=wordlist.word) &
+                    Q(parent=None)
+                ).first()
+                TranslatedWord.objects.create(
+                    literal_translation=literal_translation,
+                    structure=selected_structure,
+                    wordlist=wordlist,
+                    word=wordlist.word,
+                    pada=pada,
+                    sentence=1,
+                    word_position=running_position,
+                    word_order_by_translation=running_position
+                )
+                running_position += 1
+
+        return redirect(reverse_lazy('literal_translation_translate', args=[literal_translation_id]))
 
 
 

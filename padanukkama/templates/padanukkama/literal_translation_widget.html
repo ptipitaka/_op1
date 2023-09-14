@@ -24,39 +24,50 @@
                     {% regroup words_list by sentence as sentence_list %}
                     {% for sentence_group in sentence_list %}
                         <div style="margin-top: 2px !important; margin-bottom: 1em !important;">
-                            <div class="w3-light-grey w3-padding">
-                                {% with sentence_group.list|dictsort:"word_position" as sorted_list %}
+                            <div class="w3-light-grey w3-padding w3-small">
+                                {% with sentence_group.list|has_pada|dictsort:"word_position" as sorted_list %}
                                     <span style="padding-left:2em;">{% clear_once_cache %}</span>
+                                    {% initialize_parents_list as parents_list %}
+
                                     {% for word in sorted_list %}
-                                        {{ word.sentence|once:word.sentence }}
                                         {% if word.pada %}
-                                            <button
-                                                id="{{ word.id }}"
-                                                class="pada-btn w3-btn w3-round-xlarge w3-small w3-tooltip"
-                                                style="border:none; background:none; cursor:pointer; padding:1px 6px;"
-                                                onclick="document.getElementById('padanukkamaModal').style.display='block'"
-                                                hx-get="{% url 'htmx_translation_helper' word.id %}"
-                                                hx-target="#translationHelper"
-                                            >
-                                                <b>{{ word.word }}</b>
-                                            </button>
+                                            {% if word.pada.parent %}
+                                                {% check_in_parents_list parents_list word.pada.parent as is_in_list %}
+                                                {% if not is_in_list %}
+                                                    <button 
+                                                        id="{{ word.pada.parent.id }}"
+                                                        data-parent="{{ word.pada.parent.id }}"
+                                                        class="pada-btn w3-round-xlarge w3-border-0"
+                                                    >
+                                                        {{ word.pada.parent }}
+                                                    </button>
+                                                    {% add_to_parents_list parents_list word.pada.parent %}
+                                                {% endif %}
+                                            {% else %}
+                                                <button 
+                                                    id="{{ word.id }}"
+                                                    class="pada-btn w3-round-xlarge w3-border-0"
+                                                >
+                                                    {{ word.pada }}
+                                                </button>
+                                            {% endif %}
                                         {% endif %}
                                     {% endfor %}
+
                                 {% endwith %}
                             </div>
                             {% for word in sentence_group.list %}
                                 <!-- Your code to display each word goes here -->
                                 <button
                                     id="{{ word.id }}"
-                                    class="pada-btn w3-btn w3-round-xlarge w3-small w3-tooltip"
+                                    data-parent="{{ word.pada.parent.id }}"
+                                    class="pada-btn w3-btn w3-round-xlarge w3-small"
                                     style="border:none; background:none; cursor:pointer; padding:1px 6px;"
+                                    onclick="document.getElementById('padanukkamaModal').style.display='block'"
+                                    hx-get="{% url 'htmx_translation_helper' word.id %}"
+                                    hx-target="#translationHelper"
                                 >
                                     <b>{{ word.word }}</b>  {{ word.translation }}
-                                    <span
-                                        style="position:absolute;right:0;bottom:18px"
-                                        class="w3-text w3-tag w3-tiny w3-round-xlarge w3-brown">
-                                        {{ word.sentence }}.{{ word.word_position }}
-                                    </span>
                                 </button>
                             {% endfor %}
                         </div>
@@ -79,25 +90,28 @@
 {% endblock %}
 
 {% block script %}
-<script>
-    $(document).ready(function(){
-        $('.pada-btn').hover(
-            function() {
-                const hoveredId = $(this).attr('id');
-                
-                $('.pada-btn').each(function() {
-                    if ($(this).attr('id') === hoveredId) {
-                        $(this).addClass('w3-pale-yellow');
-                    } else {
-                        $(this).removeClass('w3-pale-yellow');
-                    }
-                });
-            }, 
-            function() {
-                $('.pada-btn').removeClass('w3-pale-yellow');
-            }
-        );
-    });
-</script>
-
+    <script>
+        $(document).ready(function(){
+            $('.pada-btn').hover(
+                function() {
+                    const hoveredId = $(this).attr('id');
+                    const hoveredDataParent = $(this).data('parent');
+                    
+                    $('.pada-btn').each(function() {
+                        const currentId = $(this).attr('id');
+                        const currentDataParent = $(this).data('parent');
+                        
+                        if (currentId === hoveredId || (currentDataParent === hoveredDataParent && currentDataParent && hoveredDataParent)) {
+                            $(this).addClass('w3-pale-yellow');
+                        } else {
+                            $(this).removeClass('w3-pale-yellow');
+                        }
+                    });
+                }, 
+                function() {
+                    $('.pada-btn').removeClass('w3-pale-yellow');
+                }
+            );
+        });             
+    </script>
 {% endblock %}

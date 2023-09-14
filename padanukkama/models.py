@@ -599,8 +599,7 @@ class TranslatedWord(models.Model):
         return f"{self.word}"
     
     def has_pada(self):
-        """Check if the TranslatedWord has a Pada."""
-        return True if self.pada else False
+        return hasattr(self, 'pada') and self.pada is not None
 
     def get_sentence_string(self):
         """
