@@ -79,6 +79,7 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'main.middleware.CorsMiddleware',
     'simple_history.middleware.HistoryRequestMiddleware',
+    '_op1.middleware.csp_middleware.CSPMiddleware',
 ]
 
 ROOT_URLCONF = '_op1.urls'
