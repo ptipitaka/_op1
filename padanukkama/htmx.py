@@ -941,7 +941,7 @@ class ChangeWordOrder(LoginRequiredMixin, View):
 
 
 # widget_helper
-class TranslationWidgetHelperView(LoginRequiredMixin, DetailView):
+class TranslationWidgetHelperView(DetailView):
     model = TranslatedWord
     template_name = "padanukkama/htmx/htmx_translation_widtet_helper.html"
 
