@@ -29,7 +29,18 @@
         <div class="w3-container w3-margin-top">
             <textarea id="embed-code" readonly class="w3-input w3-border" style="resize:none;">
 <iframe id="my-iframe" src="https://openpali.org{% url 'literal_translation_widget' %}?literal_translation_id={{ literal_translation_id }}&structure_id={{ structure_id }}" style="width:100%; border:none;"></iframe>
-<script>document.addEventListener("DOMContentLoaded", () => {const iframe = document.getElementById('my-iframe');iframe.onload = () => {try {const iframeContent = iframe.contentWindow.document.body;iframe.style.height = iframeContent.scrollHeight + 'px';} catch (e) {console.error('Could not adjust iframe height', e);}};});</script>
+<script>
+    $(document).ready(function() {
+        $('#my-iframe').on('load', function() {
+            try {
+                var iframeContent = $(this).contents().find('body');
+                $(this).height(iframeContent[0].scrollHeight + 'px');
+            } catch (e) {
+                console.error('Could not adjust iframe height', e);
+            }
+        });
+    });
+</script>
             </textarea>
         </div>
         <footer class="w3-container w3-white">
