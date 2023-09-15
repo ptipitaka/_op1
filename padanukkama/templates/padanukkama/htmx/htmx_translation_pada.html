@@ -40,13 +40,14 @@
                         hx-trigger.once="click"
                         hx-boost="once"
                         hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
-                        >
+                    >
                         <icon class="far fa-object-ungroup"></icon>
                         <span class="w3-text w3-tag w3-light-grey">
                             {% trans 'Split' %}
                         </span>
                     </button>
                     {% endif %}
+
                     <!-- htmx Merge button -->
                     {% if merge_pada %}
                     <button
@@ -62,6 +63,7 @@
                         </span>
                     </button>
                     {% endif %}
+
                     <!-- htmx Backspace button -->
                     {% if backspace %}
                     <button
@@ -77,6 +79,7 @@
                         </span>
                     </button>
                     {% endif %}
+
                     <!-- htmx Add Sentence button -->
                     {% if new_sentence %}
                     <button
@@ -99,7 +102,8 @@
                 hx-post="{% url 'htmx_update_sentence' translate_word_id=pk %}"
                 hx-target="#translation-pada"
                 method="post"
-                class="w3-container w3-padding">
+                class="w3-container w3-padding"
+            >
                 {% csrf_token %}
                 {% for field in translated_word_form %}
                     <p>
@@ -123,7 +127,8 @@
             hx-post="{% url 'htmx_update_sentence' translate_word_id=pk %}"
             hx-target="#translation-pada"
             method="post"
-            class="w3-container w3-padding">
+            class="w3-container w3-padding"
+        >
             {% csrf_token %}
             {% for field in translated_word_add_form %}
                 <p>

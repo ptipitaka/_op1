@@ -4,6 +4,7 @@
     <script src="{% static 'js/sortable.min.js'%}"></script>
 {% endblock %}
 
+<!-- header (show tilte) and button link to sadda -->
 <h4>
     {{ structure.title }}
     <span class="w3-right">
@@ -16,6 +17,7 @@
     </span>
 </h4>
 
+<!-- embededd id -->
 <div id="embeddedid" class="w3-modal">
     <div class="w3-modal-content w3-card-4">
         <header class="w3-container w3-win8-brown w3-padding"> 
@@ -53,7 +55,7 @@
                     data-post-url="{% url 'htmx_update_translation_sequence_by_sortablejs' %}"
                 >
                     {% for word in sentence_group.list %}
-                        <!-- Your code to display each word goes here -->
+                        <!-- display each word goes here -->
                         <button
                             id="{{ word.id }}"
                             data-sortable-id="{{ word.id }}" 
@@ -78,7 +80,7 @@
     {% endif %}
 {% endwith %}
 
-
+<!-- script -->
 {% block script %}
     <script>
         $(document).ready(function() {

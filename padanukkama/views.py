@@ -214,6 +214,8 @@ class PadanukkamaPadaView(LoginRequiredMixin, SingleTableMixin, FilterView, Form
             response['Content-Disposition'] = f"attachment; filename=sadda.{format}"
             return response
 
+
+
 # PadaSplitSandhiView
 # -------------------
 class PadaSplitSandhiView(LoginRequiredMixin, View):
@@ -628,7 +630,6 @@ class CreateVipatti(LoginRequiredMixin, View):
 
 
 
-
 # ====================================================
 # SaddaView
 # ====================================================
@@ -768,7 +769,6 @@ def FilterVerbConjugation(request, word):
     verb_conjugation_list = list(verb_conjugation_queryset.values())
 
     return JsonResponse(verb_conjugation_list, safe=False)
-
 
 
 
@@ -973,6 +973,12 @@ class LiteralTranslationResetView(LoginRequiredMixin, View):
     def post(self, request, literal_translation_id, structure_id):
         literal_translation = get_object_or_404(LiteralTranslation, pk=literal_translation_id)
         selected_structure = get_object_or_404(Structure, pk=structure_id)
+
+        # delete all current Translated wrod
+        all_current_words = TranslatedWord.objects.filter(
+            Q(literal_translation=literal_translation) & 
+            Q(structure=selected_structure))
+        all_current_words.delete()
 
         common_reference = CommonReference.objects.filter(
             Q(structure=selected_structure) &

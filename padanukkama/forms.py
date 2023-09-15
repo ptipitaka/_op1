@@ -180,7 +180,7 @@ class TranslatedWordForm(forms.ModelForm):
 class TranslatedWordAddForm(forms.ModelForm):
     description = forms.CharField(
         widget=forms.Textarea(
-            attrs={'rows': 5}),  # Setting rows to 5
+            attrs={'rows': 5}),
         required=False,
         label=_('Description'),
     )

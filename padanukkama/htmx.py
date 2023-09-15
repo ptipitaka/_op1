@@ -12,7 +12,7 @@ from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 from django.views import View
 from django.views.decorators.http import require_POST
-from django.views.generic import TemplateView, ListView
+from django.views.generic import TemplateView, DetailView
 from django.views.generic.detail import SingleObjectMixin
 
 from padanukkama.models import Pada, TranslatedWord, VerbConjugation
@@ -192,26 +192,29 @@ class UpdateSentenceView(LoginRequiredMixin, View):
                         word_order_by_translation=F('word_position') + 1)
 
                     new_word_instance = translated_word_add_form.save(commit=False)
-
                     new_word_instance.literal_translation = translate_word.literal_translation
                     new_word_instance.structure = translate_word.structure
                     new_word_instance.sentence = translate_word.sentence
                     new_word_instance.word_position = translate_word.word_position + 1
                     new_word_instance.word_order_by_translation = translate_word.word_position + 1
+                    new_word_instance.insert_reference = translate_word
                 
-                    new_word_instance.save()
                     try:
                         new_word_instance.save()
                         success_message = _('Form saved successfully.')
                     except:
                         error_message = _('Form saved unsuccessfully')
             else:
-                translated_word_update_form = TranslatedWordForm(
+                translated_word_add_form = TranslatedWordAddForm(
                     instance=translate_word,
                     prefix="translated_word_add_form",
                     data=request.POST)     
                 try:
-                    translated_word_update_form.save()
+                    if translated_word_add_form.is_valid():
+                        translated_word_add_form.save()
+                        success_message = _('Form saved successfully.')
+                    else:
+                        error_message = _('Form saved unsuccessfully')
                     success_message = _('Form saved successfully.')
                 except:
                     error_message = _('Form saved unsuccessfully')        
@@ -938,3 +941,11 @@ class ChangeWordOrder(LoginRequiredMixin, View):
 
 
 # widget_helper
+class TranslationWidgetHelperView(LoginRequiredMixin, DetailView):
+    model = TranslatedWord
+    template_name = "padanukkama/htmx/htmx_translation_widtet_helper.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # คุณสามารถเพิ่มข้อมูลเพิ่มเติมใน context ที่นี่ถ้าคุณต้องการ
+        return context

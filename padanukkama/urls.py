@@ -52,7 +52,8 @@ htmx_urlpatterns = [
     path('htmx-translation-form/<int:pk>/found-in-translation/', htmx.FoundInTranslationView.as_view(), name='htmx_found_in_translation'),
     path('htmx-translation-form/<int:translate_word_id>/translation-sequence/<str:direction>/', htmx.UpdateTranslationSequence.as_view(), name='htmx_update_translation_sequence'),
     path('htmx-translation-form/htmx-update-translation-sequence-by-sortablejs/', htmx.UpdateTranslationSequenceBySortableJs, name='htmx_update_translation_sequence_by_sortablejs'),
-    path('htmx-translation-form/htmx-change-word-order/', htmx.ChangeWordOrder.as_view(), name='htmx_change_word_order')
+    path('htmx-translation-form/htmx-change-word-order/', htmx.ChangeWordOrder.as_view(), name='htmx_change_word_order'),
+    path('htmx-translation-form/<int:pk>/translation-widget-helper/', htmx.TranslationWidgetHelperView.as_view(), name='htmx_translation_widget_helper'),
 ]
 
 

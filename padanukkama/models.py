@@ -575,6 +575,13 @@ class TranslatedWord(models.Model):
         blank=True,
         on_delete=models.PROTECT,
         verbose_name=_("Pada"))
+    insert_reference = models.ForeignKey(
+        'self',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='referenced_by',
+        verbose_name=_("Insert Reference"))
     translation = models.CharField(
         max_length=255,
         blank=True,

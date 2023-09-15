@@ -1,0 +1,79 @@
+{% load i18n %}
+
+<header class="w3-light-grey w3-padding">
+    {{ object.word }}
+</header>
+
+<table class="w3-padding-16">
+    {% if object.pada.sadda %}
+        <tr>
+            <td class="w3-small w3-padding" style="width:80px;">
+                {% trans 'Sadda' %}
+            </td>
+            <td class="w3-small">
+                {{ object.pada.sadda.sadda|default_if_none:"-" }}
+            </td>
+        </tr>
+        <tr>
+            <td class="w3-small w3-padding" style="width:80px;">
+                {% trans 'Construction' %}
+            </td>
+            <td class="w3-small">
+                {{ object.pada.sadda.construction|default_if_none:"-" }}
+            </td>
+        </tr>
+        <tr>
+            <td class="w3-small w3-padding" style="width:80px;">
+                {% trans 'Type' %}
+            </td>
+            <td class="w3-small">
+                {% trans object.pada.sadda.get_sadda_type_display|default_if_none:"-" %}
+                {% if object.pada.sadda.sadda_type == 'Nama' %} 
+                    <div>   
+                        {% with namasaddamala_list=object.pada.sadda.namasaddamala.all %}
+                            {% if namasaddamala_list %}
+                                {% for namasaddamala in namasaddamala_list %}
+                                    {{ namasaddamala.title }} ({{ namasaddamala.linga }}) {% if not forloop.last %}, {% endif %}
+                                {% endfor %}
+                            {% else %}
+                                -
+                            {% endif %}
+                        {% endwith %}
+                    </div>
+                {% elif object.pada.sadda.sadda_type == 'Akhyata' %}
+                    <div>   
+                        {% with verb_conjugation_list=object.pada.sadda.verb_conjugation.all %}
+                            {% if verb_conjugation_list %}
+                                {% for verb_conjugation in verb_conjugation_list %}
+                                    {{ verb_conjugation.title }} {% if not forloop.last %}, {% endif %}
+                                {% endfor %}
+                            {% else %}
+                                -
+                            {% endif %}
+                        {% endwith %}
+                    </div>
+        
+                {% endif %}
+            </td>
+        </tr>
+        <tr>
+            <td class="w3-small w3-padding" style="width:80px;">
+                {% trans 'Description' %}
+            </td>
+            <td class="w3-small">
+                {{ object.description }}
+            </td>
+        </tr>
+    {% else %}
+    <tr>
+        <td colspan='2' class="w3-padding w3-small">
+            {% trans "Not Found in Padanukkama" %}
+        </td>
+    </tr>
+    {% endif %}
+</table>
+
+
+
+
+

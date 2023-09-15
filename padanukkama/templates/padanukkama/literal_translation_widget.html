@@ -61,11 +61,12 @@
                                 <button
                                     id="{{ word.id }}"
                                     data-parent="{{ word.pada.parent.id }}"
+                                    data-reference="{{ word.insert_reference.id }}"
                                     class="pada-btn w3-btn w3-round-xlarge w3-small"
                                     style="border:none; background:none; cursor:pointer; padding:1px 6px;"
-                                    onclick="document.getElementById('padanukkamaModal').style.display='block'"
-                                    hx-get="{% url 'htmx_translation_helper' word.id %}"
-                                    hx-target="#translationHelper"
+                                    onclick="document.getElementById('widgetHelperModal').style.display='block'"
+                                    hx-get="{% url 'htmx_translation_widget_helper' word.id %}"
+                                    hx-target="#translationWidgetHelper"
                                 >
                                     <b>{{ word.word }}</b>  {{ word.translation }}
                                 </button>
@@ -77,11 +78,11 @@
             {% endif %}
         {% endwith %}
 
-        <div id="padanukkamaModal" class="w3-modal">
-            <div class="w3-modal-content">
-                <div class="w3-container">
-                    <span onclick="document.getElementById('padanukkamaModal').style.display='none'" class="w3-button w3-display-topright">&times;</span>
-                    <div id="translationHelper" class="w3-padding">...</div>
+        <div id="widgetHelperModal" class="w3-modal">
+            <div class="w3-modal-content" style="width:400px;">
+                <div class="">
+                    <span onclick="document.getElementById('widgetHelperModal').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+                    <div id="translationWidgetHelper" class="">...</div>
                 </div>
             </div>
         </div>   
@@ -96,22 +97,32 @@
                 function() {
                     const hoveredId = $(this).attr('id');
                     const hoveredDataParent = $(this).data('parent');
+                    const hoveredDataReference = $(this).data('reference');
                     
                     $('.pada-btn').each(function() {
                         const currentId = $(this).attr('id');
                         const currentDataParent = $(this).data('parent');
-                        
-                        if (currentId === hoveredId || (currentDataParent === hoveredDataParent && currentDataParent && hoveredDataParent)) {
+                        const currentDataReference = $(this).data('reference');
+
+                        if (currentId == hoveredId) {
                             $(this).addClass('w3-pale-yellow');
-                        } else {
-                            $(this).removeClass('w3-pale-yellow');
+                        }
+                        if (currentDataParent == hoveredDataParent && currentDataParent) {
+                            $(this).addClass('w3-pale-green');
+                        }
+                        if (currentId == hoveredDataReference) {
+                            $(this).addClass('w3-pale-blue');
+                        }
+                        if (currentDataReference == hoveredId) {
+                            $(this).addClass('w3-pale-red');
                         }
                     });
                 }, 
                 function() {
-                    $('.pada-btn').removeClass('w3-pale-yellow');
+                    $('.pada-btn').removeClass('w3-pale-yellow w3-pale-green w3-pale-blue w3-pale-red');
                 }
             );
-        });             
+        });              
+                  
     </script>
 {% endblock %}
