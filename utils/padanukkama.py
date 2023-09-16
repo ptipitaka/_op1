@@ -201,69 +201,73 @@ def get_pattern(template_expand, vipatti_key_expand):
 
 
 
+
 def copy_child_padas(from_padanukkama_id, to_padanukkama_id):
     first_padanukkama = Padanukkama.objects.get(pk=from_padanukkama_id)
     second_padanukkama = Padanukkama.objects.get(pk=to_padanukkama_id)
     
-    # ค้นหาตัวต้นฉบับของ pada ที่ตรงกันในทั้งสอง padanukkama
-    for first_pada in first_padanukkama.pada.all():
-        for second_pada in second_padanukkama.pada.all():
-            if first_pada.pada == second_pada.pada:
-                # ถ้า first_pada มี children
-                if first_pada.get_children().exists():
-                    print('found match and has children', first_pada.pada )
-                    for child in first_pada.get_children():
-                        # คัดลอก children ของ first_pada และเพิ่มเป็น children ของ second_pada
-                        Pada.objects.create(
-                            padanukkama=second_padanukkama,
-                            pada=child.pada,
-                            pada_seq=encode(extract(clean(child.pada))),
-                            parent=second_pada,
-                        )
+    # สร้าง dictionary ที่มี key เป็น pada และ value เป็น list ของ children
+    first_pada_children_map = {pada.pada: list(pada.get_children()) for pada in first_padanukkama.pada.all() if pada.get_children().exists()}
+    
+    for second_pada in second_padanukkama.pada.all():
+        # หา children ที่ตรงกันจาก first_pada_children_map
+        matching_children = first_pada_children_map.get(second_pada.pada)
+        if matching_children:
+            # print('found match and has children', second_pada.pada)
+            for child_of_1st_pada in matching_children:
+                # ตรวจสอบว่า child pada นี้มีอยู่แล้วหรือไม่
+                existing_pada = Pada.objects.filter(
+                    padanukkama=second_padanukkama,
+                    pada=child_of_1st_pada.pada,
+                    parent=second_pada,
+                ).first()
+
+                if not existing_pada:
+                    created = Pada.objects.create(
+                        padanukkama=second_padanukkama,
+                        pada=child_of_1st_pada.pada,
+                        pada_seq=encode(extract(clean(child_of_1st_pada.pada))),
+                        parent=second_pada,
+                    )
+                    print(f'Created new child pada: {created.pada}')
 
 
 
 
 def copy_sadda(from_padanukkama_id, to_padanukkama_id):
-    # รับ padanukkama รายการแรกและรายการที่สอง
     first_padanukkama = Padanukkama.objects.get(pk=from_padanukkama_id)
     second_padanukkama = Padanukkama.objects.get(pk=to_padanukkama_id)
 
-    # ดึงรายการ pada จากทั้งสอง padanukkama
-    first_padanukkama_padas = first_padanukkama.pada.all()
-    second_padanukkama_padas = second_padanukkama.pada.all()
+    # สร้าง dictionary ที่มี key เป็น pada และ value เป็น sadda
+    first_pada_sadda_map = {pada.pada: pada.sadda for pada in first_padanukkama.pada.all() if pada.has_sadda()}
 
-    # วนลูปตรวจสอบว่ามี pada ในรายการแรกที่ตรงกับ pada ในรายการที่สองหรือไม่
-    for first_pada in first_padanukkama_padas:
-        for second_pada in second_padanukkama_padas:
-            if first_pada.pada == second_pada.pada:
-                # ถ้ามี sadda ใน pada รายการแรก
-                if first_pada.has_sadda():
-                    # ตรวจสอบว่ามี sadda นี้ในฐานข้อมูลภายใต้ Padanukkama นี้หรือยัง
-                    existing_sadda = Sadda.objects.filter(padanukkama=second_padanukkama, sadda=first_pada.sadda.sadda).first()
-                    if existing_sadda:
-                        sadda = existing_sadda
-                    else:
-                        # สร้างข้อมูล sadda สำหรับ pada รายการที่สองโดยคัดลอกจาก pada รายการแรก
-                        sadda = Sadda.objects.create(
-                            padanukkama=second_padanukkama,
-                            sadda=first_pada.sadda.sadda,
-                            sadda_seq=first_pada.sadda.sadda_seq,
-                            sadda_type=first_pada.sadda.sadda_type,
-                            construction=first_pada.sadda.construction,
-                            meaning=first_pada.sadda.meaning,
-                            description=first_pada.sadda.description,
-                            state=SaddaTranslationWorkflow.initial_state
-                        )
-                        # คัดลอกข้อมูล namasaddamala และ verb_conjugation
-                        sadda.namasaddamala.set(first_pada.sadda.namasaddamala.all())
-                        sadda.verb_conjugation.set(first_pada.sadda.verb_conjugation.all())
+    for second_pada in second_padanukkama.pada.all():
+        # หา sadda ที่ตรงกันจาก first_pada_sadda_map
+        matching_sadda = first_pada_sadda_map.get(second_pada.pada)
+        if matching_sadda:
+            existing_sadda = Sadda.objects.filter(padanukkama=second_padanukkama, sadda=matching_sadda.sadda).first()
+            if existing_sadda:
+                sadda = existing_sadda
+            else:
+                # สร้างข้อมูล sadda สำหรับ pada รายการที่สองโดยคัดลอกจาก pada รายการแรก
+                sadda = Sadda.objects.create(
+                    padanukkama=second_padanukkama,
+                    sadda=matching_sadda.sadda,
+                    sadda_seq=matching_sadda.sadda_seq,
+                    sadda_type=matching_sadda.sadda_type,
+                    construction=matching_sadda.construction,
+                    meaning=matching_sadda.meaning,
+                    description=matching_sadda.description,
+                    state=SaddaTranslationWorkflow.initial_state
+                )
+                print(sadda.sadda)
+                # คัดลอกข้อมูล namasaddamala และ verb_conjugation
+                sadda.namasaddamala.set(matching_sadda.namasaddamala.all())
+                sadda.verb_conjugation.set(matching_sadda.verb_conjugation.all())
 
-                    # ให้ pada รายการที่สองเชื่อมโยงกับ sadda
-                    second_pada.sadda = sadda
-                    second_pada.save()
-                    print(sadda)
-
+            # ให้ pada รายการที่สองเชื่อมโยงกับ sadda
+            second_pada.sadda = sadda
+            second_pada.save()
 
 
 
@@ -285,6 +289,5 @@ def fix_pada_in_translation(literal_translation_id):
         Q(pada__parent__isnull=False)
     )
     
-
 
 
