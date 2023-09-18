@@ -19,6 +19,7 @@ from django.urls import path, include, re_path
 from django.conf.urls.static import static
 from django.conf import settings
 from django.conf.urls.i18n import i18n_patterns
+from django.views.static import serve
 import debug_toolbar
 
 urlpatterns = i18n_patterns(
@@ -33,6 +34,7 @@ urlpatterns = i18n_patterns(
     path('tipitaka/', include('tipitaka.urls')),
     path('padanukkama/', include('padanukkama.urls')),
     path('setting/', include('setting.urls')),
+    re_path(r'^.well-known/(.*)$', serve, {'document_root': '/var/www/html/_op1/.well-known/'}),
  ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)\
    + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)\
 
