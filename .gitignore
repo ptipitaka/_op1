@@ -3,3 +3,4 @@ db.sqlite3
 .env
 _venv
 **/migrations/
+main/templates/main/base.html
