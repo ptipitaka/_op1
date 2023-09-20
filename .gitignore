@@ -4,3 +4,4 @@ db.sqlite3
 _venv
 **/migrations/
 main/templates/main/base.html
+code-server.log
