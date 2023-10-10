@@ -1,0 +1,347 @@
+% กำหนดคลาสและขนาดฟอนต์ของเอกสาร
+\documentclass[10pt,twoside]{book}
+
+% ตั้งค่าขนาดกระดาษและขอบ
+\usepackage[paperwidth=165mm, paperheight=230mm, margin=2cm, top=2cm,bottom=2cm,outer=2cm,inner=2.2cm,columnsep=30pt]{geometry}
+
+% ใช้งานแพ็กเกจสำหรับฟอนต์และการเข้ารหัส
+\usepackage{fontspec}
+
+% ตั้งค่าการแบ่งบรรทัดสำหรับภาษาไทย
+\usepackage{polyglossia}
+\setmainlanguage[numerals=thai]{thai}
+\setotherlanguage{english}
+\XeTeXlinebreaklocale "th"
+\XeTeXlinebreakskip = 0pt plus 2pt minus 1pt
+
+% แพคเกจอื่น ๆ
+\usepackage{needspace}
+
+% ตั้งค่าฟอนต์ Kinnari
+% \setmainfont[
+% 	ItalicFont={Kinnari-Italic.otf},
+% 	BoldFont={Kinnari-Bold.otf},
+% 	BoldItalicFont={Kinnari-BoldItalic.otf},
+% 	Script=Thai,
+% 	Scale=MatchLowercase,
+% 	WordSpace=1.25,
+% 	Mapping=tex-text,
+% ]{Kinnari.otf}
+% \setmonofont{Kinnari.otf}
+
+% ตั้งค่าฟอนต์ Laksaman or Saraban
+\setmainfont[%
+    ItalicFont={Laksaman-Italic.otf},%
+    BoldFont={Laksaman-Bold.otf},%
+    BoldItalicFont={Laksaman-BoldItalic.otf},%
+    Script=Thai,%
+    Scale=MatchLowercase,%
+    WordSpace=1.25,%
+    Mapping=tex-text,%
+]{Laksaman.otf}
+
+% ตั้งค่าหัวเรื่องและการจัดหน้า
+\usepackage{multicol}
+\usepackage[bf,center]{titlesec}
+
+% ตั้งค่าหัวกระดาษและท้ายกระดาษ
+\usepackage{fancyhdr}
+\fancyhead[L]{\rightmark} % Top left header
+\fancyhead[R]{\leftmark} % Top right header
+\setlength{\headheight}{15pt}
+\renewcommand{\headrulewidth}{1.4pt} % เส้นคั่นระหว่างส่วนหัวกับเนื้อหา
+\fancyfoot[C]{\textbf{\thepage}} % ส่วนท้ายด้านกลางล่าง
+\renewcommand{\footrulewidth}{1.4pt} % เส้นคั่นระหว่างส่วนท้ายกับเนื้อหา
+
+% รูปแบบเนื้อหา
+\usepackage{needspace}
+% ตัวแปรที่ 1: บท (ตัวหนา)
+% ตัวแปรที่ 2: บทศัพท์ หรือ บทสนธิ
+% หากเป็นบทสนธิ จะต้องวนลูป แต่หากไม่ใช่ ต้องตรวจสอบว่ามีศัพท์หรือไม่ ก่อนขึ้นตัวแปรต่อไปนี้ให้ขึ้นบรรทัดใหม่
+% ตัวแปรที่ 3: ประกอบด้วย ๑. ศัพท์ (ตัวหนา)  ๒. ประเภทศัพท์ (นาม อาขยาต พฺยย) ๓. การประกอบคำสมาส ๔. คำแปล
+\newcommand{\entry}[3]{\needspace{2cm}\markboth{#1}{#1}\noindent\textbf{#1} {#2} {#3}\par\vspace{1em}}
+
+% กำหนดคำสั่งในการพิมพ์แต่ละคำในหน้ากระดาษ
+% \markboth{}{} พิมพ์คำแรกของหน้ากระดาษที่ด้านบนซ้ายและคำสุดท้ายที่ด้านบนซ้าย
+
+% ปกรอง 
+\newcommand{\booktitle}{ปทานุกรม คำสนธิ}
+\newcommand{\subtitle}{พฺรหฺมชาลสุตฺตํ}
+
+\begin{document}
+    \frontmatter
+    
+    \frontmatter
+    \pagestyle{empty}
+
+    % Title page
+    \begin{titlepage}
+        \centering
+        
+        ~
+        
+        \vspace{24pt}
+        {\scshape\Huge \booktitle\par}
+        \vspace{6pt}
+        {\scshape\large \subtitle\par}
+        \vspace{\stretch{1.25}}
+    \end{titlepage}
+    \cleardoublepage
+    
+
+    \mainmatter
+    \pagestyle{fancy}
+    \needspace{5cm} \section*{อ}
+\begin{multicols}{2}
+\entry{อกมฺปิตฺถาติ} {(อกมฺปิตฺถ - อิติ)} {\par \textbf{อกมฺปิตฺถ} \hfill {\small\textit{ขยฺา}} \par{\small\textsc{[กปิ / กมฺป + อา]}} {หวั่นไหวแล้ว อุ. โลกธาตุ อกมฺปิตฺถ.(ที. ๑/๑๔๘/๔๓)\&nbsp; โลกธาตุหวั่นไหวแล้ว\, แผ่นดินไหว \* เป็นอาขยาตกริยา รูปอดีตกาลของ กมฺปติ(กปิ+อ+ติ) สำเร็จรูปโดยลง อ อาคมหน้าธาตุ ลง อิอาคมท้ายธาตุ แปลง อา เป็น ตฺถ\, บางแห่งไม่ลง อ อาคมหน้าธาตุ ใช้เป็นรูปว่า กมฺปิตฺถ ก็มี (ที.อฏฺ. ๒/๕๗)}\par \textbf{อิติ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[อิ + อ + ติ]}} {ด้วยประการฉะนี้}}
+\entry{อกุสลนฺติ} {(อกุสลํ - อิติ)} {\par \textbf{อกุสล} \hfill {\small\textit{วาจฺ}} \par{\small\textsc{[น + กุสล]}} {๑. อันเป็นไปกับด้วยโทษ\, อันมีโทษ\, อันมีภัย (ม.) ๒. ผู้ไม่เฉลียวฉลาด (ม.) ๓. ผู้ไม่มีปัญญา (ขุ.สุ.) ๔. อาบัติ (อํ.) ๕. อันให้ผลเป็นโทษและเป็นทุกข์\, อันเป็นปฏิปักข์กับกุศล (อภิ.อ.) ๖. อันไม่ปราศจากโรค\, อันมีโรค (ขุ.ปฏิ.) ๗. อันเกิดจากความไม่ฉลาดกล่าวคือโมหะ (อํ.)}\par \textbf{อิติ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[อิ + อ + ติ]}} {ด้วยประการฉะนี้}}
+\entry{อญฺญถาติปิ} {(อญฺญถา - อิติ - อปิ)} {\par \textbf{อญฺญถา} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[อญฺญ + ถา]}} {โดยประการอื่น}\par \textbf{อิติ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[อิ + อ + ติ]}} {ด้วยประการฉะนี้}\par \textbf{อปิ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[น + ปิ + กฺวิ\, ธาน]}} {ก็ดี}}
+\entry{อญฺเญปิ} {(อญฺเญ - อปิ)} {\par \textbf{อญฺญ} \hfill {\small\textit{วาจฺ}} \par{\small\textsc{[นา + ญา + อ]}} {อันอื่นจากจูฬศีล มัชฌิมศีล มหาศีลนั่นเทียว}\par \textbf{อปิ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[น + ปิ + กฺวิ\, ธาน]}} {ก็ดี}}
+\entry{อญฺเญว} {(อญฺเญ - เอว)} {\par \textbf{อญฺญ} \hfill {\small\textit{วาจฺ}} \par{\small\textsc{[นา + ญา + อ]}} {อันอื่นจากจูฬศีล มัชฌิมศีล มหาศีลนั่นเทียว}\par \textbf{เอว} \hfill {\small\textit{พฺยย}} \par{\small\textsc{ไม่พบข้อมูล}} {นั่นแล}}
+\entry{อตฺตานญฺจ} {(อตฺตานํ - จ)} {\par \textbf{อตฺต} \hfill {\small\textit{ปุ}} \par{\small\textsc{ไม่พบข้อมูล}} {อัตตา}\par \textbf{จ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[จิ + อ]\, จ  (พฺย) [จิ + อ]\, จ จ อกฺขรา.}} {ด้วย}}
+\entry{อตฺถงฺคมญฺจ} {(อตฺถงฺคมํ - จ)} {\par \textbf{อตฺถงฺคม} \hfill {\small\textit{ปุ}} \par{\small\textsc{[อตฺถ + คมุ + อ]}} {การดับลง}\par \textbf{จ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[จิ + อ]\, จ  (พฺย) [จิ + อ]\, จ จ อกฺขรา.}} {ด้วย}}
+\entry{อตฺถชาลนฺติปิ} {(อตฺถชาลํ - อิติ - อปิ)} {\par \textbf{อตฺถชาล} \hfill {\small\textit{วาจฺ}} \par{\small\textsc{[อตฺถ + ชาล]}} {ข่ายกล่าวคือประโยชน์}\par \textbf{อิติ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[อิ + อ + ติ]}} {ด้วยประการฉะนี้}\par \textbf{อปิ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[น + ปิ + กฺวิ\, ธาน]}} {ก็ดี}}
+\entry{อตฺถสญฺหิตนฺติ} {(อตฺถสญฺหิตํ - อิติ)} {\par \textbf{อตฺถสญฺหิต} \hfill {\small\textit{วาจฺ}} \par{\small\textsc{[อตฺถ + สํหิต]}} {อันถึงพร้อมด้วยความหมาย}\par \textbf{อิติ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[อิ + อ + ติ]}} {ด้วยประการฉะนี้}}
+\entry{อนุปฺปตฺโตติ} {(อนุปฺปตฺโต - อิติ)} {\par \textbf{อนุปฺปตฺต} \hfill {\small\textit{วาจฺ}} \par{\small\textsc{[อนุ + ป + อป + ต]}} {เสด็จมาถึง}\par \textbf{อิติ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[อิ + อ + ติ]}} {ด้วยประการฉะนี้}}
+\entry{อนุโยคมนฺวาย} {(อนุโยคํ - อนฺวาย)} {\par \textbf{อนุโยค} \hfill {\small\textit{ปุ}} \par{\small\textsc{[อนุ + ยุช + ณ]}} {ความเพียรอย่างสม่ำเสมอ}\par \textbf{อนฺวาย} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[อนุ + อิ + ตฺวา]}} {อาศัยแล้ว}}
+\entry{อเนกานิปิ} {(อเนกานิ - อปิ)} {\par \textbf{อเนก} \hfill {\small\textit{วาจฺ}} \par{\small\textsc{[น + เอก]}} {มิใช่หนึ่ง}\par \textbf{อปิ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[น + ปิ + กฺวิ\, ธาน]}} {ก็ดี}}
+\entry{อนฺตราโยติ} {(อนฺตราโย - อิติ)} {\par \textbf{อนฺตราย} \hfill {\small\textit{ปุ}} \par{\small\textsc{[อนฺตร + อา + ยา + อ]}} {อันตราย}\par \textbf{อิติ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[อิ + อ + ติ]}} {ด้วยประการฉะนี้}}
+\entry{อปริยนฺโตติ} {(อปริยนฺโต - อิติ)} {\par \textbf{อปริยนฺต} \hfill {\small\textit{วาจฺ}} \par{\small\textsc{[น + ปริยนฺต]}} {ไม่มีขอบเขต}\par \textbf{อิติ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[อิ + อ + ติ]}} {ด้วยประการฉะนี้}}
+\entry{อปฺปมาทมนฺวาย} {(อปฺปมาทํ - อนฺวาย)} {\par \textbf{อปฺปมาท} \hfill {\small\textit{ปุ}} \par{\small\textsc{[น + ปมาท]}} {ความไม่ประมาท}\par \textbf{อนฺวาย} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[อนุ + อิ + ตฺวา]}} {อาศัยแล้ว}}
+\entry{อภินนฺทุนฺติ} {(อภินนฺทุํ - อิติ)} {\par \textbf{อภินนฺทุํ} \hfill {\small\textit{ขยฺา}} \par{\small\textsc{[อภิ + นนฺท + อุํ]}} {อนุโมทนายอมรับแล้ว}\par \textbf{อิติ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[อิ + อ + ติ]}} {ด้วยประการฉะนี้}}
+\entry{อเมฺหสูติ} {(อเมฺหสุ - อิติ)} {\par ไม่พบข้อมูล\par \textbf{อิติ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[อิ + อ + ติ]}} {ด้วยประการฉะนี้}}
+\entry{อสญฺญีติ} {(อสญฺญี - อิติ)} {\par \textbf{อสญฺญี} \hfill {\small\textit{วาจฺ}} \par{\small\textsc{[น + สญฺญา + อี]}} {ธรรมชาติที่ไม่มีสัญญา}\par \textbf{อิติ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[อิ + อ + ติ]}} {ด้วยประการฉะนี้}}
+\entry{อสหิตนฺเต} {(อสหิตํ - เต)} {\par \textbf{อสหิต} \hfill {\small\textit{วาจฺ}} \par{\small\textsc{[น + สหิต]}} {ไม่สละสลวย ไม่มีประโยชน์ ไร้เหตุผล}\par \textbf{ตุมฺห} \hfill {\small\textit{อ}} \par{\small\textsc{[สพฺพนาม ๒๗ (รู]}} {เธอ}}
+\entry{อสฺสาทญฺจ} {(อสฺสาทํ - จ)} {\par \textbf{อสฺสาท} \hfill {\small\textit{วาจฺ}} \par{\small\textsc{[ (๑) น + สาท\, (๒) อา + สท + อ]\, อสฺสาท (ปุ) [อา + สท + ณ]}} {อัสสาทะ}\par \textbf{จ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[จิ + อ]\, จ  (พฺย) [จิ + อ]\, จ จ อกฺขรา.}} {ด้วย}}
+\entry{อหญฺเจ} {(อหํ - เจ)} {\par \textbf{อมฺห} \hfill {\small\textit{อ}} \par{\small\textsc{ไม่พบข้อมูล}} {ย่อมเป็น}\par \textbf{เจ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[จิ + เอ]}} {หากว่า}}
+\entry{อหญฺหิ} {(อหํ - หิ)} {\par \textbf{อมฺห} \hfill {\small\textit{อ}} \par{\small\textsc{ไม่พบข้อมูล}} {ย่อมเป็น}\par \textbf{หิ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{ไม่พบข้อมูล}} {ด้วยว่า}}
+\entry{อหมสฺมิ} {(อหํ - อสฺมิ)} {\par \textbf{อมฺห} \hfill {\small\textit{อ}} \par{\small\textsc{ไม่พบข้อมูล}} {ย่อมเป็น}\par \textbf{อสฺมิ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[อส + มิ]}} {ย่อมเป็น}}
+\end{multicols}
+\needspace{5cm} \section*{อา}
+\begin{multicols}{2}
+\entry{อากาโสติ} {(อากาโส - อิติ)} {\par \textbf{อากาส} \hfill {\small\textit{ปุ\, นปุ}} \par{\small\textsc{[อากาส + กีฬน]}} {การพนันหมากรุกในอากาศ}\par \textbf{อิติ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[อิ + อ + ติ]}} {ด้วยประการฉะนี้}}
+\entry{อาคจฺเฉยฺยุนฺติ} {(อาคจฺเฉยฺยุํ - อิติ)} {\par \textbf{อาคจฺเฉยฺยุํ} \hfill {\small\textit{ขยฺา}} \par{\small\textsc{[อา + คมุ + อ + เอยฺยุํ]}} {พึงมา}\par \textbf{อิติ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[อิ + อ + ติ]}} {ด้วยประการฉะนี้}}
+\entry{อาคตาติ} {(อาคตา - อิติ)} {\par \textbf{อาคต} \hfill {\small\textit{วาจฺ}} \par{\small\textsc{[อา + คมุ + ต]}} {ได้มาแล้ว}\par \textbf{อิติ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[อิ + อ + ติ]}} {ด้วยประการฉะนี้}}
+\entry{อาชาเนยฺยาถาติ} {(อาชาเนยฺยาถ - อิติ)} {\par ไม่พบข้อมูล\par \textbf{อิติ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[อิ + อ + ติ]}} {ด้วยประการฉะนี้}}
+\entry{อาตปฺปมนฺวาย} {(อาตปฺปํ - อนฺวาย)} {\par \textbf{อาตปฺป} \hfill {\small\textit{นปุ}} \par{\small\textsc{[อา + ตป + ณฺย]}} {ความเพียรอย่างยิ่งยวด}\par \textbf{อนฺวาย} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[อนุ + อิ + ตฺวา]}} {อาศัยแล้ว}}
+\entry{อาทีนวญฺจ} {(อาทีนวํ - จ)} {\par \textbf{อาทีนว} \hfill {\small\textit{ปุ}} \par{\small\textsc{[ (๑) อาทีนว + ทสฺสก\, โนกปุทกฺเย]}} {อาทีนวะ}\par \textbf{จ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[จิ + อ]\, จ  (พฺย) [จิ + อ]\, จ จ อกฺขรา.}} {ด้วย}}
+\entry{อาหราติ} {(อาหรา - อิติ - อาหร - อิติ)} {\par ไม่พบข้อมูล\par \textbf{อิติ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[อิ + อ + ติ]}} {ด้วยประการฉะนี้}\par \textbf{อาหร} \hfill {\small\textit{ขยฺา}} \par{\small\textsc{[อา + หร + อ + หิ]}} {จงนำมา}\par \textbf{อิติ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[อิ + อ + ติ]}} {ด้วยประการฉะนี้}}
+\end{multicols}
+\needspace{5cm} \section*{อิ}
+\begin{multicols}{2}
+\entry{อิติเปตํ} {(อิติ - อปิ - เอตํ)} {\par \textbf{อิติ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[อิ + อ + ติ]}} {ด้วยประการฉะนี้}\par \textbf{อปิ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[น + ปิ + กฺวิ\, ธาน]}} {ก็ดี}\par \textbf{เอตา} \hfill {\small\textit{อิตฺ}} \par{\small\textsc{ไม่พบข้อมูล}} {นั่น}}
+\entry{อิทมโวจ} {(อิทํ - อโวจ)} {\par \textbf{อิม} \hfill {\small\textit{นปุ}} \par{\small\textsc{ไม่พบข้อมูล}} {นี้}\par \textbf{อโวจ} \hfill {\small\textit{ขยฺา}} \par{\small\textsc{[อ + วจ + อา]}} {ได้ตรัสแล้ว}}
+\entry{อิธูปปนฺโนติ} {(อิธ - อุปปนฺโน - อิติ)} {\par \textbf{อิธ} \hfill {\small\textit{ปุ}} \par{\small\textsc{[อิธ + อ]}} {(โลเก) ในโลกนี้}\par \textbf{อุปปนฺน} \hfill {\small\textit{วาจฺ}} \par{\small\textsc{[อุป + ปท + ต]}} {เกิดแล้ว}\par \textbf{อิติ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[อิ + อ + ติ]}} {ด้วยประการฉะนี้}}
+\entry{อิมญฺหิ} {(อิมํ - หิ)} {\par \textbf{อิม} \hfill {\small\textit{นปุ}} \par{\small\textsc{ไม่พบข้อมูล}} {นี้}\par \textbf{หิ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{ไม่พบข้อมูล}} {ด้วยว่า}}
+\entry{อิมินามหํ} {(อิมินา - อหํ)} {\par \textbf{อิม} \hfill {\small\textit{นปุ}} \par{\small\textsc{ไม่พบข้อมูล}} {นี้}\par \textbf{อมฺห} \hfill {\small\textit{อ}} \par{\small\textsc{ไม่พบข้อมูล}} {ย่อมเป็น}}
+\entry{อิเมหิโข} {(อิเมหิ - โข)} {\par \textbf{อิม} \hfill {\small\textit{นปุ}} \par{\small\textsc{ไม่พบข้อมูล}} {นี้}\par \textbf{โข} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[โขสทฺทากาะ นิปาต]}} {เล็กน้อย}}
+\entry{อิเมเหว} {(อิเมหิ - เอว)} {\par \textbf{อิม} \hfill {\small\textit{นปุ}} \par{\small\textsc{ไม่พบข้อมูล}} {นี้}\par \textbf{เอว} \hfill {\small\textit{พฺยย}} \par{\small\textsc{ไม่พบข้อมูล}} {นั่นแล}}
+\end{multicols}
+\needspace{5cm} \section*{อุ}
+\begin{multicols}{2}
+\entry{อุปปนฺนาติ} {(อุปปนฺนา - อิติ)} {\par \textbf{อุปปนฺน} \hfill {\small\textit{วาจฺ}} \par{\small\textsc{[อุป + ปท + ต]}} {เกิดแล้ว}\par \textbf{อิติ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[อิ + อ + ติ]}} {ด้วยประการฉะนี้}}
+\entry{อุมฺมุชฺชนฺตีติ} {(อุมฺมุชฺชนฺติ - อปิ)} {\par \textbf{อุมฺมุชฺชนฺติ} \hfill {\small\textit{ขยฺา}} \par{\small\textsc{[อุ + มุชฺช + อ + อนฺติ]}} {ย่อมผุดขึ้น}\par \textbf{อปิ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[น + ปิ + กฺวิ\, ธาน]}} {ก็ดี}}
+\end{multicols}
+\needspace{5cm} \section*{เอ}
+\begin{multicols}{2}
+\entry{เอกมฺปิ} {(เอกํ - อปิ)} {\par \textbf{เอก} \hfill {\small\textit{ปุ}} \par{\small\textsc{[เอก + โย]}} {หนึ่ง}\par \textbf{อปิ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[น + ปิ + กฺวิ\, ธาน]}} {ก็ดี}}
+\entry{เอตทโวจ} {(เอตํ - อโวจ)} {\par \textbf{เอตา} \hfill {\small\textit{อิตฺ}} \par{\small\textsc{ไม่พบข้อมูล}} {นั่น}\par \textbf{อโวจ} \hfill {\small\textit{ขยฺา}} \par{\small\textsc{[อ + วจ + อา]}} {ได้ตรัสแล้ว}}
+\entry{เอตทโวจุํ} {(เอตํ - อโวจุํ)} {\par \textbf{เอตา} \hfill {\small\textit{อิตฺ}} \par{\small\textsc{ไม่พบข้อมูล}} {นั่น}\par \textbf{อโวจุํ} \hfill {\small\textit{ขยฺา}} \par{\small\textsc{[อ + วจ + อุํ]}} {กราบทูลแล้ว}}
+\entry{เอตทโหสิ} {(เอตํ - อโหสิ)} {\par \textbf{เอตา} \hfill {\small\textit{อิตฺ}} \par{\small\textsc{ไม่พบข้อมูล}} {นั่น}\par \textbf{อโหสิ} \hfill {\small\textit{ขยฺา}} \par{\small\textsc{[อ + หู + อี]}} {ได้มีแล้ว}}
+\entry{เอเตเนตํ} {(เอเตน - เอตํ)} {\par \textbf{เอต} \hfill {\small\textit{วาจฺ}} \par{\small\textsc{ไม่พบข้อมูล}} {นี้}\par \textbf{เอตา} \hfill {\small\textit{อิตฺ}} \par{\small\textsc{ไม่พบข้อมูล}} {นั่น}}
+\entry{เอวํอภิสมฺปรายาติ} {(เอวํอภิสมฺปรายา - อิติ)} {\par \textbf{เอวํอภิสมฺปราย} \hfill {\small\textit{วาจฺ}} \par{\small\textsc{[เอวํ + อภิสมฺปราย]}} {ย่อมเป็นเหตุให้ไปสู่ปรโลกอันเป็นทุคติอย่างใดอย่างหนึ่ง}\par \textbf{อิติ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[อิ + อ + ติ]}} {ด้วยประการฉะนี้}}
+\entry{เอวนฺติปิ} {(เอวํ - อิติ - อปิ)} {\par \textbf{เอวํ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{ไม่พบข้อมูล}} {ด้วยประการฉะนี้}\par \textbf{อิติ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[อิ + อ + ติ]}} {ด้วยประการฉะนี้}\par \textbf{อปิ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[น + ปิ + กฺวิ\, ธาน]}} {ก็ดี}}
+\entry{เอวมสฺส} {(เอวํ - อสฺส)} {\par \textbf{เอวํ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{ไม่พบข้อมูล}} {ด้วยประการฉะนี้}\par \textbf{อิม} \hfill {\small\textit{นปุ}} \par{\small\textsc{ไม่พบข้อมูล}} {นี้}}
+\entry{เอวมายุปริยนฺโต} {(เอวํ - อายุปริยนฺโต)} {\par \textbf{เอวํ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{ไม่พบข้อมูล}} {ด้วยประการฉะนี้}\par \textbf{อายุปริยนฺต} \hfill {\small\textit{ปุ}} \par{\small\textsc{[อายุ + ปริยนฺต]}} {ไม่พบข้อมูล}}
+\entry{เอวมาห} {(เอวํ - อาห)} {\par \textbf{เอวํ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{ไม่พบข้อมูล}} {ด้วยประการฉะนี้}\par \textbf{อาห} \hfill {\small\textit{ขยฺา}} \par{\small\textsc{[พฺรู + อ + ติ]}} {ย่อมกล่าว}}
+\entry{เอวมาหํสุ} {(เอวํ - อาหํสุ)} {\par \textbf{เอวํ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{ไม่พบข้อมูล}} {ด้วยประการฉะนี้}\par ไม่พบข้อมูล}
+\entry{เอวเมว} {(เอวํ - เอว)} {\par \textbf{เอวํ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{ไม่พบข้อมูล}} {ด้วยประการฉะนี้}\par \textbf{เอว} \hfill {\small\textit{พฺยย}} \par{\small\textsc{ไม่พบข้อมูล}} {นั่นแล}}
+\entry{เอวมฺเม} {(เอวํ - เม)} {\par \textbf{เอวํ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{ไม่พบข้อมูล}} {ด้วยประการฉะนี้}\par \textbf{อมฺห} \hfill {\small\textit{อ}} \par{\small\textsc{ไม่พบข้อมูล}} {ย่อมเป็น}}
+\end{multicols}
+\needspace{5cm} \section*{กฺ}
+\begin{multicols}{2}
+\entry{กตมญฺจ} {(กตมํ - จ)} {\par \textbf{กตม} \hfill {\small\textit{วาจฺ}} \par{\small\textsc{ไม่พบข้อมูล}} {มีอะไรบ้าง}\par \textbf{จ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[จิ + อ]\, จ  (พฺย) [จิ + อ]\, จ จ อกฺขรา.}} {ด้วย}}
+\entry{กานิจิ} {(กานิ - จิ)} {\par ไม่พบข้อมูล\par ไม่พบข้อมูล}
+\entry{กายนฺติปิ} {(กายํ - อิติ - อปิ)} {\par \textbf{กาย} \hfill {\small\textit{ปุ}} \par{\small\textsc{[ก + อย + ณ]}} {กาย}\par \textbf{อิติ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[อิ + อ + ติ]}} {ด้วยประการฉะนี้}\par \textbf{อปิ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[น + ปิ + กฺวิ\, ธาน]}} {ก็ดี}}
+\entry{กิญฺจีติ} {(กิญฺจิ - อิติ)} {\par \textbf{กิญฺจิ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[กึ + จิ]}} {นิดเดียว}\par \textbf{อิติ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[อิ + อ + ติ]}} {ด้วยประการฉะนี้}}
+\entry{กิมาคมฺม} {(กึ - อาคมฺม)} {\par \textbf{กึ} \hfill {\small\textit{ปุ}} \par{\small\textsc{ไม่พบข้อมูล}} {อะไร}\par \textbf{อาคมฺม} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[อา + คมุ + ตฺวา]}} {อาศัยแล้ว}}
+\entry{กิมารพฺภ} {(กึ - อารพฺภ)} {\par \textbf{กึ} \hfill {\small\textit{ปุ}} \par{\small\textsc{ไม่พบข้อมูล}} {อะไร}\par \textbf{อารพฺภ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[อา + รภ + ตฺวา]}} {อิงแล้ว}}
+\entry{กุสลนฺติ} {(กุสลํ - อิติ)} {\par \textbf{กุสล} \hfill {\small\textit{วาจฺ}} \par{\small\textsc{[กุสล + ณ]\, กุสล (น) [กุ + สล + อ]}} {กุศล}\par \textbf{อิติ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[อิ + อ + ติ]}} {ด้วยประการฉะนี้}}
+\end{multicols}
+\needspace{5cm} \section*{คฺ}
+\begin{multicols}{2}
+\entry{คามธมฺมาติ} {(คามธมฺมา - อิติ)} {\par \textbf{คามธมฺม} \hfill {\small\textit{ปุ}} \par{\small\textsc{[คาม + ธมฺม]}} {ธรรมเนียมของชาวบ้าน}\par \textbf{อิติ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[อิ + อ + ติ]}} {ด้วยประการฉะนี้}}
+\entry{โคตโมติ} {(โคตโม - อิติ)} {\par \textbf{โคตม} \hfill {\small\textit{ปุ}} \par{\small\textsc{[รุฬฺหีนามปุท]\, โคตม (ปุ) [โคตม + ณ]}} {ผู้มีนามว่าโคดม}\par \textbf{อิติ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[อิ + อ + ติ]}} {ด้วยประการฉะนี้}}
+\end{multicols}
+\needspace{5cm} \section*{ฆฺ}
+\begin{multicols}{2}
+\entry{ฆานนฺติปิ} {(ฆานํ - อิติ - เอว)} {\par \textbf{ฆาน} \hfill {\small\textit{นปุ}} \par{\small\textsc{[ฆา + ยุ]}} {ฆานะ}\par \textbf{อิติ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[อิ + อ + ติ]}} {ด้วยประการฉะนี้}\par \textbf{เอว} \hfill {\small\textit{พฺยย}} \par{\small\textsc{ไม่พบข้อมูล}} {นั่นแล}}
+\end{multicols}
+\needspace{5cm} \section*{จฺ}
+\begin{multicols}{2}
+\entry{จกฺขุนฺติปิ} {(จกฺขุํ - อิติ - อปิ)} {\par \textbf{จกฺขุ} \hfill {\small\textit{นปุ}} \par{\small\textsc{[จกฺขุ + อ]\, จกฺขุ (น) [จกฺขุ + ภูต]\, จกฺขุ (น) [จกฺขุ + ภาว ]\, จกฺขุ (น) [จกฺข + อุ]}} {จักษุ}\par \textbf{อิติ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[อิ + อ + ติ]}} {ด้วยประการฉะนี้}\par \textbf{อปิ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[น + ปิ + กฺวิ\, ธาน]}} {ก็ดี}}
+\entry{จตสฺโสปิ} {(จตสฺโส - อปิ)} {\par \textbf{จตุ} \hfill {\small\textit{ปุ}} \par{\small\textsc{ไม่พบข้อมูล}} {๔}\par \textbf{อปิ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[น + ปิ + กฺวิ\, ธาน]}} {ก็ดี}}
+\entry{จตฺตาริปิ} {(จตฺตาริ - อปิ)} {\par \textbf{จตุ} \hfill {\small\textit{ปุ}} \par{\small\textsc{ไม่พบข้อมูล}} {๔}\par \textbf{อปิ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[น + ปิ + กฺวิ\, ธาน]}} {ก็ดี}}
+\entry{จตฺตาลีสมฺปิ} {(จตฺตาลีสํ - อปิ)} {\par \textbf{จตฺตาลีส} \hfill {\small\textit{อิตฺ}} \par{\small\textsc{[จตฺตาลีสา + อ]}} {๔๐}\par \textbf{อปิ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[น + ปิ + กฺวิ\, ธาน]}} {ก็ดี}}
+\entry{จสฺส} {(จ - อสฺส)} {\par \textbf{จ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[จิ + อ]\, จ  (พฺย) [จิ + อ]\, จ จ อกฺขรา.}} {ด้วย}\par \textbf{อิม} \hfill {\small\textit{นปุ}} \par{\small\textsc{ไม่พบข้อมูล}} {นี้}}
+\entry{จาติ} {(จ - อิติ)} {\par \textbf{จ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[จิ + อ]\, จ  (พฺย) [จิ + อ]\, จ จ อกฺขรา.}} {ด้วย}\par \textbf{อิติ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[อิ + อ + ติ]}} {ด้วยประการฉะนี้}}
+\entry{จิตฺตนฺติ} {(จิตฺตํ - อิติ)} {\par \textbf{จิตฺตา} \hfill {\small\textit{อิตฺ}} \par{\small\textsc{[จิตฺต + ณ + อา]\, จิตฺตา (ถี) [จิตฺต + อา]}} {จิต ท.}\par \textbf{อิติ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[อิ + อ + ติ]}} {ด้วยประการฉะนี้}}
+\entry{เจตํ} {(จ - เอตํ)} {\par \textbf{จ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[จิ + อ]\, จ  (พฺย) [จิ + อ]\, จ จ อกฺขรา.}} {ด้วย}\par \textbf{เอตา} \hfill {\small\textit{อิตฺ}} \par{\small\textsc{ไม่พบข้อมูล}} {นั่น}}
+\end{multicols}
+\needspace{5cm} \section*{ชฺ}
+\begin{multicols}{2}
+\entry{ชาติสตมฺปิ} {(ชาติสตํ - อปิ)} {\par \textbf{ชาติสต} \hfill {\small\textit{นปุ}} \par{\small\textsc{[ชาติ + สต]}} {ชาติ ๑๐๐ ชาติ}\par \textbf{อปิ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[น + ปิ + กฺวิ\, ธาน]}} {ก็ดี}}
+\entry{ชาติสตสหสฺสมฺปิ} {(ชาติสตสหสฺสํ - อปิ)} {\par \textbf{ชาติสตสหสฺส} \hfill {\small\textit{นปุ}} \par{\small\textsc{[ชาติสห + สหสฺส]}} {ชาติ ๑๐๐\,๐๐๐ ชาติ}\par \textbf{อปิ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[น + ปิ + กฺวิ\, ธาน]}} {ก็ดี}}
+\entry{ชาติสหสฺสมฺปิ} {(ชาติสหสฺสํ - อปิ)} {\par \textbf{ชาติสหสฺส} \hfill {\small\textit{นปุ}} \par{\small\textsc{[ชาติ + สหสฺส]}} {ชาติ ๑\,๐๐๐ ชาติ}\par \textbf{อปิ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[น + ปิ + กฺวิ\, ธาน]}} {ก็ดี}}
+\entry{ชูตปฺปมาทฏฺฐานานุโยคมนุยุตฺตา} {(ชูตปฺปมาทฏฺฐานานุโยคํ - อนุยุตฺตา)} {\par \textbf{ชูตปฺปมาทฏฺฐานานุโยค} \hfill {\small\textit{ปุ}} \par{\small\textsc{[ชูตปฺปมทฏฺฐาน + อนุโยค]}} {การเล่นการพนันอันเป็นเหตุนำมาซึ่งความประมาท ซึ่งการบรรพชาอันเป็นเพศที่ไม่มีการครองเรือน ด้วยเดรัจฉานวิชานี้}\par \textbf{อนุยุตฺต} \hfill {\small\textit{อิตฺ}} \par{\small\textsc{[อนุ + ยุช + ต]}} {เป็นผู้กระทำ}}
+\end{multicols}
+\needspace{5cm} \section*{ฐฺ}
+\begin{multicols}{2}
+\entry{ฐสฺสตีติ} {(ฐสฺสติ - อิติ)} {\par \textbf{ฐสฺสติ} \hfill {\small\textit{ขยฺา}} \par{\small\textsc{[ฐา + อ + สฺสติ]}} {จักดำรงอยู่}\par \textbf{อิติ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[อิ + อ + ติ]}} {ด้วยประการฉะนี้}}
+\end{multicols}
+\needspace{5cm} \section*{ตฺ}
+\begin{multicols}{2}
+\entry{ตญฺจ} {(ตํ - จ)} {\par \textbf{ต} \hfill {\small\textit{วาจฺ}} \par{\small\textsc{ไม่พบข้อมูล}} {นั้น}\par \textbf{จ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[จิ + อ]\, จ  (พฺย) [จิ + อ]\, จ จ อกฺขรา.}} {ด้วย}}
+\entry{ตตฺรปิ} {(ตตฺร - อปิ)} {\par \textbf{ตตฺร} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[วากฺยารมฺภ-อุปนฺยาส-จ-ปน-นฺหง့ อนกตู นิปาตปุท.]}} {ใน... ท.เหล่านั้น}\par \textbf{อปิ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[น + ปิ + กฺวิ\, ธาน]}} {ก็ดี}}
+\entry{ตตฺราปาสิํ} {(ตตฺร - อาปาสึ)} {\par \textbf{ตตฺร} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[วากฺยารมฺภ-อุปนฺยาส-จ-ปน-นฺหง့ อนกตู นิปาตปุท.]}} {ใน... ท.เหล่านั้น}\par \textbf{อปาส} \hfill {\small\textit{วาจฺ}} \par{\small\textsc{[น + ปาส]}} {ไม่พบข้อมูล}}
+\entry{ตถาติปิ} {(ตถา - อิติ - อปิ)} {\par \textbf{ตถา} \hfill {\small\textit{วาจฺ}} \par{\small\textsc{[ตถ + ณ]}} {ฉันนั้น}\par \textbf{อิติ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[อิ + อ + ติ]}} {ด้วยประการฉะนี้}\par \textbf{อปิ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[น + ปิ + กฺวิ\, ธาน]}} {ก็ดี}}
+\entry{ตเถว} {(ตถา - เอว)} {\par \textbf{ตถา} \hfill {\small\textit{วาจฺ}} \par{\small\textsc{[ตถ + ณ]}} {ฉันนั้น}\par \textbf{เอว} \hfill {\small\textit{พฺยย}} \par{\small\textsc{ไม่พบข้อมูล}} {นั่นแล}}
+\entry{ตมญฺโญ} {(ตํ - อญฺโญ)} {\par \textbf{ต} \hfill {\small\textit{วาจฺ}} \par{\small\textsc{ไม่พบข้อมูล}} {นั้น}\par ไม่พบข้อมูล}
+\entry{ตมหํ} {(ตํ - อหํ)} {\par \textbf{ต} \hfill {\small\textit{วาจฺ}} \par{\small\textsc{ไม่พบข้อมูล}} {นั้น}\par \textbf{อมฺห} \hfill {\small\textit{อ}} \par{\small\textsc{ไม่พบข้อมูล}} {ย่อมเป็น}}
+\entry{ตยิทํ} {(ตยา - อิทํ)} {\par \textbf{ตุมฺห} \hfill {\small\textit{อ}} \par{\small\textsc{[สพฺพนาม ๒๗ (รู]}} {เธอ}\par \textbf{อิม} \hfill {\small\textit{นปุ}} \par{\small\textsc{ไม่พบข้อมูล}} {นี้}}
+\entry{ติํสมฺปิ} {(ตึสํ - อปิ)} {\par \textbf{ตึส} \hfill {\small\textit{อิตฺ}} \par{\small\textsc{[ติ + ทส ]}} {๓๐}\par \textbf{อปิ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[น + ปิ + กฺวิ\, ธาน]}} {ก็ดี}}
+\entry{ติสฺโสปิ} {(ติสฺโส - อปิ)} {\par \textbf{ติ} \hfill {\small\textit{นปุ}} \par{\small\textsc{ไม่พบข้อมูล}} {๓}\par \textbf{อปิ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[น + ปิ + กฺวิ\, ธาน]}} {ก็ดี}}
+\entry{ตีณิปิ} {(ตีณิ - อปิ)} {\par \textbf{ติ} \hfill {\small\textit{นปุ}} \par{\small\textsc{ไม่พบข้อมูล}} {๓}\par \textbf{อปิ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[น + ปิ + กฺวิ\, ธาน]}} {ก็ดี}}
+\entry{ตุมฺหญฺเญวสฺส} {(ตุมฺหํ - เอว - อสฺส)} {\par \textbf{ตุมฺห} \hfill {\small\textit{อ}} \par{\small\textsc{[สพฺพนาม ๒๗ (รู]}} {เธอ}\par \textbf{เอว} \hfill {\small\textit{พฺยย}} \par{\small\textsc{ไม่พบข้อมูล}} {นั่นแล}\par \textbf{อิม} \hfill {\small\textit{นปุ}} \par{\small\textsc{ไม่พบข้อมูล}} {นี้}}
+\entry{เตนุปสงฺกมิ} {(เตน - อุปสงฺกมิ)} {\par \textbf{ต} \hfill {\small\textit{วาจฺ}} \par{\small\textsc{ไม่พบข้อมูล}} {นั้น}\par \textbf{อุปสงฺกมิ} \hfill {\small\textit{ขยฺา}} \par{\small\textsc{[อุป + สํ + กมุ + อี]}} {เสด็จเข้าไปแล้ว}}
+\entry{เตปิ} {(เต - อปิ)} {\par \textbf{ตุมฺห} \hfill {\small\textit{อ}} \par{\small\textsc{[สพฺพนาม ๒๗ (รู]}} {เธอ}\par \textbf{อปิ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[น + ปิ + กฺวิ\, ธาน]}} {ก็ดี}}
+\entry{เตสนฺโน} {(เตสํ - โน)} {\par \textbf{ต} \hfill {\small\textit{วาจฺ}} \par{\small\textsc{ไม่พบข้อมูล}} {นั้น}\par \textbf{อมฺห} \hfill {\small\textit{อ}} \par{\small\textsc{ไม่พบข้อมูล}} {ย่อมเป็น}}
+\entry{เตสมฺปิ} {(เตสํ - อปิ)} {\par \textbf{ต} \hfill {\small\textit{วาจฺ}} \par{\small\textsc{ไม่พบข้อมูล}} {นั้น}\par \textbf{อปิ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[น + ปิ + กฺวิ\, ธาน]}} {ก็ดี}}
+\entry{ตฺวมสิ} {(ตฺวํ - อสิ)} {\par \textbf{ตุมฺห} \hfill {\small\textit{อ}} \par{\small\textsc{[สพฺพนาม ๒๗ (รู]}} {เธอ}\par \textbf{อสิ} \hfill {\small\textit{ขยฺา}} \par{\small\textsc{[อส + อ + อี]}} {ย่อมเป็น}}
+\entry{เตฺวว} {(เต - เอว)} {\par \textbf{ตุมฺห} \hfill {\small\textit{อ}} \par{\small\textsc{[สพฺพนาม ๒๗ (รู]}} {เธอ}\par \textbf{เอว} \hfill {\small\textit{พฺยย}} \par{\small\textsc{ไม่พบข้อมูล}} {นั่นแล}}
+\end{multicols}
+\needspace{5cm} \section*{ทฺ}
+\begin{multicols}{2}
+\entry{ทสปิ} {(ทส - อปิ)} {\par \textbf{ทส} \hfill {\small\textit{ติ}} \par{\small\textsc{[สพฺพนาม มหุตโส พหุวุจ สงฺขฺยาสทฺทา]\, ทส (ติ) [ทส + สหสฺส]\, ทส (ติ) [ทส + ทส]\, ทส (ติ) [ทิส + อ]\, ทส (ติ) [ทส + อ]}} {๑๐}\par \textbf{อปิ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[น + ปิ + กฺวิ\, ธาน]}} {ก็ดี}}
+\entry{ทิฏฺฐิชาลนฺติปิ} {(ทิฏฺฐิชาลํ - อิติ - อปิ)} {\par \textbf{ทิฏฺฐิชาล} \hfill {\small\textit{ปุ\, นปุ}} \par{\small\textsc{[ทิฏฺฐิ + ชาล]}} {ทิฏฐิชาละ[ข่ายกล่าวคือทิฏฐิ]}\par \textbf{อิติ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[อิ + อ + ติ]}} {ด้วยประการฉะนี้}\par \textbf{อปิ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[น + ปิ + กฺวิ\, ธาน]}} {ก็ดี}}
+\entry{ทีฆมทฺธานํ} {(ทีฆํ - อทฺธานํ)} {\par \textbf{ทีฆ} \hfill {\small\textit{วาจฺ}} \par{\small\textsc{ไม่พบข้อมูล}} {ยาว}\par \textbf{อทฺธ} \hfill {\small\textit{ปุ\, นปุ}} \par{\small\textsc{[ (๑) อสติ เขเปติ สมุทายนฺติ อทฺโธ\, โต]}} {ตลอดกาลนาน}}
+\entry{เทวมนุสฺสาติ} {(เทวมนุสฺสา - อิติ)} {\par \textbf{เทวมนุสฺส} \hfill {\small\textit{ปุ}} \par{\small\textsc{[เทว + มนุสฺส]}} {เทวดาและมนุษย์ ท.}\par \textbf{อิติ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[อิ + อ + ติ]}} {ด้วยประการฉะนี้}}
+\entry{เทฺวปิ} {(เทฺว - อปิ)} {\par \textbf{ทฺวิ} \hfill {\small\textit{ติ}} \par{\small\textsc{ไม่พบข้อมูล}} {๒}\par \textbf{อปิ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[น + ปิ + กฺวิ\, ธาน]}} {ก็ดี}}
+\entry{ทฺเวปิ} {(เทฺว - อปิ)} {\par \textbf{ทฺวิ} \hfill {\small\textit{ติ}} \par{\small\textsc{ไม่พบข้อมูล}} {๒}\par \textbf{อปิ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[น + ปิ + กฺวิ\, ธาน]}} {ก็ดี}}
+\end{multicols}
+\needspace{5cm} \section*{ธฺ}
+\begin{multicols}{2}
+\entry{ธมฺมชาลนฺติปิ} {(ธมฺมชาลํ - อิติ - อปิ)} {\par \textbf{ธมฺมชาล} \hfill {\small\textit{วาจฺ}} \par{\small\textsc{[ธมฺม + ชาล]}} {ธัมมชาละ[ข่ายกล่าวคือธรรม]}\par \textbf{อิติ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[อิ + อ + ติ]}} {ด้วยประการฉะนี้}\par \textbf{อปิ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[น + ปิ + กฺวิ\, ธาน]}} {ก็ดี}}
+\entry{ธมฺมปริยาโยติ} {(ธมฺมปริยาโย - อิติ)} {\par \textbf{ธมฺมปริยาย} \hfill {\small\textit{ปุ}} \par{\small\textsc{[ธมฺม + ปริยาย]}} {พระธรรมเทศนา}\par \textbf{อิติ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[อิ + อ + ติ]}} {ด้วยประการฉะนี้}}
+\entry{ธาเรหีติ} {(ธาเรหิ - อิติ)} {\par \textbf{ธาเรหิ} \hfill {\small\textit{ขยฺา}} \par{\small\textsc{[ธร + เณ + หิ]}} {จงทรงจำไว้}\par \textbf{อิติ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[อิ + อ + ติ]}} {ด้วยประการฉะนี้}}
+\end{multicols}
+\needspace{5cm} \section*{นฺ}
+\begin{multicols}{2}
+\entry{นตฺถีติ} {(นตฺถิ - อิติ)} {\par \textbf{นตฺถิ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[เอกวุจ พหุวุจ นฺหจมฺยิุะรโส นิปาตปุท]}} {ไม่มี}\par \textbf{อิติ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[อิ + อ + ติ]}} {ด้วยประการฉะนี้}}
+\entry{นปฺปชานาติ} {(น - ปชานาติ)} {\par \textbf{น} \hfill {\small\textit{พฺยย}} \par{\small\textsc{ไม่พบข้อมูล}} {ไม่}\par \textbf{ปชานาติ} \hfill {\small\textit{ขยฺา}} \par{\small\textsc{[ป + ญา + นา + ติ]}} {ย่อมรู้}}
+\entry{นปฺปชานามิ} {(น - ปชานามิ)} {\par \textbf{น} \hfill {\small\textit{พฺยย}} \par{\small\textsc{ไม่พบข้อมูล}} {ไม่}\par \textbf{ปชานามิ} \hfill {\small\textit{ขยฺา}} \par{\small\textsc{[ป + ญา + นา + มิ]}} {ย่อมรู้}}
+\entry{นปฺปทุสฺเสนฺติ} {(น - ปทุสฺเสนฺติ)} {\par \textbf{น} \hfill {\small\textit{พฺยย}} \par{\small\textsc{ไม่พบข้อมูล}} {ไม่}\par \textbf{ปทุสฺสนฺติ} \hfill {\small\textit{ขยฺา}} \par{\small\textsc{[ป + ทุส + ย + อนฺติ]}} {ไม่พบข้อมูล}}
+\entry{นาติเวลํ} {(น - อติเวลํ)} {\par \textbf{น} \hfill {\small\textit{พฺยย}} \par{\small\textsc{ไม่พบข้อมูล}} {ไม่}\par \textbf{อติเวล} \hfill {\small\textit{วาจฺ}} \par{\small\textsc{[อติ + เวลา]}} {นานเกินควร}}
+\entry{นานุสฺสรติ} {(น - อนุสฺสรติ)} {\par \textbf{น} \hfill {\small\textit{พฺยย}} \par{\small\textsc{ไม่พบข้อมูล}} {ไม่}\par \textbf{อนุสฺสรติ} \hfill {\small\textit{ขยฺา}} \par{\small\textsc{[อนุ + สร + อ + ติ]}} {ย่อมระลึกได้}}
+\entry{นาโหสิ} {(น - อโหสิ)} {\par \textbf{น} \hfill {\small\textit{พฺยย}} \par{\small\textsc{ไม่พบข้อมูล}} {ไม่}\par \textbf{อโหสิ} \hfill {\small\textit{ขยฺา}} \par{\small\textsc{[อ + หู + อี]}} {ได้มีแล้ว}}
+\entry{นิสฺสรณญฺจ} {(นิสฺสรณํ - จ)} {\par \textbf{นิสฺสรณ} \hfill {\small\textit{นปุ}} \par{\small\textsc{[นิ + สร + ยุ (นิครณ-สํ\, ณิสฺสรณ-ปฺรา)]}} {การออก (หรือข้อปฏิบัติอันเป็นทางออก)}\par \textbf{จ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[จิ + อ]\, จ  (พฺย) [จิ + อ]\, จ จ อกฺขรา.}} {ด้วย}}
+\entry{นุตฺถ} {(นุ - อตฺถ)} {\par \textbf{นุ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{ไม่พบข้อมูล}} {หรือ}\par \textbf{อตฺถ} \hfill {\small\textit{ขยฺา}} \par{\small\textsc{[อส + อ + ถ]}} {ย่อมเป็น}}
+\entry{เนตํ} {(น - เอตํ)} {\par \textbf{น} \hfill {\small\textit{พฺยย}} \par{\small\textsc{ไม่พบข้อมูล}} {ไม่}\par \textbf{เอตา} \hfill {\small\textit{อิตฺ}} \par{\small\textsc{ไม่พบข้อมูล}} {นั่น}}
+\entry{เนว} {(น - เอว)} {\par \textbf{น} \hfill {\small\textit{พฺยย}} \par{\small\textsc{ไม่พบข้อมูล}} {ไม่}\par \textbf{เอว} \hfill {\small\textit{พฺยย}} \par{\small\textsc{ไม่พบข้อมูล}} {นั่นแล}}
+\entry{เนวตฺถิ} {(น - เอว - อตฺถิ)} {\par \textbf{น} \hfill {\small\textit{พฺยย}} \par{\small\textsc{ไม่พบข้อมูล}} {ไม่}\par \textbf{เอว} \hfill {\small\textit{พฺยย}} \par{\small\textsc{ไม่พบข้อมูล}} {นั่นแล}\par \textbf{อตฺถิ} \hfill {\small\textit{ขยฺา}} \par{\small\textsc{[อส (=ภุวิ) + ติ]}} {มีอยู่}}
+\entry{เนวสญฺญีนาสญฺญิมตฺตานํ} {(เนวสญฺญีนาสญฺญึ - อตฺตานํ)} {\par ไม่พบข้อมูล\par \textbf{อตฺต} \hfill {\small\textit{ปุ}} \par{\small\textsc{ไม่พบข้อมูล}} {อัตตา}}
+\entry{เนวสญฺญีนาสญฺญีติ} {(เนวสญฺญีนาสญฺญี - อิติ)} {\par \textbf{เนวสญฺญีนาสญฺญี} \hfill {\small\textit{วาจฺ}} \par{\small\textsc{[เนวสญฺญี + นาสญฺญี]}} {ธรรมชาติ ที่มีสัญญาก็ไม่ใช่ ไม่มีสัญญาก็ไม่ใช่}\par \textbf{อิติ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[อิ + อ + ติ]}} {ด้วยประการฉะนี้}}
+\entry{เนวายํ} {(น - เอว - อยํ)} {\par \textbf{น} \hfill {\small\textit{พฺยย}} \par{\small\textsc{ไม่พบข้อมูล}} {ไม่}\par \textbf{เอว} \hfill {\small\textit{พฺยย}} \par{\small\textsc{ไม่พบข้อมูล}} {นั่นแล}\par \textbf{อิม} \hfill {\small\textit{นปุ}} \par{\small\textsc{ไม่พบข้อมูล}} {นี้}}
+\entry{เนวิทํ} {(น - เอว - อิทํ)} {\par \textbf{น} \hfill {\small\textit{พฺยย}} \par{\small\textsc{ไม่พบข้อมูล}} {ไม่}\par \textbf{เอว} \hfill {\small\textit{พฺยย}} \par{\small\textsc{ไม่พบข้อมูล}} {นั่นแล}\par \textbf{อิม} \hfill {\small\textit{นปุ}} \par{\small\textsc{ไม่พบข้อมูล}} {นี้}}
+\entry{เนโส} {(น - เอโส)} {\par \textbf{น} \hfill {\small\textit{พฺยย}} \par{\small\textsc{ไม่พบข้อมูล}} {ไม่}\par \textbf{เอตา} \hfill {\small\textit{อิตฺ}} \par{\small\textsc{ไม่พบข้อมูล}} {นั่น}}
+\entry{โนติ} {(โน - อิติ)} {\par \textbf{อมฺห} \hfill {\small\textit{อ}} \par{\small\textsc{ไม่พบข้อมูล}} {ย่อมเป็น}\par \textbf{อิติ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[อิ + อ + ติ]}} {ด้วยประการฉะนี้}}
+\entry{โนติปิ} {(โน - อิติ - อปิ)} {\par \textbf{อมฺห} \hfill {\small\textit{อ}} \par{\small\textsc{ไม่พบข้อมูล}} {ย่อมเป็น}\par \textbf{อิติ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[อิ + อ + ติ]}} {ด้วยประการฉะนี้}\par \textbf{อปิ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[น + ปิ + กฺวิ\, ธาน]}} {ก็ดี}}
+\end{multicols}
+\needspace{5cm} \section*{ปฺ}
+\begin{multicols}{2}
+\entry{ปจฺจตฺตญฺเญว} {(ปจฺจตฺตํ - เอว)} {\par \textbf{ปจฺจตฺต} \hfill {\small\textit{นปุ}} \par{\small\textsc{[ปติ + อตฺต]\, ปจฺจตฺต (ติ) [ปจฺจตฺต + ณ]}} {ตนเอง}\par \textbf{เอว} \hfill {\small\textit{พฺยย}} \par{\small\textsc{ไม่พบข้อมูล}} {นั่นแล}}
+\entry{ปญฺจปิ} {(ปญฺจ - อปิ)} {\par \textbf{ปญฺจ} \hfill {\small\textit{ติ}} \par{\small\textsc{[ปจิ + อ]}} {๕}\par \textbf{อปิ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[น + ปิ + กฺวิ\, ธาน]}} {ก็ดี}}
+\entry{ปญฺญาสมฺปิ} {(ปญฺญาสํ - อปิ)} {\par \textbf{ปญฺญาส} \hfill {\small\textit{อิตฺ}} \par{\small\textsc{ไม่พบข้อมูล}} {๕๐}\par \textbf{อปิ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[น + ปิ + กฺวิ\, ธาน]}} {ก็ดี}}
+\entry{ปฏิสํเวทิสฺสนฺตีติ} {(ปฏิสํเวทิสฺสนฺติ - อิติ)} {\par \textbf{ปฏิสํเวทิสฺสนฺติ} \hfill {\small\textit{ขยฺา}} \par{\small\textsc{[ปติ + สํ + วิท + ณิ + สฺสนฺติ]}} {จักเสวย}\par \textbf{อิติ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[อิ + อ + ติ]}} {ด้วยประการฉะนี้}}
+\entry{ปณีตเมตนฺติ} {(ปณีตํ - เอตํ - อิติ)} {\par \textbf{ปณีต} \hfill {\small\textit{นปุ}} \par{\small\textsc{[ป + นี + ต]}} {ประณีต}\par \textbf{เอตา} \hfill {\small\textit{อิตฺ}} \par{\small\textsc{ไม่พบข้อมูล}} {นั่น}\par \textbf{อิติ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[อิ + อ + ติ]}} {ด้วยประการฉะนี้}}
+\entry{ปธานมนฺวาย} {(ปธานํ - อนฺวาย)} {\par \textbf{ปธาน} \hfill {\small\textit{นปุ}} \par{\small\textsc{ไม่พบข้อมูล}} {ความเพียรอย่างไม่ลดละ}\par \textbf{อนฺวาย} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[อนุ + อิ + ตฺวา]}} {อาศัยแล้ว}}
+\entry{ปนมฺห} {(ปน - อมฺห)} {\par \textbf{ปน} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[อุปสารปุท\, นิปาตปุท\, สพฺพนามปุท-จสญฺญติ့ุ]}} {ก็}\par \textbf{อมฺห} \hfill {\small\textit{อ}} \par{\small\textsc{ไม่พบข้อมูล}} {ย่อมเป็น}}
+\entry{ปนานนฺโตติ} {(ปชานนฺโต - อิติ)} {\par \textbf{ปชานนฺต} \hfill {\small\textit{ปุ\, อิตฺ}} \par{\small\textsc{[ป + ญา + นา + อนฺต]}} {แม้จะรู้อยู่}\par \textbf{อิติ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[อิ + อ + ติ]}} {ด้วยประการฉะนี้}}
+\entry{ปนิทํ} {(ปน - อิทํ)} {\par \textbf{ปน} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[อุปสารปุท\, นิปาตปุท\, สพฺพนามปุท-จสญฺญติ့ุ]}} {ก็}\par \textbf{อิม} \hfill {\small\textit{นปุ}} \par{\small\textsc{ไม่พบข้อมูล}} {นี้}}
+\entry{ปเนเก} {(ปน - เอเก)} {\par \textbf{ปน} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[อุปสารปุท\, นิปาตปุท\, สพฺพนามปุท-จสญฺญติ့ุ]}} {ก็}\par \textbf{เอก๑} \hfill {\small\textit{วาจฺ}} \par{\small\textsc{[อิ + ณฺวุ. อิ + ก. อิ คติยํ. ณฺวุ. อิสฺเส อโลโป จ. เอโก. สทิสรหิตตาย วา เอกัภาเว ติฏฺฐตีติ เอโก. โก.]}} {หนึ่ง}}
+\entry{ปเนตํ} {(ปน - เอตํ)} {\par \textbf{ปน} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[อุปสารปุท\, นิปาตปุท\, สพฺพนามปุท-จสญฺญติ့ุ]}} {ก็}\par \textbf{เอตา} \hfill {\small\textit{อิตฺ}} \par{\small\textsc{ไม่พบข้อมูล}} {นั่น}}
+\entry{ปรมฺมรณาติ} {(ปรมฺมรณา - อิติ)} {\par \textbf{ปรมฺมรณ} \hfill {\small\textit{วาจฺ}} \par{\small\textsc{ไม่พบข้อมูล}} {ไม่พบข้อมูล}\par \textbf{อิติ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[อิ + อ + ติ]}} {ด้วยประการฉะนี้}}
+\entry{ปริณโตติ} {(ปริณโต - อิติ)} {\par \textbf{ปริณต} \hfill {\small\textit{วาจฺ}} \par{\small\textsc{[ปริ + นมุ + ต]}} {ผู้น้อมมา}\par \textbf{อิติ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[อิ + อ + ติ]}} {ด้วยประการฉะนี้}}
+\entry{ปริวฏุโมติ} {(ปริวฏุโม - อิติ)} {\par \textbf{ปริวฏุม} \hfill {\small\textit{วาจฺ}} \par{\small\textsc{[ปริ + วฏฺฏ + อุม]}} {สัณฐานกลม}\par \textbf{อิติ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[อิ + อ + ติ]}} {ด้วยประการฉะนี้}}
+\entry{ปโหสีติ} {(ปโหสิ - อิติ)} {\par \textbf{ปโหสิ} \hfill {\small\textit{ขยฺา}} \par{\small\textsc{[ป + หู + อ + สิ]}} {ย่อมสามารถ[กล้าพอ]}\par \textbf{อิติ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[อิ + อ + ติ]}} {ด้วยประการฉะนี้}}
+\entry{ปุพฺเพว} {(ปุพฺเพ - เอว)} {\par \textbf{ปุพฺพ} \hfill {\small\textit{ปุ}} \par{\small\textsc{ไม่พบข้อมูล}} {ส่วนแห่งขันธ์ ๕ ที่เป็นอดีต}\par \textbf{เอว} \hfill {\small\textit{พฺยย}} \par{\small\textsc{ไม่พบข้อมูล}} {นั่นแล}}
+\end{multicols}
+\needspace{5cm} \section*{พฺ}
+\begin{multicols}{2}
+\entry{พีชพีชเมว} {(พีชพีชํ - เอว)} {\par \textbf{พีชพีช} \hfill {\small\textit{นปุ}} \par{\small\textsc{[พีช + พีช]}} {พันธุ์ไม้จำพวกเมล็ด}\par \textbf{เอว} \hfill {\small\textit{พฺยย}} \par{\small\textsc{ไม่พบข้อมูล}} {นั่นแล}}
+\entry{พฺรหฺมชาลนฺติปิ} {(พฺรหฺมชาลํ - อิติ - อปิ)} {\par \textbf{พฺรหฺมชาล} \hfill {\small\textit{วาจฺ}} \par{\small\textsc{[พฺรหฺม + ชาล]}} {ข่ายกล่าวคือพระสัพพัญญุตญาณอันประเสริฐ}\par \textbf{อิติ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[อิ + อ + ติ]}} {ด้วยประการฉะนี้}\par \textbf{อปิ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[น + ปิ + กฺวิ\, ธาน]}} {ก็ดี}}
+\end{multicols}
+\needspace{5cm} \section*{ภฺ}
+\begin{multicols}{2}
+\entry{ภาสิตาติ} {(ภาสิตา - อิติ)} {\par \textbf{ภาสิต} \hfill {\small\textit{นปุ}} \par{\small\textsc{[ภาส + ต]}} {กล่าวแล้ว}\par \textbf{อิติ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[อิ + อ + ติ]}} {ด้วยประการฉะนี้}}
+\entry{ภิกฺขุสํฆญฺจ} {(ภิกฺขุสํฆํ - จ)} {\par \textbf{ภิกฺขุสํฆ} \hfill {\small\textit{ปุ}} \par{\small\textsc{[ภิกฺขุ + สํฆ]}} {หมู่แห่งภิกษุ}\par \textbf{จ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[จิ + อ]\, จ  (พฺย) [จิ + อ]\, จ จ อกฺขรา.}} {ด้วย}}
+\entry{ภิกฺขุสํฆญฺจาติ} {(ภิกฺขุสํฆํ - จ - อิติ)} {\par \textbf{ภิกฺขุสํฆ} \hfill {\small\textit{ปุ}} \par{\small\textsc{[ภิกฺขุ + สํฆ]}} {หมู่แห่งภิกษุ}\par \textbf{จ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[จิ + อ]\, จ  (พฺย) [จิ + อ]\, จ จ อกฺขรา.}} {ด้วย}\par \textbf{อิติ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[อิ + อ + ติ]}} {ด้วยประการฉะนี้}}
+\end{multicols}
+\needspace{5cm} \section*{มฺ}
+\begin{multicols}{2}
+\entry{มโนติ} {(มโน - อิติ)} {\par \textbf{มน} \hfill {\small\textit{ปุ}} \par{\small\textsc{[มน + อ]}} {มนะ}\par \textbf{อิติ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[อิ + อ + ติ]}} {ด้วยประการฉะนี้}}
+\entry{มมสฺส} {(มม - อสฺส)} {\par \textbf{อมฺห} \hfill {\small\textit{อ}} \par{\small\textsc{ไม่พบข้อมูล}} {ย่อมเป็น}\par \textbf{อิม} \hfill {\small\textit{นปุ}} \par{\small\textsc{ไม่พบข้อมูล}} {นี้}}
+\entry{มหตุปฏฺฐานํ} {(มหติ - อุปฏฺฐานํ)} {\par \textbf{มหติ} \hfill {\small\textit{ขยฺา}} \par{\small\textsc{[มห + อ + ติ]}} {หมู่ใหญ่}\par \textbf{อุปฏฺฐาน} \hfill {\small\textit{นปุ}} \par{\small\textsc{[อุป + ฐา + ยุ]}} {ไม่พบข้อมูล}}
+\end{multicols}
+\needspace{5cm} \section*{ยฺ}
+\begin{multicols}{2}
+\entry{ยญฺจ} {(ยํ - จ)} {\par \textbf{ย} \hfill {\small\textit{อิตฺ}} \par{\small\textsc{ไม่พบข้อมูล}} {ใด}\par \textbf{จ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[จิ + อ]\, จ  (พฺย) [จิ + อ]\, จ จ อกฺขรา.}} {ด้วย}}
+\entry{ยญฺจาหํ} {(ยํ - จ - อหํ)} {\par \textbf{ย} \hfill {\small\textit{อิตฺ}} \par{\small\textsc{ไม่พบข้อมูล}} {ใด}\par \textbf{จ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[จิ + อ]\, จ  (พฺย) [จิ + อ]\, จ จ อกฺขรา.}} {ด้วย}\par \textbf{อมฺห} \hfill {\small\textit{อ}} \par{\small\textsc{ไม่พบข้อมูล}} {ย่อมเป็น}}
+\entry{ยเทว} {(ยํ - เอว)} {\par \textbf{ย} \hfill {\small\textit{อิตฺ}} \par{\small\textsc{ไม่พบข้อมูล}} {ใด}\par \textbf{เอว} \hfill {\small\textit{พฺยย}} \par{\small\textsc{ไม่พบข้อมูล}} {นั่นแล}}
+\entry{ยนฺตํ} {(ยํ - ตํ)} {\par \textbf{ย} \hfill {\small\textit{อิตฺ}} \par{\small\textsc{ไม่พบข้อมูล}} {ใด}\par \textbf{ต} \hfill {\small\textit{วาจฺ}} \par{\small\textsc{ไม่พบข้อมูล}} {นั้น}}
+\entry{ยาวญฺจิทํ} {(ยาวญฺจ - อิทํ)} {\par \textbf{ยาวญฺจ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{ไม่พบข้อมูล}} {อย่างไม่จำกัด}\par \textbf{อิม} \hfill {\small\textit{นปุ}} \par{\small\textsc{ไม่พบข้อมูล}} {นี้}}
+\entry{ยาวสฺส} {(ยาว - อสฺส)} {\par \textbf{ยาว} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[รู]}} {สิ้นกาลเพียงไร}\par \textbf{อิม} \hfill {\small\textit{นปุ}} \par{\small\textsc{ไม่พบข้อมูล}} {นี้}}
+\entry{เยปิ} {(เย - อปิ)} {\par \textbf{ย} \hfill {\small\textit{อิตฺ}} \par{\small\textsc{ไม่พบข้อมูล}} {ใด}\par \textbf{อปิ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[น + ปิ + กฺวิ\, ธาน]}} {ก็ดี}}
+\end{multicols}
+\needspace{5cm} \section*{ลฺ}
+\begin{multicols}{2}
+\entry{โลกญฺจ} {(โลกํ - จ)} {\par \textbf{โลก} \hfill {\small\textit{ปุ}} \par{\small\textsc{[โลก + อ]}} {โลก}\par \textbf{จ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[จิ + อ]\, จ  (พฺย) [จิ + อ]\, จ จ อกฺขรา.}} {ด้วย}}
+\entry{โลกสฺสาติ} {(โลกสฺส - อิติ)} {\par \textbf{โลก} \hfill {\small\textit{ปุ}} \par{\small\textsc{[โลก + อ]}} {โลก}\par \textbf{อิติ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[อิ + อ + ติ]}} {ด้วยประการฉะนี้}}
+\entry{โลโกติ} {(โลโก - อิติ)} {\par \textbf{โลก} \hfill {\small\textit{ปุ}} \par{\small\textsc{[โลก + อ]}} {โลก}\par \textbf{อิติ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[อิ + อ + ติ]}} {ด้วยประการฉะนี้}}
+\end{multicols}
+\needspace{5cm} \section*{วฺ}
+\begin{multicols}{2}
+\entry{วิญฺญาณนฺติ} {(วิญฺญาณํ - อิติ)} {\par \textbf{วิญฺญาณ} \hfill {\small\textit{นปุ}} \par{\small\textsc{[วิญฺญาณ + ราค]\, วิญฺญาณ (น) [วิญา + ยุ]}} {วิญญาณ}\par \textbf{อิติ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[อิ + อ + ติ]}} {ด้วยประการฉะนี้}}
+\entry{วิปฺปกตาติ} {(วิปฺปกตา - อิติ)} {\par \textbf{วิปฺปกต} \hfill {\small\textit{วาจฺ}} \par{\small\textsc{[วิ + ป + กร + เณ + ต]\, วิปฺปกต (ติ) [วิ + กร + ต]}} {ยังทำไม่เสร็จ[ยังพูดไม่จบ]}\par \textbf{อิติ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[อิ + อ + ติ]}} {ด้วยประการฉะนี้}}
+\entry{วิปฺผนฺทิตเมว} {(วิปฺผนฺทิตํ - เอว)} {\par \textbf{วิปฺผนฺทิต} \hfill {\small\textit{วาจฺ}} \par{\small\textsc{[วิ + ผทิ + ต]}} {เป็นธรรมชาติที่เป็นไปด้วยอำนาจของตัณหาและทิฏฐิ จึงยังหวั่นไหวไม่มั่นคงนั่นเทียว}\par \textbf{เอว} \hfill {\small\textit{พฺยย}} \par{\small\textsc{ไม่พบข้อมูล}} {นั่นแล}}
+\entry{วิวิจฺเจว} {(วิวิจฺจ - เอว)} {\par \textbf{วิวิจฺจ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[วิ + วิจ + ตฺวา]\, วิวิจฺจ (ติ)  [วิ + วิจ + ย + อ]\, วิวิจฺจ (กฺริ) [วิ + วิจ + ย + หิ]}} {สงัดแล้ว}\par \textbf{เอว} \hfill {\small\textit{พฺยย}} \par{\small\textsc{ไม่พบข้อมูล}} {นั่นแล}}
+\entry{วิหรตีติ} {(วิหรติ - อิติ)} {\par \textbf{วิหรติ} \hfill {\small\textit{ขยฺา}} \par{\small\textsc{[วิ + หร + อ + ติ]}} {ย่อมประทับอยู่}\par \textbf{อิติ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[อิ + อ + ติ]}} {ด้วยประการฉะนี้}}
+\entry{วีสมฺปิ} {(วีสํ - อปิ)} {\par \textbf{วีสํ} \hfill {\small\textit{อิตฺ}} \par{\small\textsc{[ทส + ทส + ทส + โย วี + อีสํ]}} {๒๐}\par \textbf{อปิ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[น + ปิ + กฺวิ\, ธาน]}} {ก็ดี}}
+\end{multicols}
+\needspace{5cm} \section*{สฺ}
+\begin{multicols}{2}
+\entry{สํวิชฺชตีติ} {(สํวิชฺชติ - อิติ)} {\par \textbf{สํวิชฺชติ} \hfill {\small\textit{ขยฺา}} \par{\small\textsc{[สํ + วิช + ย + ติ]}} {ย่อมมีปรากฏ}\par \textbf{อิติ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[อิ + อ + ติ]}} {ด้วยประการฉะนี้}}
+\entry{สงฺคามวิชโยติปิ} {(สงฺคามวิชโย - อิติ - อปิ)} {\par \textbf{สงฺคามวิชย} \hfill {\small\textit{ปุ}} \par{\small\textsc{[สงฺคาม + วิชย]}} {สังคามวิชัย}\par \textbf{อิติ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[อิ + อ + ติ]}} {ด้วยประการฉะนี้}\par \textbf{อปิ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[น + ปิ + กฺวิ\, ธาน]}} {ก็ดี}}
+\entry{สญฺญีติ} {(สญฺญี - อิติ)} {\par \textbf{สญฺญี} \hfill {\small\textit{วาจฺ}} \par{\small\textsc{[สญฺญา + อี]}} {เป็นธรรมชาติที่มีสัญญา}\par \textbf{อิติ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[อิ + อ + ติ]}} {ด้วยประการฉะนี้}}
+\entry{สนฺตเมตํ} {(สนฺตํ - เอตํ)} {\par \textbf{สนฺต} \hfill {\small\textit{วาจฺ}} \par{\small\textsc{อส + อนฺต. นีติ.สุตฺต. ๑๐๑๙. นีติ.ปท. ๒๓๕-๖.}} {เป็นธรรมชาติที่สงบจากความเร่าร้อนทั้งปวง}\par \textbf{เอตา} \hfill {\small\textit{อิตฺ}} \par{\small\textsc{ไม่พบข้อมูล}} {นั่น}}
+\entry{สพฺเพเปเต} {(สพฺเพ - อปิ - เอเต)} {\par \textbf{สพฺพ} \hfill {\small\textit{วาจฺ}} \par{\small\textsc{ไม่พบข้อมูล}} {ทั้งปวง}\par \textbf{อปิ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[น + ปิ + กฺวิ\, ธาน]}} {ก็ดี}\par \textbf{เอต} \hfill {\small\textit{วาจฺ}} \par{\small\textsc{ไม่พบข้อมูล}} {นี้}}
+\entry{สพฺเพเหว} {(สพฺเพหิ - เอว)} {\par \textbf{สพฺพ} \hfill {\small\textit{วาจฺ}} \par{\small\textsc{ไม่พบข้อมูล}} {ทั้งปวง}\par \textbf{เอว} \hfill {\small\textit{พฺยย}} \par{\small\textsc{ไม่พบข้อมูล}} {นั่นแล}}
+\entry{สมุทยญฺจ} {(สมุทยํ - จ)} {\par \textbf{สมุทย} \hfill {\small\textit{ปุ}} \par{\small\textsc{[สํ + อุ + อิ + ณ]}} {การเกิด(หรือเหตุแห่งการเกิด)}\par \textbf{จ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[จิ + อ]\, จ  (พฺย) [จิ + อ]\, จ จ อกฺขรา.}} {ด้วย}}
+\entry{สมฺมามนสิการมนฺวาย} {(สมฺมามนสิการํ - อนฺวาย)} {\par \textbf{สมฺมามนสิการ} \hfill {\small\textit{ปุ}} \par{\small\textsc{[สมฺมา + มนสิการ]}} {การพิจารณา ในใจด้วยเหตุผลที่ถูกต้อง}\par \textbf{อนฺวาย} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[อนุ + อิ + ตฺวา]}} {อาศัยแล้ว}}
+\entry{สสฺสติสมนฺติ} {(สสฺสติสมํ - อิติ)} {\par \textbf{สสฺสติสม} \hfill {\small\textit{วาจฺ}} \par{\small\textsc{[สสฺสติ + สม]}} {เปรียบเหมือนกับวัตถุอมตะ เช่น แผ่นดิน ขุนเขาสิเนรุ ดวงอาทิตย์ และดวงจันทร์}\par \textbf{อิติ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[อิ + อ + ติ]}} {ด้วยประการฉะนี้}}
+\entry{สิตาว} {(สิตา - ว)} {\par \textbf{สิต} \hfill {\small\textit{วาจฺ}} \par{\small\textsc{[สิ + ต]}} {ติดอยู่}\par \textbf{ว} \hfill {\small\textit{ปุ}} \par{\small\textsc{[วา + อ]}} {ไม่พบข้อมูล}}
+\entry{สุขญฺจ} {(สุขํ - จ)} {\par \textbf{สุข} \hfill {\small\textit{นปุ}} \par{\small\textsc{[สุข + อ. สุ + ขาท + กฺวิ. สุ + ขนุ + กฺวิ. สุ + ขมุ + กฺวิ. สุ + ข.]}} {สุข}\par \textbf{จ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[จิ + อ]\, จ  (พฺย) [จิ + อ]\, จ จ อกฺขรา.}} {ด้วย}}
+\entry{สุขมิติ} {(สุขํ - อิติ)} {\par \textbf{สุข} \hfill {\small\textit{นปุ}} \par{\small\textsc{[สุข + อ. สุ + ขาท + กฺวิ. สุ + ขนุ + กฺวิ. สุ + ขมุ + กฺวิ. สุ + ข.]}} {สุข}\par \textbf{อิติ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[อิ + อ + ติ]}} {ด้วยประการฉะนี้}}
+\entry{สุขวิหารีติ} {(สุขวิหารี - อิติ)} {\par \textbf{สุขวิหารี} \hfill {\small\textit{วาจฺ}} \par{\small\textsc{[สุขวิหาร + ณี]}} {อยู่อย่างมีความสุข}\par \textbf{อิติ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[อิ + อ + ติ]}} {ด้วยประการฉะนี้}}
+\entry{สุปฺปิโยปิ} {(สุปฺปิโย - อปิ)} {\par \textbf{สุปฺปิย} \hfill {\small\textit{วาจฺ}} \par{\small\textsc{[สุ + ปี + อ]}} {ผู้มีนามว่าสุปปิยะ}\par \textbf{อปิ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[น + ปิ + กฺวิ\, ธาน]}} {ก็ดี}}
+\entry{เสยฺยถาปิ} {(เสยฺยถา - อปิ)} {\par \textbf{เสยฺยถา} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[เสยฺย + ถา]}} {เป็นเช่นไร}\par \textbf{อปิ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[น + ปิ + กฺวิ\, ธาน]}} {ก็ดี}}
+\entry{โสตนฺติปิ} {(โสตํ - อิติ - อปิ)} {\par \textbf{โสต} \hfill {\small\textit{นปุ}} \par{\small\textsc{[สุต + ณฺวุ]}} {โสตะ}\par \textbf{อิติ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[อิ + อ + ติ]}} {ด้วยประการฉะนี้}\par \textbf{อปิ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[น + ปิ + กฺวิ\, ธาน]}} {ก็ดี}}
+\entry{โสปิ} {(โส - อปิ)} {\par \textbf{ต} \hfill {\small\textit{วาจฺ}} \par{\small\textsc{ไม่พบข้อมูล}} {นั้น}\par \textbf{อปิ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[น + ปิ + กฺวิ\, ธาน]}} {ก็ดี}}
+\entry{โสมฺหิ} {(โส - อมฺหิ)} {\par \textbf{ต} \hfill {\small\textit{วาจฺ}} \par{\small\textsc{ไม่พบข้อมูล}} {นั้น}\par \textbf{อมฺหิ} \hfill {\small\textit{ขยฺา}} \par{\small\textsc{[อส + อ + มิ]}} {ย่อมเป็น}}
+\end{multicols}
+\needspace{5cm} \section*{หฺ}
+\begin{multicols}{2}
+\entry{เหตํ} {(หิ - เอตํ)} {\par \textbf{หิ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{ไม่พบข้อมูล}} {ด้วยว่า}\par \textbf{เอตา} \hfill {\small\textit{อิตฺ}} \par{\small\textsc{ไม่พบข้อมูล}} {นั่น}}
+\entry{โหตีติ} {(โหติ - อิติ)} {\par \textbf{โหติ} \hfill {\small\textit{ขยฺา}} \par{\small\textsc{[หู + อ + ติ]}} {ย่อมเป็น}\par \textbf{อิติ} \hfill {\small\textit{พฺยย}} \par{\small\textsc{[อิ + อ + ติ]}} {ด้วยประการฉะนี้}}
+\end{multicols}
+\end{document}

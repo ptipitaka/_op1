@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-08 13:36+0700\n"
+"POT-Creation-Date: 2023-09-27 10:13+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAMfE <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,3428 +18,1957 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: .\_op1\settings.py:151
+#: _op1/settings.py:151
 msgid "English"
 msgstr ""
 
-#: .\_op1\settings.py:152
+#: _op1/settings.py:152
 msgid "Thai"
 msgstr "ไทย"
 
-#: .\_venv\Lib\site-packages\click\_termui_impl.py:496
-#, python-brace-format
-msgid "{editor}: Editing failed"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\click\_termui_impl.py:500
-#, python-brace-format
-msgid "{editor}: Editing failed: {e}"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\click\core.py:1097
-msgid "Aborted!"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\click\core.py:1282
-#: .\_venv\Lib\site-packages\click\decorators.py:495
-msgid "Show this message and exit."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\click\core.py:1313
-#: .\_venv\Lib\site-packages\click\core.py:1339
-#, python-brace-format
-msgid "(Deprecated) {text}"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\click\core.py:1357
-msgid "Options"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\click\core.py:1383
-#, python-brace-format
-msgid "Got unexpected extra argument ({args})"
-msgid_plural "Got unexpected extra arguments ({args})"
-msgstr[0] ""
-msgstr[1] ""
-
-#: .\_venv\Lib\site-packages\click\core.py:1399
-msgid "DeprecationWarning: The command {name!r} is deprecated."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\click\core.py:1605
-msgid "Commands"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\click\core.py:1637
-msgid "Missing command."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\click\core.py:1715
-msgid "No such command {name!r}."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\click\core.py:2271
-msgid "Value must be an iterable."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\click\core.py:2291
-#, python-brace-format
-msgid "Takes {nargs} values but 1 was given."
-msgid_plural "Takes {nargs} values but {len} were given."
-msgstr[0] ""
-msgstr[1] ""
-
-#: .\_venv\Lib\site-packages\click\core.py:2734
-#, python-brace-format
-msgid "env var: {var}"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\click\core.py:2764
-msgid "(dynamic)"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\click\core.py:2777
-#, python-brace-format
-msgid "default: {default}"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\click\core.py:2790
-msgid "required"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\click\decorators.py:400
-#, python-format
-msgid "%(prog)s, version %(version)s"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\click\decorators.py:464
-msgid "Show the version and exit."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\click\exceptions.py:43
-#: .\_venv\Lib\site-packages\click\exceptions.py:79
-#, python-brace-format
-msgid "Error: {message}"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\click\exceptions.py:71
-#, python-brace-format
-msgid "Try '{command} {option}' for help."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\click\exceptions.py:120
-#, python-brace-format
-msgid "Invalid value: {message}"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\click\exceptions.py:122
-#, python-brace-format
-msgid "Invalid value for {param_hint}: {message}"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\click\exceptions.py:178
-msgid "Missing argument"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\click\exceptions.py:180
-msgid "Missing option"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\click\exceptions.py:182
-msgid "Missing parameter"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\click\exceptions.py:184
-#, python-brace-format
-msgid "Missing {param_type}"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\click\exceptions.py:191
-#, python-brace-format
-msgid "Missing parameter: {param_name}"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\click\exceptions.py:211
-#, python-brace-format
-msgid "No such option: {name}"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\click\exceptions.py:223
-#, python-brace-format
-msgid "Did you mean {possibility}?"
-msgid_plural "(Possible options: {possibilities})"
-msgstr[0] ""
-msgstr[1] ""
-
-#: .\_venv\Lib\site-packages\click\exceptions.py:261
-msgid "unknown error"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\click\exceptions.py:268
-msgid "Could not open file {filename!r}: {message}"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\click\parser.py:231
-msgid "Argument {name!r} takes {nargs} values."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\click\parser.py:413
-msgid "Option {name!r} does not take a value."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\click\parser.py:474
-msgid "Option {name!r} requires an argument."
-msgid_plural "Option {name!r} requires {nargs} arguments."
-msgstr[0] ""
-msgstr[1] ""
-
-#: .\_venv\Lib\site-packages\click\shell_completion.py:316
-msgid "Shell completion is not supported for Bash versions older than 4.4."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\click\shell_completion.py:322
-msgid "Couldn't detect Bash version, shell completion is not supported."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\click\termui.py:160
-msgid "Repeat for confirmation"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\click\termui.py:176
-msgid "Error: The value you entered was invalid."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\click\termui.py:178
-#, python-brace-format
-msgid "Error: {e.message}"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\click\termui.py:189
-msgid "Error: The two entered values do not match."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\click\termui.py:245
-msgid "Error: invalid input"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\click\termui.py:776
-msgid "Press any key to continue..."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\click\types.py:265
-#, python-brace-format
-msgid ""
-"Choose from:\n"
-"\t{choices}"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\click\types.py:297
-msgid "{value!r} is not {choice}."
-msgid_plural "{value!r} is not one of {choices}."
-msgstr[0] ""
-msgstr[1] ""
-
-#: .\_venv\Lib\site-packages\click\types.py:387
-msgid "{value!r} does not match the format {format}."
-msgid_plural "{value!r} does not match the formats {formats}."
-msgstr[0] ""
-msgstr[1] ""
-
-#: .\_venv\Lib\site-packages\click\types.py:409
-msgid "{value!r} is not a valid {number_type}."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\click\types.py:465
-#, python-brace-format
-msgid "{value} is not in the range {range}."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\click\types.py:606
-msgid "{value!r} is not a valid boolean."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\click\types.py:630
-msgid "{value!r} is not a valid UUID."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\click\types.py:811
-msgid "file"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\click\types.py:813
-msgid "directory"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\click\types.py:815
-msgid "path"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\click\types.py:861
-msgid "{name} {filename!r} does not exist."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\click\types.py:870
-msgid "{name} {filename!r} is a file."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\click\types.py:878
-#, python-brace-format
-msgid "{name} '{filename}' is a directory."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\click\types.py:887
-msgid "{name} {filename!r} is not readable."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\click\types.py:896
-msgid "{name} {filename!r} is not writable."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\click\types.py:905
-msgid "{name} {filename!r} is not executable."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\click\types.py:972
-#, python-brace-format
-msgid "{len_type} values are required, but {len_value} was given."
-msgid_plural "{len_type} values are required, but {len_value} were given."
-msgstr[0] ""
-msgstr[1] ""
-
-#: .\_venv\Lib\site-packages\django\contrib\messages\apps.py:15
-msgid "Messages"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\contrib\sitemaps\apps.py:8
-msgid "Site Maps"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\contrib\staticfiles\apps.py:9
-msgid "Static Files"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\contrib\syndication\apps.py:7
-msgid "Syndication"
-msgstr ""
-
-#. Translators: String used to replace omitted page numbers in elided page
-#. range generated by paginators, e.g. [1, 2, '…', 5, 6, 7, '…', 9, 10].
-#: .\_venv\Lib\site-packages\django\core\paginator.py:30
-msgid "…"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\core\paginator.py:50
-msgid "That page number is not an integer"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\core\paginator.py:52
-msgid "That page number is less than 1"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\core\paginator.py:54
-msgid "That page contains no results"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\core\validators.py:22
-msgid "Enter a valid value."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\core\validators.py:104
-#: .\_venv\Lib\site-packages\django\forms\fields.py:749
-msgid "Enter a valid URL."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\core\validators.py:164
-msgid "Enter a valid integer."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\core\validators.py:175
-msgid "Enter a valid email address."
-msgstr ""
-
-#. Translators: "letters" means latin letters: a-z and A-Z.
-#: .\_venv\Lib\site-packages\django\core\validators.py:256
-msgid ""
-"Enter a valid “slug” consisting of letters, numbers, underscores or hyphens."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\core\validators.py:264
-msgid ""
-"Enter a valid “slug” consisting of Unicode letters, numbers, underscores, or "
-"hyphens."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\core\validators.py:276
-#: .\_venv\Lib\site-packages\django\core\validators.py:284
-#: .\_venv\Lib\site-packages\django\core\validators.py:313
-msgid "Enter a valid IPv4 address."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\core\validators.py:293
-#: .\_venv\Lib\site-packages\django\core\validators.py:314
-msgid "Enter a valid IPv6 address."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\core\validators.py:305
-#: .\_venv\Lib\site-packages\django\core\validators.py:312
-msgid "Enter a valid IPv4 or IPv6 address."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\core\validators.py:348
-msgid "Enter only digits separated by commas."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\core\validators.py:354
-#, python-format
-msgid "Ensure this value is %(limit_value)s (it is %(show_value)s)."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\core\validators.py:389
-#, python-format
-msgid "Ensure this value is less than or equal to %(limit_value)s."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\core\validators.py:398
-#, python-format
-msgid "Ensure this value is greater than or equal to %(limit_value)s."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\core\validators.py:407
-#, python-format
-msgid "Ensure this value is a multiple of step size %(limit_value)s."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\core\validators.py:417
-#, python-format
-msgid ""
-"Ensure this value has at least %(limit_value)d character (it has "
-"%(show_value)d)."
-msgid_plural ""
-"Ensure this value has at least %(limit_value)d characters (it has "
-"%(show_value)d)."
-msgstr[0] ""
-msgstr[1] ""
-
-#: .\_venv\Lib\site-packages\django\core\validators.py:435
-#, python-format
-msgid ""
-"Ensure this value has at most %(limit_value)d character (it has "
-"%(show_value)d)."
-msgid_plural ""
-"Ensure this value has at most %(limit_value)d characters (it has "
-"%(show_value)d)."
-msgstr[0] ""
-msgstr[1] ""
-
-#: .\_venv\Lib\site-packages\django\core\validators.py:458
-#: .\_venv\Lib\site-packages\django\forms\fields.py:347
-#: .\_venv\Lib\site-packages\django\forms\fields.py:386
-msgid "Enter a number."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\core\validators.py:460
-#, python-format
-msgid "Ensure that there are no more than %(max)s digit in total."
-msgid_plural "Ensure that there are no more than %(max)s digits in total."
-msgstr[0] ""
-msgstr[1] ""
-
-#: .\_venv\Lib\site-packages\django\core\validators.py:465
-#, python-format
-msgid "Ensure that there are no more than %(max)s decimal place."
-msgid_plural "Ensure that there are no more than %(max)s decimal places."
-msgstr[0] ""
-msgstr[1] ""
-
-#: .\_venv\Lib\site-packages\django\core\validators.py:470
-#, python-format
-msgid ""
-"Ensure that there are no more than %(max)s digit before the decimal point."
-msgid_plural ""
-"Ensure that there are no more than %(max)s digits before the decimal point."
-msgstr[0] ""
-msgstr[1] ""
-
-#: .\_venv\Lib\site-packages\django\core\validators.py:541
-#, python-format
-msgid ""
-"File extension “%(extension)s” is not allowed. Allowed extensions are: "
-"%(allowed_extensions)s."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\core\validators.py:602
-msgid "Null characters are not allowed."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\db\models\base.py:1423
-#: .\_venv\Lib\site-packages\django\forms\models.py:893
-msgid "and"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\db\models\base.py:1425
-#, python-format
-msgid "%(model_name)s with this %(field_labels)s already exists."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\db\models\constraints.py:17
-#, python-format
-msgid "Constraint “%(name)s” is violated."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\db\models\fields\__init__.py:128
-#, python-format
-msgid "Value %(value)r is not a valid choice."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\db\models\fields\__init__.py:129
-msgid "This field cannot be null."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\db\models\fields\__init__.py:130
-msgid "This field cannot be blank."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\db\models\fields\__init__.py:131
-#, python-format
-msgid "%(model_name)s with this %(field_label)s already exists."
-msgstr ""
-
-#. Translators: The 'lookup_type' is one of 'date', 'year' or
-#. 'month'. Eg: "Title must be unique for pub_date year"
-#: .\_venv\Lib\site-packages\django\db\models\fields\__init__.py:135
-#, python-format
-msgid ""
-"%(field_label)s must be unique for %(date_field_label)s %(lookup_type)s."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\db\models\fields\__init__.py:173
-#, python-format
-msgid "Field of type: %(field_type)s"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\db\models\fields\__init__.py:1094
-#, python-format
-msgid "“%(value)s” value must be either True or False."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\db\models\fields\__init__.py:1095
-#, python-format
-msgid "“%(value)s” value must be either True, False, or None."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\db\models\fields\__init__.py:1097
-msgid "Boolean (Either True or False)"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\db\models\fields\__init__.py:1147
-#, python-format
-msgid "String (up to %(max_length)s)"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\db\models\fields\__init__.py:1149
-msgid "String (unlimited)"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\db\models\fields\__init__.py:1253
-msgid "Comma-separated integers"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\db\models\fields\__init__.py:1354
-#, python-format
-msgid ""
-"“%(value)s” value has an invalid date format. It must be in YYYY-MM-DD "
-"format."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\db\models\fields\__init__.py:1358
-#: .\_venv\Lib\site-packages\django\db\models\fields\__init__.py:1493
-#, python-format
-msgid ""
-"“%(value)s” value has the correct format (YYYY-MM-DD) but it is an invalid "
-"date."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\db\models\fields\__init__.py:1362
-msgid "Date (without time)"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\db\models\fields\__init__.py:1489
-#, python-format
-msgid ""
-"“%(value)s” value has an invalid format. It must be in YYYY-MM-DD HH:MM[:ss[."
-"uuuuuu]][TZ] format."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\db\models\fields\__init__.py:1497
-#, python-format
-msgid ""
-"“%(value)s” value has the correct format (YYYY-MM-DD HH:MM[:ss[.uuuuuu]]"
-"[TZ]) but it is an invalid date/time."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\db\models\fields\__init__.py:1502
-msgid "Date (with time)"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\db\models\fields\__init__.py:1626
-#, python-format
-msgid "“%(value)s” value must be a decimal number."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\db\models\fields\__init__.py:1628
-msgid "Decimal number"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\db\models\fields\__init__.py:1791
-#, python-format
-msgid ""
-"“%(value)s” value has an invalid format. It must be in [DD] [[HH:]MM:]ss[."
-"uuuuuu] format."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\db\models\fields\__init__.py:1795
-msgid "Duration"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\db\models\fields\__init__.py:1847
-msgid "Email address"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\db\models\fields\__init__.py:1872
-msgid "File path"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\db\models\fields\__init__.py:1950
-#, python-format
-msgid "“%(value)s” value must be a float."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\db\models\fields\__init__.py:1952
-msgid "Floating point number"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\db\models\fields\__init__.py:1992
-#, python-format
-msgid "“%(value)s” value must be an integer."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\db\models\fields\__init__.py:1994
-msgid "Integer"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\db\models\fields\__init__.py:2090
-msgid "Big (8 byte) integer"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\db\models\fields\__init__.py:2107
-msgid "Small integer"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\db\models\fields\__init__.py:2115
-msgid "IPv4 address"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\db\models\fields\__init__.py:2146
-msgid "IP address"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\db\models\fields\__init__.py:2239
-#: .\_venv\Lib\site-packages\django\db\models\fields\__init__.py:2240
-#, python-format
-msgid "“%(value)s” value must be either None, True or False."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\db\models\fields\__init__.py:2242
-msgid "Boolean (Either True, False or None)"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\db\models\fields\__init__.py:2293
-msgid "Positive big integer"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\db\models\fields\__init__.py:2308
-msgid "Positive integer"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\db\models\fields\__init__.py:2323
-msgid "Positive small integer"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\db\models\fields\__init__.py:2339
-#, python-format
-msgid "Slug (up to %(max_length)s)"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\db\models\fields\__init__.py:2375
-msgid "Text"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\db\models\fields\__init__.py:2450
-#, python-format
-msgid ""
-"“%(value)s” value has an invalid format. It must be in HH:MM[:ss[.uuuuuu]] "
-"format."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\db\models\fields\__init__.py:2454
-#, python-format
-msgid ""
-"“%(value)s” value has the correct format (HH:MM[:ss[.uuuuuu]]) but it is an "
-"invalid time."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\db\models\fields\__init__.py:2458
-msgid "Time"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\db\models\fields\__init__.py:2566
-msgid "URL"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\db\models\fields\__init__.py:2590
-msgid "Raw binary data"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\db\models\fields\__init__.py:2655
-#, python-format
-msgid "“%(value)s” is not a valid UUID."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\db\models\fields\__init__.py:2657
-msgid "Universally unique identifier"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\db\models\fields\files.py:232
-msgid "File"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\db\models\fields\files.py:393
-#: .\tipitaka\templates\tipitaka\common_reference_subform.html:134
-msgid "Image"
-msgstr "รูปภาพ"
-
-#: .\_venv\Lib\site-packages\django\db\models\fields\json.py:26
-msgid "A JSON object"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\db\models\fields\json.py:28
-msgid "Value must be valid JSON."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\db\models\fields\related.py:919
-#, python-format
-msgid "%(model)s instance with %(field)s %(value)r does not exist."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\db\models\fields\related.py:921
-msgid "Foreign Key (type determined by related field)"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\db\models\fields\related.py:1212
-msgid "One-to-one relationship"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\db\models\fields\related.py:1269
-#, python-format
-msgid "%(from)s-%(to)s relationship"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\db\models\fields\related.py:1271
-#, python-format
-msgid "%(from)s-%(to)s relationships"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\db\models\fields\related.py:1319
-msgid "Many-to-many relationship"
-msgstr ""
-
-#. Translators: If found as last label character, these punctuation
-#. characters will prevent the default label_suffix to be appended to the label
-#: .\_venv\Lib\site-packages\django\forms\boundfield.py:184
-msgid ":?.!"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\forms\fields.py:91
-msgid "This field is required."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\forms\fields.py:298
-msgid "Enter a whole number."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\forms\fields.py:467
-#: .\_venv\Lib\site-packages\django\forms\fields.py:1238
-msgid "Enter a valid date."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\forms\fields.py:490
-#: .\_venv\Lib\site-packages\django\forms\fields.py:1239
-msgid "Enter a valid time."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\forms\fields.py:517
-msgid "Enter a valid date/time."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\forms\fields.py:551
-msgid "Enter a valid duration."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\forms\fields.py:552
-#, python-brace-format
-msgid "The number of days must be between {min_days} and {max_days}."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\forms\fields.py:618
-msgid "No file was submitted. Check the encoding type on the form."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\forms\fields.py:619
-msgid "No file was submitted."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\forms\fields.py:620
-msgid "The submitted file is empty."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\forms\fields.py:622
-#, python-format
-msgid "Ensure this filename has at most %(max)d character (it has %(length)d)."
-msgid_plural ""
-"Ensure this filename has at most %(max)d characters (it has %(length)d)."
-msgstr[0] ""
-msgstr[1] ""
-
-#: .\_venv\Lib\site-packages\django\forms\fields.py:627
-msgid "Please either submit a file or check the clear checkbox, not both."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\forms\fields.py:691
-msgid ""
-"Upload a valid image. The file you uploaded was either not an image or a "
-"corrupted image."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\forms\fields.py:854
-#: .\_venv\Lib\site-packages\django\forms\fields.py:946
-#: .\_venv\Lib\site-packages\django\forms\models.py:1566
-#, python-format
-msgid "Select a valid choice. %(value)s is not one of the available choices."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\forms\fields.py:948
-#: .\_venv\Lib\site-packages\django\forms\fields.py:1067
-#: .\_venv\Lib\site-packages\django\forms\models.py:1564
-msgid "Enter a list of values."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\forms\fields.py:1068
-msgid "Enter a complete value."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\forms\fields.py:1307
-msgid "Enter a valid UUID."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\forms\fields.py:1337
-msgid "Enter a valid JSON."
-msgstr ""
-
-#. Translators: This is the default suffix added to form field labels
-#: .\_venv\Lib\site-packages\django\forms\forms.py:98
-msgid ":"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\forms\forms.py:244
-#: .\_venv\Lib\site-packages\django\forms\forms.py:328
-#, python-format
-msgid "(Hidden field %(name)s) %(error)s"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\forms\formsets.py:63
-#, python-format
-msgid ""
-"ManagementForm data is missing or has been tampered with. Missing fields: "
-"%(field_names)s. You may need to file a bug report if the issue persists."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\forms\formsets.py:67
-#, python-format
-msgid "Please submit at most %(num)d form."
-msgid_plural "Please submit at most %(num)d forms."
-msgstr[0] ""
-msgstr[1] ""
-
-#: .\_venv\Lib\site-packages\django\forms\formsets.py:72
-#, python-format
-msgid "Please submit at least %(num)d form."
-msgid_plural "Please submit at least %(num)d forms."
-msgstr[0] ""
-msgstr[1] ""
-
-#: .\_venv\Lib\site-packages\django\forms\formsets.py:484
-#: .\_venv\Lib\site-packages\django\forms\formsets.py:491
-msgid "Order"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\forms\formsets.py:499
-#: .\padanukkama\tables.py:225 .\padanukkama\tables.py:354
-#: .\padanukkama\tables.py:411
-#: .\padanukkama\templates\padanukkama\htmx\htmx_translation_pada.html:140
-#: .\padanukkama\templates\padanukkama\literal_translation_detail.html:25
-#: .\padanukkama\templates\padanukkama\literal_translation_detail.html:112
-#: .\padanukkama\templates\padanukkama\padanukkama_delete.html:6
-#: .\padanukkama\templates\padanukkama\padanukkama_update.html:71
-#: .\setting\templates\setting\akhyala_saddamala.html:298
-#: .\setting\templates\setting\dhatu_detail.html:9
-#: .\setting\templates\setting\dhatu_detail.html:58
-#: .\setting\templates\setting\nama_saddamala_detail.html:28
-#: .\setting\templates\setting\nama_saddamala_detail.html:184
-#: .\setting\templates\setting\noun_declension_detail.html:25
-#: .\setting\templates\setting\noun_declension_detail.html:73
-#: .\setting\templates\setting\verb_conjugation_detail.html:25
-#: .\setting\templates\setting\verb_conjugation_detail.html:116
-#: .\tipitaka\templates\tipitaka\common_reference_delete.html:5
-msgid "Delete"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\forms\models.py:886
-#, python-format
-msgid "Please correct the duplicate data for %(field)s."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\forms\models.py:891
-#, python-format
-msgid "Please correct the duplicate data for %(field)s, which must be unique."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\forms\models.py:898
-#, python-format
-msgid ""
-"Please correct the duplicate data for %(field_name)s which must be unique "
-"for the %(lookup)s in %(date_field)s."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\forms\models.py:907
-msgid "Please correct the duplicate values below."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\forms\models.py:1338
-msgid "The inline value did not match the parent instance."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\forms\models.py:1429
-msgid "Select a valid choice. That choice is not one of the available choices."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\forms\models.py:1568
-#, python-format
-msgid "“%(pk)s” is not a valid value."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\forms\utils.py:226
-#, python-format
-msgid ""
-"%(datetime)s couldn’t be interpreted in time zone %(current_timezone)s; it "
-"may be ambiguous or it may not exist."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\forms\widgets.py:439
-msgid "Clear"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\forms\widgets.py:440
-msgid "Currently"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\forms\widgets.py:441
-msgid "Change"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\forms\widgets.py:770
-msgid "Unknown"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\forms\widgets.py:771
-msgid "Yes"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\forms\widgets.py:772
-msgid "No"
-msgstr ""
-
-#. Translators: Please do not add spaces around commas.
-#: .\_venv\Lib\site-packages\django\template\defaultfilters.py:861
-msgid "yes,no,maybe"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\template\defaultfilters.py:891
-#: .\_venv\Lib\site-packages\django\template\defaultfilters.py:908
-#, python-format
-msgid "%(size)d byte"
-msgid_plural "%(size)d bytes"
-msgstr[0] ""
-msgstr[1] ""
-
-#: .\_venv\Lib\site-packages\django\template\defaultfilters.py:910
-#, python-format
-msgid "%s KB"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\template\defaultfilters.py:912
-#, python-format
-msgid "%s MB"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\template\defaultfilters.py:914
-#, python-format
-msgid "%s GB"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\template\defaultfilters.py:916
-#, python-format
-msgid "%s TB"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\template\defaultfilters.py:918
-#, python-format
-msgid "%s PB"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\utils\dateformat.py:73
-msgid "p.m."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\utils\dateformat.py:74
-msgid "a.m."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\utils\dateformat.py:79
-msgid "PM"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\utils\dateformat.py:80
-msgid "AM"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\utils\dateformat.py:152
-msgid "midnight"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\utils\dateformat.py:154
-msgid "noon"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\utils\dates.py:7
-msgid "Monday"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\utils\dates.py:8
-msgid "Tuesday"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\utils\dates.py:9
-msgid "Wednesday"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\utils\dates.py:10
-msgid "Thursday"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\utils\dates.py:11
-msgid "Friday"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\utils\dates.py:12
-msgid "Saturday"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\utils\dates.py:13
-msgid "Sunday"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\utils\dates.py:16
-msgid "Mon"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\utils\dates.py:17
-msgid "Tue"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\utils\dates.py:18
-msgid "Wed"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\utils\dates.py:19
-msgid "Thu"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\utils\dates.py:20
-msgid "Fri"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\utils\dates.py:21
-msgid "Sat"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\utils\dates.py:22
-msgid "Sun"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\utils\dates.py:25
-msgid "January"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\utils\dates.py:26
-msgid "February"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\utils\dates.py:27
-msgid "March"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\utils\dates.py:28
-msgid "April"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\utils\dates.py:29
-msgid "May"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\utils\dates.py:30
-msgid "June"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\utils\dates.py:31
-msgid "July"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\utils\dates.py:32
-msgid "August"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\utils\dates.py:33
-msgid "September"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\utils\dates.py:34
-msgid "October"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\utils\dates.py:35
-msgid "November"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\utils\dates.py:36
-msgid "December"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\utils\dates.py:39
-msgid "jan"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\utils\dates.py:40
-msgid "feb"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\utils\dates.py:41
-msgid "mar"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\utils\dates.py:42
-msgid "apr"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\utils\dates.py:43
-msgid "may"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\utils\dates.py:44
-msgid "jun"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\utils\dates.py:45
-msgid "jul"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\utils\dates.py:46
-msgid "aug"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\utils\dates.py:47
-msgid "sep"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\utils\dates.py:48
-msgid "oct"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\utils\dates.py:49
-msgid "nov"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\utils\dates.py:50
-msgid "dec"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\utils\dates.py:53
-msgctxt "abbrev. month"
-msgid "Jan."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\utils\dates.py:54
-msgctxt "abbrev. month"
-msgid "Feb."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\utils\dates.py:55
-msgctxt "abbrev. month"
-msgid "March"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\utils\dates.py:56
-msgctxt "abbrev. month"
-msgid "April"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\utils\dates.py:57
-msgctxt "abbrev. month"
-msgid "May"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\utils\dates.py:58
-msgctxt "abbrev. month"
-msgid "June"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\utils\dates.py:59
-msgctxt "abbrev. month"
-msgid "July"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\utils\dates.py:60
-msgctxt "abbrev. month"
-msgid "Aug."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\utils\dates.py:61
-msgctxt "abbrev. month"
-msgid "Sept."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\utils\dates.py:62
-msgctxt "abbrev. month"
-msgid "Oct."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\utils\dates.py:63
-msgctxt "abbrev. month"
-msgid "Nov."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\utils\dates.py:64
-msgctxt "abbrev. month"
-msgid "Dec."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\utils\dates.py:67
-msgctxt "alt. month"
-msgid "January"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\utils\dates.py:68
-msgctxt "alt. month"
-msgid "February"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\utils\dates.py:69
-msgctxt "alt. month"
-msgid "March"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\utils\dates.py:70
-msgctxt "alt. month"
-msgid "April"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\utils\dates.py:71
-msgctxt "alt. month"
-msgid "May"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\utils\dates.py:72
-msgctxt "alt. month"
-msgid "June"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\utils\dates.py:73
-msgctxt "alt. month"
-msgid "July"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\utils\dates.py:74
-msgctxt "alt. month"
-msgid "August"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\utils\dates.py:75
-msgctxt "alt. month"
-msgid "September"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\utils\dates.py:76
-msgctxt "alt. month"
-msgid "October"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\utils\dates.py:77
-msgctxt "alt. month"
-msgid "November"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\utils\dates.py:78
-msgctxt "alt. month"
-msgid "December"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\utils\ipv6.py:8
-msgid "This is not a valid IPv6 address."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\utils\text.py:78
-#, python-format
-msgctxt "String to return when truncating text"
-msgid "%(truncated_text)s…"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\utils\text.py:254
-msgid "or"
-msgstr ""
-
-#. Translators: This string is used as a separator between list elements
-#: .\_venv\Lib\site-packages\django\utils\text.py:273
-#: .\_venv\Lib\site-packages\django\utils\timesince.py:131
-msgid ", "
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\utils\timesince.py:8
-#, python-format
-msgid "%(num)d year"
-msgid_plural "%(num)d years"
-msgstr[0] ""
-msgstr[1] ""
-
-#: .\_venv\Lib\site-packages\django\utils\timesince.py:9
-#, python-format
-msgid "%(num)d month"
-msgid_plural "%(num)d months"
-msgstr[0] ""
-msgstr[1] ""
-
-#: .\_venv\Lib\site-packages\django\utils\timesince.py:10
-#, python-format
-msgid "%(num)d week"
-msgid_plural "%(num)d weeks"
-msgstr[0] ""
-msgstr[1] ""
-
-#: .\_venv\Lib\site-packages\django\utils\timesince.py:11
-#, python-format
-msgid "%(num)d day"
-msgid_plural "%(num)d days"
-msgstr[0] ""
-msgstr[1] ""
-
-#: .\_venv\Lib\site-packages\django\utils\timesince.py:12
-#, python-format
-msgid "%(num)d hour"
-msgid_plural "%(num)d hours"
-msgstr[0] ""
-msgstr[1] ""
-
-#: .\_venv\Lib\site-packages\django\utils\timesince.py:13
-#, python-format
-msgid "%(num)d minute"
-msgid_plural "%(num)d minutes"
-msgstr[0] ""
-msgstr[1] ""
-
-#: .\_venv\Lib\site-packages\django\views\csrf.py:111
-msgid "Forbidden"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\views\csrf.py:112
-msgid "CSRF verification failed. Request aborted."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\views\csrf.py:116
-msgid ""
-"You are seeing this message because this HTTPS site requires a “Referer "
-"header” to be sent by your web browser, but none was sent. This header is "
-"required for security reasons, to ensure that your browser is not being "
-"hijacked by third parties."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\views\csrf.py:122
-msgid ""
-"If you have configured your browser to disable “Referer” headers, please re-"
-"enable them, at least for this site, or for HTTPS connections, or for “same-"
-"origin” requests."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\views\csrf.py:127
-msgid ""
-"If you are using the <meta name=\"referrer\" content=\"no-referrer\"> tag or "
-"including the “Referrer-Policy: no-referrer” header, please remove them. The "
-"CSRF protection requires the “Referer” header to do strict referer checking. "
-"If you’re concerned about privacy, use alternatives like <a rel=\"noreferrer"
-"\" …> for links to third-party sites."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\views\csrf.py:136
-msgid ""
-"You are seeing this message because this site requires a CSRF cookie when "
-"submitting forms. This cookie is required for security reasons, to ensure "
-"that your browser is not being hijacked by third parties."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\views\csrf.py:142
-msgid ""
-"If you have configured your browser to disable cookies, please re-enable "
-"them, at least for this site, or for “same-origin” requests."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\views\csrf.py:148
-msgid "More information is available with DEBUG=True."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\views\generic\dates.py:44
-msgid "No year specified"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\views\generic\dates.py:64
-#: .\_venv\Lib\site-packages\django\views\generic\dates.py:115
-#: .\_venv\Lib\site-packages\django\views\generic\dates.py:214
-msgid "Date out of range"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\views\generic\dates.py:94
-msgid "No month specified"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\views\generic\dates.py:147
-msgid "No day specified"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\views\generic\dates.py:194
-msgid "No week specified"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\views\generic\dates.py:349
-#: .\_venv\Lib\site-packages\django\views\generic\dates.py:380
-#, python-format
-msgid "No %(verbose_name_plural)s available"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\views\generic\dates.py:652
-#, python-format
-msgid ""
-"Future %(verbose_name_plural)s not available because %(class_name)s."
-"allow_future is False."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\views\generic\dates.py:692
-#, python-format
-msgid "Invalid date string “%(datestr)s” given format “%(format)s”"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\views\generic\detail.py:56
-#, python-format
-msgid "No %(verbose_name)s found matching the query"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\views\generic\list.py:70
-msgid "Page is not “last”, nor can it be converted to an int."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\views\generic\list.py:77
-#, python-format
-msgid "Invalid page (%(page_number)s): %(message)s"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\views\generic\list.py:169
-#, python-format
-msgid "Empty list and “%(class_name)s.allow_empty” is False."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\views\static.py:38
-msgid "Directory indexes are not allowed here."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\views\static.py:40
-#, python-format
-msgid "“%(path)s” does not exist"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\views\static.py:79
-#, python-format
-msgid "Index of %(directory)s"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\views\templates\default_urlconf.html:7
-#: .\_venv\Lib\site-packages\django\views\templates\default_urlconf.html:221
-msgid "The install worked successfully! Congratulations!"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\views\templates\default_urlconf.html:207
-#, python-format
-msgid ""
-"View <a href=\"https://docs.djangoproject.com/en/%(version)s/releases/\" "
-"target=\"_blank\" rel=\"noopener\">release notes</a> for Django %(version)s"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\views\templates\default_urlconf.html:222
-#, python-format
-msgid ""
-"You are seeing this page because <a href=\"https://docs.djangoproject.com/en/"
-"%(version)s/ref/settings/#debug\" target=\"_blank\" rel=\"noopener"
-"\">DEBUG=True</a> is in your settings file and you have not configured any "
-"URLs."
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\views\templates\default_urlconf.html:230
-msgid "Django Documentation"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\views\templates\default_urlconf.html:231
-msgid "Topics, references, &amp; how-to’s"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\views\templates\default_urlconf.html:239
-msgid "Tutorial: A Polling App"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\views\templates\default_urlconf.html:240
-msgid "Get started with Django"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\views\templates\default_urlconf.html:248
-msgid "Django Community"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\django\views\templates\default_urlconf.html:249
-msgid "Connect, get help, or contribute"
-msgstr ""
-
-#: .\_venv\Lib\site-packages\shortuuid\django_fields.py:12
-msgid "A short UUID field."
-msgstr ""
-
-#: .\abidan\models.py:7 .\padanukkama\models.py:43 .\padanukkama\models.py:80
-#: .\padanukkama\models.py:202 .\setting\tables.py:159
-#: .\setting\templates\setting\noun_declension_detail.html:44
-#: .\tipitaka\models.py:18 .\tipitaka\models.py:36 .\tipitaka\models.py:141
-#: .\tipitaka\models.py:192 .\tipitaka\models.py:212
+#: abidan/models.py:7 padanukkama/models.py:43 padanukkama/models.py:80
+#: padanukkama/models.py:202 setting/tables.py:159
+#: setting/templates/setting/noun_declension_detail.html:44
+#: tipitaka/models.py:18 tipitaka/models.py:36 tipitaka/models.py:141
+#: tipitaka/models.py:192 tipitaka/models.py:212
 msgid "Code"
 msgstr "รหัส"
 
-#: .\abidan\models.py:8 .\padanukkama\models.py:28 .\padanukkama\models.py:46
-#: .\padanukkama\models.py:61 .\padanukkama\models.py:74
-#: .\padanukkama\models.py:203 .\padanukkama\models.py:224
-#: .\padanukkama\models.py:263 .\padanukkama\models.py:510
-#: .\padanukkama\models.py:645 .\padanukkama\models.py:669
-#: .\padanukkama\models.py:692
-#: .\padanukkama\templates\padanukkama\include\namasaddamala.html:15
-#: .\padanukkama\templates\padanukkama\literal_translation_detail.html:44
-#: .\setting\templates\setting\dhatu_detail.html:28
-#: .\setting\templates\setting\nama_saddamala_detail.html:43
-#: .\setting\templates\setting\noun_declension_detail.html:45
-#: .\setting\templates\setting\verb_conjugation_detail.html:43
-#: .\setting\templates\setting\verb_conjugation_detail.html:63
-#: .\tipitaka\models.py:37 .\tipitaka\models.py:214
+#: abidan/models.py:8 padanukkama/models.py:28 padanukkama/models.py:46
+#: padanukkama/models.py:61 padanukkama/models.py:74 padanukkama/models.py:203
+#: padanukkama/models.py:224 padanukkama/models.py:263
+#: padanukkama/models.py:510 padanukkama/models.py:651
+#: padanukkama/models.py:675 padanukkama/models.py:698
+#: padanukkama/templates/padanukkama/include/namasaddamala.html:15
+#: padanukkama/templates/padanukkama/literal_translation_detail.html:44
+#: setting/templates/setting/dhatu_detail.html:28
+#: setting/templates/setting/nama_saddamala_detail.html:43
+#: setting/templates/setting/noun_declension_detail.html:45
+#: setting/templates/setting/verb_conjugation_detail.html:43
+#: setting/templates/setting/verb_conjugation_detail.html:63
+#: tipitaka/models.py:37 tipitaka/models.py:214
 msgid "Title"
 msgstr "หัวเรื่อง"
 
-#: .\abidan\models.py:9
+#: abidan/models.py:9
 msgid "Subtitle"
 msgstr "หัวเรื่องรอง"
 
-#: .\abidan\models.py:10 .\tipitaka\models.py:62
+#: abidan/models.py:10 tipitaka/models.py:62
 msgid "Book cover"
 msgstr "ปก"
 
-#: .\abidan\models.py:14 .\tipitaka\models.py:58
+#: abidan/models.py:14 tipitaka/models.py:58
 msgid "Total pages"
 msgstr "จำนวนหน้า"
 
-#: .\abidan\models.py:20 .\padanukkama\models.py:571 .\tipitaka\forms.py:34
-#: .\tipitaka\models.py:142
+#: abidan/models.py:20 padanukkama/models.py:571 tipitaka/forms.py:34
+#: tipitaka/models.py:142
 msgid "Word"
 msgstr "คำ"
 
-#: .\abidan\models.py:21
+#: abidan/models.py:21
 msgid "Burmese"
 msgstr "พม่า"
 
-#: .\abidan\models.py:22
+#: abidan/models.py:22
 msgid "Roman"
 msgstr "โรมัน"
 
-#: .\abidan\models.py:23 .\tipitaka\models.py:143
+#: abidan/models.py:23 tipitaka/models.py:143
 msgid "Word sequence"
 msgstr "ลำดับคำ"
 
-#: .\abidan\models.py:24
+#: abidan/models.py:24
 msgid "Book"
 msgstr "หนังสือ"
 
-#: .\abidan\models.py:25
+#: abidan/models.py:25
 msgid "Page no"
 msgstr "เลขหน้า"
 
-#: .\abidan\models.py:26
+#: abidan/models.py:26
 msgid "Note"
 msgstr "บันทึก"
 
-#: .\abidan\tables.py:17 .\padanukkama\tables.py:453 .\setting\tables.py:27
-#: .\setting\tables.py:83 .\setting\tables.py:130 .\setting\tables.py:178
-#: .\tipitaka\tables.py:21 .\tipitaka\tables.py:48 .\tipitaka\tables.py:83
+#: abidan/tables.py:17 padanukkama/tables.py:453 setting/tables.py:27
+#: setting/tables.py:83 setting/tables.py:130 setting/tables.py:178
+#: tipitaka/tables.py:21 tipitaka/tables.py:48 tipitaka/tables.py:83
 msgid "Action"
 msgstr "ดำเนินการ"
 
-#: .\abidan\tables.py:32 .\tipitaka\tables.py:64
+#: abidan/tables.py:32 tipitaka/tables.py:64
 msgid "Word starts with"
 msgstr "เริ่มต้นคำด้วย"
 
-#: .\abidan\tables.py:36 .\tipitaka\tables.py:68
+#: abidan/tables.py:36 tipitaka/tables.py:68
 msgid "Word contains"
 msgstr "คำประกอบด้วย"
 
-#: .\abidan\templates\abidan\details.html:17
-#: .\padanukkama\templates\padanukkama\literal_translation_detail.html:32
-#: .\padanukkama\templates\padanukkama\pada.html:30
-#: .\padanukkama\templates\padanukkama\pada_declension.html:32
-#: .\padanukkama\templates\padanukkama\pada_split_sandhi.html:14
-#: .\padanukkama\templates\padanukkama\padanukkama_create.html:10
-#: .\padanukkama\templates\padanukkama\padanukkama_delete.html:10
-#: .\padanukkama\templates\padanukkama\padanukkama_update.html:10
-#: .\padanukkama\templates\padanukkama\sadda_update.html:32
-#: .\setting\templates\setting\dhatu_detail.html:16
-#: .\setting\templates\setting\nama_saddamala_detail.html:32
-#: .\setting\templates\setting\noun_declension_detail.html:32
-#: .\setting\templates\setting\verb_conjugation_detail.html:31
-#: .\tipitaka\templates\tipitaka\common_reference_delete.html:9
-#: .\tipitaka\templates\tipitaka\common_reference_detail.html:9
-#: .\tipitaka\templates\tipitaka\common_reference_subform.html:24
-#: .\tipitaka\templates\tipitaka\digital_archive_details.html:14
-#: .\tipitaka\templates\tipitaka\wordlist_page_source.html:14
+#: abidan/templates/abidan/details.html:17
+#: padanukkama/templates/padanukkama/literal_translation_detail.html:32
+#: padanukkama/templates/padanukkama/pada.html:30
+#: padanukkama/templates/padanukkama/pada_declension.html:32
+#: padanukkama/templates/padanukkama/pada_split_sandhi.html:14
+#: padanukkama/templates/padanukkama/padanukkama_create.html:10
+#: padanukkama/templates/padanukkama/padanukkama_delete.html:10
+#: padanukkama/templates/padanukkama/padanukkama_update.html:10
+#: padanukkama/templates/padanukkama/sadda_update.html:32
+#: setting/templates/setting/dhatu_detail.html:16
+#: setting/templates/setting/nama_saddamala_detail.html:32
+#: setting/templates/setting/noun_declension_detail.html:32
+#: setting/templates/setting/verb_conjugation_detail.html:31
+#: tipitaka/templates/tipitaka/common_reference_delete.html:9
+#: tipitaka/templates/tipitaka/common_reference_detail.html:9
+#: tipitaka/templates/tipitaka/common_reference_subform.html:24
+#: tipitaka/templates/tipitaka/digital_archive_details.html:14
+#: tipitaka/templates/tipitaka/wordlist_page_source.html:14
 msgid "Back"
 msgstr "กลับ"
 
-#: .\abidan\templates\abidan\include\title.html:3
+#: abidan/templates/abidan/include/title.html:3
 msgid "Tipiṭaka Pāḷi-Burmese Dictionary"
 msgstr "อภิธานพระไตรปิฎก บาลี-พม่า"
 
-#: .\abidan\templates\abidan\index.html:26
-#: .\main\templates\registration\login.html:26
-#: .\padanukkama\templates\padanukkama\htmx\htmx_translation_pada.html:114
-#: .\padanukkama\templates\padanukkama\htmx\htmx_translation_pada.html:148
-#: .\padanukkama\templates\padanukkama\htmx\htmx_translation_pada_translate.html:40
-#: .\padanukkama\templates\padanukkama\include\htmx_translation_pada\toggle_sondhi_table.html:28
-#: .\padanukkama\templates\padanukkama\literal_translation.html:36
-#: .\padanukkama\templates\padanukkama\pada.html:49
-#: .\padanukkama\templates\padanukkama\pada.html:79
-#: .\padanukkama\templates\padanukkama\pada_declension.html:74
-#: .\padanukkama\templates\padanukkama\pada_split_sandhi.html:35
-#: .\padanukkama\templates\padanukkama\padanukkama.html:31
-#: .\padanukkama\templates\padanukkama\sadda.html:59
-#: .\padanukkama\templates\padanukkama\sadda.html:89
-#: .\setting\templates\setting\dhatu.html:31
-#: .\setting\templates\setting\nama_saddamala.html:31
-#: .\setting\templates\setting\noun_declension.html:31
-#: .\setting\templates\setting\verb_conjugation.html:31
-#: .\tipitaka\templates\tipitaka\digital_archive.html:30
-#: .\tipitaka\templates\tipitaka\structure.html:28
-#: .\tipitaka\templates\tipitaka\wordlist.html:62
-#: .\tipitaka\templates\tipitaka\wordlist_master.html:27
+#: abidan/templates/abidan/index.html:26
+#: main/templates/registration/login.html:26
+#: padanukkama/templates/padanukkama/htmx/htmx_translation_pada.html:118
+#: padanukkama/templates/padanukkama/htmx/htmx_translation_pada.html:153
+#: padanukkama/templates/padanukkama/htmx/htmx_translation_pada_translate.html:40
+#: padanukkama/templates/padanukkama/include/htmx_translation_pada/toggle_sondhi_table.html:28
+#: padanukkama/templates/padanukkama/literal_translation.html:36
+#: padanukkama/templates/padanukkama/pada.html:49
+#: padanukkama/templates/padanukkama/pada.html:79
+#: padanukkama/templates/padanukkama/pada_declension.html:74
+#: padanukkama/templates/padanukkama/pada_split_sandhi.html:35
+#: padanukkama/templates/padanukkama/padanukkama.html:31
+#: padanukkama/templates/padanukkama/sadda.html:59
+#: padanukkama/templates/padanukkama/sadda.html:89
+#: setting/templates/setting/dhatu.html:31
+#: setting/templates/setting/nama_saddamala.html:31
+#: setting/templates/setting/noun_declension.html:31
+#: setting/templates/setting/verb_conjugation.html:31
+#: tipitaka/templates/tipitaka/digital_archive.html:30
+#: tipitaka/templates/tipitaka/structure.html:28
+#: tipitaka/templates/tipitaka/wordlist.html:62
+#: tipitaka/templates/tipitaka/wordlist_master.html:27
 msgid "Submit"
 msgstr "ดำเนินการ"
 
-#: .\abidan\templates\abidan\index.html:34
-#: .\padanukkama\templates\padanukkama\literal_translation.html:45
-#: .\padanukkama\templates\padanukkama\pada.html:63
-#: .\padanukkama\templates\padanukkama\padanukkama.html:39
-#: .\padanukkama\templates\padanukkama\sadda.html:74
-#: .\setting\templates\setting\dhatu.html:39
-#: .\setting\templates\setting\nama_saddamala.html:39
-#: .\setting\templates\setting\noun_declension.html:39
-#: .\setting\templates\setting\verb_conjugation.html:39
-#: .\tipitaka\templates\tipitaka\digital_archive.html:39
-#: .\tipitaka\templates\tipitaka\structure.html:36
-#: .\tipitaka\templates\tipitaka\toc.html:16
-#: .\tipitaka\templates\tipitaka\wordlist_master.html:35
+#: abidan/templates/abidan/index.html:34
+#: padanukkama/templates/padanukkama/literal_translation.html:45
+#: padanukkama/templates/padanukkama/pada.html:63
+#: padanukkama/templates/padanukkama/padanukkama.html:39
+#: padanukkama/templates/padanukkama/sadda.html:74
+#: setting/templates/setting/dhatu.html:39
+#: setting/templates/setting/nama_saddamala.html:45
+#: setting/templates/setting/noun_declension.html:39
+#: setting/templates/setting/verb_conjugation.html:39
+#: tipitaka/templates/tipitaka/digital_archive.html:39
+#: tipitaka/templates/tipitaka/structure.html:36
+#: tipitaka/templates/tipitaka/toc.html:16
+#: tipitaka/templates/tipitaka/wordlist_master.html:35
 msgid "found"
 msgstr "พบ"
 
-#: .\abidan\templates\abidan\index.html:34
-#: .\padanukkama\templates\padanukkama\literal_translation.html:45
-#: .\padanukkama\templates\padanukkama\pada.html:63
-#: .\padanukkama\templates\padanukkama\padanukkama.html:39
-#: .\padanukkama\templates\padanukkama\sadda.html:74
-#: .\setting\templates\setting\dhatu.html:39
-#: .\setting\templates\setting\nama_saddamala.html:39
-#: .\setting\templates\setting\noun_declension.html:39
-#: .\setting\templates\setting\verb_conjugation.html:39
-#: .\tipitaka\templates\tipitaka\digital_archive.html:39
-#: .\tipitaka\templates\tipitaka\structure.html:36
-#: .\tipitaka\templates\tipitaka\toc.html:16
-#: .\tipitaka\templates\tipitaka\wordlist_master.html:35
+#: abidan/templates/abidan/index.html:34
+#: padanukkama/templates/padanukkama/literal_translation.html:45
+#: padanukkama/templates/padanukkama/pada.html:63
+#: padanukkama/templates/padanukkama/padanukkama.html:39
+#: padanukkama/templates/padanukkama/sadda.html:74
+#: setting/templates/setting/dhatu.html:39
+#: setting/templates/setting/nama_saddamala.html:45
+#: setting/templates/setting/noun_declension.html:39
+#: setting/templates/setting/verb_conjugation.html:39
+#: tipitaka/templates/tipitaka/digital_archive.html:39
+#: tipitaka/templates/tipitaka/structure.html:36
+#: tipitaka/templates/tipitaka/toc.html:16
+#: tipitaka/templates/tipitaka/wordlist_master.html:35
 msgid "record(s)"
 msgstr "รายการ"
 
-#: .\main\templates\main\change_password.html:6
-#: .\main\templates\main\navbar.html:90
+#: main/templates/main/change_password.html:6
+#: main/templates/main/navbar.html:90
 msgid "Change Password"
 msgstr "เปลี่ยนรหัสผ่าน"
 
-#: .\main\templates\main\change_password.html:28
+#: main/templates/main/change_password.html:28
 msgid "Save changes"
 msgstr "บันทึก"
 
-#: .\main\templates\main\footer.html:20
+#: main/templates/main/footer-blank.html:19 main/templates/main/footer.html:20
 msgid "Powered by"
 msgstr "สนับสนุนโดย"
 
-#: .\main\templates\main\footer.html:20
+#: main/templates/main/footer-blank.html:19 main/templates/main/footer.html:20
 msgid "People's Tipiṭaka Foundation"
 msgstr "มูลนิธิพระไตรปิฎกเพื่อประชาชน"
 
-#: .\main\templates\main\home.html:6
+#: main/templates/main/home.html:6
 msgid "The Pāḷi Platform"
 msgstr "ปาฬิแพลตฟอร์ม"
 
-#: .\main\templates\main\navbar.html:6 .\main\views.py:18
+#: main/templates/main/navbar.html:6 main/views.py:18
 msgid "OPENPĀḶI"
 msgstr ""
 
-#: .\main\templates\main\navbar.html:11
-#: .\padanukkama\templates\padanukkama\pada_declension.html:94
-#: .\padanukkama\templates\padanukkama\sadda_update.html:74
+#: main/templates/main/navbar.html:11
+#: padanukkama/templates/padanukkama/pada_declension.html:94
+#: padanukkama/templates/padanukkama/sadda_update.html:74
 msgid "Abidan"
 msgstr "อภิธาน"
 
-#: .\main\templates\main\navbar.html:16
-#: .\tipitaka\templates\tipitaka\include\title.html:3
+#: main/templates/main/navbar.html:16
+#: tipitaka/templates/tipitaka/include/title.html:3
 msgid "Tipiṭaka"
 msgstr "พระไตรปิฎก"
 
-#: .\main\templates\main\navbar.html:21
+#: main/templates/main/navbar.html:21
 msgid "Digital Archive"
 msgstr "การอนุรักษ์ดิจิทัล"
 
-#: .\main\templates\main\navbar.html:25
-#: .\tipitaka\templates\tipitaka\common_reference_subform.html:135
+#: main/templates/main/navbar.html:25
+#: tipitaka/templates/tipitaka/common_reference_subform.html:135
 msgid "Wordlist"
 msgstr "รายการคำ"
 
-#: .\main\templates\main\navbar.html:29
+#: main/templates/main/navbar.html:29
 msgid "Table Of Contents"
 msgstr "สารบัญ"
 
-#: .\main\templates\main\navbar.html:36
-#: .\padanukkama\templates\padanukkama\include\title.html:3
+#: main/templates/main/navbar.html:36
+#: padanukkama/templates/padanukkama/include/title.html:3
 msgid "Padānukkama"
 msgstr "ปทานุกรม"
 
-#: .\main\templates\main\navbar.html:41
+#: main/templates/main/navbar.html:41
 msgid "Project"
 msgstr "โครงการ"
 
-#: .\main\templates\main\navbar.html:45 .\padanukkama\models.py:313
-#: .\padanukkama\models.py:431 .\padanukkama\tables.py:52
-#: .\padanukkama\tables.py:176 .\padanukkama\tables.py:196
-#: .\padanukkama\templates\padanukkama\htmx\htmx_translation_helper.html:11
-#: .\padanukkama\templates\padanukkama\pada_declension.html:26
-#: .\padanukkama\templates\padanukkama\pada_declension.html:95
-#: .\padanukkama\templates\padanukkama\padanukkama_create.html:6
-#: .\padanukkama\templates\padanukkama\sadda.html:25
-#: .\padanukkama\templates\padanukkama\sadda_update.html:26
-#: .\padanukkama\templates\padanukkama\sadda_update.html:75
+#: main/templates/main/navbar.html:45 padanukkama/models.py:313
+#: padanukkama/models.py:431 padanukkama/tables.py:52 padanukkama/tables.py:176
+#: padanukkama/tables.py:196
+#: padanukkama/templates/padanukkama/htmx/htmx_translation_helper.html:11
+#: padanukkama/templates/padanukkama/htmx/htmx_translation_widtet_helper.html:11
+#: padanukkama/templates/padanukkama/pada_declension.html:26
+#: padanukkama/templates/padanukkama/pada_declension.html:95
+#: padanukkama/templates/padanukkama/padanukkama_create.html:6
+#: padanukkama/templates/padanukkama/sadda.html:25
+#: padanukkama/templates/padanukkama/sadda_update.html:26
+#: padanukkama/templates/padanukkama/sadda_update.html:75
 msgid "Sadda"
 msgstr "คำศัพท์"
 
-#: .\main\templates\main\navbar.html:49 .\padanukkama\models.py:556
-#: .\padanukkama\tables.py:66
-#: .\padanukkama\templates\padanukkama\literal_translation.html:8
-#: .\padanukkama\templates\padanukkama\literal_translation_detail.html:22
-#: .\padanukkama\templates\padanukkama\literal_translation_translate.html:14
+#: main/templates/main/navbar.html:49 padanukkama/models.py:556
+#: padanukkama/tables.py:66
+#: padanukkama/templates/padanukkama/literal_translation.html:8
+#: padanukkama/templates/padanukkama/literal_translation_detail.html:22
+#: padanukkama/templates/padanukkama/literal_translation_translate.html:14
 msgid "Literal Translation"
 msgstr "แปลยกศัพท์"
 
-#: .\main\templates\main\navbar.html:56
-#: .\setting\templates\setting\include\title.html:3
+#: main/templates/main/navbar.html:56
+#: setting/templates/setting/include/title.html:3
 msgid "Setting"
 msgstr "กำหนดค่า"
 
-#: .\main\templates\main\navbar.html:59 .\padanukkama\models.py:302
+#: main/templates/main/navbar.html:59 padanukkama/models.py:302
 msgid "Nāma"
 msgstr "นาม"
 
-#: .\main\templates\main\navbar.html:62
-#: .\setting\templates\setting\noun_declension.html:8
-#: .\setting\templates\setting\noun_declension_detail.html:22
+#: main/templates/main/navbar.html:62
+#: setting/templates/setting/noun_declension.html:8
+#: setting/templates/setting/noun_declension_detail.html:22
 msgid "Noun Declension"
 msgstr "วิภัตตินาม"
 
-#: .\main\templates\main\navbar.html:66
-#: .\setting\templates\setting\dhatu.html:8
-#: .\setting\templates\setting\nama_saddamala.html:8
-#: .\setting\templates\setting\nama_saddamala_detail.html:25
+#: main/templates/main/navbar.html:66 setting/templates/setting/dhatu.html:8
+#: setting/templates/setting/nama_saddamala.html:8
+#: setting/templates/setting/nama_saddamala_detail.html:25
 msgid "Nāmasaddapadamālā"
 msgstr "แบบวิภัตติบทนาม"
 
-#: .\main\templates\main\navbar.html:68 .\padanukkama\models.py:303
+#: main/templates/main/navbar.html:68 padanukkama/models.py:303
 msgid "Akhyāta"
 msgstr "อาขฺยาต"
 
-#: .\main\templates\main\navbar.html:71
-#: .\setting\templates\setting\dhatu_detail.html:6
+#: main/templates/main/navbar.html:71
+#: setting/templates/setting/dhatu_detail.html:6
 msgid "Dhātu"
 msgstr "ธาตุ"
 
-#: .\main\templates\main\navbar.html:71 .\padanukkama\models.py:672
-#: .\padanukkama\models.py:713
+#: main/templates/main/navbar.html:71 padanukkama/models.py:678
+#: padanukkama/models.py:719
 msgid "Paccaya"
 msgstr "ปัจจัย"
 
-#: .\main\templates\main\navbar.html:75 .\padanukkama\forms.py:236
-#: .\padanukkama\forms.py:281 .\padanukkama\models.py:331
-#: .\padanukkama\templates\padanukkama\pada_declension.html:96
-#: .\padanukkama\templates\padanukkama\pada_declension.html:123
-#: .\setting\templates\setting\verb_conjugation.html:8
-#: .\setting\templates\setting\verb_conjugation_detail.html:22
+#: main/templates/main/navbar.html:75 padanukkama/forms.py:236
+#: padanukkama/forms.py:281 padanukkama/models.py:331
+#: padanukkama/templates/padanukkama/pada_declension.html:96
+#: padanukkama/templates/padanukkama/pada_declension.html:123
+#: setting/templates/setting/verb_conjugation.html:8
+#: setting/templates/setting/verb_conjugation_detail.html:22
 msgid "Verb Conjugation"
 msgstr "วิภัตติอาขยาต"
 
-#: .\main\templates\main\navbar.html:83
+#: main/templates/main/navbar.html:83
 msgid "Login"
 msgstr "เข้าระบบ"
 
-#: .\main\templates\main\navbar.html:91
+#: main/templates/main/navbar.html:91
 msgid "Logout"
 msgstr "ออกระบบ"
 
-#: .\main\templates\main\statistic\dashboard.html:75
-#: .\padanukkama\models.py:269 .\padanukkama\models.py:541
-#: .\padanukkama\tables.py:98
+#: main/templates/main/statistic/dashboard.html:75 padanukkama/models.py:269
+#: padanukkama/models.py:541 padanukkama/tables.py:98
 msgid "Publication"
 msgstr "เผยแพร่"
 
-#: .\main\templates\main\statistic\dashboard.html:91
+#: main/templates/main/statistic/dashboard.html:91
 msgid "All Pada"
 msgstr "บท"
 
-#: .\main\templates\main\statistic\dashboard.html:91
-#: .\main\templates\main\statistic\dashboard.html:92
+#: main/templates/main/statistic/dashboard.html:91
+#: main/templates/main/statistic/dashboard.html:92
 msgid "items"
 msgstr "รายการ"
 
-#: .\main\templates\main\statistic\dashboard.html:92
+#: main/templates/main/statistic/dashboard.html:92
 msgid "All Sadda"
 msgstr "ศัพท์"
 
-#: .\main\templates\main\statistic\dashboard.html:97
+#: main/templates/main/statistic/dashboard.html:97
 msgid "Overview of operations"
 msgstr "ภาพรวมของการดำเนินงาน"
 
-#: .\main\templates\main\statistic\dashboard.html:101
+#: main/templates/main/statistic/dashboard.html:101
 msgid "Overview of the translation process"
 msgstr "ภาพรวมของกระบวนการแปล"
 
-#: .\main\templates\main\statistic\dashboard.html:108
+#: main/templates/main/statistic/dashboard.html:108
 msgid "The daily progress by date"
 msgstr "ความคืบหน้าการดำเนินงานรายวัน"
 
-#: .\main\templates\main\statistic\dashboard.html:118
-#: .\padanukkama\models.py:283 .\padanukkama\models.py:537
-#: .\tipitaka\models.py:261
+#: main/templates/main/statistic/dashboard.html:118 padanukkama/models.py:283
+#: padanukkama/models.py:537 tipitaka/models.py:261
 msgid "Wordlist Version"
 msgstr "เวอร์ชัน รายการคำ"
 
-#: .\main\templates\main\statistic\dashboard.html:125
-#: .\padanukkama\models.py:272
+#: main/templates/main/statistic/dashboard.html:125 padanukkama/models.py:272
 msgid "Collaborators"
 msgstr "ผู้ร่วมดำเนินการ"
 
-#: .\main\templates\main\statistic\last_update.html:5
+#: main/templates/main/statistic/last_update.html:5
 msgid "Recently Updated"
 msgstr "ปรับปรุงล่าสุด"
 
-#: .\main\templates\main\statistic\milestone.html:20
+#: main/templates/main/statistic/milestone.html:22
 msgid "On Process"
 msgstr "กำลังดำเนินการ"
 
-#: .\main\templates\main\statistic\milestone.html:20
+#: main/templates/main/statistic/milestone.html:22
 msgid "Waiting"
 msgstr "รอดำเนินการ"
 
-#: .\main\templates\main\statistic\translation_process.html:15
+#: main/templates/main/statistic/translation_process.html:17
 msgid "Not started yet"
 msgstr ""
 
-#: .\main\templates\registration\login.html:6
+#: main/templates/registration/login.html:6
 msgid "Log In"
 msgstr "ออกระบบ"
 
-#: .\main\views.py:33
+#: main/views.py:33
 msgid "Your password was successfully updated!"
 msgstr "รหัสผ่านของคุณถูกอัปเดตเรียบร้อยแล้ว!"
 
-#: .\main\views.py:36
+#: main/views.py:36
 msgid "Please correct the error"
 msgstr "กรุณาแก้ไขข้อผิดพลาด"
 
-#: .\padanukkama\forms.py:168 .\padanukkama\forms.py:185
-#: .\padanukkama\models.py:206 .\padanukkama\models.py:225
-#: .\padanukkama\models.py:368 .\padanukkama\models.py:534
-#: .\padanukkama\models.py:587 .\padanukkama\models.py:675
-#: .\setting\templates\setting\verb_conjugation_detail.html:67
-#: .\tipitaka\models.py:19 .\tipitaka\models.py:38 .\tipitaka\models.py:54
-#: .\tipitaka\models.py:217 .\tipitaka\models.py:264
+#: padanukkama/forms.py:168 padanukkama/forms.py:185 padanukkama/models.py:206
+#: padanukkama/models.py:225 padanukkama/models.py:368
+#: padanukkama/models.py:534 padanukkama/models.py:594
+#: padanukkama/models.py:681
+#: padanukkama/templates/padanukkama/htmx/htmx_translation_widtet_helper.html:61
+#: setting/templates/setting/verb_conjugation_detail.html:67
+#: tipitaka/models.py:19 tipitaka/models.py:38 tipitaka/models.py:54
+#: tipitaka/models.py:217 tipitaka/models.py:264
 msgid "Description"
 msgstr "รายละเอียด"
 
-#: .\padanukkama\forms.py:229 .\padanukkama\forms.py:274
-#: .\padanukkama\models.py:327
+#: padanukkama/forms.py:229 padanukkama/forms.py:274 padanukkama/models.py:327
 msgid "NamaSaddamala"
 msgstr "การจำแนกแบบแจกบทนาม"
 
-#: .\padanukkama\forms.py:242 .\padanukkama\forms.py:287
-#: .\padanukkama\models.py:226 .\padanukkama\models.py:343
-#: .\padanukkama\models.py:709
-#: .\padanukkama\templates\padanukkama\htmx\htmx_translation_helper.html:14
-#: .\padanukkama\templates\padanukkama\include\htmx_translation_helper\verb_conjugation_table.html:25
-#: .\padanukkama\templates\padanukkama\pada_declension.html:144
-#: .\setting\templates\setting\akhyala_saddamala.html:41
-#: .\setting\templates\setting\akhyala_saddamala.html:73
-#: .\setting\templates\setting\akhyala_saddamala.html:105
-#: .\setting\templates\setting\akhyala_saddamala.html:137
-#: .\setting\templates\setting\akhyala_saddamala.html:169
-#: .\setting\templates\setting\akhyala_saddamala.html:201
-#: .\setting\templates\setting\akhyala_saddamala.html:233
-#: .\setting\templates\setting\akhyala_saddamala.html:265
-#: .\setting\templates\setting\dhatu_detail.html:31
-#: .\setting\templates\setting\verb_conjugation_detail.html:44
-#: .\setting\templates\setting\verb_conjugation_detail.html:71
+#: padanukkama/forms.py:242 padanukkama/forms.py:287 padanukkama/models.py:226
+#: padanukkama/models.py:343 padanukkama/models.py:715
+#: padanukkama/templates/padanukkama/htmx/htmx_translation_helper.html:14
+#: padanukkama/templates/padanukkama/include/htmx_translation_helper/verb_conjugation_table.html:25
+#: padanukkama/templates/padanukkama/pada_declension.html:144
+#: setting/templates/setting/akhyala_saddamala.html:41
+#: setting/templates/setting/akhyala_saddamala.html:73
+#: setting/templates/setting/akhyala_saddamala.html:105
+#: setting/templates/setting/akhyala_saddamala.html:137
+#: setting/templates/setting/akhyala_saddamala.html:169
+#: setting/templates/setting/akhyala_saddamala.html:201
+#: setting/templates/setting/akhyala_saddamala.html:233
+#: setting/templates/setting/akhyala_saddamala.html:265
+#: setting/templates/setting/dhatu_detail.html:31
+#: setting/templates/setting/verb_conjugation_detail.html:44
+#: setting/templates/setting/verb_conjugation_detail.html:71
 msgid "Meaning"
 msgstr "ความหมาย"
 
-#: .\padanukkama\forms.py:318
+#: padanukkama/forms.py:318
 msgid "Format"
 msgstr ""
 
-#: .\padanukkama\htmx.py:157
+#: padanukkama/htmx.py:157
 msgid "Word not found."
 msgstr ""
 
-#: .\padanukkama\htmx.py:170 .\padanukkama\htmx.py:205
-#: .\padanukkama\htmx.py:215 .\padanukkama\htmx.py:319
-#: .\padanukkama\htmx.py:367 .\padanukkama\htmx.py:422
-#: .\padanukkama\htmx.py:488 .\padanukkama\htmx.py:847
-#: .\padanukkama\htmx.py:867 .\padanukkama\htmx.py:908
-#: .\padanukkama\views.py:709 .\setting\views.py:57 .\setting\views.py:93
-#: .\setting\views.py:164 .\setting\views.py:200 .\setting\views.py:271
-#: .\setting\views.py:307 .\setting\views.py:379 .\setting\views.py:415
+#: padanukkama/htmx.py:170 padanukkama/htmx.py:204 padanukkama/htmx.py:215
+#: padanukkama/htmx.py:218 padanukkama/htmx.py:322 padanukkama/htmx.py:370
+#: padanukkama/htmx.py:425 padanukkama/htmx.py:491 padanukkama/htmx.py:851
+#: padanukkama/htmx.py:871 padanukkama/htmx.py:912 padanukkama/views.py:710
+#: setting/views.py:57 setting/views.py:93 setting/views.py:164
+#: setting/views.py:200 setting/views.py:271 setting/views.py:307
+#: setting/views.py:379 setting/views.py:415
 msgid "Form saved successfully."
 msgstr "การบันทึกเสร็จสิ้น"
 
-#: .\padanukkama\htmx.py:172 .\padanukkama\htmx.py:207
-#: .\padanukkama\htmx.py:217 .\padanukkama\htmx.py:849
-#: .\padanukkama\htmx.py:869
+#: padanukkama/htmx.py:172 padanukkama/htmx.py:206 padanukkama/htmx.py:217
+#: padanukkama/htmx.py:220 padanukkama/htmx.py:853 padanukkama/htmx.py:873
 msgid "Form saved unsuccessfully"
 msgstr "การบันทึกเสร็จสิ้น"
 
-#: .\padanukkama\htmx.py:237
+#: padanukkama/htmx.py:240
 msgid "Form deleted successfully."
 msgstr "การบันทึกเสร็จสิ้น"
 
-#: .\padanukkama\htmx.py:239
+#: padanukkama/htmx.py:242
 msgid "Form deleted unsuccessfully"
 msgstr "การบันทึกเสร็จสิ้น"
 
-#: .\padanukkama\htmx.py:540
+#: padanukkama/htmx.py:543
 msgid "Delete action failed: Record has descendants"
 msgstr ""
 
-#: .\padanukkama\htmx.py:546 .\padanukkama\views.py:307
+#: padanukkama/htmx.py:549 padanukkama/views.py:309
 msgid "Error: Record deletion unsuccessful"
 msgstr "พบข้อผิดพลาด การลบรายการเสร็จสิ้น"
 
-#: .\padanukkama\htmx.py:608 .\padanukkama\views.py:442
+#: padanukkama/htmx.py:611 padanukkama/views.py:444
 msgid "Error: {}-{}, please contact SA"
 msgstr "พบข้อผิดพลาด"
 
-#: .\padanukkama\htmx.py:669 .\padanukkama\views.py:508
+#: padanukkama/htmx.py:672 padanukkama/views.py:510
 msgid "Form is invalid. Please correct the errors"
 msgstr "พบข้อผิดพลาด โปรดติดต่อเจ้าหน้าที่"
 
-#: .\padanukkama\htmx.py:757
-#: .\padanukkama\templates\padanukkama\htmx\htmx_translation_pada_translate.html:305
-#: .\padanukkama\templates\padanukkama\include\declension_create_vipatti.html:97
-#: .\padanukkama\templates\padanukkama\include\htmx_translation_helper\nama_declension_table.html:17
-#: .\setting\templates\setting\nama_saddamala_detail.html:56
-#: .\setting\templates\setting\nama_saddamala_detail.html:133
+#: padanukkama/htmx.py:761
+#: padanukkama/templates/padanukkama/htmx/htmx_translation_pada_translate.html:305
+#: padanukkama/templates/padanukkama/include/declension_create_vipatti.html:97
+#: padanukkama/templates/padanukkama/include/htmx_translation_helper/nama_declension_table.html:17
+#: setting/templates/setting/nama_saddamala_detail.html:56
+#: setting/templates/setting/nama_saddamala_detail.html:133
 msgid "Ekavacana"
 msgstr "เอกวจนะ"
 
-#: .\padanukkama\htmx.py:757
-#: .\padanukkama\templates\padanukkama\htmx\htmx_translation_pada_translate.html:306
-#: .\padanukkama\templates\padanukkama\include\declension_create_vipatti.html:98
-#: .\padanukkama\templates\padanukkama\include\htmx_translation_helper\nama_declension_table.html:18
-#: .\setting\templates\setting\nama_saddamala_detail.html:57
-#: .\setting\templates\setting\nama_saddamala_detail.html:134
+#: padanukkama/htmx.py:761
+#: padanukkama/templates/padanukkama/htmx/htmx_translation_pada_translate.html:306
+#: padanukkama/templates/padanukkama/include/declension_create_vipatti.html:98
+#: padanukkama/templates/padanukkama/include/htmx_translation_helper/nama_declension_table.html:18
+#: setting/templates/setting/nama_saddamala_detail.html:57
+#: setting/templates/setting/nama_saddamala_detail.html:134
 msgid "Bahuvacana"
 msgstr "พหุวจนะ"
 
-#: .\padanukkama\models.py:25 .\padanukkama\models.py:40
-#: .\padanukkama\models.py:58 .\padanukkama\models.py:199
-#: .\padanukkama\models.py:223 .\padanukkama\models.py:666
-#: .\setting\templates\setting\verb_conjugation_detail.html:61
+#: padanukkama/models.py:25 padanukkama/models.py:40 padanukkama/models.py:58
+#: padanukkama/models.py:199 padanukkama/models.py:223
+#: padanukkama/models.py:672
+#: setting/templates/setting/verb_conjugation_detail.html:61
 msgid "Sequence"
 msgstr "ลำดับ"
 
-#: .\padanukkama\models.py:77 .\padanukkama\models.py:650
-#: .\padanukkama\models.py:697
+#: padanukkama/models.py:77 padanukkama/models.py:656 padanukkama/models.py:703
 msgid "Title order"
 msgstr "ลำดับตามชื่อเรื่อง"
 
-#: .\padanukkama\models.py:85 .\padanukkama\models.py:323
-#: .\padanukkama\templates\padanukkama\include\namasaddamala.html:16
-#: .\setting\tables.py:55
+#: padanukkama/models.py:85 padanukkama/models.py:323
+#: padanukkama/templates/padanukkama/htmx/htmx_translation_widtet_helper.html:27
+#: padanukkama/templates/padanukkama/include/namasaddamala.html:16
+#: setting/tables.py:55
 msgid "Type"
 msgstr "ประเภท"
 
-#: .\padanukkama\models.py:91
-#: .\padanukkama\templates\padanukkama\include\htmx_translation_helper\nama_declension_table.html:9
-#: .\padanukkama\templates\padanukkama\include\namasaddamala.html:17
-#: .\setting\tables.py:60
+#: padanukkama/models.py:91
+#: padanukkama/templates/padanukkama/include/htmx_translation_helper/nama_declension_table.html:9
+#: padanukkama/templates/padanukkama/include/namasaddamala.html:17
+#: setting/tables.py:60
 msgid "Liṅga"
 msgstr "ลิงค์"
 
-#: .\padanukkama\models.py:97
-#: .\padanukkama\templates\padanukkama\include\htmx_translation_helper\nama_declension_table.html:10
-#: .\setting\tables.py:65
+#: padanukkama/models.py:97
+#: padanukkama/templates/padanukkama/include/htmx_translation_helper/nama_declension_table.html:10
+#: setting/tables.py:65
 msgid "Kāranta"
 msgstr "การันต์"
 
-#: .\padanukkama\models.py:103
+#: padanukkama/models.py:103
 msgid "Paṭhamā Ekavacana"
 msgstr "ปฐมา เอกวจนะ"
 
-#: .\padanukkama\models.py:108
+#: padanukkama/models.py:108
 msgid "Paṭhamā Bahuvacana"
 msgstr "ปฐมา พหุวจนะ"
 
-#: .\padanukkama\models.py:113
+#: padanukkama/models.py:113
 msgid "Ālapana Ekavacana"
 msgstr "อาลปนะ เอกวจนะ"
 
-#: .\padanukkama\models.py:118
+#: padanukkama/models.py:118
 msgid "Ālapana Bahuvacana"
 msgstr "อาลปนะ พหุวจนะ"
 
-#: .\padanukkama\models.py:123
+#: padanukkama/models.py:123
 msgid "Dutiyā Ekavacana"
 msgstr "ทุติยา เอกวจนะ"
 
-#: .\padanukkama\models.py:128
+#: padanukkama/models.py:128
 msgid "Dutiyā Bahuvacana"
 msgstr "ทุติยา เอกวจนะ"
 
-#: .\padanukkama\models.py:133
+#: padanukkama/models.py:133
 msgid "Tatiyā Ekavacana"
 msgstr "ตติยะ เอกวจนะ"
 
-#: .\padanukkama\models.py:138
+#: padanukkama/models.py:138
 msgid "Tatiyā Bahuvacana"
 msgstr "ตติยะ พหุวจนะ"
 
-#: .\padanukkama\models.py:143
+#: padanukkama/models.py:143
 msgid "Catutthī Ekavacana"
 msgstr "จตุตถี เอกวจนะ"
 
-#: .\padanukkama\models.py:148
+#: padanukkama/models.py:148
 msgid "Catutthī Bahuvacana"
 msgstr "จตุตถี พหุวจนะ"
 
-#: .\padanukkama\models.py:153
+#: padanukkama/models.py:153
 msgid "Pañcamī Ekavacana"
 msgstr "ปัญจมี เอกวจนะ"
 
-#: .\padanukkama\models.py:158
+#: padanukkama/models.py:158
 msgid "Pañcamī Bahuvacana"
 msgstr "ปัญจมี พหุวจนะ"
 
-#: .\padanukkama\models.py:163
+#: padanukkama/models.py:163
 msgid "Chaṭṭhī Ekavacana"
 msgstr "ฉัฏฐี เอกวจนะ"
 
-#: .\padanukkama\models.py:168
+#: padanukkama/models.py:168
 msgid "Chaṭṭhī Bahuvacana"
 msgstr "ฉัฏฐี พหุวจนะ"
 
-#: .\padanukkama\models.py:173
+#: padanukkama/models.py:173
 msgid "Sattamī Ekavacana"
 msgstr "สัตตมี เอกวจนะ"
 
-#: .\padanukkama\models.py:178
+#: padanukkama/models.py:178
 msgid "Sattamī Bahuvacana"
 msgstr "สัตตมี พหุวจนะ"
 
-#: .\padanukkama\models.py:183 .\padanukkama\models.py:718
+#: padanukkama/models.py:183 padanukkama/models.py:724
 msgid "Popularity"
 msgstr "ความนิยม"
 
-#: .\padanukkama\models.py:209
+#: padanukkama/models.py:209
 msgid "Meaning (Ekavacana)"
 msgstr "ตติยะ เอกวจนะ"
 
-#: .\padanukkama\models.py:212
+#: padanukkama/models.py:212
 msgid "Meaning (Bahuvacana)"
 msgstr "ตติยะ พหุวจนะ"
 
-#: .\padanukkama\models.py:227
+#: padanukkama/models.py:227
 msgid "Purisa 1 Parassapada Ekavacana"
 msgstr "สัตตมี เอกวจนะ"
 
-#: .\padanukkama\models.py:228
+#: padanukkama/models.py:228
 msgid "Purisa 1 Parassapada Bahuvacana"
 msgstr "สัตตมี พหุวจนะ"
 
-#: .\padanukkama\models.py:229
+#: padanukkama/models.py:229
 msgid "Purisa 1 Attanopada Ekavacana"
 msgstr "สัตตมี เอกวจนะ"
 
-#: .\padanukkama\models.py:230
+#: padanukkama/models.py:230
 msgid "Purisa 1 Attanopada Bahuvacana"
 msgstr "สัตตมี พหุวจนะ"
 
-#: .\padanukkama\models.py:231
+#: padanukkama/models.py:231
 msgid "Purisa 2 Parassapada Ekavacana"
 msgstr "สัตตมี เอกวจนะ"
 
-#: .\padanukkama\models.py:232
+#: padanukkama/models.py:232
 msgid "Purisa 2 Parassapada Bahuvacana"
 msgstr "สัตตมี พหุวจนะ"
 
-#: .\padanukkama\models.py:233
+#: padanukkama/models.py:233
 msgid "Purisa 2 Attanopada Ekavacana"
 msgstr "สัตตมี เอกวจนะ"
 
-#: .\padanukkama\models.py:234
+#: padanukkama/models.py:234
 msgid "Purisa 2 Attanopada Bahuvacana"
 msgstr "สัตตมี พหุวจนะ"
 
-#: .\padanukkama\models.py:235
+#: padanukkama/models.py:235
 msgid "Purisa 3 Parassapada Ekavacana"
 msgstr "สัตตมี เอกวจนะ"
 
-#: .\padanukkama\models.py:236
+#: padanukkama/models.py:236
 msgid "Purisa 3 Parassapada Bahuvacana"
 msgstr "สัตตมี พหุวจนะ"
 
-#: .\padanukkama\models.py:237
+#: padanukkama/models.py:237
 msgid "Purisa 3 Attanopada Ekavacana"
 msgstr "สัตตมี เอกวจนะ"
 
-#: .\padanukkama\models.py:238
+#: padanukkama/models.py:238
 msgid "Purisa 3 Attanopada Bahuvacana"
 msgstr "สัตตมี พหุวจนะ"
 
-#: .\padanukkama\models.py:250
+#: padanukkama/models.py:250
 msgid "Language"
 msgstr "ภาษา"
 
-#: .\padanukkama\models.py:266
+#: padanukkama/models.py:266
 msgid "About"
 msgstr "เกี่ยวกับ"
 
-#: .\padanukkama\models.py:275
+#: padanukkama/models.py:275
 msgid "Target Languages"
 msgstr "ภาษา"
 
-#: .\padanukkama\models.py:278
-#: .\padanukkama\templates\padanukkama\literal_translation_detail.html:56
-#: .\padanukkama\templates\padanukkama\literal_translation_translate.html:61
-#: .\padanukkama\templates\padanukkama\padanukkama_delete.html:6
-#: .\tipitaka\templates\tipitaka\common_reference_delete.html:5
-#: .\tipitaka\templates\tipitaka\common_reference_detail.html:5
-#: .\tipitaka\templates\tipitaka\common_reference_subform.html:20
-#: .\tipitaka\templates\tipitaka\structure.html:8
-#: .\tipitaka\templates\tipitaka\toc.html:8
+#: padanukkama/models.py:278
+#: padanukkama/templates/padanukkama/literal_translation_detail.html:56
+#: padanukkama/templates/padanukkama/literal_translation_translate.html:61
+#: padanukkama/templates/padanukkama/padanukkama_delete.html:6
+#: tipitaka/templates/tipitaka/common_reference_delete.html:5
+#: tipitaka/templates/tipitaka/common_reference_detail.html:5
+#: tipitaka/templates/tipitaka/common_reference_subform.html:20
+#: tipitaka/templates/tipitaka/structure.html:8
+#: tipitaka/templates/tipitaka/toc.html:8
 msgid "Table of Contents"
 msgstr "สารบัญ"
 
-#: .\padanukkama\models.py:288 .\padanukkama\models.py:560
-#: .\padanukkama\templates\padanukkama\padanukkama_delete.html:6
-#: .\tipitaka\models.py:260
-#: .\tipitaka\templates\tipitaka\common_reference_delete.html:5
-#: .\tipitaka\templates\tipitaka\common_reference_detail.html:5
-#: .\tipitaka\templates\tipitaka\common_reference_subform.html:20
-#: .\tipitaka\templates\tipitaka\structure.html:8
+#: padanukkama/models.py:288 padanukkama/models.py:560
+#: padanukkama/templates/padanukkama/padanukkama_delete.html:6
+#: tipitaka/models.py:260
+#: tipitaka/templates/tipitaka/common_reference_delete.html:5
+#: tipitaka/templates/tipitaka/common_reference_detail.html:5
+#: tipitaka/templates/tipitaka/common_reference_subform.html:20
+#: tipitaka/templates/tipitaka/structure.html:8
 msgid "Structure"
 msgstr "โครงสร้าง"
 
-#: .\padanukkama\models.py:304
+#: padanukkama/models.py:304
 msgid "Byaya"
 msgstr "พฺยย"
 
-#: .\padanukkama\models.py:310 .\padanukkama\models.py:406
-#: .\padanukkama\models.py:507 .\padanukkama\tables.py:494
-#: .\padanukkama\tables.py:598
-#: .\padanukkama\templates\padanukkama\include\htmx_translation_pada\help_table.html:12
-#: .\padanukkama\templates\padanukkama\literal_translation_detail.html:82
+#: padanukkama/models.py:310 padanukkama/models.py:406
+#: padanukkama/models.py:507 padanukkama/tables.py:494
+#: padanukkama/tables.py:598
+#: padanukkama/templates/padanukkama/include/htmx_translation_pada/help_table.html:12
+#: padanukkama/templates/padanukkama/literal_translation_detail.html:82
 msgid "Padanukkama"
 msgstr "ปทานุกรม"
 
-#: .\padanukkama\models.py:317 .\padanukkama\models.py:413
+#: padanukkama/models.py:317 padanukkama/models.py:413
 msgid "Pada sequence"
 msgstr "ลำดับบท"
 
-#: .\padanukkama\models.py:337
+#: padanukkama/models.py:337
+#: padanukkama/templates/padanukkama/htmx/htmx_translation_widtet_helper.html:19
 msgid "Construction"
 msgstr "การประกอบคำ"
 
-#: .\padanukkama\models.py:342
+#: padanukkama/models.py:342
 msgid "A comma-seperated list of meanings"
 msgstr ""
 
-#: .\padanukkama\models.py:372 .\padanukkama\tables.py:500
+#: padanukkama/models.py:372 padanukkama/tables.py:500
 msgid "State"
 msgstr "สถานะ"
 
-#: .\padanukkama\models.py:409 .\padanukkama\models.py:577
-#: .\padanukkama\tables.py:46 .\padanukkama\tables.py:256
-#: .\padanukkama\templates\padanukkama\pada_declension.html:26
-#: .\padanukkama\templates\padanukkama\pada_split_sandhi.html:8
-#: .\padanukkama\templates\padanukkama\padanukkama_update.html:81
-#: .\padanukkama\templates\padanukkama\sadda_update.html:76
+#: padanukkama/models.py:409 padanukkama/models.py:577 padanukkama/tables.py:46
+#: padanukkama/tables.py:256
+#: padanukkama/templates/padanukkama/pada_declension.html:26
+#: padanukkama/templates/padanukkama/pada_split_sandhi.html:8
+#: padanukkama/templates/padanukkama/padanukkama_update.html:86
+#: padanukkama/templates/padanukkama/sadda_update.html:76
 msgid "Pada"
 msgstr "บท"
 
-#: .\padanukkama\models.py:418 .\tipitaka\models.py:144
+#: padanukkama/models.py:418 tipitaka/models.py:144
 msgid "Word in roman script"
 msgstr "คำในอักษรโรมัน"
 
-#: .\padanukkama\models.py:424
+#: padanukkama/models.py:424
 msgid "Parent word"
 msgstr "จากคำ"
 
-#: .\padanukkama\models.py:566
+#: padanukkama/models.py:566
 msgid "Word List"
 msgstr "รายการคำ"
 
-#: .\padanukkama\models.py:582 .\padanukkama\tables.py:557
-#: .\padanukkama\templates\padanukkama\htmx\htmx_translation_pada.html:22
-#: .\padanukkama\templates\padanukkama\padanukkama_update.html:76
+#: padanukkama/models.py:584
+#, fuzzy
+#| msgid "Common Reference"
+msgid "Insert Reference"
+msgstr "อ้างอิงร่วม"
+
+#: padanukkama/models.py:589 padanukkama/tables.py:557
+#: padanukkama/templates/padanukkama/htmx/htmx_translation_pada.html:22
+#: padanukkama/templates/padanukkama/padanukkama_update.html:81
 msgid "Translation"
 msgstr "แปล"
 
-#: .\padanukkama\models.py:590
+#: padanukkama/models.py:597
 msgid "Sentence"
 msgstr "ลำดับ"
 
-#: .\padanukkama\models.py:593
+#: padanukkama/models.py:600
 msgid "Word Sequence"
 msgstr "ลำดับคำ"
 
-#: .\padanukkama\models.py:596
+#: padanukkama/models.py:603
 msgid "Word Order by Translation"
 msgstr "แปลยกศัพท์"
 
-#: .\padanukkama\models.py:700 .\setting\tables.py:115
+#: padanukkama/models.py:706 setting/tables.py:115
 msgid "Dhatugana"
 msgstr ""
 
-#: .\padanukkama\models.py:706 .\setting\templates\setting\dhatu_detail.html:30
+#: padanukkama/models.py:712 setting/templates/setting/dhatu_detail.html:30
 msgid "Definition"
 msgstr "รายละเอียด"
 
-#: .\padanukkama\models.py:735
+#: padanukkama/models.py:741
 msgid "title"
 msgstr "หัวเรื่อง"
 
-#: .\padanukkama\models.py:738 .\padanukkama\models.py:739
-#: .\padanukkama\models.py:752 .\padanukkama\models.py:766
-#: .\padanukkama\models.py:780 .\padanukkama\models.py:794
-#: .\padanukkama\models.py:808 .\padanukkama\models.py:822
-#: .\padanukkama\models.py:836
+#: padanukkama/models.py:744 padanukkama/models.py:745
+#: padanukkama/models.py:758 padanukkama/models.py:772
+#: padanukkama/models.py:786 padanukkama/models.py:800
+#: padanukkama/models.py:814 padanukkama/models.py:828
+#: padanukkama/models.py:842
 msgid "Vattamānā Purisa 1 Parassapada Ekavacana"
 msgstr ""
 
-#: .\padanukkama\models.py:740
+#: padanukkama/models.py:746
 msgid "Vattamānā Purisa 1 Parassapada Bahuvacana"
 msgstr ""
 
-#: .\padanukkama\models.py:741
+#: padanukkama/models.py:747
 msgid "Vattamānā Purisa 1 Attanopada Ekavacana"
 msgstr ""
 
-#: .\padanukkama\models.py:742
+#: padanukkama/models.py:748
 msgid "Vattamānā Purisa 1 Attanopada Bahuvacana"
 msgstr ""
 
-#: .\padanukkama\models.py:743
+#: padanukkama/models.py:749
 msgid "Vattamānā Purisa 2 Parassapada Ekavacana"
 msgstr ""
 
-#: .\padanukkama\models.py:744
+#: padanukkama/models.py:750
 msgid "Vattamānā Purisa 2 Parassapada Bahuvacana"
 msgstr ""
 
-#: .\padanukkama\models.py:745
+#: padanukkama/models.py:751
 msgid "Vattamānā Purisa 2 Attanopada Ekavacana"
 msgstr ""
 
-#: .\padanukkama\models.py:746
+#: padanukkama/models.py:752
 msgid "Vattamānā Purisa 2 Attanopada Bahuvacana"
 msgstr ""
 
-#: .\padanukkama\models.py:747
+#: padanukkama/models.py:753
 msgid "Vattamānā Purisa 3 Parassapada Ekavacana"
 msgstr ""
 
-#: .\padanukkama\models.py:748
+#: padanukkama/models.py:754
 msgid "Vattamānā Purisa 3 Parassapada Bahuvacana"
 msgstr ""
 
-#: .\padanukkama\models.py:749
+#: padanukkama/models.py:755
 msgid "Vattamānā Purisa 3 Attanopada Ekavacana"
 msgstr ""
 
-#: .\padanukkama\models.py:750
+#: padanukkama/models.py:756
 msgid "Vattamānā Purisa 3 Attanopada Bahuvacana"
 msgstr ""
 
-#: .\padanukkama\models.py:753
+#: padanukkama/models.py:759
 msgid "Pañcamī Purisa 1 Parassapada Ekavacana"
 msgstr "ปัญจมี เอกวจนะ"
 
-#: .\padanukkama\models.py:754
+#: padanukkama/models.py:760
 msgid "Pañcamī Purisa 1 Parassapada Bahuvacana"
 msgstr "ปัญจมี พหุวจนะ"
 
-#: .\padanukkama\models.py:755
+#: padanukkama/models.py:761
 msgid "Pañcamī Purisa 1 Attanopada Ekavacana"
 msgstr "ปัญจมี เอกวจนะ"
 
-#: .\padanukkama\models.py:756
+#: padanukkama/models.py:762
 msgid "Pañcamī Purisa 1 Attanopada Bahuvacana"
 msgstr "ปัญจมี พหุวจนะ"
 
-#: .\padanukkama\models.py:757
+#: padanukkama/models.py:763
 msgid "Pañcamī Purisa 2 Parassapada Ekavacana"
 msgstr "ปัญจมี เอกวจนะ"
 
-#: .\padanukkama\models.py:758
+#: padanukkama/models.py:764
 msgid "Pañcamī Purisa 2 Parassapada Bahuvacana"
 msgstr "ปัญจมี พหุวจนะ"
 
-#: .\padanukkama\models.py:759
+#: padanukkama/models.py:765
 msgid "Pañcamī Purisa 2 Attanopada Ekavacana"
 msgstr "ปัญจมี เอกวจนะ"
 
-#: .\padanukkama\models.py:760
+#: padanukkama/models.py:766
 msgid "Pañcamī Purisa 2 Attanopada Bahuvacana"
 msgstr "ปัญจมี พหุวจนะ"
 
-#: .\padanukkama\models.py:761
+#: padanukkama/models.py:767
 msgid "Pañcamī Purisa 3 Parassapada Ekavacana"
 msgstr "ปัญจมี เอกวจนะ"
 
-#: .\padanukkama\models.py:762
+#: padanukkama/models.py:768
 msgid "Pañcamī Purisa 3 Parassapada Bahuvacana"
 msgstr "ปัญจมี พหุวจนะ"
 
-#: .\padanukkama\models.py:763
+#: padanukkama/models.py:769
 msgid "Pañcamī Purisa 3 Attanopada Ekavacana"
 msgstr "ปัญจมี เอกวจนะ"
 
-#: .\padanukkama\models.py:764
+#: padanukkama/models.py:770
 msgid "Pañcamī Purisa 3 Attanopada Bahuvacana"
 msgstr "ปัญจมี พหุวจนะ"
 
-#: .\padanukkama\models.py:767
+#: padanukkama/models.py:773
 msgid "Sattamī Purisa 1 Parassapada Ekavacana"
 msgstr "สัตตมี เอกวจนะ"
 
-#: .\padanukkama\models.py:768
+#: padanukkama/models.py:774
 msgid "Sattamī Purisa 1 Parassapada Bahuvacana"
 msgstr "สัตตมี พหุวจนะ"
 
-#: .\padanukkama\models.py:769
+#: padanukkama/models.py:775
 msgid "Sattamī Purisa 1 Attanopada Ekavacana"
 msgstr "สัตตมี เอกวจนะ"
 
-#: .\padanukkama\models.py:770
+#: padanukkama/models.py:776
 msgid "Sattamī Purisa 1 Attanopada Bahuvacana"
 msgstr "สัตตมี พหุวจนะ"
 
-#: .\padanukkama\models.py:771
+#: padanukkama/models.py:777
 msgid "Sattamī Purisa 2 Parassapada Ekavacana"
 msgstr "สัตตมี เอกวจนะ"
 
-#: .\padanukkama\models.py:772
+#: padanukkama/models.py:778
 msgid "Sattamī Purisa 2 Parassapada Bahuvacana"
 msgstr "สัตตมี พหุวจนะ"
 
-#: .\padanukkama\models.py:773
+#: padanukkama/models.py:779
 msgid "Sattamī Purisa 2 Attanopada Ekavacana"
 msgstr "สัตตมี เอกวจนะ"
 
-#: .\padanukkama\models.py:774
+#: padanukkama/models.py:780
 msgid "Sattamī Purisa 2 Attanopada Bahuvacana"
 msgstr "สัตตมี พหุวจนะ"
 
-#: .\padanukkama\models.py:775
+#: padanukkama/models.py:781
 msgid "Sattamī Purisa 3 Parassapada Ekavacana"
 msgstr "สัตตมี เอกวจนะ"
 
-#: .\padanukkama\models.py:776
+#: padanukkama/models.py:782
 msgid "Sattamī Purisa 3 Parassapada Bahuvacana"
 msgstr "สัตตมี พหุวจนะ"
 
-#: .\padanukkama\models.py:777
+#: padanukkama/models.py:783
 msgid "Sattamī Purisa 3 Attanopada Ekavacana"
 msgstr "สัตตมี เอกวจนะ"
 
-#: .\padanukkama\models.py:778
+#: padanukkama/models.py:784
 msgid "Sattamī Purisa 3 Attanopada Bahuvacana"
 msgstr "สัตตมี พหุวจนะ"
 
-#: .\padanukkama\models.py:781
+#: padanukkama/models.py:787
 msgid "Parokkhā Purisa 1 Parassapada Ekavacana"
 msgstr ""
 
-#: .\padanukkama\models.py:782
+#: padanukkama/models.py:788
 msgid "Parokkhā Purisa 1 Parassapada Bahuvacana"
 msgstr ""
 
-#: .\padanukkama\models.py:783
+#: padanukkama/models.py:789
 msgid "Parokkhā Purisa 1 Attanopada Ekavacana"
 msgstr ""
 
-#: .\padanukkama\models.py:784
+#: padanukkama/models.py:790
 msgid "Parokkhā Purisa 1 Attanopada Bahuvacana"
 msgstr ""
 
-#: .\padanukkama\models.py:785
+#: padanukkama/models.py:791
 msgid "Parokkhā Purisa 2 Parassapada Ekavacana"
 msgstr ""
 
-#: .\padanukkama\models.py:786
+#: padanukkama/models.py:792
 msgid "Parokkhā Purisa 2 Parassapada Bahuvacana"
 msgstr ""
 
-#: .\padanukkama\models.py:787
+#: padanukkama/models.py:793
 msgid "Parokkhā Purisa 2 Attanopada Ekavacana"
 msgstr ""
 
-#: .\padanukkama\models.py:788
+#: padanukkama/models.py:794
 msgid "Parokkhā Purisa 2 Attanopada Bahuvacana"
 msgstr ""
 
-#: .\padanukkama\models.py:789
+#: padanukkama/models.py:795
 msgid "Parokkhā Purisa 3 Parassapada Ekavacana"
 msgstr ""
 
-#: .\padanukkama\models.py:790
+#: padanukkama/models.py:796
 msgid "Parokkhā Purisa 3 Parassapada Bahuvacana"
 msgstr ""
 
-#: .\padanukkama\models.py:791
+#: padanukkama/models.py:797
 msgid "Parokkhā Purisa 3 Attanopada Ekavacana"
 msgstr ""
 
-#: .\padanukkama\models.py:792
+#: padanukkama/models.py:798
 msgid "Parokkhā Purisa 3 Attanopada Bahuvacana"
 msgstr ""
 
-#: .\padanukkama\models.py:795
+#: padanukkama/models.py:801
 msgid "Hiyyattanī Purisa 1 Parassapada Ekavacana"
 msgstr ""
 
-#: .\padanukkama\models.py:796
+#: padanukkama/models.py:802
 msgid "Hiyyattanī Purisa 1 Parassapada Bahuvacana"
 msgstr ""
 
-#: .\padanukkama\models.py:797
+#: padanukkama/models.py:803
 msgid "Hiyyattanī Purisa 1 Attanopada Ekavacana"
 msgstr ""
 
-#: .\padanukkama\models.py:798
+#: padanukkama/models.py:804
 msgid "Hiyyattanī Purisa 1 Attanopada Bahuvacana"
 msgstr ""
 
-#: .\padanukkama\models.py:799
+#: padanukkama/models.py:805
 msgid "Hiyyattanī Purisa 2 Parassapada Ekavacana"
 msgstr ""
 
-#: .\padanukkama\models.py:800
+#: padanukkama/models.py:806
 msgid "Hiyyattanī Purisa 2 Parassapada Bahuvacana"
 msgstr ""
 
-#: .\padanukkama\models.py:801
+#: padanukkama/models.py:807
 msgid "Hiyyattanī Purisa 2 Attanopada Ekavacana"
 msgstr ""
 
-#: .\padanukkama\models.py:802
+#: padanukkama/models.py:808
 msgid "Hiyyattanī Purisa 2 Attanopada Bahuvacana"
 msgstr ""
 
-#: .\padanukkama\models.py:803
+#: padanukkama/models.py:809
 msgid "Hiyyattanī Purisa 3 Parassapada Ekavacana"
 msgstr ""
 
-#: .\padanukkama\models.py:804
+#: padanukkama/models.py:810
 msgid "Hiyyattanī Purisa 3 Parassapada Bahuvacana"
 msgstr ""
 
-#: .\padanukkama\models.py:805
+#: padanukkama/models.py:811
 msgid "Hiyyattanī Purisa 3 Attanopada Ekavacana"
 msgstr ""
 
-#: .\padanukkama\models.py:806
+#: padanukkama/models.py:812
 msgid "Hiyyattanī Purisa 3 Attanopada Bahuvacana"
 msgstr ""
 
-#: .\padanukkama\models.py:809
+#: padanukkama/models.py:815
 msgid "Ajjatanī Purisa 1 Parassapada Ekavacana"
 msgstr ""
 
-#: .\padanukkama\models.py:810
+#: padanukkama/models.py:816
 msgid "Ajjatanī Purisa 1 Parassapada Bahuvacana"
 msgstr ""
 
-#: .\padanukkama\models.py:811
+#: padanukkama/models.py:817
 msgid "Ajjatanī Purisa 1 Attanopada Ekavacana"
 msgstr ""
 
-#: .\padanukkama\models.py:812
+#: padanukkama/models.py:818
 msgid "Ajjatanī Purisa 1 Attanopada Bahuvacana"
 msgstr ""
 
-#: .\padanukkama\models.py:813
+#: padanukkama/models.py:819
 msgid "Ajjatanī Purisa 2 Parassapada Ekavacana"
 msgstr ""
 
-#: .\padanukkama\models.py:814
+#: padanukkama/models.py:820
 msgid "Ajjatanī Purisa 2 Parassapada Bahuvacana"
 msgstr ""
 
-#: .\padanukkama\models.py:815
+#: padanukkama/models.py:821
 msgid "Ajjatanī Purisa 2 Attanopada Ekavacana"
 msgstr ""
 
-#: .\padanukkama\models.py:816
+#: padanukkama/models.py:822
 msgid "Ajjatanī Purisa 2 Attanopada Bahuvacana"
 msgstr ""
 
-#: .\padanukkama\models.py:817
+#: padanukkama/models.py:823
 msgid "Ajjatanī Purisa 3 Parassapada Ekavacana"
 msgstr ""
 
-#: .\padanukkama\models.py:818
+#: padanukkama/models.py:824
 msgid "Ajjatanī Purisa 3 Parassapada Bahuvacana"
 msgstr ""
 
-#: .\padanukkama\models.py:819
+#: padanukkama/models.py:825
 msgid "Ajjatanī Purisa 3 Attanopada Ekavacana"
 msgstr ""
 
-#: .\padanukkama\models.py:820
+#: padanukkama/models.py:826
 msgid "Ajjatanī Purisa 3 Attanopada Bahuvacana"
 msgstr ""
 
-#: .\padanukkama\models.py:823
+#: padanukkama/models.py:829
 msgid "Bhavissanti Purisa 1 Parassapada Ekavacana"
 msgstr ""
 
-#: .\padanukkama\models.py:824
+#: padanukkama/models.py:830
 msgid "Bhavissanti Purisa 1 Parassapada Bahuvacana"
 msgstr ""
 
-#: .\padanukkama\models.py:825
+#: padanukkama/models.py:831
 msgid "Bhavissanti Purisa 1 Attanopada Ekavacana"
 msgstr ""
 
-#: .\padanukkama\models.py:826
+#: padanukkama/models.py:832
 msgid "Bhavissanti Purisa 1 Attanopada Bahuvacana"
 msgstr ""
 
-#: .\padanukkama\models.py:827
+#: padanukkama/models.py:833
 msgid "Bhavissanti Purisa 2 Parassapada Ekavacana"
 msgstr ""
 
-#: .\padanukkama\models.py:828
+#: padanukkama/models.py:834
 msgid "Bhavissanti Purisa 2 Parassapada Bahuvacana"
 msgstr ""
 
-#: .\padanukkama\models.py:829
+#: padanukkama/models.py:835
 msgid "Bhavissanti Purisa 2 Attanopada Ekavacana"
 msgstr ""
 
-#: .\padanukkama\models.py:830
+#: padanukkama/models.py:836
 msgid "Bhavissanti Purisa 2 Attanopada Bahuvacana"
 msgstr ""
 
-#: .\padanukkama\models.py:831
+#: padanukkama/models.py:837
 msgid "Bhavissanti Purisa 3 Parassapada Ekavacana"
 msgstr ""
 
-#: .\padanukkama\models.py:832
+#: padanukkama/models.py:838
 msgid "Bhavissanti Purisa 3 Parassapada Bahuvacana"
 msgstr ""
 
-#: .\padanukkama\models.py:833
+#: padanukkama/models.py:839
 msgid "Bhavissanti Purisa 3 Attanopada Ekavacana"
 msgstr ""
 
-#: .\padanukkama\models.py:834
+#: padanukkama/models.py:840
 msgid "Bhavissanti Purisa 3 Attanopada Bahuvacana"
 msgstr ""
 
-#: .\padanukkama\models.py:837
+#: padanukkama/models.py:843
 msgid "Kālātipatti Purisa 1 Parassapada Ekavacana"
 msgstr ""
 
-#: .\padanukkama\models.py:838
+#: padanukkama/models.py:844
 msgid "Kālātipatti Purisa 1 Parassapada Bahuvacana"
 msgstr ""
 
-#: .\padanukkama\models.py:839
+#: padanukkama/models.py:845
 msgid "Kālātipatti Purisa 1 Attanopada Ekavacana"
 msgstr ""
 
-#: .\padanukkama\models.py:840
+#: padanukkama/models.py:846
 msgid "Kālātipatti Purisa 1 Attanopada Bahuvacana"
 msgstr ""
 
-#: .\padanukkama\models.py:841
+#: padanukkama/models.py:847
 msgid "Kālātipatti Purisa 2 Parassapada Ekavacana"
 msgstr ""
 
-#: .\padanukkama\models.py:842
+#: padanukkama/models.py:848
 msgid "Kālātipatti Purisa 2 Parassapada Bahuvacana"
 msgstr ""
 
-#: .\padanukkama\models.py:843
+#: padanukkama/models.py:849
 msgid "Kālātipatti Purisa 2 Attanopada Ekavacana"
 msgstr ""
 
-#: .\padanukkama\models.py:844
+#: padanukkama/models.py:850
 msgid "Kālātipatti Purisa 2 Attanopada Bahuvacana"
 msgstr ""
 
-#: .\padanukkama\models.py:845
+#: padanukkama/models.py:851
 msgid "Kālātipatti Purisa 3 Parassapada Ekavacana"
 msgstr ""
 
-#: .\padanukkama\models.py:846
+#: padanukkama/models.py:852
 msgid "Kālātipatti Purisa 3 Parassapada Bahuvacana"
 msgstr ""
 
-#: .\padanukkama\models.py:847
+#: padanukkama/models.py:853
 msgid "Kālātipatti Purisa 3 Attanopada Ekavacana"
 msgstr ""
 
-#: .\padanukkama\models.py:848
+#: padanukkama/models.py:854
 msgid "Kālātipatti Purisa 3 Attanopada Bahuvacana"
 msgstr ""
 
-#: .\padanukkama\tables.py:36 .\padanukkama\tables.py:554
-#: .\padanukkama\templates\padanukkama\literal_translation_detail.html:24
-#: .\padanukkama\templates\padanukkama\padanukkama_update.html:6
-#: .\setting\templates\setting\akhyala_saddamala.html:22
-#: .\setting\templates\setting\dhatu_detail.html:8
-#: .\setting\templates\setting\nama_saddamala_detail.html:27
-#: .\setting\templates\setting\noun_declension_detail.html:24
-#: .\setting\templates\setting\verb_conjugation_detail.html:24
-#: .\tipitaka\tables.py:200
-#: .\tipitaka\templates\tipitaka\digital_archive_details.html:50
-#: .\tipitaka\templates\tipitaka\wordlist_page_source.html:54
+#: padanukkama/tables.py:36 padanukkama/tables.py:554
+#: padanukkama/templates/padanukkama/literal_translation_detail.html:24
+#: padanukkama/templates/padanukkama/padanukkama_update.html:6
+#: setting/templates/setting/akhyala_saddamala.html:22
+#: setting/templates/setting/dhatu_detail.html:8
+#: setting/templates/setting/nama_saddamala_detail.html:27
+#: setting/templates/setting/noun_declension_detail.html:24
+#: setting/templates/setting/verb_conjugation_detail.html:24
+#: tipitaka/tables.py:200
+#: tipitaka/templates/tipitaka/digital_archive_details.html:50
+#: tipitaka/templates/tipitaka/wordlist_page_source.html:54
 msgid "Update"
 msgstr "ปรับปรุง"
 
-#: .\padanukkama\tables.py:96 .\setting\tables.py:50 .\setting\tables.py:110
-#: .\setting\tables.py:163 .\setting\tables.py:217 .\tipitaka\tables.py:131
+#: padanukkama/tables.py:96 setting/tables.py:50 setting/tables.py:110
+#: setting/tables.py:163 setting/tables.py:217 tipitaka/tables.py:131
 msgid "Title contains"
 msgstr "หัวเรื่องประกอบด้วย"
 
-#: .\padanukkama\tables.py:100
+#: padanukkama/tables.py:100
 msgid "All"
 msgstr "ทั้งหมด"
 
-#: .\padanukkama\tables.py:100
+#: padanukkama/tables.py:100
 msgid "True"
 msgstr "ใช่"
 
-#: .\padanukkama\tables.py:100
+#: padanukkama/tables.py:100
 msgid "False"
 msgstr "ไม่ใช่"
 
-#: .\padanukkama\tables.py:136 .\padanukkama\tables.py:156
+#: padanukkama/tables.py:136 padanukkama/tables.py:156
 msgid "Sandhi"
 msgstr "สนธิ"
 
-#: .\padanukkama\tables.py:166
+#: padanukkama/tables.py:166
 msgid "Origin"
 msgstr "ต้นฉบับ"
 
-#: .\padanukkama\tables.py:205
+#: padanukkama/tables.py:205
 msgid "Dupl."
 msgstr "สำเนา"
 
-#: .\padanukkama\tables.py:215
+#: padanukkama/tables.py:215
 msgid "Do you want to duplicate record of "
 msgstr "คุณต้องการสำเนารายการของ "
 
-#: .\padanukkama\tables.py:235 .\padanukkama\tables.py:364
-#: .\padanukkama\tables.py:418
+#: padanukkama/tables.py:225 padanukkama/tables.py:354
+#: padanukkama/tables.py:411
+#: padanukkama/templates/padanukkama/htmx/htmx_translation_pada.html:145
+#: padanukkama/templates/padanukkama/literal_translation_detail.html:25
+#: padanukkama/templates/padanukkama/literal_translation_detail.html:112
+#: padanukkama/templates/padanukkama/padanukkama_delete.html:6
+#: padanukkama/templates/padanukkama/padanukkama_update.html:71
+#: setting/templates/setting/akhyala_saddamala.html:298
+#: setting/templates/setting/dhatu_detail.html:9
+#: setting/templates/setting/dhatu_detail.html:58
+#: setting/templates/setting/nama_saddamala_detail.html:28
+#: setting/templates/setting/nama_saddamala_detail.html:184
+#: setting/templates/setting/noun_declension_detail.html:25
+#: setting/templates/setting/noun_declension_detail.html:73
+#: setting/templates/setting/verb_conjugation_detail.html:25
+#: setting/templates/setting/verb_conjugation_detail.html:116
+#: tipitaka/templates/tipitaka/common_reference_delete.html:5
+msgid "Delete"
+msgstr ""
+
+#: padanukkama/tables.py:235 padanukkama/tables.py:364
+#: padanukkama/tables.py:418
 msgid "Do you want to delete record of "
 msgstr "คุณต้องการสำเนารายการของ "
 
-#: .\padanukkama\tables.py:246
+#: padanukkama/tables.py:246
 msgid "Search for Padas that start with these characters"
 msgstr "ค้นหาบทที่เริ่มต้นด้วยตัวอักษรเหล่านี้"
 
-#: .\padanukkama\tables.py:247
+#: padanukkama/tables.py:247
 msgid "Search for Padas that contain these characters"
 msgstr "ค้นหาบทที่มีตัวอักษรเหล่านี้อยู่ในภายใน"
 
-#: .\padanukkama\tables.py:248
+#: padanukkama/tables.py:248
 msgid "Go to the page where this Pada is located"
 msgstr "ไปยังหน้าที่บทนี้ตั้งอยู่"
 
-#: .\padanukkama\tables.py:249
+#: padanukkama/tables.py:249
 msgid "Go to the page of the latest updated Pada"
 msgstr "ไปยังหน้าของบทที่ได้รับการปรับปรุงล่าสุด"
 
-#: .\padanukkama\tables.py:250
+#: padanukkama/tables.py:250
 msgid "Filter Padas that have not been processed."
 msgstr "กรองบททั้งหมดที่ยังไม่ดำเนินการ"
 
-#: .\padanukkama\tables.py:261
+#: padanukkama/tables.py:261
 msgid "Please select"
 msgstr "โปรดเลือก"
 
-#: .\padanukkama\tables.py:337
+#: padanukkama/tables.py:337
 msgid "Decl."
 msgstr "วิภัตติ"
 
-#: .\padanukkama\tables.py:395
+#: padanukkama/tables.py:395
 msgid "Translate Sadda"
 msgstr "แปลศัพท์"
 
-#: .\padanukkama\tables.py:451
+#: padanukkama/tables.py:451
 msgid "Related Padas"
 msgstr "บทที่เกี่ยวข้อง"
 
-#: .\padanukkama\tables.py:452 .\tipitaka\models.py:127
+#: padanukkama/tables.py:452 tipitaka/models.py:127
 msgid "Created by"
 msgstr "สร้างโดย"
 
-#: .\padanukkama\tables.py:504
+#: padanukkama/tables.py:504
 msgid "Created By"
 msgstr "สร้างโดย"
 
-#: .\padanukkama\templates\padanukkama\htmx\htmx_found_in_translation.html:4
-#: .\padanukkama\templates\padanukkama\include\htmx_translation_pada\help_table.html:20
+#: padanukkama/templates/padanukkama/htmx/htmx_found_in_translation.html:4
+#: padanukkama/templates/padanukkama/include/htmx_translation_pada/help_table.html:20
 msgid "Found in Translation"
 msgstr "พบในการแปล"
 
-#: .\padanukkama\templates\padanukkama\htmx\htmx_found_in_translation.html:25
+#: padanukkama/templates/padanukkama/htmx/htmx_found_in_translation.html:25
 msgid "Not Found in Translation"
 msgstr "ไม่พบในการแปล"
 
-#: .\padanukkama\templates\padanukkama\htmx\htmx_translation_helper.html:36
+#: padanukkama/templates/padanukkama/htmx/htmx_translation_helper.html:36
+#: padanukkama/templates/padanukkama/htmx/htmx_translation_widtet_helper.html:70
 msgid "Not Found in Padanukkama"
 msgstr "ไม่พบในปทานุกรม"
 
-#: .\padanukkama\templates\padanukkama\htmx\htmx_translation_helper.html:40
-#: .\padanukkama\templates\padanukkama\htmx\htmx_translation_pada.html:23
-#: .\padanukkama\templates\padanukkama\htmx\htmx_translation_pada.html:25
+#: padanukkama/templates/padanukkama/htmx/htmx_translation_helper.html:40
+#: padanukkama/templates/padanukkama/htmx/htmx_translation_pada.html:23
+#: padanukkama/templates/padanukkama/htmx/htmx_translation_pada.html:25
 msgid "Interpolation"
 msgstr "แทรก"
 
-#: .\padanukkama\templates\padanukkama\htmx\htmx_translation_pada.html:46
-#: .\padanukkama\templates\padanukkama\include\htmx_translation_pada\default_toolbars.html:37
+#: padanukkama/templates/padanukkama/htmx/htmx_translation_pada.html:46
+#: padanukkama/templates/padanukkama/include/htmx_translation_pada/default_toolbars.html:37
 msgid "Split"
 msgstr "แยก"
 
-#: .\padanukkama\templates\padanukkama\htmx\htmx_translation_pada.html:61
-#: .\padanukkama\templates\padanukkama\include\htmx_translation_pada\default_toolbars.html:53
+#: padanukkama/templates/padanukkama/htmx/htmx_translation_pada.html:62
+#: padanukkama/templates/padanukkama/include/htmx_translation_pada/default_toolbars.html:53
 msgid "Merge"
 msgstr "รวม"
 
-#: .\padanukkama\templates\padanukkama\htmx\htmx_translation_pada.html:76
-#: .\padanukkama\templates\padanukkama\include\htmx_translation_pada\default_toolbars.html:69
+#: padanukkama/templates/padanukkama/htmx/htmx_translation_pada.html:78
+#: padanukkama/templates/padanukkama/include/htmx_translation_pada/default_toolbars.html:69
 msgid "Backspace"
 msgstr "ย้อนกลับ"
 
-#: .\padanukkama\templates\padanukkama\htmx\htmx_translation_pada.html:91
-#: .\padanukkama\templates\padanukkama\include\htmx_translation_pada\default_toolbars.html:85
+#: padanukkama/templates/padanukkama/htmx/htmx_translation_pada.html:94
+#: padanukkama/templates/padanukkama/include/htmx_translation_pada/default_toolbars.html:85
 msgid "+Sentence"
 msgstr "ตัดประโยค"
 
-#: .\padanukkama\templates\padanukkama\htmx\htmx_translation_pada_translate.html:48
-#: .\padanukkama\templates\padanukkama\pada_declension.html:82
+#: padanukkama/templates/padanukkama/htmx/htmx_translation_pada_translate.html:48
+#: padanukkama/templates/padanukkama/pada_declension.html:82
 msgid "Decoupling"
 msgstr "แยกความสัมพันธ์"
 
-#: .\padanukkama\templates\padanukkama\htmx\htmx_translation_pada_translate.html:162
-#: .\padanukkama\templates\padanukkama\include\declension_existing_sadda.html:20
+#: padanukkama/templates/padanukkama/htmx/htmx_translation_pada_translate.html:162
+#: padanukkama/templates/padanukkama/include/declension_existing_sadda.html:20
 msgid "Existing sadda found. Do you want to proceed?"
 msgstr "พบว่ามีศัพท์นี้ในฐานข้อมูล ต้องการดำเนินการต่อหรือไม่?"
 
-#: .\padanukkama\templates\padanukkama\htmx\htmx_translation_pada_translate.html:289
-#: .\padanukkama\templates\padanukkama\include\declension_create_vipatti.html:81
+#: padanukkama/templates/padanukkama/htmx/htmx_translation_pada_translate.html:289
+#: padanukkama/templates/padanukkama/include/declension_create_vipatti.html:81
 msgid ""
 "Please verify any potentially incorrect `sadda` or possible declension "
 "error, Contact to SA to assistance."
 msgstr "กรุณาตรวจสอบคำศัพท์ที่อาจจะไม่ถูกต้อง โปรดติดต่อเจ้าหน้าที่"
 
-#: .\padanukkama\templates\padanukkama\htmx\htmx_translation_pada_translate.html:304
-#: .\padanukkama\templates\padanukkama\include\declension_create_vipatti.html:96
-#: .\padanukkama\templates\padanukkama\include\htmx_translation_helper\nama_declension_table.html:16
-#: .\setting\templates\setting\nama_saddamala_detail.html:55
-#: .\setting\templates\setting\nama_saddamala_detail.html:132
+#: padanukkama/templates/padanukkama/htmx/htmx_translation_pada_translate.html:304
+#: padanukkama/templates/padanukkama/include/declension_create_vipatti.html:96
+#: padanukkama/templates/padanukkama/include/htmx_translation_helper/nama_declension_table.html:16
+#: setting/templates/setting/nama_saddamala_detail.html:55
+#: setting/templates/setting/nama_saddamala_detail.html:132
 msgid "Vibhatti"
 msgstr "วิภัตติ"
 
-#: .\padanukkama\templates\padanukkama\htmx\htmx_translation_pada_translate.html:313
-#: .\padanukkama\templates\padanukkama\include\declension_create_vipatti.html:106
-#: .\setting\templates\setting\nama_saddamala_detail.html:60
-#: .\setting\templates\setting\nama_saddamala_detail.html:137
+#: padanukkama/templates/padanukkama/htmx/htmx_translation_pada_translate.html:313
+#: padanukkama/templates/padanukkama/include/declension_create_vipatti.html:106
+#: setting/templates/setting/nama_saddamala_detail.html:60
+#: setting/templates/setting/nama_saddamala_detail.html:137
 msgid "Paṭhamā"
 msgstr "ปฐมา"
 
-#: .\padanukkama\templates\padanukkama\htmx\htmx_translation_pada_translate.html:327
-#: .\padanukkama\templates\padanukkama\include\declension_create_vipatti.html:120
-#: .\setting\templates\setting\nama_saddamala_detail.html:65
-#: .\setting\templates\setting\nama_saddamala_detail.html:142
+#: padanukkama/templates/padanukkama/htmx/htmx_translation_pada_translate.html:327
+#: padanukkama/templates/padanukkama/include/declension_create_vipatti.html:120
+#: setting/templates/setting/nama_saddamala_detail.html:65
+#: setting/templates/setting/nama_saddamala_detail.html:142
 msgid "Ālapana"
 msgstr "อาลปนะ"
 
-#: .\padanukkama\templates\padanukkama\htmx\htmx_translation_pada_translate.html:341
-#: .\padanukkama\templates\padanukkama\include\declension_create_vipatti.html:134
-#: .\setting\templates\setting\nama_saddamala_detail.html:70
-#: .\setting\templates\setting\nama_saddamala_detail.html:147
+#: padanukkama/templates/padanukkama/htmx/htmx_translation_pada_translate.html:341
+#: padanukkama/templates/padanukkama/include/declension_create_vipatti.html:134
+#: setting/templates/setting/nama_saddamala_detail.html:70
+#: setting/templates/setting/nama_saddamala_detail.html:147
 msgid "Dutiyā"
 msgstr "ทุติยา"
 
-#: .\padanukkama\templates\padanukkama\htmx\htmx_translation_pada_translate.html:355
-#: .\padanukkama\templates\padanukkama\include\declension_create_vipatti.html:147
-#: .\setting\templates\setting\nama_saddamala_detail.html:75
-#: .\setting\templates\setting\nama_saddamala_detail.html:152
+#: padanukkama/templates/padanukkama/htmx/htmx_translation_pada_translate.html:355
+#: padanukkama/templates/padanukkama/include/declension_create_vipatti.html:147
+#: setting/templates/setting/nama_saddamala_detail.html:75
+#: setting/templates/setting/nama_saddamala_detail.html:152
 msgid "Tatiyā"
 msgstr "ตติยา"
 
-#: .\padanukkama\templates\padanukkama\htmx\htmx_translation_pada_translate.html:369
-#: .\padanukkama\templates\padanukkama\include\declension_create_vipatti.html:161
-#: .\setting\templates\setting\nama_saddamala_detail.html:80
-#: .\setting\templates\setting\nama_saddamala_detail.html:157
+#: padanukkama/templates/padanukkama/htmx/htmx_translation_pada_translate.html:369
+#: padanukkama/templates/padanukkama/include/declension_create_vipatti.html:161
+#: setting/templates/setting/nama_saddamala_detail.html:80
+#: setting/templates/setting/nama_saddamala_detail.html:157
 msgid "Catutthī"
 msgstr "จตุตถี"
 
-#: .\padanukkama\templates\padanukkama\htmx\htmx_translation_pada_translate.html:383
-#: .\padanukkama\templates\padanukkama\include\declension_create_vipatti.html:175
-#: .\setting\templates\setting\akhyala_saddamala.html:68
-#: .\setting\templates\setting\nama_saddamala_detail.html:85
-#: .\setting\templates\setting\nama_saddamala_detail.html:162
+#: padanukkama/templates/padanukkama/htmx/htmx_translation_pada_translate.html:383
+#: padanukkama/templates/padanukkama/include/declension_create_vipatti.html:175
+#: setting/templates/setting/akhyala_saddamala.html:68
+#: setting/templates/setting/nama_saddamala_detail.html:85
+#: setting/templates/setting/nama_saddamala_detail.html:162
 msgid "Pañcamī"
 msgstr "ปัญจมี"
 
-#: .\padanukkama\templates\padanukkama\htmx\htmx_translation_pada_translate.html:397
-#: .\padanukkama\templates\padanukkama\include\declension_create_vipatti.html:189
-#: .\setting\templates\setting\nama_saddamala_detail.html:90
-#: .\setting\templates\setting\nama_saddamala_detail.html:167
+#: padanukkama/templates/padanukkama/htmx/htmx_translation_pada_translate.html:397
+#: padanukkama/templates/padanukkama/include/declension_create_vipatti.html:189
+#: setting/templates/setting/nama_saddamala_detail.html:90
+#: setting/templates/setting/nama_saddamala_detail.html:167
 msgid "Chaṭṭhī"
 msgstr "ฉัฏฐี"
 
-#: .\padanukkama\templates\padanukkama\htmx\htmx_translation_pada_translate.html:411
-#: .\padanukkama\templates\padanukkama\include\declension_create_vipatti.html:203
-#: .\setting\templates\setting\akhyala_saddamala.html:100
-#: .\setting\templates\setting\nama_saddamala_detail.html:95
-#: .\setting\templates\setting\nama_saddamala_detail.html:172
+#: padanukkama/templates/padanukkama/htmx/htmx_translation_pada_translate.html:411
+#: padanukkama/templates/padanukkama/include/declension_create_vipatti.html:203
+#: setting/templates/setting/akhyala_saddamala.html:100
+#: setting/templates/setting/nama_saddamala_detail.html:95
+#: setting/templates/setting/nama_saddamala_detail.html:172
 msgid "Sattamī"
 msgstr "สัตตมี"
 
-#: .\padanukkama\templates\padanukkama\include\declension_decoupling.html:14
+#: padanukkama/templates/padanukkama/include/declension_decoupling.html:14
 #, python-format
 msgid ""
 "Decoupling pada %%(pada)s with sadda %%(sadda)s. Do you want to proceed?"
 msgstr "แยกความสัมพันธ์ระหว่างบทกับศัพท์"
 
-#: .\padanukkama\templates\padanukkama\include\declension_find_abidan.html:15
-#: .\padanukkama\templates\padanukkama\include\declension_find_related_pada.html:15
-#: .\padanukkama\templates\padanukkama\include\declension_find_sadda.html:14
+#: padanukkama/templates/padanukkama/include/declension_find_abidan.html:15
+#: padanukkama/templates/padanukkama/include/declension_find_related_pada.html:15
+#: padanukkama/templates/padanukkama/include/declension_find_sadda.html:14
 msgid "Loading..."
 msgstr "กำลังดำเนินการ"
 
-#: .\padanukkama\templates\padanukkama\include\htmx_translation_helper\verb_conjugation_table.html:38
-#: .\padanukkama\templates\padanukkama\pada_declension.html:148
-#: .\setting\templates\setting\include\akhyata_thead.html:5
-#: .\setting\templates\setting\verb_conjugation_detail.html:75
+#: padanukkama/templates/padanukkama/include/htmx_translation_helper/verb_conjugation_table.html:38
+#: padanukkama/templates/padanukkama/pada_declension.html:148
+#: setting/templates/setting/include/akhyata_thead.html:5
+#: setting/templates/setting/verb_conjugation_detail.html:75
 msgid "Person"
 msgstr "บุรุษ"
 
-#: .\padanukkama\templates\padanukkama\include\htmx_translation_helper\verb_conjugation_table.html:39
-#: .\padanukkama\templates\padanukkama\pada_declension.html:149
-#: .\setting\templates\setting\include\akhyata_thead.html:6
-#: .\setting\templates\setting\verb_conjugation_detail.html:76
+#: padanukkama/templates/padanukkama/include/htmx_translation_helper/verb_conjugation_table.html:39
+#: padanukkama/templates/padanukkama/pada_declension.html:149
+#: setting/templates/setting/include/akhyata_thead.html:6
+#: setting/templates/setting/verb_conjugation_detail.html:76
 msgid "Parassapada"
 msgstr "ปรัสสบท"
 
-#: .\padanukkama\templates\padanukkama\include\htmx_translation_helper\verb_conjugation_table.html:40
-#: .\padanukkama\templates\padanukkama\pada_declension.html:150
-#: .\setting\templates\setting\include\akhyata_thead.html:7
-#: .\setting\templates\setting\verb_conjugation_detail.html:77
+#: padanukkama/templates/padanukkama/include/htmx_translation_helper/verb_conjugation_table.html:40
+#: padanukkama/templates/padanukkama/pada_declension.html:150
+#: setting/templates/setting/include/akhyata_thead.html:7
+#: setting/templates/setting/verb_conjugation_detail.html:77
 msgid "Attanopada"
 msgstr "อัตตโนบท"
 
-#: .\padanukkama\templates\padanukkama\include\htmx_translation_helper\verb_conjugation_table.html:49
-#: .\padanukkama\templates\padanukkama\pada_declension.html:159
-#: .\setting\templates\setting\akhyala_saddamala.html:45
-#: .\setting\templates\setting\akhyala_saddamala.html:77
-#: .\setting\templates\setting\akhyala_saddamala.html:109
-#: .\setting\templates\setting\akhyala_saddamala.html:141
-#: .\setting\templates\setting\akhyala_saddamala.html:173
-#: .\setting\templates\setting\akhyala_saddamala.html:205
-#: .\setting\templates\setting\akhyala_saddamala.html:237
-#: .\setting\templates\setting\akhyala_saddamala.html:269
-#: .\setting\templates\setting\verb_conjugation_detail.html:86
+#: padanukkama/templates/padanukkama/include/htmx_translation_helper/verb_conjugation_table.html:49
+#: padanukkama/templates/padanukkama/pada_declension.html:159
+#: setting/templates/setting/akhyala_saddamala.html:45
+#: setting/templates/setting/akhyala_saddamala.html:77
+#: setting/templates/setting/akhyala_saddamala.html:109
+#: setting/templates/setting/akhyala_saddamala.html:141
+#: setting/templates/setting/akhyala_saddamala.html:173
+#: setting/templates/setting/akhyala_saddamala.html:205
+#: setting/templates/setting/akhyala_saddamala.html:237
+#: setting/templates/setting/akhyala_saddamala.html:269
+#: setting/templates/setting/verb_conjugation_detail.html:86
 msgid "1st"
 msgstr "ที่ 1"
 
-#: .\padanukkama\templates\padanukkama\include\htmx_translation_helper\verb_conjugation_table.html:88
-#: .\padanukkama\templates\padanukkama\pada_declension.html:166
-#: .\setting\templates\setting\akhyala_saddamala.html:52
-#: .\setting\templates\setting\akhyala_saddamala.html:84
-#: .\setting\templates\setting\akhyala_saddamala.html:116
-#: .\setting\templates\setting\akhyala_saddamala.html:148
-#: .\setting\templates\setting\akhyala_saddamala.html:180
-#: .\setting\templates\setting\akhyala_saddamala.html:212
-#: .\setting\templates\setting\akhyala_saddamala.html:244
-#: .\setting\templates\setting\akhyala_saddamala.html:276
-#: .\setting\templates\setting\verb_conjugation_detail.html:93
+#: padanukkama/templates/padanukkama/include/htmx_translation_helper/verb_conjugation_table.html:88
+#: padanukkama/templates/padanukkama/pada_declension.html:166
+#: setting/templates/setting/akhyala_saddamala.html:52
+#: setting/templates/setting/akhyala_saddamala.html:84
+#: setting/templates/setting/akhyala_saddamala.html:116
+#: setting/templates/setting/akhyala_saddamala.html:148
+#: setting/templates/setting/akhyala_saddamala.html:180
+#: setting/templates/setting/akhyala_saddamala.html:212
+#: setting/templates/setting/akhyala_saddamala.html:244
+#: setting/templates/setting/akhyala_saddamala.html:276
+#: setting/templates/setting/verb_conjugation_detail.html:93
 msgid "2nd"
 msgstr "ที่ 2"
 
-#: .\padanukkama\templates\padanukkama\include\htmx_translation_helper\verb_conjugation_table.html:127
-#: .\padanukkama\templates\padanukkama\pada_declension.html:173
-#: .\setting\templates\setting\akhyala_saddamala.html:59
-#: .\setting\templates\setting\akhyala_saddamala.html:91
-#: .\setting\templates\setting\akhyala_saddamala.html:123
-#: .\setting\templates\setting\akhyala_saddamala.html:155
-#: .\setting\templates\setting\akhyala_saddamala.html:187
-#: .\setting\templates\setting\akhyala_saddamala.html:219
-#: .\setting\templates\setting\akhyala_saddamala.html:251
-#: .\setting\templates\setting\akhyala_saddamala.html:283
-#: .\setting\templates\setting\verb_conjugation_detail.html:100
+#: padanukkama/templates/padanukkama/include/htmx_translation_helper/verb_conjugation_table.html:127
+#: padanukkama/templates/padanukkama/pada_declension.html:173
+#: setting/templates/setting/akhyala_saddamala.html:59
+#: setting/templates/setting/akhyala_saddamala.html:91
+#: setting/templates/setting/akhyala_saddamala.html:123
+#: setting/templates/setting/akhyala_saddamala.html:155
+#: setting/templates/setting/akhyala_saddamala.html:187
+#: setting/templates/setting/akhyala_saddamala.html:219
+#: setting/templates/setting/akhyala_saddamala.html:251
+#: setting/templates/setting/akhyala_saddamala.html:283
+#: setting/templates/setting/verb_conjugation_detail.html:100
 msgid "3rd"
 msgstr "ที่ 3"
 
-#: .\padanukkama\templates\padanukkama\include\htmx_translation_pada\default_toolbars.html:18
+#: padanukkama/templates/padanukkama/include/htmx_translation_pada/default_toolbars.html:18
 msgid "Table"
 msgstr "ตาราง"
 
-#: .\padanukkama\templates\padanukkama\include\namasaddamala.html:14
+#: padanukkama/templates/padanukkama/include/namasaddamala.html:14
 msgid "ID"
 msgstr "รหัส"
 
-#: .\padanukkama\templates\padanukkama\include\translation_pada.html:24
+#: padanukkama/templates/padanukkama/include/translation_pada.html:25
 msgid "Embedded code"
 msgstr "รหัสสำหรับนำไปฝังในเว็บไซด์"
 
-#: .\padanukkama\templates\padanukkama\include\translation_pada.html:25
+#: padanukkama/templates/padanukkama/include/translation_pada.html:26
 msgid ""
 "Click the 'Copy Code' button to copy this displayed code and paste it onto "
 "the webpage where you want it to appear."
-msgstr "คุณสามารถกดปุ่ม "สำเนารหัส" เพื่อนำรหัสที่แสดงนี้ไปวางบนหน้าเว็บไซต์ที่ต้องการ"
+msgstr "คุณสามารถกดปุ่ม 'สำเนารหัส' เพื่อนำรหัสที่แสดงนี้ไปวางบนหน้าเว็บไซต์ที่ต้องการ"
 
-#: .\padanukkama\templates\padanukkama\include\translation_pada.html:35
+#: padanukkama/templates/padanukkama/include/translation_pada.html:29
+msgid "Height"
+msgstr ""
+
+#: padanukkama/templates/padanukkama/include/translation_pada.html:37
 msgid "Copy Code"
 msgstr "สำเนารหัส"
 
-#: .\padanukkama\templates\padanukkama\literal_translation.html:15
-#: .\padanukkama\templates\padanukkama\padanukkama.html:12
-#: .\setting\templates\setting\dhatu.html:12
-#: .\setting\templates\setting\nama_saddamala.html:12
-#: .\setting\templates\setting\noun_declension.html:12
-#: .\setting\templates\setting\verb_conjugation.html:12
+#: padanukkama/templates/padanukkama/literal_translation.html:15
+#: padanukkama/templates/padanukkama/padanukkama.html:12
+#: setting/templates/setting/dhatu.html:12
+#: setting/templates/setting/nama_saddamala.html:12
+#: setting/templates/setting/noun_declension.html:12
+#: setting/templates/setting/verb_conjugation.html:12
 msgid "Add"
 msgstr "เพิ่ม"
 
-#: .\padanukkama\templates\padanukkama\literal_translation_detail.html:23
-#: .\padanukkama\templates\padanukkama\padanukkama_create.html:6
-#: .\setting\templates\setting\dhatu_detail.html:7
-#: .\setting\templates\setting\nama_saddamala_detail.html:26
-#: .\setting\templates\setting\noun_declension_detail.html:23
-#: .\setting\templates\setting\verb_conjugation_detail.html:23
+#: padanukkama/templates/padanukkama/literal_translation_detail.html:23
+#: padanukkama/templates/padanukkama/padanukkama_create.html:6
+#: setting/templates/setting/dhatu_detail.html:7
+#: setting/templates/setting/nama_saddamala_detail.html:26
+#: setting/templates/setting/noun_declension_detail.html:23
+#: setting/templates/setting/verb_conjugation_detail.html:23
 msgid "Create"
 msgstr "สร้าง"
 
-#: .\padanukkama\templates\padanukkama\literal_translation_detail.html:42
+#: padanukkama/templates/padanukkama/literal_translation_detail.html:42
 msgid "Delete Literal Translation"
 msgstr "แปลยกศัพท์"
 
-#: .\padanukkama\templates\padanukkama\literal_translation_detail.html:43
+#: padanukkama/templates/padanukkama/literal_translation_detail.html:43
 msgid "Are you sure you want to delete the following Literal Translation?"
 msgstr "กรุณายืนยันการลบรายการ 'วิภัตติอาขยาต'"
 
-#: .\padanukkama\templates\padanukkama\literal_translation_detail.html:85
-#: .\tipitaka\models.py:159 .\tipitaka\models.py:194
+#: padanukkama/templates/padanukkama/literal_translation_detail.html:85
+#: tipitaka/models.py:159 tipitaka/models.py:194
 msgid "Wordlist version"
 msgstr "รุ่นคำศัพท์"
 
-#: .\padanukkama\templates\padanukkama\literal_translation_detail.html:118
-#: .\padanukkama\templates\padanukkama\padanukkama_create.html:37
-#: .\padanukkama\templates\padanukkama\padanukkama_update.html:87
-#: .\padanukkama\templates\padanukkama\sadda_update.html:62
-#: .\setting\templates\setting\akhyala_saddamala.html:304
-#: .\setting\templates\setting\dhatu_detail.html:64
-#: .\setting\templates\setting\nama_saddamala_detail.html:190
-#: .\setting\templates\setting\noun_declension_detail.html:79
-#: .\setting\templates\setting\verb_conjugation_detail.html:122
+#: padanukkama/templates/padanukkama/literal_translation_detail.html:118
+#: padanukkama/templates/padanukkama/padanukkama_create.html:37
+#: padanukkama/templates/padanukkama/padanukkama_update.html:92
+#: padanukkama/templates/padanukkama/sadda_update.html:62
+#: setting/templates/setting/akhyala_saddamala.html:304
+#: setting/templates/setting/dhatu_detail.html:64
+#: setting/templates/setting/nama_saddamala_detail.html:190
+#: setting/templates/setting/noun_declension_detail.html:79
+#: setting/templates/setting/verb_conjugation_detail.html:122
 msgid "Save"
 msgstr "บันทึก"
 
-#: .\padanukkama\templates\padanukkama\literal_translation_translate.html:71
-msgid "Order by Translation"
-msgstr "เรียงคำตามความ"
-
-#: .\padanukkama\templates\padanukkama\literal_translation_translate.html:72
-msgid "Order by Pāḷi"
-msgstr "เรียงคำตามปาฬิ"
-
-#: .\padanukkama\templates\padanukkama\pada.html:26
-msgid "Pada "
-msgstr "บท"
-
-#: .\padanukkama\templates\padanukkama\pada.html:26
-msgid "Last update"
-msgstr "ปรับปรุงล่าสุด"
-
-#: .\padanukkama\templates\padanukkama\pada.html:55
-#: .\padanukkama\templates\padanukkama\sadda.html:64
-msgid "Export"
-msgstr "บันทึกเป็นไฟล์"
-
-#: .\padanukkama\templates\padanukkama\pada_declension.html:67
-#: .\tipitaka\templates\tipitaka\common_reference_detail.html:5
-msgid "Preview"
-msgstr "แสดง"
-
-#: .\padanukkama\templates\padanukkama\pada_declension.html:101
-#: .\padanukkama\templates\padanukkama\sadda_update.html:81
-msgid "Closest matching words in Abidan"
-msgstr "ค้นหาในอภิธาน"
-
-#: .\padanukkama\templates\padanukkama\pada_declension.html:112
-#: .\padanukkama\templates\padanukkama\sadda_update.html:92
-msgid "Closest matching words in Sadda"
-msgstr "ค้นหาในศัพท์"
-
-#: .\padanukkama\templates\padanukkama\pada_split_sandhi.html:8
-msgid "Sondhi"
-msgstr "สนธิ"
-
-#: .\padanukkama\templates\padanukkama\padanukkama_delete.html:6
-#: .\tipitaka\templates\tipitaka\common_reference_delete.html:5
-#: .\tipitaka\templates\tipitaka\common_reference_detail.html:5
-#: .\tipitaka\templates\tipitaka\common_reference_subform.html:20
-msgid "Common Reference"
-msgstr "อ้างอิงร่วม"
-
-#: .\padanukkama\templates\padanukkama\padanukkama_delete.html:15
-#: .\tipitaka\templates\tipitaka\common_reference_delete.html:14
-msgid "Are you sure you want to delete"
-msgstr "กรุณายืนยันการลบรายการ"
-
-#: .\padanukkama\templates\padanukkama\padanukkama_delete.html:24
-#: .\tipitaka\templates\tipitaka\common_reference_delete.html:35
-msgid "Confirm Delete"
-msgstr "กรุณายืนยันการลบรายการ"
-
-#: .\padanukkama\templates\padanukkama\sadda_update.html:103
-msgid "Pada related to this Sadda"
-msgstr "แสดงบทที่แจกวิภัตติแล้ว"
-
-#: .\padanukkama\views.py:82 .\padanukkama\views.py:104
-#: .\padanukkama\views.py:130 .\padanukkama\views.py:296
-#: .\padanukkama\views.py:798 .\padanukkama\views.py:874
-#: .\padanukkama\views.py:913 .\tipitaka\views.py:70 .\tipitaka\views.py:109
-#: .\tipitaka\views.py:165 .\tipitaka\views.py:317 .\tipitaka\views.py:340
-msgid "You do not have permission to access this page"
+#: padanukkama/templates/padanukkama/literal_translation_translate.html:68
+msgid "Click 'Confirm' to reset the data, or 'Cancel' to dismiss this message."
 msgstr ""
 
-#: .\padanukkama\views.py:117
-msgid "Form is invalid. Please correct the errors."
-msgstr "พบข้อผิดพลาด"
-
-#: .\padanukkama\views.py:174
-msgid "Are you sure you want to delete this record?"
-msgstr "กรุณายืนยันการลบรายการ"
-
-#: .\padanukkama\views.py:254
-msgid "The record has been added!"
-msgstr "การเพิ่มรายการสำเร็จ"
-
-#: .\padanukkama\views.py:282
-msgid "The record has been duplicated!"
-msgstr "การสำเนารายการสำเร็จ"
-
-#: .\padanukkama\views.py:284
-msgid "Error: Record duplication unsuccessful"
-msgstr "พบปัญหาในการทำสำเนา"
-
-#: .\padanukkama\views.py:305
-msgid "The record has been deleted!"
-msgstr "การลบรายการเสร็จสิ้น"
-
-#: .\padanukkama\views.py:500
-msgid "Record updated successfully!"
-msgstr "การบันทึกเสร็จสิ้น"
-
-#: .\padanukkama\views.py:714 .\setting\views.py:62 .\setting\views.py:98
-#: .\setting\views.py:169 .\setting\views.py:205 .\setting\views.py:276
-#: .\setting\views.py:312 .\setting\views.py:384 .\setting\views.py:420
-msgid "Form contains errors. Please correct them."
-msgstr "พบข้อผิดพลาด"
-
-#: .\padanukkama\workflows.py:6
-msgid "New"
-msgstr "ใหม่"
-
-#: .\padanukkama\workflows.py:7
-msgid "Translated"
-msgstr "แปล"
-
-#: .\padanukkama\workflows.py:8
-msgid "Reviewed"
-msgstr "ตรวจทาน"
-
-#: .\padanukkama\workflows.py:9
-msgid "Approved"
-msgstr "อนุมัติ"
-
-#: .\setting\templates\setting\akhyala_saddamala.html:22
-msgid "Ākhyātasaddapadamālā"
-msgstr "แบบวิภัตติบทอขยาต"
-
-#: .\setting\templates\setting\akhyala_saddamala.html:36
-#: .\setting\templates\setting\akhyala_saddamala.html:68
-#: .\setting\templates\setting\akhyala_saddamala.html:100
-#: .\setting\templates\setting\akhyala_saddamala.html:132
-#: .\setting\templates\setting\akhyala_saddamala.html:164
-#: .\setting\templates\setting\akhyala_saddamala.html:196
-#: .\setting\templates\setting\akhyala_saddamala.html:228
-#: .\setting\templates\setting\akhyala_saddamala.html:260
-msgid "Conjugation of"
-msgstr "วิภัตติ"
-
-#: .\setting\templates\setting\akhyala_saddamala.html:36
-msgid "Vattamānā"
-msgstr "วัตตมานา"
-
-#: .\setting\templates\setting\akhyala_saddamala.html:36
-msgid "present tense"
-msgstr ""
-
-#: .\setting\templates\setting\akhyala_saddamala.html:68
-msgid "imperative mood"
-msgstr ""
-
-#: .\setting\templates\setting\akhyala_saddamala.html:100
-msgid "Optative Mood"
-msgstr ""
-
-#: .\setting\templates\setting\akhyala_saddamala.html:132
-msgid "Parokkhā"
-msgstr "ปโรกขา"
-
-#: .\setting\templates\setting\akhyala_saddamala.html:132
-msgid "Perfect Tense"
-msgstr ""
-
-#: .\setting\templates\setting\akhyala_saddamala.html:164
-msgid "Hiyyattanī"
-msgstr "หิยัตตนี"
-
-#: .\setting\templates\setting\akhyala_saddamala.html:164
-msgid "Imperfect Tense"
-msgstr ""
-
-#: .\setting\templates\setting\akhyala_saddamala.html:196
-msgid "Ajjatanī"
-msgstr "อัชชัตนี"
-
-#: .\setting\templates\setting\akhyala_saddamala.html:196
-msgid "Aorist Tense"
-msgstr ""
-
-#: .\setting\templates\setting\akhyala_saddamala.html:228
-msgid "Bhavissanti"
-msgstr "ภวิสสันติ"
-
-#: .\setting\templates\setting\akhyala_saddamala.html:228
-msgid "Future Tense"
-msgstr ""
-
-#: .\setting\templates\setting\akhyala_saddamala.html:260
-msgid "Kālātipatti"
-msgstr "กาลาติปัตติ"
-
-#: .\setting\templates\setting\akhyala_saddamala.html:260
-msgid "Conditional Mood"
-msgstr ""
-
-#: .\setting\templates\setting\dhatu_detail.html:26
-msgid "Delete Dhātu"
-msgstr "ลบธาตุ"
-
-#: .\setting\templates\setting\dhatu_detail.html:27
-msgid "Are you sure you want to delete the following Dhātu?"
-msgstr "กรุณายืนยันการลบรายการ 'ธาตุ'"
-
-#: .\setting\templates\setting\dhatu_detail.html:29
-msgid "Dhātugana"
-msgstr "ธาตุคณะ"
-
-#: .\setting\templates\setting\include\akhyata_thead.html:10
-#: .\setting\templates\setting\include\akhyata_thead.html:12
-#: .\setting\templates\setting\verb_conjugation_detail.html:80
-#: .\setting\templates\setting\verb_conjugation_detail.html:82
-msgid "sg."
-msgstr "เอกวจนะ"
-
-#: .\setting\templates\setting\include\akhyata_thead.html:11
-#: .\setting\templates\setting\include\akhyata_thead.html:13
-#: .\setting\templates\setting\verb_conjugation_detail.html:81
-#: .\setting\templates\setting\verb_conjugation_detail.html:83
-msgid "pl. "
-msgstr "พหุวจนะ"
-
-#: .\setting\templates\setting\nama_saddamala_detail.html:41
-msgid "Delete Namasaddamala"
-msgstr "ลบ นามสทฺทมาลา"
-
-#: .\setting\templates\setting\nama_saddamala_detail.html:42
-msgid "Are you sure you want to delete the following Namasaddamala?"
-msgstr "กรุณายืนยันการลบรายการนามสัททมาลา"
-
-#: .\setting\templates\setting\nama_saddamala_detail.html:44
-msgid "Linga"
-msgstr "ลิงค์"
-
-#: .\setting\templates\setting\nama_saddamala_detail.html:45
-msgid "Karanta"
-msgstr "การันต์"
-
-#: .\setting\templates\setting\noun_declension_detail.html:42
-msgid "Delete Noun Declension"
-msgstr ""
-
-#: .\setting\templates\setting\noun_declension_detail.html:43
-msgid "Are you sure you want to delete the following Noun Declension?"
-msgstr "กรุณายืนยันการลบรายการ 'ธาตุ'"
-
-#: .\setting\templates\setting\verb_conjugation_detail.html:41
-msgid "Delete Verb Conjugation"
-msgstr "ลบวิภัตติอาขยาต"
-
-#: .\setting\templates\setting\verb_conjugation_detail.html:42
-msgid "Are you sure you want to delete the following Verb Conjugation?"
-msgstr "กรุณายืนยันการลบรายการ 'วิภัตติอาขยาต'"
-
-#: .\templates\admin\base_site.html:5
-msgid "Django site admin"
-msgstr "Site admin"
-
-#: .\templates\admin\base_site.html:8
-msgid "Django administration"
-msgstr "ผู้ดูแลระบบ"
-
-#: .\tipitaka\forms.py:35 .\tipitaka\models.py:86 .\tipitaka\tables.py:26
-msgid "Content"
-msgstr "เนื้อหา"
-
-#: .\tipitaka\forms.py:81 .\tipitaka\models.py:262
-msgid "From Position"
-msgstr "จากพิกัด"
-
-#: .\tipitaka\forms.py:82 .\tipitaka\models.py:263
-msgid "To Position"
-msgstr "ถึงพิกัด"
-
-#: .\tipitaka\models.py:20
-msgid "Flag"
-msgstr "Flag"
-
-#: .\tipitaka\models.py:39
-msgid "Script"
-msgstr "สคริปต์"
-
-#: .\tipitaka\models.py:40
-msgid "Digitization"
-msgstr "การแปลงเป็นรูปแบบดิจิทัล"
-
-#: .\tipitaka\models.py:41 .\tipitaka\models.py:125
-msgid "Version"
-msgstr "รุ่น"
-
-#: .\tipitaka\models.py:51 .\tipitaka\models.py:75 .\tipitaka\models.py:126
-#: .\tipitaka\models.py:150
-msgid "Edition"
-msgstr "ฉบับ"
-
-#: .\tipitaka\models.py:52 .\tipitaka\models.py:213
-msgid "Number"
-msgstr "ลำดับที่"
-
-#: .\tipitaka\models.py:53
-msgid "Name"
-msgstr "ชื่อ"
-
-#: .\tipitaka\models.py:84 .\tipitaka\models.py:168
-msgid "Volume"
-msgstr "เล่ม"
-
-#: .\tipitaka\models.py:85
-msgid "Page Number"
-msgstr "หน้า"
-
-#: .\tipitaka\models.py:87
-msgid "Proof-read"
-msgstr "พิสูจน์อักษร"
-
-#: .\tipitaka\models.py:145
-msgid "Position"
-msgstr "พิกัด"
-
-#: .\tipitaka\models.py:146
-msgid "Line no"
-msgstr "บรรทัด"
-
-#: .\tipitaka\models.py:177
-msgid "Page"
-msgstr "หน้า"
-
-#: .\tipitaka\models.py:210
-msgid "Table of contents"
-msgstr "สารบัญ"
-
-#: .\tipitaka\models.py:215
-msgid "Roman Script"
-msgstr "อักษรโรมัน"
-
-#: .\tipitaka\models.py:216
-msgid "Additional Title"
-msgstr ""
-
-#: .\tipitaka\tables.py:137
-msgid "Parent"
-msgstr "แม่"
-
-#: .\tipitaka\tables.py:184
-msgid "Detail"
-msgstr ""
-
-#: .\tipitaka\templates\tipitaka\common_reference_delete.html:19
-#: .\tipitaka\templates\tipitaka\common_reference_detail.html:29
-msgid "From"
-msgstr "จาก"
-
-#: .\tipitaka\templates\tipitaka\common_reference_delete.html:25
-#: .\tipitaka\templates\tipitaka\common_reference_detail.html:44
-msgid "To"
-msgstr "ถึง"
-
-#: .\tipitaka\templates\tipitaka\common_reference_delete.html:38
-msgid "Cancel"
-msgstr "ยกเลิก"
-
-#: .\tipitaka\templates\tipitaka\common_reference_subform.html:96
-msgid "Search"
-msgstr "ค้นหา"
-
-#: .\tipitaka\templates\tipitaka\common_reference_subform.html:117
-msgid "Add/Update"
-msgstr "เพิ่ม/ปรับปรุง"
-
-#: .\tipitaka\templates\tipitaka\common_reference_subform.html:124
+#: padanukkama/templates/padanukkama/literal_translation_translate.html:73
+#: tipitaka/templates/tipitaka/common_reference_subform.html:124
 msgid "Reset"
 msgstr "รีเซ็ต"
 
-#: .\tipitaka\templates\tipitaka\common_reference_subform.html:133
+#: padanukkama/templates/padanukkama/literal_translation_translate.html:87
+msgid "Order by Translation"
+msgstr "เรียงคำตามความ"
+
+#: padanukkama/templates/padanukkama/literal_translation_translate.html:88
+msgid "Order by Pāḷi"
+msgstr "เรียงคำตามปาฬิ"
+
+#: padanukkama/templates/padanukkama/pada.html:26
+msgid "Pada "
+msgstr "บท"
+
+#: padanukkama/templates/padanukkama/pada.html:26
+msgid "Last update"
+msgstr "ปรับปรุงล่าสุด"
+
+#: padanukkama/templates/padanukkama/pada.html:55
+#: padanukkama/templates/padanukkama/sadda.html:64
+msgid "Export"
+msgstr "บันทึกเป็นไฟล์"
+
+#: padanukkama/templates/padanukkama/pada_declension.html:67
+#: tipitaka/templates/tipitaka/common_reference_detail.html:5
+msgid "Preview"
+msgstr "แสดง"
+
+#: padanukkama/templates/padanukkama/pada_declension.html:101
+#: padanukkama/templates/padanukkama/sadda_update.html:81
+msgid "Closest matching words in Abidan"
+msgstr "ค้นหาในอภิธาน"
+
+#: padanukkama/templates/padanukkama/pada_declension.html:112
+#: padanukkama/templates/padanukkama/sadda_update.html:92
+msgid "Closest matching words in Sadda"
+msgstr "ค้นหาในศัพท์"
+
+#: padanukkama/templates/padanukkama/pada_split_sandhi.html:8
+msgid "Sondhi"
+msgstr "สนธิ"
+
+#: padanukkama/templates/padanukkama/padanukkama_delete.html:6
+#: tipitaka/templates/tipitaka/common_reference_delete.html:5
+#: tipitaka/templates/tipitaka/common_reference_detail.html:5
+#: tipitaka/templates/tipitaka/common_reference_subform.html:20
+msgid "Common Reference"
+msgstr "อ้างอิงร่วม"
+
+#: padanukkama/templates/padanukkama/padanukkama_delete.html:15
+#: tipitaka/templates/tipitaka/common_reference_delete.html:14
+msgid "Are you sure you want to delete"
+msgstr "กรุณายืนยันการลบรายการ"
+
+#: padanukkama/templates/padanukkama/padanukkama_delete.html:24
+#: tipitaka/templates/tipitaka/common_reference_delete.html:35
+msgid "Confirm Delete"
+msgstr "กรุณายืนยันการลบรายการ"
+
+#: padanukkama/templates/padanukkama/padanukkama_update.html:76
+#: setting/templates/setting/nama_saddamala.html:37
+msgid "Print"
+msgstr "พิมพ์"
+
+#: padanukkama/templates/padanukkama/sadda_update.html:103
+msgid "Pada related to this Sadda"
+msgstr "แสดงบทที่แจกวิภัตติแล้ว"
+
+#: padanukkama/views.py:82 padanukkama/views.py:104 padanukkama/views.py:130
+#: padanukkama/views.py:298 padanukkama/views.py:798 padanukkama/views.py:877
+#: padanukkama/views.py:916 tipitaka/views.py:70 tipitaka/views.py:109
+#: tipitaka/views.py:165 tipitaka/views.py:317 tipitaka/views.py:340
+msgid "You do not have permission to access this page"
+msgstr ""
+
+#: padanukkama/views.py:117
+msgid "Form is invalid. Please correct the errors."
+msgstr "พบข้อผิดพลาด"
+
+#: padanukkama/views.py:174
+msgid "Are you sure you want to delete this record?"
+msgstr "กรุณายืนยันการลบรายการ"
+
+#: padanukkama/views.py:256
+msgid "The record has been added!"
+msgstr "การเพิ่มรายการสำเร็จ"
+
+#: padanukkama/views.py:284
+msgid "The record has been duplicated!"
+msgstr "การสำเนารายการสำเร็จ"
+
+#: padanukkama/views.py:286
+msgid "Error: Record duplication unsuccessful"
+msgstr "พบปัญหาในการทำสำเนา"
+
+#: padanukkama/views.py:307
+msgid "The record has been deleted!"
+msgstr "การลบรายการเสร็จสิ้น"
+
+#: padanukkama/views.py:502
+msgid "Record updated successfully!"
+msgstr "การบันทึกเสร็จสิ้น"
+
+#: padanukkama/views.py:715 setting/views.py:62 setting/views.py:98
+#: setting/views.py:169 setting/views.py:205 setting/views.py:276
+#: setting/views.py:312 setting/views.py:384 setting/views.py:420
+msgid "Form contains errors. Please correct them."
+msgstr "พบข้อผิดพลาด"
+
+#: padanukkama/workflows.py:6
+msgid "New"
+msgstr "ใหม่"
+
+#: padanukkama/workflows.py:7
+msgid "Translated"
+msgstr "แปล"
+
+#: padanukkama/workflows.py:8
+msgid "Reviewed"
+msgstr "ตรวจทาน"
+
+#: padanukkama/workflows.py:9
+msgid "Approved"
+msgstr "อนุมัติ"
+
+#: setting/templates/setting/akhyala_saddamala.html:22
+msgid "Ākhyātasaddapadamālā"
+msgstr "แบบวิภัตติบทอขยาต"
+
+#: setting/templates/setting/akhyala_saddamala.html:36
+#: setting/templates/setting/akhyala_saddamala.html:68
+#: setting/templates/setting/akhyala_saddamala.html:100
+#: setting/templates/setting/akhyala_saddamala.html:132
+#: setting/templates/setting/akhyala_saddamala.html:164
+#: setting/templates/setting/akhyala_saddamala.html:196
+#: setting/templates/setting/akhyala_saddamala.html:228
+#: setting/templates/setting/akhyala_saddamala.html:260
+msgid "Conjugation of"
+msgstr "วิภัตติ"
+
+#: setting/templates/setting/akhyala_saddamala.html:36
+msgid "Vattamānā"
+msgstr "วัตตมานา"
+
+#: setting/templates/setting/akhyala_saddamala.html:36
+msgid "present tense"
+msgstr ""
+
+#: setting/templates/setting/akhyala_saddamala.html:68
+msgid "imperative mood"
+msgstr ""
+
+#: setting/templates/setting/akhyala_saddamala.html:100
+msgid "Optative Mood"
+msgstr ""
+
+#: setting/templates/setting/akhyala_saddamala.html:132
+msgid "Parokkhā"
+msgstr "ปโรกขา"
+
+#: setting/templates/setting/akhyala_saddamala.html:132
+msgid "Perfect Tense"
+msgstr ""
+
+#: setting/templates/setting/akhyala_saddamala.html:164
+msgid "Hiyyattanī"
+msgstr "หิยัตตนี"
+
+#: setting/templates/setting/akhyala_saddamala.html:164
+msgid "Imperfect Tense"
+msgstr ""
+
+#: setting/templates/setting/akhyala_saddamala.html:196
+msgid "Ajjatanī"
+msgstr "อัชชัตนี"
+
+#: setting/templates/setting/akhyala_saddamala.html:196
+msgid "Aorist Tense"
+msgstr ""
+
+#: setting/templates/setting/akhyala_saddamala.html:228
+msgid "Bhavissanti"
+msgstr "ภวิสสันติ"
+
+#: setting/templates/setting/akhyala_saddamala.html:228
+msgid "Future Tense"
+msgstr ""
+
+#: setting/templates/setting/akhyala_saddamala.html:260
+msgid "Kālātipatti"
+msgstr "กาลาติปัตติ"
+
+#: setting/templates/setting/akhyala_saddamala.html:260
+msgid "Conditional Mood"
+msgstr ""
+
+#: setting/templates/setting/dhatu_detail.html:26
+msgid "Delete Dhātu"
+msgstr "ลบธาตุ"
+
+#: setting/templates/setting/dhatu_detail.html:27
+msgid "Are you sure you want to delete the following Dhātu?"
+msgstr "กรุณายืนยันการลบรายการ 'ธาตุ'"
+
+#: setting/templates/setting/dhatu_detail.html:29
+msgid "Dhātugana"
+msgstr "ธาตุคณะ"
+
+#: setting/templates/setting/include/akhyata_thead.html:10
+#: setting/templates/setting/include/akhyata_thead.html:12
+#: setting/templates/setting/verb_conjugation_detail.html:80
+#: setting/templates/setting/verb_conjugation_detail.html:82
+msgid "sg."
+msgstr "เอกวจนะ"
+
+#: setting/templates/setting/include/akhyata_thead.html:11
+#: setting/templates/setting/include/akhyata_thead.html:13
+#: setting/templates/setting/verb_conjugation_detail.html:81
+#: setting/templates/setting/verb_conjugation_detail.html:83
+msgid "pl. "
+msgstr "พหุวจนะ"
+
+#: setting/templates/setting/nama_saddamala_detail.html:41
+msgid "Delete Namasaddamala"
+msgstr "ลบ นามสทฺทมาลา"
+
+#: setting/templates/setting/nama_saddamala_detail.html:42
+msgid "Are you sure you want to delete the following Namasaddamala?"
+msgstr "กรุณายืนยันการลบรายการนามสัททมาลา"
+
+#: setting/templates/setting/nama_saddamala_detail.html:44
+msgid "Linga"
+msgstr "ลิงค์"
+
+#: setting/templates/setting/nama_saddamala_detail.html:45
+msgid "Karanta"
+msgstr "การันต์"
+
+#: setting/templates/setting/noun_declension_detail.html:42
+msgid "Delete Noun Declension"
+msgstr ""
+
+#: setting/templates/setting/noun_declension_detail.html:43
+msgid "Are you sure you want to delete the following Noun Declension?"
+msgstr "กรุณายืนยันการลบรายการ 'ธาตุ'"
+
+#: setting/templates/setting/verb_conjugation_detail.html:41
+msgid "Delete Verb Conjugation"
+msgstr "ลบวิภัตติอาขยาต"
+
+#: setting/templates/setting/verb_conjugation_detail.html:42
+msgid "Are you sure you want to delete the following Verb Conjugation?"
+msgstr "กรุณายืนยันการลบรายการ 'วิภัตติอาขยาต'"
+
+#: templates/admin/base_site.html:5
+msgid "Django site admin"
+msgstr "Site admin"
+
+#: templates/admin/base_site.html:8
+msgid "Django administration"
+msgstr "ผู้ดูแลระบบ"
+
+#: tipitaka/forms.py:35 tipitaka/models.py:86 tipitaka/tables.py:26
+msgid "Content"
+msgstr "เนื้อหา"
+
+#: tipitaka/forms.py:81 tipitaka/models.py:262
+msgid "From Position"
+msgstr "จากพิกัด"
+
+#: tipitaka/forms.py:82 tipitaka/models.py:263
+msgid "To Position"
+msgstr "ถึงพิกัด"
+
+#: tipitaka/models.py:20
+msgid "Flag"
+msgstr "Flag"
+
+#: tipitaka/models.py:39
+msgid "Script"
+msgstr "สคริปต์"
+
+#: tipitaka/models.py:40
+msgid "Digitization"
+msgstr "การแปลงเป็นรูปแบบดิจิทัล"
+
+#: tipitaka/models.py:41 tipitaka/models.py:125
+msgid "Version"
+msgstr "รุ่น"
+
+#: tipitaka/models.py:51 tipitaka/models.py:75 tipitaka/models.py:126
+#: tipitaka/models.py:150
+msgid "Edition"
+msgstr "ฉบับ"
+
+#: tipitaka/models.py:52 tipitaka/models.py:213
+msgid "Number"
+msgstr "ลำดับที่"
+
+#: tipitaka/models.py:53
+msgid "Name"
+msgstr "ชื่อ"
+
+#: tipitaka/models.py:84 tipitaka/models.py:168
+msgid "Volume"
+msgstr "เล่ม"
+
+#: tipitaka/models.py:85
+msgid "Page Number"
+msgstr "หน้า"
+
+#: tipitaka/models.py:87
+msgid "Proof-read"
+msgstr "พิสูจน์อักษร"
+
+#: tipitaka/models.py:145
+msgid "Position"
+msgstr "พิกัด"
+
+#: tipitaka/models.py:146
+msgid "Line no"
+msgstr "บรรทัด"
+
+#: tipitaka/models.py:177
+msgid "Page"
+msgstr "หน้า"
+
+#: tipitaka/models.py:210
+msgid "Table of contents"
+msgstr "สารบัญ"
+
+#: tipitaka/models.py:215
+msgid "Roman Script"
+msgstr "อักษรโรมัน"
+
+#: tipitaka/models.py:216
+msgid "Additional Title"
+msgstr ""
+
+#: tipitaka/tables.py:137
+msgid "Parent"
+msgstr "แม่"
+
+#: tipitaka/tables.py:184
+msgid "Detail"
+msgstr ""
+
+#: tipitaka/templates/tipitaka/common_reference_delete.html:19
+#: tipitaka/templates/tipitaka/common_reference_detail.html:29
+msgid "From"
+msgstr "จาก"
+
+#: tipitaka/templates/tipitaka/common_reference_delete.html:25
+#: tipitaka/templates/tipitaka/common_reference_detail.html:44
+msgid "To"
+msgstr "ถึง"
+
+#: tipitaka/templates/tipitaka/common_reference_delete.html:38
+msgid "Cancel"
+msgstr "ยกเลิก"
+
+#: tipitaka/templates/tipitaka/common_reference_subform.html:96
+msgid "Search"
+msgstr "ค้นหา"
+
+#: tipitaka/templates/tipitaka/common_reference_subform.html:117
+msgid "Add/Update"
+msgstr "เพิ่ม/ปรับปรุง"
+
+#: tipitaka/templates/tipitaka/common_reference_subform.html:133
 msgid "Overall"
 msgstr "ภาพรวม"
 
-#: .\tipitaka\templates\tipitaka\digital_archive.html:8
+#: tipitaka/templates/tipitaka/common_reference_subform.html:134
+msgid "Image"
+msgstr "รูปภาพ"
+
+#: tipitaka/templates/tipitaka/digital_archive.html:8
 msgid "Digital Archived"
 msgstr "อนุรักษ์ดิจิทัล"
 
-#: .\tipitaka\templates\tipitaka\digital_archive_details.html:34
-#: .\tipitaka\templates\tipitaka\wordlist_page_source.html:25
+#: tipitaka/templates/tipitaka/digital_archive_details.html:34
+#: tipitaka/templates/tipitaka/wordlist_page_source.html:25
 msgid "Page No. #"
 msgstr "เลขหน้า #"
 
-#: .\tipitaka\templates\tipitaka\digital_archive_details.html:35
+#: tipitaka/templates/tipitaka/digital_archive_details.html:35
 msgid "Vol. #"
 msgstr "เล่ม #"
 
-#: .\tipitaka\templates\tipitaka\wordlist.html:13
+#: tipitaka/templates/tipitaka/wordlist.html:13
 msgid "Please select Tipiṭaka edition"
 msgstr "โปรดเลือกฉบับพระไตรปิฎก"
 
-#: .\tipitaka\templates\tipitaka\wordlist.html:31
+#: tipitaka/templates/tipitaka/wordlist.html:31
 msgid "Process"
 msgstr "ดำเนินการ"
 
-#: .\tipitaka\templates\tipitaka\wordlist.html:52
+#: tipitaka/templates/tipitaka/wordlist.html:52
 msgid "Current Wordlist version"
 msgstr "รุ่นรายการคำ"
 
-#: .\tipitaka\templates\tipitaka\wordlist.html:53
+#: tipitaka/templates/tipitaka/wordlist.html:53
 msgid "word(s)"
 msgstr "คำ"
 
-#: .\tipitaka\templates\tipitaka\wordlist.html:54
+#: tipitaka/templates/tipitaka/wordlist.html:54
 msgid "Create new version"
 msgstr "สร้างรุ่นใหม่"
 
-#: .\tipitaka\templates\tipitaka\wordlist.html:60
+#: tipitaka/templates/tipitaka/wordlist.html:60
 msgid "Are you sure?"
 msgstr "กรุณายืนยัน"
 
-#: .\tipitaka\templates\tipitaka\wordlist_page_source.html:24
+#: tipitaka/templates/tipitaka/wordlist_page_source.html:24
 msgid "Vol No. #"
 msgstr "เล่มที่ #"
 
-#: .\tipitaka\templates\tipitaka\wordlist_page_source.html:34
+#: tipitaka/templates/tipitaka/wordlist_page_source.html:34
 msgid "Line No. #"
 msgstr "บรรทัดที่ #"
 
-#: .\tipitaka\views.py:67
+#: tipitaka/views.py:67
 msgid "Update successfully!"
 msgstr "การปรับปรุงข้อมูลเสร็จสิ้น"
 
-#: .\tipitaka\views.py:218
+#: tipitaka/views.py:218
 msgid "No common references found"
 msgstr "ไม่พบ การอ้างอิงร่วม"
 
-#: .\tipitaka\views.py:296 .\tipitaka\views.py:303
+#: tipitaka/views.py:296 tipitaka/views.py:303
 msgid "Invalid input. Please correct the errors below"
 msgstr "พบข้อผิดพลาด"
 

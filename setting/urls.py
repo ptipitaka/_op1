@@ -8,6 +8,7 @@ urlpatterns = [
     path('nama-saddamala/create/', views.NamaSaddamalaCreateView.as_view(), name='nama_saddamala_create'),
     path('nama-saddamala/<int:pk>/update/', views.NamaSaddamalaUpdateView.as_view(), name='nama_saddamala_update'),
     path('nama-saddamala/<int:pk>/delete/', views.NamaSaddamalaDeleteView.as_view(), name='nama_saddamala_delete'),
+    path('nama-saddamala/print/', views.NamaSaddamalaListView.as_view(), name='namasaddamala_list'),
     # noun-declension
     path('noun-declension/', views.NounDeclensionView.as_view(), name='noun_declension'),
     path('noun-declension/create/', views.NounDeclensionCreateView.as_view(), name='noun_declension_create'),

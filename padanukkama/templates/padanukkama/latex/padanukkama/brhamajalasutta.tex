@@ -1,0 +1,54 @@
+\documentclass[10pt,twoside]{book}
+\usepackage[paperwidth=165mm, paperheight=230mm, margin=2cm, top=2cm,bottom=2cm,outer=2cm,inner=2.2cm,columnsep=30pt]{geometry}
+
+%% ---- Set up fonts and encoding ---- %%
+\usepackage{fontspec}
+
+% Enable line breaks for Thai text
+\XeTeXlinebreaklocale "th"
+\XeTeXlinebreakskip = 0pt plus 2pt minus 1pt
+
+% Set up Thai fonts
+\setmainfont[%
+    ItalicFont={Kinnari-Italic.otf},%
+    BoldFont={Kinnari-Bold.otf},%
+    BoldItalicFont={Kinnari-BoldItalic.otf},%
+    Script=Thai,%
+    Scale=MatchLowercase,%
+    WordSpace=1.25,%
+    Mapping=tex-text,%
+]{Kinnari.otf}
+
+% การจัดหน้ากระดาษและหัวเรื่อง
+\usepackage{multicol}
+\usepackage{microtype}
+\usepackage[bf,center]{titlesec}
+\setlength{\headheight}{14pt}
+
+% หัวกระดาษ ท้ายกระดาษ
+\usepackage{fancyhdr}
+\fancyhead[L]{\rightmark} % ส่วนหัวด้านซ้ายบน
+\fancyhead[R]{\leftmark} % ส่วนหัวด้านขวาบน
+\renewcommand{\headrulewidth}{1.4pt} % เส้นคั่นระหว่างส่วนหัวกับเนื้อหา
+\fancyfoot[C]{\textbf{\thepage}} % ส่วนท้ายด้านกลางล่าง
+\renewcommand{\footrulewidth}{1.4pt} % เส้นคั่นระหว่างส่วนท้ายกับเนื้อหา
+% \pagestyle{fancy} % ใช้รูปแบบเนื้อหาและส่วนท้ายที่กำหนดเองในทั้งเอกสาร
+
+% รูปแบบเนื้อหา
+\usepackage{needspace}
+\newcommand{\entry}[4]{\needspace{2cm}\markboth{#1}{#1}\noindent\textbf{#1} {#2} \textit{#3}\\{#4}\par\vspace{1em}}
+% กำหนดคำสั่งในการพิมพ์แต่ละคำในหน้ากระดาษ
+% \markboth{}{} พิมพ์คำแรกของหน้ากระดาษที่ด้านบนซ้ายและคำสุดท้ายที่ด้านบนซ้าย
+
+% ปกรอง 
+\newcommand{\booktitle}{ปทานุกรม}
+\newcommand{\subtitle}{พฺรหฺมชาลสุตฺตํ}
+
+\begin{document}
+    \frontmatter
+การจัดหน้ากระดาษและหัวเรื่อง
+
+    \mainmatter
+    \pagestyle{fancy}
+ขขขข
+\end{document}

@@ -298,7 +298,7 @@ class Padanukkama(models.Model):
 # Sadda
 # -----------------------------------------------------
 class Sadda(xwf_models.WorkflowEnabled, models.Model):
-    SADA_TYPE_CHOICES = [
+    SADDA_TYPE_CHOICES = [
         ('Nama', _('Nāma')),
         ('Akhyata', _('Akhyāta')),
         ('Byaya', _('Byaya')),
@@ -317,7 +317,7 @@ class Sadda(xwf_models.WorkflowEnabled, models.Model):
         verbose_name=_("Pada sequence"))
     sadda_type = models.CharField(
         max_length=50,
-        choices=SADA_TYPE_CHOICES,
+        choices=SADDA_TYPE_CHOICES,
         null=True,
         blank=True,
         verbose_name=_("Type"))
@@ -463,7 +463,7 @@ class Pada(MPTTModel):
 
     def get_sandhi(self):
         if self.get_children().exists():
-            children = self.get_children()
+            children = self.get_children().order_by('pk')
             return ' - '.join(str(child) for child in children) 
         return ''
     

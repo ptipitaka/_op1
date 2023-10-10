@@ -1,0 +1,51 @@
+{% load translate_tags %}
+{% load i18n %}
+
+\documentclass[10pt,a4paper,twoside]{article}
+\usepackage[top=3.5cm,bottom=3.5cm,left=2.7cm,right=3.7cm,columnsep=30pt]{geometry}
+
+% ใช้แพ็กเกจ fontspec สำหรับการตั้งค่าฟอนต์
+\usepackage{fontspec}
+\setmainfont{Sarabun} % ใช้ฟอนต์ Sarabun หรือฟอนต์ที่คุณต้องการ
+
+% ใช้แพ็กเกจ polyglossia สำหรับการจัดการภาษา
+\usepackage{polyglossia}
+\setmainlanguage{thai}
+
+% การจัดหน้ากระดาษและหัวเรื่อง
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{multicol}
+\usepackage{microtype}
+\usepackage[bf,center]{titlesec}
+
+% หัวกระดาษ ท้ายกระดาษ
+\usepackage{fancyhdr}
+\fancyhead[L]{\text{\rightmark}} % ส่วนหัวด้านซ้ายบน
+\fancyhead[R]{\text{\leftmark}} % ส่วนหัวด้านขวาบน
+\renewcommand{\headrulewidth}{1.4pt} % เส้นคั่นระหว่างส่วนหัวกับเนื้อหา
+\fancyfoot[C]{\textbf{\text{\thepage}}} % ส่วนท้ายด้านกลางล่าง
+\renewcommand{\footrulewidth}{1.4pt} % เส้นคั่นระหว่างส่วนท้ายกับเนื้อหา
+\pagestyle{fancy} % ใช้รูปแบบเนื้อหาและส่วนท้ายที่กำหนดเองในทั้งเอกสาร
+
+% รูปแบบเนื้อหา
+\newcommand{\entry}[4]{\markboth{#1}{#1} \textbf{#1} {#2} \textit{#3} $\bullet$\ {#4}}
+% กำหนดคำสั่งในการพิมพ์แต่ละคำในหน้ากระดาษ
+% \markboth{}{} พิมพ์คำแรกของหน้ากระดาษที่ด้านบนซ้ายและคำสุดท้ายที่ด้านบนซ้าย
+
+\begin{document}
+    {% for sadda in saddas %}
+        {% ifchanged sadda.sadda_seq|first %}
+            {% if forloop.first == False %}
+                \end{multicols}
+            {% endif %}
+            \section*{ {{ sadda.sadda_seq|first|pali_char_convert|latex_escape }} }
+            \begin{multicols}{2}
+        {% endifchanged %}
+        \entry{ {{ sadda.sadda }} } 
+        {% if sadda.construction %} { {{ sadda.construction|latex_escape }} } {% else %} { ไม่มีการประกอบคำ } {% endif %}
+        { {{ sadda|sadda_type_display|latex_escape }} } 
+        {% if sadda.meaning %}      { {{ sadda.meaning|latex_escape }} }      {% else %} { ไม่มีคำแปล }       {% endif %}
+    {% endfor %}
+    \end{multicols}
+\end{document}

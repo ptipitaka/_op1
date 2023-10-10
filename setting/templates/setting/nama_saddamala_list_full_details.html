@@ -1,0 +1,83 @@
+{% extends 'main/blank.html' %}
+
+{% load i18n %}
+
+{% block body %}
+
+{% block extra_css %}
+<style>
+    td {
+        word-spacing: 10px;  /* ปรับระยะห่างระหว่างคำเป็น 10px */
+    }    
+</style>
+{% endblock %}
+
+{% for linga in lingas %}
+    <h2>{{ linga.title }} ({{ linga.num_namasaddamala }} items)</h2>
+        {% for item in linga.namasaddamala_set.all %}
+            <table class="w3-table w3-bordered">
+                <tr>
+                    <th style="width:20%">{% trans 'Title' %}</th>
+                    <th style="width:40%">{% trans 'Type' %}</th>
+                    <th style="width:20%">{% trans 'Liṅga' %}</th>
+                    <th style="width:20%">{% trans 'Kāranta' %}</th>
+                </tr>
+                <tr>
+                    <td style="width:20%">{{ item.title }}</td>
+                    <td style="width:40%">{{ item.nama_type }}</td>
+                    <td style="width:20%">{{ item.linga.title }}</td>
+                    <td style="width:20%">{{ item.karanta.title }}</td>
+                </tr>
+            </table>
+            <table class="w3-table w3-striped w3-small">
+                <tr>
+                    <th style="width:40%">{% trans "Vibhatti" %}</th>
+                    <th style="width:30%">{% trans "Ekavacana" %}</th>
+                    <th style="width:30%">{% trans "Bahuvacana" %}</th>
+                </tr>
+                <tr>
+                    <td>{% trans 'Paṭhamā' %}</td>
+                    <td>{{ item.nom_sg|default_if_none:"-" }}</td>
+                    <td>{{ item.nom_pl|default_if_none:"-" }}</td>
+                </tr>
+                <tr>
+                    <td>{% trans 'Ālapana' %}</td>
+                    <td>{{ item.voc_sg|default_if_none:"-" }}</td>
+                    <td>{{ item.voc_pl|default_if_none:"-" }}</td>
+                </tr>
+                <tr>
+                    <td>{% trans 'Dutiyā' %}</td>
+                    <td>{{ item.acc_sg|default_if_none:"-" }}</td>
+                    <td>{{ item.acc_pl|default_if_none:"-" }}</td>
+                </tr>
+                <tr>
+                    <td>{% trans 'Tatiyā' %}</td>
+                    <td>{{ item.instr_sg|default_if_none:"-" }}</td>
+                    <td>{{ item.instr_pl|default_if_none:"-" }}</td>
+                </tr>
+                <tr>
+                    <td>{% trans 'Catutthī' %}</td>
+                    <td>{{ item.dat_sg|default_if_none:"-" }}</td>
+                    <td>{{ item.dat_pl|default_if_none:"-" }}</td>
+                </tr>
+                <tr>
+                    <td>{% trans 'Pañcamī' %}</td>
+                    <td>{{ item.abl_sg|default_if_none:"-" }}</td>
+                    <td>{{ item.abl_pl|default_if_none:"-" }}</td>
+                </tr>
+                <tr>
+                    <td>{% trans 'Chaṭṭhī' %}</td>
+                    <td>{{ item.gen_sg|default_if_none:"-" }}</td>
+                    <td>{{ item.gen_pl|default_if_none:"-" }}</td>
+                </tr>
+                <tr>
+                    <td>{% trans 'Sattamī' %}</td>
+                    <td>{{ item.loc_sg|default_if_none:"-" }}</td>
+                    <td>{{ item.loc_pl|default_if_none:"-" }}</td>
+                </tr>
+            </table>
+
+        {% endfor %}
+{% endfor %}
+
+{% endblock %}

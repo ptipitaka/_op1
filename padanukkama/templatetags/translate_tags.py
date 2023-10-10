@@ -1,10 +1,12 @@
+import json
+
 from django import template
 from django.shortcuts import get_object_or_404
 from django.utils.translation import gettext_lazy as _
 
-import json
-
 from padanukkama.models import *
+
+from utils.pali_char import *
 
 register = template.Library()
 
@@ -130,3 +132,56 @@ def check_in_parents_list(parents_list, parent):
 @register.filter(name='has_pada')
 def has_pada(value):
     return [item for item in value if item.pada]
+
+
+@register.filter
+def latex_escape(text):
+    mapping = {
+        '&': r'\&',
+        '%': r'\%',
+        '$': r'\$',
+        '#': r'\#',
+        '_': r'\_',
+        '{': r'\{',
+        '}': r'\}',
+        '~': r'\textasciitilde{}',
+        '^': r'\^{}',
+        '\\': r'\textbackslash{}',
+        ',': r'\,',
+        '*': r'\*',
+        "'": r"\`",
+        '"': r'\`',
+        ':': r'\:',
+    }
+    return ''.join(mapping.get(c, c) for c in text)
+
+
+@register.filter
+def pali_char_convert(text):
+    pintu ='\u0E3A'
+    vowel = ['อ', 'อา','อิ','อี','อุ','อู','เอ','โอ','อํ']
+    y = []
+    for x in text:
+        if x >= '0' and x <= '8':
+            y.append(vowel[int(x)])
+        else:
+            y.append(x+pintu)
+    return y
+
+
+@register.filter
+def sadda_type_display(sadda_object):
+    display_value = sadda_object.get_sadda_type_display()
+    thai_translation = {
+        'Nāma': 'นาม',
+        'Akhyāta': 'อาขฺยาต',
+        'Byaya': 'พยฺย'
+    }
+
+    result = thai_translation.get(display_value, display_value)
+
+    if sadda_object.sadda_type == 'Nama':
+        linga = ", ".join(str(l) for l in Linga.objects.filter(id__in=sadda_object.namasaddamala.values_list('linga', flat=True)))
+        result = result + ' ' + linga
+
+    return result

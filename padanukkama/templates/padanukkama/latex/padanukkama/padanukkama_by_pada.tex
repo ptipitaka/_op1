@@ -1,0 +1,78 @@
+% กำหนดคลาสและขนาดฟอนต์ของเอกสาร
+\documentclass[10pt,twoside]{book}
+
+% ตั้งค่าขนาดกระดาษและขอบ
+\usepackage[paperwidth=165mm, paperheight=230mm, margin=2cm, top=2cm,bottom=2cm,outer=2cm,inner=2.2cm,columnsep=30pt]{geometry}
+
+% ใช้งานแพ็กเกจสำหรับฟอนต์และการเข้ารหัส
+\usepackage{fontspec}
+
+% ตั้งค่าการแบ่งบรรทัดสำหรับภาษาไทย
+\usepackage{polyglossia}
+\setmainlanguage[numerals=thai]{thai}
+\setotherlanguage{english}
+\XeTeXlinebreaklocale "th"
+\XeTeXlinebreakskip = 0pt plus 2pt minus 1pt
+
+% แพคเกจอื่น ๆ
+\usepackage{needspace}
+
+% ตั้งค่าฟอนต์ Kinnari
+% \setmainfont[
+% 	ItalicFont={Kinnari-Italic.otf},
+% 	BoldFont={Kinnari-Bold.otf},
+% 	BoldItalicFont={Kinnari-BoldItalic.otf},
+% 	Script=Thai,
+% 	Scale=MatchLowercase,
+% 	WordSpace=1.25,
+% 	Mapping=tex-text,
+% ]{Kinnari.otf}
+% \setmonofont{Kinnari.otf}
+
+% ตั้งค่าฟอนต์ Laksaman or Saraban
+\setmainfont[%
+    ItalicFont={Laksaman-Italic.otf},%
+    BoldFont={Laksaman-Bold.otf},%
+    BoldItalicFont={Laksaman-BoldItalic.otf},%
+    Script=Thai,%
+    Scale=MatchLowercase,%
+    WordSpace=1.25,%
+    Mapping=tex-text,%
+]{Laksaman.otf}
+
+% ตั้งค่าหัวเรื่องและการจัดหน้า
+\usepackage{multicol}
+\usepackage[bf,center]{titlesec}
+
+% ตั้งค่าหัวกระดาษและท้ายกระดาษ
+\usepackage{fancyhdr}
+\fancyhead[L]{\rightmark} % Top left header
+\fancyhead[R]{\leftmark} % Top right header
+\setlength{\headheight}{15pt}
+\renewcommand{\headrulewidth}{1.4pt} % เส้นคั่นระหว่างส่วนหัวกับเนื้อหา
+\fancyfoot[C]{\textbf{\thepage}} % ส่วนท้ายด้านกลางล่าง
+\renewcommand{\footrulewidth}{1.4pt} % เส้นคั่นระหว่างส่วนท้ายกับเนื้อหา
+
+% รูปแบบเนื้อหา
+\usepackage{needspace}
+% ตัวแปรที่ 1: บท (ตัวหนา)
+% ตัวแปรที่ 2: บทศัพท์ หรือ บทสนธิ
+% หากเป็นบทสนธิ จะต้องวนลูป แต่หากไม่ใช่ ต้องตรวจสอบว่ามีศัพท์หรือไม่ ก่อนขึ้นตัวแปรต่อไปนี้ให้ขึ้นบรรทัดใหม่
+% ตัวแปรที่ 3: ประกอบด้วย ๑. ศัพท์ (ตัวหนา)  ๒. ประเภทศัพท์ (นาม อาขยาต พฺยย) ๓. การประกอบคำสมาส ๔. คำแปล
+\newcommand{\entry}[3]{\needspace{2cm}\markboth{#1}{#1}\noindent\textbf{#1} {#2} {#3}\par\vspace{1em}}
+
+% กำหนดคำสั่งในการพิมพ์แต่ละคำในหน้ากระดาษ
+% \markboth{}{} พิมพ์คำแรกของหน้ากระดาษที่ด้านบนซ้ายและคำสุดท้ายที่ด้านบนซ้าย
+
+% ปกรอง 
+\newcommand{\booktitle}{ปทานุกรมบทสนธิ}
+\newcommand{\subtitle}{พฺรหฺมชาลสุตฺตํ}
+
+\begin{document}
+    \frontmatter
+    {{ frontmatter }}
+
+    \mainmatter
+    \pagestyle{fancy}
+    {{ mainmatter|safe }}
+\end{document}

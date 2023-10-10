@@ -135,7 +135,7 @@ def decode(pali_code):
     y = []
     for x in pali_code:
         if x >= '0' and x <= '8':
-            y.append(vowel[str(x)])
+            y.append(vowel[int(x)])
         else:
             y.append(x+pintu)
     return y

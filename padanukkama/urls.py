@@ -1,6 +1,6 @@
 from django.urls import path
 
-from . import views, htmx
+from . import views, htmx, latex
 
 urlpatterns = [
     # padanukkama
@@ -36,6 +36,12 @@ urlpatterns = [
 ]
 
 
+latex_urlpatterns = [
+    path('generate-book-1-column/<int:padanukkama_id>', latex.GenerateBook1Col, name='generate_book_1col'),
+    path('generate-book-2-column/<int:padanukkama_id>', latex.GenerateBook, name='generate_book'),
+    path('generate-book-by-pada-2-column/<int:padanukkama_id>', latex.GeneratePadaBook2Column, name='generate_pada_book'),
+]
+
 htmx_urlpatterns = [
     # literal_translation
     path('htmx-translation-form/<int:pk>/', htmx.TranslationPadaView.as_view(), name='htmx_translation_pada'),
@@ -58,5 +64,6 @@ htmx_urlpatterns = [
 
 
 urlpatterns += htmx_urlpatterns
+urlpatterns += latex_urlpatterns
 
 

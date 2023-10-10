@@ -1,7 +1,8 @@
 from django.contrib import messages
+from django.db.models import Count, Prefetch
 from django.shortcuts import render, redirect
 from django.views import View
-from django.views.generic import CreateView, UpdateView, DeleteView
+from django.views.generic import CreateView, UpdateView, DeleteView, ListView
 from django.urls import resolve, reverse_lazy
 from django.utils.translation import gettext_lazy as _
 
@@ -11,7 +12,7 @@ from django_tables2.views import SingleTableMixin
 from braces.views import LoginRequiredMixin, SuperuserRequiredMixin
 from urllib.parse import urlencode
 
-from padanukkama.models import NamaSaddamala, Dhatu, \
+from padanukkama.models import NamaSaddamala, Dhatu, Linga, \
                     AkhyataSaddamala, VerbConjugation, NounDeclension
 from .tables import NamaSaddamalaTable, NamaSaddamalaFilter, \
                     DhatuTable, DhatuFilter, \
@@ -125,6 +126,20 @@ class NamaSaddamalaDeleteView(LoginRequiredMixin, DeleteView):
         context['url_name'] = resolve(self.request.path_info).url_name
         return context
 
+
+# NamaSaddamalaListView
+# ---------------------
+class NamaSaddamalaListView(ListView):
+    model = NamaSaddamala
+    template_name = 'setting/nama_saddamala_list.html'
+    context_object_name = 'lingas'
+
+    def get_queryset(self):
+        queryset = NamaSaddamala.objects.all().order_by('title')
+        return Linga.objects.annotate(
+            num_namasaddamala=Count('namasaddamala')).prefetch_related(
+                Prefetch('namasaddamala_set', queryset=queryset))
+    
 
 
 # ====================================================
@@ -479,4 +494,5 @@ class AkhyataSaddamalaUpdateOrCreateView(LoginRequiredMixin, View):
             'form': form,
         }
         return render(request, 'setting/akhyala_saddamala.html', context)
+
 

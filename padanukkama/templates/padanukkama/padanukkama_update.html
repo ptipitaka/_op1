@@ -70,6 +70,16 @@
                     style="width:100px">
                     {% trans 'Delete' %}
                 </a>
+                <a href="{% url 'generate_book' object.pk %}"
+                    class="w3-button w3-white w3-border w3-round-xlarge w3-hover-violet" 
+                    style="width:100px">
+                    <i class='fas fa-print'></i> {% trans 'Padanukkama' %}
+                </a>
+                <a href="{% url 'generate_pada_book' object.pk %}"
+                    class="w3-button w3-white w3-border w3-round-xlarge w3-hover-red" 
+                    style="width:100px">
+                    <i class='fas fa-print'></i> {% trans 'Sondhi' %}
+                </a>
                 <a href="{% url 'literal_translation' %}?padanukkama={{ object.pk }}"
                     class="w3-button w3-white w3-border w3-round-xlarge w3-hover-orange" 
                     style="width:100px">
