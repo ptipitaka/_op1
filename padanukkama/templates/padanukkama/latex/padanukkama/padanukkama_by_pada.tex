@@ -17,17 +17,6 @@
 % แพคเกจอื่น ๆ
 \usepackage{needspace}
 
-% ตั้งค่าฟอนต์ Kinnari
-% \setmainfont[
-% 	ItalicFont={Kinnari-Italic.otf},
-% 	BoldFont={Kinnari-Bold.otf},
-% 	BoldItalicFont={Kinnari-BoldItalic.otf},
-% 	Script=Thai,
-% 	Scale=MatchLowercase,
-% 	WordSpace=1.25,
-% 	Mapping=tex-text,
-% ]{Kinnari.otf}
-% \setmonofont{Kinnari.otf}
 
 % ตั้งค่าฟอนต์ Laksaman or Saraban
 \setmainfont[%
@@ -44,14 +33,19 @@
 \usepackage{multicol}
 \usepackage[bf,center]{titlesec}
 
+% ปกรอง 
+\newcommand{\booktitle}{ปทานุกรมบทสนธิ}
+\newcommand{\subtitle}{พฺรหฺมชาลสุตฺตํ}
+
 % ตั้งค่าหัวกระดาษและท้ายกระดาษ
 \usepackage{fancyhdr}
-\fancyhead[L]{\rightmark} % Top left header
-\fancyhead[R]{\leftmark} % Top right header
 \setlength{\headheight}{15pt}
-\renewcommand{\headrulewidth}{1.4pt} % เส้นคั่นระหว่างส่วนหัวกับเนื้อหา
-\fancyfoot[C]{\textbf{\thepage}} % ส่วนท้ายด้านกลางล่าง
-\renewcommand{\footrulewidth}{1.4pt} % เส้นคั่นระหว่างส่วนท้ายกับเนื้อหา
+
+% ตัวแปรอักษร
+\newcommand{\currentfirstchar}{}
+\fancyhead[LE,RO]{\booktitle} % หน้าคู่ซ้าย, หน้าคี่ขวา
+\fancyhead[LO,RE]{\subtitle}  % หน้าคี่ซ้าย, หน้าคู่ขวา
+\renewcommand{\headrulewidth}{0pt}
 
 % รูปแบบเนื้อหา
 \usepackage{needspace}
@@ -59,14 +53,12 @@
 % ตัวแปรที่ 2: บทศัพท์ หรือ บทสนธิ
 % หากเป็นบทสนธิ จะต้องวนลูป แต่หากไม่ใช่ ต้องตรวจสอบว่ามีศัพท์หรือไม่ ก่อนขึ้นตัวแปรต่อไปนี้ให้ขึ้นบรรทัดใหม่
 % ตัวแปรที่ 3: ประกอบด้วย ๑. ศัพท์ (ตัวหนา)  ๒. ประเภทศัพท์ (นาม อาขยาต พฺยย) ๓. การประกอบคำสมาส ๔. คำแปล
-\newcommand{\entry}[3]{\needspace{2cm}\markboth{#1}{#1}\noindent\textbf{#1} {#2} {#3}\par\vspace{1em}}
+\newcommand{\entry}[3]{
+    \needspace{2cm}
+    \noindent\textbf{#1} {#2} \par\vspace{1em}}
 
 % กำหนดคำสั่งในการพิมพ์แต่ละคำในหน้ากระดาษ
 % \markboth{}{} พิมพ์คำแรกของหน้ากระดาษที่ด้านบนซ้ายและคำสุดท้ายที่ด้านบนซ้าย
-
-% ปกรอง 
-\newcommand{\booktitle}{ปทานุกรมบทสนธิ}
-\newcommand{\subtitle}{พฺรหฺมชาลสุตฺตํ}
 
 \begin{document}
     \frontmatter

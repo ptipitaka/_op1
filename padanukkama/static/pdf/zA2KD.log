@@ -1,0 +1,6986 @@
+This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2022/dev/Debian) (preloaded format=xelatex 2023.9.20)  12 OCT 2023 15:11
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**/var/www/html/_op1/padanukkama/static/pdf/zA2KD.tex
+(/var/www/html/_op1/padanukkama/static/pdf/zA2KD.tex
+LaTeX2e <2021-11-15> patch level 1
+L3 programming layer <2022-01-21>
+(/usr/share/texlive/texmf-dist/tex/latex/base/book.cls
+Document Class: book 2021/10/04 v1.4n Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/bk10.clo
+File: bk10.clo 2021/10/04 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count181
+\c@chapter=\count182
+\c@section=\count183
+\c@subsection=\count184
+\c@subsubsection=\count185
+\c@paragraph=\count186
+\c@subparagraph=\count187
+\c@figure=\count188
+\c@table=\count189
+\abovecaptionskip=\skip47
+\belowcaptionskip=\skip48
+\bibindent=\dimen138
+)
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+Package: geometry 2020/01/02 v5.9 Page Geometry
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks16
+)
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty
+Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
+
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty
+Package: iftex 2020/03/06 v1.0d TeX engine tests
+))
+\Gm@cnth=\count190
+\Gm@cntv=\count191
+\c@Gm@tempcnt=\count192
+\Gm@bindingoffset=\dimen139
+\Gm@wd@mp=\dimen140
+\Gm@odd@mp=\dimen141
+\Gm@even@mp=\dimen142
+\Gm@layoutwidth=\dimen143
+\Gm@layoutheight=\dimen144
+\Gm@layouthoffset=\dimen145
+\Gm@layoutvoffset=\dimen146
+\Gm@dimlist=\toks17
+)
+(/usr/share/texlive/texmf-dist/tex/latex/fontspec/fontspec.sty
+(/usr/share/texlive/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
+(/usr/share/texlive/texmf-dist/tex/latex/l3kernel/expl3.sty
+Package: expl3 2022-01-21 L3 programming layer (loader) 
+
+(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-xetex.def
+File: l3backend-xetex.def 2022-01-12 L3 backend support: XeTeX
+
+(|extractbb --version)
+\c__kernel_sys_dvipdfmx_version_int=\count193
+\l__color_backend_stack_int=\count194
+\g__color_backend_stack_int=\count195
+\g__graphics_track_int=\count196
+\l__pdf_internal_box=\box50
+\g__pdf_backend_object_int=\count197
+\g__pdf_backend_annotation_int=\count198
+\g__pdf_backend_link_int=\count199
+))
+Package: xparse 2022-01-12 L3 Experimental document command parser
+)
+Package: fontspec 2022/01/15 v2.8a Font selection for XeLaTeX and LuaLaTeX
+
+(/usr/share/texlive/texmf-dist/tex/latex/fontspec/fontspec-xetex.sty
+Package: fontspec-xetex 2022/01/15 v2.8a Font selection for XeLaTeX and LuaLaTe
+X
+\l__fontspec_script_int=\count266
+\l__fontspec_language_int=\count267
+\l__fontspec_strnum_int=\count268
+\l__fontspec_tmp_int=\count269
+\l__fontspec_tmpa_int=\count270
+\l__fontspec_tmpb_int=\count271
+\l__fontspec_tmpc_int=\count272
+\l__fontspec_em_int=\count273
+\l__fontspec_emdef_int=\count274
+\l__fontspec_strong_int=\count275
+\l__fontspec_strongdef_int=\count276
+\l__fontspec_tmpa_dim=\dimen147
+\l__fontspec_tmpb_dim=\dimen148
+\l__fontspec_tmpc_dim=\dimen149
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
+Package: fontenc 2021/04/29 v2.0v Standard LaTeX package
+)
+(/usr/share/texlive/texmf-dist/tex/latex/fontspec/fontspec.cfg)))
+(/usr/share/texlive/texmf-dist/tex/latex/polyglossia/polyglossia.sty
+Package: polyglossia 2021/04/12 v1.53 Modern multilingual typesetting with XeLa
+TeX and LuaLaTeX
+
+(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count277
+)
+(/usr/share/texlive/texmf-dist/tex/latex/makecmds/makecmds.sty
+Package: makecmds 2009/09/03 v1.0a extra command making commands
+)
+(/usr/share/texlive/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+Package: xkeyval 2020/11/20 v2.8 package option processing (HA)
+
+(/usr/share/texlive/texmf-dist/tex/generic/xkeyval/xkeyval.tex
+(/usr/share/texlive/texmf-dist/tex/generic/xkeyval/xkvutils.tex
+\XKV@toks=\toks18
+\XKV@tempa@toks=\toks19
+)
+\XKV@depth=\count278
+File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
+))
+(/usr/share/texlive/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty
+Package: l3keys2e 2022-01-12 LaTeX2e option processing using LaTeX3 keys
+)
+
+LaTeX hooks Warning: Generic hook 'file/after/tracklang.sty' is deprecated.
+(hooks)              Use hook 'file/tracklang.sty/after' instead.
+
+
+LaTeX hooks Warning: Generic hook 'package/after/bidi' is deprecated.
+(hooks)              Use hook 'package/bidi/after' instead.
+
+
+LaTeX hooks Warning: Generic hook 'package/after/luabidi' is deprecated.
+(hooks)              Use hook 'package/luabidi/after' instead.
+
+\xpg@normalclass=\XeTeXcharclass1
+(/usr/share/texlive/texmf-dist/tex/latex/polyglossia/gloss-latex.ldf
+File: gloss-latex.ldf polyglossia: module for default language
+The property list \polyglossia@langsetup contains the pairs (without outer
+braces):
+>  {latex/script}  =>  {latin}
+>  {latex/lcscript}  =>  {latin}
+>  {latex/scripttag}  =>  {}
+>  {latex/language}  =>  {Latex}
+>  {latex/langtag}  =>  {ENG}
+>  {latex/bcp47}  =>  {}
+>  {latex/hyphennames}  =>  {english}
+>  {latex/direction}  =>  {LR}
+>  {latex/hyphenmins}  =>  {2,3}
+>  {latex/frenchspacing}  =>  {false}
+>  {latex/indentfirst}  =>  {false}
+>  {latex/fontsetup}  =>  {true}
+>  {latex/envname}  =>  {latex}
+>  {latex/babelname}  =>  {latex}
+>  {latex/localnumeral}  =>  {polyglossia@C@localnumeral}
+>  {latex/Localnumeral}  =>  {polyglossia@C@localnumeral}.
+)
+Package polyglossia Info: Default language is latex.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/polyglossia/gloss-thai.ldf
+File: gloss-thai.ldf polyglossia: module for thai
+The property list \polyglossia@langsetup contains the pairs (without outer
+braces):
+>  {latex/script}  =>  {latin}
+>  {latex/lcscript}  =>  {latin}
+>  {latex/scripttag}  =>  {}
+>  {latex/language}  =>  {Latex}
+>  {latex/langtag}  =>  {ENG}
+>  {latex/bcp47}  =>  {}
+>  {latex/hyphennames}  =>  {english}
+>  {latex/direction}  =>  {LR}
+>  {latex/hyphenmins}  =>  {2,3}
+>  {latex/frenchspacing}  =>  {false}
+>  {latex/indentfirst}  =>  {false}
+>  {latex/fontsetup}  =>  {true}
+>  {latex/envname}  =>  {latex}
+>  {latex/babelname}  =>  {latex}
+>  {latex/localnumeral}  =>  {polyglossia@C@localnumeral}
+>  {latex/Localnumeral}  =>  {polyglossia@C@localnumeral}
+>  {thai/script}  =>  {Thai}
+>  {thai/lcscript}  =>  {thai}
+>  {thai/scripttag}  =>  {thai}
+>  {thai/language}  =>  {Thai}
+>  {thai/langtag}  =>  {THA}
+>  {thai/bcp47}  =>  {th}
+>  {thai/hyphennames}  =>  {nohyphenation}
+>  {thai/direction}  =>  {LR}
+>  {thai/hyphenmins}  =>  {2,3}
+>  {thai/frenchspacing}  =>  {false}
+>  {thai/indentfirst}  =>  {false}
+>  {thai/fontsetup}  =>  {true}
+>  {thai/envname}  =>  {thai}
+>  {thai/babelname}  =>  {thai}
+>  {thai/localnumeral}  =>  {thainumerals}
+>  {thai/Localnumeral}  =>  {thainumerals}.
+)
+Package polyglossia Info: Default language is thai.
+
+(/usr/share/texlive/texmf-dist/tex/latex/polyglossia/gloss-english.ldf
+File: gloss-english.ldf polyglossia: module for english
+The property list \polyglossia@langsetup contains the pairs (without outer
+braces):
+>  {latex/script}  =>  {latin}
+>  {latex/lcscript}  =>  {latin}
+>  {latex/scripttag}  =>  {}
+>  {latex/language}  =>  {Latex}
+>  {latex/langtag}  =>  {ENG}
+>  {latex/bcp47}  =>  {}
+>  {latex/hyphennames}  =>  {english}
+>  {latex/direction}  =>  {LR}
+>  {latex/hyphenmins}  =>  {2,3}
+>  {latex/frenchspacing}  =>  {false}
+>  {latex/indentfirst}  =>  {false}
+>  {latex/fontsetup}  =>  {true}
+>  {latex/envname}  =>  {latex}
+>  {latex/babelname}  =>  {latex}
+>  {latex/localnumeral}  =>  {polyglossia@C@localnumeral}
+>  {latex/Localnumeral}  =>  {polyglossia@C@localnumeral}
+>  {thai/script}  =>  {Thai}
+>  {thai/lcscript}  =>  {thai}
+>  {thai/scripttag}  =>  {thai}
+>  {thai/language}  =>  {Thai}
+>  {thai/langtag}  =>  {THA}
+>  {thai/bcp47}  =>  {th}
+>  {thai/hyphennames}  =>  {nohyphenation}
+>  {thai/direction}  =>  {LR}
+>  {thai/hyphenmins}  =>  {2,3}
+>  {thai/frenchspacing}  =>  {false}
+>  {thai/indentfirst}  =>  {false}
+>  {thai/fontsetup}  =>  {true}
+>  {thai/envname}  =>  {thai}
+>  {thai/babelname}  =>  {thai}
+>  {thai/localnumeral}  =>  {thainumerals}
+>  {thai/Localnumeral}  =>  {thainumerals}
+>  {english/script}  =>  {latin}
+>  {english/lcscript}  =>  {latin}
+>  {english/scripttag}  =>  {}
+>  {english/language}  =>  {English}
+>  {english/langtag}  =>  {ENG}
+>  {english/bcp47}  =>  {en-US}
+>  {english/hyphennames}  =>  {english,american,usenglish,USenglish}
+>  {english/direction}  =>  {LR}
+>  {english/hyphenmins}  =>  {2,3}
+>  {english/frenchspacing}  =>  {false}
+>  {english/indentfirst}  =>  {false}
+>  {english/fontsetup}  =>  {true}
+>  {english/envname}  =>  {english}
+>  {english/babelname}  =>  {english}
+>  {english/localnumeral}  =>  {polyglossia@C@localnumeral}
+>  {english/Localnumeral}  =>  {polyglossia@C@localnumeral}.
+Package polyglossia Info: Option: English, variant=american.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/needspace/needspace.sty
+Package: needspace 2010/09/12 v1.3d reserve vertical space
+)
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman-Bold scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman-Italic scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman-BoldItalic scale = 0.8434411299232584.
+
+
+Package fontspec Info: Font family 'Laksaman.otf(0)' created for font
+(fontspec)             'Laksaman.otf' with options
+(fontspec)             [Ligatures=TeX,ItalicFont={Laksaman-Italic.otf},BoldFont
+={Laksaman-Bold.otf},BoldItalicFont={Laksaman-BoldItalic.otf},Script=Thai,Scale
+=MatchLowercase,WordSpace=1.25,Mapping=tex-text].
+(fontspec)              
+(fontspec)              This font family consists of the following NFSS
+(fontspec)             series/shapes:
+(fontspec)              
+(fontspec)             - 'normal' (m/n) with NFSS spec.:
+(fontspec)             <->s*[0.8434411299232584]"[Laksaman.otf]/OT:script=thai;
+language=dflt;mapping=tex-text;"
+(fontspec)             - 'small caps'  (m/sc) with NFSS spec.: 
+(fontspec)             and font adjustment code:
+(fontspec)             \fontdimen 2\font =1.25\fontdimen 2\font \fontdimen
+(fontspec)             3\font =1.25\fontdimen 3\font \fontdimen 4\font
+(fontspec)             =1.25\fontdimen 4\font 
+(fontspec)             - 'bold' (b/n) with NFSS spec.:
+(fontspec)             <->s*[0.8434411299232584]"[Laksaman-Bold.otf]/OT:script=
+thai;language=dflt;mapping=tex-text;"
+(fontspec)             - 'bold small caps'  (b/sc) with NFSS spec.: 
+(fontspec)             and font adjustment code:
+(fontspec)             \fontdimen 2\font =1.25\fontdimen 2\font \fontdimen
+(fontspec)             3\font =1.25\fontdimen 3\font \fontdimen 4\font
+(fontspec)             =1.25\fontdimen 4\font 
+(fontspec)             - 'italic' (m/it) with NFSS spec.:
+(fontspec)             <->s*[0.8434411299232584]"[Laksaman-Italic.otf]/OT:scrip
+t=thai;language=dflt;mapping=tex-text;"
+(fontspec)             - 'italic small caps'  (m/scit) with NFSS spec.: 
+(fontspec)             and font adjustment code:
+(fontspec)             \fontdimen 2\font =1.25\fontdimen 2\font \fontdimen
+(fontspec)             3\font =1.25\fontdimen 3\font \fontdimen 4\font
+(fontspec)             =1.25\fontdimen 4\font 
+(fontspec)             - 'bold italic' (b/it) with NFSS spec.:
+(fontspec)             <->s*[0.8434411299232584]"[Laksaman-BoldItalic.otf]/OT:s
+cript=thai;language=dflt;mapping=tex-text;"
+(fontspec)             - 'bold italic small caps'  (b/scit) with NFSS spec.: 
+(fontspec)             and font adjustment code:
+(fontspec)             \fontdimen 2\font =1.25\fontdimen 2\font \fontdimen
+(fontspec)             3\font =1.25\fontdimen 3\font \fontdimen 4\font
+(fontspec)             =1.25\fontdimen 4\font 
+
+LaTeX Font Info:    Font shape `TU/Laksaman.otf(0)/m/n' will be
+(Font)              scaled to size 8.43445pt on input line 30.
+
+(/usr/share/texlive/texmf-dist/tex/latex/tools/multicol.sty
+Package: multicol 2021/10/28 v1.9b multicolumn formatting (FMi)
+\c@tracingmulticols=\count279
+\mult@box=\box51
+\multicol@leftmargin=\dimen150
+\c@unbalance=\count280
+\c@collectmore=\count281
+\doublecol@number=\count282
+\multicoltolerance=\count283
+\multicolpretolerance=\count284
+\full@width=\dimen151
+\page@free=\dimen152
+\premulticols=\dimen153
+\postmulticols=\dimen154
+\multicolsep=\skip49
+\multicolbaselineskip=\skip50
+\partial@page=\box52
+\last@line=\box53
+\maxbalancingoverflow=\dimen155
+\mult@rightbox=\box54
+\mult@grightbox=\box55
+\mult@firstbox=\box56
+\mult@gfirstbox=\box57
+\@tempa=\box58
+\@tempa=\box59
+\@tempa=\box60
+\@tempa=\box61
+\@tempa=\box62
+\@tempa=\box63
+\@tempa=\box64
+\@tempa=\box65
+\@tempa=\box66
+\@tempa=\box67
+\@tempa=\box68
+\@tempa=\box69
+\@tempa=\box70
+\@tempa=\box71
+\@tempa=\box72
+\@tempa=\box73
+\@tempa=\box74
+\@tempa=\box75
+\@tempa=\box76
+\@tempa=\box77
+\@tempa=\box78
+\@tempa=\box79
+\@tempa=\box80
+\@tempa=\box81
+\@tempa=\box82
+\@tempa=\box83
+\@tempa=\box84
+\@tempa=\box85
+\@tempa=\box86
+\@tempa=\box87
+\@tempa=\box88
+\@tempa=\box89
+\@tempa=\box90
+\@tempa=\box91
+\@tempa=\box92
+\@tempa=\box93
+\c@minrows=\count285
+\c@columnbadness=\count286
+\c@finalcolumnbadness=\count287
+\last@try=\dimen156
+\multicolovershoot=\dimen157
+\multicolundershoot=\dimen158
+\mult@nat@firstbox=\box94
+\colbreak@box=\box95
+\mc@col@check@num=\count288
+)
+(/usr/share/texlive/texmf-dist/tex/latex/titlesec/titlesec.sty
+Package: titlesec 2021/07/05 v2.14 Sectioning titles
+\ttl@box=\box96
+\beforetitleunit=\skip51
+\aftertitleunit=\skip52
+\ttl@plus=\dimen159
+\ttl@minus=\dimen160
+\ttl@toksa=\toks20
+\titlewidth=\dimen161
+\titlewidthlast=\dimen162
+\titlewidthfirst=\dimen163
+)
+(/usr/share/texlive/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
+Package: fancyhdr 2021/01/28 v4.0.1 Extensive control of page headers and foote
+rs
+\f@nch@headwidth=\skip53
+\f@nch@O@elh=\skip54
+\f@nch@O@erh=\skip55
+\f@nch@O@olh=\skip56
+\f@nch@O@orh=\skip57
+\f@nch@O@elf=\skip58
+\f@nch@O@erf=\skip59
+\f@nch@O@olf=\skip60
+\f@nch@O@orf=\skip61
+)
+(/usr/share/texlive/texmf-dist/tex/latex/koma-script/scrextend.sty
+Package: scrextend 2021/11/13 v3.35 KOMA-Script package (extend other classes w
+ith features of KOMA-Script classes)
+
+(/usr/share/texlive/texmf-dist/tex/latex/koma-script/scrkbase.sty
+Package: scrkbase 2021/11/13 v3.35 KOMA-Script package (KOMA-Script-dependent b
+asics and keyval usage)
+
+(/usr/share/texlive/texmf-dist/tex/latex/koma-script/scrbase.sty
+Package: scrbase 2021/11/13 v3.35 KOMA-Script package (KOMA-Script-independent 
+basics and keyval usage)
+
+(/usr/share/texlive/texmf-dist/tex/latex/koma-script/scrlfile.sty
+Package: scrlfile 2021/11/13 v3.35 KOMA-Script package (file load hooks)
+
+(/usr/share/texlive/texmf-dist/tex/latex/koma-script/scrlfile-hook.sty
+Package: scrlfile-hook 2021/11/13 v3.35 KOMA-Script package (using LaTeX hooks)
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/koma-script/scrlogo.sty
+Package: scrlogo 2021/11/13 v3.35 KOMA-Script package (logo)
+)))
+Applying: [2021/05/01] Usage of raw or classic option list on input line 252.
+Already applied: [0000/00/00] Usage of raw or classic option list on input line
+ 368.
+)))
+No file zA2KD.aux.
+\openout1 = `zA2KD.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 66.
+LaTeX Font Info:    ... okay on input line 66.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 66.
+LaTeX Font Info:    ... okay on input line 66.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 66.
+LaTeX Font Info:    ... okay on input line 66.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 66.
+LaTeX Font Info:    ... okay on input line 66.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 66.
+LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 6
+6.
+(/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmr.fd
+File: ts1cmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
+)
+LaTeX Font Info:    ... okay on input line 66.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 66.
+LaTeX Font Info:    ... okay on input line 66.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 66.
+LaTeX Font Info:    ... okay on input line 66.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 66.
+LaTeX Font Info:    ... okay on input line 66.
+
+*geometry* driver: auto-detecting
+*geometry* detected driver: xetex
+*geometry* verbose mode - [ preamble ] result:
+* driver: xetex
+* paper: custom
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: twoside 
+* h-part:(L,W,R)=(62.59596pt, 349.969pt, 56.9055pt)
+* v-part:(T,H,B)=(56.9055pt, 540.60237pt, 56.9055pt)
+* \paperwidth=469.47046pt
+* \paperheight=654.41338pt
+* \textwidth=349.969pt
+* \textheight=540.60237pt
+* \oddsidemargin=-9.67403pt
+* \evensidemargin=-15.36449pt
+* \topmargin=-45.43198pt
+* \headheight=15.0pt
+* \headsep=18.06749pt
+* \topskip=10.0pt
+* \footskip=25.29494pt
+* \marginparwidth=125.0pt
+* \marginparsep=7.0pt
+* \columnsep=30.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidetrue
+* \@mparswitchtrue
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+
+Package fontspec Info: Adjusting the maths setup (use [no-math] to avoid
+(fontspec)             this).
+
+\symlegacymaths=\mathgroup4
+LaTeX Font Info:    Overwriting symbol font `legacymaths' in version `bold'
+(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 66.
+LaTeX Font Info:    Redeclaring math accent \acute on input line 66.
+LaTeX Font Info:    Redeclaring math accent \grave on input line 66.
+LaTeX Font Info:    Redeclaring math accent \ddot on input line 66.
+LaTeX Font Info:    Redeclaring math accent \tilde on input line 66.
+LaTeX Font Info:    Redeclaring math accent \bar on input line 66.
+LaTeX Font Info:    Redeclaring math accent \breve on input line 66.
+LaTeX Font Info:    Redeclaring math accent \check on input line 66.
+LaTeX Font Info:    Redeclaring math accent \hat on input line 66.
+LaTeX Font Info:    Redeclaring math accent \dot on input line 66.
+LaTeX Font Info:    Redeclaring math accent \mathring on input line 66.
+LaTeX Font Info:    Redeclaring math symbol \colon on input line 66.
+LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 66.
+LaTeX Font Info:    Redeclaring math symbol \Delta on input line 66.
+LaTeX Font Info:    Redeclaring math symbol \Theta on input line 66.
+LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 66.
+LaTeX Font Info:    Redeclaring math symbol \Xi on input line 66.
+LaTeX Font Info:    Redeclaring math symbol \Pi on input line 66.
+LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 66.
+LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 66.
+LaTeX Font Info:    Redeclaring math symbol \Phi on input line 66.
+LaTeX Font Info:    Redeclaring math symbol \Psi on input line 66.
+LaTeX Font Info:    Redeclaring math symbol \Omega on input line 66.
+LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 66.
+LaTeX Font Info:    Redeclaring symbol font `operators' on input line 66.
+LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
+(Font)              `operators' in the math version `normal' on input line 66.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  OT1/cmr/m/n --> TU/Laksaman.otf(0)/m/n on input line 66
+.
+LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
+(Font)              `operators' in the math version `bold' on input line 66.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  OT1/cmr/bx/n --> TU/Laksaman.otf(0)/m/n on input line 6
+6.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  TU/Laksaman.otf(0)/m/n --> TU/Laksaman.otf(0)/m/n on in
+put line 66.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
+(Font)                  OT1/cmr/m/it --> TU/Laksaman.otf(0)/m/it on input line 
+66.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
+(Font)                  OT1/cmr/bx/n --> TU/Laksaman.otf(0)/b/n on input line 6
+6.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
+(Font)                  OT1/cmss/m/n --> TU/lmss/m/n on input line 66.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
+(Font)                  OT1/cmtt/m/n --> TU/lmtt/m/n on input line 66.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  TU/Laksaman.otf(0)/m/n --> TU/Laksaman.otf(0)/b/n on in
+put line 66.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
+(Font)                  OT1/cmr/bx/it --> TU/Laksaman.otf(0)/b/it on input line
+ 66.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
+(Font)                  OT1/cmss/bx/n --> TU/lmss/b/n on input line 66.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
+(Font)                  OT1/cmtt/m/n --> TU/lmtt/b/n on input line 66.
+LaTeX Info: Redefining \rmfamily on input line 66.
+LaTeX Info: Redefining \sffamily on input line 66.
+LaTeX Info: Redefining \ttfamily on input line 66.
+LaTeX Info: Redefining \rmfamily on input line 66.
+LaTeX Info: Redefining \sffamily on input line 66.
+LaTeX Info: Redefining \ttfamily on input line 66.
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman-Bold scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman-Italic scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman-BoldItalic scale = 0.8434411299232584.
+
+
+Package fontspec Info: Font family 'Laksaman.otf(1)' created for font
+(fontspec)             'Laksaman.otf' with options
+(fontspec)             [Ligatures=TeX,ItalicFont={Laksaman-Italic.otf},BoldFont
+={Laksaman-Bold.otf},BoldItalicFont={Laksaman-BoldItalic.otf},Script=Thai,Scale
+=MatchLowercase,WordSpace=1.25,Mapping=tex-text,Script=Thai].
+(fontspec)              
+(fontspec)              This font family consists of the following NFSS
+(fontspec)             series/shapes:
+(fontspec)              
+(fontspec)             - 'normal' (m/n) with NFSS spec.:
+(fontspec)             <->s*[0.8434411299232584]"[Laksaman.otf]/OT:script=thai;
+language=dflt;mapping=tex-text;"
+(fontspec)             - 'small caps'  (m/sc) with NFSS spec.: 
+(fontspec)             and font adjustment code:
+(fontspec)             \fontdimen 2\font =1.25\fontdimen 2\font \fontdimen
+(fontspec)             3\font =1.25\fontdimen 3\font \fontdimen 4\font
+(fontspec)             =1.25\fontdimen 4\font 
+(fontspec)             - 'bold' (b/n) with NFSS spec.:
+(fontspec)             <->s*[0.8434411299232584]"[Laksaman-Bold.otf]/OT:script=
+thai;language=dflt;mapping=tex-text;"
+(fontspec)             - 'bold small caps'  (b/sc) with NFSS spec.: 
+(fontspec)             and font adjustment code:
+(fontspec)             \fontdimen 2\font =1.25\fontdimen 2\font \fontdimen
+(fontspec)             3\font =1.25\fontdimen 3\font \fontdimen 4\font
+(fontspec)             =1.25\fontdimen 4\font 
+(fontspec)             - 'italic' (m/it) with NFSS spec.:
+(fontspec)             <->s*[0.8434411299232584]"[Laksaman-Italic.otf]/OT:scrip
+t=thai;language=dflt;mapping=tex-text;"
+(fontspec)             - 'italic small caps'  (m/scit) with NFSS spec.: 
+(fontspec)             and font adjustment code:
+(fontspec)             \fontdimen 2\font =1.25\fontdimen 2\font \fontdimen
+(fontspec)             3\font =1.25\fontdimen 3\font \fontdimen 4\font
+(fontspec)             =1.25\fontdimen 4\font 
+(fontspec)             - 'bold italic' (b/it) with NFSS spec.:
+(fontspec)             <->s*[0.8434411299232584]"[Laksaman-BoldItalic.otf]/OT:s
+cript=thai;language=dflt;mapping=tex-text;"
+(fontspec)             - 'bold italic small caps'  (b/scit) with NFSS spec.: 
+(fontspec)             and font adjustment code:
+(fontspec)             \fontdimen 2\font =1.25\fontdimen 2\font \fontdimen
+(fontspec)             3\font =1.25\fontdimen 3\font \fontdimen 4\font
+(fontspec)             =1.25\fontdimen 4\font 
+
+LaTeX Font Info:    Font shape `TU/Laksaman.otf(1)/m/n' will be
+(Font)              scaled to size 8.43445pt on input line 66.
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman-Bold scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman-Italic scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman-BoldItalic scale = 0.8434411299232584.
+
+
+Package fontspec Info: Font family 'Laksaman.otf(2)' created for font
+(fontspec)             'Laksaman.otf' with options
+(fontspec)             [Ligatures=TeX,ItalicFont={Laksaman-Italic.otf},BoldFont
+={Laksaman-Bold.otf},BoldItalicFont={Laksaman-BoldItalic.otf},Script=Thai,Scale
+=MatchLowercase,WordSpace=1.25,Mapping=tex-text,Script=Thai,Language=Thai].
+(fontspec)              
+(fontspec)              This font family consists of the following NFSS
+(fontspec)             series/shapes:
+(fontspec)              
+(fontspec)             - 'normal' (m/n) with NFSS spec.:
+(fontspec)             <->s*[0.8434411299232584]"[Laksaman.otf]/OT:script=thai;
+language=THA;mapping=tex-text;"
+(fontspec)             - 'small caps'  (m/sc) with NFSS spec.: 
+(fontspec)             and font adjustment code:
+(fontspec)             \fontdimen 2\font =1.25\fontdimen 2\font \fontdimen
+(fontspec)             3\font =1.25\fontdimen 3\font \fontdimen 4\font
+(fontspec)             =1.25\fontdimen 4\font 
+(fontspec)             - 'bold' (b/n) with NFSS spec.:
+(fontspec)             <->s*[0.8434411299232584]"[Laksaman-Bold.otf]/OT:script=
+thai;language=THA;mapping=tex-text;"
+(fontspec)             - 'bold small caps'  (b/sc) with NFSS spec.: 
+(fontspec)             and font adjustment code:
+(fontspec)             \fontdimen 2\font =1.25\fontdimen 2\font \fontdimen
+(fontspec)             3\font =1.25\fontdimen 3\font \fontdimen 4\font
+(fontspec)             =1.25\fontdimen 4\font 
+(fontspec)             - 'italic' (m/it) with NFSS spec.:
+(fontspec)             <->s*[0.8434411299232584]"[Laksaman-Italic.otf]/OT:scrip
+t=thai;language=THA;mapping=tex-text;"
+(fontspec)             - 'italic small caps'  (m/scit) with NFSS spec.: 
+(fontspec)             and font adjustment code:
+(fontspec)             \fontdimen 2\font =1.25\fontdimen 2\font \fontdimen
+(fontspec)             3\font =1.25\fontdimen 3\font \fontdimen 4\font
+(fontspec)             =1.25\fontdimen 4\font 
+(fontspec)             - 'bold italic' (b/it) with NFSS spec.:
+(fontspec)             <->s*[0.8434411299232584]"[Laksaman-BoldItalic.otf]/OT:s
+cript=thai;language=THA;mapping=tex-text;"
+(fontspec)             - 'bold italic small caps'  (b/scit) with NFSS spec.: 
+(fontspec)             and font adjustment code:
+(fontspec)             \fontdimen 2\font =1.25\fontdimen 2\font \fontdimen
+(fontspec)             3\font =1.25\fontdimen 3\font \fontdimen 4\font
+(fontspec)             =1.25\fontdimen 4\font 
+
+LaTeX Font Info:    Font shape `TU/Laksaman.otf(2)/m/n' will be
+(Font)              scaled to size 8.43445pt on input line 66.
+\thai@year=\count289
+
+LaTeX Font Warning: Font shape `TU/Laksaman.otf(2)/m/sc' undefined
+(Font)              using `TU/Laksaman.otf(2)/m/n' instead on input line 79.
+
+LaTeX Font Info:    Font shape `TU/Laksaman.otf(2)/m/sc' will be
+(Font)              scaled to size 20.98491pt on input line 79.
+LaTeX Font Info:    Font shape `TU/Laksaman.otf(2)/m/sc' will be
+(Font)              scaled to size 8.43445pt on input line 81.
+LaTeX Font Info:    Font shape `TU/Laksaman.otf(2)/m/sc' will be
+(Font)              scaled to size 10.12134pt on input line 81.
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+[1
+
+
+
+
+
+
+
+]
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+ [2
+
+
+]
+LaTeX Font Info:    Font shape `TU/Laksaman.otf(2)/b/n' will be
+(Font)              scaled to size 8.43445pt on input line 92.
+LaTeX Font Info:    Font shape `TU/Laksaman.otf(2)/m/it' will be
+(Font)              scaled to size 8.43445pt on input line 92.
+LaTeX Font Info:    Font shape `TU/Laksaman.otf(2)/m/n' will be
+(Font)              scaled to size 6.74756pt on input line 94.
+LaTeX Font Info:    Font shape `TU/Laksaman.otf(2)/b/n' will be
+(Font)              scaled to size 12.1456pt on input line 98.
+LaTeX Font Info:    Font shape `TU/Laksaman.otf(2)/b/n' will be
+(Font)              scaled to size 20.98491pt on input line 98.
+
+Missing character: There is no ^^B ("2) in font nullfont!
+LaTeX Font Info:    Font shape `TU/Laksaman.otf(0)/m/n' will be
+(Font)              scaled to size 5.90411pt on input line 101.
+LaTeX Font Info:    Font shape `TU/Laksaman.otf(0)/m/n' will be
+(Font)              scaled to size 4.21722pt on input line 101.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 101.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 101.
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 101--101
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 102--102
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 103--103
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 104--104
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 105--105
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 106--106
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 107--107
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 108--108
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 109--109
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 110--110
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 111--111
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 112--112
+[]$ 
+ []
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+[1
+
+
+]
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 113--113
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 114--114
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 115--115
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 116--116
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 117--117
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 118--118
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 119--119
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 120--120
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 121--121
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 122--122
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 123--123
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 124--124
+[]$ 
+ []
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+[2]
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 125--125
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 126--126
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 127--127
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 128--128
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 129--129
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 130--130
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 131--131
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 132--132
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 133--133
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 134--134
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 135--135
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 136--136
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 137--137
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 138--138
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 139--139
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 140--140
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 141--141
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 142--142
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 143--143
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 144--144
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 145--145
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 146--146
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 147--147
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 148--148
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 149--149
+[]$ 
+ []
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+[3]
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 150--150
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 151--151
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 152--152
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 153--153
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 154--154
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 155--155
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 156--156
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 157--157
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 158--158
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 159--159
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 160--160
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 161--161
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 162--162
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 163--163
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 164--164
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 165--165
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 166--166
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 167--167
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 168--168
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 169--169
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 170--170
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 171--171
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 172--172
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 173--173
+[]$ 
+ []
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+[4]
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 174--174
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 175--175
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 176--176
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 177--177
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 178--178
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 179--179
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 180--180
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 181--181
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 182--182
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 183--183
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 184--184
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 185--185
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 186--186
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 187--187
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 188--188
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 189--189
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 190--190
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 191--191
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 192--192
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 193--193
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 194--194
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 195--195
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 196--196
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 197--197
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 198--198
+[]$ 
+ []
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+[5]
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 199--199
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 200--200
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 201--201
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 202--202
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 203--203
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 204--204
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 216--216
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 218--218
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 220--220
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 224--224
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 225--225
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 226--226
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 227--227
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 228--228
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 229--229
+[]$ 
+ []
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+[6]
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 230--230
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 231--231
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 232--232
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 233--233
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 234--234
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 235--235
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 236--236
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 237--237
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 238--238
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 239--239
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 240--240
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 241--241
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 242--242
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 243--243
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 244--244
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 245--245
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 246--246
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 247--247
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 248--248
+[]$ 
+ []
+
+Missing character: There is no ့ (U+1037) in font [Laksaman.otf]/OT:script=thai
+;language=THA;mapping=tex-text;!
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 249--249
+[]$ 
+ []
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+[7]
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 250--250
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 251--251
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 252--252
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 253--253
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 254--254
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 255--255
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 256--256
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 257--257
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 258--258
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 259--259
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 260--260
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 261--261
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 262--262
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 263--263
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 264--264
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 265--265
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 266--266
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 267--267
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 268--268
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 269--269
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 270--270
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 271--271
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 272--272
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 273--273
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 274--274
+[]$ 
+ []
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+[8]
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 275--275
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 276--276
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 277--277
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 278--278
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 279--279
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 280--280
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 281--281
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 282--282
+[]$ 
+ []
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+[9]
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 288--288
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 289--289
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 290--290
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 291--291
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 292--292
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 293--293
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 294--294
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 295--295
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 296--296
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 297--297
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 298--298
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 299--299
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 300--300
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 301--301
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 302--302
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 303--303
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 304--304
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 305--305
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 306--306
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 307--307
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 308--308
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 309--309
+[]$ 
+ []
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+[10]
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 310--310
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 311--311
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 312--312
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 313--313
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 314--314
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 315--315
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 316--316
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 318--318
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 319--319
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 320--320
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 321--321
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 322--322
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 323--323
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 324--324
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 325--325
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 326--326
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 327--327
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 328--328
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 329--329
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 330--330
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 331--331
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 332--332
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 333--333
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 334--334
+[]$ 
+ []
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+[11]
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 340--340
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 341--341
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 342--342
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 343--343
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 344--344
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 345--345
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 346--346
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 347--347
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 348--348
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 349--349
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 350--350
+[]$ 
+ []
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+[12]
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 356--356
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 357--357
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 358--358
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 359--359
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 360--360
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 361--361
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 362--362
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 363--363
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 364--364
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 365--365
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 366--366
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 367--367
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 368--368
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 369--369
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 370--370
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 371--371
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 372--372
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 373--373
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 374--374
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 375--375
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 376--376
+[]$ 
+ []
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+[13]
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 377--377
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 378--378
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 379--379
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 380--380
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 381--381
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 382--382
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 383--383
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 384--384
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 385--385
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 386--386
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 387--387
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 388--388
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 389--389
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 390--390
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 391--391
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 392--392
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 393--393
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 394--394
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 395--395
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 396--396
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 397--397
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 398--398
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 399--399
+[]$ 
+ []
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+[14]
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 400--400
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 401--401
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 402--402
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 403--403
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 404--404
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 405--405
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 406--406
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 407--407
+[]$ 
+ []
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+[15]
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 413--413
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 414--414
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 415--415
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 416--416
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 417--417
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 418--418
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 419--419
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 420--420
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 421--421
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 422--422
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 423--423
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 424--424
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 425--425
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 426--426
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 427--427
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 428--428
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 429--429
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 430--430
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 431--431
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 432--432
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 433--433
+[]$ 
+ []
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+[16]
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 434--434
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 435--435
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 436--436
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 437--437
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 438--438
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 439--439
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 440--440
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 441--441
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 442--442
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 443--443
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 444--444
+[]$ 
+ []
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+[17]
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 450--450
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 451--451
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 452--452
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 453--453
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 454--454
+[]$ 
+ []
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+[18]
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 460--460
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 461--461
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 462--462
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 463--463
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 464--464
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 465--465
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 466--466
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 467--467
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 468--468
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 469--469
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 470--470
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 471--471
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 472--472
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 473--473
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 474--474
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 475--475
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 476--476
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 477--477
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 478--478
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 479--479
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 480--480
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 481--481
+[]$ 
+ []
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+[19]
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 482--482
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 483--483
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 484--484
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 485--485
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 486--486
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 487--487
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 488--488
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 489--489
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 490--490
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 491--491
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 492--492
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 493--493
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 494--494
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 495--495
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 496--496
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 497--497
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 498--498
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 499--499
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 500--500
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 501--501
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 502--502
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 503--503
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 504--504
+[]$ 
+ []
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+[20]
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 505--505
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 506--506
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 507--507
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 508--508
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 509--509
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 510--510
+[]$ 
+ []
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+[21]
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 516--516
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 517--517
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 518--518
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 519--519
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 520--520
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 521--521
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 522--522
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 523--523
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 524--524
+[]$ 
+ []
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+[22]
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 530--530
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 531--531
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 532--532
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 533--533
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 534--534
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 535--535
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 536--536
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 537--537
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 538--538
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 539--539
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 540--540
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 541--541
+[]$ 
+ []
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+[23]
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 547--547
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 548--548
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 553--553
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 554--554
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 555--555
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 556--556
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 557--557
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 558--558
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 559--559
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 560--560
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 561--561
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 562--562
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 563--563
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 564--564
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 565--565
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 566--566
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 567--567
+[]$ 
+ []
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+[24]
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 568--568
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 569--569
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 570--570
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 571--571
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 572--572
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 573--573
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 574--574
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 575--575
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 576--576
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 577--577
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 578--578
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 579--579
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 580--580
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 581--581
+[]$ 
+ []
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+[25]
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 587--587
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 588--588
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 589--589
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 590--590
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 595--595
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 596--596
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 597--597
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 598--598
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 599--599
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 600--600
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 601--601
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 602--602
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 603--603
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 604--604
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 605--605
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 606--606
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 607--607
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 608--608
+[]$ 
+ []
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+[26]
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 609--609
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 610--610
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 611--611
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 612--612
+[]$ 
+ []
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+[27]
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 618--618
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 623--623
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 624--624
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 629--629
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 630--630
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 631--631
+[]$ 
+ []
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+[28]
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 637--637
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 638--638
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 639--639
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 640--640
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 641--641
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 642--642
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 643--643
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 644--644
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 645--645
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 646--646
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 647--647
+[]$ 
+ []
+
+Missing character: There is no ့ (U+1037) in font [Laksaman.otf]/OT:script=thai
+;language=THA;mapping=tex-text;!
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 648--648
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 649--649
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 650--650
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 651--651
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 652--652
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 653--653
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 654--654
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 655--655
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 656--656
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 657--657
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 658--658
+[]$ 
+ []
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+[29]
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 659--659
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 660--660
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 661--661
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 662--662
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 663--663
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 664--664
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 665--665
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 666--666
+[]$ 
+ []
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+[30]
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 672--672
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 673--673
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 678--678
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 679--679
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 680--680
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 681--681
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 682--682
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 683--683
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 684--684
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 685--685
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 686--686
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 687--687
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 688--688
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 689--689
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 690--690
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 691--691
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 692--692
+[]$ 
+ []
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+[31]
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 693--693
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 694--694
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 695--695
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 696--696
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 697--697
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 698--698
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 699--699
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 700--700
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 701--701
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 702--702
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 703--703
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 704--704
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 705--705
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 706--706
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 707--707
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 708--708
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 709--709
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 710--710
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 711--711
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 712--712
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 713--713
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 714--714
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 715--715
+[]$ 
+ []
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+[32]
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 716--716
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 717--717
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 718--718
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 719--719
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 720--720
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 721--721
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 722--722
+[]$ 
+ []
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+[33]
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 728--728
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 729--729
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 730--730
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 731--731
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 732--732
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 733--733
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 734--734
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 735--735
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 736--736
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 737--737
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 738--738
+[]$ 
+ []
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+[34]
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 744--744
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 745--745
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 746--746
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 747--747
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 748--748
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 749--749
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 750--750
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 751--751
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 752--752
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 753--753
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 754--754
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 755--755
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 756--756
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 757--757
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 758--758
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 759--759
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 760--760
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 761--761
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 762--762
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 763--763
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 764--764
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 765--765
+[]$ 
+ []
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+[35]
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 766--766
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 767--767
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 768--768
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 769--769
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 770--770
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 771--771
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 772--772
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 773--773
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 774--774
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 775--775
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 776--776
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 777--777
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 778--778
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 779--779
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 780--780
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 781--781
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 782--782
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 783--783
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 784--784
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 785--785
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 786--786
+[]$ 
+ []
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+[36]
+Missing character: There is no ့ (U+1037) in font [Laksaman.otf]/OT:script=thai
+;language=THA;mapping=tex-text;!
+Missing character: There is no ့ (U+1037) in font [Laksaman.otf]/OT:script=thai
+;language=THA;mapping=tex-text;!
+Missing character: There is no ့ (U+1037) in font [Laksaman.otf]/OT:script=thai
+;language=THA;mapping=tex-text;!
+Missing character: There is no ၏ (U+104F) in font [Laksaman.otf]/OT:script=thai
+;language=THA;mapping=tex-text;!
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 792--792
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 793--793
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 794--794
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 795--795
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 796--796
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 797--797
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 798--798
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 799--799
+[]$ 
+ []
+
+Missing character: There is no ့ (U+1037) in font [Laksaman.otf]/OT:script=thai
+;language=THA;mapping=tex-text;!
+Missing character: There is no ဲ (U+1032) in font [Laksaman.otf]/OT:script=thai
+;language=THA;mapping=tex-text;!
+Missing character: There is no ့ (U+1037) in font [Laksaman.otf]/OT:script=thai
+;language=THA;mapping=tex-text;!
+Missing character: There is no ့ (U+1037) in font [Laksaman.otf]/OT:script=thai
+;language=THA;mapping=tex-text;!
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 800--800
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 801--801
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 802--802
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 803--803
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 804--804
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 805--805
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 806--806
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 807--807
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 808--808
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 809--809
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 810--810
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 811--811
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 812--812
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 813--813
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 814--814
+[]$ 
+ []
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+[37]
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 815--815
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 816--816
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 817--817
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 818--818
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 819--819
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 820--820
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 821--821
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 822--822
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 823--823
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 824--824
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 825--825
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 826--826
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 827--827
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 828--828
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 829--829
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 830--830
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 831--831
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 832--832
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 833--833
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 834--834
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 835--835
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 836--836
+[]$ 
+ []
+
+Missing character: There is no ့ (U+1037) in font [Laksaman.otf]/OT:script=thai
+;language=THA;mapping=tex-text;!
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 837--837
+[]$ 
+ []
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+[38]
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 838--838
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 839--839
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 840--840
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 841--841
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 842--842
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 843--843
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 844--844
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 845--845
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 846--846
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 847--847
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 848--848
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 849--849
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 850--850
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 851--851
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 852--852
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 853--853
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 854--854
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 855--855
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 856--856
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 857--857
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 858--858
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 859--859
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 860--860
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 861--861
+[]$ 
+ []
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+[39]
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 862--862
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 863--863
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 864--864
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 865--865
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 866--866
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 867--867
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 868--868
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 869--869
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 870--870
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 871--871
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 872--872
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 873--873
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 874--874
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 875--875
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 876--876
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 877--877
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 878--878
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 879--879
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 880--880
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 881--881
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 882--882
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 883--883
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 884--884
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 885--885
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 886--886
+[]$ 
+ []
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+[40]
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 887--887
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 888--888
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 889--889
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 890--890
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 891--891
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 892--892
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 893--893
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 894--894
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 895--895
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 896--896
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 897--897
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 898--898
+[]$ 
+ []
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+[41]
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 904--904
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 905--905
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 906--906
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 907--907
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 908--908
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 909--909
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 910--910
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 911--911
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 912--912
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 913--913
+[]$ 
+ []
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+[42]
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 919--919
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 920--920
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 921--921
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 922--922
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 923--923
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 924--924
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 925--925
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 926--926
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 927--927
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 928--928
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 929--929
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 930--930
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 931--931
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 932--932
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 933--933
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 934--934
+[]$ 
+ []
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+[43]
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 940--940
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 941--941
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 942--942
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 943--943
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 944--944
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 945--945
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 946--946
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 947--947
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 948--948
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 949--949
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 950--950
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 951--951
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 952--952
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 953--953
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 954--954
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 955--955
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 956--956
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 957--957
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 958--958
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 959--959
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 960--960
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 961--961
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 962--962
+[]$ 
+ []
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+[44]
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 963--963
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 964--964
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 965--965
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 966--966
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 967--967
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 968--968
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 969--969
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 970--970
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 971--971
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 972--972
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 973--973
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 974--974
+[]$ 
+ []
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+[45]
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 980--980
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 981--981
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 982--982
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 983--983
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 984--984
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 985--985
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 986--986
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 987--987
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 988--988
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 989--989
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 990--990
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 991--991
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 992--992
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 993--993
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 994--994
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 995--995
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 996--996
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 997--997
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 998--998
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 999--999
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1000--1000
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1001--1001
+[]$ 
+ []
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+[46]
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1002--1002
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1003--1003
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1004--1004
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1005--1005
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1006--1006
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1007--1007
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1008--1008
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1009--1009
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1010--1010
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1011--1011
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1012--1012
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1013--1013
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1014--1014
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1015--1015
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1016--1016
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1017--1017
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1018--1018
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1019--1019
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1020--1020
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1021--1021
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1022--1022
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1023--1023
+[]$ 
+ []
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+[47]
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1024--1024
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1025--1025
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1026--1026
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1027--1027
+[]$ 
+ []
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+[48]
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1033--1033
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1034--1034
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1035--1035
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1036--1036
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1037--1037
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1038--1038
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1039--1039
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1040--1040
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1041--1041
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1042--1042
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1043--1043
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1044--1044
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1045--1045
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1046--1046
+[]$ 
+ []
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+[49]
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1052--1052
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1053--1053
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1054--1054
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1055--1055
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1056--1056
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1057--1057
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1058--1058
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1059--1059
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1060--1060
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1061--1061
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1062--1062
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1063--1063
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1064--1064
+[]$ 
+ []
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+[50]
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1070--1070
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1071--1071
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1072--1072
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1073--1073
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1074--1074
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1075--1075
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1076--1076
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1077--1077
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1078--1078
+[]$ 
+ []
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+[51]
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1084--1084
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1085--1085
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1086--1086
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1087--1087
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1088--1088
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1089--1089
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1090--1090
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1091--1091
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1092--1092
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1093--1093
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1094--1094
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1095--1095
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1096--1096
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1097--1097
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1098--1098
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1099--1099
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1100--1100
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1101--1101
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1102--1102
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1103--1103
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1104--1104
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1105--1105
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1106--1106
+[]$ 
+ []
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+[52]
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1107--1107
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1108--1108
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1109--1109
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1110--1110
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1111--1111
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1112--1112
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1113--1113
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1114--1114
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1115--1115
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1116--1116
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1117--1117
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1118--1118
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1119--1119
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1120--1120
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1121--1121
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1122--1122
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1123--1123
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1124--1124
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1125--1125
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1126--1126
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1127--1127
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1128--1128
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1129--1129
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1130--1130
+[]$ 
+ []
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+[53]
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1131--1131
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1132--1132
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1133--1133
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1134--1134
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1135--1135
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1136--1136
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1137--1137
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1138--1138
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1139--1139
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1140--1140
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1141--1141
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1142--1142
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1143--1143
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1144--1144
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1145--1145
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1146--1146
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1147--1147
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1148--1148
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1149--1149
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1150--1150
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1151--1151
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1152--1152
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1153--1153
+[]$ 
+ []
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+[54]
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1154--1154
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1155--1155
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1156--1156
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1157--1157
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1158--1158
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1159--1159
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1160--1160
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1161--1161
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1162--1162
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1163--1163
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1164--1164
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1165--1165
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1166--1166
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1167--1167
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1168--1168
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1169--1169
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1170--1170
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1171--1171
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1172--1172
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1173--1173
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1174--1174
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1175--1175
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1176--1176
+[]$ 
+ []
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+[55]
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1177--1177
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1178--1178
+[]$ 
+ []
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+[56]
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1184--1184
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1185--1185
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1186--1186
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1187--1187
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1188--1188
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1189--1189
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1190--1190
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1191--1191
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1192--1192
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1193--1193
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1194--1194
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1195--1195
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1196--1196
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1197--1197
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1198--1198
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1199--1199
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1200--1200
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1201--1201
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1202--1202
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1203--1203
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1204--1204
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1205--1205
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1206--1206
+[]$ 
+ []
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+[57]
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1207--1207
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1208--1208
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1209--1209
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1210--1210
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1211--1211
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1212--1212
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1213--1213
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1214--1214
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1215--1215
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1216--1216
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1217--1217
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1218--1218
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1219--1219
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1220--1220
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1221--1221
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1222--1222
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1223--1223
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1224--1224
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1225--1225
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1226--1226
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1227--1227
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1228--1228
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1229--1229
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1230--1230
+[]$ 
+ []
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+[58]
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1231--1231
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1232--1232
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1233--1233
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1234--1234
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1235--1235
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1236--1236
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1237--1237
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1238--1238
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1239--1239
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1240--1240
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1241--1241
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1242--1242
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1243--1243
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1244--1244
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1245--1245
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1246--1246
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1247--1247
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1248--1248
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1249--1249
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1250--1250
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1251--1251
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1252--1252
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1253--1253
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1254--1254
+[]$ 
+ []
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+[59]
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1255--1255
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1256--1256
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1257--1257
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1258--1258
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1259--1259
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1260--1260
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1261--1261
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1262--1262
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1263--1263
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1264--1264
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1265--1265
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1266--1266
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1267--1267
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1268--1268
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1269--1269
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1270--1270
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1271--1271
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1272--1272
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1273--1273
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1274--1274
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1275--1275
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1276--1276
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1277--1277
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1278--1278
+[]$ 
+ []
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+[60]
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1279--1279
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1280--1280
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1281--1281
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1282--1282
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1283--1283
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1284--1284
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1285--1285
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1286--1286
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1287--1287
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1288--1288
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1289--1289
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1290--1290
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1291--1291
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1292--1292
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1293--1293
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1294--1294
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1295--1295
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1296--1296
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1297--1297
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1298--1298
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1299--1299
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1300--1300
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1303--1303
+[]$ 
+ []
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+[61]
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1304--1304
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1305--1305
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1306--1306
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1307--1307
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1308--1308
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1309--1309
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1310--1310
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1311--1311
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1312--1312
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1313--1313
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1314--1314
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1315--1315
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1316--1316
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1317--1317
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1318--1318
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1319--1319
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1320--1320
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1321--1321
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1322--1322
+[]$ 
+ []
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+[62]
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1323--1323
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1324--1324
+[]$ 
+ []
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+[63]
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1330--1330
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1331--1331
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1332--1332
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1333--1333
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1334--1334
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1335--1335
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1336--1336
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1337--1337
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1338--1338
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1339--1339
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1340--1340
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1341--1341
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1342--1342
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1343--1343
+[]$ 
+ []
+
+
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 1344--1344
+[]$ 
+ []
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+[64]
+The property list \polyglossia@langsetup contains the pairs (without outer
+braces):
+>  {latex/script}  =>  {latin}
+>  {latex/lcscript}  =>  {latin}
+>  {latex/scripttag}  =>  {}
+>  {latex/language}  =>  {Latex}
+>  {latex/langtag}  =>  {ENG}
+>  {latex/bcp47}  =>  {}
+>  {latex/hyphennames}  =>  {english}
+>  {latex/direction}  =>  {LR}
+>  {latex/hyphenmins}  =>  {2,3}
+>  {latex/frenchspacing}  =>  {false}
+>  {latex/indentfirst}  =>  {false}
+>  {latex/fontsetup}  =>  {true}
+>  {latex/envname}  =>  {latex}
+>  {latex/babelname}  =>  {latex}
+>  {latex/localnumeral}  =>  {polyglossia@C@localnumeral}
+>  {latex/Localnumeral}  =>  {polyglossia@C@localnumeral}
+>  {thai/script}  =>  {Thai}
+>  {thai/lcscript}  =>  {thai}
+>  {thai/scripttag}  =>  {thai}
+>  {thai/language}  =>  {Thai}
+>  {thai/langtag}  =>  {THA}
+>  {thai/bcp47}  =>  {th}
+>  {thai/hyphennames}  =>  {nohyphenation}
+>  {thai/direction}  =>  {LR}
+>  {thai/hyphenmins}  =>  {2,3}
+>  {thai/frenchspacing}  =>  {false}
+>  {thai/indentfirst}  =>  {false}
+>  {thai/fontsetup}  =>  {true}
+>  {thai/envname}  =>  {thai}
+>  {thai/babelname}  =>  {thai}
+>  {thai/localnumeral}  =>  {thainumerals}
+>  {thai/Localnumeral}  =>  {thainumerals}
+>  {english/script}  =>  {latin}
+>  {english/lcscript}  =>  {latin}
+>  {english/scripttag}  =>  {}
+>  {english/language}  =>  {English}
+>  {english/langtag}  =>  {ENG}
+>  {english/bcp47}  =>  {en-US}
+>  {english/hyphennames}  =>  {english,american,usenglish,USenglish}
+>  {english/direction}  =>  {LR}
+>  {english/hyphenmins}  =>  {2,3}
+>  {english/frenchspacing}  =>  {false}
+>  {english/indentfirst}  =>  {false}
+>  {english/fontsetup}  =>  {true}
+>  {english/envname}  =>  {english}
+>  {english/babelname}  =>  {american}
+>  {english/localnumeral}  =>  {polyglossia@C@localnumeral}
+>  {english/Localnumeral}  =>  {polyglossia@C@localnumeral}.
+ (/var/www/html/_op1/padanukkama/static/pdf/zA2KD.aux
+LaTeX Info: Redefining \rmfamily on input line 3.
+LaTeX Info: Redefining \sffamily on input line 3.
+LaTeX Info: Redefining \ttfamily on input line 3.
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+
+Package fontspec Info: Laksaman scale = 0.8434411299232584.
+
+\thai@year=\count290
+)
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 6402 strings out of 476191
+ 162904 string characters out of 5812072
+ 579020 words of memory out of 5000000
+ 27081 multiletter control sequences out of 15000+600000
+ 469451 words of font info for 52 fonts, out of 8000000 for 9000
+ 1348 hyphenation exceptions out of 8191
+ 108i,11n,129p,1653b,650s stack positions out of 5000i,500n,10000p,200000b,80000s
+
+Output written on /var/www/html/_op1/padanukkama/static/pdf/zA2KD.pdf (66 pages
+).

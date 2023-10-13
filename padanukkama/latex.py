@@ -17,7 +17,8 @@ from .models import Sadda, Linga, Pada
 
 from aksharamukha import transliterate
 from braces.views import SuperuserRequiredMixin
-from collections import OrderedDict
+from collections import OrderedDict, Counter
+
 
 pdf_folder_path = os.path.join(settings.BASE_DIR, 'padanukkama', 'static', 'pdf')
 
@@ -66,7 +67,8 @@ def pali_char_convert(text):
         if x >= '0' and x <= '8':
             y.append(vowel[int(x)])
         else:
-            y.append(x+pintu)
+            # y.append(x+pintu)
+            y.append(x)
     return y
 
 
@@ -83,7 +85,7 @@ def sadda_type_display(sadda_object):
     display_value = sadda_object.sadda_type
     thai_translation = {
         'Nama': '',
-        'Akhyata': 'ขยฺา',
+        'Akhyata': 'ขฺยา',
         'Byaya': 'พฺยย'
     }
 
@@ -96,7 +98,7 @@ def sadda_type_display(sadda_object):
         sorted_linga = sorted(unique_linga, key=lambda x: order_dict.get(x, 9999))
 
         if len(sorted_linga) >= 3:
-            return 'วาจฺ'
+            return 'ติ'
 
         result = ", ".join(sorted_linga)
 
@@ -155,8 +157,11 @@ def GenerateBook(request, padanukkama_id):
     # ลบไฟล์ทั้งหมดใน folder
     delete_all_files_in_folder(pdf_folder_path)
 
-    # สร้าง LaTeX ไฟล์จาก template
-    saddas = Sadda.objects.filter(padanukkama = padanukkama_id).order_by('sadda_seq')
+    saddas = Sadda.objects.filter(padanukkama = padanukkama_id
+        ).exclude(pada__isnull=True).order_by('sadda_seq')
+
+    # ตั้งค่าการขึ้นหน้าใหม่
+    skip_new_page = ['จ', 'ช', 'ญ', 'ฐ', 'ท']
 
     # สร้าง LaTeX content
     mainmatter_list = []
@@ -164,25 +169,27 @@ def GenerateBook(request, padanukkama_id):
 
     for sadda in saddas:
         first_char = sadda.sadda_seq[0]
-
+        # แปลงตัวอักษรใน Pali และ escape สำหรับ LaTeX ที่นี่
+        section_title = pali_char_convert(first_char)
+        section_title = latex_escape(section_title)
+    
         if first_char != previous_first_char:
             if previous_first_char is not None:
                 mainmatter_list.append(r"\end{multicols}")
+                if section_title not in skip_new_page:
+                    mainmatter_list.append(r"\newpage")
 
-            # แปลงตัวอักษรใน Pali และ escape สำหรับ LaTeX ที่นี่
-            section_title = pali_char_convert(first_char)
-            section_title = latex_escape(section_title)
+            mainmatter_list.append(r"\needspace{5cm} \section*{\Huge %s}" % section_title)
+            mainmatter_list.append(r"\noindent\rule{\textwidth}{0.4pt}")
 
-            mainmatter_list.append(r"\needspace{5cm} \section*{%s}" % section_title)
             mainmatter_list.append(r"\begin{multicols}{2}")
 
         construction = sadda.construction if sadda.construction else "ไม่มีการประกอบคำ"
         sadda_type = sadda_type_display(sadda)
-        padas = ''
-        if sadda.sadda_type == 'Nama':
-            related_padas = Pada.objects.filter(sadda=sadda).order_by('pada_seq')
-            unique_padas = list(OrderedDict.fromkeys([p.pada for p in related_padas]))
-            padas = ', '.join([latex_escape(p) for p in unique_padas])
+
+        related_padas = Pada.objects.filter(sadda=sadda).order_by('pada_seq')
+        unique_padas = list(OrderedDict.fromkeys([p.pada for p in related_padas]))
+        padas = ', '.join([latex_escape(p) for p in unique_padas])
         meaning = sadda.meaning if sadda.meaning else "ไม่มีคำแปล"
 
         entry_line = r"\entry{%s} {%s} {%s} {%s} {%s}" % (
@@ -253,7 +260,6 @@ def GenerateBook(request, padanukkama_id):
     response = HttpResponse(pdf_data, content_type='application/pdf')
     response['Content-Disposition'] = f'attachment; filename="padanukkama-{unique_filename}-{formatted_time}.pdf"'
     return response
-
 
 
 # -------------------------
